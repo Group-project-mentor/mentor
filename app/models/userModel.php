@@ -1,10 +1,21 @@
 <?php
 
 class UserModel extends Model{
+
+    private $table = 'user';
+
     public function __construct(){
         parent::__construct();
     }
 
+    public function userLogin($email){
+        $result = $this->getData($this->table, "email = '$email'");
+        return $result;
+    }
+
+    public function registration($email, $name, $hash){
+        $query = "insert into user(email,name,password) values ('" . $email . "','" . $name . "','" . $hash . "')";
+        $result = $this->executeQuery($query);
     public function userLogin($username){
         $result = $this->getData("user","email = '$username'");
         return $result;
@@ -37,7 +48,7 @@ class UserModel extends Model{
     public function changePassword($passwd, $email){
         $query = "update user set password='$passwd' where email='$email'";
         return $this->executeQuery($query);
-    } 
+    }
     public function getImage($id){
         $query = "select image from user where id = $id";
         $result = $this->executeQuery($query);
@@ -64,7 +75,7 @@ class UserModel extends Model{
         $query = "update user set name = '$name' where id=$id";
         return $this->executeQuery($query);
     }
-    
+
     public function updateMobile($mobile, $id){
         $query = "update resource_creator set mobile_no = '$mobile' where id=$id";
         return $this->executeQuery($query);
