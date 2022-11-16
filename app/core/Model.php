@@ -8,8 +8,7 @@ class Model extends DB
         parent::__construct();
     }
 
-    // Gets all columns from a table with conditions
-    public function getAllData($table, $where = null, $ord = null)
+    public function getData($table, $where = null, $ord = null, $lim = null)
     {
         $query = "select * from $table";
         if ($where != null) {
@@ -23,21 +22,7 @@ class Model extends DB
         return $result;
     }
 
-    public function getData($table, $where = null, $ord = null)
-    {
-        $query = "select * from $table";
-        if ($where != null) {
-            $query = $query . " where $where";
-        }
-        if ($ord != null) {
-            $query = $query . " order by $ord";
-        }
-
-        $result = $this->executeQuery($query);
-        return $result;
-    }
-
-    public function insert($table, $data)
+    public function insertData($table, $data)
     {
         $sql = "INSERT INTO $table SET ";
         foreach ($data as $key => $value) {
@@ -48,7 +33,7 @@ class Model extends DB
         return $result;
     }
 
-    public function update($table, $data, $where)
+    public function updateData($table, $data, $where)
     {
         $sql = "UPDATE $table SET ";
         foreach ($data as $key => $value) {
@@ -60,7 +45,7 @@ class Model extends DB
         return $result;
     }
 
-    public function delete($table, $where)
+    public function deleteData($table, $where)
     {
         $sql = "DELETE FROM $table WHERE $where";
         $result = $this->executeQuery($sql);
