@@ -11,11 +11,11 @@ class App
         $url = $this->parseUrl();
 
         if (empty($url)) {
-            $this->_loadDefaultController($url);
+            $this->defaultLoader($url);
         }
-        else $this->_loadController($url);
+        else $this->loader($url);
     }
-    private function _loadDefaultController($url)
+    private function defaultLoader()
     {
         require '../app/controllers/home.php';
         $this->controller = new $this->controller;
@@ -23,7 +23,7 @@ class App
     }
 
 
-    private function _loadController($url)
+    private function loader($url)
     {
         if (file_exists('../app/controllers/' . $url[0] . '.php')) {
             $this->controller = $url[0];
