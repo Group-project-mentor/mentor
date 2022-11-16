@@ -5,10 +5,10 @@ define('DB_HOST', 'localhost');
 define('DB_USER', 'root'); 
 define('DB_NAME', 'school');
 define('DB_PASSWORD', ''); 
-define("BASEURL", "http://localhost/mentor/");
+define("BASEURL", "http://localhost/mentor-interim/");
 
 $path = $_SERVER['DOCUMENT_ROOT'];
-   $path .= "/mentor";
+   $path .= "/mentor-interim";
 define("PATH", "$path");
 
 ?>

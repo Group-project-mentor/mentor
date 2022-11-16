@@ -1,0 +1,14 @@
+<?php echo BASEURL . '/public/stylesheets/rc_main.css' ?>
+
+<?php
+session_start();
+if (!isset($_SESSION['user'])) {
+    header("location:" . BASEURL . "login");
+}
+
+?>
+
+<!-- Navigation panel -->
+        <?php include_once "components/navbars/rc_nav_1.php" ?>
+
+<link rel="stylesheet" href="<?php echo BASEURL . '/public/stylesheets/rc_main.css' ?> ">
