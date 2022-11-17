@@ -43,8 +43,8 @@
 
                 <!-- Title and sub title of middle part -->
                 <div class="mid-title">
-                    <h1>C79 - Science</h1>
-                    <h6>My Subjects / C79</h6>
+                    <h1><?php echo "Grade ".$_SESSION['gname']." - ".ucfirst($_SESSION['sname']) ?></h1>
+                    <h6>My Subjects / <?php echo ucfirst($_SESSION['sname']) ?></h6>
                 </div>
 
                 <!-- Grade choosing interface -->
