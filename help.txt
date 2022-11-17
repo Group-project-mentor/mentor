@@ -12,3 +12,6 @@ if (!isset($_SESSION['user'])) {
         <?php include_once "components/navbars/rc_nav_1.php" ?>
 
 <link rel="stylesheet" href="<?php echo BASEURL . '/public/stylesheets/rc_main.css' ?> ">
+
+SELECT grade_id, subject_id FROM subject_has_grade WHERE subject_id IN (SELECT subject_id FROM `rc_has_subject` WHERE rc_id = 3)
+SELECT grade.name, subject.name, grade.id, subject.id FROM grade INNER JOIN subject_has_grade ON grade.id = subject_has_grade.grade_id INNER JOIN subject ON subject.id = subject_has_grade.subject_id  

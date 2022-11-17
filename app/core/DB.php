@@ -5,12 +5,12 @@
         public function __construct(){
 
             $connection = new mysqli(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
-            if ($this->connection->connect_error) {
+            if (isset($this->connection) and $this->connection->connect_error) {
                 die("Connection failed: " . $this->connection->connect_error);
             }else{
                 $this->connection = $connection;
                 return $this->connection;
-            }
+        }
 
         }
 

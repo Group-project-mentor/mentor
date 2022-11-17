@@ -27,8 +27,10 @@ class Login extends Controller
                         $result = $record;
                     }
                     if (password_verify($_POST["passwd"], $result[2])) {
+                        $_SESSION["id"] = $result[0];
                         $_SESSION["user"] = $email;
-                        echo "Login successful !\nWelcome $result[3]";
+                        $_SESSION["name"] = $result[3];
+                        // echo "Login successful !\nWelcome $result[3]";
                         header("location:" . BASEURL . "home");
                     } else {
                         header("location:" . BASEURL . "login");
