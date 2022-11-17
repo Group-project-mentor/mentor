@@ -24,16 +24,15 @@
                 <p class="nav-switch-txt">Private</p>
             </div>
 
-
             <!-- Navigation buttons -->
             <div class="nav-links">
                 <a href="<?php echo BASEURL . 'home' ?>" class="nav-link">
                     <img src="assets/icons/icon_home.png" alt="home">
                     <div class="nav-link-text">Home</div>
                 </a>
-                <a href="<?php echo BASEURL . 'cources' ?>" class="nav-link">
+                <a href="<?php echo BASEURL . 'subjects' ?>" class="nav-link">
                     <img src="assets/icons/icon_cources.png" alt="cource">
-                    <div class="nav-link-text">Cources</div>
+                    <div class="nav-link-text">Subjects</div>
                 </a>
                 <a href="#" class="nav-link">
                     <img src="assets/icons/icon_profile.png" alt="profile">
