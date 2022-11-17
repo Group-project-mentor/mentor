@@ -51,7 +51,7 @@ if (!isset($_SESSION['user'])) {
                 <!-- Title and sub title of middle part -->
                 <div class="mid-title">
                     <h1>My Subjects</h1>
-                    <h6>Resource creator -My Subjects / C136</h6>
+                    <h6><?php echo $_SESSION["name"] ?></h6>
                 </div>
 
                 <!-- subject cards -->
