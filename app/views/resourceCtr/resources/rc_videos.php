@@ -1,3 +1,8 @@
+<?php
+if (!isset($_SESSION['user'])) {
+    header("location:" . BASEURL . "login");
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -16,7 +21,6 @@
         <!-- Navigation panel -->
         <?php include_once "components/navbars/rc_nav_2.php" ?>
         
-
         <div class="content-area">
 
             <!-- Top bar -->
@@ -76,6 +80,9 @@
                                             </div>
                                         </div>";
                                 }
+                            }
+                            else{
+                                echo "No data";
                             }
                         ?> 
 

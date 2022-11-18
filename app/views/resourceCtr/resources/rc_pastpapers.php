@@ -1,8 +1,3 @@
-<?php
-if (!isset($_SESSION['user'])) {
-    header("location:" . BASEURL . "login");
-}
-?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -10,7 +5,7 @@ if (!isset($_SESSION['user'])) {
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quizzes</title>
+    <title>Past papers</title>
     <link rel="stylesheet" href="<?php echo BASEURL . '/public/stylesheets/rc_main.css' ?> ">
     <link rel="stylesheet" href="<?php echo BASEURL . '/public/stylesheets/rc_resources.css' ?> ">
 </head>
@@ -31,7 +26,7 @@ if (!isset($_SESSION['user'])) {
                     </a>
                 </div>
                 <div class="top-bar-btns">
-                    <a href="<?php echo BASEURL ?>subjects">
+                    <a href="<?php echo BASEURL . 'subjects' ?>">
                         <div class="back-btn">Back</div>
                     </a>
                     <a href="#">
@@ -55,27 +50,28 @@ if (!isset($_SESSION['user'])) {
                 <!-- Grade choosing interface -->
                 <div class="container-box">
                     <div class="rc-resource-header">
-                        <h1>QUIZZES</h1>
+                        <h1>PAST PAPERS</h1>
                         <a href="">
                             <div class="rc-add-btn">
-                                Add Quiz
+                                Add Pastpaper
                             </div>
                         </a>
                     </div>
 
                     <div class="rc-resource-table">
-
-                        <div class="rc-resource-row rc-table-title">
+                        <div class="rc-pp-row rc-table-title">
                             <div class="rc-resource-col">Quiz Name</div>
-                            <div class="rc-resource-col">Questions</div>
+                            <div class="rc-resource-col">year</div>
+                            <div class="rc-resource-col">Part</div>
                             <div></div>
                         </div>
                         <?php
                             if(!empty($data)){
                                 foreach ($data as $row) {
-                                    echo "<div class='rc-resource-row'>
+                                    echo "<div class='rc-pp-row'>
                                                 <div class='rc-resource-col'>".$row['name']."</div>
-                                                <div class='rc-resource-col'>".$row['questions']."</div>
+                                                <div class='rc-resource-col'>".$row['year']."</div>
+                                                <div class='rc-resource-col'>".$row['part']."</div>                       
                                                 <div class='rc-quiz-row-btns'>
                                                     <button>
                                                         <img src='".BASEURL."assets/icons/icon_delete.png' alt=''>
@@ -87,25 +83,49 @@ if (!isset($_SESSION['user'])) {
                                             </div>";
                                 }
                             }
-                        ?> 
-
-                        <!-- <div class="rc-resource-row">
-                            <div class="rc-resource-col">Genaral </div>
-                            <div class="rc-resource-col">1</div>
-                            <div class="rc-quiz-row-btns">
-                                <button>
-                                    <img src="<?php echo BASEURL ?>assets/icons/icon_delete.png" alt="">
-                                </button>
-                                <button>
-                                    <img src="<?php echo BASEURL ?>assets/icons/icon_edit.png" alt="">
-                                </button>
-                            </div>
-                        </div> -->
-
+                        ?>
                     </div>
                 </div>
-            </div>
+        </div>
     </section>
 </body>
+<script>
+    let toggle = true;
+
+    const getElement = (id) => document.getElementById(id);
+
+    let togglerBtn = getElement("nav-toggler");
+    let nav = getElement("nav-bar");
+    let logoLong = getElement("nav-logo-long");
+    let navMiddle = getElement("nav-middle");
+    let navLinkTexts = document.getElementsByClassName("nav-link-text");
+
+    togglerBtn.addEventListener('click', () => {
+        nav.classList.toggle("nav-bar-small");
+
+        if (toggle) {
+            logoLong.classList.add("hidden");
+            navMiddle.classList.add("hidden");
+            togglerBtn.classList.add("toggler-rotate");
+            for (i = 0; i < navLinkTexts.length; i++) {
+                navLinkTexts[i].classList.add("hidden");
+            }
+            toggle = false;
+        }
+
+        else {
+            logoLong.classList.remove("hidden");
+            navMiddle.classList.remove("hidden");
+            togglerBtn.classList.remove("toggler-rotate");
+            for (i = 0; i < navLinkTexts.length; i++) {
+                navLinkTexts[i].classList.remove("hidden");
+            }
+            toggle = true;
+        }
+    })
+
+
+
+</script>
 
 </html>

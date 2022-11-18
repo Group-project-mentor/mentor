@@ -42,7 +42,7 @@
                     <img src="<?php echo BASEURL?>assets/icons/icon_past_papers.png" alt="profile">
                     <div class="nav-link-text">Past papers</div>
                 </a>
-                <a href="<?php echo BASEURL ?>resources/pdfs/<?php echo "$gid/$sid"; ?>" class="nav-link">
+                <a href="<?php echo BASEURL ?>resources/documents/<?php echo "$gid/$sid"; ?>" class="nav-link">
                     <img src="<?php echo BASEURL?>assets/icons/icon_pdf.png" alt="report">
                     <div class="nav-link-text">PDF</div>
                 </a>
