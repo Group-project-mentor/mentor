@@ -53,7 +53,7 @@ if (!isset($_SESSION['user'])) {
                 </div>
 
                 <!-- Grade choosing interface -->
-                <div class="container-box">
+                <!-- <div class="container-box">
                     <div class="grade-switcher">
                         <img src="assets/icons/icon_prev.png" alt="left">
                         <div class="grades">
@@ -72,7 +72,7 @@ if (!isset($_SESSION['user'])) {
                         </div>
                         <img src="assets/icons/icon_next.png" alt="right">
                     </div>
-                </div>
+                </div> -->
 
                 <!-- bottom part -->
                 <section class="bottom-section-grades">

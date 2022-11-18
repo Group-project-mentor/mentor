@@ -1,8 +1,3 @@
-<?php
-if (!isset($_SESSION['user'])) {
-    header("location:" . BASEURL . "login");
-}
-?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -10,13 +5,14 @@ if (!isset($_SESSION['user'])) {
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quizzes</title>
-    <link rel="stylesheet" href="<?php echo BASEURL . '/public/stylesheets/rc_main.css' ?> ">
-    <link rel="stylesheet" href="<?php echo BASEURL . '/public/stylesheets/rc_resources.css' ?> ">
+    <title>RC-Cources</title>
+        <link rel="stylesheet" href="<?php echo BASEURL . '/public/stylesheets/rc_main.css' ?> ">
+        <link rel="stylesheet" href="<?php echo BASEURL . '/public/stylesheets/rc_resources.css' ?> ">
 </head>
 
 <body>
     <section class="page">
+        
         <!-- Navigation panel -->
         <?php include_once "components/navbars/rc_nav_2.php" ?>
 
@@ -31,7 +27,7 @@ if (!isset($_SESSION['user'])) {
                     </a>
                 </div>
                 <div class="top-bar-btns">
-                    <a href="<?php echo BASEURL ?>subjects">
+                    <a href="<?php echo BASEURL . 'subjects' ?>">
                         <div class="back-btn">Back</div>
                     </a>
                     <a href="#">
@@ -55,27 +51,38 @@ if (!isset($_SESSION['user'])) {
                 <!-- Grade choosing interface -->
                 <div class="container-box">
                     <div class="rc-resource-header">
-                        <h1>QUIZZES</h1>
+                        <h1>DOCUMENTS</h1>
                         <a href="">
                             <div class="rc-add-btn">
-                                Add Quiz
+                                Add Document
                             </div>
                         </a>
                     </div>
 
                     <div class="rc-resource-table">
-
-                        <div class="rc-resource-row rc-table-title">
+                        <div class="rc-table-title">
                             <div class="rc-resource-col">Quiz Name</div>
-                            <div class="rc-resource-col">Questions</div>
                             <div></div>
                         </div>
-                        <?php
+
+                        <!-- <div class="rc-pdf-row">
+                            <div class="rc-resource-col">Lesson 1 </div>
+                            <div class="rc-quiz-row-btns">
+                                <button>
+                                    <img src="<?php echo BASEURL ?>assets/icons/icon_delete.png" alt="delete">
+                                </button>
+                                <button>
+                                    <img src="<?php echo BASEURL ?>assets/icons/icon_edit.png" alt="edit">
+                                </button>
+                            </div>
+                        </div> -->
+
+
+                            <?php
                             if(!empty($data)){
                                 foreach ($data as $row) {
-                                    echo "<div class='rc-resource-row'>
-                                                <div class='rc-resource-col'>".$row['name']."</div>
-                                                <div class='rc-resource-col'>".$row['questions']."</div>
+                                    echo "<div class='rc-pdf-row'>
+                                                <div class='rc-resource-col'>".$row['name']."</div>                     
                                                 <div class='rc-quiz-row-btns'>
                                                     <button>
                                                         <img src='".BASEURL."assets/icons/icon_delete.png' alt=''>
@@ -85,27 +92,15 @@ if (!isset($_SESSION['user'])) {
                                                     </button>
                                                 </div>
                                             </div>";
+                                    }
                                 }
-                            }
-                        ?> 
+                            ?>
 
-                        <!-- <div class="rc-resource-row">
-                            <div class="rc-resource-col">Genaral </div>
-                            <div class="rc-resource-col">1</div>
-                            <div class="rc-quiz-row-btns">
-                                <button>
-                                    <img src="<?php echo BASEURL ?>assets/icons/icon_delete.png" alt="">
-                                </button>
-                                <button>
-                                    <img src="<?php echo BASEURL ?>assets/icons/icon_edit.png" alt="">
-                                </button>
-                            </div>
-                        </div> -->
 
                     </div>
+
                 </div>
-            </div>
+        </div>
     </section>
 </body>
-
 </html>
