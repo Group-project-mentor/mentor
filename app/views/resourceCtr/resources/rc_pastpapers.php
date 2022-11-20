@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -11,6 +10,8 @@
 </head>
 
 <body>
+    <?php include_once "components/alerts/rc_delete_alert.php"?>
+
     <section class="page">
         <!-- Navigation panel -->
         <?php include_once "components/navbars/rc_nav_2.php" ?>
@@ -44,7 +45,7 @@
                 <!-- Title and sub title of middle part -->
                 <div class="mid-title">
                     <h1><?php echo "Grade ".$_SESSION['gname']." - ".ucfirst($_SESSION['sname']) ?></h1>
-                    <h6>My Subjects / <?php echo ucfirst($_SESSION['sname']) ?></h6>
+                    <h6>My Subjects / <?php echo ucfirst($_SESSION['sname']) ?> / past papers</h6>
                 </div>
 
                 <!-- Grade choosing interface -->
@@ -60,7 +61,7 @@
 
                     <div class="rc-resource-table">
                         <div class="rc-pp-row rc-table-title">
-                            <div class="rc-resource-col">Quiz Name</div>
+                            <div class="rc-resource-col">Pastpaper</div>
                             <div class="rc-resource-col">year</div>
                             <div class="rc-resource-col">Part</div>
                             <div></div>
@@ -73,7 +74,7 @@
                                                 <div class='rc-resource-col'>".$row['year']."</div>
                                                 <div class='rc-resource-col'>".$row['part']."</div>                       
                                                 <div class='rc-quiz-row-btns'>
-                                                    <button>
+                                                    <button onclick='delConfirm(".$row['id'].",3)'>
                                                         <img src='".BASEURL."assets/icons/icon_delete.png' alt=''>
                                                     </button>
                                                     <button>
@@ -89,43 +90,5 @@
         </div>
     </section>
 </body>
-<script>
-    let toggle = true;
-
-    const getElement = (id) => document.getElementById(id);
-
-    let togglerBtn = getElement("nav-toggler");
-    let nav = getElement("nav-bar");
-    let logoLong = getElement("nav-logo-long");
-    let navMiddle = getElement("nav-middle");
-    let navLinkTexts = document.getElementsByClassName("nav-link-text");
-
-    togglerBtn.addEventListener('click', () => {
-        nav.classList.toggle("nav-bar-small");
-
-        if (toggle) {
-            logoLong.classList.add("hidden");
-            navMiddle.classList.add("hidden");
-            togglerBtn.classList.add("toggler-rotate");
-            for (i = 0; i < navLinkTexts.length; i++) {
-                navLinkTexts[i].classList.add("hidden");
-            }
-            toggle = false;
-        }
-
-        else {
-            logoLong.classList.remove("hidden");
-            navMiddle.classList.remove("hidden");
-            togglerBtn.classList.remove("toggler-rotate");
-            for (i = 0; i < navLinkTexts.length; i++) {
-                navLinkTexts[i].classList.remove("hidden");
-            }
-            toggle = true;
-        }
-    })
-
-
-
-</script>
-
+<script src="<?php echo BASEURL . '/public/javascripts/rc_alert_control.js' ?>"></script>
 </html>

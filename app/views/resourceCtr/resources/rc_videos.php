@@ -1,8 +1,3 @@
-<?php
-if (!isset($_SESSION['user'])) {
-    header("location:" . BASEURL . "login");
-}
-?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -16,6 +11,8 @@ if (!isset($_SESSION['user'])) {
 </head>
 
 <body>
+    <?php include_once "components/alerts/rc_delete_alert.php"?>
+
     <section class="page">
 
         <!-- Navigation panel -->
@@ -28,7 +25,7 @@ if (!isset($_SESSION['user'])) {
                 <div class="search-bar">
                     <input type="text" name="" id="" placeholder="Search...">
                     <a href="#">
-                        <img src="assets/icons/icon_search.png" alt="">
+                        <img src="<?php echo BASEURL ?>assets/icons/icon_search.png" alt="">
                     </a>
                 </div>
                 <div class="top-bar-btns">
@@ -50,14 +47,14 @@ if (!isset($_SESSION['user'])) {
                 <!-- Title and sub title of middle part -->
                 <div class="mid-title">
                     <h1><?php echo "Grade ".$_SESSION['gname']." - ".ucfirst($_SESSION['sname']) ?></h1>
-                    <h6>My Subjects / <?php echo ucfirst($_SESSION['sname']) ?></h6>
+                    <h6>My Subjects / <?php echo ucfirst($_SESSION['sname']) ?> / videos</h6>
                 </div>
 
                 <!-- Grade choosing interface -->
                 <div class="container-box">
                     <div class="rc-resource-header">
                         <h1>VIDEOS</h1>
-                        <a href="">
+                        <a href="<?php echo BASEURL . 'add/video' ?>">
                             <div class="rc-add-btn">
                                 Add Video
                             </div>
@@ -71,7 +68,7 @@ if (!isset($_SESSION['user'])) {
                                             <img src='".BASEURL."assets/patterns/1.png' alt='' />
                                             <a href=''><label>".$row['name']."</label></a>
                                             <div class='rc-video-card-btns'>
-                                                <button class='rc-video-delete-btn'>
+                                                <button class='rc-video-delete-btn' onclick='delConfirm(".$row['id'].",1)'>
                                                     <img src='".BASEURL."assets/icons/icon_delete.png' alt=''>
                                                 </button>
                                                 <button class='rc-video-delete-btn'>
@@ -93,5 +90,6 @@ if (!isset($_SESSION['user'])) {
 
     </section>
 </body>
+<script src="<?php echo BASEURL . '/public/javascripts/rc_alert_control.js' ?>"></script>
 
 </html>

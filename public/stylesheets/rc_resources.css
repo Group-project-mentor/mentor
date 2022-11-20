@@ -33,7 +33,7 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    background-color: rgba(218, 218, 218, 0.247);
+    background-color: rgba(242, 242, 242, 0.114);
     border-radius: 10px;
 }
 
@@ -82,10 +82,12 @@
 }
 
 .rc-video-card-btns img {
+    cursor: pointer;
     width: 35px;
 }
 
 .rc-video-card-btns button {
+    cursor: pointer;
     border: none;
     background-color: rgba(255, 255, 255, 0.919);
     cursor: pointer;
@@ -125,23 +127,29 @@
     transition: all 0.5s;
 }
 
-.rc-resource-row div:nth-of-type(1){
+.rc-resource-row div:nth-of-type(1) {
     flex: 3;
 }
 
-.rc-resource-row div:nth-of-type(2){
+.rc-resource-row div:nth-of-type(2) {
     flex: 3;
 }
 
-.rc-resource-row div:nth-of-type(3){
+.rc-resource-row div:nth-of-type(3) {
     flex: 1;
 }
 
+.rc-table-title {
+    font-size: larger;
+    padding: 10px 15px;
+    border-radius: 5px 5px 0 0;
+    box-shadow: none;
+    /* background-color: #D6FAE4; */
+}
 
-
-/* .rc-table-title:hover{
+.rc-table-title:hover {
     transform: scale(1);
-} */
+}
 
 .rc-quiz-row-btns {
     width: 100%;
@@ -151,11 +159,19 @@
 }
 
 .rc-quiz-row-btns button {
+    cursor: pointer;
+    border: none;
+    background-color: transparent;
+}
+
+.rc-quiz-row-btns a {
+    cursor: pointer;
     border: none;
     background-color: transparent;
 }
 
 .rc-quiz-row-btns img {
+    cursor: pointer;
     width: 20px;
 }
 
@@ -175,6 +191,10 @@
 .rc-pp-row:hover {
     transform: scale(1.02);
     transition: all 0.5s;
+}
+
+.rc-pp-title:hover {
+    transform: scale(1);
 }
 
 .rc-pp-row div:nth-of-type(1) {
@@ -221,16 +241,82 @@
 
 .rc-table-title:hover {
     transform: scale(1);
-    /* transition: all 0.5s; */
+}
+/* upload resources area */
+.rc-upload-box {
+    margin: 30px auto;
+    padding: 20px 40px;
+    background-color: rgba(166, 166, 166, 0.151);
+    border-radius: 10px;
 }
 
-.rc-table-title {
+/* .rc-upload-form {} */
+
+.rc-upload-home-title {
+    text-align: center;
     font-size: larger;
-    padding: 10px 15px;
-    border-radius: 5px 5px 0 0;
-    box-shadow: none;
-    /* background-color: #D6FAE4; */
+    font-weight: 600;
+    margin: 15px 5px;
 }
+
+.rc-form-group {
+    display: flex;
+    flex-direction: column;
+    margin: 20px 5px;
+}
+
+.rc-form-group [type="text"] {
+    padding: 5px 10px;
+    border: 1px solid rgba(128, 128, 128, 0.345);
+    outline: none;
+}
+
+
+.rc-form-group [type="file"] {
+    font-size: medium;
+    position: absolute;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+
+}
+
+.rc-form-group>div {
+    padding: 40px;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(41, 123, 0, 0.142);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+    position: relative;
+
+}
+
+.rc-form-group textarea {
+    padding: 5px 10px;
+    border: 1px solid rgba(128, 128, 128, 0.345);
+    outline: none;
+    height: 100px;
+}
+
+.rc-upload-button button {
+    padding: 7px 15px;
+    margin: auto;
+    border-radius: 5px;
+    border: none;
+    background-color: green;
+    color: white;
+}
+
+.rc-form-group label {
+    margin: 5px;
+}
+
+
+/** media queries  */
 
 @media screen and (max-width:720px) {
     .rc-video-card label:nth-of-type(1) {
@@ -275,7 +361,7 @@
         text-decoration: none;
     }
 
-/** ------ quiz table styles -------- */
+    /** ------ quiz table styles -------- */
 
     .rc-resource-table {
         margin-top: 15px;
@@ -295,5 +381,51 @@
 
     .rc-quiz-row-btns img {
         width: 15px;
+    }
+
+    /** ------ upload box-------- */
+
+    .rc-upload-box {
+        margin: 30px auto;
+        padding: 10px 20px;
+    }
+
+    .rc-upload-home-title {
+        font-size: medium;
+        margin: 10px 5px;
+    }
+
+    .rc-form-group {
+        margin: 10px 5px;
+    }
+
+    .rc-form-group [type="text"] {
+        padding: 5px 10px;
+        border: 1px solid rgba(128, 128, 128, 0.345);
+        outline: none;
+    }
+
+
+    .rc-form-group [type="file"] {
+        font-size: small;
+    }
+
+    .rc-form-group>div {
+        padding: 30px;
+        text-align: center;
+        font-size: medium;
+    }
+
+    .rc-upload-button {
+        display: flex;
+    }
+
+    .rc-upload-button button {
+        padding: 7px 25px;
+        margin: 10px auto;
+    }
+
+    .rc-form-group label {
+        margin: 5px;
     }
 }
