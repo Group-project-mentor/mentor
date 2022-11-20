@@ -7,10 +7,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Resource other</title>
     <link rel="stylesheet" href="<?php echo BASEURL . '/public/stylesheets/rc_main.css' ?> ">
-        <link rel="stylesheet" href="<?php echo BASEURL . '/public/stylesheets/rc_resources.css' ?> ">
+    <link rel="stylesheet" href="<?php echo BASEURL . '/public/stylesheets/rc_resources.css' ?> ">
 </head>
 
 <body>
+    <?php include_once "components/alerts/rc_delete_alert.php"?>
+
     <section class="page">
 
         <!-- Navigation panel -->
@@ -45,14 +47,14 @@
                 <!-- Title and sub title of middle part -->
                 <div class="mid-title">
                     <h1><?php echo "Grade ".$_SESSION['gname']." - ".ucfirst($_SESSION['sname']) ?></h1>
-                    <h6>My Subjects / <?php echo ucfirst($_SESSION['sname']) ?></h6>
+                    <h6>My Subjects / <?php echo ucfirst($_SESSION['sname']) ?> / others</h6>
                 </div>
 
                 <!-- Grade choosing interface -->
                 <div class="container-box">
                     <div class="rc-resource-header">
                         <h1>RESOURCES</h1>
-                        <a href="">
+                        <a href="<?php echo BASEURL . 'add/other' ?>">
                             <div class="rc-add-btn">
                                 Add Resource
                             </div>
@@ -72,60 +74,21 @@
                                             <div class='rc-resource-col'>".$row['name']."</div>
                                             <div class='rc-resource-col'>".$row['type']."</div>
                                             <div class='rc-quiz-row-btns'>
-                                                <button>
-                                                    <img src='assets/icons/icon_delete.png' alt='>
-                                                </button>
-                                                <button>
-                                                    <img src='assets/icons/icon_edit.png' alt='>
-                                                </button>
+                                                <a onclick='delConfirm(".$row['id'].",5)'>
+                                                    <img src='".BASEURL."assets/icons/icon_delete.png' alt=''>
+                                                </a>
+                                                <a href=''>
+                                                    <img src='".BASEURL."assets/icons/icon_edit.png' alt=''>
+                                                </a>
                                             </div>
+                                        </div>
                                         ";
                                     }
                                 }
                             ?>
                     </div>
-
-                </div>
-            </div>
     </section>
 </body>
-<script>
-    let toggle = true;
-
-    const getElement = (id) => document.getElementById(id);
-
-    let togglerBtn = getElement("nav-toggler");
-    let nav = getElement("nav-bar");
-    let logoLong = getElement("nav-logo-long");
-    let navMiddle = getElement("nav-middle");
-    let navLinkTexts = document.getElementsByClassName("nav-link-text");
-
-    togglerBtn.addEventListener('click', () => {
-        nav.classList.toggle("nav-bar-small");
-
-        if (toggle) {
-            logoLong.classList.add("hidden");
-            navMiddle.classList.add("hidden");
-            togglerBtn.classList.add("toggler-rotate");
-            for (i = 0; i < navLinkTexts.length; i++) {
-                navLinkTexts[i].classList.add("hidden");
-            }
-            toggle = false;
-        }
-
-        else {
-            logoLong.classList.remove("hidden");
-            navMiddle.classList.remove("hidden");
-            togglerBtn.classList.remove("toggler-rotate");
-            for (i = 0; i < navLinkTexts.length; i++) {
-                navLinkTexts[i].classList.remove("hidden");
-            }
-            toggle = true;
-        }
-    })
-
-
-
-</script>
+<script src="<?php echo BASEURL . '/public/javascripts/rc_alert_control.js' ?>"></script>
 
 </html>

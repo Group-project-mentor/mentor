@@ -1,17 +1,14 @@
 <?php
 
-class subjects extends Controller
-{
-    
-    public function select($grade, $subject){
-        
-        $this->view('resourceCtr/resources');
+class subjects extends Controller{
+
+    public function __construct(){
+        sessionValidator();
     }
-    
+        
     public function index(){
-        session_start();
-        unset($_SESSION["sname"]);
-        unset($_SESSION["gname"]);
+        // unset($_SESSION["sname"]);
+        // unset($_SESSION["gname"]);
         $id = $_SESSION['id'];
         $rows = array();
         $dataList = $this->model("rcHasSubjectModel")->getSubsGrades($id);

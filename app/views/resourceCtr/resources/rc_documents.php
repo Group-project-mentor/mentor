@@ -11,6 +11,8 @@
 </head>
 
 <body>
+    <?php include_once "components/alerts/rc_delete_alert.php"?>
+
     <section class="page">
         
         <!-- Navigation panel -->
@@ -45,14 +47,14 @@
                 <!-- Title and sub title of middle part -->
                 <div class="mid-title">
                     <h1><?php echo "Grade ".$_SESSION['gname']." - ".ucfirst($_SESSION['sname']) ?></h1>
-                    <h6>My Subjects / <?php echo ucfirst($_SESSION['sname']) ?></h6>
+                    <h6>My Subjects / <?php echo ucfirst($_SESSION['sname']) ?> / documents</h6>
                 </div>
 
                 <!-- Grade choosing interface -->
                 <div class="container-box">
                     <div class="rc-resource-header">
                         <h1>DOCUMENTS</h1>
-                        <a href="">
+                        <a href="<?php echo BASEURL . 'add/document' ?>">
                             <div class="rc-add-btn">
                                 Add Document
                             </div>
@@ -61,7 +63,7 @@
 
                     <div class="rc-resource-table">
                         <div class="rc-table-title">
-                            <div class="rc-resource-col">Quiz Name</div>
+                            <div class="rc-resource-col">Name</div>
                             <div></div>
                         </div>
 
@@ -84,7 +86,7 @@
                                     echo "<div class='rc-pdf-row'>
                                                 <div class='rc-resource-col'>".$row['name']."</div>                     
                                                 <div class='rc-quiz-row-btns'>
-                                                    <button>
+                                                    <button onclick='delConfirm(".$row['id'].",4)' >
                                                         <img src='".BASEURL."assets/icons/icon_delete.png' alt=''>
                                                     </button>
                                                     <button>
@@ -103,4 +105,5 @@
         </div>
     </section>
 </body>
+<script src="<?php echo BASEURL . '/public/javascripts/rc_alert_control.js' ?>"></script>
 </html>

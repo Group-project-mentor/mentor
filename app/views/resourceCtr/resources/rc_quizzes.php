@@ -1,8 +1,3 @@
-<?php
-if (!isset($_SESSION['user'])) {
-    header("location:" . BASEURL . "login");
-}
-?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -16,6 +11,8 @@ if (!isset($_SESSION['user'])) {
 </head>
 
 <body>
+    <?php include_once "components/alerts/rc_delete_alert.php"?>
+
     <section class="page">
         <!-- Navigation panel -->
         <?php include_once "components/navbars/rc_nav_2.php" ?>
@@ -49,7 +46,7 @@ if (!isset($_SESSION['user'])) {
                 <!-- Title and sub title of middle part -->
                 <div class="mid-title">
                     <h1><?php echo "Grade ".$_SESSION['gname']." - ".ucfirst($_SESSION['sname']) ?></h1>
-                    <h6>My Subjects / <?php echo ucfirst($_SESSION['sname']) ?></h6>
+                    <h6>My Subjects / <?php echo ucfirst($_SESSION['sname']) ?> / quizzes</h6>
                 </div>
 
                 <!-- Grade choosing interface -->
@@ -77,7 +74,7 @@ if (!isset($_SESSION['user'])) {
                                                 <div class='rc-resource-col'>".$row['name']."</div>
                                                 <div class='rc-resource-col'>".$row['questions']."</div>
                                                 <div class='rc-quiz-row-btns'>
-                                                    <button>
+                                                    <button onclick='delConfirm(".$row['id'].",2)'>
                                                         <img src='".BASEURL."assets/icons/icon_delete.png' alt=''>
                                                     </button>
                                                     <button>
@@ -107,5 +104,6 @@ if (!isset($_SESSION['user'])) {
             </div>
     </section>
 </body>
+<script src="<?php echo BASEURL . '/public/javascripts/rc_alert_control.js' ?>"></script>
 
 </html>
