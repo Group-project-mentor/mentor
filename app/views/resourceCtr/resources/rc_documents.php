@@ -54,7 +54,7 @@
                 <div class="container-box">
                     <div class="rc-resource-header">
                         <h1>DOCUMENTS</h1>
-                        <a href="<?php echo BASEURL . 'add/document' ?>">
+                        <a href="<?php echo BASEURL . 'rcAdd/document' ?>">
                             <div class="rc-add-btn">
                                 Add Document
                             </div>

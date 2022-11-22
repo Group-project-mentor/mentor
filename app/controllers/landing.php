@@ -7,3 +7,5 @@ class Landing extends Controller
         $this->view('landing');
     }
 }
+
+?>

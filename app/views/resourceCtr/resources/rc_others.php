@@ -54,7 +54,7 @@
                 <div class="container-box">
                     <div class="rc-resource-header">
                         <h1>RESOURCES</h1>
-                        <a href="<?php echo BASEURL . 'add/other' ?>">
+                        <a href="<?php echo BASEURL . 'rcAdd/other' ?>">
                             <div class="rc-add-btn">
                                 Add Resource
                             </div>

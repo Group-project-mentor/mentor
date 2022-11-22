@@ -1,6 +1,6 @@
 <?php session_start();
 if (isset($_SESSION["user"])) {
-    header("location:".BASEURL."home");
+    header("location:" . BASEURL . "home");
 }
 ?>
 <!DOCTYPE html>
@@ -11,7 +11,7 @@ if (isset($_SESSION["user"])) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>login</title>
-    <link rel="stylesheet" href="<?php echo BASEURL.'/public/stylesheets/rc_auth_style.css' ?>">
+    <link rel="stylesheet" href="<?php echo BASEURL; ?>public/stylesheets/rc_auth_style.css">
 </head>
 
 <body>
@@ -20,19 +20,19 @@ if (isset($_SESSION["user"])) {
             <div class="login-title">
                 <h1>LOGIN</h1>
 
-                <?php if (isset($_GET["error"])) { ?>
+                <?php if (isset($_GET["error"])) {?>
                     <div class="error"><small>
                             <?php echo $_GET["error"]; ?>
                         </small></div>
 
-                <?php } ?>
+                <?php }?>
 
-                <?php if (isset($_GET["success"])) { ?>
+                <?php if (isset($_GET["success"])) {?>
                     <div class="success"><small>
                             <?php echo $_GET["success"]; ?>
                         </small></div>
 
-                <?php } ?>
+                <?php }?>
 
                 <hr />
             </div>
@@ -41,7 +41,7 @@ if (isset($_SESSION["user"])) {
                 <div class="login-inp-grp">
                     <label for="email" class="lbl-input">Email</label>
                     <input type="text" class="txt-input" placeholder="Enter your email" id="email" name="email" />
-                    <img src="../assets/verified.png" alt="verified" id="icon">
+                    <img src="<?php echo BASEURL; ?>public/assets/icons/verified.png" alt="verified" id="icon1">
                 </div>
 
                 <div class="login-inp-grp">
@@ -58,7 +58,7 @@ if (isset($_SESSION["user"])) {
             </form>
         </div>
     </section>
-    <script src="<?php echo BASEURL.'/public/javascripts/rc_auth_script.js' ?>"></script>
+    <script src="<?php echo BASEURL ?>public/javascripts/rc_auth_script.js"></script>
 </body>
 
 </html>

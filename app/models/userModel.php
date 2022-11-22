@@ -18,6 +18,12 @@ class UserModel extends Model{
         $result = $this->executeQuery($query);
         return $result;
     }
+
+    public function getEmail($email){
+        $query = "select id, email from user where email = '$email'";
+        $result = $this->executeQuery($query);
+        return $result;
+    }
 }
 
 ?>

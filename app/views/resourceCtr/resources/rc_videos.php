@@ -54,7 +54,7 @@
                 <div class="container-box">
                     <div class="rc-resource-header">
                         <h1>VIDEOS</h1>
-                        <a href="<?php echo BASEURL . 'add/video' ?>">
+                        <a href="<?php echo BASEURL . 'rcAdd/video' ?>">
                             <div class="rc-add-btn">
                                 Add Video
                             </div>
