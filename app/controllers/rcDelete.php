@@ -1,6 +1,6 @@
 <?php
 
-class Delete extends Controller{
+class RcDelete extends Controller{
 
     public function __construct(){
         sessionValidator();

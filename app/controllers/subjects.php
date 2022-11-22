@@ -7,8 +7,8 @@ class subjects extends Controller{
     }
         
     public function index(){
-        // unset($_SESSION["sname"]);
-        // unset($_SESSION["gname"]);
+        unset($_SESSION["sname"]);
+        unset($_SESSION["gname"]);
         $id = $_SESSION['id'];
         $rows = array();
         $dataList = $this->model("rcHasSubjectModel")->getSubsGrades($id);

@@ -10,16 +10,15 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/x-icon" href="<?php echo BASEURL ?>assets/mentor.ico">
     <title>login</title>
-    <link rel="stylesheet" href="<?php echo BASEURL; ?>public/stylesheets/st_auth_style.css">
+    <link rel="stylesheet" href="<?php echo BASEURL; ?>public/stylesheets/rc_auth_style.css">
 </head>
 
 <body>
     <section class="login">
         <div class="login-main">
             <div class="login-title">
-                <h1>CHANGE <br>PASSWORD</h1>
+                <h1>CHANGE<br>PASSWORD</h1>
 
 <!--                --><?php // if (isset($_GET["error"])) { ?>
 <!--                    <div class="error"><small>-->
@@ -40,19 +39,26 @@
 
                 <hr />
             </div>
-            <form class="login-ctnt" method="POST" action="<?php echo BASEURL ?>forgotPassword/emailExist">
+            <form class="login-ctnt" method="POST" action="verify_login.php">
+
                 <div class="login-inp-grp">
-                    <label for="email" class="lbl-input form-inp">Email</label><br>
-                    <input type="text" class="txt-input" placeholder="Enter your email" id="email" name="email" />
-                    <img src="" id="icon1" />
+                    <label for="passwd" class="lbl-input">New Password</label>
+                    <input type="password" class="txt-input" placeholder="New password" id="passwd" name="passwd" />
                 </div>
+                <br>
                 <div class="login-inp-grp">
-                    <button type="submit" class="btn-login">Send code</button>
+                    <label for="passwdconf" class="lbl-input">Confirm Password</label>
+                    <input type="password" class="txt-input" placeholder="Confirm new password" id="passwdconf" name="passwdconf" />
                 </div>
+                <br>
+                <div class="login-inp-grp">
+                    <button type="submit" class="btn-login" name="login">Change Password</button>
+                </div>
+
             </form>
         </div>
     </section>
 </body>
-<!-- <script src="https://smtpjs.com/v3/smtp.js"></script> -->
 <script src="<?php echo BASEURL ?>public/javascripts/rc_auth_script.js"></script>
+
 </html>

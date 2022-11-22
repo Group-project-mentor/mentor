@@ -23,7 +23,7 @@ function delConfirm (id, no){
             type = "other";
             break;
     }
-    delBtn.href = `${BaseUrl}delete/${type}/${id}`;
+    delBtn.href = `${BaseUrl}rcDelete/${type}/${id}`;
     delConfMsg.classList.remove("hidden");
     delConfMsg.classList.add("message-area");
     console.log(delBtn.href);

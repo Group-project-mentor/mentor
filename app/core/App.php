@@ -2,7 +2,6 @@
 
 class App
 {
- 
     protected $controller = 'landing';
     protected $method = 'index';
     protected $params = [];
@@ -68,6 +67,7 @@ class App
         call_user_func_array([$this->controller, $this->method], $this->params);
 
     }
+    // loca/mentor/gg/ff/44/55/
 
     public function parseURL()
     {

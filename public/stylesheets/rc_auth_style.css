@@ -4,47 +4,47 @@
     C5C5C5
 */
 
-body{
+body {
     background-color: #DBDBDB;
 }
 
-.login-main{
+.login-main {
     background-color: #eaeaea;
     padding: 10px;
     border: none;
     width: 400px;
     border-radius: 10px;
-    margin:100px auto;
+    margin: 100px auto;
     box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
 }
 
-.login-title h1{
+.login-title h1 {
     text-align: center;
     font-size: xx-large;
     letter-spacing: 10px;
     color: rgb(128, 128, 128);
-    font-family:monospace;
+    font-family: monospace;
 }
 
-.login-title hr{
+.login-title hr {
     width: 75%;
 }
 
-.login-ctnt{
+.login-ctnt {
     display: flex;
     flex-direction: column;
     padding: 25px 40px;
 }
 
-.login-inp-grp{
+.login-inp-grp {
     display: flex;
-    margin: 0 5px 25px;
+    margin: 0 5px 10px;
     flex-direction: column;
     position: relative;
     font-size: large;
-}  
+}
 
-.login-inp-grp img{
+.login-inp-grp img {
     position: absolute;
     right: 10px;
     width: 15px;
@@ -54,21 +54,22 @@ body{
     margin-bottom: 5px;
 }
 
-.login-inp-grp input{
+.login-inp-grp input {
     padding: 12px;
     border-radius: 5px;
     letter-spacing: 1px;
     border: none;
     transition: all 0.5s;
-        font-size: 15px;
+    font-size: 15px;
 }
-::placeholder{
+
+::placeholder {
     color: #bebebeaf;
 }
 
-.login-inp-grp input:focus{
+.login-inp-grp input:focus {
     transition: all 0.5s;
-        outline: none;
+    outline: none;
     box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
 
 }
@@ -86,23 +87,54 @@ body{
     cursor: pointer;
     transition: all 0.5s;
     font-weight: 500;
-    
+
 }
 
-.btn-login:hover{
+.btn-login:hover {
     background-color: #07af4a;
     color: white;
     transition: all 0.5s;
 }
 
-.login-fgt{
+.login-fgt {
     text-align: center;
     margin: 5px 3px;
     font-size: medium;
     color: black;
 }
 
+/* Forgot password */
 
+.forgot-ctnt {
+    display: flex;
+    flex-direction: column;
+    padding: 10px 40px;
+}
+
+.forgot-inp-grp {
+    display: flex;
+    margin: 0 auto 25px;
+    flex-direction: column;
+    position: relative;
+    font-size: large;
+}
+
+.otp-label {
+    text-align: center;
+    font-size: larger;
+}
+
+.otp-box {
+    align-self: center;
+    text-align: center;
+    width: 6em;
+    font-size: larger !important;
+}
+
+#otp-btn {
+    width: 80%;
+    align-self: center;
+}
 
 @media only screen and (max-width: 450px) {
     .login-main {
@@ -110,46 +142,46 @@ body{
         width: fit-content;
         border-radius: 7px;
     }
-    
-        .login-title {
-            font-size: x-large;
-            letter-spacing: 10px;
-        }
-        
-        .login-ctnt {
-            padding: 5px 30px;
-        }
-        
-        .login-inp-grp {
-            font-size: medium;
-        }
-        
-        .login-inp-grp input {
-            letter-spacing: 0;
-            font-size: small;
-        }
-        
-        
-        .btn-login {
-            padding: 7px;
-            margin: 0;
-            border-radius: 6px;
-            font-size: medium;
-        }
 
-        .login-fgt {
-            margin: 10px 3px;
-            font-size: small;
-        }
+    .login-title {
+        font-size: x-large;
+        letter-spacing: 10px;
     }
-    
-.invalid{
-    border: 1px solid rgba(255, 0, 0, 0.534) ;
-    transition:all 0.5s;
+
+    .login-ctnt {
+        padding: 5px 30px;
+    }
+
+    .login-inp-grp {
+        font-size: medium;
+    }
+
+    .login-inp-grp input {
+        letter-spacing: 0;
+        font-size: small;
+    }
+
+
+    .btn-login {
+        padding: 7px;
+        margin: 0;
+        border-radius: 6px;
+        font-size: medium;
+    }
+
+    .login-fgt {
+        margin: 10px 3px;
+        font-size: small;
+    }
+}
+
+.invalid {
+    border: 1px solid rgba(255, 0, 0, 0.534);
+    transition: all 0.5s;
     color: red;
 }
 
-.error{
+.error {
     letter-spacing: 0;
     font-size: large;
     border-radius: 4px;
@@ -157,11 +189,11 @@ body{
     margin: 0 auto;
     padding: 10px 0;
     width: 75%;
-    background:linear-gradient(rgba(255, 100, 100, 0.221),rgba(255, 0, 0, 0.21));
+    background: linear-gradient(rgba(255, 100, 100, 0.221), rgba(255, 0, 0, 0.21));
     text-align: center;
 }
 
-.success{
+.success {
     letter-spacing: 0;
     font-size: large;
     border-radius: 4px;
@@ -173,6 +205,10 @@ body{
     text-align: center;
 }
 
+.hidden {
+    display: none;
+}
+
 /* Register styles */
 .register-main {
     background-color: #eaeaea;
@@ -182,4 +218,16 @@ body{
     border-radius: 10px;
     margin: 25px auto;
     box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+}
+
+.invalid-inp {
+    border: 3px solid rgba(255, 0, 0, 0.164) !important;
+}
+
+.valid-inp {
+    border: 3px solid rgba(0, 255, 64, 0.164) !important;
+}
+
+.form-inp:focus {
+    box-shadow: none;
 }

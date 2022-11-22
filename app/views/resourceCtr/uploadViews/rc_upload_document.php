@@ -65,7 +65,7 @@
                 </div>
 
                 <div class="rc-upload-box">
-                    <form action="<?php echo BASEURL.'add/addDocument/'.$_SESSION['gid']."/".$_SESSION['sid']?>" method="POST" enctype="multipart/form-data" class="rc-upload-form">
+                    <form action="<?php echo BASEURL.'rcAdd/addDocument/'.$_SESSION['gid']."/".$_SESSION['sid']?>" method="POST" enctype="multipart/form-data" class="rc-upload-form">
                         <div class="rc-upload-home-title">
                             Upload or drag and drop document
                         </div>

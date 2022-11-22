@@ -1,6 +1,6 @@
 <?php 
 
-class Add extends Controller{
+class RcAdd extends Controller{
     public function __construct(){
         sessionValidator();
     }
@@ -39,15 +39,15 @@ class Add extends Controller{
                     if(!file_exists($fileDest)){
                        move_uploaded_file($_FILES["resource"]["tmp_name"],$fileDest);
                        if($this->model("resourceModel")->addDocument($nameId, $grade, $subject, $_POST["title"],$nameId."_".$fileData["name"])){
-                           header("location:".BASEURL."add/document/success");
+                           header("location:".BASEURL."rcAdd/document/success");
                        }
                        else{
-                           header("location:".BASEURL."add/document/error");
+                           header("location:".BASEURL."rcAdd/document/error");
                        }
                     }
                     else{
                        echo "Upload unsuccessful !";
-                       header("location:".BASEURL."add/document/error");
+                       header("location:".BASEURL."rcAdd/document/error");
                     }
                 }
             }
@@ -65,7 +65,7 @@ class Add extends Controller{
                 $extention = pathinfo($fileData["name"],PATHINFO_EXTENSION);
                 // echo $extention=="pdf";
                 // if(!array_key_exists($extention, $typeArray)) header("location:" . BASEURL . "add/document/error");
-                if($fileData["size"] > $maxFileSize) header("location:" . BASEURL . "add/document/error");
+                if($fileData["size"] > $maxFileSize) header("location:" . BASEURL . "rcAdd/document/error");
 
                 $nameId = $this->getId();
                 // if(in_array($fileData['type'],$typeArray)){
@@ -75,15 +75,15 @@ class Add extends Controller{
                    move_uploaded_file($_FILES["resource"]["tmp_name"],$fileDest);
                 //    echo "Upload successful !";
                    if($this->model("resourceModel")->addOther($nameId, $grade, $subject, $_POST["title"],$nameId."_".$fileData["name"],$extention)){
-                       header("location:".BASEURL."add/other/success");
+                       header("location:".BASEURL."rcAdd/other/success");
                    }
                    else{
-                       header("location:".BASEURL."add/other/error");
+                       header("location:".BASEURL."rcAdd/other/error");
                    }
                 }
                 else{
                    echo "Upload unsuccessful !";
-                   header("location:".BASEURL."add/other/error");
+                   header("location:".BASEURL."rcAdd/other/error");
                 }
                 // }
             }

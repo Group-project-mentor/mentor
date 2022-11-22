@@ -12,7 +12,7 @@ class SubjectModel extends Model{
         $row = array();
         $result = $this->getData($this->table,"id = $id");
         if (empty($result)) {
-            redirect(BASEURL."subjects");
+            return array();
         }
         else{
             $row = $result -> fetch_row();
