@@ -19,7 +19,7 @@ try {
     $mail->SMTPAuth = true; 
     $mail->Username = $_ENV['EMAIL_ADDRESS'];
     $mail->Password = $_ENV['EMAIL_APP_KEY'];
-    $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS; 
+    $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
     $mail->Port = 465; //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
 
     $mail->setFrom($_ENV['EMAIL_ADDRESS'], 'MENTOR');
