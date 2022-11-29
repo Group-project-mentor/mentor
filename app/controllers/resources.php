@@ -100,4 +100,26 @@ class Resources extends Controller{
         }
     }
 
+    public function preview($type, $id){
+        switch ($type) {
+            case 'document':
+                $file = $this->model("resourceModel")->getResource($id);
+                $this->view("resourceCtr/previews/doc_preview",$file);
+                break;
+            case 'other' :
+                $file = $this->model("resourceModel")->getResource($id);
+                $this->view("resourceCtr/previews/other_preview",$file);
+                break;
+            case 'video':
+                // todo : under development
+                break;
+            case 'quiz':
+                // todo : under development
+                break;
+            case 'pastpaper':
+                // todo : under development
+                break;
+        }
+    }
+
 }

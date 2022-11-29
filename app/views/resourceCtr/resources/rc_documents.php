@@ -35,7 +35,7 @@
                     <a href="#">
                         <img src="<?php echo BASEURL ?>assets/icons/icon_notify.png" alt="notify">
                     </a>
-                    <a href="#">
+                    <a href="<?php echo BASEURL . 'rcProfile' ?>">
                         <img src="<?php echo BASEURL ?>assets/icons/icon_profile_black.png" alt="profile">
                     </a>
                 </div>
@@ -92,6 +92,9 @@
                                                     <button>
                                                         <img src='".BASEURL."assets/icons/icon_edit.png' alt=''>
                                                     </button>
+                                                    <a href='".BASEURL."resources/preview/document/".$row['id']."'>
+                                                        <img src='".BASEURL."assets/icons/icon_eye.png' alt=''>
+                                                    </a>
                                                 </div>
                                             </div>";
                                     }

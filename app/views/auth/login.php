@@ -47,7 +47,7 @@ if (isset($_SESSION["user"])) {
                 <div class="login-inp-grp">
                     <label for="password" class="lbl-input">Password</label>
                     <input type="password" class="txt-input" placeholder="Enter your password" id="passwd" name="passwd" />
-                    <a href="forgotPassword.php" class="login-fgt">Forgot your password?</a>
+                    <a href="<?php echo BASEURL ?>forgotPassword" class="login-fgt">Forgot your password?</a>
                 </div>
 
                 <div class="login-inp-grp">

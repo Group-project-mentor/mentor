@@ -52,6 +52,5 @@
         </div>
     </section>
 </body>
-<!-- <script src="https://smtpjs.com/v3/smtp.js"></script> -->
 <script src="<?php echo BASEURL ?>public/javascripts/rc_auth_script.js"></script>
 </html>

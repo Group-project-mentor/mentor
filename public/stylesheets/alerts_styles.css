@@ -47,13 +47,22 @@
     text-decoration: none;
 }
 
-.message-warn{
+.message-warn {
     background-color: #960101 !important;
 }
 
-.hidden{
+.message-text-warn {
+    color: #960101 !important;
+}
+
+.message-back-warn{
+    background-color: #cbb4b4f1 !important;
+}
+
+.hidden {
     display: none;
 }
+
 @media screen and (max-width:720px) {
     .message {
         max-width: 400px;

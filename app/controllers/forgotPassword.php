@@ -36,31 +36,20 @@ class ForgotPassword extends Controller
         if (isset($_SESSION['email'])) {
             if (!isset($_SESSION['otp'])) {
                 $otp = $this->OTPGenerator();
-                ?>
-                <script src="https://smtpjs.com/v3/smtp.js"></script>
-                <script>
-                    let otpNo = <?php echo $otp ?>;
-                    let message = "This is OTP : "+otpNo;
-                    Email.send({
-                        SecureToken : "9bb64158-5ce1-40c1-9eb2-1a4e6f20206d",
-                        To : "<?php echo $_SESSION['email'] ?>".trim(),
-                        From : "kavisulakshana2000@gmail.com",
-                        Subject : "MENTOR OTP NUMBER",
-                        Body : message
-                    }).then((message)=>{
-                        console.log("OTP SENT");
-                    }
-                    )
-                    .catch(()=>{
-                        console.log("There is error !");
-                    });
-                </script>
-                <?php
                 $_SESSION['otp'] = $otp;
+                $message = "<p>OTP for change your account password : </p><br/>
+                            <center><h2>$otp</h2></center>";
+                sendMail($_SESSION['email'],"User","MENTOR OTP",$message);
+                header("location:".BASEURL."forgotPassword/OTPForm");
             }
-            $this->view("auth/otpForm", $msg);
         } else {
             header("location:" . BASEURL . "forgotPassword");
+        }
+    }
+    
+    public function OTPForm($msg=null){
+        if(isset($_SESSION['otp'])){
+            $this->view("auth/otpForm", $msg);
         }
     }
 
@@ -82,6 +71,26 @@ class ForgotPassword extends Controller
         }
     }
 
+    public function changePassword()
+    {
+        if (isset($_POST['passwd']) && isset($_POST['passwdconf'])) {
+            if ($_POST['passwd'] == $_POST['passwdconf']) {
+                $hash = password_hash($_POST['passwd'], PASSWORD_BCRYPT, ["cost" => 10]);
+                if($this->model("userModel")->changePassword($hash, $_SESSION['email'])){
+                    unset($_SESSION['email']);
+                    header("location:".BASEURL."login");
+                }
+                else{
+                    header("location:" . BASEURL . "forgotPassword/changePassword/0");
+                }
+            } else {
+                header("location:" . BASEURL . "forgotPassword/changePassword/1");
+            }
+        } else {
+            header("location:" . BASEURL . "forgotPassword");
+        }
+    }
+
     private function OTPGenerator()
     {
         $result = rand(100000, 999999);
@@ -94,7 +103,7 @@ class ForgotPassword extends Controller
         // }
     }
 
-    function unset() {
+    public function unset() {
         unset($_SESSION['email']);
         unset($_SESSION['otp']);
         header("location:" . BASEURL . "forgotPassword");
