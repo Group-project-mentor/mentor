@@ -2,8 +2,8 @@
 
 class App
 {
-    protected $controller = 'landing';
-    protected $method = 'index';
+    protected $controller = 'landing';  //? forgetPassword
+    protected $method = 'index'; //? OTP
     protected $params = [];
     public function __construct()
     {

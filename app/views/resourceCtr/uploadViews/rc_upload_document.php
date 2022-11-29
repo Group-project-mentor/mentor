@@ -42,7 +42,7 @@
                     <a href="#">
                         <img src="<?php echo BASEURL ?>assets/icons/icon_notify.png" alt="notify">
                     </a>
-                    <a href="#">
+                    <a href="<?php echo BASEURL . 'rcProfile' ?>">
                         <img src="<?php echo BASEURL ?>assets/icons/icon_profile_black.png" alt="profile">
                     </a>
                 </div>
@@ -63,7 +63,6 @@
                         <h1>ADD DOCUMENT</h1>
                     </div>
                 </div>
-
                 <div class="rc-upload-box">
                     <form action="<?php echo BASEURL.'rcAdd/addDocument/'.$_SESSION['gid']."/".$_SESSION['sid']?>" method="POST" enctype="multipart/form-data" class="rc-upload-form">
                         <div class="rc-upload-home-title">
@@ -76,13 +75,16 @@
                         <div class="rc-form-group">
                             <label>Add files +</label>
                             <div>
-                                <input type="file" name="resource">
+                                <input id="inputBtn" type="file" name="resource">
                                 <h3>Drag or choose file</h3>
                             </div>
+                            <p id="fileName" style="text-align:right;">no files selected</p>
+                            <h5 id="fileSize" style="text-align:right;"></h5>
                         </div>
                         <div class="rc-upload-button">
                             <button type="submit" name="submit">Finish</button>
                         </div>
+                        
                     </form>
                 </div>
 
@@ -90,4 +92,21 @@
 
     </section>
 </body>
+<script>
+    let inputBtn = document.getElementById('inputBtn');
+
+    inputBtn.addEventListener('change',()=>{
+        document.getElementById('fileName').textContent = (inputBtn.files[0].name) ? inputBtn.files[0].name.slice(0,20)+"..." : 'no files selected';
+        document.getElementById('fileSize').textContent = (inputBtn.files[0].size) ? converter(inputBtn.files[0].size) : ' ';
+    })
+
+    const converter = (val) => {
+        if(val < 1000)
+            return Math.round(inputBtn.files[0].size)+" B";
+        else if(val/1024 < 1000)
+            return Math.round((inputBtn.files[0].size)/1024)+" KB";
+        else if(val/(1024*1024) < 1000)
+            return Math.round((inputBtn.files[0].size)/(1024*1024))+" MB";
+    }   
+</script>
 </html>

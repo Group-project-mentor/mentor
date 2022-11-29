@@ -17,7 +17,7 @@
                 <p>Public</p>
                 <div class="nav-switch">
                     <label class="switch">
-                        <input type="checkbox" checked>
+                        <input type="checkbox" disabled>
                         <span class="slider round"></span>
                     </label>
                 </div>

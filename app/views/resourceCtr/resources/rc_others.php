@@ -35,7 +35,7 @@
                     <a href="#">
                         <img src="<?php echo BASEURL ?>assets/icons/icon_notify.png" alt="notify">
                     </a>
-                    <a href="#">
+                    <a href="<?php echo BASEURL . 'rcProfile' ?>">
                         <img src="<?php echo BASEURL ?>assets/icons/icon_profile_black.png" alt="profile">
                     </a>
                 </div>
@@ -68,6 +68,7 @@
                             <div></div>
                         </div>
                         <?php
+                            $types = ['pdf', 'png', 'jpg', 'bmp'];
                             if(!empty($data)){
                                 foreach ($data as $row) {
                                     echo "<div class='rc-resource-row'>
@@ -79,7 +80,12 @@
                                                 </a>
                                                 <a href=''>
                                                     <img src='".BASEURL."assets/icons/icon_edit.png' alt=''>
-                                                </a>
+                                                </a>";
+                                    echo (in_array($row['type'],$types)) ?" 
+                                                <a href='".BASEURL."resources/preview/other/".$row['id']."'>
+                                                    <img src='".BASEURL."assets/icons/icon_eye.png' alt=''>
+                                                </a>" : "<a></a>";
+                                    echo "
                                             </div>
                                         </div>
                                         ";

@@ -15,3 +15,26 @@ if (!isset($_SESSION['user'])) {
 
 SELECT grade_id, subject_id FROM subject_has_grade WHERE subject_id IN (SELECT subject_id FROM `rc_has_subject` WHERE rc_id = 3)
 SELECT grade.name, subject.name, grade.id, subject.id FROM grade INNER JOIN subject_has_grade ON grade.id = subject_has_grade.grade_id INNER JOIN subject ON subject.id = subject_has_grade.subject_id  
+
+
+
+?>
+                <!-- <script src="https://smtpjs.com/v3/smtp.js"></script>
+                <script>
+                    let otpNo = <?php echo $otp ?>;
+                    let message = "This is OTP : "+otpNo;
+                    Email.send({
+                        SecureToken : "c1ce0ae5-4523-42ab-be55-1d49b632138b",
+                        To : "<?php echo $_SESSION['email'] ?>".trim(),
+                        From : "kavisulakshana2000@gmail.com",
+                        Subject : "MENTOR OTP NUMBER",
+                        Body : message
+                    }).then((message)=>{
+                        console.log(otpNo);
+                    }
+                    )
+                    .catch(()=>{
+                        console.log("There is error !");
+                    });
+                </script> -->
+                <?php

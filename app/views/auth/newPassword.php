@@ -39,8 +39,7 @@
 
                 <hr />
             </div>
-            <form class="login-ctnt" method="POST" action="verify_login.php">
-
+            <form class="login-ctnt" method="POST" action="<?php echo BASEURL ?>forgotPassword/changePassword">
                 <div class="login-inp-grp">
                     <label for="passwd" class="lbl-input">New Password</label>
                     <input type="password" class="txt-input" placeholder="New password" id="passwd" name="passwd" />

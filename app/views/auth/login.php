@@ -3,7 +3,6 @@ if (isset($_SESSION["user"])) {
     header("location:" . BASEURL . "home");
 }
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -15,7 +14,7 @@ if (isset($_SESSION["user"])) {
     <link rel="icon" type="image/x-icon" href="<?php echo BASEURL ?>assets/mentor.ico">
     <link rel="stylesheet" href="<?php echo BASEURL ?>public/stylesheets/landing/landing.css">
     <link rel="stylesheet" href="<?php echo BASEURL; ?>public/stylesheets/st_auth_style.css">
-    
+
 </head>
 <body >
     <!-- nav bar -->
@@ -40,7 +39,7 @@ if (isset($_SESSION["user"])) {
             <div class="login-main">
                 <div class="login-title">
                     <h1>LOGIN</h1>
-                    
+
 
                     <?php if ($data == 1) {?>
                     <div class="error">
@@ -98,7 +97,7 @@ if (isset($_SESSION["user"])) {
 
                 </form>
             </div>
-            
+
     </section>
     <script src="<?php echo BASEURL ?>public/javascripts/st_auth_script.js"></script>
 </body>

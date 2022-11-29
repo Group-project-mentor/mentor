@@ -1,4 +1,4 @@
-<?php
+<?php 
 
 class UserModel extends Model{
 
@@ -49,6 +49,18 @@ class UserModel extends Model{
         $query = "update user set password='$passwd' where email='$email'";
         return $this->executeQuery($query);
     }
+
+    public function getUserData($id){
+        $query = "select user.id,name,email,mobile_no,image from user,resource_creator where user.id = resource_creator.id and user.id=$id;";
+        $result = $this->executeQuery($query);
+        if ($this->numRows($result) > 0){
+            return $result->fetch_row();
+        }
+        else{
+            return [];
+        }
+    }
+
     public function getImage($id){
         $query = "select image from user where id = $id";
         $result = $this->executeQuery($query);
@@ -88,6 +100,7 @@ class UserModel extends Model{
         }
         return [];
     }
+
 }
 
 ?>
