@@ -103,11 +103,11 @@ class Resources extends Controller{
     public function preview($type, $id){
         switch ($type) {
             case 'document':
-                $file = $this->model("resourceModel")->getResource($id);
+                $file = $this->model("resourceModel")->getResource($id,$_SESSION['gid'],$_SESSION['sid'],'pdf');
                 $this->view("resourceCtr/previews/doc_preview",$file);
                 break;
             case 'other' :
-                $file = $this->model("resourceModel")->getResource($id);
+                $file = $this->model("resourceModel")->getResource($id,$_SESSION['gid'],$_SESSION['sid'],'other');
                 $this->view("resourceCtr/previews/other_preview",$file);
                 break;
             case 'video':

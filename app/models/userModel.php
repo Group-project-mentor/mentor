@@ -81,6 +81,11 @@ class UserModel extends Model{
         return [];
     }
 
+    public function changeImg($id, $img){
+        $query = "update user set image = '$img' where id = '$id'";
+        return $this->executeQuery($query);
+    }
+
 }
 
 ?>

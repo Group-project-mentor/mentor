@@ -37,7 +37,12 @@
 
             <!-- Middle part for whole content -->
             <section class="mid-content">
-
+                <?php
+                if (empty($data)) {
+                    echo "<center style='color:red;font-size:x-large;'>No file ! </center>";
+                    // header("location:".BASEURL."resources/documents/".$_SESSION['gid']."/".$_SESSION['sid']);
+                }else{
+                ?>
                 <!-- Title and sub title of middle part -->
                 <div class="mid-title">
                     <h6>My Subjects / <?php echo ucfirst($_SESSION['sname']) ?> / others / <?php echo $data[2]?></h6>
@@ -46,8 +51,9 @@
                 <!-- Grade choosing interface -->
                 <div class="container-box" >
                     <embed src="<?php echo BASEURL?>public_resources/others/<?php echo $data[2] ?>" style="width:50%;height:70vh;margin:auto;">
-                </object>
                 </div>
+                <?php } ?>
+            </section>
         </div>
     </section>
 </body>
