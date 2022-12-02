@@ -46,13 +46,14 @@
 
                 <form class="rc-profile rc-profile-change">
                     <div class="rc-profile-change-img">
-                        <img src="<?php echo (!empty($data[0])) ? $data[0] : BASEURL."assets/clips/profile_img.webp" ?>" alt="profile image">
+                        <img id="profImg" src="<?php echo (!empty($data[0])) ? $data[0] : BASEURL."assets/clips/profile_img.webp" ?>" alt="profile image">
                     </div>
 
                     <!-- todo: want to do the functionality and style -->
                     <div class="rc-profile-change-input">
                         <input type="file" name="image" id="fileChooser">
-                        <span>No files chosen</span>
+                        <a id="sub-btn">SAVE</a>
+                        <h3 style="color: purple;font-family:Arial" id="msg"></h3>
                     </div>
                 </form>
             </section>
@@ -63,12 +64,6 @@
     </section>
 </body>
 
-<script>
-let fileChooser = document.getElementById('fileChooser');
-
-fileChooser.addEventListener('change',()=>{
-    console.log(fileChooser.files[0].name);
-})
-</script>
+<script src="<?php echo BASEURL . '/public/javascripts/rc_change_profile.js' ?>"></script>
 
 </html>

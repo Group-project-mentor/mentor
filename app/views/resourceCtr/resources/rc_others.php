@@ -68,7 +68,7 @@
                             <div></div>
                         </div>
                         <?php
-                            $types = ['pdf', 'png', 'jpg', 'bmp'];
+                            $types = ['pdf', 'png', 'jpg', 'bmp', 'js', 'txt'];
                             if(!empty($data)){
                                 foreach ($data as $row) {
                                     echo "<div class='rc-resource-row'>
@@ -78,7 +78,7 @@
                                                 <a onclick='delConfirm(".$row['id'].",5)'>
                                                     <img src='".BASEURL."assets/icons/icon_delete.png' alt=''>
                                                 </a>
-                                                <a href=''>
+                                                <a href='".BASEURL."rcEdit/other/".$row['id']."'>
                                                     <img src='".BASEURL."assets/icons/icon_edit.png' alt=''>
                                                 </a>";
                                     echo (in_array($row['type'],$types)) ?" 

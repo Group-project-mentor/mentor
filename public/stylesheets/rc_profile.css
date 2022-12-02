@@ -61,7 +61,7 @@
     position: relative;
 }
 
-.rc-profile-change-btn{
+.rc-profile-change-btn {
     position: absolute;
     top: 50%;
     color: white;
@@ -71,7 +71,7 @@
     font-weight: 600;
 }
 
-.rc-profile-img-hidden{
+.rc-profile-img-hidden {
     filter: brightness(50%);
     cursor: pointer;
 }
@@ -85,40 +85,71 @@
     color: red;
 }
 
-.hidden{
+.hidden {
     display: none;
 }
 
-.rc-profile-arrow-btn{
+.rc-profile-arrow-btn {
     width: 10px;
     height: 10px;
 }
 
-.rc-profile-change-img img{
+.rc-profile-change-img img {
     width: 200px;
     height: 200px;
     position: relative;
     object-fit: cover;
     border-radius: 10px;
     transition: all 0.5s;
+    box-shadow: rgba(0, 0, 0, 0.09) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;
 }
 
-.rc-profile-change-img img:hover{
-    width: 200px;
-    height: auto;
-    transform: scale(1.2);
+.rc-profile-change-img img:hover {
+    transform: translateZ(20px);
     transition: all 0.5s;
 }
 
-.rc-profile-change{
+.rc-profile-change {
+    max-width: 600px;
+    margin: 80px auto;
     justify-content: space-around;
     align-items: center;
-    background-color: rgba(3, 163, 88, 0.181);
+    background-color: rgba(90, 226, 163, 0.181);
+    padding: 30px 40px;
+    display: flex;
 }
 
-.rc-profile-change-input{
+.rc-profile-change-input {
     margin: 0 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     position: relative;
+}
+
+.rc-profile-change-input input {
+    margin: 20px 0;
+}
+
+.rc-profile-change-input input::-webkit-file-upload-button{
+    background-color: #bacfc3be;
+    border-radius: 5px;
+    border: none;
+    padding: 10px 15px;
+    margin-right: 10px;
+    font-size: medium;
+}
+
+.rc-profile-change-input > a{
+    text-decoration: none;
+    color: white;
+    text-align: center;
+    font-size: larger;
+    margin-top: 10px;
+    border-radius: 10px;
+    padding: 7px !important;
+    letter-spacing: 2px;
+    background-color: #186537;
 }
 
 /* todo: style the input file button */

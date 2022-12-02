@@ -13,7 +13,7 @@ class RcDelete extends Controller{
 
     public function document($id)
     {
-        $row = $this->model("resourceModel")->getResource($id);
+        $row = $this->model("resourceModel")->getResource($id, $_SESSION['gid'], $_SESSION['sid'], 'pdf');
         if (!empty($row)) {
             $location = $row[2];
             $fileDest = "public_resources/documents/".$location;
@@ -28,7 +28,7 @@ class RcDelete extends Controller{
 
     public function other($id)
     {
-        $row = $this->model("resourceModel")->getResource($id);
+        $row = $this->model("resourceModel")->getResource($id, $_SESSION['gid'], $_SESSION['sid'], 'other');
         if (!empty($row)) {
             $location = $row[2];
             $fileDest = "public_resources/others/".$location;

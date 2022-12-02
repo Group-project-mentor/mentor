@@ -89,9 +89,9 @@
                                                     <button onclick='delConfirm(".$row['id'].",4)' >
                                                         <img src='".BASEURL."assets/icons/icon_delete.png' alt=''>
                                                     </button>
-                                                    <button>
+                                                    <a href='".BASEURL."rcEdit/document/".$row['id']."'>
                                                         <img src='".BASEURL."assets/icons/icon_edit.png' alt=''>
-                                                    </button>
+                                                    </a>
                                                     <a href='".BASEURL."resources/preview/document/".$row['id']."'>
                                                         <img src='".BASEURL."assets/icons/icon_eye.png' alt=''>
                                                     </a>

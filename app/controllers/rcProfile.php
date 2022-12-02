@@ -17,7 +17,7 @@ class RcProfile extends Controller
     {
         switch ($type) {
             case 'image':
-                $this->image();
+                $this->image($msg);
                 break;
             case 'name':
                 $this->name();
@@ -37,7 +37,7 @@ class RcProfile extends Controller
         }
     }
 
-    private function image()
+    private function image($msg)
     {
         $result = $this->model("userModel")->getImage($_SESSION['id']);
         $this->view("resourceCtr/profile/rc_change_image", $result);
@@ -76,6 +76,17 @@ class RcProfile extends Controller
             }
         } else {
             header("location:" . BASEURL . 'rcProfile/change/name/failed');
+        }
+    }
+
+    public function changeImage()
+    {
+        if (isset($_POST['image'])) {
+            if($this->model("userModel")->changeImg($_SESSION['id'],$_POST['image'])){
+                echo "success";
+            }else{
+                echo "unsuccess";
+            }
         }
     }
 

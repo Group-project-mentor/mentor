@@ -35,7 +35,7 @@ class RcAdd extends Controller{
                 // if($fileData["size"] > $maxFileSize) die("Error: File size is larger than the allowed limit.");
                 $nameId = $this->getId();
                 if(in_array($fileData['type'],$typeArray)){
-                    $newFileName = uniqid() . "_" . $fileData["name"];
+                    $newFileName = uniqid() . $_POST["title"].".".$extention;
                     $fileDest = "public_resources/documents/".$newFileName;
                     if(!file_exists($fileDest)){
                        move_uploaded_file($_FILES["resource"]["tmp_name"],$fileDest);
@@ -70,7 +70,7 @@ class RcAdd extends Controller{
 
                 $nameId = $this->getId();
                 // if(in_array($fileData['type'],$typeArray)){
-                $newFileName = uniqid() . "_" . $fileData["name"];
+                $newFileName = uniqid() . $_POST["title"].".".$extention;
                 $fileDest = "public_resources/others/".$newFileName;
                 // var_dump($fileDest);
                 if(!file_exists($fileDest)){

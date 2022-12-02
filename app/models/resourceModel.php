@@ -1,14 +1,14 @@
 <?php
 
-class ResourceModel extends Model
+//* this model is for access resource related tables in database
+class ResourceModel extends Model 
 {
-
     public function __construct()
     {
         parent::__construct();
     }
 
-    //* get all videos of (subject & grade)
+//? get all resource data from combination of (subject & grade)
     public function findVideos($grade, $subject)
     {
         $sql = "select video.id, video.name, video.lecturer from video, public_resource
@@ -55,7 +55,7 @@ class ResourceModel extends Model
         return $result;
     }
 
-    //* get most id from database
+//? get the last resource id from table
     public function getLastId()
     {
         // $sql = "select id from public_resource order by id desc limit 1";
@@ -69,7 +69,7 @@ class ResourceModel extends Model
         }
     }
 
-    
+//? Functions for add a resource 
     public function addDocument($id, $grade, $subject, $name, $file)
     {
         $sql = "insert into document values ($id ,'$name')";
@@ -89,26 +89,90 @@ class ResourceModel extends Model
         return ($this->executeQuery($sql1) && $this->executeQuery($sql2));
     }
 
+//? get reaource for preview => document | other
+    public function getResource($id, $gid=null, $sid=null, $type=null){
+        $sql = "select public_resource.id, public_resource.type, public_resource.location from public_resource 
+        inner join rs_subject_grade on public_resource.id = rs_subject_grade.rsrc_id 
+        where public_resource.id = $id and rs_subject_grade.subject_id =$sid and rs_subject_grade.grade_id =$gid and type = '$type'";
+        $result =  $this->executeQuery($sql);
+        if($result->num_rows > 0){
+            return $result->fetch_row();
+        }
+        return array();
+    }
+
+
+//? Functions for delete resource
     public function deleteDoc($id){
         $res1 = $this->deleteData('rs_subject_grade',"rsrc_id = $id");
         $res2 = $this->deleteData('document', "id = $id");
         $res3 = $this->deleteData('public_resource',"id = $id");
         return ($res1 && $res2 && $res3);
     }
-
-    public function getResource($id){
-        $result =  $this->getData('public_resource',"id = $id");
-        if($result->num_rows > 0){
-            return $result->fetch_row();
-        }
-        return $result;
-    }
-
+    
     public function deleteResource($id,$table){
         $res1 = $this->deleteData('rs_subject_grade',"rsrc_id = $id");
         $res2 = $this->deleteData($table, "id = $id");
         $res3 = $this->deleteData('public_resource',"id = $id");
         return ($res1 && $res2 && $res3);
+    }
+
+
+//? Functions for find specific resource
+    public function getDocument($id){
+        $sql = "select document.id, document.name, public_resource.location, public_resource.type 
+                    from document inner join rs_subject_grade on document.id = rs_subject_grade.rsrc_id 
+                    inner join public_resource on public_resource.id = rs_subject_grade.rsrc_id 
+                    where document.id = $id and rs_subject_grade.subject_id =".$_SESSION['sid']." 
+                                            and rs_subject_grade.grade_id =".$_SESSION['gid'];
+
+        $result = $this->executeQuery($sql);
+
+        if($result->num_rows > 0){
+            return $result->fetch_row();
+        }
+        return array(); 
+    }
+
+    public function getOther($id){
+        $sql = "select other.id, other.name, public_resource.location, public_resource.type 
+                    from other inner join rs_subject_grade on other.id = rs_subject_grade.rsrc_id 
+                    inner join public_resource on public_resource.id = rs_subject_grade.rsrc_id 
+                    where other.id = $id and rs_subject_grade.subject_id =".$_SESSION['sid']." 
+                                            and rs_subject_grade.grade_id =".$_SESSION['gid'];
+
+        $result = $this->executeQuery($sql);
+
+        if($result->num_rows > 0){
+            return $result->fetch_row();
+        }
+        return array(); 
+    }
+
+
+//? Functions for update/edit resource
+    public function updateDocument($id, $title, $file){
+        $sql1 = "update public_resource set public_resource.location = '$file' where public_resource.id = $id";
+        $sql2 = "update document set document.name = '$title' where document.id = $id";
+        return ($this->executeQuery($sql1) && $this->executeQuery($sql2));
+    }
+
+     public function updateOther($id, $title, $file, $type){
+        $sql1 = "update public_resource set public_resource.location = '$file' where public_resource.id = $id";
+        $sql2 = "update other set other.name = '$title', other.type = '$type' where other.id = $id";
+        return ($this->executeQuery($sql1) && $this->executeQuery($sql2));
+    }
+
+
+//? get the saved filename of a specific resource
+    public function getLocation($id){
+        $sql = "select public_resource.location from public_resource where id = $id";
+        $result = $this->executeQuery($sql);
+        if($result->num_rows > 0){
+            $row = $result->fetch_row();
+            return $row[0];
+        }
+        return null;
     }
 
 }
