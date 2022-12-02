@@ -3,16 +3,16 @@
 class Login extends Controller
 {
 
-    public function index()
+    public function index($err=null)
     {
-        $this->view("auth/login");
+        $this->view("auth/login",$err);
     }
 
     public function verify_login()
     {
         if (isset($_POST["login"])) {
             session_start();
-            $pattern = "/[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]/";
+            $pattern = "/[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/";
 
             $email = trim($_POST["email"]);
             $result = null;
@@ -33,15 +33,16 @@ class Login extends Controller
                         // echo "Login successful !\nWelcome $result[3]";
                         header("location:" . BASEURL . "home");
                     } else {
-                        header("location:" . BASEURL . "login");
+                        header("location:" . BASEURL . "login/1");
+                        // echo "Wrong password !";
                     }
                 } else {
-                    // echo "Login unsuccessful !";
-                    header("location:" . BASEURL . "login");
+                    // echo "You are not registered !";
+                    header("location:" . BASEURL . "login/2");
                 }
             } else {
-                // echo "invalid email !";
-                header("location:" . BASEURL . "login");
+                // echo "Invalid Email !";
+                header("location:" . BASEURL . "login/3");
 
             }
         } else {

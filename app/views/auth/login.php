@@ -20,23 +20,40 @@ if (isset($_SESSION["user"])) {
             <div class="login-title">
                 <h1>LOGIN</h1>
 
-                <?php if (isset($_GET["error"])) {?>
-                    <div class="error"><small>
-                            <?php echo $_GET["error"]; ?>
-                        </small></div>
-
+                <?php if ($data == 1) {?>
+                    <div class="error">
+                        <small>
+                            <?php echo "Incorrect Password !"; ?>
+                        </small>
+                    </div>
                 <?php }?>
 
-                <?php if (isset($_GET["success"])) {?>
+                <?php if ($data == 2) {?>
+                    <div class="error">
+                        <small>
+                            <?php echo "You are not registered !"; ?>
+                        </small>
+                    </div>
+                <?php }?>
+
+                <?php if ($data == 3) {?>
+                    <div class="error">
+                        <small>
+                            <?php echo "Invalid Email !"; ?>
+                        </small>
+                    </div>
+                <?php }?>
+
+                <!-- <?php if (isset($_GET["success"])) {?>
                     <div class="success"><small>
                             <?php echo $_GET["success"]; ?>
                         </small></div>
 
-                <?php }?>
+                <?php }?> -->
 
                 <hr />
             </div>
-            <form class="login-ctnt" method="POST" action="login/verify_login">
+            <form class="login-ctnt" method="POST" action="<?php echo BASEURL; ?>login/verify_login">
 
                 <div class="login-inp-grp">
                     <label for="email" class="lbl-input">Email</label>
