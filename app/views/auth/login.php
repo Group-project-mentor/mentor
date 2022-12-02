@@ -49,13 +49,13 @@ if (isset($_SESSION["user"])) {
                     </div>
                     <?php }?>
 
-                    <?php if ($data == 2) {?>
-                        <div class="error">
-                            <small>
-                                <?php echo "You are not registered !"; ?>
-                            </small>
-                        </div>
-                    <?php }?>
+                <?php if ($data == 2) {?>
+                    <div class="error">
+                        <small>
+                            <?php echo "You are not registered !"; ?>
+                        </small>
+                    </div>
+                <?php }?>
 
                     <?php if ($data == 3) {?>
                         <div class="error">
@@ -99,7 +99,7 @@ if (isset($_SESSION["user"])) {
             </div>
 
     </section>
-    <script src="<?php echo BASEURL ?>public/javascripts/st_auth_script.js"></script>
+    <script src="<?php echo BASEURL ?>public/javascripts/rc_auth_script.js"></script>
 </body>
 
 </html>

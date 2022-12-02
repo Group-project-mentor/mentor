@@ -12,7 +12,7 @@ class Login extends Controller
     {
         if (isset($_POST["login"])) {
             session_start();
-            $pattern = "/[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]/";
+            $pattern = "/[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/";
 
             $email = trim($_POST["email"]);
             $result = null;
