@@ -16,7 +16,7 @@
 if (isset($data[1]) && $data[0] == "success") {
     include_once "components/alerts/uploadSuccess.php";
 } elseif (isset($data[1]) && $data[0] == "error") {
-
+    include_once "components/alerts/uploadFailed.php";
 }
 ?>
     <section class="page">

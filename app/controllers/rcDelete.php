@@ -40,4 +40,16 @@ class RcDelete extends Controller{
             }
         }
     }
+
+    public function video($id)
+    {
+        $row = $this->model("resourceModel")->getResource($id, $_SESSION['gid'], $_SESSION['sid'], 'video');
+        if (!empty($row)) {
+            if ($this->model("resourceModel")->deleteResource($id,'video') == true) {
+                header("location:" . BASEURL . "resources/videos/" . $_SESSION["gid"] . "/" . $_SESSION["sid"]);
+            } else {
+                header("location:" . BASEURL . "resources/videos/" . $_SESSION["gid"] . "/" . $_SESSION["sid"] . "/error");
+            }
+        }
+    }
 }

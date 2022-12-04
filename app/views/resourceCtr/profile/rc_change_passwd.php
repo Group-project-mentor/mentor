@@ -86,14 +86,14 @@
                     <div class="rc-text-inp-grp">
                         <label for="password" class="lbl-input">New Password : </label>
                         <input type="password" class="txt-input" placeholder="New Password"  name="npasswd" 
-                                pattern="[0-9a-zA-Z]{8}"
-                                title="password should not be empty" />
+                                pattern="[0-9a-zA-Z!@#$%^&*.?~]{8}"
+                                title="password should be exact or more than 8 characters, numbers or symbols." />
                     </div>
                     <div class="rc-text-inp-grp"> 
                         <label for="password" class="lbl-input">Confirm New Password : </label>
                         <input type="password" class="txt-input" placeholder="New Password"  name="cnfpasswd" 
-                                pattern="[0-9a-zA-Z]{8}"
-                                title="password should not be empty"/>
+                                pattern="[0-9a-zA-Z!@#$%^&*.?~]{8}"
+                                title="password should be exact or more than 8 characters, numbers or symbols."/>
                     </div>
                     <button type="submit" class="rc-add-btn">Change</button>
                 </form>

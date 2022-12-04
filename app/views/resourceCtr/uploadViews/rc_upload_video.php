@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Add Document</title>
+    <title>Add Video</title>
     <link rel="stylesheet" href="<?php echo BASEURL . '/public/stylesheets/rc_main.css' ?> ">
     <link rel="stylesheet" href="<?php echo BASEURL . '/public/stylesheets/rc_resources.css' ?> ">
 </head>
@@ -30,10 +30,6 @@
             <!-- Top bar -->
             <section class="top-bar">
                 <div class="search-bar">
-                    <input type="text" name="" id="" placeholder="Search...">
-                    <a href="">
-                        <img src="<?php echo BASEURL ?>assets/icons/icon_search.png" alt="">
-                    </a>
                 </div>
                 <div class="top-bar-btns">
                     <a href="<?php echo BASEURL .'resources/documents/'.$_SESSION['gid']."/".$_SESSION["sid"] ?>">
@@ -54,35 +50,38 @@
                 <!-- Title and sub title of middle part -->
                 <div class="mid-title">
                     <h1><?php echo "Grade ".$_SESSION['gname']." - ".ucfirst($_SESSION['sname']) ?></h1>
-                    <h6>My Subjects / <?php echo ucfirst($_SESSION['sname']) ?> / document / add </h6>
+                    <h6>My Subjects / <?php echo ucfirst($_SESSION['sname']) ?> / video / add </h6>
                 </div>
 
                 <!-- Grade choosing interface -->
                 <div class="container-box">
                     <div class="rc-resource-header">
-                        <h1>ADD DOCUMENT</h1>
+                        <h1>ADD VIDEO</h1>
                     </div>
                 </div>
                 <div class="rc-upload-box">
-                    <form action="<?php echo BASEURL.'rcAdd/addDocument/'.$_SESSION['gid']."/".$_SESSION['sid']?>" method="POST" enctype="multipart/form-data" class="rc-upload-form">
+                    <form action="<?php echo BASEURL.'rcAdd/addVideo'?>" method="POST" class="rc-upload-form">
                         <div class="rc-upload-home-title">
-                            Upload or drag and drop document
+                            Upload Video
                         </div>
                         <div class="rc-form-group">
-                            <label>Add title +</label>
-                            <input type="text" name="title"/>
+                            <label> Add title : </label>
+                            <input type="text" name="title" placeholder="title"/>
                         </div>
                         <div class="rc-form-group">
-                            <label>Add files +</label>
-                            <div>
-                                <input id="inputBtn" type="file" name="resource">
-                                <h3>Drag or choose file</h3>
-                            </div>
-                            <p id="fileName" style="text-align:right;">no files selected</p>
-                            <h5 id="fileSize" style="text-align:right;"></h5>
+                            <label> Lecturer : </label>
+                            <input type="text" name="lec" placeholder="lecturer or source"/>
+                        </div>
+                        <div class="rc-form-group">
+                            <label> Video link :  </label>
+                            <input type="text" name="link" placeholder="video link"/>
+                        </div>
+                        <div class="rc-form-group">
+                            <label> Video Description :  </label>
+                            <textarea class="rc-video-descr" placeholder="Description" name="descr"></textarea>
                         </div>
                         <div class="rc-upload-button">
-                            <button type="submit" name="submit">Finish</button>
+                            <button type="submit" name="submit" col="200">Add Video</button>
                         </div>
                         
                     </form>
@@ -93,20 +92,20 @@
     </section>
 </body>
 <script>
-    let inputBtn = document.getElementById('inputBtn');
+    // let inputBtn = document.getElementById('inputBtn');
 
-    inputBtn.addEventListener('change',()=>{
-        document.getElementById('fileName').textContent = (inputBtn.files[0].name) ? inputBtn.files[0].name.slice(0,20)+"..." : 'no files selected';
-        document.getElementById('fileSize').textContent = (inputBtn.files[0].size) ? converter(inputBtn.files[0].size) : ' ';
-    })
+    // inputBtn.addEventListener('change',()=>{
+    //     document.getElementById('fileName').textContent = (inputBtn.files[0].name) ? inputBtn.files[0].name.slice(0,20)+"..." : 'no files selected';
+    //     document.getElementById('fileSize').textContent = (inputBtn.files[0].size) ? converter(inputBtn.files[0].size) : ' ';
+    // })
 
-    const converter = (val) => {
-        if(val < 1000)
-            return Math.round(inputBtn.files[0].size)+" B";
-        else if(val/1024 < 1000)
-            return Math.round((inputBtn.files[0].size)/1024)+" KB";
-        else if(val/(1024*1024) < 1000)
-            return Math.round((inputBtn.files[0].size)/(1024*1024))+" MB";
-    }   
+    // const converter = (val) => {
+    //     if(val < 1000)
+    //         return Math.round(inputBtn.files[0].size)+" B";
+    //     else if(val/1024 < 1000)
+    //         return Math.round((inputBtn.files[0].size)/1024)+" KB";
+    //     else if(val/(1024*1024) < 1000)
+    //         return Math.round((inputBtn.files[0].size)/(1024*1024))+" MB";
+    // }   
 </script>
 </html>
