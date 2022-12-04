@@ -11,10 +11,30 @@ if (isset($_SESSION["user"])) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>login</title>
+    <link rel="icon" type="image/x-icon" href="<?php echo BASEURL ?>assets/mentor.ico">
+    <link rel="stylesheet" href="<?php echo BASEURL ?>stylesheets/landing/landing.css">
     <link rel="stylesheet" href="<?php echo BASEURL; ?>public/stylesheets/rc_auth_style.css">
 </head>
 
 <body>
+     <!-- nav bar -->
+        <nav class="landing-nav-main">
+            <a class="landing-nav-logo" href="<?php echo BASEURL ?>">
+                <img src="<?php echo BASEURL ?>assets/landing/logo1.png" alt="">
+            </a>
+            <div class="three-bars" id="toggler">
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+            </div>
+            <div class="landing-nav-links nav-hidden" id="nav-links">
+                <a class="landing-nav-link" href="<?php echo BASEURL ?>#Home">Home</a>
+                <a class="landing-nav-link">About</a>
+                <a class="landing-nav-link" href="<?php echo BASEURL ?>#BMC">Buy me a coffee</a>
+                <a class="landing-nav-link" href="<?php echo BASEURL ?>#footer">Contact us</a>
+                <a class="landing-nav-link landing-special-btn" href="<?php echo BASEURL ?>login">Login</a>
+            </div>
+        </nav>
     <section class="login">
         <div class="login-main">
             <div class="login-title">
