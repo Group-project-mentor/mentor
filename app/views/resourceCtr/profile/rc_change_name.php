@@ -71,8 +71,15 @@
 
                 <form class="rc-profile rc-profile-change-name" method="POST" action="<?php echo BASEURL ?>rcProfile/changeName">
                     <div class="rc-text-inp-grp">
-                        <label for="password" class="lbl-input">Name : </label><br>
-                        <input type="text" class="txt-input" placeholder="New Name" value="<?php echo $_SESSION['name'] ?>" name="name" />
+                        <label for="name" class="lbl-input">Name : </label><br>
+                        <input 
+                            type="text" 
+                            class="txt-input" 
+                            placeholder="New Name" 
+                            value="<?php echo $_SESSION['name'] ?>" 
+                            name="name" 
+                            pattern="[A-Za-z0-9][A-Za-z0-9 ]+"
+                            title="Invalid name !"    />
                     </div>
                     <button type="submit" class="rc-add-btn">Change</button>
                 </form>

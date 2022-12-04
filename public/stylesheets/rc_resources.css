@@ -242,6 +242,7 @@
 .rc-table-title:hover {
     transform: scale(1);
 }
+
 /* upload resources area */
 .rc-upload-box {
     margin: 30px auto;
@@ -300,6 +301,13 @@
     border: 1px solid rgba(128, 128, 128, 0.345);
     outline: none;
     height: 100px;
+    width: 200px;
+}
+
+.rc-video-descr {
+    resize: none;
+    width: 350px !important;
+    height: 150px !important;
 }
 
 .rc-upload-button button {

@@ -67,7 +67,7 @@ class RcProfile extends Controller
     public function changeName()
     {
         if (isset($_POST['name'])) {
-            if (($_SESSION['name'] != $_POST['name']) && ($_POST['name'] != '')) {
+            if ((preg_match('/[a-zA-Z][a-zA-Z ]+/',$_POST['name'])) && ($_POST['name'] != '')) {
                 $this->model("userModel")->updateName($_POST['name'], $_SESSION['id']);
                 $_SESSION['name'] = $_POST['name'];
                 header("location:" . BASEURL . 'rcProfile/index/success');
@@ -93,7 +93,7 @@ class RcProfile extends Controller
     public function changeMobile()
     {
         if (isset($_POST['mobile'])) {
-            if ($_POST['mobile'] != '') {
+            if ((preg_match('/[0-9]{10}/',$_POST['name'])) && ($_POST['mobile'] != '')) {
                 $this->model("userModel")->updateMobile($_POST['mobile'], $_SESSION['id']);
                 header("location:" . BASEURL . 'rcProfile/index/success');
             } else {

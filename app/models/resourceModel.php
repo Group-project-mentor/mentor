@@ -69,7 +69,14 @@ class ResourceModel extends Model
         }
     }
 
+
 //? Functions for add a resource 
+
+    public function addVideo($id, $grade, $subject, $name, $lec, $link, $descr){
+        $sql = "insert into video(id, name, lecturer, description, link) values ($id, '$name', '$lec', '$descr', '$link')";
+        return ($this->addResource($id, $grade, $subject, null , 'video') && $this->executeQuery($sql));
+    }
+
     public function addDocument($id, $grade, $subject, $name, $file)
     {
         $sql = "insert into document values ($id ,'$name')";
@@ -85,6 +92,9 @@ class ResourceModel extends Model
     private function addResource($id, $grade, $subject, $file, $type)
     {
         $sql1 = "insert into public_resource values ($id ,'$type', '$file')";
+        if(empty($file)){
+            $sql1 = "insert into public_resource(id, type) values ($id ,'$type')";
+        }
         $sql2 = "insert into rs_subject_grade values ($id ,$subject ,$grade)";
         return ($this->executeQuery($sql1) && $this->executeQuery($sql2));
     }

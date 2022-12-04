@@ -8,13 +8,13 @@ function delConfirm (id, no){
     let type = '';
     switch (no) {
         case 1:
-            type = "video";
+            type = "video";  
             break;
         case 2:
-            type = "quiz";
+            type = "quiz"; // todo 
             break;
         case 3:
-            type = "pastpaper";
+            type = "pastpaper"; // todo
             break;
         case 4:
             type = "document";
