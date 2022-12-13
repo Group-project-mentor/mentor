@@ -5,10 +5,10 @@
     <!-- Navigation bar logos -->
     <div class="nav-upper">
         <div class="nav-logo-short">
-            <img src="<?php echo BASEURL ?> assets/clips/logo2.png" alt="logo" />
+            <img src="<?php echo BASEURL ?>assets/clips/logo2.png" alt="logo" />
         </div>
         <div class="nav-logo-long" id="nav-logo-long">
-            <img src="<?php echo BASEURL ?> assets/clips/logo1.png" alt="logo" />
+            <img src="<?php echo BASEURL ?>assets/clips/logo1.png" alt="logo" />
         </div>
     </div>
 
@@ -30,12 +30,12 @@
     <!-- Navigation buttons -->
     <div class="nav-links">
 
-        <a href="<?php echo BASEURL . 'st_report_from_grade.php' ?>" class="nav-link">
-            <img src="<?php echo BASEURL ?> assets/icons/icon_report.png" alt="report">
+        <a href="<?php echo BASEURL ?>st_report_from_grade.php" class="nav-link">
+            <img src="<?php echo BASEURL ?>assets/icons/icon_report.png" alt="report">
             <div class="nav-link-text"> Report</div>
         </a>
         <a href="#" class="nav-link">
-            <img src="<?php echo BASEURL ?> assets/icons/icon_bmc.png" alt="bmc">
+            <img src="<?php echo BASEURL ?>assets/icons/icon_bmc.png" alt="bmc">
             <div class="nav-link-text">Buy me a coffee</div>
         </a>
     </div>
@@ -43,7 +43,7 @@
 
     <!-- Navigation bar toggler -->
     <div class="nav-toggler" id="nav-toggler">
-        <img src="<?php echo BASEURL ?> assets/icons/toggler.png" alt="toggler">
+        <img src="<?php echo BASEURL ?>assets/icons/toggler.png" alt="toggler">
     </div>
 </nav>  
 

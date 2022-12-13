@@ -11,7 +11,9 @@ if (isset($_SESSION["user"])) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>login</title>
-    <link rel="stylesheet" href="./style.css">
+    
+    <link rel="stylesheet" href="<?php echo BASEURL; ?>public/stylesheets/st_auth_style.css">
+    
 </head>
 
 <body>
@@ -41,7 +43,7 @@ if (isset($_SESSION["user"])) {
                     <div class="login-inp-grp">
                         <label for="email" class="lbl-input">Email</label>
                         <input type="text" class="txt-input" placeholder="Enter your email" id="email" name="email" />
-                        <img src="../assets/verified.png" alt="verified" id="icon">
+                        <img src="<?php echo BASEURL; ?>public/assets/icons/verified.png" alt="verified" id="icon1">
                     </div>
 
                     <div class="login-inp-grp">
@@ -58,10 +60,10 @@ if (isset($_SESSION["user"])) {
                 </form>
             </div>
             <div >
-                <img src="../assets/amico.png" alt="image">
+                <img src="<?php echo BASEURL; ?>public/assets/clips/add_student.png" alt="image">
             </div>
             <div>
-                <img src="../assets/lie.png" alt="lie">
+                <img src="<?php echo BASEURL; ?>public/assets/clips/lap_man.png" alt="lie">
             </div>
     </section>
     <script src="script.js"></script>

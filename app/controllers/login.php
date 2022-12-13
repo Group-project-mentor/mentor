@@ -3,7 +3,7 @@
 class Login extends Controller
 {
 
-    public function index()
+    public function index($msg=null)
     {
         $this->view("auth/login");
     }
@@ -33,19 +33,19 @@ class Login extends Controller
                         // echo "Login successful !\nWelcome $result[3]";
                         header("location:" . BASEURL . "home");
                     } else {
-                        header("location:" . BASEURL . "login");
+                        header("location:" . BASEURL . "login/index/1");
                     }
                 } else {
                     // echo "Login unsuccessful !";
-                    header("location:" . BASEURL . "login");
+                    header("location:" . BASEURL . "login/index/2");
                 }
             } else {
                 // echo "invalid email !";
-                header("location:" . BASEURL . "login");
+                header("location:" . BASEURL . "login/index/3");
 
             }
         } else {
-            header("location:" . BASEURL . "login");
+            header("location:" . BASEURL . "login/index/4");
         }
     }
 }

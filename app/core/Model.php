@@ -8,7 +8,7 @@ class Model extends DB
         parent::__construct();
     }
 
-    public function getData($table, $where = null, $ord = null, $lim = null ,$ordType = "asc", $lim = null)
+    public function getData($table, $where = null, $ord = null ,$ordType = "asc", $lim = null)
     {
         $query = "select * from $table";
         if ($where != null) {

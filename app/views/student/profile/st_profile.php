@@ -6,23 +6,23 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>profile</title>
-    <link rel="stylesheet" href="<?php echo BASEURL; ?>public/stylesheets/rc_main.css">
-    <link rel="stylesheet" href="<?php echo BASEURL; ?>public/stylesheets/rc_profile.css">
-    <link rel="stylesheet" href="<?php echo BASEURL . '/public/stylesheets/rc_resources.css' ?> ">
+    <link rel="stylesheet" href="<?php echo BASEURL ?>stylesheets/st_main.css">
+    <link rel="stylesheet" href="<?php echo BASEURL ?>stylesheets/st_profile.css">
+    <link rel="stylesheet" href="<?php echo BASEURL ?>stylesheets/st_resources.css">
 </head>
 
 <body>
 
     <?php
     if (!empty($data[1]) && $data[1] == "success") {
-        include_once "components/alerts/password_changed.php";
+        include_once BASEURL ."components/alerts/password_changed.php";
     }
     ?>
 
     <section class="page">
 
         <!-- Navigation panel -->
-        <?php include_once "components/navbars/rc_nav_1.php"?>
+        <?php include_once BASEURL . "components/navbars/st_navbar_1.php"?>
 
         <!-- Right side container -->
         <div class="content-area">
@@ -62,7 +62,7 @@
 
                 <div class="rc-profile">
                     <div class="rc-profile-main">
-                        <a class="rc-profile-image" href="<?php echo BASEURL ?>rcProfile/change/image">
+                        <a class="rc-profile-image" href="<?php echo BASEURL ?>st_profile/change/image">
                             <img src="<?php echo (!empty($data[0][4])) ? $data[0][4] : BASEURL . "assets/clips/profile_img.webp" ?>"
                                  alt="profile"
                                  id="profileImg"/>
@@ -87,7 +87,7 @@
                                     <div>
                                         <?php echo (!empty($data[0])) ? $data[0][1] : "" ?>
                                     </div>
-                                    <a href="<?php echo BASEURL ?>rcProfile/change/name">
+                                    <a href="<?php echo BASEURL ?>st_profile/change/name">
                                         <img src="<?php echo BASEURL ?>assets/icons/icon_next.png" alt="notify" class="rc-profile-arrow-btn">
                                     </a>
                                 </div>
@@ -113,12 +113,12 @@
                                     <div>
                                         <?php echo (!empty($data[0])) ? $data[0][3] : "" ?>
                                     </div>
-                                    <a href="<?php echo BASEURL ?>rcProfile/change/mobile">
+                                    <a href="<?php echo BASEURL ?>st_profile/change/mobile">
                                         <img src="<?php echo BASEURL ?>assets/icons/icon_next.png" alt="notify" class="rc-profile-arrow-btn">
                                     </a>
                                 </div>
                             </div>
-                            <a class="rc-profile-row" style="text-decoration:none;padding:10px" href="<?php echo BASEURL ?>rcProfile/change/password">
+                            <a class="rc-profile-row" style="text-decoration:none;padding:10px" href="<?php echo BASEURL ?>st_profile/change/password">
                                 <div class="rc-profile-left" style="color:black;">
                                     Update Password
                                 </div>
