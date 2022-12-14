@@ -12,7 +12,7 @@ if (isset($_SESSION["user"])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>login</title>
     <link rel="icon" type="image/x-icon" href="<?php echo BASEURL ?>assets/mentor.ico">
-    <link rel="stylesheet" href="<?php echo BASEURL ?>stylesheets/landing/landing.css">
+    <link rel="stylesheet" href="<?php echo BASEURL ?>public/stylesheets/landing/landing.css">
     <link rel="stylesheet" href="<?php echo BASEURL; ?>public/stylesheets/rc_auth_style.css">
 </head>
 
