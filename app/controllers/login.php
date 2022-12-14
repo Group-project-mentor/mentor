@@ -3,9 +3,9 @@
 class Login extends Controller
 {
 
-    public function index($msg=null)
+    public function index($err=null)
     {
-        $this->view("auth/login");
+        $this->view("auth/login",$err);
     }
 
     public function verify_login()

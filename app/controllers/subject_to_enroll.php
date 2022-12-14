@@ -19,8 +19,18 @@ class subject_to_enroll extends Controller
             header("location:" . BASEURL . "st_courses");
         }
         else
-        {
-            echo "failed!" ;
+        { ?>
+            <div style="padding: 15px 20px;">
+                <!-- <button style="padding: 5px 10px;color: white; float:right ;border-radius: 10px;background-color: #186537;">Back</button> -->
+                <h2 style="color:green ; text-align:center ;padding: 5px 10px;">
+                    <?php echo "You Already Enroll To This Subject" ; ?>
+                    <br>
+                    <img src="<?php echo BASEURL  ?>assets/clips/issue.png" alt="">
+                </h2>
+                
+            </div>
+            
+        <?php
         }
     }
 

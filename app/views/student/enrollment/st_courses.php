@@ -30,7 +30,7 @@
                 </div>
                 <div class="top-bar-btns">
                     <a href="#">
-                        <a class="back-btn" href="<?php echo BASEURL  ?>st_courses">Back</a>
+                        <a class="back-btn" href="<?php echo BASEURL  ?>">Back</a>
                     </a>
                     <a href="#">
                         <img src="<?php echo BASEURL  ?>assets/icons/icon_notify.png" alt="notify">
@@ -57,6 +57,11 @@
                         <h2>Enrolled Subjects</h2>
                         <a class="see-all-btn" href="<?php echo BASEURL  ?>enrolled_subject" style="text-decoration: none; ">See All</a>
                     </div>
+                    <div class="subject-card" >
+                        <img src="<?php echo BASEURL  ?>assets/patterns/1.png" alt="" />
+                        <a href="<?php echo BASEURL  ?>st_video"><label>C89 - Dancing</label></a>
+                        <label>Grade 8</label>
+                    </div>
                     <?php if(!empty($data[1])){?>
                         <div class="subject-card-set">
                             <?php foreach($data[1] as $row) {?>
@@ -67,7 +72,13 @@
                             </div>
                             <?php } ?>
                         </div>
-                        <?php } else {echo "No Course Enrolled yet !";} ?>
+                        <?php }
+                        else { ?>
+                        <br><br>
+                        <h2 style="color:green ; text-align:center ;padding: 5px 10px;">
+                            <?php echo "No Courses Enrolled yet !";} ?>
+                        </h2>
+                        <br><br>
                     </div>
 
                     <!-- <div class="subject-card-set">

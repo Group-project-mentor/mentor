@@ -28,7 +28,7 @@
                 </div>
                 <div class="top-bar-btns">
                     <a href="#">
-                        <a class="back-btn" href="/implimentation/studnt thimira/profile/RC-cources.html">Back</a>
+                        <a class="back-btn" href="<?php echo BASEURL?>st_courses">Back</a>
                     </a>
                     <a href="#">
                         <img src="<?php echo BASEURL?>assets/icons/icon_notify.png" alt="notify">
@@ -54,7 +54,24 @@
                     <div>
                         <h2>Enrolled Subjects</h2>
                     </div>
-                    <div class="subject-card-set">
+                    <?php if(!empty($data[1])){?>
+                        <div class="subject-card-set">
+                            <?php foreach($data[1] as $row) {?>
+                            <div class="subject-card">
+                                <img src="<?php echo BASEURL  ?>assets/patterns/1.png" alt="" />
+                                <a href="#"><label><?php echo $row['name'] ?></label></a>
+                                <label>Grade 8</label>
+                            </div>
+                            <?php } ?>
+                        </div>
+                        <?php }
+                        else { ?>
+                        <br><br>
+                        <h2 style="color:green ; text-align:center ;padding: 5px 10px;">
+                            <?php echo "No Courses Enrolled yet !";} ?>
+                        </h2>
+                        <br><br>
+                    <!-- <div class="subject-card-set">
                         <div class="subject-card">
                             <img src="<?php echo BASEURL?>assets/patterns/1.png" alt="" />
                             <a href="#"><label>C79 - Science</label></a>
@@ -139,7 +156,7 @@
                             <label>Grade 8</label>
                            
                         </div>
-                    </div>
+                    </div> -->
                 </div>
             </section>
         </div>

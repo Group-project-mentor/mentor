@@ -1,12 +1,13 @@
 <?php
 
-class enrolled_subject extends Controller
+class Enrolled_subject extends Controller
 {
     public function index()
     {
         sessionValidator();
         $this->hasLogged();
-        $this->view('student/enrollment/enrolled_subject');
+        $res=$this->model('enrolled_subject_model')->getClasses2();
+        $this->view('student/enrollment/enrolled_subject',$res);
 
     }
 
