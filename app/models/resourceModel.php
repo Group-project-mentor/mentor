@@ -159,6 +159,22 @@ class ResourceModel extends Model
         return array(); 
     }
 
+    public function getVideo($id){
+        $sql = "select video.id, video.name, video.lecturer, video.description, video.link, 
+                    video.thumbnail, public_resource.location ,public_resource.type 
+                    from video inner join rs_subject_grade on video.id = rs_subject_grade.rsrc_id 
+                    inner join public_resource on public_resource.id = rs_subject_grade.rsrc_id 
+                    where video.id = $id and rs_subject_grade.subject_id =".$_SESSION['sid']." 
+                                            and rs_subject_grade.grade_id =".$_SESSION['gid'];
+
+        $result = $this->executeQuery($sql);
+
+        if($result->num_rows > 0){
+            return $result->fetch_row();
+        }
+        return array(); 
+    }
+
 
 //? Functions for update/edit resource
     public function updateDocument($id, $title, $file){

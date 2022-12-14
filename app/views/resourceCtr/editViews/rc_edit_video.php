@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Add Video</title>
+    <title>Edit Video</title>
     <link rel="icon" type="image/x-icon" href="<?php echo BASEURL ?>assets/mentor.ico">
     <link rel="stylesheet" href="<?php echo BASEURL . '/public/stylesheets/rc_main.css' ?> ">
     <link rel="stylesheet" href="<?php echo BASEURL . '/public/stylesheets/rc_resources.css' ?> ">
@@ -57,32 +57,33 @@
                 <!-- Grade choosing interface -->
                 <div class="container-box">
                     <div class="rc-resource-header">
-                        <h1>ADD VIDEO</h1>
+                        <h1>EDIT VIDEO</h1>
                     </div>
                 </div>
                 <div class="rc-upload-box">
-                    <form action="<?php echo BASEURL.'rcAdd/addVideo'?>" method="POST" class="rc-upload-form">
+                    <form action="<?php echo BASEURL.'rcAdd/editVideo'.$data[0]?>" method="POST" class="rc-upload-form">
                         <div class="rc-upload-home-title">
-                            Upload Video
+                            Edit Video
                         </div>
                         <div class="rc-form-group">
-                            <label> Add title : </label>
-                            <input type="text" name="title" placeholder="title"/>
+                            <label> Edit title : </label>
+                            <input type="text" name="title" placeholder="title" value="<?php echo $data[1]?>"/>
                         </div>
                         <div class="rc-form-group">
                             <label> Lecturer : </label>
-                            <input type="text" name="lec" placeholder="lecturer or source"/>
+                            <input type="text" name="lec" placeholder="lecturer or source" value="<?php echo $data[2]?>"/>
                         </div>
                         <div class="rc-form-group">
+                            <iframe src="<?php echo $data[4]?>" frameborder="0"></iframe>
                             <label> Video link :  </label>
-                            <input type="text" name="link" placeholder="video link"/>
+                            <input type="text" name="link" placeholder="video link" value="<?php echo $data[4]?>"/>
                         </div>
                         <div class="rc-form-group">
                             <label> Video Description :  </label>
-                            <textarea class="rc-video-descr" placeholder="Description" name="descr"></textarea>
+                            <textarea class="rc-video-descr" placeholder="Description" name="descr" ><?php echo $data[3]?></textarea>
                         </div>
                         <div class="rc-upload-button">
-                            <button type="submit" name="submit" col="200">Add Video</button>
+                            <button type="submit" name="submit" col="200" >Add Video</button>
                         </div>
                         
                     </form>

@@ -26,6 +26,12 @@ class RcEdit extends Controller
         $this->view("resourceCtr/editViews/rc_edit_other", array($result, $msg));
     }
 
+    public function video($id, $msg = null)
+    {
+        $result = $this->model("resourceModel")->getVideo($id);
+        $this->view("resourceCtr/editViews/rc_edit_video", array($result, $msg));
+    }
+
 //? Action functions of editing views
     // this is for update document
     public function editDocument($id)

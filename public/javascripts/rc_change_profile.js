@@ -20,7 +20,7 @@ submit.addEventListener("click", () => {
         const formData = new FormData();
         let http = new XMLHttpRequest();
         formData.append("image", image);
-        http.open("POST", "<?php echo BASEURL?>rcProfile/changeImage", true);
+        http.open("POST", "http://localhost/mentor-interim/rcProfile/changeImage", true);
         http.send(formData);
 
         http.onload = () => {

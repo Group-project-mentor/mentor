@@ -12,7 +12,7 @@ if (isset($_SESSION["user"])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>login</title>
     <link rel="icon" type="image/x-icon" href="<?php echo BASEURL ?>assets/mentor.ico">
-    <link rel="stylesheet" href="<?php echo BASEURL ?>stylesheets/landing/landing.css">
+    <link rel="stylesheet" href="<?php echo BASEURL ?>public/stylesheets/landing/landing.css">
     <link rel="stylesheet" href="<?php echo BASEURL; ?>public/stylesheets/rc_auth_style.css">
 </head>
 
@@ -35,7 +35,7 @@ if (isset($_SESSION["user"])) {
                 <a class="landing-nav-link landing-special-btn" href="<?php echo BASEURL ?>login">Login</a>
             </div>
         </nav>
-    <section class="login">
+    <div class="login">
         <div class="login-main">
             <div class="login-title">
                 <h1>LOGIN</h1>
@@ -94,7 +94,7 @@ if (isset($_SESSION["user"])) {
 
             </form>
         </div>
-    </section>
+    </div>
     <script src="<?php echo BASEURL ?>public/javascripts/rc_auth_script.js"></script>
 </body>
 
