@@ -1,12 +1,12 @@
 <?php
 
-class St_other extends Controller
+class St_quizzes_do extends Controller
 {
     public function index()
     {
         sessionValidator();
         $this->hasLogged();
-        $this->view('student/enrollment/st_other');
+        $this->view('student/enrollment/st_quizzes_do');
 
     }
 

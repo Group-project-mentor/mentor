@@ -7,6 +7,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="<?php echo BASEURL ?>assets/mentor.ico">
     <title>RC-Cources</title>
     <link rel="stylesheet" href="<?php echo BASEURL; ?>public/stylesheets/style.css">
     <link rel="stylesheet" href="<?php echo BASEURL; ?>public/stylesheets/st_card_set.css">
@@ -280,7 +281,7 @@
 
     </section>
 </body>
-    <script src="<?php echo BASEURL ?>public/javascripts/rc_auth_script.js"></script>
+    <script src="<?php echo BASEURL ?>public/javascripts/st_auth_script.js"></script>
 
 </html>
 

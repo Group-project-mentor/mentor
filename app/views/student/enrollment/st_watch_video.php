@@ -59,7 +59,7 @@
                     <img src="<?php echo BASEURL?>assets/icons/icon_pdf.png" alt="Subjects">
                     <div class="nav-link-text">PDFs</div>
                 </a>
-                <a href="#" class="nav-link">
+                <a href="<?php echo BASEURL?>st_other" class="nav-link">
                     <img src="<?php echo BASEURL?>assets/icons/icon_other.png" alt="Subjects">
                     <div class="nav-link-text">Other resources</div>
                 </a>

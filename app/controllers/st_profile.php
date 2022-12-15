@@ -1,6 +1,6 @@
 <?php
 
-class st_profile extends Controller
+class St_profile extends Controller
 {
     public function __construct()
     {

@@ -66,12 +66,15 @@ if (isset($_SESSION["user"])) {
                     <label for="password confirmation" class="lbl-input">Confirm Password</label>
                     <input type="password" class="txt-input" placeholder="Confirm your password" id="passwd_conf" name="cpasswd" />
                 </div>
+                <div>
+                    <img src="<?php echo BASEURL ?>assets/clips/images.jpeg" alt="" width="300" height="200">
+                </div>
                 <div class="login-inp-grp">
                     <button type="submit" class="btn-login" name="register">Register</button>
                     <a href="<?php echo BASEURL; ?>login" class="login-fgt">Already registered? sign in</a>
                 </div>
                 <div style="">
-                        <img src="<?php echo BASEURL; ?>assets/grades/logo1.png" alt="image" width="350"  height="80">
+                        <img src="<?php echo BASEURL; ?>assets/grades/logo1.png" alt="image" width="300"  height="80">
                 </div>
             </form>
         </div>

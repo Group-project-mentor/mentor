@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="<?php echo BASEURL ?>assets/mentor.ico">
     <title>Past Papers</title>
     <link rel="stylesheet" href="<?php echo BASEURL?>stylesheets/style.css">
     <link rel="stylesheet" href="<?php echo BASEURL?>stylesheets/st_resources.css">
@@ -117,7 +118,7 @@
 
                     <div class="rc-resource-table">
                         <div class="rc-pp-row rc-pp-row-head" >  
-                            <div class="rc-resource-col">Quiz Name</div>
+                            <div class="rc-resource-col">Past Papers Name</div>
                             <div class="rc-resource-col">year</div>
                             <div class="rc-resource-col">Part</div>
                             <div></div>
@@ -158,7 +159,7 @@
                         <div class="rc-pp-row">
                             <div class="rc-resource-col">Tutorial 2</div>
                             <div class="rc-resource-col">2017</div>
-                            <div class="rc-resource-col">3</div>
+                            <div class="rc-resource-col">2</div>
                             <div class="rc-quiz-row-btns">
                                 <button>
                                     <img src="<?php echo BASEURL?>assets/icons/View_1_by_Streamlinehq.png" alt="">

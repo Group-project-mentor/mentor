@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="<?php echo BASEURL ?>assets/mentor.ico">
     <title>Quizzes</title>
     <link rel="stylesheet" href="<?php echo BASEURL?>stylesheets/style.css">
     <link rel="stylesheet" href="<?php echo BASEURL?>stylesheets/st_resources.css">
@@ -119,6 +120,7 @@
                         <div class="rc-resource-row rc-resource-row-head" >   
                             <div class="rc-resource-col">Quiz Name</div>
                             <div class="rc-resource-col">Part</div>
+                            
                             <div></div>
                         </div>
 
@@ -148,13 +150,15 @@
                         </div>
                         <div class="rc-resource-row">
                             <div class="rc-resource-col">Tutorial 2</div>
-                            <div class="rc-resource-col">3</div>
+                            <div class="rc-resource-col">1</div>
                             <div class="rc-quiz-row-btns">
                                 <button>
                                     <img src="<?php echo BASEURL?>assets/icons/View_1_by_Streamlinehq.png" alt="">
                                 </button>
                                 <button>
-                                    <img src="<?php echo BASEURL?>assets/icons/Interface Arrows Button Down Double by Streamlinehq.png" alt="">
+                                    <a href="<?php echo BASEURL?>st_quizzes_do">    
+                                        <img src="<?php echo BASEURL?>assets/icons/Interface Arrows Button Down Double by Streamlinehq.png" alt="">
+                                    </a>
                                 </button>
                             </div>
                         </div>

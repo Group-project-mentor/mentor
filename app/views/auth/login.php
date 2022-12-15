@@ -1,8 +1,9 @@
 <?php session_start();
 if (isset($_SESSION["user"])) {
-    header("location:/profile.php");
+    header("location:" . BASEURL . "home");
 }
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -28,7 +29,7 @@ if (isset($_SESSION["user"])) {
                 <div class="bar"></div>
             </div>
             <div class="landing-nav-links nav-hidden" id="nav-links">
-                <a class="landing-nav-link" href="<?php echo BASEURL ?>#Home">Home</a>
+                <a class="landing-nav-link" href="<?php echo BASEURL ?>index/#Home">Home</a>
                 <a class="landing-nav-link">About</a>
                 <a class="landing-nav-link" href="<?php echo BASEURL ?>#BMC">Buy me a coffee</a>
                 <a class="landing-nav-link" href="<?php echo BASEURL ?>#footer">Contact us</a>
@@ -81,7 +82,7 @@ if (isset($_SESSION["user"])) {
                     </div>
                     <br>
                     <div style="">
-                        <img src="<?php echo BASEURL; ?>public/assets/clips/add_student.png" alt="image" width="350"  height="300">
+                        <img src="<?php echo BASEURL; ?>public/assets/clips/add_student.png" alt="image" width="300"  height="250">
                     </div>
                     <br>
                     <div class="login-inp-grp">
@@ -89,14 +90,14 @@ if (isset($_SESSION["user"])) {
                         <a href="<?php echo BASEURL; ?>register" class="login-fgt">Not registered yet? Register</a>
                     </div>
                     <div style="">
-                        <img src="<?php echo BASEURL; ?>assets/grades/logo1.png" alt="image" width="350"  height="100">
+                        <img src="<?php echo BASEURL; ?>assets/grades/logo1.png" alt="image" width="300"  height="80">
                     </div>
 
                 </form>
             </div>
             
     </section>
-    <script src="script.js"></script>
+    <script src="<?php echo BASEURL ?>public/javascripts/st_auth_script.js"></script>
 </body>
 
 </html>

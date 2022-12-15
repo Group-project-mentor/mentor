@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="<?php echo BASEURL ?>assets/mentor.ico">
     <title>Resource other</title>
     <link rel="stylesheet" href="<?php echo BASEURL?>stylesheets/style.css">
     <link rel="stylesheet" href="<?php echo BASEURL?>stylesheets/st_resources.css">
@@ -106,7 +107,7 @@
 
                 <!-- Title and sub title of middle part -->
                 <div class="mid-title">
-                    <h1>Past Papers</h1>
+                    <h1>Other Resource</h1>
                     <h6>Hello</h6>
                     <br>
                     <h2>C79 - Science</h2>
@@ -117,58 +118,56 @@
 
                     <div class="rc-resource-table">
                         <div class="rc-pp-row rc-pp-row-head" >  
-                            <div class="rc-resource-col">Quiz Name</div>
-                            <div class="rc-resource-col">year</div>
-                            <div class="rc-resource-col">Part</div>
+                            <div class="rc-resource-col">Resource Name</div>
                             <div></div>
                         </div>
 
                         <div class="rc-pp-row">
-                            <div class="rc-resource-col">Genaral </div>
-                            <div class="rc-resource-col">2019</div>
-                            <div class="rc-resource-col">1</div>
+                            <div class="rc-resource-col">Lesson one short note </div>
+                            
                             <div class="rc-quiz-row-btns">
                                 <button>
-                                    <img src="<?php echo BASEURL?>assets/icons/View 1 by Streamlinehq.png" alt="">
+                                    <img src="<?php echo BASEURL?>" alt="">
                                 </button>
                                 <button>
-                                    <img src="<?php echo BASEURL?>assets/icons/Interface Arrows Button Down Double by Streamlinehq.png" alt="">
+                                    <img src="<?php echo BASEURL?>" alt="">
                                 </button>
                                 <button>
-                                    <img src="<?php echo BASEURL?>assets/icons/External Download by Streamlinehq.png" alt="">
+                                <img src="<?php echo BASEURL?>assets/icons/External_Download_by_Streamlinehq.png" alt="">
                                 </button>
+                                
                             </div>
                         </div>
                         <div class="rc-pp-row">
-                            <div class="rc-resource-col">Tutorial 1</div>
-                            <div class="rc-resource-col">2018</div>
-                            <div class="rc-resource-col">2</div>
+                            <div class="rc-resource-col">Lesson two short note</div>
+                            
                             <div class="rc-quiz-row-btns">
                                 <button>
-                                    <img src="<?php echo BASEURL?>assets/icons/View 1 by Streamlinehq.png" alt="">
+                                    <img src="<?php echo BASEURL?>" alt="">
                                 </button>
                                 <button>
-                                    <img src="<?php echo BASEURL?>assets/icons/Interface Arrows Button Down Double by Streamlinehq.png" alt="">
+                                    <img src="<?php echo BASEURL?>" alt="">
                                 </button>
                                 <button>
-                                    <img src="<?php echo BASEURL?>assets/icons/External Download by Streamlinehq.png" alt="">
+                                <img src="<?php echo BASEURL?>assets/icons/External_Download_by_Streamlinehq.png" alt="">
                                 </button>
+                               
                             </div>
                         </div>
                         <div class="rc-pp-row">
-                            <div class="rc-resource-col">Tutorial 2</div>
-                            <div class="rc-resource-col">2017</div>
-                            <div class="rc-resource-col">3</div>
+                            <div class="rc-resource-col">Lesson three short note</div>
+                            
                             <div class="rc-quiz-row-btns">
                                 <button>
-                                    <img src="<?php echo BASEURL?>assets/icons/View 1 by Streamlinehq.png" alt="">
+                                    <img src="<?php echo BASEURL?>" alt="">
                                 </button>
                                 <button>
-                                    <img src="<?php echo BASEURL?>assets/icons/Interface Arrows Button Down Double by Streamlinehq.png" alt="">
+                                    <img src="<?php echo BASEURL?>" alt="">
                                 </button>
                                 <button>
-                                    <img src="<?php echo BASEURL?>assets/icons/External Download by Streamlinehq.png" alt="">
+                                <img src="<?php echo BASEURL?>assets/icons/External_Download_by_Streamlinehq.png" alt="">
                                 </button>
+                               
                             </div>
                         </div>
 
