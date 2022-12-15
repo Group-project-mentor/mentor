@@ -24,9 +24,11 @@
         <!-- Navigation panel -->
         <?php include_once "components/navbars/st_navbar_1.php" ?> <!-- used to include_once to add file -->
 
-
-        <!-- Right side container -->
-        <div class="content-area">
+        <!-- <a href="<?php echo BASEURL?>st_classroom_inside">hi</a> -->
+                <!-- Right side container -->
+                <!-- style="background-image: url('<?php echo BASEURL  ?>assets/clips/gradesback.jpg' ); 
+        background-repeat: no-repeat; background-attachment: fixed;  background-size: cover; flex:right; -->
+        <div class="content-area" >
 
             <!-- Top bar -->
             <section class="top-bar">
@@ -40,21 +42,21 @@
                     <a href="#">
                         <img src="<?php echo BASEURL  ?>assets/icons/icon_notify.png" alt="notify">
                     </a>
-                    <a href="<?php echo BASEURL  ?>st_profile">
+                    <a href="<?php echo BASEURL  ?>st_profile2">
                         <img src="<?php echo BASEURL  ?>assets/icons/icon_profile_black.png" alt="profile">
                     </a>
                 </div>
             </section>
 
             <!-- Middle part for whole content -->
-            <section class="mid-content">
+            <section class="mid-content" >
+            <a class="see-all-btn" href="<?php echo BASEURL  ?>" style="text-decoration: none; "></a>
 
                 <!-- Title and sub title of middle part -->
                 <div class="mid-title">
                     <h1>Student</h1>
                     <h6>Hello </h6>
                 </div>
-
                 
                 <!-- Grade choosing interface -->
                 <div class="container-box">
@@ -77,7 +79,11 @@
                         <img src="<?php echo BASEURL  ?>assets/icons/icon_next.png" alt="right">
                     </div>
                 </div>
-               
+                <div>
+                    <br><br><br><br><br><br><br><br>
+                <a class="see-all-btn" href="<?php echo BASEURL  ?>st_classroom_inside" style="text-decoration: none; width:10%">Private</a>
+                </div>
+       
         </div>
     </section>
     </div>
