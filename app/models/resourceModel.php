@@ -183,10 +183,15 @@ class ResourceModel extends Model
         return ($this->executeQuery($sql1) && $this->executeQuery($sql2));
     }
 
-     public function updateOther($id, $title, $file, $type){
+    public function updateOther($id, $title, $file, $type){
         $sql1 = "update public_resource set public_resource.location = '$file' where public_resource.id = $id";
         $sql2 = "update other set other.name = '$title', other.type = '$type' where other.id = $id";
         return ($this->executeQuery($sql1) && $this->executeQuery($sql2));
+    }
+
+    public function updateVideo($id, $title, $lec, $link, $description){
+        $sql = "update video set video.name = '$title', video.lecturer = '$lec', video.description = '$description', video.link='$link' where video.id = $id";
+        return ($this->executeQuery($sql));
     }
 
 

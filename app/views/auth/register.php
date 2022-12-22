@@ -47,7 +47,7 @@ if (isset($_SESSION["user"])) {
                 <?php } ?>
                 <hr />
             </div>
-            <form class="login-ctnt" method="POST" action="register/verify_register">
+            <form class="login-ctnt" method="POST" action="<?php echo BASEURL ?>register/verify_register">
                 <div class="login-inp-grp">
                     <label for="name" class="lbl-input">Name</label>
                     <input type="text" class="txt-input" placeholder="Enter your name" id="name" name="name" />

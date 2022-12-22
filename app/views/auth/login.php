@@ -89,7 +89,7 @@ if (isset($_SESSION["user"])) {
 
                 <div class="login-inp-grp">
                     <button type="submit" class="btn-login" name="login">Login</button>
-                    <a href="register" class="login-fgt">Not registered yet? Register</a>
+                    <a href="<?php echo BASEURL?>/register" class="login-fgt">Not registered yet? Register</a>
                 </div>
 
             </form>

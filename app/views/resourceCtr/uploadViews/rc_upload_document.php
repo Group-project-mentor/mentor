@@ -74,7 +74,7 @@
                             <input type="text" name="title"/>
                         </div>
                         <div class="rc-form-group">
-                            <label>Add files +</label>
+                            <label>Add file +</label>
                             <div>
                                 <input id="inputBtn" type="file" name="resource">
                                 <h3>Drag or choose file</h3>

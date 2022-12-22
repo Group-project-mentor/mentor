@@ -28,15 +28,15 @@ class Register extends Controller
                 } else {
                     echo "Registration unsuccessful !";
                     // header("location:register.php?error=Can't add the user");
-                    header("location:" . BASEURL . "register");
+                    header("location:" . BASEURL . "register/1");
                 }
             } else {
                 echo "Invalid Data !";
-                header("location:" . BASEURL . "register");
+                header("location:" . BASEURL . "register/2");
                 // header("location:register.php?error=Invalid Data");
             }
         } else {
-            header("location:" . BASEURL . "register");
+            header("location:" . BASEURL . "register/3");
         }
 
     }

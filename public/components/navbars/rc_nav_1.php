@@ -18,7 +18,7 @@ if (!isset($_SESSION['navtog'])) {
 
 
             <!-- Navigation bar private - public switch -->
-            <div class="nav-middle" id="nav-middle">
+            <!-- <div class="nav-middle" id="nav-middle">
                 <p>Public</p>
                 <div class="nav-switch">
                     <label class="switch">
@@ -27,7 +27,7 @@ if (!isset($_SESSION['navtog'])) {
                     </label>
                 </div>
                 <p class="nav-switch-txt">Private</p>
-            </div>
+            </div> -->
 
             <!-- Navigation buttons -->
             <div class="nav-links">
@@ -43,7 +43,7 @@ if (!isset($_SESSION['navtog'])) {
                     <img src="<?php echo BASEURL ?>assets/icons/icon_profile.png" alt="profile">
                     <div class="nav-link-text">Profile</div>
                 </a> -->
-                <a href="#" class="nav-link">
+                <a href="<?php echo BASEURL . 'rcReport' ?>" class="nav-link">
                     <img src="<?php echo BASEURL ?>assets/icons/icon_report.png" alt="report">
                     <div class="nav-link-text">Report</div>
                 </a>
@@ -68,7 +68,7 @@ if (!isset($_SESSION['navtog'])) {
             let togglerBtn = getElement("nav-toggler");
             let nav = getElement("nav-bar");
             let logoLong = getElement("nav-logo-long");
-            let navMiddle = getElement("nav-middle");
+            // let navMiddle = getElement("nav-middle");
             let navLinkTexts = document.getElementsByClassName("nav-link-text");
 
             togglerBtn.addEventListener("click", () => {
@@ -76,7 +76,7 @@ if (!isset($_SESSION['navtog'])) {
 
                 if (toggle) {
                     logoLong.classList.add("hidden");
-                    navMiddle.classList.add("hidden");
+                    // navMiddle.classList.add("hidden");
                     togglerBtn.classList.add("toggler-rotate");
                     for (i = 0; i < navLinkTexts.length; i++) {
                         navLinkTexts[i].classList.add("hidden");
@@ -85,7 +85,7 @@ if (!isset($_SESSION['navtog'])) {
                     <?php $_SESSION['navtog'] = false?>
                 } else {
                     logoLong.classList.remove("hidden");
-                    navMiddle.classList.remove("hidden");
+                    // navMiddle.classList.remove("hidden");
                     togglerBtn.classList.remove("toggler-rotate");
                     for (i = 0; i < navLinkTexts.length; i++) {
                         navLinkTexts[i].classList.remove("hidden");
