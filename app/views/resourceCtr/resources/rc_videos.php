@@ -14,6 +14,12 @@
 <body>
     <?php include_once "components/alerts/rc_delete_alert.php"?>
 
+    <?php 
+        if($data[1] == "success"){
+            include_once "components/alerts/video_alerts/video_update_success.php"; 
+        }
+    ?>
+
     <section class="page">
 
         <!-- Navigation panel -->
@@ -63,8 +69,8 @@
                     </div>
                     <div class="rc-video-card-set">
                         <?php
-                            if(!empty($data)){
-                                foreach ($data as $row) {
+                            if(!empty($data[0])){
+                                foreach ($data[0] as $row) {
                                     echo "<div class='rc-video-card'>
                                             <img src='".BASEURL."assets/patterns/1.png' alt='' />
                                             <a href=''><label>".$row['name']."</label></a>
@@ -72,9 +78,9 @@
                                                 <button class='rc-video-delete-btn' onclick='delConfirm(".$row['id'].",1)'>
                                                     <img src='".BASEURL."assets/icons/icon_delete.png' alt=''>
                                                 </button>
-                                                <button class='rc-video-delete-btn'>
+                                                <a class='rc-video-delete-btn' href='".BASEURL."rcEdit/video/".$row['id']."'>
                                                     <img src='".BASEURL."assets/icons/icon_edit.png' alt=''>
-                                                </button>
+                                                </a>
                                             </div>
                                         </div>";
                                 }

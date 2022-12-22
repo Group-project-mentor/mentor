@@ -147,8 +147,8 @@ if (!empty($data[1]) && $data[1] == "success") {
 </body>
 
 <script>
-    let profileImg = getElement('profileImg');
-    let changeBtn = getElement('changeBtn');
+    let profileImg = document.getElementById('profileImg');
+    let changeBtn = document.getElementById('changeBtn');
 
     profileImg.addEventListener('mouseover',()=>{
         profileImg.classList.add('rc-profile-img-hidden');

@@ -83,6 +83,28 @@ class RcEdit extends Controller
         }
     }
 
+    public function editVideo($id)
+    {
+        // $maxFileSize = 50*1024*1024;
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            if($_POST['title'] != "" and $_POST['lec'] != "" and $_POST['link'] != ""){
+                if(!filter_var($_POST['link'],FILTER_VALIDATE_URL) === false){
+                    if($this->model("resourceModel")->updateVideo($id, $_POST['title'], $_POST['lec'], $_POST['link'], $_POST['descr'])){
+                        header("location:". BASEURL . "resources/videos/".$_SESSION['gid']."/".$_SESSION['sid']."/success");
+                    }else{
+                        header("location:" . BASEURL . "rcEdit/video/$id/update_err");
+                    }
+                }else{
+                    header("location:" . BASEURL . "rcEdit/video/$id/url_err");
+                }
+            }else{
+                header("location:" . BASEURL . "rcEdit/video/$id/empty_err");
+            }            
+        }else{
+            header("location:".BASEURL."rcEdit/video/$id");
+        }
+    }
+
     // this is for update other resource
     public function editOther($id)
     {

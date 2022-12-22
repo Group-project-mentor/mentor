@@ -64,7 +64,7 @@ if (!isset($_SESSION['user'])) {
                                     echo "<div class='subject-card'>
                                                 <img src='assets/patterns/1.png' alt='' />
                                                 <a href='".BASEURL."resources/videos/".$row['gid']."/".$row['sid']."'><label>".$row['sname']." </label></a>
-                                                <label>".$row['gname']."</label>
+                                                <label>Grade : ".$row['gname']."</label>
                                             </div>";
                                 }
                             }

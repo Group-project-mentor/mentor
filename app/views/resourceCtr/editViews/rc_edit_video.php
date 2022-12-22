@@ -14,11 +14,14 @@
 
 <body>
     <?php 
-        if(isset($data[1]) && $data[0] == "success"){
-            include_once "components/alerts/uploadSuccess.php"; 
+        if($data[1] == "update_err"){
+            include_once "components/alerts/video_alerts/video_update_err.php"; 
         }
-        elseif(isset($data[1]) && $data[0] == "error"){
-            include_once "components/alerts/uploadFailed.php";
+        elseif($data[1] == "url_err"){
+            include_once "components/alerts/video_alerts/video_url_err.php";
+        }
+        elseif($data[1] == "empty_err"){
+            include_once "components/alerts/video_alerts/video_empty_err.php";
         }
     ?>
     <section class="page">
@@ -61,29 +64,29 @@
                     </div>
                 </div>
                 <div class="rc-upload-box">
-                    <form action="<?php echo BASEURL.'rcAdd/editVideo'.$data[0]?>" method="POST" class="rc-upload-form">
+                    <form action="<?php echo BASEURL.'rcEdit/editVideo/'.$data[0][0]?>" method="POST" class="rc-upload-form">
                         <div class="rc-upload-home-title">
                             Edit Video
                         </div>
                         <div class="rc-form-group">
                             <label> Edit title : </label>
-                            <input type="text" name="title" placeholder="title" value="<?php echo $data[1]?>"/>
+                            <input type="text" name="title" placeholder="title" value="<?php echo $data[0][1]?>"/>
                         </div>
                         <div class="rc-form-group">
                             <label> Lecturer : </label>
-                            <input type="text" name="lec" placeholder="lecturer or source" value="<?php echo $data[2]?>"/>
+                            <input type="text" name="lec" placeholder="lecturer or source" value="<?php echo $data[0][2]?>"/>
                         </div>
                         <div class="rc-form-group">
-                            <iframe src="<?php echo $data[4]?>" frameborder="0"></iframe>
+                            <iframe src="<?php echo $data[0][4]?>" frameborder="0"></iframe>
                             <label> Video link :  </label>
-                            <input type="text" name="link" placeholder="video link" value="<?php echo $data[4]?>"/>
+                            <input type="text" name="link" placeholder="video link" value="<?php echo $data[0][4]?>"/>
                         </div>
                         <div class="rc-form-group">
                             <label> Video Description :  </label>
-                            <textarea class="rc-video-descr" placeholder="Description" name="descr" ><?php echo $data[3]?></textarea>
+                            <textarea class="rc-video-descr" placeholder="Description" name="descr" ><?php echo $data[0][3]?></textarea>
                         </div>
                         <div class="rc-upload-button">
-                            <button type="submit" name="submit" col="200" >Add Video</button>
+                            <button type="submit" name="submit" col="200" >Update</button>
                         </div>
                         
                     </form>

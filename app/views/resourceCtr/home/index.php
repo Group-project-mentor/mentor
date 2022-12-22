@@ -76,7 +76,7 @@
 
                 <!-- bottom part -->
                 <section class="bottom-section-grades">
-                    <div class="grade-table">
+                    <!-- <div class="grade-table">
                         <h1>Grades</h1>
                         <hr>
                         <div class="grade-values">
@@ -106,7 +106,7 @@
                         <div>
                             <button type="submit">Save</button>
                         </div>
-                    </div>
+                    </div> -->
                     <div class="decorator">
                         <img src="assets/clips/lap_man.png" alt="lap man">
                     </div>

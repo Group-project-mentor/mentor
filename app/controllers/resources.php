@@ -25,7 +25,7 @@ class Resources extends Controller{
                 $rows[] = $row;
             }
         }
-        $this->view('resourceCtr/resources/rc_videos', $rows);
+        $this->view('resourceCtr/resources/rc_videos', array($rows, $msg));
     }
 
     public function quizzes($grade, $subject, $msg = null)

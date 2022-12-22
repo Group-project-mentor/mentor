@@ -80,7 +80,7 @@
                             <input type="text" name="title" value="<?php echo $data[0][1] ?>"/>
                         </div>
                         <div class="rc-form-group">
-                            <label>Edit file </label>
+                            <label>New file </label>
                             <div>
                                 <input id="inputBtn" type="file" name="resource">
                                 <h3>Choose document</h3>

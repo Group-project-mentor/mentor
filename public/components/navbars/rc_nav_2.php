@@ -13,7 +13,7 @@
 
 
             <!-- Navigation bar private - public switch -->
-            <div class="nav-middle" id="nav-middle">
+            <!-- <div class="nav-middle" id="nav-middle">
                 <p>Public</p>
                 <div class="nav-switch">
                     <label class="switch">
@@ -22,7 +22,7 @@
                     </label>
                 </div>
                 <p class="nav-switch-txt">Private</p>
-            </div>
+            </div> -->
 
             <?php 
                 $gid = $_SESSION["gid"];

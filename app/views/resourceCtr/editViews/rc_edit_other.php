@@ -37,7 +37,7 @@
                     </a>
                 </div>
                 <div class="top-bar-btns">
-                    <a href="<?php echo BASEURL .'resources/documents/'.$_SESSION['gid']."/".$_SESSION["sid"] ?>">
+                    <a href="<?php echo BASEURL .'resources/others/'.$_SESSION['gid']."/".$_SESSION["sid"] ?>">
                         <div class="back-btn">Back</div>
                     </a>
                     <a href="#">
@@ -80,7 +80,7 @@
                             <input type="text" name="title" value="<?php echo $data[0][1] ?>"/>
                         </div>
                         <div class="rc-form-group">
-                            <label>Edit file </label>
+                            <label>New file </label>
                             <div>
                                 <input id="inputBtn" type="file" name="resource">
                                 <h3>Choose Resource</h3>
