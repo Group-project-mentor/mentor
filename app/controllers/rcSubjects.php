@@ -1,6 +1,6 @@
 <?php
 
-class subjects extends Controller{
+class RcSubjects extends Controller{
 
     public function __construct(){
         sessionValidator();

@@ -36,7 +36,7 @@
                     </a>
                 </div>
                 <div class="top-bar-btns">
-                    <a href="<?php echo BASEURL . 'subjects' ?>">
+                    <a href="<?php echo BASEURL . 'rcSubjects' ?>">
                         <div class="back-btn">Back</div>
                     </a>
                     <a href="#">

@@ -8,7 +8,7 @@ class RcDelete extends Controller{
 
     public function index()
     {
-        header("location:" . BASEURL . "subjects");
+        header("location:" . BASEURL . "rcSubjects");
     }
 
     public function document($id)
