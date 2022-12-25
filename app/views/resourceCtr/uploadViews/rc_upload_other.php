@@ -36,7 +36,7 @@ if (isset($data[1]) && $data[0] == "success") {
                     </a>
                 </div>
                 <div class="top-bar-btns">
-                    <a href="<?php echo BASEURL . 'resources/others/' . $_SESSION['gid'] . "/" . $_SESSION["sid"] ?>">
+                    <a href="<?php echo BASEURL . 'rcResources/others/' . $_SESSION['gid'] . "/" . $_SESSION["sid"] ?>">
                         <div class="back-btn">Back</div>
                     </a>
                     <a href="#">

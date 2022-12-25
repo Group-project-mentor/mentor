@@ -19,9 +19,9 @@ class RcDelete extends Controller{
             $fileDest = "public_resources/documents/".$location;
             if ($this->model("resourceModel")->deleteResource($id,'document') == true) {
                 unlink($fileDest);
-                header("location:" . BASEURL . "resources/documents/" . $_SESSION["gid"] . "/" . $_SESSION["sid"]);
+                header("location:" . BASEURL . "rcResources/documents/" . $_SESSION["gid"] . "/" . $_SESSION["sid"]);
             } else {
-                header("location:" . BASEURL . "resources/documents/" . $_SESSION["gid"] . "/" . $_SESSION["sid"] . "/error");
+                header("location:" . BASEURL . "rcResources/documents/" . $_SESSION["gid"] . "/" . $_SESSION["sid"] . "/error");
             }
         }
     }
@@ -34,9 +34,9 @@ class RcDelete extends Controller{
             $fileDest = "public_resources/others/".$location;
             if ($this->model("resourceModel")->deleteResource($id,'other') == true) {
                 unlink($fileDest);
-                header("location:" . BASEURL . "resources/others/" . $_SESSION["gid"] . "/" . $_SESSION["sid"]);
+                header("location:" . BASEURL . "rcResources/others/" . $_SESSION["gid"] . "/" . $_SESSION["sid"]);
             } else {
-                header("location:" . BASEURL . "resources/others/" . $_SESSION["gid"] . "/" . $_SESSION["sid"] . "/error");
+                header("location:" . BASEURL . "rcResources/others/" . $_SESSION["gid"] . "/" . $_SESSION["sid"] . "/error");
             }
         }
     }
@@ -46,9 +46,9 @@ class RcDelete extends Controller{
         $row = $this->model("resourceModel")->getResource($id, $_SESSION['gid'], $_SESSION['sid'], 'video');
         if (!empty($row)) {
             if ($this->model("resourceModel")->deleteResource($id,'video') == true) {
-                header("location:" . BASEURL . "resources/videos/" . $_SESSION["gid"] . "/" . $_SESSION["sid"]);
+                header("location:" . BASEURL . "rcResources/videos/" . $_SESSION["gid"] . "/" . $_SESSION["sid"]);
             } else {
-                header("location:" . BASEURL . "resources/videos/" . $_SESSION["gid"] . "/" . $_SESSION["sid"] . "/error");
+                header("location:" . BASEURL . "rcResources/videos/" . $_SESSION["gid"] . "/" . $_SESSION["sid"] . "/error");
             }
         }
     }

@@ -30,27 +30,27 @@
             ?>
             <!-- Navigation buttons -->
             <div class="nav-links">
-                <a href="<?php echo BASEURL?>resources/videos/<?php echo "$gid/$sid"; ?>" class="nav-link">
+                <a href="<?php echo BASEURL?>rcResources/videos/<?php echo "$gid/$sid"; ?>" class="nav-link">
                     <img class="active" src="<?php echo BASEURL?>assets/icons/icon_video.png" alt="home">
                     <div class="nav-link-text">Video</div>
                 </a>
-                <a href="<?php echo BASEURL ?>resources/quizzes/<?php echo "$gid/$sid"; ?>" class="nav-link">
+                <a href="<?php echo BASEURL ?>rcResources/quizzes/<?php echo "$gid/$sid"; ?>" class="nav-link">
                     <img src="<?php echo BASEURL?>assets/icons/icon_quizzes.png" alt="cource">
                     <div class="nav-link-text">Quizzes</div>
                 </a>
-                <a href="<?php echo BASEURL ?>resources/pastpapers/<?php echo "$gid/$sid"; ?>" class="nav-link">
+                <a href="<?php echo BASEURL ?>rcResources/pastpapers/<?php echo "$gid/$sid"; ?>" class="nav-link">
                     <img src="<?php echo BASEURL?>assets/icons/icon_past_papers.png" alt="profile">
                     <div class="nav-link-text">Past papers</div>
                 </a>
-                <a href="<?php echo BASEURL ?>resources/documents/<?php echo "$gid/$sid"; ?>" class="nav-link">
+                <a href="<?php echo BASEURL ?>rcResources/documents/<?php echo "$gid/$sid"; ?>" class="nav-link">
                     <img src="<?php echo BASEURL?>assets/icons/icon_pdf.png" alt="report">
                     <div class="nav-link-text">PDF</div>
                 </a>
-                <a href="<?php echo BASEURL ?>resources/others/<?php echo "$gid/$sid"; ?>" class="nav-link">
+                <a href="<?php echo BASEURL ?>rcResources/others/<?php echo "$gid/$sid"; ?>" class="nav-link">
                     <img src="<?php echo BASEURL?>assets/icons/icon_other.png" alt="bmc">
                     <div class="nav-link-text">Other resource</div>
                 </a>
-                <a href="<?php echo BASEURL ?>resources/settings/<?php echo "$gid/$sid"; ?>" class="nav-link">
+                <a href="<?php echo BASEURL ?>rcResources/settings/<?php echo "$gid/$sid"; ?>" class="nav-link">
                     <img src="<?php echo BASEURL?>assets/icons/icon_settings.png" alt="report">
                     <div class="nav-link-text">Settings</div>
                 </a>

@@ -1,6 +1,6 @@
 <?php
 
-class Resources extends Controller{
+class RcResources extends Controller{
     
     public function __construct(){
         sessionValidator();

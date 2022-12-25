@@ -90,7 +90,7 @@ class RcEdit extends Controller
             if($_POST['title'] != "" and $_POST['lec'] != "" and $_POST['link'] != ""){
                 if(!filter_var($_POST['link'],FILTER_VALIDATE_URL) === false){
                     if($this->model("resourceModel")->updateVideo($id, $_POST['title'], $_POST['lec'], $_POST['link'], $_POST['descr'])){
-                        header("location:". BASEURL . "resources/videos/".$_SESSION['gid']."/".$_SESSION['sid']."/success");
+                        header("location:". BASEURL . "rcResources/videos/".$_SESSION['gid']."/".$_SESSION['sid']."/success");
                     }else{
                         header("location:" . BASEURL . "rcEdit/video/$id/update_err");
                     }

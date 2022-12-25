@@ -24,7 +24,7 @@
                 <div class="search-bar">
                 </div>
                 <div class="top-bar-btns">
-                    <a href="<?php echo BASEURL . 'resources/others/'.$_SESSION['gid']."/".$_SESSION['sid'] ?>">
+                    <a href="<?php echo BASEURL . 'rcResources/others/'.$_SESSION['gid']."/".$_SESSION['sid'] ?>">
                         <div class="back-btn">Back</div>
                     </a>
                     <a href="#">
@@ -41,7 +41,7 @@
                 <?php
                 if (empty($data)) {
                     echo "<center style='color:red;font-size:x-large;'>No file ! </center>";
-                    // header("location:".BASEURL."resources/documents/".$_SESSION['gid']."/".$_SESSION['sid']);
+                    // header("location:".BASEURL."rcResources/documents/".$_SESSION['gid']."/".$_SESSION['sid']);
                 }else{
                 ?>
                 <!-- Title and sub title of middle part -->
