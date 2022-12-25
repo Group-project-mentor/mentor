@@ -9,7 +9,7 @@ class RcAdd extends Controller
 
     public function index()
     {
-        header("location:" . BASEURL . "subjects");
+        header("location:" . BASEURL . "rcSubjects");
     }
 
 // functions for render "upload each resource"
