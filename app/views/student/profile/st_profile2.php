@@ -5,7 +5,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="icon" type="image/x-icon" href="<?php echo BASEURL ?>assets/mentor.ico">
+    <title>Student Profile</title>
     <link rel="stylesheet" href="<?php echo BASEURL?>public/stylesheets/t_style.css">
     <link rel="stylesheet" href="<?php echo BASEURL?>public/stylesheets/t_profile.css">
 </head>
@@ -18,33 +19,33 @@
             <!-- Navigation bar logos -->
             <div class="nav-upper">
                 <div class="nav-logo-short">
-                    <img src="<?php echo BASEURL?>public/assets/Teacher/logo2.png" alt="logo" />
+                    <img src="<?php echo BASEURL?>public/assets/clips/logo2.png" alt="logo" />
                 </div>
                 <div class="nav-logo-long" id="nav-logo-long">
-                    <img src="<?php echo BASEURL?>public/assets/Teacher/logo1.png" alt="logo" />
+                    <img src="<?php echo BASEURL?>public/assets/clips/logo1.png" alt="logo" />
                 </div>
             </div>
 
                  <!-- Navigation buttons -->
                  <div class="nav-links">
                 <a href="<?php BASEURL ?>" class="nav-link">
-                    <img class="active" src="<?php echo BASEURL?>public/assets/Teacher/icons/icon_class.png" alt="home">
+                    <img class="active" src="<?php echo BASEURL?>public/assets/icons/icon_class.png" alt="home">
                     <div class="nav-link-text">Classes</div>
                 </a>
                 <a href="#" class="nav-link">
-                    <img src="<?php echo BASEURL?>public/assets/Teacher/icons/icon_premium.png" alt="cource">
+                    <img src="<?php echo BASEURL?>public/assets/icons/icon_premium.png" alt="cource">
                     <div class="nav-link-text">Buy Premium</div>
                 </a>
                 <a href="<?php BASEURL ?>privateclass/report" class="nav-link">
-                    <img src="<?php echo BASEURL?>public/assets/Teacher/icons/icon_report.png" alt="profile">
+                    <img src="<?php echo BASEURL?>public/assets/icons/icon_report.png" alt="profile">
                     <div class="nav-link-text">Report Issue</div>
                 </a>
                 <a href="#" class="nav-link">
-                    <img src="<?php echo BASEURL?>public/assets/Teacher/icons/icon_billing.png" alt="report">
+                    <img src="<?php echo BASEURL?>public/assets/icons/icon_billing.png" alt="report">
                     <div class="nav-link-text">Billing</div>
                 </a>
                 <a href="#" class="nav-link">
-                    <img src="<?php echo BASEURL?>public/assets/Teacher/icons/icon_bmc.png" alt="bmc">
+                    <img src="<?php echo BASEURL?>public/assets/icons/icon_bmc.png" alt="bmc">
                     <div class="nav-link-text">Buy me a coffee</div>
                 </a>
             </div>
@@ -52,7 +53,7 @@
 
             <!-- Navigation bar toggler -->
             <div class="nav-toggler" id="nav-toggler">
-                <img src="<?php echo BASEURL?>public/assets/Teacher/icons/toggler.png" alt="toggler">
+                <img src="<?php echo BASEURL?>public/assets/icons/toggler.png" alt="toggler">
             </div>
         </nav>
 
@@ -63,7 +64,7 @@
                 <div class="search-bar">
                     <input type="text" name="" id="" placeholder="Search...">
                     <a href="">
-                        <img src="<?php echo BASEURL?>public/assets/Teacher/icons/icon_search.png" alt="">
+                        <img src="<?php echo BASEURL?>public/assets/icons/icon_search.png" alt="">
                     </a>
                 </div>
                 <div class="top-bar-btns">
@@ -71,10 +72,13 @@
                         <div class="back-btn">Back</div>
                     </a>
                     <a href="#">
-                        <img src="<?php echo BASEURL?>public/assets/Teacher/icons/icon_notify.png" alt="notify">
+                        <img src="<?php echo BASEURL?>public/assets/icons/icon_notify.png" alt="notify">
                     </a>
                     <a href="#">
-                        <img src="<?php echo BASEURL?>public/assets/Teacher/icons/icon_profile_black.png" alt="profile">
+                        <img src="<?php echo BASEURL?>public/assets/icons/icon_profile_black.png" alt="profile">
+                    </a>
+                    <a href="<?php echo BASEURL?>logout">
+                        <div class="back-btn">Log Out</div>
                     </a>
                 </div>
             </section>
@@ -84,13 +88,13 @@
 
                 <!-- Title and sub title of middle part -->
                 <div class="mid-title">
-                    <h1>Teacher Profile</h1>
+                    <h1>Student Profile</h1>
                 </div>
 
                 <div class="rc-profile">
                     <div class="rc-profile-main">
                         <div class="rc-profile-image " >
-                            <img src="<?php echo BASEURL?>public/assets/Teacher/icons/icon_profile_black.png" 
+                            <img src="<?php echo BASEURL?>public/assets/icons/icon_profile_black.png" 
                                  alt="profile"
                                  id="profileImg"
                                  class="rc-profile-img-hidden" />

@@ -67,7 +67,7 @@
                     <img src="<?php echo BASEURL?>assets/icons/icon_settings.png" alt="Subjects">
                     <div class="nav-link-text">Settings</div>
                 </a>
-                <a href="#" class="nav-link">
+                <a href="<?php echo BASEURL?>st_report_main" class="nav-link">
                     <img src="<?php echo BASEURL?>assets/icons/icon_report.png" alt="report">
                     <div class="nav-link-text">Report</div>
                 </a>

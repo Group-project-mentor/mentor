@@ -3,7 +3,7 @@ class Register extends Controller
 {
     public function index($msg = null)
     {
-        $this->view("auth/register");
+        $this->view("auth/register",$msg);
     }
 
     public function verify_register()
@@ -18,7 +18,7 @@ class Register extends Controller
 
             $result = null;
 
-            if (preg_match($email_pattern, $email) and preg_match($name_pattern, $name && $password == $_POST["cpasswd"])) {
+            if (preg_match($email_pattern, $email) and preg_match($name_pattern, $name and $password == $_POST["cpasswd"])) {
                 $hash = password_hash($password, PASSWORD_BCRYPT, ["cost" => 10]);
 
                 if ($this->model("userModel")->registration($email, $name, $hash)) {
@@ -28,15 +28,15 @@ class Register extends Controller
                 } else {
                     echo "Registration unsuccessful !";
                     // header("location:register.php?error=Can't add the user");
-                    header("location:" . BASEURL . "register/1");
+                    header("location:" . BASEURL . "register/index/1");
                 }
             } else {
                 echo "Invalid Data !";
-                header("location:" . BASEURL . "register/2");
+                header("location:" . BASEURL . "register/index/2");
                 // header("location:register.php?error=Invalid Data");
             }
         } else {
-            header("location:" . BASEURL . "register/3");
+            header("location:" . BASEURL . "register/index/3");
         }
 
     }

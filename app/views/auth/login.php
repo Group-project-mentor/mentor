@@ -40,6 +40,7 @@ if (isset($_SESSION["user"])) {
             <div class="login-main">
                 <div class="login-title">
                     <h1>LOGIN</h1>
+                    
 
                     <?php if ($data == 1) {?>
                     <div class="error">
@@ -64,10 +65,12 @@ if (isset($_SESSION["user"])) {
                             </small>
                         </div>
                     <?php }?>
+                    <hr/>
 
-                    <hr />
                 </div>
                 <form class="login-ctnt" method="POST" action="login/verify_login">
+
+                <div >
 
                     <div class="login-inp-grp">
                         <label for="email" class="lbl-input">Email</label>

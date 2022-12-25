@@ -39,13 +39,31 @@ if (isset($_SESSION["user"])) {
         <div class="register-main">
             <div class="login-title">
                 <h1>REGISTER</h1>
-                <?php if (isset($_GET["error"])) { ?>
 
-                    <div class="error"><small>
-                            <?php echo $_GET["error"]; ?>
-                        </small></div>
+                <?php if ($data == 1) {?>
+                    <div class="error">
+                        <small>
+                            <?php echo "Incorrect Password !"; ?>
+                        </small>
+                    </div>
+                    <?php }?>
 
-                <?php } ?>
+                    <?php if ($data == 2) {?>
+                        <div class="error">
+                            <small>
+                                <?php echo "Invalid Email !"; ?>
+                            </small>
+                        </div>
+                    <?php }?>
+
+                    <?php if ($data == 3) {?>
+                        <div class="error">
+                            <small>
+                                <?php echo "Invalid Email !"; ?>
+                            </small>
+                        </div>
+                    <?php }?>
+
                 <hr />
             </div>
             <form class="login-ctnt" method="POST" action="register/verify_register">
@@ -56,7 +74,7 @@ if (isset($_SESSION["user"])) {
                 <div class="login-inp-grp">
                     <label for="email" class="lbl-input">Email</label>
                     <input type="text" class="txt-input" placeholder="Enter your email" id="email" name="email" />
-                    <img src="<?php echo BASEURL; ?>assets/icons/verified.png" alt="verified" id="icon">
+                    <!-- <img src="<?php echo BASEURL; ?>assets/icons/verified.png" alt="verified" id="icon"> -->
                 </div>
                 <div class="login-inp-grp">
                     <label for="password" class="lbl-input">Password</label>
@@ -79,7 +97,7 @@ if (isset($_SESSION["user"])) {
             </form>
         </div>
     </section>
-    <script src="<?php echo BASEURL.'/public/javascripts/script.js'?>"></script>
+    <script src="<?php echo BASEURL.'public/javascripts/st_auth_script.js'?>"></script>
 </body>
 
 </html>
