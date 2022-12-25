@@ -93,7 +93,7 @@
                                                     <a href='".BASEURL."rcEdit/document/".$row['id']."'>
                                                         <img src='".BASEURL."assets/icons/icon_edit.png' alt=''>
                                                     </a>
-                                                    <a href='".BASEURL."resources/preview/document/".$row['id']."'>
+                                                    <a href='".BASEURL."rcResources/preview/document/".$row['id']."'>
                                                         <img src='".BASEURL."assets/icons/icon_eye.png' alt=''>
                                                     </a>
                                                 </div>

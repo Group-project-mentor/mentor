@@ -83,7 +83,7 @@
                                                     <img src='".BASEURL."assets/icons/icon_edit.png' alt=''>
                                                 </a>";
                                     echo (in_array($row['type'],$types)) ?" 
-                                                <a href='".BASEURL."resources/preview/other/".$row['id']."'>
+                                                <a href='".BASEURL."rcResources/preview/other/".$row['id']."'>
                                                     <img src='".BASEURL."assets/icons/icon_eye.png' alt=''>
                                                 </a>" : "<a></a>";
                                     echo "

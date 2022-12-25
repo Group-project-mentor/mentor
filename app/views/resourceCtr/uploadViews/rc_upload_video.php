@@ -33,7 +33,7 @@
                 <div class="search-bar">
                 </div>
                 <div class="top-bar-btns">
-                    <a href="<?php echo BASEURL .'resources/videos/'.$_SESSION['gid']."/".$_SESSION["sid"] ?>">
+                    <a href="<?php echo BASEURL .'rcResources/videos/'.$_SESSION['gid']."/".$_SESSION["sid"] ?>">
                         <div class="back-btn">Back</div>
                     </a>
                     <a href="#">
