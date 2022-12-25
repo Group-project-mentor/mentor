@@ -3,7 +3,7 @@
 class App
 {
  
-    protected $controller = 'home';
+    protected $controller = 'landing';
     protected $method = 'index';
     protected $params = [];
     public function __construct()
@@ -17,7 +17,7 @@ class App
     }
     private function defaultLoader()
     {
-        require '../app/controllers/home.php';
+        require '../app/controllers/landing.php';
         $this->controller = new $this->controller;
         $this->controller->index();
     }

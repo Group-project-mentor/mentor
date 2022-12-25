@@ -2,7 +2,7 @@ Options -MultiViews
 
 RewriteEngine On
 
-ReWriteBase /mentor/public
+ReWriteBase /mentor-interim-thimira/public
 
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME} !-f

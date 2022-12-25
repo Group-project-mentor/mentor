@@ -1,0 +1,697 @@
+@media screen and (max-width:900px) {
+
+
+
+    .landing-hero-section {
+        padding: 20px 35px 40px;
+    }
+
+    .landing-hero-section>div {
+        align-items: center;
+    }
+
+    h1.landing-hero-title {
+        margin: 10px 0;
+        font-size: x-large;
+    }
+
+    h2.landing-hero-title {
+        margin: 10px 0;
+        font-size: larger;
+    }
+
+    .landing-btn {
+        margin: 10px 0;
+        padding: 10px 20px;
+        font-size: medium;
+        width: 60%;
+
+    }
+    /*BMC section*/
+
+    .landing-BMC {
+        background-image: url("http://localhost/mentor-interim/assets/landing/bmcimage.png"), url("http://localhost/mentor-interim/assets/landing/vector3.png");
+        background-attachment: fixed;
+        background-position: right;
+        background-repeat: no-repeat;
+        background-size: 100%;
+        padding: 20px 40px;
+    }
+
+    .landing-BMC>div {
+        margin: auto;
+        width: 90%;
+        backdrop-filter: blur(15px);
+        padding: 20px;
+        border-radius: 10px;
+        display: flex;
+        border: 2px solid rgba(128, 128, 128, 0.386);
+    }
+
+    .landing-BMC>div>h1 {
+        font-size: x-large;
+    }
+
+    .landing-BMC-description {
+        font-size: normal;
+        font-weight: 600;
+        line-height: 25px;
+    }
+
+    .landing-BMC-btn {
+        letter-spacing: 2px;
+        padding: 15px;
+        margin: 70px auto 20px;
+        width: 80%;
+        color: rgba(0, 0, 0, 0.579);
+        font-size: large;
+    }
+
+}
+
+@media screen and (max-width:720px) {
+
+    .landing-nav-main {
+        position: sticky;
+        position: -webkit-sticky;
+        top: 0;
+        font-family: "Arial";
+        display: flex;
+        background: linear-gradient(to right, rgba(75, 122, 42, 0.915), #186537);
+        justify-content: space-between;
+        backdrop-filter: blur(5px);
+        z-index: 10;
+        box-shadow: rgba(0, 0, 0, 0.45) 0px 25px 20px -20px;
+        align-items: center;
+    }
+
+    .landing-nav-logo img {
+        width: 150px;
+        padding: 5px 20px;
+    }
+
+    .three-bars {
+        display: flex;
+    }
+
+    .landing-nav-links {
+        position: absolute;
+        z-index: -1;
+        width: 100vw;
+        top: -270px;
+        background: linear-gradient(to right, rgb(75, 122, 42), #186537);
+        display: flex;
+        flex-direction: column;
+        color: white;
+        transition: all 0.5s ease-out;
+        align-items: center;
+        /*background: white;*/
+    }
+
+    .landing-nav-link {
+        width: 100%;
+        text-align: center;
+        padding: 15px 25px;
+        cursor: pointer;
+        border-bottom: 4px solid transparent;
+        transition: all 0.2s ease-in;
+    }
+
+    .landing-special-btn {
+        color: #00ff61;
+    }
+
+    .landing-nav-link:hover {
+        border-bottom: 4px solid transparent;
+        background-color: #18656251;
+        transition: all 0.2s ease-in;
+    }
+
+    .nav-active {
+        top: 45px;
+    }
+
+    .three-bars-cross {
+        transform: rotateZ(90deg);
+        transition: all 0.5s ease-out;
+    }
+
+
+    /*!  */
+
+    .landing-vector-2 {
+        display: none;
+    }
+
+    .landing-hero-section {
+        padding: 0 15px 30px;
+    }
+
+    h1.landing-hero-title {
+        margin: 5px 0;
+        font-size: x-large;
+    }
+
+    h2.landing-hero-title {
+        margin: 5px 0;
+        font-size: larger;
+    }
+
+    .landing-btn {
+        margin: 5px 0;
+        padding: 10px 20px;
+        font-size: medium;
+        width: 60%;
+    }
+
+    /* mid-content area */
+
+    .landing-mid-container {
+        background-color: rgba(255, 255, 255, 0.41);
+        padding: 40px;
+    }
+
+    .landing-mid-container>div>h1 {
+        font-size: x-large;
+    }
+
+    .landing-list {
+        margin: 10px 50px;
+    }
+
+    .landing-list>ul>li {
+        font-size: larger;
+        margin: 30px 10px;
+    }
+
+    .landing-list>ul>li>img {
+        width: 10px;
+        margin: 0 20px;
+    }
+
+    /*BMC section*/
+
+    .landing-BMC {
+        background-image: url("http://localhost/mentor-interim/assets/landing/bmcimage.png"), url("http://localhost/mentor-interim/assets/landing/vector3.png");
+        background-attachment: fixed;
+        background-position: right;
+        background-repeat: no-repeat;
+        background-size: 100%;
+        padding: 20px 40px;
+    }
+
+    .landing-BMC>div {
+        margin: auto;
+        width: 90%;
+        backdrop-filter: blur(15px);
+        padding: 20px;
+        border-radius: 10px;
+        display: flex;
+        border: 2px solid rgba(128, 128, 128, 0.386);
+    }
+
+    .landing-BMC>div>h1 {
+        font-size: x-large;
+    }
+
+    .landing-BMC-description {
+        font-size: normal;
+        font-weight: 600;
+        line-height: 25px;
+    }
+
+    .landing-BMC-btn {
+        letter-spacing: 2px;
+        padding: 15px;
+        margin: 70px auto 20px;
+        width: 80%;
+        color: rgba(0, 0, 0, 0.579);
+        font-size: large;
+    }
+
+    /*footer area*/
+
+    /* footer {
+        display: flex;
+        justify-content: space-around;
+        background-color: #186537;
+    } */
+
+    .landing-foot-left {
+        padding: 40px 30px;
+    }
+
+    .landing-foot-left h3 {
+        padding: 5px 0;
+    }
+
+    .landing-foot-left li {
+        font-size: normal;
+    }
+
+    .landing-foot-left li>i {
+        padding: 0 5px;
+    }
+
+    .landing-foot-right {
+        /* justify-content: space-around; */
+        /* flex: 3; */
+        padding: 20px 10px;
+    }
+
+    .landing-foot-contact {
+        flex-direction: column;
+        align-self: flex-end;
+    }
+
+    .landing-foot-contact h3,
+    .landing-foot-logos h3 {
+        margin: 10px 0;
+        color: white;
+    }
+
+    .landing-foot-contact ul>li {
+        padding: 5px;
+    }
+
+    .landing-foot-contact ul>li>i {
+        padding: 0 10px;
+    }
+
+    .landing-foot-logos {
+        flex-direction: column;
+    }
+
+    .landing-foot-logos img {
+        width: 120px;
+        align-self: center;
+    }
+
+    .landing-foot-logos div {
+        margin: 15px;
+    }
+
+    .landing-foot-logos>div>a {
+        padding: 10px;
+    }
+
+    .landing-foot-logos>div>a>i {
+        font-size: larger;
+    }
+
+    .landing-foot-bar-h {
+        background-color: rgba(255, 255, 255, 0.221);
+    }
+
+/*    */
+
+    .landing-sponsor {
+        background-size: 100%;
+    }
+
+    .landing-sponsor-area {
+        width: 70%;
+        background-color: rgba(255, 255, 255, 0.69);
+        margin: 30px 80px;
+        height: 500px;
+    }
+
+    .landing-sp-heading {
+        font-size: x-large;
+        text-align: center;
+    }
+
+    .landing-sp-description {
+        font-size: large;
+
+    }
+
+    .landing-sp-btn {
+        margin: 40px 0;
+    }
+}
+
+@media screen and (max-width:670px) {
+
+    .landing-hero-section {
+        padding: 0 15px 30px;
+    }
+
+    h1.landing-hero-title {
+        margin: 5px 0;
+        font-size: larger;
+    }
+
+    h2.landing-hero-title {
+        margin: 5px 0;
+        font-size: medium;
+    }
+
+    .landing-btn {
+        margin: 10px 0;
+        padding: 7px 10px;
+        font-size: small;
+        width: 80%;
+    }
+
+    .landing-BMC>div {
+        width: 100%;
+    }
+
+    .landing-sponsor {
+        background-size: 100%;
+    }
+
+    .landing-sponsor-area {
+        width: 90%;
+        background-color: rgba(255, 255, 255, 0.69);
+        margin: 30px;
+        height: 400px;
+    }
+
+    .landing-sp-heading {
+        font-size: larger;
+    }
+
+    .landing-sp-description {
+        font-size: large;
+
+    }
+
+    .landing-sp-btn {
+        margin: 40px 0;
+    }
+
+}
+
+@media screen and (max-width:480px) {
+    .landing-vector-1 {
+        display: none;
+    }
+
+    .landing-hero-section {
+        padding: 0 15px 30px;
+    }
+
+    .landing-hero-resp-1 {
+        background: url('http://localhost/mentor-interim/assets/landing/image1.png');
+        background-color: green;
+        background-size: 50%;
+        background-repeat: no-repeat;
+        background-position: bottom right;
+    }
+
+    .landing-hero-resp-2 {
+        background: url('http://localhost/mentor-interim/assets/landing/image2.png');
+        background-size: 50%;
+        background-repeat: no-repeat;
+        background-position: bottom left;
+    }
+
+    .landing-hero-left {
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+        align-content: center;
+        justify-content: center;
+        padding: 40px 20px;
+    }
+
+    .landing-hero-right {
+        flex-direction: column;
+        flex: 0;
+    }
+
+    .landing-hero-right>img {
+        display: none;
+    }
+
+    h1.landing-hero-title {
+        margin: 5px 0;
+        font-size: x-large;
+    }
+
+    h2.landing-hero-title {
+        margin: 5px 0;
+        font-size: large;
+    }
+
+    .landing-btn {
+        margin: 10px 0;
+        padding: 7px 10px;
+        font-size: small;
+        width: 50%;
+    }
+
+    .hero-reverse {
+        flex-direction: row-reverse;
+    }
+
+    .hero-left-reverse {
+        align-items: flex-end;
+    }
+
+    /* mid-content area */
+
+    .landing-mid-container {
+        padding: 20px 10px;
+    }
+
+    .landing-mid-container>div>h1 {
+        font-size: larger;
+    }
+
+    .landing-list {
+        margin: 5px 10px;
+    }
+
+    .landing-list>ul>li {
+        margin: 20px 10px;
+    }
+
+    .landing-BMC {
+        padding: 40px 10px;
+    }
+
+    .landing-BMC>div {
+        border: 1px solid rgba(128, 128, 128, 0.386);
+    }
+
+    .landing-BMC>div>h1 {
+        font-size: larger;
+        text-align: center;
+    }
+
+    .landing-BMC-description {
+        font-weight: 500;
+    }
+
+    .landing-BMC-btn {
+        padding: 10px;
+        margin: 30px auto 10px;
+        font-size: small;
+        width: 100%;
+    }
+
+    /*footer area*/
+
+    /* footer {
+            display: flex;
+            justify-content: space-around;
+            background-color: #186537;
+        } */
+
+    .landing-foot-left {
+        padding: 40px 10px;
+    }
+
+    /* .landing-foot-left h3 {
+        padding: 5px 0;
+    } */
+
+    .landing-foot-left li {
+        font-size: small;
+    }
+
+    .landing-foot-left li>i {
+        padding: 0 5px;
+    }
+
+    .landing-foot-right {
+        /* justify-content: space-around; */
+        flex-direction: column-reverse;
+        flex: 2;
+        padding: 20px 10px;
+    }
+
+    .landing-foot-contact {
+        flex-direction: column;
+        align-self: flex-start;
+    }
+
+    .landing-foot-contact h3,
+    .landing-foot-logos h3 {
+        margin: 10px 0;
+        color: white;
+    }
+
+    .landing-foot-contact ul>li {
+        padding: 5px;
+    }
+
+    .landing-foot-contact ul>li>i {
+        padding: 0 10px;
+        font-size: small;
+    }
+
+    .landing-foot-logos {
+        flex-direction: column;
+    }
+
+    .landing-foot-logos img {
+        width: 90px;
+        align-self: center;
+    }
+
+    .landing-foot-logos div {
+        margin: 15px;
+    }
+
+    .landing-foot-logos>div>a {
+        padding: 10px;
+    }
+
+    .landing-foot-logos>div>a>i {
+        font-size: medium;
+    }
+
+    .landing-foot-bar-h {
+        display: none;
+    }
+
+    /* */
+
+    .landing-sponsor {
+        background-size: 100%;
+    }
+
+    .landing-sponsor-area {
+        width: 100%;
+        margin: 30px;
+        height: 400px;
+        animation-name: none;
+    }
+
+    .landing-sp-heading {
+        font-size: large;
+    }
+
+    .landing-sp-description {
+        font-size: medium;
+
+    }
+
+    .landing-sp-btn {
+        margin: 40px 0;
+    }
+}
+
+@media screen and (max-width:330px) {
+    .landing-btn {
+        margin: 10px 0;
+        padding: 7px 10px;
+        font-size: small;
+        width: 70%;
+    }
+
+    /* mid-content area */
+
+    .landing-mid-container {
+        margin-top: 30px;
+        padding: 20px 0;
+    }
+
+    .landing-mid-container>div {
+        border-radius: 1px;
+    }
+
+
+    .landing-mid-container>div>h1 {
+        font-size: larger;
+    }
+
+    .landing-list {
+        margin: 5px 0;
+    }
+
+    .landing-list>ul>li {
+        margin: 20px 0;
+    }
+
+    .landing-BMC {
+        padding: 40px 10px;
+    }
+
+    .landing-BMC>div {
+        border: 1px solid rgba(128, 128, 128, 0.386);
+    }
+
+    .landing-BMC>div>h1 {
+        font-size: larger;
+        text-align: center;
+    }
+
+    .landing-BMC-description {
+        font-weight: 500;
+        line-height: 20px;
+        font-size: small;
+    }
+
+    .landing-BMC-btn {
+        padding: 10px;
+        margin: 40px auto 10px;
+        font-size: small;
+    }
+
+
+    .landing-foot-logos  div{
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+    }
+
+    .landing-foot-logos>div>a {
+        padding: 10px;
+    }
+
+    .landing-foot-logos>div>a>i {
+        font-size: xx-large;
+    }
+
+    /* */
+
+    .landing-sponsor {
+        background-size: 100%;
+    }
+
+    .landing-sponsor-area {
+        width: 100%;
+        margin: 0;
+        height: 400px;
+        animation-name: none;
+        box-shadow: none;
+    }
+
+    .landing-sp-heading {
+        font-size: medium;
+    }
+
+    .landing-sp-description {
+        font-size: small;
+
+    }
+
+    .landing-sp-btn {
+        margin: 40px 0;
+    }
+}
