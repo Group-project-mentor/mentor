@@ -16,12 +16,8 @@ class UserModel extends Model{
     public function registration($email, $name, $hash){
         $query = "insert into user(email,name,password) values ('" . $email . "','" . $name . "','" . $hash . "')";
         $result = $this->executeQuery($query);
-    public function userLogin($username){
-        $result = $this->getData("user","email = '$username'");
         return $result;
     }
-
-
     public function getUserData($id){
         $query = "select user.id,name,email,mobile_no,image from user,resource_creator where user.id = resource_creator.id and user.id=$id;";
         $result = $this->executeQuery($query);
@@ -31,12 +27,6 @@ class UserModel extends Model{
         else{
             return [];
         }
-    }
-
-    public function registration($email, $name, $hash){
-        $query = "insert into user(email,name,password) values ('" . $email . "','" . $name . "','" . $hash . "')";
-        $result = $this->executeQuery($query);
-        return $result;
     }
 
     public function getEmail($email){

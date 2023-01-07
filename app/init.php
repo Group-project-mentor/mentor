@@ -7,4 +7,5 @@ require_once 'core/Model.php';
 
 require_once 'validators/sessionValidator.php';
 require_once 'libraries/mailer.php';
+
 ?>
