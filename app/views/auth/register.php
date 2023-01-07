@@ -45,6 +45,7 @@ if (isset($_SESSION["user"])) {
                         </small></div>
 
                 <?php } ?>
+                
                 <hr />
             </div>
             <form class="login-ctnt" method="POST" action="<?php echo BASEURL ?>register/verify_register">
