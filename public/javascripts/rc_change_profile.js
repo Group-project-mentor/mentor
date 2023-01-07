@@ -28,6 +28,6 @@ submit.addEventListener("click", () => {
                 alertMsg.textContent = "Successfully updated !";
             }
             alertMsg.textContent = http.response;
-        };
+        }
     }
 });

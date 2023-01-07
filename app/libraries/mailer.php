@@ -17,12 +17,12 @@ try {
     $mail->isSMTP(); 
     $mail->Host = 'smtp.gmail.com'; 
     $mail->SMTPAuth = true; 
-    $mail->Username = 'kavisulakshana2000@gmail.com'; 
-    $mail->Password = 'lxqzqzmhiflzunxg'; 
+    $mail->Username = 'yasirusulochana19@gmail.com'; 
+    $mail->Password = 'jiecxqfrynnwyrfu'; 
     $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS; 
     $mail->Port = 465; //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
 
-    $mail->setFrom('kavisulakshana2000@gmail.com', 'MENTOR');
+    $mail->setFrom('yasirusulochana19@gmail.com', 'MENTOR');
     $mail->addAddress("$reciever", "$name"); 
 
     $mail->isHTML(true); 
