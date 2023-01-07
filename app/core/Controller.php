@@ -3,9 +3,13 @@
 class Controller
 {
 
-    public function model($model)
+    public function model($model, $path = null)
     {
-        require_once '../app/models/' . $model . '.php';
+        if(empty($path)){
+            require_once '../app/models/' . $model . '.php';
+        }else{
+            require_once '../app/models/' . $path . '.php';
+        }
         return new $model();
     }
 
