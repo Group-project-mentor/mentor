@@ -2,8 +2,8 @@
 
 class App
 {
-    protected $controller = 'landing';  //? forgetPassword
-    protected $method = 'index'; //? OTP
+    protected $controller = 'landing';  
+    protected $method = 'index'; 
     protected $params = [];
     public function __construct()
     {
@@ -40,34 +40,11 @@ class App
                 // $this->controller->$this->method();
             }
         }
-        // $urlLen = count($url);
-        // switch ($urlLen) {
-        //     case 6:
-        //         $this->controller->{$this->method}($url[2], $url[3], $url[4], $url[5]);
-        //         break;
-        //     case 5:
-        //         $this->controller->{$this->method}($url[2], $url[3], $url[4]);
-        //         break;
-        //     case 4:
-        //         $this->controller->{$this->method}($url[2], $url[3]);
-        //         break;
-        //     case 3:
-        //         $this->controller->{$this->method}($url[2]);
-        //         break;
-        //     case 2:
-        //         $this->controller->{$this->method}();
-        //         break;
-        //     case 1:
-        //         $this->controller->{$this->method}();
-        //     default:
-        //         break;
-        // }
         
         $this->params = $url ? array_values($url) : [];
         call_user_func_array([$this->controller, $this->method], $this->params);
 
     }
-    // loca/mentor/gg/ff/44/55/
 
     public function parseURL()
     {
