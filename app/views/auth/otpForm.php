@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/x-icon" href="<?php echo BASEURL ?>assets/mentor.ico">
     <title>login</title>
-    <link rel="stylesheet" href="<?php echo BASEURL; ?>public/stylesheets/st_auth_style.css">
+    <link rel="stylesheet" href="<?php echo BASEURL; ?>public/stylesheets/rc_auth_style.css">
 </head>
 
 <body>
@@ -16,6 +16,22 @@
         <div class="login-title">
             <h1>CHANGE <br>PASSWORD</h1>
 
+            <!--                --><?php // if (isset($_GET["error"])) { ?>
+            <!--                    <div class="error"><small>-->
+            <!--                            --><?php // echo $_GET["error"]; ?>
+            <!--                        </small>-->
+            <!--                    </div>-->
+            <!---->
+            <!--                --><?php //} ?>
+            <!---->
+            <!--                --><?php // if (isset($_GET["success"])) { ?>
+            <!--                    <div class="success">-->
+            <!--                        <small>-->
+            <!--                            --><?php //echo $_GET["success"]; ?>
+            <!--                        </small>-->
+            <!--                    </div>-->
+            <!---->
+            <!--                --><?php // } ?>
 
             <hr />
         </div>

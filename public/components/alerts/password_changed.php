@@ -8,7 +8,7 @@
             <img src="<?php echo BASEURL?>assets/clips/msg_1.png" alt="error image">
         </div>
         <div class="message-btn">
-            <a href="<?php echo BASEURL."st_profile"?>">OK</a>
+            <a href="<?php echo BASEURL."rcProfile"?>">OK</a>
         </div>
     </div>
 </div>

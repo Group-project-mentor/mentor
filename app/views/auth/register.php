@@ -12,13 +12,12 @@ if (isset($_SESSION["user"])) {
     <link rel="icon" type="image/x-icon" href="<?php echo BASEURL ?>assets/mentor.ico">
     <title>register</title>
     <link rel="stylesheet" href="<?php echo BASEURL ?>stylesheets/landing/landing.css">
-    <link rel="stylesheet" href="<?php echo BASEURL?>stylesheets/st_auth_style.css">
-   
+    <link rel="stylesheet" href="<?php echo BASEURL.'/public/stylesheets/rc_auth_style.css' ?>">
 </head>
 
 <body>
     <!-- nav bar -->
-    <nav class="landing-nav-main">
+        <nav class="landing-nav-main">
             <a class="landing-nav-logo" href="<?php echo BASEURL ?>">
                 <img src="<?php echo BASEURL ?>assets/landing/logo1.png" alt="">
             </a>
@@ -66,7 +65,7 @@ if (isset($_SESSION["user"])) {
 
                 <hr />
             </div>
-            <form class="login-ctnt" method="POST" action="register/verify_register">
+            <form class="login-ctnt" method="POST" action="<?php echo BASEURL ?>register/verify_register">
                 <div class="login-inp-grp">
                     <label for="name" class="lbl-input">Name</label>
                     <input type="text" class="txt-input" placeholder="Enter your name" id="name" name="name" />

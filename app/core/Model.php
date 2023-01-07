@@ -8,7 +8,7 @@ class Model extends DB
         parent::__construct();
     }
 
-    public function getData($table, $where = null, $ord = null ,$ordType = "asc", $lim = null)
+    public function getData($table, $where = null, $ord = null, $ordType = "asc", $lim = null)
     {
         $query = "select * from $table";
         if ($where != null) {
@@ -24,7 +24,7 @@ class Model extends DB
 
     public function insertData($table, $data)
     {
-        $sql = "INSERT INTO $table SET ";
+        $sql = "INSERT INTO $table VALUES ";
         foreach ($data as $key => $value) {
             $sql .= "$key = '$value', ";
         }
@@ -47,11 +47,11 @@ class Model extends DB
 
     public function deleteData($table, $where)
     {
-        $sql = "DELETE FROM $table WHERE $where";
+        $sql = "delete from $table where $where";
         $result = $this->executeQuery($sql);
         return $result;
     }
-    
+
     public function numRows($result){
         return $result->num_rows;
     }

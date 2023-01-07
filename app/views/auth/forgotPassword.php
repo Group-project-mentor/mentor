@@ -12,7 +12,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/x-icon" href="<?php echo BASEURL ?>assets/mentor.ico">
     <title>login</title>
-    <link rel="stylesheet" href="<?php echo BASEURL; ?>public/stylesheets/st_auth_style.css">
+    <link rel="stylesheet" href="<?php echo BASEURL; ?>public/stylesheets/rc_auth_style.css">
 </head>
 
 <body>
@@ -21,7 +21,23 @@
             <div class="login-title">
                 <h1>CHANGE <br>PASSWORD</h1>
 
-                <!-- line 23 to 38 had a commented php parts  -->
+<!--                --><?php // if (isset($_GET["error"])) { ?>
+<!--                    <div class="error"><small>-->
+<!--                            --><?php // echo $_GET["error"]; ?>
+<!--                        </small>-->
+<!--                    </div>-->
+<!---->
+<!--                --><?php //} ?>
+<!---->
+<!--                --><?php // if (isset($_GET["success"])) { ?>
+<!--                    <div class="success">-->
+<!--                        <small>-->
+<!--                            --><?php //echo $_GET["success"]; ?>
+<!--                        </small>-->
+<!--                    </div>-->
+<!---->
+<!--                --><?php // } ?>
+
                 <hr />
             </div>
             <form class="login-ctnt" method="POST" action="<?php echo BASEURL ?>forgotPassword/emailExist">
@@ -37,5 +53,5 @@
         </div>
     </section>
 </body>
-<script src="<?php echo BASEURL ?>public/javascripts/st_auth_script.js"></script>
+<script src="<?php echo BASEURL ?>public/javascripts/rc_auth_script.js"></script>
 </html>
