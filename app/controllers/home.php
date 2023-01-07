@@ -36,6 +36,14 @@ class Home extends Controller
         }
 
     }
+
+    private function hasLogged()
+    {
+        if (!isset($_SESSION['user'])) {
+            header("location:" . BASEURL . "login");
+        }
+
+    }
 }
 
 ?>

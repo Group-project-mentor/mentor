@@ -1,0 +1,24 @@
+.resource{
+    
+    border-radius: 30px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    
+}
+
+.r{
+    background: #215537;
+    margin: 30px;
+    border-radius: 30px;
+    display: flex;
+    padding: 10px;
+    width: 400px;
+    color: rgb(255, 255, 255);
+    font-size: 30px;
+}
+
+.r img{
+    width: 60px;
+    padding: 5px;
+}

@@ -3,9 +3,9 @@
 define('DB_TYPE', 'mysql');
 define('DB_HOST', 'localhost');
 define('DB_USER', 'root'); 
-define('DB_NAME', 'school');
+define('DB_NAME', 'mentor');
 define('DB_PASSWORD', '');
-define("BASEURL", "http://localhost/mentor/");
+define("BASEURL", "http://localhost/mentor-interim/");
 
 $env = parse_ini_file('.env');
 $_ENV = array_merge($_ENV, $env);

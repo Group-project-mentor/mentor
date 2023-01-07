@@ -1,0 +1,159 @@
+*{
+    font-family: Roboto;
+}
+.ad_mid-content{
+    background:#D9D9D9;
+    padding: 0px;
+    margin: 0px;
+
+}
+
+.content-area{
+    padding: 0px;
+    margin:0px;
+    
+}
+
+.mid-title{
+    padding-left: 30px;
+}
+.ad_cards{
+    display: flex;
+    justify-content:space-evenly;
+    flex-wrap: wrap;
+    padding: 20px;
+    margin: 20px;
+    background: #ffffff;
+    border-radius: 25px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.box{
+    width: 275px;
+    height: 175px;
+    padding:15px;
+    border-radius: 30px;
+    justify-content:left;
+    flex-wrap: wrap;
+    margin: 20px;
+    font-size: larger;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+
+
+.imgrow{
+    display: flex;
+}
+.mini{
+    width: 40px;
+    padding: 5px;
+}
+
+#st{
+    background: #00C7E2;
+}
+
+#tc{
+    background: #E2B100;
+}
+
+#pc{
+    background: #b25477;
+}
+
+#sp{
+    background: #7100E2;
+}
+
+#ad{
+    background: #07D78C;
+}
+
+.eanings{
+    padding: 20px;
+    margin: 50px;
+}
+
+.img{
+    padding: 20px;
+}
+
+.ad_section2{
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%;
+}
+
+.complaints{
+    
+    display: flex;
+    justify-content: space-between;
+    width: fit-content;
+    padding: 15px; 
+}
+
+.bgbox{
+    background: #ffffff;
+    border-radius: 30px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+
+}
+.title{
+    font-size: larger;
+    font-weight: bolder;
+    font-size: 20px;
+}
+
+button{
+    background: none;
+    border: 0px;
+    color: rgb(255, 255, 255);
+    font-weight: bold;
+}
+.btn{
+    width:100px;
+    height: 30px;
+    padding: 5px 10px;
+    margin-left: 200px;
+    text-align: center;
+    border-radius: 40px;
+    background-color: #186537;
+    text-decoration: none;
+    
+}
+
+.ad_section3{
+    padding: 20px;;
+    display: flex;
+    justify-content:space-between;
+    width: 100%; 
+}
+
+.task{
+    display: flex;
+    justify-content: space-between;
+    width: fit-content;
+    padding: 20px; 
+}
+
+.user{
+    display: flex;
+    justify-content:flex-end;
+    width: fit-content;
+    padding: 20px;  
+}
+.ad_section4{
+    padding: 20px;;
+    width: 100%; 
+}
+.team{
+    display: flex;
+    justify-content:space-evenly;
+    width: fit-content;
+    padding: 20px;
+}
+
+
+
+
