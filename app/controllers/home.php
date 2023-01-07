@@ -6,6 +6,14 @@ class Home extends Controller
     {
         $this->view('home/index');
     }
+
+    private function hasLogged()
+    {
+        if (!isset($_SESSION['user'])) {
+            header("location:" . BASEURL . "login");
+        }
+
+    }
 }
 
 ?>

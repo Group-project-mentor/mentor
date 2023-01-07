@@ -1,0 +1,260 @@
+* {
+    margin: 0;
+    padding: 0;
+  
+  }
+  
+  body {
+    padding: 0px 0px;
+    overflow : hidden;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+  
+  }
+  
+  
+  .container{
+    margin: 20px 50px;
+    align-self: center;
+    height:100vh;
+    text-align: center;
+    font-size:2.5rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    
+   
+    
+  
+  
+  }
+  
+  .imgarea{
+    position: absolute;
+    width: 628px;
+    height: 717px;
+    left: 104px;
+    top: 100px;
+    
+    
+    
+  
+    
+  }
+  
+  
+  
+  .loginarea{
+    position: absolute;
+    width: 528px;
+    height: 617px;
+    left: 850px;
+    top: 100px;
+    
+    background: linear-gradient(141.99deg, #14B57B 3.63%, #D9F290 97.78%);
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 40px;
+    
+    
+  }
+  input[type=email] {
+    position: absolute;  
+    width: 455px;
+    height: 50px;
+    left:40px;
+    top: 200px;
+    border-radius: 40px;
+    border-color: #ffffff;
+    background: #FFFFFF;
+    box-shadow: 0px 4px 4px rgba(255, 255, 255, 0.02);
+    
+   
+  }
+  label[id=email]{
+    position: absolute;
+    font-size: 20px;
+    color: #ffffff;
+    top: 160px;
+    left: 40px;
+  }
+  label[id=password]{
+    position: absolute;
+    font-size: 20px;
+    color: #ffffff;
+    top: 310px;
+    left: 40px;
+  }
+  
+  
+  input[type=password]{
+    position: absolute;
+    width: 455px;
+    height: 50px;
+    left: 40px;
+    top: 340px;
+    border-radius: 40px;
+    background: #FFFFFF;
+    border-color: #ffffff;
+  
+  }
+  button[type=submit]{
+    position: absolute;
+    width: 120px;
+    height: 50px;
+    left: 200px;
+    top: 460px;
+    background: #00AE46;
+    border: 1px solid rgba(10, 223, 95, 0.74);
+    border-radius: 40px;
+    color: #ffffff;
+    font-size: large;
+  }
+  .psw{
+    position: absolute;
+    color: #000000;
+    font-size: 18px;
+    line-height: 22px;
+    top:400px;
+    left: 50px;
+    
+  
+  }
+  
+  .navbar{
+   
+    width: 100%;
+    height: 72px;
+    left: 0px;
+    top: 0px;
+  
+    background: #0A2917;
+    transform: rotateX('0');
+  
+  }
+  
+  .ep{
+    position: absolute;
+    width: 103.09px;
+    height: 42.29px;
+    left: 824.46px;
+    top: 300.44px;
+  
+     /*font-family: 'Inter';*/
+    font-style: normal;
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 29px;
+    text-transform: lowercase;
+  
+    color: #FFFFFF;
+  
+    
+  
+  }
+  
+  .fpsw{
+    position: absolute;
+    width: 168.38px;
+    height: 31.95px;
+    left: 804.7px;
+    top: 200.1px;
+  
+    /*font-family: 'Inter';*/
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 22px;
+  
+    color: rgba(0, 0, 0, 0.52);
+  
+  
+  }
+  
+  .h1{
+    font-style: normal;
+    font-weight: 900;
+    font-size: 35px;
+    line-height: 77px;
+    text-align: center;
+    text-indent: 3px;
+    text-transform: uppercase;
+  
+    color: #FFFFFF;
+  
+  
+    text-shadow: 0px 0px 5px rgba(10, 223, 95, 0.17);
+  }
+  
+  .img{
+    width: 600px;
+    height: 599px;
+    left: 74px;
+    top: 0px;
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25)) drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25)) drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+  
+  }
+  
+  .logo{
+    position: absolute;
+    width: 178px;
+    height: 48px;
+    left: 15px;
+    top: 12px;
+    bottom: 12px;
+  }
+  
+  .nav-group{
+    display: flex;
+  }
+  
+  .nav-group nav{
+    font-family: calibri;
+    font-size: 16px;
+    font-weight: 500;
+    padding: 15px 18px;
+    border-bottom: 3px solid white;
+    text-align: center;
+    cursor: pointer;
+  }
+  .nav-group a {
+    text-decoration: none;
+    color: black;
+  }
+  
+  .nav-group nav:hover{
+    border-bottom: 3px solid #0CDD5D;
+    color: #015220;
+  }
+  
+  .nav-logo{
+    width: 75px;
+    object-fit: contain;
+  }
+  .topnav2 {
+    overflow: hidden;
+    background-color: #333;
+  }
+  
+  .topnav2 a {
+    float:right;
+    color:#ddd;
+    border: #ddd;
+    border-radius: 5px;
+    text-align:absolute;
+    padding:0px 60px;
+    text-decoration: none;
+    font-size: 7px;
+  }
+  
+  .topnav2 a:hover {
+    background-color: rgb(226, 226, 226);
+    border: #ddd;
+    border-radius: 5px;
+    color: black;
+  }
+  
+  .topnav2 a.active {
+    background-color: rgb(221, 221, 221);
+    border: #ddd;
+    border-radius: 5px;
+    color:black;
+  }

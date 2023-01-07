@@ -1,0 +1,151 @@
+*{
+    font-family: Roboto;
+}
+.ad_mid-content{
+    background:#D9D9D9;
+    padding: 0px;
+    margin: 0px;
+
+}
+
+.content-area{
+    padding: 0px;
+    margin:0px;
+    
+}
+
+.mid-title{
+    padding-left: 30px;
+}
+
+.content{
+    background: #ffffff;
+    border-radius: 30px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    margin: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+p{
+    justify-content: center;
+    padding: 20px;
+}
+
+.pp{
+    height: 60px;
+    margin-top: 5px;
+}
+
+.profile{
+    width: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+
+
+.complaints{
+    display: flex;
+    justify-content: space-evenly;
+    padding: 0px;
+    margin: 0px;
+}
+
+.icons{
+    display: flex;
+    justify-content: space-between;
+    width: 100px;
+    margin-top: 5px;
+
+}
+
+.view{
+    padding: 10px;
+
+}
+
+.addtm{
+    padding: 10px;
+}
+
+.delete{
+    padding: 10px;
+}
+
+button{
+    box-decoration-break:none;
+    background: none;
+    border: 0px;
+    color: rgb(255, 255, 255);
+}
+
+button :hover{
+    
+}
+
+.bckclose{
+    display: flex;
+    justify-content: space-between;
+    /* width: 100%; */
+    margin: 20px;
+}
+
+#comp-content{
+    display: flex;
+    flex-direction: column;
+    
+
+}
+
+.back,.close{
+    width: 10px;
+    height: 10px;
+}
+
+#com-complaints{
+    width: 50%;
+    display: flex;
+    justify-content: space-around;
+    margin: 0 20px;
+    align-items: center;
+
+}
+
+.pp>img{
+    width: 70px;
+}
+
+#com-title{
+    margin: 40px 30px;
+
+}
+
+#com-title>p{
+    padding: 20px 0;
+    text-align: justify;
+}
+
+.btns{
+    
+    display: flex;
+    justify-content:right;
+    
+}
+
+.comp-btns{
+    width: fit-content;
+    
+    left: 200px;
+    top: 460px;
+    padding: 15px;
+    margin: 10px;
+    justify-self: right;
+    background: #00AE46;
+    border: none;
+    border-radius: 40px;
+    color: #ffffff;
+    font-size:medium;
+}
