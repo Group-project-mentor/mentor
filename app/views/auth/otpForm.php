@@ -16,7 +16,7 @@
         <div class="login-title">
             <h1>CHANGE <br>PASSWORD</h1>
 
-            <!-- line 18 to 33 is commented -->
+
             <hr />
         </div>
 

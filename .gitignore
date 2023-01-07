@@ -1,2 +1,4 @@
 public_resources
+*.txt
 .idea
+.env

@@ -30,6 +30,7 @@ class Login extends Controller
                         $_SESSION["id"] = $result[0];
                         $_SESSION["user"] = $email;
                         $_SESSION["name"] = $result[3];
+                        $_SESSION["usertype"] = $result[4];
                         // echo "Login successful !\nWelcome $result[3]";
                         header("location:" . BASEURL . "home");
                     } else {
