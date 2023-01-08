@@ -1,101 +1,92 @@
-<?php session_start();
-if (isset($_SESSION["user"])) {
-    header("location:" . BASEURL . "home");
-}
-?>
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>login</title>
-    <link rel="icon" type="image/x-icon" href="<?php echo BASEURL ?>assets/mentor.ico">
-    <link rel="stylesheet" href="<?php echo BASEURL ?>public/stylesheets/landing/landing.css">
-    <link rel="stylesheet" href="<?php echo BASEURL; ?>public/stylesheets/rc_auth_style.css">
-</head>
-
-<body>
-     <!-- nav bar -->
-        <nav class="landing-nav-main">
-            <a class="landing-nav-logo" href="<?php echo BASEURL ?>">
-                <img src="<?php echo BASEURL ?>assets/landing/logo1.png" alt="">
-            </a>
-            <div class="three-bars" id="toggler">
-                <div class="bar"></div>
-                <div class="bar"></div>
-                <div class="bar"></div>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script
+    src="https://kit.fontawesome.com/64d58efce2.js"
+    crossorigin="anonymous"
+  ></script>
+  <link rel="stylesheet" href="<?php echo BASEURL?>public/stylesheets/Teacher/login_style.css">
+    
+    <title>Sign in & Sign up Form</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="forms-container">
+        <div class="signin-signup">
+          <form action="#" class="sign-in-form">
+            <h2 class="title">Login</h2>
+            <div class="input-field">
+              <i class="fas fa-user"></i>
+              <input type="text" placeholder="Username" />
             </div>
-            <div class="landing-nav-links nav-hidden" id="nav-links">
-                <a class="landing-nav-link" href="<?php echo BASEURL ?>#Home">Home</a>
-                <a class="landing-nav-link">About</a>
-                <a class="landing-nav-link" href="<?php echo BASEURL ?>#BMC">Buy me a coffee</a>
-                <a class="landing-nav-link" href="<?php echo BASEURL ?>#footer">Contact us</a>
-                <a class="landing-nav-link landing-special-btn" href="<?php echo BASEURL ?>login">Login</a>
+            <div class="input-field">
+              <i class="fas fa-lock"></i>
+              <input type="password" placeholder="Password" />
             </div>
-        </nav>
-    <div class="login">
-        <div class="login-main">
-            <div class="login-title">
-                <h1>LOGIN</h1>
-
-                <?php if ($data == 1) {?>
-                    <div class="error">
-                        <small>
-                            <?php echo "Incorrect Password !"; ?>
-                        </small>
-                    </div>
-                <?php }?>
-
-                <?php if ($data == 2) {?>
-                    <div class="error">
-                        <small>
-                            <?php echo "You are not registered !"; ?>
-                        </small>
-                    </div>
-                <?php }?>
-
-                <?php if ($data == 3) {?>
-                    <div class="error">
-                        <small>
-                            <?php echo "Invalid Email !"; ?>
-                        </small>
-                    </div>
-                <?php }?>
-
-                <!-- <?php if (isset($_GET["success"])) {?>
-                    <div class="success"><small>
-                            <?php echo $_GET["success"]; ?>
-                        </small></div>
-
-                <?php }?> -->
-
-                <hr />
+            <!-- <input type="submit" value="Login" class="btn solid" /> -->
+            <a href="<?php echo BASEURL?>home" class="btn solid" style="text-align:center ; text-decoration : none ;">Log in</a>
+            <br>
+            
+          </form>
+          <form action="#" class="sign-up-form">
+            <h2 class="title">Register</h2>
+            <h5 class="sub-title">Teacher</h5>
+            <div class="input-field">
+              <i class="fas fa-user"></i>
+              <input type="text" placeholder="Enter your name" />
             </div>
-            <form class="login-ctnt" method="POST" action="<?php echo BASEURL; ?>login/verify_login">
-
-                <div class="login-inp-grp">
-                    <label for="email" class="lbl-input">Email</label>
-                    <input type="text" class="txt-input" placeholder="Enter your email" id="email" name="email" />
-                    <img src="<?php echo BASEURL; ?>public/assets/icons/verified.png" alt="verified" id="icon1">
-                </div>
-
-                <div class="login-inp-grp">
-                    <label for="password" class="lbl-input">Password</label>
-                    <input type="password" class="txt-input" placeholder="Enter your password" id="passwd" name="passwd" />
-                    <a href="<?php echo BASEURL ?>forgotPassword" class="login-fgt">Forgot your password?</a>
-                </div>
-
-                <div class="login-inp-grp">
-                    <button type="submit" class="btn-login" name="login">Login</button>
-                    <a href="<?php echo BASEURL?>/register" class="login-fgt">Not registered yet? Register</a>
-                </div>
-
-            </form>
+            <div class="input-field">
+              <i class="fas fa-envelope"></i>
+              <input type="email" placeholder="Enter your email" />
+            </div>
+            <div class="input-field">
+              <i class="fas fa-user"></i>
+              <input type="text" placeholder="Enter your age" />
+            </div>
+            <div class="input-field">  
+              <i class="fas fa-lock"></i>
+              <input type="password" placeholder="Enter your Password" />
+            </div>
+            <div class="input-field">
+              <i class="fas fa-lock"></i>
+              <input type="password" placeholder="Re-enter your Password" />
+            </div>
+            <input type="submit" class="btn" value="Sign up" /> 
+          </form>
         </div>
-    </div>
-    <script src="<?php echo BASEURL ?>public/javascripts/rc_auth_script.js"></script>
-</body>
+      </div>
 
+      <div class="panels-container">
+        <div class="panel left-panel">
+          <div class="content">
+            <h3>One of us ?</h3>
+            <br>
+        
+            
+              Welcome back our team-mate. Let's head in to your account
+            </p>
+            
+          </div>
+          
+          <img class="active" src="<?php echo BASEURL?>public/assets/Teacher/clips/login.png" alt="home">
+        </div>
+        <div class="panel right-panel">
+          <div class="content">
+            <h3>One of us ?</h3>
+            <p>
+              Welcome back our team-mate. Let's head in to your account
+            </p>
+            <button class="btn transparent" id="sign-in-btn">
+              Sign in
+            </button>
+          </div>
+          <img src="img/reg.png" class="image" alt="" />
+        </div>
+      </div>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
 </html>

@@ -15,9 +15,11 @@ class Home extends Controller
                 break;
             case 'ad':
                 $this->view('admin/home/index');
+
                 break;
             case 'tch':
-                $this->view('teacher/home/index');
+                $this->view('Teacher/classroom',$res);
+
                 break;
             case 'sp':
                 $this->view('sponsor/home/index');

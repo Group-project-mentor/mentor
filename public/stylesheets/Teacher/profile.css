@@ -1,0 +1,166 @@
+.rc-profile {
+    font-family: calibri;
+    display: flex;
+    justify-content: center;
+    margin-top: 60px;
+}
+
+.rc-profile-main {
+    min-width: 600px;
+    display: flex;
+    flex-direction: column;
+    background-color: #bacfc3be;
+    padding: 30px;
+    border-radius: 7px;
+}
+
+.rc-profile-table {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+}
+
+.rc-profile-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 5px 10px;
+    margin: 10px 5px;
+    background-color: rgba(255, 255, 255, 0.821);
+    border-radius: 10px;
+    align-items: center;
+    transition: all 0.5s ease-out;
+}
+
+.rc-profile-right {
+    align-items: center;
+    display: flex;
+}
+
+.rc-profile-right div {
+    color: rgba(50, 50, 50, 0.771);
+    padding: 5px 0;
+}
+
+.rc-profile-right a {
+    cursor: pointer;
+    padding: 5px 9px;
+}
+
+.rc-profile-image {
+    margin: auto;
+    display: flex;
+    position: relative;
+    justify-content: center;
+}
+
+.rc-profile-image img {
+    border-radius: 50%;
+    border: 2px solid rgb(67, 67, 67);
+    width: 150px;
+    height: 150px;
+    position: relative;
+}
+
+.rc-profile-change-btn{
+    position: absolute;
+    top: 50%;
+    color: white;
+    font-size: large;
+    letter-spacing: 4px;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.rc-profile-img-hidden{
+    filter: brightness(50%);
+    cursor: pointer;
+}
+
+.rc-profile-row:hover {
+    transform: translateX(5px);
+    transition: all 0.5s ease-out;
+}
+
+.txt-red {
+    color: red;
+}
+
+.hidden{
+    display: none;
+}
+
+@media screen and (max-width : 860px) {
+    .rc-profile {
+        margin-top: 40px;
+    }
+
+    .rc-profile-main {
+        min-width: 400px;
+        padding: 30px;
+    }
+
+    .rc-profile-table {
+        padding: 20px;
+    }
+
+    .rc-profile-row {
+        padding: 5px 10px;
+        margin: 10px 5px;
+        overflow-wrap: break-word;
+    }
+
+    .rc-profile-right div {
+        overflow-wrap: break-word;
+        padding: 5px 0;
+    }
+
+    .rc-profile-right a {
+        padding: 5px 9px;
+    }
+
+    .rc-profile-image img {
+        width: 150px;
+        height: 150px;
+    }
+
+}
+
+@media screen and (max-width : 480px) {
+    .rc-profile {
+        margin-top: 40px;
+    }
+
+    .rc-profile-main {
+        min-width: 200px;
+        font-size: small;
+        padding: 20px;
+    }
+
+    .rc-profile-table {
+        padding: 10px;
+    }
+
+    .rc-profile-row {
+        flex-direction: column;
+        padding: 5px 10px;
+        margin: 5px;
+    }
+
+    .rc-profile-image img {
+        width: 100px;
+        height: 100px;
+    }
+
+    .rc-profile-right div {
+        font-size: x-small;
+    }
+
+    .rc-profile-main {
+        padding: 10px;
+    }
+
+    .rc-profile-table {
+        padding: 10px;
+    }
+
+}
