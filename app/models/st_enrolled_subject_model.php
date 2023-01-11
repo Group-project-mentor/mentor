@@ -1,6 +1,6 @@
 <?php
 
-class Enrolled_subject_model extends Model{
+class St_enrolled_subject_model extends Model{
     public function __construct(){
         parent::__construct();
     }
