@@ -13,12 +13,19 @@ class Controller
 
     public function model($model, $path = null)
     {
-        if(empty($path)){
+        if (empty($path)) {
             require_once '../app/models/' . $model . '.php';
-        }else{
+        } else {
             require_once '../app/models/' . $path . '.php';
         }
         return new $model();
+    }
+
+    public function userValidate($user)
+    {
+        if (!isset($_SESSION['usertype']) and !($_SESSION['usertype'] == $user)) {
+            header("location:" . BASEURL . "home");
+        }
     }
 
 }

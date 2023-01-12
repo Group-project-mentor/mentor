@@ -7,8 +7,8 @@
     src="https://kit.fontawesome.com/64d58efce2.js"
     crossorigin="anonymous"
   ></script>
-  <link rel="stylesheet" href="<?php echo BASEURL?>public/stylesheets/Teacher/login_style.css">
-    
+  <link rel="stylesheet" href="<?php echo BASEURL ?>public/stylesheets/Teacher/login_style.css">
+
     <title>Sign in & Sign up Form</title>
   </head>
   <body>
@@ -28,7 +28,7 @@
             <!-- <input type="submit" value="Login" class="btn solid" /> -->
             <button class="btn solid" type="submit" name="login"  style="text-align:center ; text-decoration : none ;">Log in</button>
             <br>
-            
+
           </form>
           <form action="<?php echo BASEURL ?>register/verify_register" class="sign-up-form" method="POST">
             <h2 class="title">Register</h2>
@@ -46,7 +46,7 @@
               <input type="text" placeholder="Enter your age" />
 
             </div>
-            <div class="input-field">  
+            <div class="input-field">
               <i class="fas fa-lock"></i>
               <input type="password" placeholder="Enter your Password" id="passwd" name="passwd" />
             </div>
@@ -74,7 +74,7 @@
                     Sign up
                   </button>
                 </div>
-                <img class="active" src="<?php echo BASEURL?>public/assets/Teacher/clips/login.png" alt="home">
+                <img id="loginPic" class="active" src="<?php echo BASEURL ?>public/assets/Teacher/clips/login.png" alt="home">
               </div>
               <div class="panel right-panel">
                 <div class="content">
@@ -91,16 +91,19 @@
             </div>
           </div>
 
-          <script >const sign_in_btn = document.querySelector("#sign-in-btn");
+          <script> const sign_in_btn = document.querySelector("#sign-in-btn");
                    const sign_up_btn = document.querySelector("#sign-up-btn");
+                   const image = document.querySelector('#loginPic');
                    const container = document.querySelector(".container");
 
                    sign_up_btn.addEventListener("click", () => {
                      container.classList.add("sign-up-mode");
+                     image.classList.add("sign-up-mode");
                    });
 
                    sign_in_btn.addEventListener("click", () => {
                      container.classList.remove("sign-up-mode");
+                     image.classList.remove("sign-up-mode");
                    });
 </script>
         </body>
