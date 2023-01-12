@@ -2,15 +2,50 @@
 
 class St_courses extends Controller
 {
-    public function index()
-    {
+
+    public function __construct(){
         sessionValidator();
         $this->hasLogged();
+    }
+
+    public function index()
+    {
         $res=$this->model('st_courses_model')->getClasses();
         $res2=$this->model('st_courses_model')->getClasses2();
         $this->view('student/enrollment/st_courses',array($res,$res2));
+    }
 
+    public function Enroll_subject_all(){
+        $res=$this->model('st_enrolled_subject_model')->getClasses2();
+        $this->view('student/enrollment/st_enrolled_subject',$res);
+    }
 
+    public function Subject_to_Enroll_all(){
+        $res=$this->model('st_subject_to_enroll_model')->getClasses();
+        $this->view('student/enrollment/st_subject_to_enroll',$res);
+    }
+
+    public function Enroll_records($gid, $sid)
+    {
+        $result = $this->model('st_subject_to_enroll_model')->enroll_rec(5,$gid,$sid);
+        if($result)
+        {
+            header("location:" . BASEURL . "st_courses");
+        }
+        else
+        { ?>
+            <div style="padding: 15px 20px;">
+                <!-- <button style="padding: 5px 10px;color: white; float:right ;border-radius: 10px;background-color: #186537;">Back</button> -->
+                <h2 style="color:green ; text-align:center ;padding: 5px 10px;">
+                    <?php echo "You Already Enroll To This Subject" ; ?>
+                    <br>
+                    <img src="<?php echo BASEURL  ?>assets/clips/issue.png" alt="">
+                </h2>
+                
+            </div>
+            
+        <?php
+        }
     }
 
     private function hasLogged()
