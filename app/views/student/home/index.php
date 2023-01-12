@@ -92,7 +92,7 @@
                     <a href="#">
                         <img src="<?php echo BASEURL  ?>assets/icons/icon_notify.png" alt="notify">
                     </a>
-                    <a href="<?php echo BASEURL  ?>st_profile2">
+                    <a href="<?php echo BASEURL  ?>st_profile">
                         <img src="<?php echo BASEURL  ?>assets/icons/icon_profile_black.png" alt="profile">
                     </a>
                 </div>
@@ -114,15 +114,15 @@
                         <img src="<?php echo BASEURL  ?>assets/icons/icon_prev.png" alt="left">
                         <div class="grades">
                             <div class="grade-card">
-                                <img src="<?php echo BASEURL  ?>assets/grades/grade9.png" alt="">
+                                <img src="<?php echo BASEURL  ?>assets/grades/9.png" alt="">
                                 <label for="title">Grade 9</label>
                             </div>
                             <a class="grade-card front" href="<?php echo BASEURL?>st_courses" style="text-decoration: none; color:black;">
-                                    <img src="<?php echo BASEURL  ?>assets/grades/grade8.png" alt="">
+                                    <img src="<?php echo BASEURL  ?>assets/grades/8.png" alt="">
                                     <label for="title">Grade 8</label>
                             </a>
                             <div class="grade-card">
-                                <img src="<?php echo BASEURL  ?>assets/grades/grade7.png" alt="">
+                                <img src="<?php echo BASEURL  ?>assets/grades/7.png" alt="">
                                 <label for="title">Grade 7</label>
                             </div>
                         </div>

@@ -2,22 +2,27 @@
 
 class St_profile extends Controller
 {
-    public function __construct()
+    public function index()
     {
         sessionValidator();
+        $this->hasLogged();
+        $this->view('student/profile/st_profile');
+
     }
 
-    public function index($msg = null)
+    private function hasLogged()
     {
-        $result = $this->model("userModel")->getUserData($_SESSION['id']);
-        $this->view('student/profile/st_profile', array($result, $msg));
+        if (!isset($_SESSION['user'])) {
+            header("location:" . BASEURL . "login");
+        }
+
     }
 
     public function change($type, $msg = null)
     {
         switch ($type) {
             case 'image':
-                $this->image();
+                $this->image($msg);
                 break;
             case 'name':
                 $this->name();
@@ -37,84 +42,25 @@ class St_profile extends Controller
         }
     }
 
-    private function image()
-    {
-        $result = $this->model("userModel")->getImage($_SESSION['id']);
-        $this->view("student/profile/st_change_image", $result);
+    public function Scholarship_page1(){
+        $this->view('student/profile/st_scholarship');
     }
 
-    private function password($msg)
-    {
-        $this->view("student/profile/st_change_passwd", $msg);
+    public function Scholarship_page2(){
+        $this->view('student/profile/st_scholarship_form');
     }
 
-    private function email()
-    {
-
-    }
-
-    private function mobile($msg = null)
-    {
-        $result = $this->model("userModel")->getMobile($_SESSION['id']);
-        $this->view("student/profile/st_change_mobile", array($result,$msg));
-    }
-
-    private function name($msg = null)
-    {
-        $this->view("student/profile/st_change_name", $msg);
-    }
-
-    public function changeName()
-    {
-        if (isset($_POST['name'])) {
-            if (($_SESSION['name'] != $_POST['name']) && ($_POST['name'] != '')) {
-                $this->model("userModel")->updateName($_POST['name'], $_SESSION['id']);
-                $_SESSION['name'] = $_POST['name'];
-                header("location:" . BASEURL . 'st_profile/index/success');
-            } else {
-                header("location:" . BASEURL . 'st_profile/change/name/failed');
-            }
+    public function Scholarship_page2_action(){
+        if ($this->model("st_scholarship_form_model")->request_form($_POST['fname'], $_POST['lname'], 
+        $_POST['addr'], $_POST['sch'], $_POST['email'], $_POST['coun'], $_POST['cno'], $_POST['des'])) {
+            header("location:" . BASEURL . "st_profile");
         } else {
-            header("location:" . BASEURL . 'st_profile/change/name/failed');
-        }
-    }
-
-    public function changeMobile()
-    {
-        if (isset($_POST['mobile'])) {
-            if ($_POST['mobile'] != '') {
-                $this->model("userModel")->updateMobile($_POST['mobile'], $_SESSION['id']);
-                header("location:" . BASEURL . 'st_profile/index/success');
-            } else {
-                header("location:" . BASEURL . 'st_profile/change/mobile/failed');
-            }
-        } else {
-            header("location:" . BASEURL . 'st_profile/change/mobile/failed');
-        }
-    }
-
-    public function changePassword()
-    {
-        if (isset($_POST['cpasswd']) && isset($_POST['npasswd']) && isset($_POST['cnfpasswd'])) {
-            if ($_POST['npasswd'] == $_POST['cnfpasswd']) {
-                $result = $this->model("userModel")->changeProfilePasswd($_SESSION['id']);
-                if (!empty($result) && password_verify($_POST['cpasswd'], $result[2])) {
-                    $hash = password_hash($_POST['npasswd'], PASSWORD_BCRYPT, ["cost" => 10]);
-                    if ($this->model("userModel")->changePassword($hash, $_SESSION['user'])) {
-                        header("location:" . BASEURL . 'st_profile/index/success');
-                    } else {
-                        header("location:" . BASEURL . 'st_profile/change/password/failed');
-                    }
-                } else {
-                    header("location:" . BASEURL . 'st_profile/change/password/wrongPass');
-                }
-            } else {
-                header("location:" . BASEURL . 'st_profile/change/password/failed');
-                //! todo
-            }
-        } else {
-            header("location:" . BASEURL . 'st_profile/change/password/failed');
-            //! todo
+            header("location:" . BASEURL . "st_profile/Scholarship_page2");
         }
     }
 }
+
+?>
+
+
+

@@ -43,28 +43,28 @@
             <!-- Navigation buttons -->
             <div class="nav-links">
                 <a href="#" class="nav-link">
-                    <img class="active" src="<?php echo BASEURL; ?>assets/icons/participants.png" alt="home">
-                    <div class="nav-link-text">Participants</div>
-                </a>
-                <a href="#" class="nav-link">
                     <img src="<?php echo BASEURL; ?>assets/icons/icon_resources.png" alt="cource">
                     <div class="nav-link-text">Resources</div>
                 </a>
                 <a href="#" class="nav-link">
-                    <img src="<?php echo BASEURL; ?>assets/icons/add_teacher.png" alt="profile">
-                    <div class="nav-link-text">Add Teacher</div>
-                </a>
-                <a href="#" class="nav-link">
-                    <img src="<?php echo BASEURL; ?>assets/icons/Student Male.png" alt="report">
-                    <div class="nav-link-text">Add Student</div>
-                </a>
-                <a href="#" class="nav-link">
                     <img src="<?php echo BASEURL; ?>assets/icons/generate_report.png" alt="bmc">
-                    <div class="nav-link-text">Generate Reports</div>
+                    <div class="nav-link-text">See Reports</div>
                 </a>
                 <a href="#" class="nav-link">
                     <img src="<?php echo BASEURL; ?>assets/icons/forum.png" alt="report">
-                    <div class="nav-link-text">Create Forum</div>
+                    <div class="nav-link-text">Use Forum</div>
+                </a>
+                <a href="<?php echo BASEURL ?>st_report_from_grade.php" class="nav-link">
+                    <img src="<?php echo BASEURL ?>assets/icons/icon_report.png" alt="report">
+                    <div class="nav-link-text"> Report Issue</div>
+                </a>
+                <a href="#" class="nav-link">
+                    <img src="<?php echo BASEURL ?>assets/icons/icon_bmc.png" alt="bmc">
+                    <div class="nav-link-text">Buy me a coffee</div>
+                </a>
+                <a href="#" class="nav-link">
+                    <img src="<?php echo BASEURL ?>assets/icons/Settings" alt="bmc">
+                    <div class="nav-link-text">Settings</div>
                 </a>
             </div>
 
