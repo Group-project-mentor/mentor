@@ -2,10 +2,12 @@
 
 class RcEdit extends Controller
 {
+    private $user = "rc";
 
     public function __construct()
     {
         sessionValidator();
+        $this->userValidate($this->user);
     }
 
     public function index()

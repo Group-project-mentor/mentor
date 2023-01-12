@@ -20,6 +20,7 @@ class Quiz extends Controller
     public function createAction()
     {
         $id = $this->model('quizModel')->getLastId('quiz')[0] + 1;
+        echo $id." ".$_POST['quiz_name']." ".$_POST['tot_mark'] ;
         if ($this->model('quizModel')->createQuiz($_POST['quiz_name'], $_POST['tot_mark'], $id)) {
 //            $_SESSION['quiz'] = $id;
             header("location:" . BASEURL . "quiz/questions/$id");
@@ -67,33 +68,34 @@ class Quiz extends Controller
 //        }
     }
 
-    public function addAnswers($num, $question, $msg = null)
+    public function addAnswers($quizId, $question, $msg = null)
     {
-        if ($this->model('quizModel')->isQuizExists($num, $question)) {
-            $questionData = $this->model('quizModel')->getQuestionData($num, $question);
-            $answersData = $this->model('quizModel')->getAnswers($num, $questionData[0]);
-            $this->view('quizModule/rc/addAnswers', array($num, $question, $questionData, $msg, $answersData));
+        if ($this->model('quizModel')->isQuizExists($quizId, $question)) {
+            $questionData = $this->model('quizModel')->getQuestionData($quizId, $question);
+            $answersData = $this->model('quizModel')->getAnswers($quizId, $questionData[0]);
+
+            $this->view('quizModule/rc/addAnswers', array($quizId, $question, $questionData, $msg, $answersData));
         } else {
             header("location:" . BASEURL . "quiz/");
         }
     }
 
-    public function answer($num, $question, $msg = null)
+    public function answer($quizId, $question, $msg = null)
     {
-        $this->view('quizModule/rc/answer', array($num, $question, $msg));
+        $this->view('quizModule/rc/answer', array($quizId, $question, $msg));
     }
 
-    public function saveAnswer($num, $question)
+    public function saveAnswer($quizId, $question)
     {
-        $qid = $this->model('quizModel')->getQuestionId($num, $question);
+        $qid = $this->model('quizModel')->getQuestionId($quizId, $question);
         if ($qid != 0) {
             $ansNumber = $this->model('quizModel')->getLastAnswerNo($qid);
             $ansNumber++;
             $correctness = ($_POST['correct'] == 'correct') ? 1 : 0;
             if ($this->model('quizModel')->saveAnswer($ansNumber, $qid, $_POST['answer'], $correctness, $_POST['ansImg'])) {
-                header('location:' . BASEURL . "quiz/addAnswers/$num/$question/AnsAdded");
+                header('location:' . BASEURL . "quiz/addAnswers/$quizId/$question/AnsAdded");
             } else {
-                header('location:' . BASEURL . "quiz/answer/$num/$question/error");
+                header('location:' . BASEURL . "quiz/answer/$quizId/$question/error");
             }
         } else {
             header("location:" . BASEURL . "quiz/");
@@ -115,29 +117,29 @@ class Quiz extends Controller
         }
     }
 
-    public function editAnswer($num, $question, $answer, $msg = null)
+    public function editAnswer($quizId, $question, $answer, $msg = null)
     {
-        $qid = $this->model('quizModel')->getQuestionId($num, $question);
+        $qid = $this->model('quizModel')->getQuestionId($quizId, $question);
         if ($qid != 0) {
             $answerData = $this->model('quizModel')->getAnswerData($qid, $answer);
-            $this->view('quizModule/rc/editAnswer', array($num, $answerData, $question, $msg));
+            $this->view('quizModule/rc/editAnswer', array($quizId, $answerData, $question, $msg));
         } else {
-            header('location:' . BASEURL . "quiz/addAnswers/$num/$question/err");
+            header('location:' . BASEURL . "quiz/addAnswers/$quizId/$question/err");
         }
     }
 
-    public function editAnswerAction($num, $question, $answer)
+    public function editAnswerAction($quizId, $question, $answer)
     {
-        $qid = $this->model('quizModel')->getQuestionId($num, $question);
+        $qid = $this->model('quizModel')->getQuestionId($quizId, $question);
         if ($qid != 0) {
             $correctness = ($_POST['correct'] == 'correct') ? 1 : 0;
             if ($this->model('quizModel')->updateAnswer($_POST['answer'], $correctness, $_POST['ansImg'], $answer)) {
-                header('location:' . BASEURL . "quiz/addAnswers/$num/$question/AnsUpdated");
+                header('location:' . BASEURL . "quiz/addAnswers/$quizId/$question/AnsUpdated");
             } else {
-                header('location:' . BASEURL . "quiz/editAnswer/$num/$question/$answer/err");
+                header('location:' . BASEURL . "quiz/editAnswer/$quizId/$question/$answer/err");
             }
         } else {
-            header('location:' . BASEURL . "quiz/editAnswer/$num/$question/$answer/err");
+            header('location:' . BASEURL . "quiz/editAnswer/$quizId/$question/$answer/err");
         }
     }
 }
