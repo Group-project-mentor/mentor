@@ -14,18 +14,16 @@ class ResourceModel extends Model
         $sql = "select video.id, video.name, video.lecturer from video, public_resource
         WHERE video.id = public_resource.id and public_resource.id
         IN (SELECT rsrc_id FROM `rs_subject_grade` WHERE subject_id=$subject and grade_id=$grade) and public_resource.type = 'video';";
-        $result = $this->executeQuery($sql);
-        return $result;
+        return $this->executeQuery($sql);
 
     }
 
     public function findQuizzes($grade, $subject)
     {
-        $sql = "select quiz.id, quiz.name, quiz.questions from quiz, public_resource WHERE quiz.id = public_resource.id and
+        $sql = "select quiz.id, quiz.name, quiz.marks from quiz, public_resource WHERE quiz.id = public_resource.id and
                 public_resource.id IN (SELECT rsrc_id FROM `rs_subject_grade` WHERE subject_id=$subject and grade_id=$grade)
                 and public_resource.type = 'quiz'";
-        $result = $this->executeQuery($sql);
-        return $result;
+        return $this->executeQuery($sql);
     }
 
     public function findPastpapers($grade, $subject)
@@ -33,8 +31,7 @@ class ResourceModel extends Model
         $sql = "select pastpaper.id, pastpaper.name, pastpaper.year, pastpaper.part from pastpaper, public_resource WHERE pastpaper.id = public_resource.id and
                 public_resource.id IN (SELECT rsrc_id FROM rs_subject_grade WHERE subject_id=$subject and grade_id=$grade)
                 and public_resource.type = 'pastpaper'";
-        $result = $this->executeQuery($sql);
-        return $result;
+        return $this->executeQuery($sql);
     }
 
     public function findDocuments($grade, $subject)
@@ -42,8 +39,7 @@ class ResourceModel extends Model
         $sql = "select document.id, document.name from document, public_resource WHERE document.id = public_resource.id and
                 public_resource.id IN (SELECT rsrc_id FROM rs_subject_grade WHERE subject_id=$subject and grade_id=$grade)
                 and public_resource.type = 'pdf'";
-        $result = $this->executeQuery($sql);
-        return $result;
+        return $this->executeQuery($sql);
     }
 
     public function findOthers($grade, $subject)
@@ -51,8 +47,7 @@ class ResourceModel extends Model
         $sql = "select other.id, other.name, other.type from other, public_resource WHERE other.id = public_resource.id and
                 public_resource.id IN (SELECT rsrc_id FROM rs_subject_grade WHERE subject_id=$subject and grade_id=$grade)
                 and public_resource.type = 'other'";
-        $result = $this->executeQuery($sql);
-        return $result;
+        return $this->executeQuery($sql);
     }
 
 //? get the last resource id from table

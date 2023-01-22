@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800&display=swap");
+
 /* ----- resource header ----- */
 .rc-resource-header {
     display: flex;
@@ -249,15 +251,17 @@
     padding: 20px 40px;
     background-color: rgba(166, 166, 166, 0.151);
     border-radius: 10px;
+    font-family: "Poppins", sans-serif;
 }
 
 /* .rc-upload-form {} */
 
 .rc-upload-home-title {
     text-align: center;
-    font-size: larger;
+    font-size: medium;
     font-weight: 600;
     margin: 15px 5px;
+    color: rgba(77, 77, 77, 0.65);
 }
 
 .rc-form-group {
@@ -267,14 +271,16 @@
 }
 
 .rc-form-group [type="text"] {
-    padding: 5px 10px;
-    border: 1px solid rgba(128, 128, 128, 0.345);
+    padding: 8px 10px;
+    border: 1px solid rgba(128, 128, 128, 0.06);
     outline: none;
+    font-size: medium;
+    border-radius: 10px;
 }
 
 
 .rc-form-group [type="file"] {
-    font-size: medium;
+    font-size: small;
     position: absolute;
     z-index: 1;
     width: 100%;
@@ -303,7 +309,12 @@
     height: 100px;
     width: 200px;
 }
-
+.resource-upload-animated{
+    position: absolute;
+    opacity: 50%;
+    z-index: -3;
+    width: 60px;
+}
 .rc-video-descr {
     resize: none;
     width: 350px !important;
@@ -317,12 +328,58 @@
     border: none;
     background-color: green;
     color: white;
+    font-size: small;
+    font-family: "Poppins", sans-serif;
 }
 
 .rc-form-group label {
     margin: 5px;
 }
 
+.quiz-card-list{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+.quiz-card-main{
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-family: "Poppins", sans-serif;
+    width: 180px;
+    transition: 0.5s all;
+    box-shadow: rgba(99, 99, 99, 0.19) 0px 2px 8px 0px;
+    border-radius: 10px;
+    margin: 20px;
+}
+.quiz-card-main:hover{
+    transform: scale(1.05);
+    box-shadow: rgba(99, 99, 99, 0.36) 0px 2px 8px 0px;
+    transition: 0.5s all;
+}
+.quiz-card-title{
+    text-align: center;
+    font-size: x-large;
+    padding-bottom:10px ;
+}
+.quiz-card-content{
+    display: flex;
+    flex-direction: column;
+    color: #626161;
+}
+.quiz-card-button-set{
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    padding-top: 20px;
+    padding-bottom: 10px;
+}
+.quiz-card-btn img{
+    width: 20px;
+}
 
 /** media queries  */
 

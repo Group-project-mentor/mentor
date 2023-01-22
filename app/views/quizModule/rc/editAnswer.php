@@ -24,7 +24,7 @@
 
             </div>
             <div class="top-bar-btns">
-                <a href="<?php echo BASEURL . 'quiz/addAnswers/' . $data[0] . '/' . $data[1] ?>">
+                <a href="<?php echo BASEURL . 'quiz/addAnswers/' . $data[0] . '/' . $data[2] ?>">
                     <div class="back-btn">Back</div>
                 </a>
                 <a href="#">

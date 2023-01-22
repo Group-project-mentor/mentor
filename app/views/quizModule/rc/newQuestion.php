@@ -46,7 +46,7 @@
             </div>
 
             <!-- Grade choosing interface -->
-            <form class="container-box" method="POST" action="<?php echo BASEURL."quiz/saveQuestion/".$data[0]?>">
+            <form class="container-box" method="POST" action="<?php echo BASEURL."quiz/saveQuestion/".$data[0]?>" enctype="multipart/form-data">
                 <div class="rc-resource-header">
                     <h1>TEST 1</h1>
                     <div class="rc-quiz-top-btns">
@@ -69,8 +69,17 @@
                         <label for="quizName" class="rc-form-label">
                             Image :
                         </label>
-                        <input type="file" name="ques_img" class="rc-quiz-image-input" id="questionImg">
+                        <input type="file" class="rc-quiz-image-input" id="questionImg" > 
                     </div>
+                    <br>
+                    <div id="image-preview" style="display: none;flex-direction:column;">
+                        <label for="quizName" class="rc-form-label">
+                            Image preview:
+                        </label>
+                        <img src="" alt="" id="image_tag" >
+                    </div>
+
+                    <input type="hidden" name="ques_img" value="" id="image_data">
 
                 </div>
             </form>
@@ -113,6 +122,6 @@
     })
 </script>
 
-<!--<script src="--><?php //echo BASEURL?><!--javascripts/addQuestion.js"></script>-->
+<script src="<?php echo BASEURL?>javascripts/quiz_image_process.js"></script>
 
 </html>
