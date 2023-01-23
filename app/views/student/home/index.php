@@ -47,7 +47,14 @@
             <span class="slider round"></span>
         </label>
     </div>
-    <p class="nav-switch-txt">Private</p>
+    <br>
+    <p>Private</p>
+    <div class="nav-switch">
+        <label class="switch">
+            <input type="checkbox" checked>
+            <span class="slider round"></span>
+        </label>
+    </div>
 </div>
 
 
@@ -100,13 +107,14 @@
 
             <!-- Middle part for whole content -->
             <section class="mid-content" >
-            <a class="see-all-btn" href="<?php echo BASEURL  ?>" style="text-decoration: none; "></a>
 
                 <!-- Title and sub title of middle part -->
                 <div class="mid-title">
                     <h1>Student</h1>
                     <h6>Hello </h6>
+                    <br>
                 </div>
+                <a class="see-all-btn" href="<?php echo BASEURL  ?>" style="text-decoration: none; "></a>
                 
                 <!-- Grade choosing interface -->
                 <div class="container-box">
@@ -128,9 +136,13 @@
                         </div>
                         <img src="<?php echo BASEURL  ?>assets/icons/icon_next.png" alt="right">
                     </div>
+                        <!-- <img src="<?php echo BASEURL  ?>assets/grades/logo1.png" > -->
+                        
                 </div>
+                <br><br>
+                <a class="see-all-btn" href="<?php echo BASEURL  ?>" style="text-decoration: none; "></a>
                 <div>
-                    <br><br><br><br><br><br><br><br>
+                    <br><br><br><br><br>
                 <a class="see-all-btn" href="<?php echo BASEURL  ?>st_classroom_inside" style="text-decoration: none; width:10%">Private</a>
                 </div>
        
