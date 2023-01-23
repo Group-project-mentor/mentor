@@ -24,6 +24,9 @@
             <div class="search-bar">
             </div>
             <div class="top-bar-btns">
+                <a href="<?php echo BASEURL .'rcResources/quizzes/'.$_SESSION['gid']."/".$_SESSION["sid"] ?>">
+                    <div class="back-btn">Back</div>
+                </a>
                 <a href="#">
                     <img src="<?php echo BASEURL?>public/assets/icons/icon_notify.png" alt="notify">
                 </a>
@@ -38,9 +41,9 @@
 
             <!-- Title and sub title of middle part -->
             <div class="mid-title">
-                <h1>Grade 6 - Science</h1>
+                <h1><?php echo "Grade ".$_SESSION['gname']." - ".ucfirst($_SESSION['sname']) ?></h1>
                 <h2>Create Quiz</h2>
-                <h6>My Subjects / Science - 6 / Quiz / Create</h6>
+                <h6>My Subjects / <?php echo ucfirst($_SESSION['sname']) ?> / quizzes</h6>
             </div>
 
             <!-- Content area -->
@@ -65,7 +68,8 @@
                                name="tot_mark"
                                id="tot_mark"
                                class="rc-form-input"
-                               placeholder="Ex : 100"/>
+                               placeholder="Ex : 100"
+                        />
                     </div>
 
                     <div class="rc-form-group">

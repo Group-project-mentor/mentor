@@ -43,7 +43,7 @@ class RcResources extends Controller{
                 $rows[] = $row;
             }
         }
-        $this->view('resourceCtr/resources/rc_quizzes', $rows);
+        $this->view('resourceCtr/resources/rc_quizzes', array($rows,$msg));
     }
 
     public function pastpapers($grade, $subject, $msg = null)
@@ -114,7 +114,9 @@ class RcResources extends Controller{
                 $this->view("resourceCtr/previews/other_preview",$file);
                 break;
             case 'video':
-                // todo : under development
+                $file = $this->model("resourceModel")->getResource($id,$_SESSION['gid'],$_SESSION['sid'],'video');
+                $resourceData = $this->model("resourceModel")->getVideo($id);
+                $this->view("resourceCtr/previews/video_preview",array($file,$resourceData));
                 break;
             case 'quiz':
                 // todo : under development

@@ -357,6 +357,17 @@ hr.quiz-line {
     text-align: center;
 }
 
+#image_tag{
+    width: 100%;
+    margin: auto;
+    transition: all 0.3s ease;
+}
+
+#image_tag:hover {
+    transform: scale(1.1);
+    transition: all 0.3s ease;
+}
+
 @media screen and (max-width:850px) {
     .quiz-box {
         padding: 30px 20px;
@@ -413,3 +424,4 @@ hr.quiz-line {
         font-size: small;
     }
 }
+
