@@ -34,7 +34,7 @@
                     <a href="#">
                         <img src="<?php echo BASEURL?>assets/icons/icon_notify.png" alt="notify">
                     </a>
-                    <a href="#">
+                    <a href="<?php echo BASEURL?>st_profile">
                         <img src="<?php echo BASEURL?>assets/icons/icon_profile_black.png" alt="profile">
                     </a>
                 </div>

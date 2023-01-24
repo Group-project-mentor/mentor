@@ -1,13 +1,16 @@
 <?php
 
-class St_watch_video extends Controller
+class St_resources extends Controller
 {
-    public function index()
+    public function __construct()
     {
         sessionValidator();
         $this->hasLogged();
-        $this->view('student/enrollment/st_watch_video');
+    }
 
+    public function index()
+    {}
+        $this->view('student/enrollment/st_quizzes');
     }
 
     private function hasLogged()
@@ -21,6 +24,3 @@ class St_watch_video extends Controller
 
 
 ?>
-
-
-

@@ -36,7 +36,7 @@
                     <a href="#">
                         <img src="<?php echo BASEURL  ?>assets/icons/icon_notify.png" alt="notify">
                     </a>
-                    <a href="#">
+                    <a href="<?php echo BASEURL?>st_profile">
                         <img src="<?php echo BASEURL  ?>assets/icons/icon_profile_black.png" alt="profile">
                     </a>
                 </div>
@@ -62,7 +62,7 @@
                     <!-- tempary movement -->
                     <div class="subject-card" >
                         <img src="<?php echo BASEURL  ?>assets/patterns/1.png" alt="" />
-                        <a href="<?php echo BASEURL  ?>st_video"><label>C89 - Dancing</label></a>
+                        <a href="<?php echo BASEURL  ?>st_Inside_subject"><label>C89 - Dancing</label></a>
                         <label>Grade 8</label>
                     </div>
 
