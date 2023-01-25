@@ -119,7 +119,19 @@ class ResourceModel extends Model
         $res1 = $this->deleteData('rs_subject_grade',"rsrc_id = $id");
         $res2 = $this->deleteData($table, "id = $id");
         $res3 = $this->deleteData('public_resource',"id = $id");
+        if($table == 'quiz'){
+            return ($res1 && $res2 && $res3 && $this->deleteQuiz($id));    
+        }
         return ($res1 && $res2 && $res3);
+    }
+
+    private function deleteQuiz($id){
+        $stmt1 = $this->prepare('DELETE FROM question WHERE quiz_id = ? ');
+        $stmt2 = $this->prepare('DELETE FROM answer WHERE answer.question_id IN 
+                    (SELECT id FROM question WHERE question.quiz_id = ?)');
+        $stmt1->bind_param('i',$id);
+        $stmt2->bind_param('i', $id);
+        return ($stmt1->execute() and $stmt2->execute());
     }
 
 
@@ -163,7 +175,7 @@ class ResourceModel extends Model
                                             and rs_subject_grade.grade_id =".$_SESSION['gid'];
 
         $result = $this->executeQuery($sql);
-
+        
         if($result->num_rows > 0){
             return $result->fetch_row();
         }

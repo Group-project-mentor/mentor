@@ -105,8 +105,8 @@ if($data[3]=="success"){
                                 <p>
                                     <?php echo $row[2]?>
                                 </p>
-                                <?php if(!empty($row[5])){ ?>
-                                <img src="<?php echo BASEURL.'assets/clips/lap_man.png'?>" alt=""/>
+                                <?php if(!empty($row[4])){ ?>
+                                <img src='<?php echo $row[4]?>' alt="fgdfg"/>
                                 <?php }?>
                             </div>
                             <a class="quiz-box-edit" href="<?php echo BASEURL.'quiz/editAnswer/'.$data[0].'/'.$data[1].'/'.$row[0]?>">
@@ -124,42 +124,6 @@ if($data[3]=="success"){
     </div>
 </section>
 </body>
-<script>
-    let toggle = true;
 
-    const getElement = (id) => document.getElementById(id);
-
-    let togglerBtn = getElement("nav-toggler");
-    let nav = getElement("nav-bar");
-    let logoLong = getElement("nav-logo-long");
-    let navMiddle = getElement("nav-middle");
-    let navLinkTexts = document.getElementsByClassName("nav-link-text");
-
-    togglerBtn.addEventListener('click', () => {
-        nav.classList.toggle("nav-bar-small");
-
-        if (toggle) {
-            logoLong.classList.add("hidden");
-            navMiddle.classList.add("hidden");
-            togglerBtn.classList.add("toggler-rotate");
-            for (i = 0; i < navLinkTexts.length; i++) {
-                navLinkTexts[i].classList.add("hidden");
-            }
-            toggle = false;
-        }
-
-        else {
-            logoLong.classList.remove("hidden");
-            navMiddle.classList.remove("hidden");
-            togglerBtn.classList.remove("toggler-rotate");
-            for (i = 0; i < navLinkTexts.length; i++) {
-                navLinkTexts[i].classList.remove("hidden");
-            }
-            toggle = true;
-        }
-    })
-</script>
-
-<script src="<?php echo BASEURL?>javascripts/addQuestion.js"></script>
 
 </html>
