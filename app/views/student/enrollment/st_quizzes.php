@@ -70,7 +70,9 @@
                                     <img src="<?php echo BASEURL?>assets/icons/View_1_by_Streamlinehq.png" alt="">
                                 </button>
                                 <button>
+                                <a href="<?php echo BASEURL?>st_quizzes/st_quizzes_do">
                                     <img src="<?php echo BASEURL?>assets/icons/Interface Arrows Button Down Double by Streamlinehq.png" alt="">
+                                </a>
                                 </button>
                             </div>
                         </div>
@@ -82,7 +84,9 @@
                                     <img src="<?php echo BASEURL?>assets/icons/View_1_by_Streamlinehq.png" alt="">
                                 </button>
                                 <button>
+                                <a href="<?php echo BASEURL?>st_quizzes/st_quizzes_do">
                                     <img src="<?php echo BASEURL?>assets/icons/Interface Arrows Button Down Double by Streamlinehq.png" alt="">
+                                </a>
                                 </button>
                             </div>
                         </div>
@@ -94,7 +98,7 @@
                                     <img src="<?php echo BASEURL?>assets/icons/View_1_by_Streamlinehq.png" alt="">
                                 </button>
                                 <button>
-                                    <a href="<?php echo BASEURL?>st_quizzes_do">    
+                                    <a href="<?php echo BASEURL?>st_quizzes/st_quizzes_do">    
                                         <img src="<?php echo BASEURL?>assets/icons/Interface Arrows Button Down Double by Streamlinehq.png" alt="">
                                     </a>
                                 </button>

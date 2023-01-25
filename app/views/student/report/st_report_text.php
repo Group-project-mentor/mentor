@@ -15,7 +15,7 @@
 <body>
     <section class="page">
          <!-- Navigation panel -->
-         <?php include_once "components/navbars/st_navbar_2.php" ?> <!-- used to include_once to add file -->
+         <?php include_once "components/navbars/st_navbar_1.php" ?> <!-- used to include_once to add file -->
 
 
         <div class="content-area">
@@ -30,7 +30,7 @@
                     <a href="#">
                         <img src="<?php echo BASEURL?>public/assets/Teacher/icons/icon_notify.png" alt="notify">
                     </a>
-                    <a href="#">
+                    <a href="<?php echo BASEURL?>st_profile">
                         <img src="<?php echo BASEURL?>public/assets/Teacher/icons/icon_profile_black.png" alt="profile">
                     </a>
                 </div>

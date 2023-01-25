@@ -14,7 +14,7 @@
 <body>
     <section class="page">
         <!-- Navigation panel -->
-        <?php include_once "components/navbars/st_navbar_2.php" ?> <!-- used to include_once to add file -->
+        <?php include_once "components/navbars/st_navbar_1.php" ?> <!-- used to include_once to add file -->
 
 
         <div class="content-area">
@@ -24,13 +24,13 @@
 
                 <div class="top-bar-btns">
                 
-                    <a href="<?php echo BASEURL?>st_Inside_subject">
+                    <a href="<?php echo BASEURL?>home">
                         <div class="back-btn">Back</div>
                     </a>
                     <a href="#">
                         <img src="<?php echo BASEURL?>public/assets/icons/icon_notify.png" alt="notify">
                     </a>
-                    <a href="#">
+                    <a href="<?php echo BASEURL?>st_profile">
                         <img src="<?php echo BASEURL?>public/assets/icons/icon_profile_black.png" alt="profile">
                     </a>
                 </div>

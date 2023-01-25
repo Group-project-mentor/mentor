@@ -6,14 +6,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/x-icon" href="<?php echo BASEURL ?>assets/mentor.ico">
-    <title>Resource other</title>
-    <link rel="stylesheet" href="<?php echo BASEURL?>stylesheets/style.css">
-    <link rel="stylesheet" href="<?php echo BASEURL?>stylesheets/st_resources.css">
+    <title>Other Resource</title>
+    <link rel="stylesheet" href="<?php echo BASEURL ?>stylesheets/style.css">
+    <link rel="stylesheet" href="<?php echo BASEURL ?>stylesheets/st_resources.css">
 </head>
 
 <body>
     <section class="page">
-        <!-- Navigation panel -->
         <!-- Navigation panel -->
         <?php include_once "components/navbars/st_navbar_2.php" ?> <!-- used to include_once to add file -->
 
@@ -25,18 +24,18 @@
                 <div class="search-bar">
                     <input type="text" name="" id="" placeholder="Search...">
                     <a href="">
-                        <img src="<?php echo BASEURL?>assets/icons/icon_search.png" alt="">
+                        <img src="<?php echo BASEURL ?>assets/icons/icon_search.png" alt="">
                     </a>
                 </div>
                 <div class="top-bar-btns">
-                <a href="<?php echo BASEURL?>st_Inside_subject">
+                    <a href="<?php echo BASEURL ?>st_Inside_subject">
                         <div class="back-btn">Back</div>
                     </a>
                     <a href="#">
-                        <img src="<?php echo BASEURL?>assets/icons/icon_notify.png" alt="notify">
+                        <img src="<?php echo BASEURL ?>assets/icons/icon_notify.png" alt="notify">
                     </a>
-                    <a href="<?php echo BASEURL?>st_profile">
-                        <img src="<?php echo BASEURL?>assets/icons/icon_profile_black.png" alt="profile">
+                    <a href="<?php echo BASEURL ?>st_profile">
+                        <img src="<?php echo BASEURL ?>assets/icons/icon_profile_black.png" alt="profile">
                     </a>
                 </div>
             </section>
@@ -56,64 +55,61 @@
                 <div class="container-box">
 
                     <div class="rc-resource-table">
-                        <div class="rc-pp-row rc-pp-row-head" >  
+                        <div class="rc-pp-row rc-pp-row-head">
                             <div class="rc-resource-col">Resource Name</div>
                             <div></div>
                         </div>
 
                         <div class="rc-pp-row">
                             <div class="rc-resource-col">Lesson one short note </div>
-                            
+                            <div></div>
+                            <div></div>
+
                             <div class="rc-quiz-row-btns">
-                                <button>
-                                    <img src="<?php echo BASEURL?>" alt="">
-                                </button>
-                                <button>
-                                    <img src="<?php echo BASEURL?>" alt="">
-                                </button>
-                                <button>
-                                <img src="<?php echo BASEURL?>assets/icons/External_Download_by_Streamlinehq.png" alt="">
-                                </button>
-                                
+                                <a href="<?php echo BASEURL ?>st_other/st_other_do">
+                                    <img src="<?php echo BASEURL ?>assets/icons/Interface Arrows Button Down Double by Streamlinehq.png" alt="">
+                                </a>
+                                <a href="<?php echo BASEURL ?>st_other/st_other_down">
+                                    <img src="<?php echo BASEURL ?>assets/icons/External_Download_by_Streamlinehq.png" alt="">
+                                </a>
+
                             </div>
                         </div>
                         <div class="rc-pp-row">
                             <div class="rc-resource-col">Lesson two short note</div>
-                            
+                            <div></div>
+                            <div></div>
+
                             <div class="rc-quiz-row-btns">
-                                <button>
-                                    <img src="<?php echo BASEURL?>" alt="">
-                                </button>
-                                <button>
-                                    <img src="<?php echo BASEURL?>" alt="">
-                                </button>
-                                <button>
-                                <img src="<?php echo BASEURL?>assets/icons/External_Download_by_Streamlinehq.png" alt="">
-                                </button>
-                               
+                                <a href="<?php echo BASEURL ?>st_other/st_other_do">
+                                    <img src="<?php echo BASEURL ?>assets/icons/Interface Arrows Button Down Double by Streamlinehq.png" alt="">
+                                </a>
+                                <a href="<?php echo BASEURL ?>st_other/st_other_down">
+                                    <img src="<?php echo BASEURL ?>assets/icons/External_Download_by_Streamlinehq.png" alt="">
+                                </a>
+
                             </div>
                         </div>
                         <div class="rc-pp-row">
                             <div class="rc-resource-col">Lesson three short note</div>
-                            
+                            <div></div>
+                            <div></div>
+
                             <div class="rc-quiz-row-btns">
-                                <button>
-                                    <img src="<?php echo BASEURL?>" alt="">
-                                </button>
-                                <button>
-                                    <img src="<?php echo BASEURL?>" alt="">
-                                </button>
-                                <button>
-                                <img src="<?php echo BASEURL?>assets/icons/External_Download_by_Streamlinehq.png" alt="">
-                                </button>
-                               
+                                <a href="<?php echo BASEURL ?>st_other/st_other_do">
+                                    <img src="<?php echo BASEURL ?>assets/icons/Interface Arrows Button Down Double by Streamlinehq.png" alt="">
+                                </a>
+                                <a href="<?php echo BASEURL ?>st_other/st_other_down">
+                                    <img src="<?php echo BASEURL ?>assets/icons/External_Download_by_Streamlinehq.png" alt="">
+                                </a>
+
                             </div>
                         </div>
 
                     </div>
 
                 </div>
-            </div>
+        </div>
     </section>
 </body>
 <script>
@@ -138,9 +134,7 @@
                 navLinkTexts[i].classList.add("hidden");
             }
             toggle = false;
-        }
-
-        else {
+        } else {
             logoLong.classList.remove("hidden");
             navMiddle.classList.remove("hidden");
             togglerBtn.classList.remove("toggler-rotate");
@@ -150,9 +144,6 @@
             toggle = true;
         }
     })
-
-
-
 </script>
 
 </html>
