@@ -66,13 +66,12 @@
                             <div class="rc-resource-col">Genaral </div>
                             <div class="rc-resource-col">1</div>
                             <div class="rc-quiz-row-btns">
-                                <button>
-                                    <img src="<?php echo BASEURL?>assets/icons/View_1_by_Streamlinehq.png" alt="">
-                                </button>
-                                <button>
+                                
                                 <a href="<?php echo BASEURL?>st_quizzes/st_quizzes_do">
                                     <img src="<?php echo BASEURL?>assets/icons/Interface Arrows Button Down Double by Streamlinehq.png" alt="">
                                 </a>
+                                <button>
+                                    <img src="<?php echo BASEURL?>assets/icons/icon_edit.png" alt="">
                                 </button>
                             </div>
                         </div>
@@ -80,13 +79,14 @@
                             <div class="rc-resource-col">Tutorial 1</div>
                             <div class="rc-resource-col">2</div>
                             <div class="rc-quiz-row-btns">
-                                <button>
-                                    <img src="<?php echo BASEURL?>assets/icons/View_1_by_Streamlinehq.png" alt="">
-                                </button>
+                                
                                 <button>
                                 <a href="<?php echo BASEURL?>st_quizzes/st_quizzes_do">
                                     <img src="<?php echo BASEURL?>assets/icons/Interface Arrows Button Down Double by Streamlinehq.png" alt="">
                                 </a>
+                                <button>
+                                    <img src="<?php echo BASEURL?>assets/icons/icon_edit.png" alt="">
+                                </button>
                                 </button>
                             </div>
                         </div>
@@ -94,13 +94,14 @@
                             <div class="rc-resource-col">Tutorial 2</div>
                             <div class="rc-resource-col">1</div>
                             <div class="rc-quiz-row-btns">
-                                <button>
-                                    <img src="<?php echo BASEURL?>assets/icons/View_1_by_Streamlinehq.png" alt="">
-                                </button>
+                                
                                 <button>
                                     <a href="<?php echo BASEURL?>st_quizzes/st_quizzes_do">    
                                         <img src="<?php echo BASEURL?>assets/icons/Interface Arrows Button Down Double by Streamlinehq.png" alt="">
                                     </a>
+                                    <button>
+                                    <img src="<?php echo BASEURL?>assets/icons/icon_edit.png" alt="">
+                                </button>
                                 </button>
                             </div>
                         </div>

@@ -1,4 +1,7 @@
-<!-- Navigation panel -->
+<!-- Navigation bar for resources pages -->
+
+
+
 <nav class="nav-bar" id="nav-bar">
 
     <!-- Navigation bar logos -->

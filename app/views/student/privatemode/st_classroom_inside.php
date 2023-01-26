@@ -14,65 +14,8 @@
 <body>
     <section class="page">
         <!-- Navigation panel -->
-        <nav class="nav-bar" id="nav-bar">
+        <?php include_once "components/navbars/st_navbar_3.php" ?> <!-- used to include_once to add file -->
 
-            <!-- Navigation bar logos -->
-            <div class="nav-upper">
-                <div class="nav-logo-short">
-                    <img src="<?php echo BASEURL; ?>assets/clips/logo2.png" alt="logo" />
-                </div>
-                <div class="nav-logo-long" id="nav-logo-long">
-                    <img src="<?php echo BASEURL; ?>assets/clips/logo1.png" alt="logo" />
-                </div>
-            </div>
-
-
-            <!-- Navigation bar private - public switch -->
-            <div class="nav-middle" id="nav-middle">
-                <p>Public</p>
-                <div class="nav-switch">
-                    <label class="switch">
-                        <input type="checkbox" checked>
-                        <span class="slider round"></span>
-                    </label>
-                </div>
-                <p class="nav-switch-txt">Private</p>
-            </div>
-
-
-            <!-- Navigation buttons -->
-            <div class="nav-links">
-                <a href="#" class="nav-link">
-                    <img src="<?php echo BASEURL; ?>assets/icons/icon_resources.png" alt="cource">
-                    <div class="nav-link-text">Resources</div>
-                </a>
-                <a href="#" class="nav-link">
-                    <img src="<?php echo BASEURL; ?>assets/icons/generate_report.png" alt="bmc">
-                    <div class="nav-link-text">See Reports</div>
-                </a>
-                <a href="#" class="nav-link">
-                    <img src="<?php echo BASEURL; ?>assets/icons/forum.png" alt="report">
-                    <div class="nav-link-text">Use Forum</div>
-                </a>
-                <a href="<?php echo BASEURL ?>st_report_from_grade.php" class="nav-link">
-                    <img src="<?php echo BASEURL ?>assets/icons/icon_report.png" alt="report">
-                    <div class="nav-link-text"> Report Issue</div>
-                </a>
-                <a href="#" class="nav-link">
-                    <img src="<?php echo BASEURL ?>assets/icons/icon_bmc.png" alt="bmc">
-                    <div class="nav-link-text">Buy me a coffee</div>
-                </a>
-                <a href="#" class="nav-link">
-                    <img src="<?php echo BASEURL ?>assets/icons/Settings" alt="bmc">
-                    <div class="nav-link-text">Settings</div>
-                </a>
-            </div>
-
-            <!-- Navigation bar toggler -->
-            <div class="nav-toggler" id="nav-toggler">
-                <img src="<?php echo BASEURL; ?>assets/icons/toggler.png" alt="toggler">
-            </div>
-        </nav>
 
         <div class="content-area">
 
@@ -85,13 +28,13 @@
                     </a>
                 </div>
                 <div class="top-bar-btns">
-                    <a href="<?php echo BASEURL; ?>">
+                    <a href="<?php echo BASEURL; ?>st_private_mode">
                         <div class="back-btn">Back</div>
                     </a>
                     <a href="#">
                         <img src="<?php echo BASEURL; ?>assets/icons/icon_notify.png" alt="notify">
                     </a>
-                    <a href="#">
+                    <a href="<?php echo BASEURL?>st_profile">
                         <img src="<?php echo BASEURL; ?>assets/icons/icon_profile_black.png" alt="profile">
                     </a>
                 </div>
@@ -102,7 +45,7 @@
 
                 <!-- Title and sub title of middle part -->
                 <div class="mid-title">
-                    <h1>C136 - Science Grade 8</h1>
+                    <h1>C136 - Mathematics Grade 8</h1>
                     <h6>Student Home / C136</h6>
                 </div>
 
