@@ -17,7 +17,7 @@
         <div class="signin-signup">
           <form action="<?php echo BASEURL ?>login/verify_login" class="sign-in-form" method="POST">
             <h2 class="title">Login</h2>
-            <div class="input-field" style="<?php echo $data == 2 ?'border:1px solid red;':'border:1px solid transparent;'?>">
+            <div class="input-field" style="<?php echo $data == 2 ? 'border:1px solid red;' : 'border:1px solid transparent;' ?>">
               <i class="fas fa-user"></i>
               <input type="email" placeholder="Email" id="email" name="email" />
             </div>
@@ -27,47 +27,79 @@
               <?php if ($data == 3) {?>
                 <small style="color: red;text-align:right;">Wrong email entered !</small>
               <?php }?>
-            <div class="input-field" style="<?php echo $data == 1 ?'border:1px solid red;':'border:1px solid transparent;'?>">
+            <div class="input-field" style="<?php echo $data == 1 ? 'border:1px solid red;' : 'border:1px solid transparent;' ?>">
               <i class="fas fa-lock"></i>
               <input type="password" placeholder="Password" id="passwd" name="passwd" />
             </div>
-            <?php if($data == 1){?>
+            <?php if ($data == 1) {?>
             <small style="color: red;text-align:right;">Password is wrong !</small>
             <?php }?>
-                 
+
             <!-- <input type="submit" value="Login" class="btn solid" /> -->
             <button class="btn solid" type="submit" name="login"  style="text-align:center ; text-decoration : none ;">Log in</button>
             <a class="text-decoration:none;" href="<?php echo BASEURL ?>forgotPassword">
               <h5 style="color: blue;text-decoration:none;">Forgot your password</h5>
             </a>
             <br>
-
           </form>
-          <form action="<?php echo BASEURL ?>register/verify_register" class="sign-up-form" method="POST">
-            <h2 class="title">Register</h2>
-            <h5 class="sub-title">Teacher</h5>
+
+          <form action="<?php echo BASEURL ?>register/verify_register_student" class="sign-up-form" method="POST" id="sign-up-student">
+            <h2 class="title">Register Student</h2>
+            <div class="regset">
+              <h6 class="sub-title active-panel">Student</h6>
+              <h6 class="sub-title" id="teacherSwitch">Teacher</h6>
+            </div>
+            <hr class="horiz-line hr-100">
+            <small id="tRegAlert" style="color: red;text-align:center;"></small>
             <div class="input-field">
               <i class="fas fa-user"></i>
-              <input type="text" placeholder="Enter your name"  id="name" name="name"/>
+              <input type="text" placeholder="Enter your name"  id="sname" name="name"/>
             </div>
             <div class="input-field">
               <i class="fas fa-envelope"></i>
-              <input type="email" placeholder="Enter your email"  id="email" name="email"/>
+              <input type="email" placeholder="Enter your email"  id="semail" name="email"/>
             </div>
             <div class="input-field">
               <i class="fas fa-user"></i>
-              <input type="text" placeholder="Enter your age" />
+              <input type="text" placeholder="Enter your age" name="age" id="sage"/>
 
             </div>
             <div class="input-field">
               <i class="fas fa-lock"></i>
-              <input type="password" placeholder="Enter your Password" id="passwd" name="passwd" />
+              <input type="password" placeholder="Enter your Password" id="spasswd" name="passwd" />
             </div>
             <div class="input-field">
               <i class="fas fa-lock"></i>
-              <input type="password" placeholder="Re-enter your Password" id="passwd_conf" name="cpasswd" />
+              <input type="password" placeholder="Re-enter your Password" id="spasswd_conf" name="cpasswd" />
             </div>
             <input type="submit" class="btn" value="Sign up" name="register" />
+          </form>
+
+          <form action="<?php echo BASEURL ?>register/verify_register_teacher" style="display: none;" class="sign-up-form" method="POST" id="sign-up-teacher">
+            <h2 class="title">Register Teacher</h2>
+            <div class="regset">
+              <h6 class="sub-title" id="studentSwitch">Student</h6>
+              <h6 class="sub-title active-panel">Teacher</h6>
+            </div>
+            <hr class="horiz-line hr-100">
+            <small id="tRegAlert" style="color: red;text-align:center;"></small>
+            <div class="input-field">
+              <i class="fas fa-user"></i>
+              <input type="text" placeholder="Enter your name"  id="tname" name="tname"/>
+            </div>
+            <div class="input-field">
+              <i class="fas fa-envelope"></i>
+              <input type="email" placeholder="Enter your email"  id="temail" name="temail"/>
+            </div>
+            <div class="input-field">
+              <i class="fas fa-lock"></i>
+              <input type="password" placeholder="Enter your Password" id="tpasswd" name="tpasswd" />
+            </div>
+            <div class="input-field">
+              <i class="fas fa-lock"></i>
+              <input type="password" placeholder="Re-enter your Password" id="tpasswd_conf" name="tcpasswd" />
+            </div>
+            <input type="submit" class="btn" value="Sign up" name="register" id="teacherReg" />
           </form>
         </div>
       </div>
@@ -106,24 +138,85 @@
             </div>
           </div>
 
-          <script> const sign_in_btn = document.querySelector("#sign-in-btn");
+          <script>
+                   const sign_in_btn = document.querySelector("#sign-in-btn");
                    const sign_up_btn = document.querySelector("#sign-up-btn");
                    const image = document.querySelector('#loginPic');
                    const container = document.querySelector(".container");
                    const regPic = document.getElementById('regPic');
 
+                   const signUpStudent = document.getElementById("sign-up-student");
+                   const signUpTeacher = document.getElementById("sign-up-teacher");
+
+                   const teacherSwitch = document.getElementById("teacherSwitch");
+                   const studentSwitch = document.getElementById("studentSwitch");
+
                    sign_up_btn.addEventListener("click", () => {
                      container.classList.add("sign-up-mode");
-                     image.classList.add("sign-up-mode");
-                     regPic.classList.remove("sign-up-mode");
+                    //  image.classList.add("sign-up-mode");
+                    //  regPic.classList.remove("sign-up-mode");
 
                     });
 
                     sign_in_btn.addEventListener("click", () => {
                       container.classList.remove("sign-up-mode");
-                      image.classList.remove("sign-up-mode");
-                      regPic . classList . add("sign-up-mode");
+                      // image.classList.remove("sign-up-mode");
+                      // regPic . classList . add("sign-up-mode");
                    });
+
+                   teacherSwitch.addEventListener("click", ()=>{
+                      signUpStudent.style.display = "none";
+                      signUpTeacher.style.display = "flex";
+                   })
+
+                   studentSwitch.addEventListener("click", ()=>{
+                      signUpTeacher.style.display = "none";
+                      signUpStudent.style.display = "flex";
+                   })
+
+                   signUpTeacher.addEventListener('submit',(e)=>{
+                      e.preventDefault();
+
+                      const formData = new FormData(signUpTeacher);
+
+                      fetch('<?php echo BASEURL ?>register/verify_register_teacher', {
+                      // fetch('<?php echo BASEURL ?>register/test', {
+                        method: 'post',
+                        body: formData
+                      }).then(response => {
+                        return response.json();
+                      }).then(data => {
+                        document.getElementById("tRegAlert").textContent = data.message;
+                        console.log(data.message);
+                      }).catch(error => {
+                          console.log(error);
+                      });
+
+                   });
+
+                  // ! not completed
+                   signUpStudent.addEventListener('submit',(e)=>{
+                      e.preventDefault();
+
+                      const formData = new FormData(signUpStudent);
+
+                      fetch('<?php echo BASEURL ?>register/verify_register_student', {
+                      // fetch('<?php echo BASEURL ?>register/test', {
+                        method: 'post',
+                        body: formData
+                      }).then(response => {
+                        return response.json();
+                      }).then(data => {
+                        document.getElementById("sRegAlert").textContent = data.message;
+                        console.log(data.message);
+                      }).catch(error => {
+                          console.log(error);
+                      });
+
+                   });
+
+
+
 </script>
         </body>
       </html>
