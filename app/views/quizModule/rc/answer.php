@@ -69,8 +69,18 @@
                                 <label for="quiz-answer-radio">Correct</label>
                             </div>
                             <textarea placeholder="Enter your Answer" name="answer" id="ansTxt" rows="4"></textarea>
-                            <input type="file" accept="image/png, image/jpeg, image/jpg" class="rc-ans-image-input" id="ansImage" name="ansImg"/>
+                            <input type="file" accept="image/png, image/jpeg, image/jpg" class="rc-ans-image-input" id="questionImg"/>
                         </div>
+                        <br>
+                    <div id="image-preview" style="display: none;flex-direction:column;">
+                        <label for="quizName" class="rc-form-label">
+                            Image preview:
+                        </label>
+                        <img src="" alt="" id="image_tag" style="margin: 0 20px;">
+                    </div>
+
+                    <input type="hidden" name="ansImg" value="" id="image_data">
+
                             <div style="display: flex;justify-content: center;">
                                 <button type="submit" class="rc-quiz-button green" id="addAnsBtn">
                                     Save
@@ -83,42 +93,7 @@
             </div>
 </section>
 </body>
-<script>
-    let toggle = true;
 
-    const getElement = (id) => document.getElementById(id);
-
-    let togglerBtn = getElement("nav-toggler");
-    let nav = getElement("nav-bar");
-    let logoLong = getElement("nav-logo-long");
-    let navMiddle = getElement("nav-middle");
-    let navLinkTexts = document.getElementsByClassName("nav-link-text");
-
-    togglerBtn.addEventListener('click', () => {
-        nav.classList.toggle("nav-bar-small");
-
-        if (toggle) {
-            logoLong.classList.add("hidden");
-            navMiddle.classList.add("hidden");
-            togglerBtn.classList.add("toggler-rotate");
-            for (i = 0; i < navLinkTexts.length; i++) {
-                navLinkTexts[i].classList.add("hidden");
-            }
-            toggle = false;
-        }
-
-        else {
-            logoLong.classList.remove("hidden");
-            navMiddle.classList.remove("hidden");
-            togglerBtn.classList.remove("toggler-rotate");
-            for (i = 0; i < navLinkTexts.length; i++) {
-                navLinkTexts[i].classList.remove("hidden");
-            }
-            toggle = true;
-        }
-    })
-</script>
-
-<script src="<?php echo BASEURL?>javascripts/addQuestion.js"></script>
+<script src="<?php echo BASEURL?>javascripts/quiz_image_process.js"></script>
 
 </html>

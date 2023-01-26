@@ -73,15 +73,17 @@
                                 foreach ($data[0] as $row) {
                                     echo "<div class='rc-video-card'>
                                             <img src='".BASEURL."assets/patterns/1.png' alt='' />
-                                            <a href=''><label>".$row['name']."</label></a>
-                                            <div class='rc-video-card-btns'>
+                                            <a href='".BASEURL."rcResources/preview/video/".$row['id']."'>
+                                                <label>".$row['name']."</label>
+                                            </a>
+                                            <!-- <div class='rc-video-card-btns'>
                                                 <button class='rc-video-delete-btn' onclick='delConfirm(".$row['id'].",1)'>
                                                     <img src='".BASEURL."assets/icons/icon_delete.png' alt=''>
                                                 </button>
                                                 <a class='rc-video-delete-btn' href='".BASEURL."rcEdit/video/".$row['id']."'>
                                                     <img src='".BASEURL."assets/icons/icon_edit.png' alt=''>
                                                 </a>
-                                            </div>
+                                            </div> -->
                                         </div>";
                                 }
                             }

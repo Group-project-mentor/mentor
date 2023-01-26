@@ -63,13 +63,14 @@ form.sign-in-form {
 .title {
   font-size: 2.2rem;
   color: #444;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
 }
 
 .sub-title {
   font-size: 1.0rem;
   color: #444;
   margin-bottom: 10px;
+  cursor: pointer;
 }
 
 .tiny-title {
@@ -257,6 +258,38 @@ form.sign-in-form {
 
 .container.sign-up-mode .right-panel {
   pointer-events: all;
+}
+
+.active{
+    display: none;
+}
+
+.regset{
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  align-items: center;
+}
+
+.active-panel{
+  background-color: #0a2917;
+  padding: 5px 10px;
+  border-radius: 10px;
+  color: white;
+  transform: scale(1.05);
+}
+
+.hr-100{
+  width: 100%;
+}
+.hr-75 {
+  width: 75%;
+}
+.hr-50 {
+  width: 50%;
+}
+.hr-25 {
+  width: 25%;
 }
 
 @media (max-width: 870px) {

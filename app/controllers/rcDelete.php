@@ -1,10 +1,12 @@
 <?php
 
-class RcDelete extends Controller{
+class RcDelete extends Controller
+{
 
     private $user = "rc";
 
-    public function __construct(){
+    public function __construct()
+    {
         sessionValidator();
         $this->userValidate($this->user);
     }
@@ -19,8 +21,8 @@ class RcDelete extends Controller{
         $row = $this->model("resourceModel")->getResource($id, $_SESSION['gid'], $_SESSION['sid'], 'pdf');
         if (!empty($row)) {
             $location = $row[2];
-            $fileDest = "public_resources/documents/".$location;
-            if ($this->model("resourceModel")->deleteResource($id,'document') == true) {
+            $fileDest = "public_resources/documents/" . $location;
+            if ($this->model("resourceModel")->deleteResource($id, 'document') == true) {
                 unlink($fileDest);
                 header("location:" . BASEURL . "rcResources/documents/" . $_SESSION["gid"] . "/" . $_SESSION["sid"]);
             } else {
@@ -34,8 +36,8 @@ class RcDelete extends Controller{
         $row = $this->model("resourceModel")->getResource($id, $_SESSION['gid'], $_SESSION['sid'], 'other');
         if (!empty($row)) {
             $location = $row[2];
-            $fileDest = "public_resources/others/".$location;
-            if ($this->model("resourceModel")->deleteResource($id,'other') == true) {
+            $fileDest = "public_resources/others/" . $location;
+            if ($this->model("resourceModel")->deleteResource($id, 'other') == true) {
                 unlink($fileDest);
                 header("location:" . BASEURL . "rcResources/others/" . $_SESSION["gid"] . "/" . $_SESSION["sid"]);
             } else {
@@ -48,11 +50,24 @@ class RcDelete extends Controller{
     {
         $row = $this->model("resourceModel")->getResource($id, $_SESSION['gid'], $_SESSION['sid'], 'video');
         if (!empty($row)) {
-            if ($this->model("resourceModel")->deleteResource($id,'video') == true) {
+            if ($this->model("resourceModel")->deleteResource($id, 'video') == true) {
                 header("location:" . BASEURL . "rcResources/videos/" . $_SESSION["gid"] . "/" . $_SESSION["sid"]);
             } else {
                 header("location:" . BASEURL . "rcResources/videos/" . $_SESSION["gid"] . "/" . $_SESSION["sid"] . "/error");
             }
         }
+    }
+
+    public function quiz($id)
+    {
+        $row = $this->model("resourceModel")->getResource($id, $_SESSION['gid'], $_SESSION['sid'], 'quiz');
+        if (!empty($row)) {
+            if ($this->model("resourceModel")->deleteResource($id, 'quiz') == true) {
+                header("location:" . BASEURL . "rcResources/quizzes/" . $_SESSION["gid"] . "/" . $_SESSION["sid"]);
+            } else {
+                header("location:" . BASEURL . "rcResources/quizzes/" . $_SESSION["gid"] . "/" . $_SESSION["sid"] . "/error");
+            }
+        }
+
     }
 }

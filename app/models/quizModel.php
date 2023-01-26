@@ -124,22 +124,24 @@ class quizModel extends Model
     public function saveAnswer($number, $qid, $desc, $correct, $img)
     {
         $stmt = $this->prepare("insert into answer(number, description, correctness, question_id, image) values (?,?,?,?,?)");
-        $stmt->bind_param('isiib', $number, $desc, $correct, $qid, $img);
+        $stmt->bind_param('isiis', $number, $desc, $correct, $qid, $img);
         return $stmt->execute();
     }
 
     public function getAnswers($quiz, $ques_id)
     {
-        $stmt = $this->prepare("select answer.id, answer.number, answer.description, answer.correctness from answer inner join question on question.id = answer.question_id where answer.question_id = ? and question.quiz_id = ?");
+        $stmt = $this->prepare("select answer.id, answer.number, answer.description, answer.correctness, answer.image from answer inner join question on question.id = answer.question_id where answer.question_id = ? and question.quiz_id = ?");
         $stmt->bind_param('ii', $ques_id, $quiz);
         return $this->fetchAll($stmt);
     }
 
     public function deleteQuestion($question)
     {
-        $stmt = $this->prepare("delete from question where question.id = ?");
-        $stmt->bind_param('i', $question);
-        return $stmt->execute();
+        $stmt1 = $this->prepare("delete from question where question.id = ?");
+        $stmt1 ->bind_param('i', $question);
+        $stmt2 = $this->prepare("delete from answer where answer.question_id = ?");
+        $stmt2 ->bind_param('i',$question);
+        return ($stmt1 ->execute() and $stmt2->execute());
     }
 
     public function getAnswerData($question, $answer)
@@ -167,7 +169,7 @@ class quizModel extends Model
 
     public function validateQuiz($qid, $grade, $subject)
     {
-        $stmt = $this->prepare("SELECT * FROM rs_subject_grade WHERE rs_subject_grade.rsrc_id =? AND rs_subject_grade.grade_id =? AND rs_subject_grade.grade_id =?");
+        $stmt = $this->prepare("SELECT * FROM rs_subject_grade WHERE rs_subject_grade.rsrc_id =? AND rs_subject_grade.grade_id =? AND rs_subject_grade.subject_id =?");
         $stmt->bind_param('iii', $qid, $grade, $subject);
         $res = $this->fetchOne($stmt);
         if (!empty($res)) {

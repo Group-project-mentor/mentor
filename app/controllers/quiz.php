@@ -54,16 +54,12 @@ class Quiz extends Controller
                 $result = $this->model('quizModel')->getLastQuestionNo($quizId);
                 $result++;
                 $result2 = $this->model('quizModel')->insertQuestion($quizId, $result, $_POST['question'], $image_data);
-                // print_r($image_data);
-                // echo "<img src='$image_data'>";
                     header("location:" . BASEURL . "quiz/addAnswers/$quizId/$result/success");
             } else {
                 header("location:" . BASEURL . "quiz/addQuestion/$quizId/invalid_operation");
-                // print_r("error 1");
             }
         } else {
             header("location:" . BASEURL . "quiz/addQuestion/$quizId/err");
-            // print_r("error 1");
         }
 //        }else{
 //            header("location:".BASEURL."quiz/addQuestion/$quizId");

@@ -20,7 +20,11 @@ submit.addEventListener("click", () => {
         const formData = new FormData();
         let http = new XMLHttpRequest();
         formData.append("image", image);
-        http.open("POST", "http://localhost/mentor-interim/rcProfile/changeImage", true);
+        http.open(
+            "POST",
+            "http://localhost/mentor/rcProfile/changeImage",
+            true
+        );
         http.send(formData);
 
         http.onload = () => {
@@ -28,6 +32,6 @@ submit.addEventListener("click", () => {
                 alertMsg.textContent = "Successfully updated !";
             }
             alertMsg.textContent = http.response;
-        }
+        };
     }
 });

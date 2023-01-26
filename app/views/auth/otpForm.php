@@ -8,13 +8,14 @@
     <link rel="icon" type="image/x-icon" href="<?php echo BASEURL ?>assets/mentor.ico">
     <title>login</title>
     <link rel="stylesheet" href="<?php echo BASEURL; ?>public/stylesheets/rc_auth_style.css">
+  <link rel="stylesheet" href="<?php echo BASEURL ?>public/stylesheets/Teacher/login_style.css">
 </head>
 
 <body>
 <section class="login">
-    <div class="login-main">
-        <div class="login-title">
-            <h1>CHANGE <br>PASSWORD</h1>
+    <!-- <div class="login-main"> -->
+        <!-- <div class="login-title"> -->
+            <!-- <h1>CHANGE <br>PASSWORD</h1> -->
 
             <!--                --><?php // if (isset($_GET["error"])) { ?>
             <!--                    <div class="error"><small>-->
@@ -33,10 +34,10 @@
             <!---->
             <!--                --><?php // } ?>
 
-            <hr />
-        </div>
+            <!-- <hr /> -->
+        <!-- </div> -->
 
-        <form class="forgot-ctnt" id="otp_area" method="POST" action="<?php echo BASEURL ?>forgotPassword/verifyOTP">
+        <!-- <form class="forgot-ctnt" id="otp_area" method="POST" action="<?php echo BASEURL ?>forgotPassword/verifyOTP">
             <div class="login-inp-grp">
                 <label class="lbl-input otp-label" for="otp">Enter OTP</label><br>
                 <input maxlength="6"
@@ -51,10 +52,34 @@
                 <img src="" id="icon2" />
             </div>
             <div class="login-inp-grp">
-                <button type="submit" id="otp-btn" class="btn-login" name="otpForm">SUBMIT</button>
+                <button type="submit"  class="btn-login" name="otpForm">SUBMIT</button>
             </div>
-        </form>
-    </div>
+        </form> -->
+
+        <form action="<?php echo BASEURL ?>forgotPassword/verifyOTP" class="sign-in-form" method="POST">
+                <h2 class="title">Enter OTP</h2>
+                <div class="input-field">
+                    <i class="fas fa-user"></i>
+                    <input  placeholder="OTP NO" 
+                            id="otp" 
+                            pattern="[0-9]{6}"
+                            title="OTP is exactly 6 digit number"
+                            name="otp"
+                            maxlength="6"
+                            />
+                </div>
+                <button id="otp-btn" 
+                        class="btn solid" 
+                        type="submit" 
+                        name="otpForm"  
+                        style="text-align:center ; text-decoration : none ;">Send Code</button>
+                <!-- <a class="text-decoration:none;" href="<?php echo BASEURL ?>login">
+                    <h5 style="color: blue;text-decoration:none;">Back to login</h5>
+                </a> -->
+            <br>
+
+          </form>
+    <!-- </div> -->
 </section>
 </body>
 <!-- <script src="https://smtpjs.com/v3/smtp.js"></script> -->
