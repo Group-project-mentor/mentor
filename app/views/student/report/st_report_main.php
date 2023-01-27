@@ -70,7 +70,8 @@
              <!-- bottom part -->
              <section class="Teacher-class-bottom">
                 <div class="issue-decorator">
-                    <img src="<?php echo BASEURL?>public/assets/clips/issue.png" alt="profile">
+                    <img src="<?php echo BASEURL?>public/assets/clips/issue.png" alt="profile" style="height:50% ; width:50% ; margin-left: auto;
+  margin-right: auto;">
                 </div>
             </section>
 

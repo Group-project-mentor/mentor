@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/x-icon" href="<?php echo BASEURL ?>assets/mentor.ico">
-    <title>Document</title>
+    <title>Student Home</title>
 
     <link rel="stylesheet" href="<?php echo BASEURL?>stylesheets/style.css">    <!-- BASEURL use to navigate pages -->
     <link rel="stylesheet" href="<?php echo BASEURL?>stylesheets/st_student.css">
@@ -77,7 +77,7 @@
                 <a class="see-all-btn" href="<?php echo BASEURL  ?>" style="text-decoration: none; "></a>
                 <div>
                     <br><br><br><br><br>
-                <a class="see-all-btn" href="<?php echo BASEURL  ?>st_classroom_inside" style="text-decoration: none; width:10%">Private</a>
+                <a class="see-all-btn" href="<?php echo BASEURL  ?>st_private_mode" style="text-decoration: none; width:10%">Private</a>
                 </div>
        
         </div>
