@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Jan 27, 2023 at 10:30 AM
+-- Generation Time: Jan 27, 2023 at 10:56 AM
 -- Server version: 5.7.36
 -- PHP Version: 7.4.26
 
@@ -31,8 +31,8 @@ DROP TABLE IF EXISTS `issue`;
 CREATE TABLE IF NOT EXISTS `issue` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
   `userId` int(10) NOT NULL,
-  `type` int(11) NOT NULL,
-  `description` int(11) NOT NULL,
+  `type` varchar(40) NOT NULL,
+  `description` varchar(2000) NOT NULL,
   `solved` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;

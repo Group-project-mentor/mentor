@@ -9,7 +9,7 @@ class St_resources extends Controller
     }
 
     public function index()
-    {}
+    {
         $this->view('student/enrollment/st_quizzes');
     }
 
