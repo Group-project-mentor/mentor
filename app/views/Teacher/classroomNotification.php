@@ -42,26 +42,26 @@
 
 
 
-            <!-- Navigation buttons -->
-            <div class="nav-links">
-                <a href="#" class="nav-link">
-                <img class="active" src="<?php echo BASEURL?>public/assets/Teacher/icons/icon_class.png" alt="home">>
+           <!-- Navigation buttons -->
+           <div class="nav-links">
+                <a href="<?php BASEURL ?>" class="nav-link">
+                    <img class="active" src="<?php echo BASEURL?>public/assets/Teacher/icons/icon_class.png" alt="home">
                     <div class="nav-link-text">Classes</div>
                 </a>
-                <a href="#" class="nav-link">
-                <img src="<?php echo BASEURL?>public/assets/Teacher/icons/icon_premium.png" alt="cource">
+                <a href="<?php BASEURL ?>privateclass/premiumPlan" class="nav-link">
+                    <img src="<?php echo BASEURL?>public/assets/Teacher/icons/icon_premium.png" alt="cource">
                     <div class="nav-link-text">Buy Premium</div>
                 </a>
-                <a href="#" class="nav-link">
-                <img src="<?php echo BASEURL?>public/assets/Teacher/icons/icon_report.png" alt="profile">
+                <a href="<?php BASEURL ?>privateclass/report" class="nav-link">
+                    <img src="<?php echo BASEURL?>public/assets/Teacher/icons/icon_report.png" alt="profile">
                     <div class="nav-link-text">Report Issue</div>
                 </a>
-                <a href="#" class="nav-link">
-                <img src="<?php echo BASEURL?>public/assets/Teacher/icons/icon_billing.png" alt="report">
+                <a href="<?php BASEURL ?>privateclass/billing" class="nav-link">
+                    <img src="<?php echo BASEURL?>public/assets/Teacher/icons/icon_billing.png" alt="report">
                     <div class="nav-link-text">Billing</div>
                 </a>
-                <a href="#" class="nav-link">
-                <img src="<?php echo BASEURL?>public/assets/Teacher/icons/icon_bmc.png" alt="bmc">
+                <a href="<?php echo BASEURL ?>privateclass/bmc" class="nav-link">
+                    <img src="<?php echo BASEURL?>public/assets/Teacher/icons/icon_bmc.png" alt="bmc">
                     <div class="nav-link-text">Buy me a coffee</div>
                 </a>
             </div>

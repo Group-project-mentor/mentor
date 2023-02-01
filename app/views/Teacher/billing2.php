@@ -5,9 +5,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Teacher Report issue 1</title>
+    <title>Teacher - Billing 2</title>
     <link rel="stylesheet" href="<?php echo BASEURL?>public/stylesheets/Teacher/style.css">
-    <link rel="stylesheet" href="<?php echo BASEURL?>public/stylesheets/Teacher/card_set.css"> 
+    <link rel="stylesheet" href="<?php echo BASEURL?>public/stylesheets/Teacher/card_set.css">
 </head>
 
 <body>
@@ -21,13 +21,26 @@
                     <img src="<?php echo BASEURL?>public/assets/Teacher/logo2.png" alt="logo" />
                 </div>
                 <div class="nav-logo-long" id="nav-logo-long">
-                <img src="<?php echo BASEURL?>public/assets/Teacher/logo1.png" alt="logo" />
+                    <img src="<?php echo BASEURL?>public/assets/Teacher/logo1.png" alt="logo" />
                 </div>
             </div>
 
 
-          <!-- Navigation buttons -->
-          <div class="nav-links">
+  <!-- Navigation bar private - public switch -->
+  <div class="nav-middle" id="nav-middle">
+    <p>Public</p>
+    <div class="nav-switch">
+        <label class="switch">
+            <input type="checkbox" checked>
+            <span class="slider round"></span>
+        </label>
+    </div>
+    <p class="nav-switch-txt">Private</p>
+</div>         
+
+
+<!-- Navigation buttons -->
+<div class="nav-links">
                 <a href="<?php BASEURL ?>" class="nav-link">
                     <img class="active" src="<?php echo BASEURL?>public/assets/Teacher/icons/icon_class.png" alt="home">
                     <div class="nav-link-text">Classes</div>
@@ -52,7 +65,7 @@
 
             <!-- Navigation bar toggler -->
             <div class="nav-toggler" id="nav-toggler">
-            <img src="<?php echo BASEURL?>public/assets/Teacher/icons/toggler.png" alt="toggler">
+                <img src="<?php echo BASEURL?>public/assets/Teacher/icons/toggler.png" alt="toggler">
             </div>
         </nav>
 
@@ -62,11 +75,11 @@
             <section class="top-bar">
                 
                 <div class="top-bar-btns">
-                    <a href="#">
-                        <a class="back-btn" href="<?php echo BASEURL ?>home">Back</a>
+                <a href="#">
+                        <a class="back-btn" href="<?php echo BASEURL ?>privateclass/billing">Back</a>
                     </a>
                     <a href="#">
-                        <img src="<?php echo BASEURL?>public/assets/Teacher/icons/icon_notify.png" alt="notify">
+                        <img src="<?php echo BASEURL?>public/assets/Teacher/icons/icon_notify.pngg" alt="notify">
                     </a>
                     <a href="#">
                         <img src="<?php echo BASEURL?>public/assets/Teacher/icons/icon_profile_black.png" alt="profile">
@@ -79,38 +92,63 @@
 
                  <!-- Title and sub title of middle part -->
                 <div class="mid-title">
-                    <h1>Report Issues</h1>
-                    <h6>Teacher Home/ Report Issues</h6>
+                    <h1>Billing</h1>
+                    <h6>Teacher Home/Billing</h6>
                     <br><br><br>
-                    <h3>Choose a category under your complaint</h3>
+                    <h3>Transaction details</h3>
+                    <br><br>
+                    
                 </div>
-                
+
+            
+
+                <br><br>
+
                 <div class="class section">
                     <form>
-                  
-                      <label for="issue"></label>
-                      <select id="issue" name="issue">
-                        <option value="Category1">Category 1</option>
-                        <option value="Category2">Category 2</option>
-                        <option value="Category3">Category 3</option>
-                        <option value="Category4">Category 4</option>
-                        <option value="Category5">Category 5</option>
-                        <option value="Category6">Category 6</option>
-                      </select>
+                      <label for="class_name"></label>
+                      <input type="text" id="user_name" name="user name" placeholder="Reciver name..">
                     
-                      <!--<input type="submit" value="Next">-->
-                      <a href="<?php echo BASEURL?>privateclass/reportText" style="text-decoration:none"><div class="mid-back-btn">Next</div></a>
+                      
                     </form>
                   </div>
 
+                  <div class="class section">
+                    <form>
+                      <label for="class_name"></label>
+                      <input type="text" id="user_id" name="user id" placeholder="Reciver account no..">
+                    
+                      
+                    </form>
+                  </div>
+
+                  <div class="class section">
+                    <form>
+                      <label for="class_name"></label>
+                      <input type="text" id="user_id_relation" name="user id" placeholder="Enter your relationship to them..">
+                    
+                      <input type="submit" value="Continue">
+                    </form>
+                  </div>
+                      
+               
+                  
+
+                      
+                          
+                          
+                 
+                 
+
             </section>
 
-             <!-- bottom part -->
-             <section class="Teacher-class-bottom">
-                <div class="issue-decorator">
-                    <img src="<?php echo BASEURL?>public/assets/Teacher/clips/issue.png" alt="profile">
+            <!-- bottom part -->
+            <section class="Teacher-class-bottom">
+                <div class="Teacher-decorator">
+                    <img src="<?php echo BASEURL?>public/assets/Teacher/clips/billing.png" alt="lap man">
                 </div>
             </section>
+
 
             
         </div>  
