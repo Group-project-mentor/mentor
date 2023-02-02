@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Add Student</title>
+    <title>Teacher - Change host</title>
     <link rel="stylesheet" href="<?php echo BASEURL?>public/stylesheets/Teacher/style.css">
     <link rel="stylesheet" href="<?php echo BASEURL?>public/stylesheets/Teacher/card_set.css">
 </head>
@@ -25,33 +25,44 @@
                 </div>
             </div>
 
+        <!-- Navigation bar private - public switch -->
+        <div class="nav-middle" id="nav-middle">
+            <p>Public</p>
+            <div class="nav-switch">
+                <label class="switch">
+                    <input type="checkbox" checked>
+                    <span class="slider round"></span>
+                </label>
+            </div>
+            <p class="nav-switch-txt">Private</p>
+        </div>
+           
 
 
-
-                        <!-- Navigation buttons -->
-                        <div class="nav-links">
-                <a href="<?php BASEURL ?>membersDetails" class="nav-link">
-                    <img class="active" src="<?php echo BASEURL?>public/assets/Teacher/icons/participants.png" alt="home">
+          <!-- Navigation buttons -->
+            <div class="nav-links">
+                <a href="#" class="nav-link">
+                <img class="active" src="<?php echo BASEURL?>public/assets/Teacher/icons/participants.png" alt="home">
                     <div class="nav-link-text">Participants</div>
                 </a>
-                <a href="<?php BASEURL ?>addResources" class="nav-link">
-                    <img class="active" src="<?php echo BASEURL?>public/assets/Teacher/icons/icon_resources.png" alt="home">
+                <a href="#" class="nav-link">
+                <img class="active" src="<?php echo BASEURL?>public/assets/Teacher/icons/icon_resources.png" alt="home">
                     <div class="nav-link-text">Resources</div>
                 </a>
-                <a href="<?php BASEURL ?>addTeacher" class="nav-link">
-                    <img class="active" src="<?php echo BASEURL?>public/assets/Teacher/icons/add_teacher.png" alt="home">
+                <a href="#" class="nav-link">
+                <img class="active" src="<?php echo BASEURL?>public/assets/Teacher/icons/add_teacher.png" alt="home">
                     <div class="nav-link-text">Add Teacher</div>
                 </a>
-                <a href="<?php BASEURL ?>addStudent" class="nav-link" class="nav-link">
-                    <img class="active" src="<?php echo BASEURL?>public/assets/Teacher/icons/add_student.png" alt="home">
+                <a href="#" class="nav-link">
+                <img class="active" src="<?php echo BASEURL?>public/assets/Teacher/icons/add_student.png" alt="home">
                     <div class="nav-link-text">Add Student</div>
                 </a>
-                <a href="<?php BASEURL ?>generateReport" class="nav-link">
-                    <img class="active" src="<?php echo BASEURL?>public/assets/Teacher/icons/generate_report.png" alt="home">
+                <a href="#" class="nav-link">
+                <img class="active" src="<?php echo BASEURL?>public/assets/Teacher/icons/generate_report.png" alt="home">
                     <div class="nav-link-text">Generate Reports</div>
                 </a>
-                <a href="<?php BASEURL ?>forum" class="nav-link">
-                    <img class="active" src="<?php echo BASEURL?>public/assets/Teacher/icons/forum.png" alt="home">
+                <a href="#" class="nav-link">
+                <img class="active" src="<?php echo BASEURL?>public/assets/Teacher/icons/forum.png" alt="home">
                     <div class="nav-link-text">Create Forum</div>
                 </a>
             </div>
@@ -68,8 +79,8 @@
             <section class="top-bar">
                 
                 <div class="top-bar-btns">
-                <a href="#">
-                        <a class="back-btn" href="<?php echo BASEURL ?>privateclass/InsideClass">Back</a>
+                    <a href="#">
+                    <a class="back-btn" href="<?php echo BASEURL ?>privateclass/InsideClass">Back</a>
                     </a>
                     <a href="#">
                     <img src="<?php echo BASEURL?>public/assets/Teacher/icons/icon_notify.png" alt="notify">
@@ -85,41 +96,36 @@
 
                  <!-- Title and sub title of middle part -->
                 <div class="mid-title">
-                    <h1>Add Student</h1>
-                    <h6>Teacher Home/ C136-member details/Add student</h6>
+                    <h1>Change Host</h1>
+                    <h6>Teacher Home/ Members details/change host</h6>
                     <br><br><br>
-                    <h3>Student name</h3>
+                    <h3>First, enter your details</h3>
                 </div>
 
                 <div class="class section">
                     <form>
                       <label for="class_name"></label>
-                      <input type="text" id="class_name" name="class name" placeholder="New student name..">
-                    </form>
-                  </div>
-
-                  <div class="mid-title">
-            
-                    <br>
-                    <h3>Student ID</h3>
-                </div>
-
-                <div class="class section">
-                    <form>
-                      <label for="class_name"></label>
-                      <input type="text" id="class" name="class name" placeholder="New student id..">
+                      <input type="text" id="user_name" name="user name" placeholder="Enter user name..">
                     
-                      <input type="submit" value="Add">
+                      
                     </form>
                   </div>
 
+                  <div class="class section">
+                    <form>
+                      <label for="class_name"></label>
+                      <input type="text" id="user_id" name="user id" placeholder="Enter user id..">
+                    
+                      <input type="submit" value="next">
+                    </form>
+                  </div>
 
             </section>
 
             <!-- bottom part -->
-            <section class="Student-class-bottom">
-                <div class="Student-decorator">
-                    <img src="<?php echo BASEURL?>public/assets/Teacher/clips/add_student.png" alt="issue man">
+            <section class="Teacher-class-bottom">
+                <div class="Teacher-decorator">
+                    <img src="<?php echo BASEURL?>public/assets/Teacher/clips/change host.png" alt="lap man">
                 </div>
             </section>
 

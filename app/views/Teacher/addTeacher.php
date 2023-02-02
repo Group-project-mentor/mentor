@@ -30,7 +30,7 @@
 
                         <!-- Navigation buttons -->
                         <div class="nav-links">
-                <a href="#" class="nav-link">
+                <a href="<?php BASEURL ?>membersDetails" class="nav-link">
                     <img class="active" src="<?php echo BASEURL?>public/assets/Teacher/icons/participants.png" alt="home">
                     <div class="nav-link-text">Participants</div>
                 </a>

@@ -5,9 +5,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Teacher Report issue 1</title>
+    <title>Teacher - Billing</title>
     <link rel="stylesheet" href="<?php echo BASEURL?>public/stylesheets/Teacher/style.css">
-    <link rel="stylesheet" href="<?php echo BASEURL?>public/stylesheets/Teacher/card_set.css"> 
+    <link rel="stylesheet" href="<?php echo BASEURL?>public/stylesheets/Teacher/card_set.css">
 </head>
 
 <body>
@@ -21,13 +21,26 @@
                     <img src="<?php echo BASEURL?>public/assets/Teacher/logo2.png" alt="logo" />
                 </div>
                 <div class="nav-logo-long" id="nav-logo-long">
-                <img src="<?php echo BASEURL?>public/assets/Teacher/logo1.png" alt="logo" />
+                    <img src="<?php echo BASEURL?>public/assets/Teacher/logo1.png" alt="logo" />
                 </div>
             </div>
 
 
-          <!-- Navigation buttons -->
-          <div class="nav-links">
+           <!-- Navigation bar private - public switch -->
+           <div class="nav-middle" id="nav-middle">
+            <p>Public</p>
+            <div class="nav-switch">
+                <label class="switch">
+                    <input type="checkbox" checked>
+                    <span class="slider round"></span>
+                </label>
+            </div>
+            <p class="nav-switch-txt">Private</p>
+        </div>
+
+
+<!-- Navigation buttons -->
+<div class="nav-links">
                 <a href="<?php BASEURL ?>" class="nav-link">
                     <img class="active" src="<?php echo BASEURL?>public/assets/Teacher/icons/icon_class.png" alt="home">
                     <div class="nav-link-text">Classes</div>
@@ -52,7 +65,7 @@
 
             <!-- Navigation bar toggler -->
             <div class="nav-toggler" id="nav-toggler">
-            <img src="<?php echo BASEURL?>public/assets/Teacher/icons/toggler.png" alt="toggler">
+                <img src="<?php echo BASEURL?>public/assets/Teacher/icons/toggler.png" alt="toggler">
             </div>
         </nav>
 
@@ -62,7 +75,7 @@
             <section class="top-bar">
                 
                 <div class="top-bar-btns">
-                    <a href="#">
+                <a href="#">
                         <a class="back-btn" href="<?php echo BASEURL ?>home">Back</a>
                     </a>
                     <a href="#">
@@ -79,38 +92,45 @@
 
                  <!-- Title and sub title of middle part -->
                 <div class="mid-title">
-                    <h1>Report Issues</h1>
-                    <h6>Teacher Home/ Report Issues</h6>
+                    <h1>Billing</h1>
+                    <h6>Teacher Home/ Members details/change host</h6>
                     <br><br><br>
-                    <h3>Choose a category under your complaint</h3>
-                </div>
-                
-                <div class="class section">
-                    <form>
-                  
-                      <label for="issue"></label>
-                      <select id="issue" name="issue">
-                        <option value="Category1">Category 1</option>
-                        <option value="Category2">Category 2</option>
-                        <option value="Category3">Category 3</option>
-                        <option value="Category4">Category 4</option>
-                        <option value="Category5">Category 5</option>
-                        <option value="Category6">Category 6</option>
-                      </select>
+                    <h3>Available Balance in your wallet</h3>
+                    <br><br>
                     
-                      <!--<input type="submit" value="Next">-->
-                      <a href="<?php echo BASEURL?>privateclass/reportText" style="text-decoration:none"><div class="mid-back-btn">Next</div></a>
-                    </form>
+                </div>
+
+                <div style="display: flex;justify-content: center;font-size:30px">
+                    <h1>Rs.*******</h1>
                   </div>
+                  
+
+
+                <br><br>
+
+                
+                      
+                <div style="display: flex; justify-content:space-around; align-items: center;">
+                <a href="<?php echo BASEURL?>privateclass/transHistory" style="text-decoration:none"><div class="mid-back-btn">See transaction history</div></a>
+                <a href="<?php echo BASEURL?>privateclass/premiumCheckout" style="text-decoration:none"><div class="mid-back-btn">Withdraw money</div></a>
+                  </div>
+                  
+
+                      
+                          
+                          
+                 
+                 
 
             </section>
 
-             <!-- bottom part -->
-             <section class="Teacher-class-bottom">
-                <div class="issue-decorator">
-                    <img src="<?php echo BASEURL?>public/assets/Teacher/clips/issue.png" alt="profile">
+            <!-- bottom part -->
+            <section class="Teacher-class-bottom">
+                <div class="Teacher-decorator">
+                    <img src="<?php echo BASEURL?>public/assets/Teacher/clips/billing.png" alt="lap man">
                 </div>
             </section>
+
 
             
         </div>  
