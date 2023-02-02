@@ -22,7 +22,5 @@ class RcSubjects extends Controller{
         }
         $this->view('resourceCtr/subjects',$rows); 
     }
-
-    
 }
 ?>

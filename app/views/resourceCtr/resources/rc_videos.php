@@ -70,9 +70,10 @@
                     <div class="rc-video-card-set">
                         <?php
                             if(!empty($data[0])){
+                                $count = 1;
                                 foreach ($data[0] as $row) {
                                     echo "<div class='rc-video-card'>
-                                            <img src='".BASEURL."assets/patterns/1.png' alt='' />
+                                            <img src='".BASEURL."assets/patterns/".$count++.".png' alt='' />
                                             <a href='".BASEURL."rcResources/preview/video/".$row['id']."'>
                                                 <label>".$row['name']."</label>
                                             </a>

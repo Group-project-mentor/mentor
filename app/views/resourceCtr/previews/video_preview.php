@@ -13,6 +13,8 @@
 </head>
 
 <body>
+    <?php include_once "components/alerts/rc_delete_alert.php"?>
+
 <section class="page">
     <!-- Navigation panel -->
     <?php include_once "components/navbars/rc_nav_2.php"?>
@@ -22,13 +24,9 @@
         <!-- Top bar -->
         <section class="top-bar">
             <div class="search-bar">
-                <input type="text" name="" id="" placeholder="Search...">
-                <a href="">
-                    <img src="<?php echo BASEURL ?>assets/icons/icon_search.png" alt="">
-                </a>
             </div>
             <div class="top-bar-btns">
-                <a href="<?php echo BASEURL . 'rcResources/videos/' . $_SESSION['gid'] . "/" . $_SESSION['sid'] ?>">
+                <a href="javascript:history.go(-1)">
                     <div class="back-btn">Back</div>
                 </a>
                 <a href="#">
@@ -41,30 +39,28 @@
         </section>
 
         <!-- Middle part for whole content -->
-        <section class="mid-content">
+        <section class="mid-content" style="margin: 10px 0 10px;">
             <!-- subject cards -->
-            <div class="container-box">
+            <div class="container-box" style="margin-top: 10px;">
                 <div class="rc-resource-header">
                         <h1>V I D E O</h1>
                         <div style="display: flex;">
-                            <a href="<?php echo BASEURL . 'rcAdd/other' ?>" style="margin:5px 10px;">
+                            <a href="<?php echo BASEURL . 'rcEdit/video/' . $data[1][0] ?>" style="margin:5px 10px;">
                                 <div class="rc-add-btn">
                                     Edit <img style="width: 15px;" src="<?php echo BASEURL ?>assets/icons/icon_edit_white.png" alt=''>
                                 </div>
                             </a>
-                            <a href="<?php echo BASEURL . 'rcAdd/other' ?>" style="margin:5px 10px;">
-                                <div class="rc-add-btn" style="display: flex; align-items:center;">
+                            <a style="margin:5px 10px;cursor:pointer;" onclick='delConfirm("<?php echo $data[1][0] ?>",1);'>
+                                <div class="rc-add-btn" style="display: flex; align-items:center;background:#AA1100;">
                                     Delete <img style="width: 15px;" src='<?php echo BASEURL ?>assets/icons/icon_delete_white.png' alt=''>
                                 </div>
                             </a>
                         </div>
                     </div>
-                <h2><?php echo $data[1][1] ?></h2>
+                <h2 style="margin: 0 20px;"><?php echo $data[1][1] ?></h2>
 
                 <div class="subject-card-watching">
-                    <iframe width="560" height="315" src="https://www.youtube.com/embed/jrISECT_48E" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-
-                    <iframe style="width: 720px;height:480px;" src="<?php echo $data[1][4] ?>" frameborder="1"></iframe>
+                    <iframe style="width: 720px;height:480px;" src="<?php echo $data[1][4] ?>" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
                 </div>
 
                 <h2>Description</h2>
@@ -89,4 +85,5 @@
 </div>
 </section>
 </body>
+<script src="<?php echo BASEURL . '/public/javascripts/rc_alert_control.js' ?>"></script>
 </html>

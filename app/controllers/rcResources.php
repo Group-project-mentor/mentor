@@ -116,6 +116,7 @@ class RcResources extends Controller{
             case 'video':
                 $file = $this->model("resourceModel")->getResource($id,$_SESSION['gid'],$_SESSION['sid'],'video');
                 $resourceData = $this->model("resourceModel")->getVideo($id);
+                $resourceData[4] = $this->filterVideoId($resourceData[4]);
                 $this->view("resourceCtr/previews/video_preview",array($file,$resourceData));
                 break;
             case 'quiz':
@@ -125,6 +126,21 @@ class RcResources extends Controller{
                 // todo : under development
                 break;
         }
+    }
+
+    private function filterVideoId($link){
+        $splitted_link = explode('/',$link);
+        if($splitted_link[2] == "youtu.be"){
+            return "https://www.youtube.com/embed/".$splitted_link[3];
+        }
+        elseif($splitted_link[2] == "www.youtube.com"){
+            $splitted_link = explode('=',$splitted_link[3]);
+            return "https://www.youtube.com/embed/".$splitted_link[1];
+        }
+        else{
+            return $link;
+        }
+        // var_dump($splitted_link);
     }
 
 }
