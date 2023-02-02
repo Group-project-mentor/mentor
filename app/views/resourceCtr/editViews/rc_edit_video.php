@@ -36,7 +36,7 @@
                 <div class="search-bar">
                 </div>
                 <div class="top-bar-btns">
-                    <a href="<?php echo BASEURL .'rcResources/videos/'.$_SESSION['gid']."/".$_SESSION["sid"] ?>">
+                    <a href="javascript:history.go(-1)">
                         <div class="back-btn">Back</div>
                     </a>
                     <a href="#">

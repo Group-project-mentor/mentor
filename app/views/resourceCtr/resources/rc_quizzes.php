@@ -91,7 +91,7 @@
                                 <a class="quiz-card-btn" href="<?php echo BASEURL.'quiz/questions/'.$row['id'] ?>">
                                     <img src='<?php echo BASEURL."assets/icons/icon_edit.png" ?>' alt=''>
                                 </a>
-                                <a class="quiz-card-btn">
+                                <a class="quiz-card-btn" href="<?php echo BASEURL.'quizPreview/question' ?>">
                                     <img src='<?php echo BASEURL."assets/icons/icon_eye.png" ?>' alt=''>
                                 </a>
                             </div>
