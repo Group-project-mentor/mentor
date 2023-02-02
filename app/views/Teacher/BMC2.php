@@ -69,14 +69,14 @@
                     <a href="#">
                         <img src="<?php echo BASEURL?>public/assets/Teacher/icons/icon_notify.png" alt="notify">
                     </a>
-                    <a href="#">
+                    <a href="<?php echo  BASEURL ?>privateclass/profile">
                         <img src="<?php echo BASEURL?>public/assets/Teacher/icons/icon_profile_black.png" alt="profile">
                     </a>
                 </div>
             </section>
-
+<section class="mid-content mid-semi-content">
             <!-- Middle part for whole content -->
-            <section class="mid-content">
+            <section class="">
 
                  <!-- Title and sub title of middle part -->
                 <div class="mid-title">
@@ -119,6 +119,8 @@
                     <img src="<?php echo BASEURL?>public/assets/Teacher/clips/bmc2.png" alt="lap man">
                 </div>
             </section>
+    </section>
+
 
 
             

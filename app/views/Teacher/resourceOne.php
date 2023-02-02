@@ -78,7 +78,7 @@
                     <a href="#">
                         <img src="<?php echo BASEURL?>public/assets/Teacher/icons/icon_notify.png" alt="notify">
                     </a>
-                    <a href="#">
+                    <a href="<?php echo  BASEURL ?>privateclass/profile">
                         <img src="<?php echo BASEURL?>public/assets/Teacher/icons/icon_profile_black.png" alt="profile">
                     </a>
                 </div>
