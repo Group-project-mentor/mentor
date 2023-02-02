@@ -27,25 +27,25 @@
 
 
 
-            <!-- Navigation buttons -->
-            <div class="nav-links">
-                <a href="#" class="nav-link">
+          <!-- Navigation buttons -->
+          <div class="nav-links">
+                <a href="<?php BASEURL ?>" class="nav-link">
                     <img class="active" src="<?php echo BASEURL?>public/assets/Teacher/icons/icon_class.png" alt="home">
                     <div class="nav-link-text">Classes</div>
                 </a>
-                <a href="#" class="nav-link">
+                <a href="<?php BASEURL ?>premiumPlan" class="nav-link">
                     <img src="<?php echo BASEURL?>public/assets/Teacher/icons/icon_premium.png" alt="cource">
                     <div class="nav-link-text">Buy Premium</div>
                 </a>
-                <a href="#" class="nav-link">
+                <a href="<?php BASEURL ?>report" class="nav-link">
                     <img src="<?php echo BASEURL?>public/assets/Teacher/icons/icon_report.png" alt="profile">
                     <div class="nav-link-text">Report Issue</div>
                 </a>
-                <a href="#" class="nav-link">
+                <a href="<?php BASEURL ?>billing" class="nav-link">
                     <img src="<?php echo BASEURL?>public/assets/Teacher/icons/icon_billing.png" alt="report">
                     <div class="nav-link-text">Billing</div>
                 </a>
-                <a href="#" class="nav-link">
+                <a href="<?php echo BASEURL ?>bmc" class="nav-link">
                     <img src="<?php echo BASEURL?>public/assets/Teacher/icons/icon_bmc.png" alt="bmc">
                     <div class="nav-link-text">Buy me a coffee</div>
                 </a>
@@ -69,14 +69,14 @@
                     <a href="#">
                         <img src="<?php echo BASEURL?>public/assets/Teacher/icons/icon_notify.png" alt="notify">
                     </a>
-                    <a href="#">
+                    <a href="<?php echo  BASEURL ?>privateclass/profile">
                         <img src="<?php echo BASEURL?>public/assets/Teacher/icons/icon_profile_black.png" alt="profile">
                     </a>
                 </div>
             </section>
-
+<section class="mid-content mid-semi-content">
             <!-- Middle part for whole content -->
-            <section class="mid-content">
+            <section class="">
 
                  <!-- Title and sub title of middle part -->
                 <div class="mid-title">
@@ -88,9 +88,13 @@
                     <h3>to pay,</h3><br>
                     <hr>
                     <br>
-                    <h3><b>payments details</b></h3><br>
-                    <br>
+                    <h3><b>payments details</b></h3><br><br>
                     <p>you can pay with credit or debit card</p><br><br>
+                    <div class="card-logos">
+                            <img src="<?php echo BASEURL?>public/assets/Teacher/icons/visa.png"/>
+                            <img src="<?php echo BASEURL?>public/assets/Teacher/icons/mastercard.png"/>
+                          </div>
+</br>
                     
                 </div>
 
@@ -115,6 +119,8 @@
                     <img src="<?php echo BASEURL?>public/assets/Teacher/clips/bmc2.png" alt="lap man">
                 </div>
             </section>
+    </section>
+
 
 
             

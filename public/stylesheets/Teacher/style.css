@@ -452,7 +452,9 @@ button[type="submit"] {
     display: flex;
     flex:1
 }
-
+.mid-semi-content{
+    display: flex;
+}
 .Teacher-decorator img {
     padding: 5px;
     justify-content: flex-end;

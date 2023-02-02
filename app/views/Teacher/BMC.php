@@ -27,25 +27,25 @@
 
 
 
-            <!-- Navigation buttons -->
-            <div class="nav-links">
-                <a href="#" class="nav-link">
+           <!-- Navigation buttons -->
+           <div class="nav-links">
+                <a href="<?php BASEURL ?>" class="nav-link">
                     <img class="active" src="<?php echo BASEURL?>public/assets/Teacher/icons/icon_class.png" alt="home">
                     <div class="nav-link-text">Classes</div>
                 </a>
-                <a href="#" class="nav-link">
+                <a href="<?php BASEURL ?>premiumPlan" class="nav-link">
                     <img src="<?php echo BASEURL?>public/assets/Teacher/icons/icon_premium.png" alt="cource">
                     <div class="nav-link-text">Buy Premium</div>
                 </a>
-                <a href="#" class="nav-link">
+                <a href="<?php BASEURL ?>report" class="nav-link">
                     <img src="<?php echo BASEURL?>public/assets/Teacher/icons/icon_report.png" alt="profile">
                     <div class="nav-link-text">Report Issue</div>
                 </a>
-                <a href="#" class="nav-link">
+                <a href="<?php BASEURL ?>billing" class="nav-link">
                     <img src="<?php echo BASEURL?>public/assets/Teacher/icons/icon_billing.png" alt="report">
                     <div class="nav-link-text">Billing</div>
                 </a>
-                <a href="#" class="nav-link">
+                <a href="<?php echo BASEURL ?>bmc" class="nav-link">
                     <img src="<?php echo BASEURL?>public/assets/Teacher/icons/icon_bmc.png" alt="bmc">
                     <div class="nav-link-text">Buy me a coffee</div>
                 </a>
@@ -69,7 +69,7 @@
                     <a href="#">
                         <img src="<?php echo BASEURL?>public/assets/Teacher/icons/icon_notify.png" alt="notify">
                     </a>
-                    <a href="#">
+                    <a href="<?php echo  BASEURL ?>privateclass/profile">
                         <img src="<?php echo BASEURL?>public/assets/Teacher/icons/icon_profile_black.png" alt="profile">
                     </a>
                 </div>
@@ -91,7 +91,7 @@
                       <label for="class_name"></label>
                       <input type="text" id="class_name" name="class_name" placeholder="Enter the amount">
                      
-                      <a href="<?php echo BASEURL?>privateclass/bmcNext"><div class="mid-back-btn">Next</div></a>
+                      <a href="<?php echo BASEURL?>privateclass/bmcNext" style="text-decoration:none"><div class="mid-back-btn">Next</div></a>
                     </form>
                   </div>
 
