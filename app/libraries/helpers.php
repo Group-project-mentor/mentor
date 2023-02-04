@@ -33,8 +33,6 @@ function flashMessage($message=null){
         elseif(isset($_SESSION['message']) and !$_SESSION['msgTag']){
             unset($_SESSION['message']);
         }
-        // else{
-        // }
     }
     else{
         $_SESSION['message'] = $message;

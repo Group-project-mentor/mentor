@@ -96,7 +96,21 @@
                     </div>
                 </div>
 
+                <div class="pagination-set">
+                    <div class="pagination-set-left">
+                        <b>25</b> Results
+                    </div>
+                    <div class="pagination-set-right">
+                        <button> < </button>
+                        <div class="pagination-numbers">
+                            1 of 10
+                        </div>
+                        <button> > </button>
+                    </div>
+                </div>
+
         </div>
+
 
     </section>
 </body>
