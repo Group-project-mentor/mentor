@@ -10,43 +10,21 @@
     <link rel="icon" type="image/x-icon" href="<?php echo BASEURL ?>assets/mentor.ico">
     <link rel="stylesheet" href="<?php echo BASEURL; ?>public/stylesheets/style.css">
     <link rel="stylesheet" href="<?php echo BASEURL; ?>public/stylesheets/st_card_set.css">
+
     <style>
-        .join {
-            opacity: 1.0;
-            padding: 10px;
-            margin-left: 200px;
-        }
-
-        .join1:hover {
-            opacity: 0.5;
-        }
-
-        .join2:hover {
-            opacity: 0.5;
-        }
-
-        .content-area {
-            background-image: url('../public/assets/clips/Humaaans2Characters.png');
-            background-position: center;
-        }
-
-        .join1, .join2 {
-            background-color: #186537;;
+        .token {
             border-style: solid;
             border-color: #17ac06;
-            border-radius: 15px;
-            border-width: 5px;
-            float: left;
-            width: 250px;
-            height: 250px;
-            padding: 70px 20px 0px 20px;
-            margin: 50px;
+            border-width: 3px;
             text-align: center;
+            padding: 10px 35px 10px 35px;
+            width: 300px;
+            margin-left: 37.5%;
         }
-
-        .joina {
-            text-decoration: none;
-            color: white;
+        body{
+            background-image: url('../public/assets/clips/HumaaansWireframe');
+            background-position: center;
+            background-size: cover;
         }
     </style>
 </head>
@@ -67,7 +45,7 @@
                     </a>
                 </div>
                 <div class="top-bar-btns">
-                    <a href="<?php echo BASEURL; ?>st_private_mode">
+                    <a href="<?php echo BASEURL; ?>st_private_mode/st_join_classes">
                         <div class="back-btn">Back</div>
                     </a>
                     <a href="#">
@@ -78,29 +56,33 @@
                     </a>
                 </div>
             </section>
-
-            <section class="mid-content">
-                <!-- join to new class -->
-                <div class="top-bar-btns ">
-                    <h2>Join to new class</h2>
-                </div>
-
-                <div class="join">
+            <section>
+                <div>
                     <br>
-                    <div class="join1">
-                        <a href="<?php echo BASEURL; ?>st_private_mode/st_join_token" class="joina">
-                            <h2>Join with class token</h2>
-                            <br>
-                            <h4>Get the class token of your teacher and join to the class</h4>
-                        </a>
-                    </div>
-
-                    <div class="join2">
-                        <a href="<?php echo BASEURL; ?>st_private_mode/st_join_request" class="joina">
-                            <h2>Join with requests</h2>
-                            <br>
-                            <h4>Join class by accepting requests</h4>
-                        </a>
+                    <h2>Join with class token</h2>
+                    <h4>Get the class token of your teacher and join to the class. <br><br><br></h4>
+                    <h3 class="token">
+                        <b>Entering the token here : </b>
+                        <div class="search-bar">
+                            <input type="text" name="" id="" placeholder=" Search...">
+                            <a href="#">
+                                <img src="<?php echo BASEURL; ?>assets/icons/icon_search.png" alt="">
+                            </a>
+                        </div>
+                        <hr>
+                    </h3>
+                </div>
+                <div>
+                    <br><br>
+                    <hr>
+                    <br><br>
+                    <!-- tempary movement 1-->
+                    <div class="subject-card">
+                        <img src="<?php echo BASEURL  ?>assets/patterns/1.png" alt="" />
+                        <a href="<?php echo BASEURL  ?>st_private_mode/st_classroom_inside"><label>Mathematics</label></a>
+                        <label>Grade 8</label>
+                        <label>Mr.Thimira Galahitiyawa</label>
+                        <a href="#"><label>Join</label></a>
                     </div>
                 </div>
             </section>

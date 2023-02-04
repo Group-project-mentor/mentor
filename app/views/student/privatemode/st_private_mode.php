@@ -52,7 +52,6 @@
                 <!-- subject cards -->
                 <div class="container-box">
                     <div>
-                        <h2>My Classes</h2>
 
                         <!-- tempary movement 1-->
                         <div class="subject-card">
@@ -61,7 +60,7 @@
                             <label>Grade 8</label>
                             <label>Mr.Thimira Galahitiyawa</label>
                         </div>
-                        <a class="see-all-btn" href="<?php echo BASEURL  ?>#" style="text-decoration: none; ">My classes</a>
+                        <a class="see-all-btn" href="<?php echo BASEURL  ?>st_private_mode/st_myclasses" style="text-decoration: none; ">My classes</a>
                     </div>
 
                 </div>
