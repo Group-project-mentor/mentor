@@ -18,24 +18,15 @@ class UserModel extends Model
 
     public function registrationStudent($email, $name, $hash, $age = null, $grade = null)
     {
-        $query = "insert into user(email,name,password,type) values ('?','?','?','?')";
-        if (!empty($age)) {
-            $query = "insert into user(email,name,password,type) values ('?','?','?','?')";
-        }
-        if (!empty($grade)) {
-            $query = "insert into user(email,name,password,type) values ('?','?','?','?')";
-        }
-        if (!empty($grade) and !empty($age)) {
-            $query = "insert into user(email,name,password,type) values ('?','?','?','?')";
-        }
+        $query = "INSERT INTO user(email,name,password,type) VALUES (?,?,?,'st')";
         $stmt = $this->prepare($query);
-        $stmt -> bind_param('ssss',$email,$name,$hash,'st');
+        $stmt -> bind_param('sss',$email,$name,$hash);
         return $stmt->execute();
     }
 
     public function registrationTeacher($email, $name, $hash)
     {
-        $stmt = $this->prepare("insert into user(email,name,password,type) values (?,?,?,'tch')");
+        $stmt = $this->prepare("INSERT INTO user(email,name,password,type) VALUES (?,?,?,'tch')");
         $stmt -> bind_param('sss',$email, $name, $hash);
         return $stmt->execute();
 
