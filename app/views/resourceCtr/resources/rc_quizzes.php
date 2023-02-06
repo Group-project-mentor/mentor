@@ -91,7 +91,7 @@
                                 <a class="quiz-card-btn" href="<?php echo BASEURL.'quiz/questions/'.$row['id'] ?>">
                                     <img src='<?php echo BASEURL."assets/icons/icon_edit.png" ?>' alt=''>
                                 </a>
-                                <a class="quiz-card-btn" href="<?php echo BASEURL.'quizPreview/question' ?>">
+                                <a class="quiz-card-btn" href="<?php echo BASEURL.'quizPreview/instructions/'.$row['id'] ?>">
                                     <img src='<?php echo BASEURL."assets/icons/icon_eye.png" ?>' alt=''>
                                 </a>
                             </div>
@@ -100,6 +100,18 @@
                         }
                         ?>
                     </section>
+                </div>
+                <div class="pagination-set">
+                    <div class="pagination-set-left">
+                        <b>25</b> Results
+                    </div>
+                    <div class="pagination-set-right">
+                        <button> < </button>
+                        <div class="pagination-numbers">
+                            1 of 10
+                        </div>
+                        <button> > </button>
+                    </div>
                 </div>
             </div>
     </section>

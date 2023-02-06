@@ -1,0 +1,214 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800&display=swap");
+
+:root {
+    --main-color: #0f6805;
+}
+
+.sponsor-list-main{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    border: 1px solid #dedede;
+    border-radius: 10px;
+    font-family: "Poppins", sans-serif;
+    font-size: medium;
+}
+
+.sponsor-list-row{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+    text-align: left;
+    padding: 10px 5px;
+}
+
+.sponsor-list-item{
+    flex: 1;
+    text-align: center;
+}
+
+.sponsor-list-item>img{
+    width: 30px;
+    border-radius: 50%;
+    border: 1px solid rgba(77, 77, 77, 0.64);
+}
+
+
+.row-decoration>div:nth-of-type(even){
+    background-color: rgba(77, 77, 77, 0.06) !important;
+}
+
+.sponsor-list-item-title{
+    font-family: sans-serif;
+    font-weight: bold;
+    padding: 10px 0;
+}
+
+.sponsor-list-item img{
+    width: 20px;
+    cursor: pointer;
+}
+
+.sponsor-list-img-btns{
+    display: flex;
+    justify-content: space-around;
+}
+
+.flex-1{
+    flex: 1;
+}
+
+.flex-2{
+    flex: 2;
+}
+
+.flex-3{
+    flex: 3;
+}
+
+.flex-4{
+    flex: 4;
+}
+
+.flex-5{
+    flex: 5;
+}
+
+.sponsor-button{
+    background-color: var(--main-color);
+    color: white;
+    padding: 8px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+
+.bottom-section-title{
+    margin: 20px 0;
+}
+
+.sponsor-button>img{
+    margin:0 10px;
+}
+
+.sponsor-search-comp{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.sponsor-student-prof{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.sponsor-student-prof>.prof{
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.sponsor-student-prof>.prof>.details{
+    display: flex;
+    width: 400px;
+    flex-direction: column;
+    font-family: "Poppins", sans-serif;
+    align-items: center;
+}
+
+.sponsor-student-prof>.prof>.details h3{
+    margin-bottom: 10px;
+    color: var(--main-color);
+}
+
+.sponsor-student-prof>.prof>.image{
+    display: flex;
+    justify-content: space-around;
+}
+
+.sponsor-student-prof>.bottom-details{
+    text-align: center;
+}
+
+.sponsor-student-prof>.prof>.image>img{
+    width: 200px;
+    height: 200px;
+    margin-top: 30px;
+    border-radius: 10%;
+    object-fit: cover;
+    box-shadow: rgba(17, 17, 26, 0.1) 0 8px 24px, rgba(17, 17, 26, 0.1) 0 16px 56px, rgba(17, 17, 26, 0.1) 0 24px 80px;
+}
+
+.sponsor-detail-cell{
+    text-align: left;
+}
+
+.sponsor-detail-cell:nth-of-type(1){
+    font-weight: bold;
+}
+
+.sponsor-student-prof>.bottom-details{
+    margin: 60px 10px 30px;
+    border-radius: 5px;
+    padding: 10px;
+    /*box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;*/
+}
+
+.sponsor-student-prof>.bottom-details h3{
+    color: var(--main-color);
+    font-family: "Poppins", sans-serif;
+}
+
+.sponsor-student-prof>.bottom-details>div{
+    padding: 20px;
+    text-align: left;
+    display: flex;
+    justify-content: space-around;
+}
+
+.sponsor-student-prof>.bottom-details .sp-subject-details{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    border:1px solid rgba(0, 0, 0, 0.27);
+    border-radius: 10px;
+    flex: 1;
+    margin: 0 25px;
+    align-items: center;
+    max-height: 300px;
+    overflow: scroll;
+    overflow-x: hidden;
+}
+
+.sponsor-student-prof>.bottom-details h4{
+    position: sticky;
+    top: 0;
+    color: #484848;
+    background: white;
+    font-family: "Poppins", sans-serif;
+    text-align: center;
+    padding: 10px 20px;
+}
+
+.sponsor-student-prof>.bottom-details .sp-subject-report{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border:1px solid rgba(0, 0, 0, 0.27);
+    border-radius: 10px;
+    flex: 1;
+    margin: 0 25px;
+}
+.border-no{
+    border: none;
+}
+
+.sponsor-grade-cell{
+    padding: 0;
+}

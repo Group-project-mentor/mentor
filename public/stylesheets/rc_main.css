@@ -302,7 +302,7 @@ input:checked+.slider:before {
 .mid-content {
     display: flex;
     flex-direction: column;
-    margin: 50px 20px 10px;
+    margin: 20px 20px 10px;
 
 }
 
@@ -424,6 +424,37 @@ button[type="submit"] {
     width: 100%;
 }
 
+
+/* Pagination Part Styles */
+
+.pagination-set{
+    display: flex;
+    justify-content: space-between;
+    width: 80%;
+    margin: 50px auto 10px;
+    background: rgba(128, 128, 128, 0.08);
+    align-items: center;
+    padding: 10px 20px;
+    border-radius: 10px;
+}
+.pagination-set-right{
+    display: flex;
+    align-items: center;
+}
+.pagination-set-right>button{
+    padding: 5px 10px;
+    border-radius: 5px;
+    outline: none;
+    border:none;
+    color: white;
+    background: #0f6805;
+    cursor: pointer;
+    font-weight: 600;
+
+}
+.pagination-numbers{
+    padding: 3px 10px;
+}
 
 
 /* Todo : Media Queries */
