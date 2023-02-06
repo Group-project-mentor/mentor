@@ -11,6 +11,11 @@
 </head>
 
 <body>
+   <?php 
+   if(isset($_SESSION['message']) && $_SESSION['message']== "ok"){
+            include_once "components/alerts/Teacher/bmc_success.php";
+        }
+   ?>
     <section class="page">
         <!-- Navigation panel -->
         <nav class="nav-bar" id="nav-bar">

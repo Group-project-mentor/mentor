@@ -179,4 +179,28 @@ class quizModel extends Model
         }
     }
 
+    public function verifyAndQuizId($qid, $grade, $subject)
+    {
+        $stmt = $this->prepare("SELECT rs_subject_grade.rsrc_id FROM rs_subject_grade WHERE rs_subject_grade.rsrc_id =? AND rs_subject_grade.grade_id =? AND rs_subject_grade.subject_id =?");
+        $stmt->bind_param('iii', $qid, $grade, $subject);
+        $res = $this->fetchOne($stmt);
+        if (!empty($res)) {
+            return $res[0];
+        } else {
+            return 0;
+        }
+    }
+
+    public function getQuestion($quizId,$ordNo){
+        $stmt = $this->prepare("SELECT * FROM question where quiz_id = ? order by number limit 1 offset ?");
+        $stmt->bind_param('ii',$quizId, $ordNo);
+        return $this->fetchOne($stmt);
+    }
+
+    public function countQuestions($quizId){
+        $stmt = $this->prepare("SELECT count(id) FROM question WHERE quiz_id = ?");
+        $stmt->bind_param('i', $quizId);
+        return $this->fetchOne($stmt);
+    }
+
 }

@@ -480,7 +480,15 @@ hr.quiz-line {
     border-radius: 5px;
     font-size: medium;
     cursor: pointer;
+    text-decoration: none;
     box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+}
+
+.quiz-preview-bottom-button:disabled{
+    background-color: rgb(44, 44, 44);
+    color: #dedede;
+    box-shadow: none;
+    cursor: auto;
 }
 
 .quiz-preview-bottom-button:active{
@@ -502,7 +510,7 @@ hr.quiz-line {
 }
 
 .quiz-preview-answer-correct{
-    border: 4px solid rgba(0, 128, 0, 0.36);
+    border: 4px solid rgba(0, 128, 0, 0.13);
 }
 
 @media screen and (max-width:850px) {

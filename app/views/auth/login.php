@@ -13,6 +13,7 @@
   </head>
   <body>
     <div class="container">
+        <?php include_once "components/alerts/rightAlert.php"?>
       <div class="forms-container">
         <div class="signin-signup">
           <form action="<?php echo BASEURL ?>login/verify_login" class="sign-in-form" method="POST">
@@ -50,7 +51,7 @@
               <h6 class="sub-title" id="teacherSwitch">Teacher</h6>
             </div>
             <hr class="horiz-line hr-100">
-            <small id="tRegAlert" style="color: red;text-align:center;"></small>
+            <small id="sRegAlert" style="color: red;text-align:center;"></small>
             <div class="input-field">
               <i class="fas fa-user"></i>
               <input type="text" placeholder="Enter your name"  id="sname" name="name"/>
@@ -137,86 +138,9 @@
               </div>
             </div>
           </div>
-
-          <script>
-                   const sign_in_btn = document.querySelector("#sign-in-btn");
-                   const sign_up_btn = document.querySelector("#sign-up-btn");
-                   const image = document.querySelector('#loginPic');
-                   const container = document.querySelector(".container");
-                   const regPic = document.getElementById('regPic');
-
-                   const signUpStudent = document.getElementById("sign-up-student");
-                   const signUpTeacher = document.getElementById("sign-up-teacher");
-
-                   const teacherSwitch = document.getElementById("teacherSwitch");
-                   const studentSwitch = document.getElementById("studentSwitch");
-
-                   sign_up_btn.addEventListener("click", () => {
-                     container.classList.add("sign-up-mode");
-                    //  image.classList.add("sign-up-mode");
-                    //  regPic.classList.remove("sign-up-mode");
-
-                    });
-
-                    sign_in_btn.addEventListener("click", () => {
-                      container.classList.remove("sign-up-mode");
-                      // image.classList.remove("sign-up-mode");
-                      // regPic . classList . add("sign-up-mode");
-                   });
-
-                   teacherSwitch.addEventListener("click", ()=>{
-                      signUpStudent.style.display = "none";
-                      signUpTeacher.style.display = "flex";
-                   })
-
-                   studentSwitch.addEventListener("click", ()=>{
-                      signUpTeacher.style.display = "none";
-                      signUpStudent.style.display = "flex";
-                   })
-
-                   signUpTeacher.addEventListener('submit',(e)=>{
-                      e.preventDefault();
-
-                      const formData = new FormData(signUpTeacher);
-
-                      fetch('<?php echo BASEURL ?>register/verify_register_teacher', {
-                      // fetch('<?php echo BASEURL ?>register/test', {
-                        method: 'post',
-                        body: formData
-                      }).then(response => {
-                        return response.json();
-                      }).then(data => {
-                        document.getElementById("tRegAlert").textContent = data.message;
-                        console.log(data.message);
-                      }).catch(error => {
-                          console.log(error);
-                      });
-
-                   });
-
-                  // ! not completed
-                   signUpStudent.addEventListener('submit',(e)=>{
-                      e.preventDefault();
-
-                      const formData = new FormData(signUpStudent);
-
-                      fetch('<?php echo BASEURL ?>register/verify_register_student', {
-                      // fetch('<?php echo BASEURL ?>register/test', {
-                        method: 'post',
-                        body: formData
-                      }).then(response => {
-                        return response.json();
-                      }).then(data => {
-                        document.getElementById("sRegAlert").textContent = data.message;
-                        console.log(data.message);
-                      }).catch(error => {
-                          console.log(error);
-                      });
-
-                   });
-
-
-
-</script>
+        <script>
+            const BASEURL = "<?php echo BASEURL ?>";
+        </script>
+    <script src="<?php echo BASEURL ?>javascripts/authMain.js"></script>
         </body>
       </html>

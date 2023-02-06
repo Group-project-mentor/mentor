@@ -42,6 +42,7 @@ class Register extends Controller
         }
     }
 
+    // ?Done
     public function verify_register_teacher()
     {
         // if (isset($_POST["register"])) {
@@ -58,14 +59,14 @@ class Register extends Controller
                 $hash = password_hash($password, PASSWORD_BCRYPT, ["cost" => 10]);
 
                 if ($this->model("userModel")->registrationTeacher($email, $name, $hash)) {
-                    $response['message'] = "Registration successful !";
+                    $response['message'] = "successful";
                     // header("location:" . BASEURL . "login");
                 } else {
-                    $response['message'] = "Registration unsuccessful !";
+                    $response['message'] = "unsuccessful";
                     // header("location:" . BASEURL . "register/index/1");
                 }
             } else {
-                $response['message'] = "Invalid Data !";
+                $response['message'] = "invalid";
                 // header("location:" . BASEURL . "register/index/2");
             }
         // } else {

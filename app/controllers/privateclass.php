@@ -2,9 +2,13 @@
 
 class privateclass extends Controller
 {
+    public function __construct()
+    {
+        session_start();
+        flashMessage();
+    }
     public function index()
     {
-        
     }
 
     public function create()
@@ -79,6 +83,7 @@ class privateclass extends Controller
 
     public function bmcNext()
     {
+        flashMessage("ok");
         $this->view('Teacher/BMC2');
     }
 
