@@ -12,6 +12,7 @@
 </head>
 
 <body>
+    
     <div class="message-area">
         <div class="message">
             <div class="message-text">
