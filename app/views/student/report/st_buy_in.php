@@ -7,8 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/x-icon" href="<?php echo BASEURL ?>assets/mentor.ico">
     <title>Buy Me A Coffee</title>
-    <link rel="stylesheet" href="<?php echo BASEURL?>public/stylesheets/t_style.css">
-    <link rel="stylesheet" href="<?php echo BASEURL?>public/stylesheets/t_card_set.css">
+    <link rel="stylesheet" href="<?php echo BASEURL?>public/stylesheets/Student/t_style.css">
+    <link rel="stylesheet" href="<?php echo BASEURL?>public/stylesheets/Student/t_card_set.css">
 </head>
 
 <body>
@@ -41,7 +41,7 @@
                  <!-- Title and sub title of middle part -->
                 <div class="mid-title">
                     <h1>BUY ME A COFFEE</h1>
-                    <h6>Teacher Home/ Buy Me a Coffee</h6>
+                    <h6>Student Home/ Buy Me a Coffee</h6>
                     <br><br><br>
                     <h3>you entered</h3><br>
                     <h3>rs ***** amount</h3><br>
@@ -78,7 +78,7 @@
         </div>  
     </section>      
 </body>
-<script>
+<!-- <script>
     let toggle = true;
 
     const getElement = (id) => document.getElementById(id);
@@ -115,6 +115,9 @@
 
 
 
-</script>
+</script> -->
+
+<script src="<?php echo BASEURL ?>public/javascripts/st_auth_script.js"></script>
+
 
 </html>

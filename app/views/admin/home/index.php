@@ -9,8 +9,10 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>login</title>
+        <link rel="stylesheet" href="<?php echo BASEURL?>stylesheets/admin/ad_popupmenue.css">
         <link rel="stylesheet" href="<?php echo BASEURL?>stylesheets/admin/ad_dashboard.css">
         <link rel="stylesheet" href="<?php echo BASEURL?>stylesheets/admin/style.css">
+        
     </head>
     <nav>
         <div class="ad_nav">
@@ -84,7 +86,7 @@
                         <a href="#">
                             <img src="<?php echo BASEURL?>assets/admin/Vector (3).png" alt="notify">
                         </a>
-                        <a href="#">
+                        <a id="profile-btn">
                             <img src="<?php echo BASEURL?>assets/admin/Ellipse 2.png" alt="profile">
                         </a>
                     </div>
@@ -291,17 +293,61 @@
                             </div>
                         </div>
                     </div>
-
-
-
-
-
                 </section>
-
             </div>
         </section>
-        </div>
+        <style>
+            .tab{
+                padding:5px 10px;
+            }
+        </style>
+        <section
+        id="popup-menu">
+        <!-- style="width:150px;display:none;position:absolute;flex-direction:column;top:85px;right:30px;z-index:100;
+        background:white;"> -->
+            <!-- <div class="tab">
+                jhxj
+            </div> -->
+            <div class="tab">
+                <div class="tabcont">
+                    <img class="mini" src="<?php echo BASEURL?>assets/admin/profileicon.png">
+                    Profile
+
+
+                </div>
+                
+            </div>
+            <div class="tab">
+                <div class="tabcont">
+                    <img class="mini" src="<?php echo BASEURL?>assets/admin/settingicon.png">
+                    Settings
+
+
+                </div>
+                </div>
+            <div class="tab">
+                <div class="tabcont">
+                    <img class="mini" src="<?php echo BASEURL?>assets/admin/activitylogicon.png">
+                    Activity Log
+
+
+                </div>
+                
+            </div>
+            <div class="tab">
+                <div class="tabcont">
+                    <img class="mini" src="<?php echo BASEURL?>assets/admin/logouticon.png">
+                    Logout
+
+
+                </div>
+                
+            </div>
+            
+
         </section>
+        </div>
+        
 
     </body>
 
@@ -337,6 +383,21 @@
                 toggle = true;
             }
         })
+
+        const profileBtn = document.getElementById("profile-btn");
+        const popupMenu = document.getElementById("popup-menu")
+        let toggler = false;
+
+        profileBtn.addEventListener('click',()=>{
+            if(toggler){
+                popupMenu.style.display = "none";
+                toggler = false
+                
+            }else{
+                popupMenu.style.display = "flex";
+                toggler = true
+            }
+        });
     </script>
 
 

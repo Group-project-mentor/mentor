@@ -1,12 +1,12 @@
 <?php
 
-class St_Inside_subject extends Controller
+class St_video_play extends Controller
 {
     public function index()
     {
         sessionValidator();
         $this->hasLogged();
-        $this->view('student/enrollment/st_Inside_subject');
+        $this->view('student/enrollment/st_video_play');
 
     }
 

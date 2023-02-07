@@ -7,8 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/x-icon" href="<?php echo BASEURL ?>assets/mentor.ico">
     <title>Past Papers</title>
-    <link rel="stylesheet" href="<?php echo BASEURL ?>stylesheets/style.css">
-    <link rel="stylesheet" href="<?php echo BASEURL ?>stylesheets/st_resources.css">
+    <link rel="stylesheet" href="<?php echo BASEURL ?>stylesheets/Student/style.css">
+    <link rel="stylesheet" href="<?php echo BASEURL ?>stylesheets/Student/st_resources.css">
 </head>
 
 <body>

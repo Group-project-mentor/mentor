@@ -6,8 +6,8 @@ class St_enrolled_subject_model extends Model{
     }
 
     public function getClasses2() {
-        $id = 3;
-        $q ="SELECT * from st_enroll_subject INNER JOIN subject on st_enroll_subject.subject_id = subject.id WHERE st_enroll_subject.grade_id = 3 and st_enroll_subject.student_id = 5 ";
+        $id = 1;
+        $q ="SELECT * from st_enroll_subject INNER JOIN subject on st_enroll_subject.subject_id = subject.id WHERE st_enroll_subject.grade_id = 1 and st_enroll_subject.student_id = 2 ";
         $result = $this->executeQuery($q);
         if($result->num_rows > 0)
         {

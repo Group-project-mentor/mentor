@@ -12,6 +12,12 @@
     color: rgb(85, 85, 85);
 }
 
+.rc-resource-header h3 {
+    font-size:large;
+    letter-spacing: 5px;
+    color: rgb(85, 85, 85);
+}
+
 .rc-resource-header a {
     text-decoration: none;
 }
@@ -197,6 +203,10 @@
     margin-bottom: 8px;
     font-size: large;
     transition: all 0.5s;
+}
+
+.rc-pp-row img {
+    width: 20px;
 }
 
 .rc-pp-row:hover {
