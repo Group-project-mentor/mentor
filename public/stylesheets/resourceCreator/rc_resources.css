@@ -49,16 +49,19 @@
 }
 
 .rc-video-card img {
-    padding: 5px 10px;
+    margin-right: 5px;
     width: 200px;
 }
 
 .rc-video-card a {
-    padding: 2px 4px;
+    padding: 5px 10px;
     border-radius: 10px;
     text-decoration: none;
     color: rgb(43, 43, 43);
     cursor: pointer;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
 }
 
 .rc-video-card label {
@@ -381,6 +384,11 @@
     width: 20px;
 }
 
+.rc-no-data-msg{
+    text-align: center !important;
+    color: #7a7a7a;
+    margin-top: 50px;
+}
 /** media queries  */
 
 @media screen and (max-width:720px) {

@@ -128,6 +128,10 @@ class RcResources extends Controller{
         }
     }
 
+    public function settings($grade,$subject){
+        $this->view('resourceCtr/resources/rc_settings');
+    }
+
     private function filterVideoId($link){
         $splitted_link = explode('/',$link);
         if($splitted_link[2] == "youtu.be"){
@@ -142,5 +146,7 @@ class RcResources extends Controller{
         }
         // var_dump($splitted_link);
     }
+
+
 
 }

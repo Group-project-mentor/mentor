@@ -11,10 +11,10 @@
             <a href="<?php 
                     switch ($data[0][3]) {
                         case 'other':
-                            echo BASEURL."rcEdit/".$data[0][3]."/".$data[0][0];
+                            echo BASEURL."rcResources/others/".$_SESSION['gid']."/".$_SESSION['sid'];
                             break;
                         case 'pdf':
-                            echo BASEURL."rcEdit/document/".$data[0][0];
+                            echo BASEURL."rcResources/documents/".$_SESSION['gid']."/".$_SESSION['sid'];
                             break;
                     }?>">OK</a>
         </div>

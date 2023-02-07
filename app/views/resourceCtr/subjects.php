@@ -13,8 +13,8 @@ if (!isset($_SESSION['user'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>RC-Subjects</title>
     <link rel="icon" type="image/x-icon" href="<?php echo BASEURL ?>assets/mentor.ico">
-    <link rel="stylesheet" href="<?php echo BASEURL . '/public/stylesheets/rc_main.css' ?> ">
-    <link rel="stylesheet" href="<?php echo BASEURL . '/public/stylesheets/rc_card_set.css' ?> ">
+    <link rel="stylesheet" href="<?php echo BASEURL . '/public/stylesheets/resourceCreator/rc_main.css' ?> ">
+    <link rel="stylesheet" href="<?php echo BASEURL . '/public/stylesheets/resourceCreator/rc_card_set.css' ?> ">
 </head>
 
 <body>
@@ -66,10 +66,10 @@ if (!isset($_SESSION['user'])) {
                                     <div class='subject-card'>
                                         <div class="subject-card-inside">
                                             <img src='<?php echo BASEURL?>assets/patterns/<?php echo $count ?>.png' alt='' />
-                                            <div>
-                                                <label class="subject-card-texts"><?php echo ucfirst($row['sname']) ?> </label>
-                                                <label class="subject-card-texts">Grade  <?php echo $row['gname'] ?> </label>
-                                            </div>
+                                        </div>
+                                        <div class="subject-card-titles">
+                                            <label class="subject-card-texts"><?php echo ucfirst($row['sname']) ?> </label>
+                                            <label class="subject-card-texts">Grade  <?php echo $row['gname'] ?> </label>
                                         </div>
 
                                         <a href='<?php echo BASEURL."rcResources/videos/".$row['gid']."/".$row['sid'] ?>'>
