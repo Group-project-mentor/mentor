@@ -58,7 +58,7 @@
                     <div class="rc-resource-table">
                         <div class="rc-pp-row rc-pp-row-head">
                             <div class="rc-resource-col">PDF Name</div>
-                            <div class="rc-resource-col">year</div>
+                            <div class="rc-resource-col">Lesson</div>
                             <div class="rc-resource-col">Part</div>
                             <div></div>
                         </div>
