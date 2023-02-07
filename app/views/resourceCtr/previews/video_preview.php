@@ -8,7 +8,7 @@
     <title>Watch Videos</title>
     <link rel="icon" type="image/x-icon" href="<?php echo BASEURL ?>assets/mentor.ico">
     <link rel="stylesheet" href="<?php echo BASEURL ?>stylesheets/style.css">
-    <link rel="stylesheet" href="<?php echo BASEURL ?>stylesheets/st_card_set.css">
+    <link rel="stylesheet" href="<?php echo BASEURL ?>stylesheets/Student/st_card_set.css">
     <link rel="stylesheet" href="<?php echo BASEURL . '/public/stylesheets/rc_resources.css' ?> ">
 </head>
 
