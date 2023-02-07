@@ -6,8 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Past papers</title>
     <link rel="icon" type="image/x-icon" href="<?php echo BASEURL ?>assets/mentor.ico">
-    <link rel="stylesheet" href="<?php echo BASEURL . '/public/stylesheets/rc_main.css' ?> ">
-    <link rel="stylesheet" href="<?php echo BASEURL . '/public/stylesheets/rc_resources.css' ?> ">
+    <link rel="stylesheet" href="<?php echo BASEURL . '/public/stylesheets/resourceCreator/rc_main.css' ?> ">
+    <link rel="stylesheet" href="<?php echo BASEURL . '/public/stylesheets/resourceCreator/rc_resources.css' ?> ">
 </head>
 
 <body>
@@ -49,7 +49,7 @@
                     <h6>My Subjects / <?php echo ucfirst($_SESSION['sname']) ?> / past papers</h6>
                 </div>
 
-                <!-- Grade choosing interface -->
+                <!--  -->
                 <div class="container-box">
                     <div class="rc-resource-header">
                         <h1>PAST PAPERS</h1>
@@ -59,17 +59,16 @@
                             </div>
                         </a>
                     </div>
-
+                    <?php
+                    if(!empty($data)){ ?>
                     <div class="rc-resource-table">
-                        <div class="rc-pp-row rc-table-title">
+                        <div class="rc-table-title">
                             <div class="rc-resource-col">Pastpaper</div>
                             <div class="rc-resource-col">year</div>
                             <div class="rc-resource-col">Part</div>
                             <div></div>
                         </div>
-                        <?php
-                            if(!empty($data)){
-                                foreach ($data as $row) {
+                        <?php foreach ($data as $row) {
                                     echo "<div class='rc-pp-row'>
                                                 <div class='rc-resource-col'>".$row['name']."</div>
                                                 <div class='rc-resource-col'>".$row['year']."</div>
@@ -82,12 +81,28 @@
                                                         <img src='".BASEURL."assets/icons/icon_edit.png' alt=''>
                                                     </button>
                                                 </div>
-                                            </div>";
+                                            </div>
+                                         </div>";
                                 }
-                            }
-                        ?>
-                    </div>
+                            }else{ ?>
+                            <h2 class="rc-no-data-msg" style="text-align: center;">No Data to Display</h2>
+                        <?php } ?>
+
                 </div>
+                    <?php if(count($data) > 25){ ?>
+                        <div class="pagination-set">
+                            <div class="pagination-set-left">
+                                <b>25</b> Results
+                            </div>
+                            <div class="pagination-set-right">
+                                <button> < </button>
+                                <div class="pagination-numbers">
+                                    1 of 10
+                                </div>
+                                <button> > </button>
+                            </div>
+                        </div>
+                    <?php } ?>
         </div>
     </section>
 </body>

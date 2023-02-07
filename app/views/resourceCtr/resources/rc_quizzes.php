@@ -7,13 +7,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quizzes</title>
     <link rel="icon" type="image/x-icon" href="<?php echo BASEURL ?>assets/mentor.ico">
-    <link rel="stylesheet" href="<?php echo BASEURL . '/public/stylesheets/rc_main.css' ?> ">
-    <link rel="stylesheet" href="<?php echo BASEURL . '/public/stylesheets/rc_resources.css' ?> ">
+    <link rel="stylesheet" href="<?php echo BASEURL . '/public/stylesheets/resourceCreator/rc_main.css' ?> ">
+    <link rel="stylesheet" href="<?php echo BASEURL . '/public/stylesheets/resourceCreator/rc_resources.css' ?> ">
 </head>
 
 <body>
     <?php include_once "components/alerts/rc_delete_alert.php"?>
-
+    <?php 
+        if($data[1] == "dper"){
+            include_once "components/alerts/no_permission.php"; 
+        }
+        // elseif($data[1] == "failed"){
+        //     include_once "components/alerts/res_update_failed.php"; 
+        // }
+    ?>
     <section class="page">
         <!-- Navigation panel -->
         <?php include_once "components/navbars/rc_nav_2.php" ?>
@@ -50,58 +57,68 @@
                     <h6>My Subjects / <?php echo ucfirst($_SESSION['sname']) ?> / quizzes</h6>
                 </div>
 
-                <!-- Grade choosing interface -->
+                <!-- -->
                 <div class="container-box">
                     <div class="rc-resource-header">
                         <h1>QUIZZES</h1>
-                        <a href="">
+                        <a href="<?php echo BASEURL?>quiz/create">
                             <div class="rc-add-btn">
                                 Add Quiz
                             </div>
                         </a>
                     </div>
 
-                    <div class="rc-resource-table">
-
-                        <div class="rc-resource-row rc-table-title">
-                            <div class="rc-resource-col">Quiz Name</div>
-                            <div class="rc-resource-col">Questions</div>
-                            <div></div>
-                        </div>
+                    <section class="quiz-card-list">
                         <?php
-                            if(!empty($data)){
-                                foreach ($data as $row) {
-                                    echo "<div class='rc-resource-row'>
-                                                <div class='rc-resource-col'>".$row['name']."</div>
-                                                <div class='rc-resource-col'>".$row['questions']."</div>
-                                                <div class='rc-quiz-row-btns'>
-                                                    <button onclick='delConfirm(".$row['id'].",2)'>
-                                                        <img src='".BASEURL."assets/icons/icon_delete.png' alt=''>
-                                                    </button>
-                                                    <button>
-                                                        <img src='".BASEURL."assets/icons/icon_edit.png' alt=''>
-                                                    </button>
-                                                </div>
-                                            </div>";
-                                }
-                            }
-                        ?> 
-
-                        <!-- <div class="rc-resource-row">
-                            <div class="rc-resource-col">Genaral </div>
-                            <div class="rc-resource-col">1</div>
-                            <div class="rc-quiz-row-btns">
-                                <button>
-                                    <img src="<?php echo BASEURL ?>assets/icons/icon_delete.png" alt="">
-                                </button>
-                                <button>
-                                    <img src="<?php echo BASEURL ?>assets/icons/icon_edit.png" alt="">
-                                </button>
+                        if(!empty($data[0])){
+                        foreach ($data[0] as $row) { ?>
+                        <div class="quiz-card-main">
+                            <div class="quiz-card-title">
+                                <?php echo $row['name'] ?>
                             </div>
-                        </div> -->
+                            <div class="quiz-card-content">
+                                <div class="quiz-card-item">
+                                    <?php echo $row['marks'] ?> Marks
+                                </div>
+                                <div class="quiz-card-item">
+                                    10 Questions
+                                </div>
+                            </div>
+                            <div class="quiz-card-button-set">
+                                <a class="quiz-card-btn" onclick='delConfirm(<?php echo $row['id']?>,2)'>
+                                    <img src='<?php echo BASEURL."assets/icons/icon_delete.png" ?>' alt=''>
+                                </a>
+                                <a class="quiz-card-btn" href="<?php echo BASEURL.'quiz/questions/'.$row['id'] ?>">
+                                    <img src='<?php echo BASEURL."assets/icons/icon_edit.png" ?>' alt=''>
+                                </a>
+                                <a class="quiz-card-btn" href="<?php echo BASEURL.'quizPreview/instructions/'.$row['id'] ?>">
+                                    <img src='<?php echo BASEURL."assets/icons/icon_eye.png" ?>' alt=''>
+                                </a>
+                            </div>
+                        </div>
+                        <?php        }
+                        }
+                        else{ ?>
+                            <h2 class="rc-no-data-msg" style="text-align: center;">No Data to Display</h2>
+                        <?php } ?>
+                    </section>
+                </div>
 
+                <?php if(count($data[0]) > 25){ ?>
+                <div class="pagination-set">
+                    <div class="pagination-set-left">
+                        <b>25</b> Results
+                    </div>
+                    <div class="pagination-set-right">
+                        <button> < </button>
+                        <div class="pagination-numbers">
+                            1 of 10
+                        </div>
+                        <button> > </button>
                     </div>
                 </div>
+                <?php } ?>
+
             </div>
     </section>
 </body>

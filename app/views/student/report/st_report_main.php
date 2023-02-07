@@ -14,62 +14,23 @@
 <body>
     <section class="page">
         <!-- Navigation panel -->
-        <nav class="nav-bar" id="nav-bar">
+        <?php include_once "components/navbars/st_navbar_1.php" ?> <!-- used to include_once to add file -->
 
-            <!-- Navigation bar logos -->
-            <div class="nav-upper">
-                <div class="nav-logo-short">
-                    <img src="<?php echo BASEURL?>public/assets/clips/logo2.png" alt="logo" />
-                </div>
-                <div class="nav-logo-long" id="nav-logo-long">
-                <img src="<?php echo BASEURL?>public/assets/clips/logo1.png" alt="logo" />
-                </div>
-            </div>
-
-
-            <!-- Navigation buttons -->
-            <div class="nav-links">
-                <a href="#" class="nav-link">
-                    <img class="active" src="<?php echo BASEURL?>public/assets/icons/icon_class.png" alt="home">
-                    <div class="nav-link-text">Classes</div>
-                </a>
-                <a href="#" class="nav-link">
-                    <img src="<?php echo BASEURL?>public/assets//icons/icon_premium.png" alt="cource">
-                    <div class="nav-link-text">Buy Premium</div>
-                </a>
-                <a href="#" class="nav-link">
-                    <img src="<?php echo BASEURL?>public/assets/icons/icon_report.png" alt="profile">
-                    <div class="nav-link-text">Report Issue</div>
-                </a>
-                <a href="#" class="nav-link">
-                    <img src="<?php echo BASEURL?>public/assets/icons/icon_billing.png" alt="report">
-                    <div class="nav-link-text">Billing</div>
-                </a>
-                <a href="#" class="nav-link">
-                    <img src="<?php echo BASEURL?>public/assets/icons/icon_bmc.png" alt="bmc">
-                    <div class="nav-link-text">Buy me a coffee</div>
-                </a>
-            </div>
-
-            <!-- Navigation bar toggler -->
-            <div class="nav-toggler" id="nav-toggler">
-            <img src="<?php echo BASEURL?>public/assets/icons/toggler.png" alt="toggler">
-            </div>
-        </nav>
 
         <div class="content-area">
 
             <!-- Top bar -->
             <section class="top-bar">
-                
+
                 <div class="top-bar-btns">
-                    <a href="#">
-                        <a class="back-btn" href="<?php BASEURL ?>st_watch_video">Back</a>
+                
+                    <a href="<?php echo BASEURL?>home">
+                        <div class="back-btn">Back</div>
                     </a>
                     <a href="#">
                         <img src="<?php echo BASEURL?>public/assets/icons/icon_notify.png" alt="notify">
                     </a>
-                    <a href="#">
+                    <a href="<?php echo BASEURL?>st_profile">
                         <img src="<?php echo BASEURL?>public/assets/icons/icon_profile_black.png" alt="profile">
                     </a>
                 </div>
@@ -91,16 +52,17 @@
                   
                       <label for="issue"></label>
                       <select id="issue" name="issue">
-                        <option value="Category1">Category 1</option>
-                        <option value="Category2">Category 2</option>
-                        <option value="Category3">Category 3</option>
-                        <option value="Category4">Category 4</option>
-                        <option value="Category5">Category 5</option>
-                        <option value="Category6">Category 6</option>
+                        <option value="Category1">Grade issue</option>
+                        <option value="Category2">Subject issue</option>
+                        <option value="Category3">Profile issue</option>
+                        <option value="Category4">Payment issue</option>
+                        <option value="Category5">Buy me a coffee issue</option>
+                        <option value="Category6">Settings issue</option>
                       </select>
                     
                       <!--<input type="submit" value="Next">-->
-                      <a href="<?php echo BASEURL?>privateclass/reportText"><div class="mid-back-btn">Next</div></a>
+                      <br><br>
+                      <a href="<?php echo BASEURL?>st_report_main/st_report_text"><div class="back-btn" style="width:100px">Next</div></a>
                     </form>
                   </div>
 
@@ -109,7 +71,8 @@
              <!-- bottom part -->
              <section class="Teacher-class-bottom">
                 <div class="issue-decorator">
-                    <img src="<?php echo BASEURL?>public/assets/clips/issue.png" alt="profile">
+                    <img src="<?php echo BASEURL?>public/assets/clips/issue.png" alt="profile" style="height:50% ; width:50% ; margin-left: auto;
+  margin-right: auto;">
                 </div>
             </section>
 
@@ -117,7 +80,7 @@
         </div>  
     </section>      
 </body>
-<script>
+<!-- <script>
     let toggle = true;
 
     const getElement = (id) => document.getElementById(id);
@@ -154,6 +117,7 @@
 
 
 
-</script>
+</script> -->
+<script src="<?php echo BASEURL ?>public/javascripts/st_auth_script.js"></script>
 
 </html>

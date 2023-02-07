@@ -2,7 +2,7 @@ let delConfMsg = document.getElementById("delConfMsg");
 let cancelDel = document.getElementById("cancelDel");
 let delBtn = document.getElementById("delBtn");
 
-const BaseUrl = "http://localhost/mentor-interim/";
+const BaseUrl = "http://localhost/mentor/";
 
 function delConfirm (id, no){
     let type = '';

@@ -33,28 +33,28 @@
 
             <!-- Navigation buttons -->
             <div class="nav-links">
-            <a href="<?php echo BASEURL?>" class="nav-link">
-                        <img class="active" src="<?php echo BASEURL?>assets/admin/bi_grid-fill.png" alt="dsh">
-                        <div class="nav-link-text">Dashboard</div>
-                    </a>
-                    <a href="<?php echo BASEURL?>adhumanResource" class="nav-link">
-                        <img src="<?php echo BASEURL?>assets/admin/bi_people-fill.png" alt="hr">
-                        <div class="nav-link-text">Human Resource</div>
-                    </a>
-                    <a href="<?php echo BASEURL?>adVerification" class="nav-link">
-                        <img src="<?php echo BASEURL?>assets/admin/bi_patch-check-fill.png" alt="vc">
-                        <div class="nav-link-text">Verification Center</div>
-                    </a>
-                    <a href="<?php echo BASEURL?>adScholPro" class="nav-link">
-                        <img src="<?php echo BASEURL?>assets/admin/bi_mortarboard-fill.png" alt="sp">
-                        <div class="nav-link-text">Scholorship Programe</div>
-                    </a>
-                <a href="#" class="nav-link">
-                    <img src="<?php echo BASEURL?>assets/admin/Vector.png" alt="wallet">
+                <a href="<?php echo BASEURL ?>" class="nav-link">
+                    <img class="active" src="<?php echo BASEURL ?>assets/admin/bi_grid-fill.png" alt="dsh">
+                    <div class="nav-link-text">Dashboard</div>
+                </a>
+                <a href="<?php echo BASEURL ?>adhumanResource" class="nav-link">
+                    <img src="<?php echo BASEURL ?>assets/admin/bi_people-fill.png" alt="hr">
+                    <div class="nav-link-text">Human Resource</div>
+                </a>
+                <a href="<?php echo BASEURL ?>adVerification" class="nav-link">
+                    <img src="<?php echo BASEURL ?>assets/admin/bi_patch-check-fill.png" alt="vc">
+                    <div class="nav-link-text">Verification Center</div>
+                </a>
+                <a href="<?php echo BASEURL ?>adScholPro" class="nav-link">
+                    <img src="<?php echo BASEURL ?>assets/admin/bi_mortarboard-fill.png" alt="sp">
+                    <div class="nav-link-text">Scholorship Programe</div>
+                </a>
+                <a href="<?php echo BASEURL ?>adWallet" class="nav-link">
+                    <img src="<?php echo BASEURL ?>assets/admin/Vector.png" alt="wallet">
                     <div class="nav-link-text">Wallet</div>
                 </a>
                 <a href="#" class="nav-link">
-                    <img src="<?php echo BASEURL?>assets/admin/Vector (1).png" alt="an">
+                    <img src="<?php echo BASEURL ?>assets/admin/Vector (1).png" alt="an">
                     <div class="nav-link-text">Analitics</div>
                 </a>
             </div>

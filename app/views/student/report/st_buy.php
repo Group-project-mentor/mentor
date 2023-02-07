@@ -14,49 +14,8 @@
 <body>
     <section class="page">
         <!-- Navigation panel -->
-        <nav class="nav-bar" id="nav-bar">
+        <?php include_once "components/navbars/st_navbar_1.php" ?> <!-- used to include_once to add file -->
 
-            <!-- Navigation bar logos -->
-            <div class="nav-upper">
-                <div class="nav-logo-short">
-                <img src="<?php echo BASEURL?>public/assets/clips/logo2.png" alt="logo" />
-                </div>
-                <div class="nav-logo-long" id="nav-logo-long">
-                <img src="<?php echo BASEURL?>public/assets/clips/logo1.png" alt="logo" />
-                </div>
-            </div>
-
-
-
-            <!-- Navigation buttons -->
-            <div class="nav-links">
-                <a href="#" class="nav-link">
-                    <img class="active" src="<?php echo BASEURL?>public/assets/icons/icon_class.png" alt="home">
-                    <div class="nav-link-text">Classes</div>
-                </a>
-                <a href="#" class="nav-link">
-                    <img src="<?php echo BASEURL?>public/assets/icons/icon_premium.png" alt="cource">
-                    <div class="nav-link-text">Buy Premium</div>
-                </a>
-                <a href="#" class="nav-link">
-                    <img src="<?php echo BASEURL?>public/assets/icons/icon_report.png" alt="profile">
-                    <div class="nav-link-text">Report Issue</div>
-                </a>
-                <a href="#" class="nav-link">
-                    <img src="<?php echo BASEURL?>public/assets/icons/icon_billing.png" alt="report">
-                    <div class="nav-link-text">Billing</div>
-                </a>
-                <a href="#" class="nav-link">
-                    <img src="<?php echo BASEURL?>public/assets/icons/icon_bmc.png" alt="bmc">
-                    <div class="nav-link-text">Buy me a coffee</div>
-                </a>
-            </div>
-
-            <!-- Navigation bar toggler -->
-            <div class="nav-toggler" id="nav-toggler">
-                <img src="<?php echo BASEURL?>public/assets/icons/toggler.png" alt="toggler">
-            </div>
-        </nav>
 
         <div class="content-area">
 
@@ -70,7 +29,7 @@
                     <a href="#">
                         <img src="<?php echo BASEURL?>public/assets/icons/icon_notify.png" alt="notify">
                     </a>
-                    <a href="#">
+                    <a href="<?php echo BASEURL?>st_profile">
                         <img src="<?php echo BASEURL?>public/assets/icons/icon_profile_black.png" alt="profile">
                     </a>
                 </div>
@@ -82,17 +41,17 @@
                  <!-- Title and sub title of middle part -->
                 <div class="mid-title">
                     <h1>BUY ME A COFFEE</h1>
-                    <h6>Teacher Home/ Buy Me a Coffee</h6>
+                    <h6>Student Home/ Buy Me a Coffee</h6>
                     <br><br><br>
                     <h3>Enter the amount</h3>
                 </div>
 
                 <div class="class section">
-                    <form action="<?php echo BASEURL;?>privateclass/createAction" method="POST">
+                    <form action="<?php echo BASEURL;?>St_buy" method="POST">
                       <label for="class_name"></label>
                       <input type="text" id="class_name" name="class_name" placeholder="Enter the amount">
-                     
-                      <a href="<?php echo BASEURL?>privateclass/bmcNext"><div class="mid-back-btn">Next</div></a>
+                     <br><br>
+                      <a href="<?php echo BASEURL?>St_buy/St_buy_in"><div style="width:100px" class="back-btn">Next</div></a>
                     </form>
                   </div>
 
@@ -110,7 +69,7 @@
         </div>  
     </section>      
 </body>
-<script>
+<!-- <script>
     let toggle = true;
 
     const getElement = (id) => document.getElementById(id);
@@ -147,6 +106,7 @@
 
 
 
-</script>
+</script> -->
+<script src="<?php echo BASEURL ?>public/javascripts/st_auth_script.js"></script>
 
 </html>

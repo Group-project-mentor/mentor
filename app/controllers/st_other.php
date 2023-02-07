@@ -2,11 +2,27 @@
 
 class St_other extends Controller
 {
-    public function index()
+    public function __construct()
     {
         sessionValidator();
         $this->hasLogged();
+    }
+    
+    public function index()
+    {
         $this->view('student/enrollment/st_other');
+
+    }
+
+    public function st_other_do()
+    {
+        $this->view('student/enrollment/st_other_do');
+
+    }
+
+    public function st_other_down()
+    {
+        $this->view('student/enrollment/st_other_down');
 
     }
 

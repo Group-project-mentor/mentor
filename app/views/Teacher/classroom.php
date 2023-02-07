@@ -11,6 +11,12 @@
 </head>
 
 <body>
+
+<?php 
+   if(isset($_SESSION['message']) && $_SESSION['message']== "ok"){
+            include_once "components/alerts/Teacher/bmc_success.php";
+        }
+   ?>
     <section class="page">
         <!-- Navigation panel -->
         <nav class="nav-bar" id="nav-bar">
@@ -35,7 +41,7 @@
                     <img class="active" src="<?php echo BASEURL?>public/assets/Teacher/icons/icon_class.png" alt="home">
                     <div class="nav-link-text">Classes</div>
                 </a>
-                <a href="#" class="nav-link">
+                <a href="<?php BASEURL ?>privateclass/premiumPlan" class="nav-link">
                     <img src="<?php echo BASEURL?>public/assets/Teacher/icons/icon_premium.png" alt="cource">
                     <div class="nav-link-text">Buy Premium</div>
                 </a>
@@ -43,7 +49,7 @@
                     <img src="<?php echo BASEURL?>public/assets/Teacher/icons/icon_report.png" alt="profile">
                     <div class="nav-link-text">Report Issue</div>
                 </a>
-                <a href="#" class="nav-link">
+                <a href="<?php BASEURL ?>privateclass/billing" class="nav-link">
                     <img src="<?php echo BASEURL?>public/assets/Teacher/icons/icon_billing.png" alt="report">
                     <div class="nav-link-text">Billing</div>
                 </a>

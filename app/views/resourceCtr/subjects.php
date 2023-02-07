@@ -13,8 +13,8 @@ if (!isset($_SESSION['user'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>RC-Subjects</title>
     <link rel="icon" type="image/x-icon" href="<?php echo BASEURL ?>assets/mentor.ico">
-    <link rel="stylesheet" href="<?php echo BASEURL . '/public/stylesheets/rc_main.css' ?> ">
-    <link rel="stylesheet" href="<?php echo BASEURL . '/public/stylesheets/rc_card_set.css' ?> ">
+    <link rel="stylesheet" href="<?php echo BASEURL . '/public/stylesheets/resourceCreator/rc_main.css' ?> ">
+    <link rel="stylesheet" href="<?php echo BASEURL . '/public/stylesheets/resourceCreator/rc_card_set.css' ?> ">
 </head>
 
 <body>
@@ -60,12 +60,25 @@ if (!isset($_SESSION['user'])) {
 
                         <?php
                             if(!empty($data)){
+                                $count = 1;
                                 foreach ($data as $row) {
-                                    echo "<div class='subject-card'>
-                                                <img src='assets/patterns/1.png' alt='' />
-                                                <a href='".BASEURL."rcResources/videos/".$row['gid']."/".$row['sid']."'><label>".$row['sname']." </label></a>
-                                                <label>Grade : ".$row['gname']."</label>
-                                            </div>";
+                                    ?>
+                                    <div class='subject-card'>
+                                        <div class="subject-card-inside">
+                                            <img src='<?php echo BASEURL?>assets/patterns/<?php echo $count ?>.png' alt='' />
+                                        </div>
+                                        <div class="subject-card-titles">
+                                            <label class="subject-card-texts"><?php echo ucfirst($row['sname']) ?> </label>
+                                            <label class="subject-card-texts">Grade  <?php echo $row['gname'] ?> </label>
+                                        </div>
+
+                                        <a href='<?php echo BASEURL."rcResources/videos/".$row['gid']."/".$row['sid'] ?>'>
+                                            <label>Enter</label>
+                                            <img src='<?php echo BASEURL?>assets/icons/icon-enter.png' alt='' />
+                                        </a>
+                                    </div>
+                    <?php           $count++;
+                                    if($count>12) $count = 1;
                                 }
                             }
                         ?> 

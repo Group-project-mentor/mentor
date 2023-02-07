@@ -29,7 +29,7 @@
 
                         <!-- Navigation buttons -->
                         <div class="nav-links">
-                <a href="#" class="nav-link">
+                <a href="<?php BASEURL ?>membersDetails" class="nav-link">
                     <img class="active" src="<?php echo BASEURL?>public/assets/Teacher/icons/participants.png" alt="home">
                     <div class="nav-link-text">Participants</div>
                 </a>
@@ -79,7 +79,7 @@
                     <a href="#">
                         <img src="<?php echo BASEURL?>public/assets/Teacher/icons/icon_notify.png" alt="notify">
                     </a>
-                    <a href="#">
+                    <a href="<?php echo  BASEURL ?>privateclass/profile">
                         <img src="<?php echo BASEURL?>public/assets/Teacher/icons/icon_profile_black.png" alt="profile">
                     </a>
                 </div>

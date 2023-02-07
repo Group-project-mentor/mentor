@@ -1,4 +1,5 @@
-<!-- Navigation panel -->
+<!-- Navigation bar for basic pages in public mode -->
+
         
 <nav class="nav-bar" id="nav-bar">
 
@@ -30,11 +31,11 @@
     <!-- Navigation buttons -->
     <div class="nav-links">
 
-        <a href="<?php echo BASEURL ?>st_report_from_grade.php" class="nav-link">
+        <a href="<?php echo BASEURL ?>st_report_main" class="nav-link">
             <img src="<?php echo BASEURL ?>assets/icons/icon_report.png" alt="report">
             <div class="nav-link-text"> Report</div>
         </a>
-        <a href="#" class="nav-link">
+        <a href="<?php echo BASEURL?>st_buy" class="nav-link">
             <img src="<?php echo BASEURL ?>assets/icons/icon_bmc.png" alt="bmc">
             <div class="nav-link-text">Buy me a coffee</div>
         </a>

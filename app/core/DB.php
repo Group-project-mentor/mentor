@@ -36,7 +36,12 @@ class DB{
 
         public function fetchAll($stmt){
             $stmt->execute();
-            return $stmt->fetch();
+            $result =  $stmt->get_result();
+            $row_set = array();
+            while ($row = $result->fetch_array(MYSQLI_NUM)) {
+                $row_set[] = $row;
+            }
+            return $row_set;
         }
     }
 ?>

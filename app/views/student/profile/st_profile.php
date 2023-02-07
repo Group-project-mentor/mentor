@@ -6,38 +6,39 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/x-icon" href="<?php echo BASEURL ?>assets/mentor.ico">
-    <title>profile</title>
-    <link rel="stylesheet" href="<?php echo BASEURL ?>stylesheets/st_main.css">
-    <link rel="stylesheet" href="<?php echo BASEURL ?>stylesheets/st_profile.css">
-    <link rel="stylesheet" href="<?php echo BASEURL ?>stylesheets/st_resources.css">
+    <title>Student Profile</title>
+    <link rel="stylesheet" href="<?php echo BASEURL?>public/stylesheets/t_style.css">
+    <link rel="stylesheet" href="<?php echo BASEURL?>public/stylesheets/t_profile.css">
 </head>
 
 <body>
-
-    <?php
-    if (!empty($data[1]) && $data[1] == "success") {
-        include_once BASEURL ."components/alerts/password_changed.php";
-    }
-    ?>
-
     <section class="page">
-
         <!-- Navigation panel -->
-        <?php include_once BASEURL . "components/navbars/st_navbar_1.php"?>
+        <?php include_once "components/navbars/st_navbar_4.php" ?> <!-- used to include_once to add file -->
 
-        <!-- Right side container -->
+
         <div class="content-area">
 
             <!-- Top bar -->
             <section class="top-bar">
                 <div class="search-bar">
+                    <input type="text" name="" id="" placeholder="Search...">
+                    <a href="">
+                        <img src="<?php echo BASEURL?>public/assets/icons/icon_search.png" alt="">
+                    </a>
                 </div>
                 <div class="top-bar-btns">
-                    <a href="#">
-                        <img src="<?php echo BASEURL ?>assets/icons/icon_notify.png" alt="notify">
+                    <a href="<?php echo BASEURL?>home">
+                        <div class="back-btn">Back</div>
                     </a>
-                    <a href="<?php echo BASEURL . 'st_profile' ?>">
-                        <img src="<?php echo BASEURL ?>assets/icons/icon_profile_black.png" alt="profile">
+                    <a href="#">
+                        <img src="<?php echo BASEURL?>public/assets/icons/icon_notify.png" alt="notify">
+                    </a>
+                    <a href="#">
+                        <img src="<?php echo BASEURL?>public/assets/icons/icon_profile_black.png" alt="profile">
+                    </a>
+                    <a href="<?php echo BASEURL?>logout">
+                        <div class="back-btn">Log Out</div>
                     </a>
                 </div>
             </section>
@@ -45,51 +46,67 @@
             <!-- Middle part for whole content -->
             <section class="mid-content">
 
-
-
-                <div class="rc-resource-header">
-                        <!-- Title and sub title of middle part -->
-                        <div class="mid-title">
-                            <h1>Resource Creator Profile</h1>
-                            <h6><?php echo $_SESSION['name'] ?></h6>
-                        </div>
-                        <a href="<?php echo BASEURL . 'logout' ?>">
-                            <div class="rc-add-btn">
-                                <img src="<?php echo BASEURL ?>assets/icons/icon_logout.png"  class="rc-profile-arrow-btn" style="width: 15px;height:15px;margin:auto;">
-                                Logout
-                            </div>
-                        </a>
-                    </div>
+                <!-- Title and sub title of middle part -->
+                <div class="mid-title">
+                    <h1>Student Profile</h1>
+                </div>
 
                 <div class="rc-profile">
                     <div class="rc-profile-main">
-                        <a class="rc-profile-image" href="<?php echo BASEURL ?>st_profile/change/image">
-                            <img src="<?php echo (!empty($data[0][4])) ? $data[0][4] : BASEURL . "assets/clips/profile_img.webp" ?>"
+                        <div class="rc-profile-image " >
+                            <img src="<?php echo BASEURL?>public/assets/clips/profile_img.webp" 
                                  alt="profile"
-                                 id="profileImg"/>
-                            <span class="rc-profile-change-btn hidden" id="changeBtn">Change</span>
-                        </a>
+                                 id="profileImg"
+                                 class="rc-profile-img-hidden" />
+                            <span class="rc-profile-change-btn" id="changeBtn">Change</span>
+                        </div>
                         <div class="rc-profile-table">
                             <div class="rc-profile-row">
                                 <div class="rc-profile-left">
-                                    User ID
+                                    User id
                                 </div>
                                 <div class="rc-profile-right">
                                     <div>
-                                        <?php echo (!empty($data[0])) ? $data[0][0] : "" ?>
+                                        10000
                                     </div>
                                 </div>
                             </div>
                             <div class="rc-profile-row">
                                 <div class="rc-profile-left">
-                                    Name
+                                    first name
                                 </div>
                                 <div class="rc-profile-right">
                                     <div>
-                                        <?php echo (!empty($data[0])) ? $data[0][1] : "" ?>
+                                        Nimal
                                     </div>
-                                    <a href="<?php echo BASEURL ?>st_profile/change/name">
-                                        <img src="<?php echo BASEURL ?>assets/icons/icon_next.png" alt="notify" class="rc-profile-arrow-btn">
+                                    <a>
+                                        >
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="rc-profile-row">
+                                <div class="rc-profile-left">
+                                    last name
+                                </div>
+                                <div class="rc-profile-right">
+                                    <div>
+                                        Kumara
+                                    </div>
+                                    <a>
+                                        >
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="rc-profile-row">
+                                <div class="rc-profile-left">
+                                    Display name
+                                </div>
+                                <div class="rc-profile-right">
+                                    <div>
+                                        Nimal Kumara
+                                    </div>
+                                    <a>
+                                        >
                                     </a>
                                 </div>
                             </div>
@@ -99,42 +116,46 @@
                                 </div>
                                 <div class="rc-profile-right">
                                     <div>
-                                        <?php echo (!empty($data[0])) ? $data[0][2] : "" ?>
+                                        nimalkumara5@gmail.com
                                     </div>
                                     <a>
-                                        <img src="<?php echo BASEURL ?>assets/icons/icon_next.png" alt="notify" class="rc-profile-arrow-btn">
+                                        >
                                     </a>
                                 </div>
                             </div>
                             <div class="rc-profile-row">
                                 <div class="rc-profile-left">
-                                    Mobile Number
+                                    Mobile number
                                 </div>
                                 <div class="rc-profile-right">
                                     <div>
-                                        <?php echo (!empty($data[0])) ? $data[0][3] : "" ?>
+                                        0705298767
                                     </div>
-                                    <a href="<?php echo BASEURL ?>st_profile/change/mobile">
-                                        <img src="<?php echo BASEURL ?>assets/icons/icon_next.png" alt="notify" class="rc-profile-arrow-btn">
+                                    <a>
+                                        >
                                     </a>
                                 </div>
                             </div>
-                            <a class="rc-profile-row" style="text-decoration:none;padding:10px" href="<?php echo BASEURL ?>st_profile/change/password">
-                                <div class="rc-profile-left" style="color:black;">
-                                    Update Password
-                                </div>
-                                <div class="rc-profile-right">
-                                        <img src="<?php echo BASEURL ?>assets/icons/icon_next.png" alt="notify" class="rc-profile-arrow-btn">
-                                </div>
-                            </a>
-                            <a class="rc-profile-row txt-red">
+                            <div class="rc-profile-row">
                                 <div class="rc-profile-left">
-                                    Delete Account
+                                    Update password
                                 </div>
                                 <div class="rc-profile-right">
-                                    <img src="<?php echo BASEURL ?>assets/icons/icon_next.png" alt="notify" class="rc-profile-arrow-btn">
+                                    <a>
+                                        >
+                                    </a>
                                 </div>
-                            </a>
+                            </div>
+                            <div class="rc-profile-row txt-red">
+                                <div class="rc-profile-left">
+                                    Delete account
+                                </div>
+                                <div class="rc-profile-right">
+                                    <a>
+                                        >
+                                    </a>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -145,7 +166,42 @@
     </section>
 </body>
 
-<script>
+<!-- <script>
+    let toggle = true;
+
+    const getElement = (id) => document.getElementById(id);
+
+    let togglerBtn = getElement("nav-toggler");
+    let nav = getElement("nav-bar");
+    let logoLong = getElement("nav-logo-long");
+    let navMiddle = getElement("nav-middle");
+    
+    let navLinkTexts = document.getElementsByClassName("nav-link-text");
+
+    togglerBtn.addEventListener('click', () => {
+        nav.classList.toggle("nav-bar-small");
+
+        if (toggle) {
+            logoLong.classList.add("hidden");
+            navMiddle.classList.add("hidden");
+            togglerBtn.classList.add("toggler-rotate");
+            for (i = 0; i < navLinkTexts.length; i++) {
+                navLinkTexts[i].classList.add("hidden");
+            }
+            toggle = false;
+        }
+
+        else {
+            logoLong.classList.remove("hidden");
+            navMiddle.classList.remove("hidden");
+            togglerBtn.classList.remove("toggler-rotate");
+            for (i = 0; i < navLinkTexts.length; i++) {
+                navLinkTexts[i].classList.remove("hidden");
+            }
+            toggle = true;
+        }
+    });
+
     let profileImg = getElement('profileImg');
     let changeBtn = getElement('changeBtn');
 
@@ -159,6 +215,14 @@
         changeBtn.classList.add('hidden');
     })
 
-</script>
+
+
+
+
+
+</script> -->
+
+<script src="<?php echo BASEURL ?>public/javascripts/st_auth_script.js"></script>
+
 
 </html>

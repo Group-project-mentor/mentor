@@ -8,16 +8,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Add Video</title>
     <link rel="icon" type="image/x-icon" href="<?php echo BASEURL ?>assets/mentor.ico">
-    <link rel="stylesheet" href="<?php echo BASEURL . '/public/stylesheets/rc_main.css' ?> ">
-    <link rel="stylesheet" href="<?php echo BASEURL . '/public/stylesheets/rc_resources.css' ?> ">
+    <link rel="stylesheet" href="<?php echo BASEURL . '/public/stylesheets/resourceCreator/rc_main.css' ?> ">
+    <link rel="stylesheet" href="<?php echo BASEURL . '/public/stylesheets/resourceCreator/rc_resources.css' ?> ">
 </head>
 
 <body>
-    <?php 
-        if(isset($data[1]) && $data[0] == "success"){
-            include_once "components/alerts/uploadSuccess.php"; 
+    <?php
+        if(isset($_SESSION['message']) && $_SESSION['message']== "success"){
+            include_once "components/alerts/uploadSuccess.php";
         }
-        elseif(isset($data[1]) && $data[0] == "error"){
+//        if(isset($data[1]) && $data[0] == "success"){
+//            include_once "components/alerts/uploadSuccess.php";
+//        }
+        elseif(isset($_SESSION['message']) && $_SESSION['message']== "error"){
             include_once "components/alerts/uploadFailed.php";
         }
     ?>
@@ -87,7 +90,6 @@
                         
                     </form>
                 </div>
-
         </div>
 
     </section>

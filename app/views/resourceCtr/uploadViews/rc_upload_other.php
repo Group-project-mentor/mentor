@@ -8,8 +8,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Add Other Resource</title>
     <link rel="icon" type="image/x-icon" href="<?php echo BASEURL ?>assets/mentor.ico">
-    <link rel="stylesheet" href="<?php echo BASEURL . '/public/stylesheets/rc_main.css' ?> ">
-    <link rel="stylesheet" href="<?php echo BASEURL . '/public/stylesheets/rc_resources.css' ?> ">
+    <link rel="stylesheet" href="<?php echo BASEURL . '/public/stylesheets/resourceCreator/rc_main.css' ?> ">
+    <link rel="stylesheet" href="<?php echo BASEURL . '/public/stylesheets/resourceCreator/rc_resources.css' ?> ">
 </head>
 
 <body>
@@ -70,14 +70,15 @@ if (isset($data[1]) && $data[0] == "success") {
                             Upload or drag and drop document
                         </div>
                         <div class="rc-form-group">
-                            <label>Add title +</label>
+                            <label>Title </label>
                             <input type="text" name="title"/>
                         </div>
                         <div class="rc-form-group">
-                            <label>Add file +</label>
+                            <label>Add file </label>
                             <div>
                                 <input id="inputBtn" type="file" name="resource">
                                 <h3>Drag or choose file</h3>
+                                <img id="upload-image" class="resource-upload-animated" src="<?php echo BASEURL?>assets/icons/gif_upload.gif" />
                             </div>
                             <p id="fileName" style="text-align:right;">no files selected</p>
                             <h5 id="fileSize" style="text-align:right;"></h5>

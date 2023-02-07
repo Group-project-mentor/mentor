@@ -1,9 +1,12 @@
 <?php
 
 class RcSubjects extends Controller{
+    
+    private $user = "rc";
 
     public function __construct(){
         sessionValidator();
+        $this->userValidate($this->user);
     }
         
     public function index(){
@@ -19,7 +22,5 @@ class RcSubjects extends Controller{
         }
         $this->view('resourceCtr/subjects',$rows); 
     }
-
-    
 }
 ?>
