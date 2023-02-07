@@ -5,16 +5,16 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quizzes</title>
     <link rel="icon" type="image/x-icon" href="<?php echo BASEURL ?>assets/mentor.ico">
+    <title>Quizzes</title>
     <link rel="stylesheet" href="<?php echo BASEURL?>stylesheets/style.css">
-    <link rel="stylesheet" href="<?php echo BASEURL?>stylesheets/st_card_set.css">
+    <link rel="stylesheet" href="<?php echo BASEURL?>stylesheets/st_resources.css">
 </head>
 
 <body>
     <section class="page">
         <!-- Navigation panel -->
-        <?php include_once "components/navbars/st_navbar_1.php" ?> <!-- used to include_once to add file -->
+        <?php include_once "components/navbars/st_navbar_2.php" ?> <!-- used to include_once to add file -->
 
 
         <div class="content-area">
@@ -28,13 +28,13 @@
                     </a>
                 </div>
                 <div class="top-bar-btns">
-                    <a href="<?php echo BASEURL?>st_courses">
+                    <a href="<?php echo BASEURL?>st_quizzes">
                         <div class="back-btn">Back</div>
                     </a>
                     <a href="#">
                         <img src="<?php echo BASEURL?>assets/icons/icon_notify.png" alt="notify">
                     </a>
-                    <a href="#">
+                    <a href="<?php echo BASEURL?>st_profile">
                         <img src="<?php echo BASEURL?>assets/icons/icon_profile_black.png" alt="profile">
                     </a>
                 </div>
@@ -45,27 +45,17 @@
 
                 <!-- Title and sub title of middle part -->
                 <div class="mid-title">
-                    <h1>C79 - lesson 1 </h1>
-                    <h3>Quiz - Part 1 </h3>
-                    <h2>Grade 8 - C79 - Science</h2>
-                </div>
-
-                
-                <!-- subject cards -->
-                <div class="container-box">
-                    <div>
-                        <h2>Introduction</h2>
-                    </div>
-                    
-                    <div class="subject-card-set">
-                        
-                       
-                    </div>
-                </div>
+                    <h2>C79 - Science</h2>
+                    <br>
+                    <hr style=" height:5px ; background-color:green ;">
+                    <br>
+                    <embed type="text/html" src="st_courses.html"  width="1000" height="500" style="padding-left: 100px;">
+                <div>
             </section>
         </div>
     </section>
 </body>
+
 <script>
     let toggle = true;
 

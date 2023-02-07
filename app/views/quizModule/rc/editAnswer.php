@@ -6,76 +6,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>New Question</title>
-    <link rel="stylesheet" href="<?php echo BASEURL?>public/stylesheets/style.css">
-    <link rel="stylesheet" href="<?php echo BASEURL?>public/stylesheets/quiz/quiz_styles.css">
+    <link rel="stylesheet" href="<?php echo BASEURL ?>public/stylesheets/style.css">
+    <link rel="stylesheet" href="<?php echo BASEURL ?>public/stylesheets/quiz/quiz_styles.css">
 </head>
 
 <body>
 <section class="page">
+
     <!-- Navigation panel -->
-    <nav class="nav-bar" id="nav-bar">
-
-        <!-- Navigation bar logos -->
-        <div class="nav-upper">
-            <div class="nav-logo-short">
-                <img src="<?php echo BASEURL?>public/assets/logo2.png" alt="logo" />
-            </div>
-            <div class="nav-logo-long" id="nav-logo-long">
-                <img src="<?php echo BASEURL?>public/assets/logo1.png" alt="logo" />
-            </div>
-        </div>
-
-
-        <!-- Navigation bar private - public switch -->
-        <div class="nav-middle" id="nav-middle">
-            <p>Public</p>
-            <div class="nav-switch">
-                <label class="switch">
-                    <input type="checkbox" checked>
-                    <span class="slider round"></span>
-                </label>
-            </div>
-            <p class="nav-switch-txt">Private</p>
-        </div>
-
-
-        <!-- Navigation buttons -->
-        <div class="nav-links">
-            <a href="#" class="nav-link">
-                <img class="active" src="<?php echo BASEURL?>public/assets/icons/icon_video.png" alt="home">
-                <div class="nav-link-text">Video</div>
-            </a>
-            <a href="#" class="nav-link">
-                <img src="<?php echo BASEURL?>public/assets/icons/icon_quizzes.png" alt="cource">
-                <div class="nav-link-text">Quizzes</div>
-            </a>
-            <a href="#" class="nav-link">
-                <img src="<?php echo BASEURL?>public/assets/icons/icon_past_papers.png" alt="profile">
-                <div class="nav-link-text">Past papers</div>
-            </a>
-            <a href="#" class="nav-link">
-                <img src="<?php echo BASEURL?>public/assets/icons/icon_pdf.png" alt="report">
-                <div class="nav-link-text">PDF</div>
-            </a>
-            <a href="#" class="nav-link">
-                <img src="<?php echo BASEURL?>public/assets/icons/icon_other.png" alt="bmc">
-                <div class="nav-link-text">Other resource</div>
-            </a>
-            <a href="#" class="nav-link">
-                <img src="<?php echo BASEURL?>public/assets/icons/icon_settings.png" alt="report">
-                <div class="nav-link-text">Settings</div>
-            </a>
-            <a href="#" class="nav-link">
-                <img src="<?php echo BASEURL?>public/assets/icons/icon_report.png" alt="bmc">
-                <div class="nav-link-text">Report issue</div>
-            </a>
-        </div>
-
-        <!-- Navigation bar toggler -->
-        <div class="nav-toggler" id="nav-toggler">
-            <img src="<?php echo BASEURL?>public/assets/icons/toggler.png" alt="toggler">
-        </div>
-    </nav>
+    <?php include_once "components/navbars/rc_nav_2.php"?>
 
     <div class="content-area">
 
@@ -85,14 +24,14 @@
 
             </div>
             <div class="top-bar-btns">
-                <a href="<?php echo BASEURL.'quiz/addAnswers/'.$data[0].'/'.$data[1] ?>">
+                <a href="<?php echo BASEURL . 'quiz/addAnswers/' . $data[0] . '/' . $data[2] ?>">
                     <div class="back-btn">Back</div>
                 </a>
                 <a href="#">
-                    <img src="<?php echo BASEURL?>public/assets/icons/icon_notify.png" alt="notify">
+                    <img src="<?php echo BASEURL ?>public/assets/icons/icon_notify.png" alt="notify">
                 </a>
                 <a href="#">
-                    <img src="<?php echo BASEURL?>public/assets/icons/icon_profile_black.png" alt="profile">
+                    <img src="<?php echo BASEURL ?>public/assets/icons/icon_profile_black.png" alt="profile">
                 </a>
             </div>
         </section>
@@ -103,7 +42,7 @@
             <!-- Title and sub title of middle part -->
             <div class="mid-title">
                 <h1>C79 - Science</h1>
-                <h6>My Subjects / Science-6 / Quizzes / <?php echo $data[0]?> / question <?php echo $data[1][4]?> / edit answer</h6>
+                <h6>My Subjects / Science-6 / Quizzes / <?php echo $data[0] ?> / question <?php echo $data[1][4] ?> / edit answer</h6>
             </div>
 
             <!-- Grade choosing interface -->
@@ -118,13 +57,13 @@
                 </div>
 
                 <div  style="margin-top:30px;" class="quiz-answer-main quiz-ans-popup" id="ansBox">
-                    <form class="quiz-answer-set" action="<?php echo BASEURL.'quiz/editAnswerAction/'.$data[0].'/'.$data[2].'/'.$data[1][0] ?>" method="POST">
+                    <form class="quiz-answer-set" action="<?php echo BASEURL . 'quiz/editAnswerAction/' . $data[0] . '/' . $data[2] . '/' . $data[1][0] ?>" method="POST">
                         <div class="rc-form-group">
                             <div class="answer-option-set">
                                 <h2>Answer</h2>
                             </div>
                             <div class="answer-correctness-btn">
-                                <input type="checkbox" name="correct" id="quiz-answer-radio" value="correct" <?php echo ($data[1][3]==1)?"checked":"" ?> />
+                                <input type="checkbox" name="correct" id="quiz-answer-radio" value="correct" <?php echo ($data[1][3] == 1) ? "checked" : "" ?> />
                                 <label for="quiz-answer-radio">Correct</label>
                             </div>
                             <textarea placeholder="Enter your Answer" name="answer" id="ansTxt" rows="4"><?php echo $data[1][2] ?></textarea>
@@ -178,6 +117,6 @@
     })
 </script>
 
-<script src="<?php echo BASEURL?>javascripts/addQuestion.js"></script>
+<script src="<?php echo BASEURL ?>javascripts/addQuestion.js"></script>
 
 </html>

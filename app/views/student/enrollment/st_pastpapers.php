@@ -7,77 +7,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/x-icon" href="<?php echo BASEURL ?>assets/mentor.ico">
     <title>Past Papers</title>
-    <link rel="stylesheet" href="<?php echo BASEURL?>stylesheets/style.css">
-    <link rel="stylesheet" href="<?php echo BASEURL?>stylesheets/st_resources.css">
+    <link rel="stylesheet" href="<?php echo BASEURL ?>stylesheets/style.css">
+    <link rel="stylesheet" href="<?php echo BASEURL ?>stylesheets/st_resources.css">
 </head>
 
 <body>
     <section class="page">
         <!-- Navigation panel -->
-        <nav class="nav-bar" id="nav-bar">
+        <?php include_once "components/navbars/st_navbar_2.php" ?> <!-- used to include_once to add file -->
 
-            <!-- Navigation bar logos -->
-            <div class="nav-upper">
-                <div class="nav-logo-short">
-                    <img src="<?php echo BASEURL?>assets/clips/logo2.png" alt="logo" />
-                </div>
-                <div class="nav-logo-long" id="nav-logo-long">
-                    <img src="<?php echo BASEURL?>assets/clips/logo1.png" alt="logo" />
-                </div>
-            </div>
-
-
-            <!-- Navigation bar private - public switch -->
-            <div class="nav-middle" id="nav-middle">
-                <p>Public</p>
-                <div class="nav-switch">
-                    <label class="switch">
-                        <input type="checkbox" checked>
-                        <span class="slider round"></span>
-                    </label>
-                </div>
-                <p class="nav-switch-txt">Private</p>
-            </div>
-
-
-             <!-- Navigation buttons -->
-             <div class="nav-links">
-                
-                <a href="#" class="nav-link">
-                    <img src="<?php echo BASEURL?>assets/icons/icon_video.png" alt="Subjects">
-                    <div class="nav-link-text">Videos</div>
-                </a>
-                <a href="#" class="nav-link">
-                    <img src="<?php echo BASEURL?>assets/icons/icon_quizzes.png" alt="Subjects">
-                    <div class="nav-link-text">Quizzes</div>
-                </a>
-                <a href="#" class="nav-link">
-                    <img src="<?php echo BASEURL?>assets/icons/icon_past_papers.png" alt="Subjects">
-                    <div class="nav-link-text">Past Papers</div>
-                </a>
-                <a href="#" class="nav-link">
-                    <img src="<?php echo BASEURL?>assets/icons/icon_pdf.png" alt="Subjects">
-                    <div class="nav-link-text">PDFs</div>
-                </a>
-                <a href="#" class="nav-link">
-                    <img src="<?php echo BASEURL?>assets/icons/icon_other.png" alt="Subjects">
-                    <div class="nav-link-text">Other resources</div>
-                </a>
-                <a href="#" class="nav-link">
-                    <img src="<?php echo BASEURL?>assets/icons/icon_settings.png" alt="Subjects">
-                    <div class="nav-link-text">Settings</div>
-                </a>
-                <a href="#" class="nav-link">
-                    <img src="<?php echo BASEURL?>assets/icons/icon_report.png" alt="report">
-                    <div class="nav-link-text">Report</div>
-                </a>
-            </div>
-
-            <!-- Navigation bar toggler -->
-            <div class="nav-toggler" id="nav-toggler">
-                <img src="<?php echo BASEURL?>assets/icons/toggler.png" alt="toggler">
-            </div>
-        </nav>
 
         <div class="content-area">
 
@@ -86,18 +24,18 @@
                 <div class="search-bar">
                     <input type="text" name="" id="" placeholder="Search...">
                     <a href="">
-                        <img src="<?php echo BASEURL?>assets/icons/icon_search.png" alt="">
+                        <img src="<?php echo BASEURL ?>assets/icons/icon_search.png" alt="">
                     </a>
                 </div>
                 <div class="top-bar-btns">
-                    <a href="<?php echo BASEURL?>st_watch_video">
+                    <a href="<?php echo BASEURL ?>st_Inside_subject">
                         <div class="back-btn">Back</div>
                     </a>
                     <a href="#">
-                        <img src="<?php echo BASEURL?>assets/icons/icon_notify.png" alt="notify">
+                        <img src="<?php echo BASEURL ?>assets/icons/icon_notify.png" alt="notify">
                     </a>
-                    <a href="#">
-                        <img src="<?php echo BASEURL?>assets/icons/icon_profile_black.png" alt="profile">
+                    <a href="<?php echo BASEURL ?>st_profile">
+                        <img src="<?php echo BASEURL ?>assets/icons/icon_profile_black.png" alt="profile">
                     </a>
                 </div>
             </section>
@@ -117,7 +55,7 @@
                 <div class="container-box">
 
                     <div class="rc-resource-table">
-                        <div class="rc-pp-row rc-pp-row-head" >  
+                        <div class="rc-pp-row rc-pp-row-head">
                             <div class="rc-resource-col">Past Papers Name</div>
                             <div class="rc-resource-col">year</div>
                             <div class="rc-resource-col">Part</div>
@@ -129,15 +67,12 @@
                             <div class="rc-resource-col">2019</div>
                             <div class="rc-resource-col">1</div>
                             <div class="rc-quiz-row-btns">
-                                <button>
-                                    <img src="<?php echo BASEURL?>assets/icons/View_1_by_Streamlinehq.png" alt="">
-                                </button>
-                                <button>
-                                    <img src="<?php echo BASEURL?>assets/icons/Interface Arrows Button Down Double by Streamlinehq.png" alt="">
-                                </button>
-                                <button>
-                                    <img src="<?php echo BASEURL?>assets/icons/External_Download_by_Streamlinehq.png" alt="">
-                                </button>
+                                <a href="<?php echo BASEURL ?>st_pastpapers/st_pastpaper_do">
+                                    <img src="<?php echo BASEURL ?>assets/icons/Interface Arrows Button Down Double by Streamlinehq.png" alt="">
+                                </a>
+                                <a href="<?php echo BASEURL ?>st_pastpapers/st_pastpaper_down">
+                                    <img src="<?php echo BASEURL ?>assets/icons/External_Download_by_Streamlinehq.png" alt="">
+                                </a>
                             </div>
                         </div>
                         <div class="rc-pp-row">
@@ -145,15 +80,12 @@
                             <div class="rc-resource-col">2018</div>
                             <div class="rc-resource-col">2</div>
                             <div class="rc-quiz-row-btns">
-                                <button>
-                                    <img src="<?php echo BASEURL?>assets/icons/View_1_by_Streamlinehq.png" alt="">
-                                </button>
-                                <button>
-                                    <img src="<?php echo BASEURL?>assets/icons/Interface Arrows Button Down Double by Streamlinehq.png" alt="">
-                                </button>
-                                <button>
-                                    <img src="<?php echo BASEURL?>assets/icons/External_Download_by_Streamlinehq.png" alt="">
-                                </button>
+                                <a href="<?php echo BASEURL ?>st_pastpapers/st_pastpaper_do">
+                                    <img src="<?php echo BASEURL ?>assets/icons/Interface Arrows Button Down Double by Streamlinehq.png" alt="">
+                                </a>
+                                <a href="<?php echo BASEURL ?>st_pastpapers/st_pastpaper_down">
+                                    <img src="<?php echo BASEURL ?>assets/icons/External_Download_by_Streamlinehq.png" alt="">
+                                </a>
                             </div>
                         </div>
                         <div class="rc-pp-row">
@@ -161,22 +93,19 @@
                             <div class="rc-resource-col">2017</div>
                             <div class="rc-resource-col">2</div>
                             <div class="rc-quiz-row-btns">
-                                <button>
-                                    <img src="<?php echo BASEURL?>assets/icons/View_1_by_Streamlinehq.png" alt="">
-                                </button>
-                                <button>
-                                    <img src="<?php echo BASEURL?>assets/icons/Interface Arrows Button Down Double by Streamlinehq.png" alt="">
-                                </button>
-                                <button>
-                                    <img src="<?php echo BASEURL?>assets/icons/External_Download_by_Streamlinehq.png" alt="">
-                                </button>
+                                <a href="<?php echo BASEURL ?>st_pastpapers/st_pastpaper_do">
+                                    <img src="<?php echo BASEURL ?>assets/icons/Interface Arrows Button Down Double by Streamlinehq.png" alt="">
+                                </a>
+                                <a href="<?php echo BASEURL ?>st_pastpapers/st_pastpaper_down">
+                                    <img src="<?php echo BASEURL ?>assets/icons/External_Download_by_Streamlinehq.png" alt="">
+                                </a>
                             </div>
                         </div>
 
                     </div>
 
                 </div>
-            </div>
+        </div>
     </section>
 </body>
 <script>
@@ -201,9 +130,7 @@
                 navLinkTexts[i].classList.add("hidden");
             }
             toggle = false;
-        }
-
-        else {
+        } else {
             logoLong.classList.remove("hidden");
             navMiddle.classList.remove("hidden");
             togglerBtn.classList.remove("toggler-rotate");
@@ -213,9 +140,6 @@
             toggle = true;
         }
     })
-
-
-
 </script>
 
 </html>

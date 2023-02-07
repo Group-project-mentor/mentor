@@ -67,23 +67,25 @@
                 <div class="rc-upload-box">
                     <form action="<?php echo BASEURL.'rcAdd/addDocument/'.$_SESSION['gid']."/".$_SESSION['sid']?>" method="POST" enctype="multipart/form-data" class="rc-upload-form">
                         <div class="rc-upload-home-title">
-                            Upload or drag and drop document
+                            Upload or drag and drop the document
+                        </div>
+
+                        <div class="rc-form-group">
+                            <label>Title </label>
+                            <input type="text" name="title" placeholder="title for the file"/>
                         </div>
                         <div class="rc-form-group">
-                            <label>Add title +</label>
-                            <input type="text" name="title"/>
-                        </div>
-                        <div class="rc-form-group">
-                            <label>Add file +</label>
+                            <label>Add file </label>
                             <div>
                                 <input id="inputBtn" type="file" name="resource">
-                                <h3>Drag or choose file</h3>
+                                <h4>Drag or choose file</h4>
+                                <img id="upload-image" class="resource-upload-animated" src="<?php echo BASEURL?>assets/icons/gif_upload.gif" />
                             </div>
-                            <p id="fileName" style="text-align:right;">no files selected</p>
+                            <p id="fileName" style="text-align:right;font-size: small;">no files selected</p>
                             <h5 id="fileSize" style="text-align:right;"></h5>
                         </div>
                         <div class="rc-upload-button">
-                            <button type="submit" name="submit">Finish</button>
+                            <button type="submit" name="submit">Upload</button>
                         </div>
                         
                     </form>

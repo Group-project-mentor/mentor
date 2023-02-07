@@ -2,9 +2,13 @@
 
 class RcAdd extends Controller
 {
+    private $user = "rc";
+
     public function __construct()
     {
         sessionValidator();
+        $this->userValidate($this->user);
+        flashMessage();
     }
 
     public function index()
@@ -38,10 +42,11 @@ class RcAdd extends Controller
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $Id = $this->getId();
             if ($this->model("resourceModel")->addVideo($Id, $_SESSION['gid'], $_SESSION['sid'], $_POST['title'], $_POST['lec'], $_POST['link'], $_POST['descr'])) {
-                header("location:" . BASEURL . "rcAdd/video/success");
+                flashMessage("success");
             } else {
-                header("location:" . BASEURL . "rcAdd/video/failed");
+                flashMessage("error");
             }
+            header("location:" . BASEURL . "rcAdd/video");
         }
 
     }

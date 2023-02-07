@@ -1,0 +1,72 @@
+
+.subject-card-set {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    background-color: white;
+    border-radius: 10px;
+}
+
+.subject-card {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    align-items: center;
+    margin: 10px;
+}
+
+.subject-card img {
+    padding: 10px;
+    width: 200px;
+}
+
+.subject-card a {
+    padding: 2px 4px;
+    background-color: rgba(5, 234, 158, 0.104);
+    border-radius: 10px;
+    text-decoration: none;
+    color: rgb(43, 43, 43);
+    cursor: pointer;
+}
+
+.subject-card label {
+    text-align: center;
+}
+
+.subject-card label:nth-of-type(1) {
+    font-size: large;
+}
+
+.subject-card label:nth-of-type(2) {
+    font-size: medium;
+}
+
+
+@media screen and (max-width:720px) {
+    .subject-card label:nth-of-type(1) {
+        font-size: medium;
+    }
+
+    .subject-card label:nth-of-type(2) {
+        font-size: small;
+    }
+}
+
+@media screen and (max-width:480px) {
+    .subject-card label:nth-of-type(1) {
+        font-weight: 500;
+        font-size: small;
+    }
+
+    .subject-card label:nth-of-type(2) {
+        font-size: x-small;
+    }
+
+    
+    /* report issue styles */
+
+    .category-panal {
+        padding: 6px;
+        border: 3px;
+    }
+}

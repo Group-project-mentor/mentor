@@ -2,12 +2,21 @@
 
 class St_quizzes extends Controller
 {
-    public function index()
+    public function __construct()
     {
         sessionValidator();
         $this->hasLogged();
+    }
+
+    public function index()
+    {
         $this->view('student/enrollment/st_quizzes');
 
+    }
+
+    public function st_quizzes_do()
+    {
+        $this->view('student/enrollment/st_quizzes_do');
     }
 
     private function hasLogged()

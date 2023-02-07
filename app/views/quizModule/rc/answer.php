@@ -13,69 +13,7 @@
 <body>
 <section class="page">
     <!-- Navigation panel -->
-    <nav class="nav-bar" id="nav-bar">
-
-        <!-- Navigation bar logos -->
-        <div class="nav-upper">
-            <div class="nav-logo-short">
-                <img src="<?php echo BASEURL?>public/assets/logo2.png" alt="logo" />
-            </div>
-            <div class="nav-logo-long" id="nav-logo-long">
-                <img src="<?php echo BASEURL?>public/assets/logo1.png" alt="logo" />
-            </div>
-        </div>
-
-
-        <!-- Navigation bar private - public switch -->
-        <div class="nav-middle" id="nav-middle">
-            <p>Public</p>
-            <div class="nav-switch">
-                <label class="switch">
-                    <input type="checkbox" checked>
-                    <span class="slider round"></span>
-                </label>
-            </div>
-            <p class="nav-switch-txt">Private</p>
-        </div>
-
-
-        <!-- Navigation buttons -->
-        <div class="nav-links">
-            <a href="#" class="nav-link">
-                <img class="active" src="<?php echo BASEURL?>public/assets/icons/icon_video.png" alt="home">
-                <div class="nav-link-text">Video</div>
-            </a>
-            <a href="#" class="nav-link">
-                <img src="<?php echo BASEURL?>public/assets/icons/icon_quizzes.png" alt="cource">
-                <div class="nav-link-text">Quizzes</div>
-            </a>
-            <a href="#" class="nav-link">
-                <img src="<?php echo BASEURL?>public/assets/icons/icon_past_papers.png" alt="profile">
-                <div class="nav-link-text">Past papers</div>
-            </a>
-            <a href="#" class="nav-link">
-                <img src="<?php echo BASEURL?>public/assets/icons/icon_pdf.png" alt="report">
-                <div class="nav-link-text">PDF</div>
-            </a>
-            <a href="#" class="nav-link">
-                <img src="<?php echo BASEURL?>public/assets/icons/icon_other.png" alt="bmc">
-                <div class="nav-link-text">Other resource</div>
-            </a>
-            <a href="#" class="nav-link">
-                <img src="<?php echo BASEURL?>public/assets/icons/icon_settings.png" alt="report">
-                <div class="nav-link-text">Settings</div>
-            </a>
-            <a href="#" class="nav-link">
-                <img src="<?php echo BASEURL?>public/assets/icons/icon_report.png" alt="bmc">
-                <div class="nav-link-text">Report issue</div>
-            </a>
-        </div>
-
-        <!-- Navigation bar toggler -->
-        <div class="nav-toggler" id="nav-toggler">
-            <img src="<?php echo BASEURL?>public/assets/icons/toggler.png" alt="toggler">
-        </div>
-    </nav>
+    <?php include_once "components/navbars/rc_nav_2.php"?>
 
     <div class="content-area">
 
@@ -131,8 +69,18 @@
                                 <label for="quiz-answer-radio">Correct</label>
                             </div>
                             <textarea placeholder="Enter your Answer" name="answer" id="ansTxt" rows="4"></textarea>
-                            <input type="file" accept="image/png, image/jpeg, image/jpg" class="rc-ans-image-input" id="ansImage" name="ansImg"/>
+                            <input type="file" accept="image/png, image/jpeg, image/jpg" class="rc-ans-image-input" id="questionImg"/>
                         </div>
+                        <br>
+                    <div id="image-preview" style="display: none;flex-direction:column;">
+                        <label for="quizName" class="rc-form-label">
+                            Image preview:
+                        </label>
+                        <img src="" alt="" id="image_tag" style="margin: 0 20px;">
+                    </div>
+
+                    <input type="hidden" name="ansImg" value="" id="image_data">
+
                             <div style="display: flex;justify-content: center;">
                                 <button type="submit" class="rc-quiz-button green" id="addAnsBtn">
                                     Save
@@ -145,42 +93,7 @@
             </div>
 </section>
 </body>
-<script>
-    let toggle = true;
 
-    const getElement = (id) => document.getElementById(id);
-
-    let togglerBtn = getElement("nav-toggler");
-    let nav = getElement("nav-bar");
-    let logoLong = getElement("nav-logo-long");
-    let navMiddle = getElement("nav-middle");
-    let navLinkTexts = document.getElementsByClassName("nav-link-text");
-
-    togglerBtn.addEventListener('click', () => {
-        nav.classList.toggle("nav-bar-small");
-
-        if (toggle) {
-            logoLong.classList.add("hidden");
-            navMiddle.classList.add("hidden");
-            togglerBtn.classList.add("toggler-rotate");
-            for (i = 0; i < navLinkTexts.length; i++) {
-                navLinkTexts[i].classList.add("hidden");
-            }
-            toggle = false;
-        }
-
-        else {
-            logoLong.classList.remove("hidden");
-            navMiddle.classList.remove("hidden");
-            togglerBtn.classList.remove("toggler-rotate");
-            for (i = 0; i < navLinkTexts.length; i++) {
-                navLinkTexts[i].classList.remove("hidden");
-            }
-            toggle = true;
-        }
-    })
-</script>
-
-<script src="<?php echo BASEURL?>javascripts/addQuestion.js"></script>
+<script src="<?php echo BASEURL?>javascripts/quiz_image_process.js"></script>
 
 </html>

@@ -54,10 +54,10 @@
                     <img src="<?php echo BASEURL?>assets/icons/icon_settings.png" alt="report">
                     <div class="nav-link-text">Settings</div>
                 </a>
-                <a href="<?php echo BASEURL ?>report" class="nav-link">
-                    <img src="<?php echo BASEURL?>assets/icons/icon_report.png" alt="bmc">
-                    <div class="nav-link-text">Report issue</div>
-                </a>
+<!--                <a href="--><?php //echo BASEURL ?><!--report" class="nav-link">-->
+<!--                    <img src="--><?php //echo BASEURL?><!--assets/icons/icon_report.png" alt="bmc">-->
+<!--                    <div class="nav-link-text">Report issue</div>-->
+<!--                </a>-->
             </div>
 
             <!-- Navigation bar toggler -->

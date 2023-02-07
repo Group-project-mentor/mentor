@@ -2,9 +2,13 @@
 
 class privateclass extends Controller
 {
+    public function __construct()
+    {
+        session_start();
+        flashMessage();
+    }
     public function index()
     {
-        
     }
 
     public function create()
@@ -79,9 +83,56 @@ class privateclass extends Controller
 
     public function bmcNext()
     {
+        flashMessage("ok");
         $this->view('Teacher/BMC2');
     }
+
+    public function billing()
+    {
+        $this->view('Teacher/Billing');
+    }
+    public function billing2()
+    {
+        $this->view('Teacher/billing2');
+    }
+    public function changeHost()
+    {
+        $this->view('Teacher/change host');
+    }
+    public function changeHost2()
+    {
+        $this->view('Teacher/change host 2');
+    }
+
+    public function changeHost3()
+    {
+        $this->view('Teacher/change host 3');
+    }
     
+    public function membersDetails()
+    {
+        $this->view('Teacher/members details');
+    }
+
+    public function premiumCheckout()
+    {
+        $this->view('Teacher/premium checkout');
+    }
+
+    public function premiumPlan()
+    {
+        $this->view('Teacher/premium plan');
+    }
+
+    public function restrictStudent()
+    {
+        $this->view('Teacher/restrict student');
+    }
+
+    public function transHistory()
+    {
+        $this->view('Teacher/transaction history');
+    }
 
 
     public function createAction(){

@@ -7,54 +7,100 @@
     src="https://kit.fontawesome.com/64d58efce2.js"
     crossorigin="anonymous"
   ></script>
-  <link rel="stylesheet" href="<?php echo BASEURL?>public/stylesheets/Teacher/login_style.css">
-    
+  <link rel="stylesheet" href="<?php echo BASEURL ?>public/stylesheets/Teacher/login_style.css">
+
     <title>Sign in & Sign up Form</title>
   </head>
   <body>
     <div class="container">
+        <?php include_once "components/alerts/rightAlert.php"?>
       <div class="forms-container">
         <div class="signin-signup">
           <form action="<?php echo BASEURL ?>login/verify_login" class="sign-in-form" method="POST">
             <h2 class="title">Login</h2>
-            <div class="input-field">
+            <div class="input-field" style="<?php echo $data == 2 ? 'border:1px solid red;' : 'border:1px solid transparent;' ?>">
               <i class="fas fa-user"></i>
-              <input type="email" placeholder="Email" id="email" name="email"/>
+              <input type="email" placeholder="Email" id="email" name="email" />
             </div>
-            <div class="input-field">
+            <?php if ($data == 2) {?>
+              <small style="color: red;text-align:right;">You are not registered !</small>
+              <?php }?>
+              <?php if ($data == 3) {?>
+                <small style="color: red;text-align:right;">Wrong email entered !</small>
+              <?php }?>
+            <div class="input-field" style="<?php echo $data == 1 ? 'border:1px solid red;' : 'border:1px solid transparent;' ?>">
               <i class="fas fa-lock"></i>
               <input type="password" placeholder="Password" id="passwd" name="passwd" />
             </div>
+            <?php if ($data == 1) {?>
+            <small style="color: red;text-align:right;">Password is wrong !</small>
+            <?php }?>
+
             <!-- <input type="submit" value="Login" class="btn solid" /> -->
             <button class="btn solid" type="submit" name="login"  style="text-align:center ; text-decoration : none ;">Log in</button>
+            <a class="text-decoration:none;" href="<?php echo BASEURL ?>forgotPassword">
+              <h5 style="color: blue;text-decoration:none;">Forgot your password</h5>
+            </a>
             <br>
-            
           </form>
-          <form action="<?php echo BASEURL ?>register/verify_register" class="sign-up-form" method="POST">
-            <h2 class="title">Register</h2>
-            <h5 class="sub-title">Teacher</h5>
+
+          <form action="<?php echo BASEURL ?>register/verify_register_student" class="sign-up-form" method="POST" id="sign-up-student">
+            <h2 class="title">Register Student</h2>
+            <div class="regset">
+              <h6 class="sub-title active-panel">Student</h6>
+              <h6 class="sub-title" id="teacherSwitch">Teacher</h6>
+            </div>
+            <hr class="horiz-line hr-100">
+            <small id="sRegAlert" style="color: red;text-align:center;"></small>
             <div class="input-field">
               <i class="fas fa-user"></i>
-              <input type="text" placeholder="Enter your name"  id="name" name="name"/>
+              <input type="text" placeholder="Enter your name"  id="sname" name="name"/>
             </div>
             <div class="input-field">
               <i class="fas fa-envelope"></i>
-              <input type="email" placeholder="Enter your email"  id="email" name="email"/>
+              <input type="email" placeholder="Enter your email"  id="semail" name="email"/>
             </div>
             <div class="input-field">
               <i class="fas fa-user"></i>
-              <input type="text" placeholder="Enter your age" />
+              <input type="text" placeholder="Enter your age" name="age" id="sage"/>
 
-            </div>
-            <div class="input-field">  
-              <i class="fas fa-lock"></i>
-              <input type="password" placeholder="Enter your Password" id="passwd" name="passwd" />
             </div>
             <div class="input-field">
               <i class="fas fa-lock"></i>
-              <input type="password" placeholder="Re-enter your Password" id="passwd_conf" name="cpasswd" />
+              <input type="password" placeholder="Enter your Password" id="spasswd" name="passwd" />
+            </div>
+            <div class="input-field">
+              <i class="fas fa-lock"></i>
+              <input type="password" placeholder="Re-enter your Password" id="spasswd_conf" name="cpasswd" />
             </div>
             <input type="submit" class="btn" value="Sign up" name="register" />
+          </form>
+
+          <form action="<?php echo BASEURL ?>register/verify_register_teacher" style="display: none;" class="sign-up-form" method="POST" id="sign-up-teacher">
+            <h2 class="title">Register Teacher</h2>
+            <div class="regset">
+              <h6 class="sub-title" id="studentSwitch">Student</h6>
+              <h6 class="sub-title active-panel">Teacher</h6>
+            </div>
+            <hr class="horiz-line hr-100">
+            <small id="tRegAlert" style="color: red;text-align:center;"></small>
+            <div class="input-field">
+              <i class="fas fa-user"></i>
+              <input type="text" placeholder="Enter your name"  id="tname" name="tname"/>
+            </div>
+            <div class="input-field">
+              <i class="fas fa-envelope"></i>
+              <input type="email" placeholder="Enter your email"  id="temail" name="temail"/>
+            </div>
+            <div class="input-field">
+              <i class="fas fa-lock"></i>
+              <input type="password" placeholder="Enter your Password" id="tpasswd" name="tpasswd" />
+            </div>
+            <div class="input-field">
+              <i class="fas fa-lock"></i>
+              <input type="password" placeholder="Re-enter your Password" id="tpasswd_conf" name="tcpasswd" />
+            </div>
+            <input type="submit" class="btn" value="Sign up" name="register" id="teacherReg" />
           </form>
         </div>
       </div>
@@ -74,7 +120,8 @@
                     Sign up
                   </button>
                 </div>
-                <img class="active" src="<?php echo BASEURL?>public/assets/Teacher/clips/login.png" alt="home">
+
+                <img src="<?php echo BASEURL ?>public/assets/Teacher/clips/login.png" alt="home" class="image">
               </div>
               <div class="panel right-panel">
                 <div class="content">
@@ -86,22 +133,14 @@
                     Sign in
                   </button>
                 </div>
-                <img src="img/reg.png" class="image" alt="" />
+
+                <img src="<?php echo BASEURL ?>public/assets/Teacher/clips/login.png" class="image" alt="" />
               </div>
             </div>
           </div>
-
-          <script >const sign_in_btn = document.querySelector("#sign-in-btn");
-                   const sign_up_btn = document.querySelector("#sign-up-btn");
-                   const container = document.querySelector(".container");
-
-                   sign_up_btn.addEventListener("click", () => {
-                     container.classList.add("sign-up-mode");
-                   });
-
-                   sign_in_btn.addEventListener("click", () => {
-                     container.classList.remove("sign-up-mode");
-                   });
-</script>
+        <script>
+            const BASEURL = "<?php echo BASEURL ?>";
+        </script>
+    <script src="<?php echo BASEURL ?>javascripts/authMain.js"></script>
         </body>
       </html>

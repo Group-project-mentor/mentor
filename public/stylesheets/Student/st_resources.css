@@ -1,0 +1,331 @@
+/* ----- resource header ----- */
+.rc-resource-header {
+    display: flex;
+    padding: 10px 20px;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.rc-resource-header h1 {
+    font-size: xx-large;
+    letter-spacing: 5px;
+    color: rgb(85, 85, 85);
+}
+
+.rc-resource-header h3 {
+    font-size:large;
+    letter-spacing: 5px;
+    color: rgb(85, 85, 85);
+}
+
+.rc-resource-header a {
+    text-decoration: none;
+}
+
+.rc-add-btn {
+    padding: 10px;
+    background-color: green;
+    border-radius: 10px;
+    font-weight: 500;
+    color: white;
+}
+
+
+
+/* ----- Card set for video list ------*/
+
+.rc-video-card-set {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    background-color: rgba(218, 218, 218, 0.247);
+    border-radius: 10px;
+}
+
+.rc-video-card {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    align-items: flex-start;
+    margin: 10px;
+    position: relative;
+}
+
+.rc-video-card img {
+    padding: 5px 10px;
+    width: 200px;
+}
+
+.rc-video-card a {
+    padding: 2px 4px;
+    border-radius: 10px;
+    text-decoration: none;
+    color: rgb(43, 43, 43);
+    cursor: pointer;
+}
+
+.rc-video-card label {
+    padding-left: 15px;
+    padding-right: 15px;
+    text-align: right;
+}
+
+.rc-video-card label:nth-of-type(1) {
+    font-size: large;
+}
+
+.rc-video-card label:nth-of-type(2) {
+    font-size: medium;
+}
+
+/* ----- video card special buttons for RC ----- */
+.rc-video-card-btns {
+    position: absolute;
+    display: flex;
+    right: 25px;
+    bottom: 40px;
+}
+
+.rc-video-card-btns img {
+    width: 35px;
+}
+
+.rc-video-card-btns button {
+    border: none;
+    background-color: rgba(255, 255, 255, 0.919);
+    cursor: pointer;
+    margin: 5px;
+    transition: all 0.5s;
+}
+
+.rc-video-card-btns button:hover {
+    transform: scale(1.1);
+    transition: all 0.5s;
+}
+
+
+/* ----- quizzes style area ----- */
+
+
+.rc-resource-table {
+    margin-top: 20px;
+    font-family: calibri;
+    display: flex;
+    flex-direction: column;
+}
+
+.rc-resource-row {
+    display: flex;
+    background-color: #ffffff44;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    align-items: center;
+    padding: 8px 15px;
+    margin-bottom: 8px;
+    font-size: large;
+    transition: all 0.5s;
+}
+
+.rc-resource-row-head {
+    display: flex;
+    background-color:rgb(45, 143, 50);
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    align-items: center;
+    padding: 8px 15px;
+    margin-bottom: 8px;
+    font-size: large;
+    transition: all 0.5s;
+}
+
+.rc-resource-row:hover {
+    transform: scale(1.02);
+    transition: all 0.5s;
+}
+
+.rc-resource-row div:nth-of-type(1) {
+    flex: 3;
+}
+
+.rc-resource-row div:nth-of-type(2) {
+    flex: 3;
+}
+
+.rc-resource-row div:nth-of-type(3) {
+    flex: 1;
+}
+
+.rc-table-title {
+    font-size: larger;
+    padding: 10px 15px;
+    border-radius: 5px 5px 0 0;
+    box-shadow: none;
+    /* background-color: #D6FAE4; */
+}
+
+.rc-table-title:hover{
+    transform: scale(1);
+}
+
+.rc-quiz-row-btns {
+    width: 100%;
+    justify-content: space-around;
+    display: flex;
+
+}
+
+.rc-quiz-row-btns button {
+    border: none;
+    background-color: transparent;
+}
+
+.rc-quiz-row-btns img {
+    width: 20px;
+}
+
+/* ----- past papers style area ----- */
+
+.rc-pp-row {
+    display: flex;
+    background-color: #ffffff44;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    align-items: center;
+    padding: 8px 15px;
+    margin-bottom: 8px;
+    font-size: large;
+    transition: all 0.5s;
+}
+
+.rc-pp-row-head{
+    display: flex;
+    background-color: rgb(45, 143, 50);
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    align-items: center;
+    padding: 8px 15px;
+    margin-bottom: 8px;
+    font-size: large;
+    transition: all 0.5s;
+}
+
+.rc-pp-row img {
+    width: 20px;
+}
+
+.rc-pp-row:hover {
+    transform: scale(1.02);
+    transition: all 0.5s;
+}
+
+.rc-pp-row div:nth-of-type(1) {
+    flex: 2;
+}
+
+.rc-pp-row div:nth-of-type(2) {
+    flex: 2;
+}
+
+.rc-pp-row div:nth-of-type(3) {
+    flex: 2;
+}
+
+.rc-pp-row div:nth-of-type(4) {
+    flex: 1;
+}
+
+/* ----- pdf documents style area ----- */
+
+.rc-pdf-row {
+    display: flex;
+    background-color: #ffffff44;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    align-items: center;
+    padding: 8px 15px;
+    margin-bottom: 8px;
+    font-size: large;
+    transition: all 0.5s;
+}
+
+.rc-pdf-row:hover {
+    transform: scale(1.02);
+    transition: all 0.5s;
+}
+
+.rc-pdf-row div:nth-of-type(1) {
+    flex: 2;
+}
+
+.rc-pdf-row div:nth-of-type(2) {
+    flex: 2;
+}
+
+.rc-pdf-row div:nth-of-type(3) {
+    flex: 2;
+}
+
+.rc-pdf-row div:nth-of-type(4) {
+    flex: 1;
+}
+@media screen and (max-width:720px) {
+    .rc-video-card label:nth-of-type(1) {
+        font-size: medium;
+    }
+
+    .rc-video-card label:nth-of-type(2) {
+        font-size: small;
+    }
+
+    .rc-add-btn {
+        padding: 8px;
+        font-size: small;
+    }
+}
+
+@media screen and (max-width:480px) {
+    .rc-video-card label:nth-of-type(1) {
+        font-weight: 500;
+        font-size: small;
+    }
+
+    .rc-video-card label:nth-of-type(2) {
+        font-size: x-small;
+    }
+
+    .rc-add-btn {
+        padding: 5px;
+        font-size: small;
+    }
+
+    .rc-resource-header {
+        padding: 5px 5px;
+    }
+
+    .rc-resource-header h1 {
+        font-size: x-large;
+        letter-spacing: 3px;
+    }
+
+    .rc-resource-header a {
+        text-decoration: none;
+    }
+
+/** ------ quiz table styles -------- */
+
+    .rc-resource-table {
+        margin-top: 15px;
+    }
+
+    .rc-resource-row {
+        font-size: small;
+    }
+
+    .rc-resource-row div:nth-of-type(2) {
+        flex: 2;
+    }
+
+    .rc-table-title {
+        font-size: medium;
+    }
+
+    .rc-quiz-row-btns img {
+        width: 15px;
+    }
+
+}
