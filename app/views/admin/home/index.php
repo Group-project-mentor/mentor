@@ -51,7 +51,7 @@
                     <img src="<?php echo BASEURL ?>assets/admin/bi_mortarboard-fill.png" alt="sp">
                     <div class="nav-link-text">Scholorship Programe</div>
                 </a>
-                <a href="#" class="nav-link">
+                <a href="<?php echo BASEURL ?>adWallet" class="nav-link">
                     <img src="<?php echo BASEURL ?>assets/admin/Vector.png" alt="wallet">
                     <div class="nav-link-text">Wallet</div>
                 </a>
