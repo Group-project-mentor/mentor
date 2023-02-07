@@ -21,7 +21,8 @@
             width: 300px;
             margin-left: 37.5%;
         }
-        body{
+
+        body {
             background-image: url('../public/assets/clips/HumaaansWireframe');
             background-position: center;
             background-size: cover;
@@ -72,17 +73,25 @@
                         <hr>
                     </h3>
                 </div>
-                <div>
+                <div class="subject-card-set">
                     <br><br>
                     <hr>
                     <br><br>
                     <!-- tempary movement 1-->
-                    <div class="subject-card">
-                        <img src="<?php echo BASEURL  ?>assets/patterns/1.png" alt="" />
-                        <a href="<?php echo BASEURL  ?>st_private_mode/st_classroom_inside"><label>Mathematics</label></a>
-                        <label>Grade 8</label>
-                        <label>Mr.Thimira Galahitiyawa</label>
-                        <a href="#"><label>Join</label></a>
+                    <div class="subject-card" style="text-align:center ; ">
+                        <a href="<?php echo BASEURL  ?>st_private_mode/st_classroom_inside">
+                            <img src="<?php echo BASEURL  ?>assets/patterns/1.png" alt="" style="width : 250px ; height:150px;" />
+                            <br>
+                            <div>
+                                <label>Mathematics</label>
+                                <br>
+                                <label>Grade 8</label>
+                                <br>
+                                <label>Mr.Thimira Galahitiyawa</label>
+                                <br><br>
+                                <label style="width:100px ; " class="back-btn">Join</label>
+                            </div>
+                        </a>
                     </div>
                 </div>
             </section>

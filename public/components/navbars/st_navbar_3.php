@@ -29,7 +29,7 @@
 
     <!-- Navigation buttons -->
     <div class="nav-links">
-        <a href="<?php echo BASEURL ?>st_classroom_inside" class="nav-link">
+        <a href="<?php echo BASEURL ?>st_private_mode" class="nav-link">
             <img src="<?php echo BASEURL; ?>assets/icons/icon_resources.png" alt="cource">
             <div class="nav-link-text">Classes</div>
         </a>

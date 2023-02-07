@@ -65,11 +65,13 @@
 </body>
 
 <script>
+
 let fileChooser = document.getElementById('fileChooser');
 
 fileChooser.addEventListener('change',()=>{
     console.log(fileChooser.files[0].name);
 })
 </script>
+
 
 </html>
