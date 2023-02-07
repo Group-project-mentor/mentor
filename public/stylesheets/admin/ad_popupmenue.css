@@ -1,10 +1,21 @@
 #popup-menu{
-    width:150px;
+    width:170px;
     display:none;
     position:absolute;
     flex-direction:column;
     top:85px;
     right:30px;
     z-index:200;
-    background:rgb(147, 144, 144);
+    background:rgb(255, 255, 255);
+    border-radius: 20px;
+    box-shadow:2px 2px 4px 4px rgba(0, 0, 0, 0.25);
+}
+.tabcont{
+    display: flex;
+}  
+
+.icon{
+    width: 50px;
+    padding: 10px;
+    margin-right: 5px;
 }
