@@ -7,8 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/x-icon" href="<?php echo BASEURL ?>assets/mentor.ico">
     <title>Document</title>
-    <link rel="stylesheet" href="<?php echo BASEURL ?>stylesheets/style.css">
-    <link rel="stylesheet" href="<?php echo BASEURL ?>stylesheets/st_resources.css">
+    <link rel="stylesheet" href="<?php echo BASEURL ?>stylesheets/Student/style.css">
+    <link rel="stylesheet" href="<?php echo BASEURL ?>stylesheets/Student/st_resources.css">
 </head>
 
 <body>
@@ -58,7 +58,7 @@
                     <div class="rc-resource-table">
                         <div class="rc-pp-row rc-pp-row-head">
                             <div class="rc-resource-col">PDF Name</div>
-                            <div class="rc-resource-col">year</div>
+                            <div class="rc-resource-col">Lesson</div>
                             <div class="rc-resource-col">Part</div>
                             <div></div>
                         </div>

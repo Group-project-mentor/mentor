@@ -7,8 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/x-icon" href="<?php echo BASEURL ?>assets/mentor.ico">
     <title>Student change image</title>
-    <link rel="stylesheet" href="<?php echo BASEURL; ?>public/stylesheets/st_main.css">
-    <link rel="stylesheet" href="<?php echo BASEURL; ?>public/stylesheets/st_profile.css">
+    <link rel="stylesheet" href="<?php echo BASEURL; ?>public/stylesheets/Student/st_main.css">
+    <link rel="stylesheet" href="<?php echo BASEURL; ?>public/stylesheets/Student/st_profile.css">
 </head>
 
 <body>
@@ -65,11 +65,13 @@
 </body>
 
 <script>
+
 let fileChooser = document.getElementById('fileChooser');
 
 fileChooser.addEventListener('change',()=>{
     console.log(fileChooser.files[0].name);
 })
 </script>
+
 
 </html>

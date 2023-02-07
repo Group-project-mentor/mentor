@@ -8,8 +8,9 @@
     <link rel="icon" type="image/x-icon" href="<?php echo BASEURL ?>assets/mentor.ico">
     <title>Student private mode</title>
     <link rel="icon" type="image/x-icon" href="<?php echo BASEURL ?>assets/mentor.ico">
-    <link rel="stylesheet" href="<?php echo BASEURL; ?>public/stylesheets/style.css">
-    <link rel="stylesheet" href="<?php echo BASEURL; ?>public/stylesheets/t_card_set.css">
+    <link rel="stylesheet" href="<?php echo BASEURL; ?>public/stylesheets/Student/style.css">
+    <link rel="stylesheet" href="<?php echo BASEURL; ?>public/stylesheets/Student/style.css">
+    <link rel="stylesheet" href="<?php echo BASEURL; ?>public/stylesheets/Student/st_card_set.css">
 </head>
 
 <body>
@@ -50,13 +51,12 @@
                 </div>
 
                 <!-- subject cards -->
-                <div class="container-box">
+                <div class="container-box" >
                     <div>
-
                         <!-- tempary movement 1-->
-                        <div class="subject-card">
-                            <img src="<?php echo BASEURL  ?>assets/patterns/1.png" alt="" />
-                            <a href="<?php echo BASEURL  ?>st_private_mode/st_classroom_inside"><label>Mathematics</label></a>
+                        <div class="subject-card" style="text-align:center ;">
+                            <img src="<?php echo BASEURL  ?>assets/patterns/1.png" alt="" style="width : 250px ; height:150px;"/>
+                            <a href="<?php echo BASEURL  ?>st_private_mode/st_classroom_inside" ><label>Mathematics</label></a>
                             <label>Grade 8</label>
                             <label>Mr.Thimira Galahitiyawa</label>
                         </div>
