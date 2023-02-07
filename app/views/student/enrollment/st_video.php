@@ -58,7 +58,7 @@
                     <div class="subject-card-set">
                         <div class="rc-video-card-set">
                             <?php
-                            var_dump($data[0]);
+                            // var_dump($data[0]);
                             if (!empty($data[0])) {
                                 $count = 1;
                                 foreach ($data[0] as $row) {
@@ -88,6 +88,18 @@
                         <div class="subject-card">
                             <img src="<?php echo BASEURL ?>assets/patterns/1.png" alt="" />
                             <a href="#"><label>C79 - lesson 1</label></a>
+                            <label>Grade 8</label>
+                            <button class="Enter-btn"><a href="<?php echo BASEURL ?>st_video_play" style="color:white ;">Play</a></button>
+                        </div>
+                        <div class="subject-card">
+                            <img src="<?php echo BASEURL ?>assets/patterns/3.png" alt="" />
+                            <a href="#"><label>C79 - lesson 2</label></a>
+                            <label>Grade 8</label>
+                            <button class="Enter-btn"><a href="<?php echo BASEURL ?>st_video_play" style="color:white ;">Play</a></button>
+                        </div>
+                        <div class="subject-card">
+                            <img src="<?php echo BASEURL ?>assets/patterns/4.png" alt="" />
+                            <a href="#"><label>C79 - lesson 3</label></a>
                             <label>Grade 8</label>
                             <button class="Enter-btn"><a href="<?php echo BASEURL ?>st_video_play" style="color:white ;">Play</a></button>
                         </div>

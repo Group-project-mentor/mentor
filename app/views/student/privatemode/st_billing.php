@@ -5,11 +5,10 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Billing</title>
     <link rel="icon" type="image/x-icon" href="<?php echo BASEURL ?>assets/mentor.ico">
-    <title>Student private mode</title>
-    <link rel="icon" type="image/x-icon" href="<?php echo BASEURL ?>assets/mentor.ico">
-    <link rel="stylesheet" href="<?php echo BASEURL; ?>public/stylesheets/style.css">
-    <link rel="stylesheet" href="<?php echo BASEURL; ?>public/stylesheets/t_card_set.css">
+    <link rel="stylesheet" href="<?php echo BASEURL; ?>public/stylesheets/t_style.css">
+    <link rel="stylesheet" href="<?php echo BASEURL; ?>public/stylesheets/t_resources.css">
 </head>
 
 <body>
@@ -17,55 +16,63 @@
         <!-- Navigation panel -->
         <?php include_once "components/navbars/st_navbar_3.php" ?> <!-- used to include_once to add file -->
 
+
         <div class="content-area">
 
             <!-- Top bar -->
             <section class="top-bar">
-                <div class="search-bar">
-                    <input type="text" name="" id="" placeholder="Search...">
-                    <a href="">
-                        <img src="<?php echo BASEURL; ?>assets/icons/icon_search.png" alt="">
-                    </a>
-                </div>
+
                 <div class="top-bar-btns">
-                    <a href="<?php echo BASEURL; ?>home">
+                    <a href="<?php echo BASEURL; ?>st_private_mode">
                         <div class="back-btn">Back</div>
                     </a>
                     <a href="#">
-                        <img src="<?php echo BASEURL; ?>assets/icons/icon_notify.png" alt="notify">
+                        <img src="assets/icons/icon_notify.png" alt="notify">
                     </a>
-                    <a href="<?php echo BASEURL ?>st_profile">
-                        <img src="<?php echo BASEURL; ?>assets/icons/icon_profile_black.png" alt="profile">
+                    <a href="#">
+                        <img src="assets/icons/icon_profile_black.png" alt="profile">
                     </a>
                 </div>
             </section>
 
             <!-- Middle part for whole content -->
             <section class="mid-content">
-                <!-- join to new class -->
-                <div class="top-bar-btns ">
-                    <a href="<?php echo BASEURL; ?>st_private_mode/st_join_classes">
-                        <div class="see-all-btn">Join to new class</div>
+
+                <!-- Title and sub title of middle part -->
+                <div class="mid-title">
+                    <h1>Billing</h1>
+                    <h6>Teacher Home/ Members details/change host</h6>
+                    <br><br><br>
+                    <h3>Available Balance in your wallet</h3>
+                    <br><br>
+
+                </div>
+
+                <div style="display: flex;justify-content: center;font-size:30px">
+                    <h1>Rs.*******</h1>
+                </div>
+                <br><br>
+                <div style="display: flex; justify-content:space-around; align-items: center;">
+                    <a href="#">
+                        <button style="background-color: green; border:green; color: white; border-radius: 30px; padding: 10px 65px;">See transaction history</button>
+                    </a>
+                    <a href="<?php echo BASEURL; ?>st_billing/st_billing_details">
+                        <button style="background-color: green; border:green; color: white; border-radius: 30px; padding: 10px 65px;">Withdraw money</button>
                     </a>
                 </div>
 
-                <!-- subject cards -->
-                <div class="container-box">
-                    <div>
-
-                        <!-- tempary movement 1-->
-                        <div class="subject-card">
-                            <img src="<?php echo BASEURL  ?>assets/patterns/1.png" alt="" />
-                            <a href="<?php echo BASEURL  ?>st_private_mode/st_classroom_inside"><label>Mathematics</label></a>
-                            <label>Grade 8</label>
-                            <label>Mr.Thimira Galahitiyawa</label>
-                        </div>
-                        <a class="see-all-btn" href="<?php echo BASEURL  ?>st_private_mode/st_myclasses" style="text-decoration: none; ">My classes</a>
-                    </div>
-
-                </div>
-
             </section>
+
+            <!-- bottom part -->
+            <section class="Teacher-class-bottom">
+                <div class="Teacher-decorator">
+                    <img src="assets/clips/billing.png" alt="lap man">
+                </div>
+            </section>
+
+
+
+        </div>
     </section>
 </body>
 <script>

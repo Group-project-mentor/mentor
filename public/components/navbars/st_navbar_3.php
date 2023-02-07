@@ -41,7 +41,7 @@
             <img src="<?php echo BASEURL ?>assets/icons/icon_bmc.png" alt="bmc">
             <div class="nav-link-text">Buy me a coffee</div>
         </a>
-        <a href="<?php echo BASEURL ?>#" class="nav-link">
+        <a href="<?php echo BASEURL ?>st_billing" class="nav-link">
             <img src="<?php echo BASEURL ?>assets/icons/icon_billing" alt="bmc">
             <div class="nav-link-text">Billing</div>
         </a>
