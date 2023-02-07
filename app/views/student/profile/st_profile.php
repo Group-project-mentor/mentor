@@ -166,7 +166,7 @@
     </section>
 </body>
 
-<script>
+<!-- <script>
     let toggle = true;
 
     const getElement = (id) => document.getElementById(id);
@@ -220,6 +220,9 @@
 
 
 
-</script>
+</script> -->
+
+<script src="<?php echo BASEURL ?>public/javascripts/st_auth_script.js"></script>
+
 
 </html>

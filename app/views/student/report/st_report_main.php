@@ -8,7 +8,7 @@
     <link rel="icon" type="image/x-icon" href="<?php echo BASEURL ?>assets/mentor.ico">
     <title>Student Report issue</title>
     <link rel="stylesheet" href="<?php echo BASEURL?>public/stylesheets/t_style.css">
-    <link rel="stylesheet" href="<?php echo BASEURL?>public/stylesheets/t_card_set.css"> 
+    <link rel="stylesheet" href="<?php echo BASEURL?>public/stylesheets/st_card_set.css"> 
 </head>
 
 <body>
@@ -61,7 +61,8 @@
                       </select>
                     
                       <!--<input type="submit" value="Next">-->
-                      <a href="<?php echo BASEURL?>st_report_main/st_report_text"><div class="mid-back-btn">Next</div></a>
+                      <br><br>
+                      <a href="<?php echo BASEURL?>st_report_main/st_report_text"><div class="back-btn" style="width:100px">Next</div></a>
                     </form>
                   </div>
 
@@ -79,7 +80,7 @@
         </div>  
     </section>      
 </body>
-<script>
+<!-- <script>
     let toggle = true;
 
     const getElement = (id) => document.getElementById(id);
@@ -116,6 +117,7 @@
 
 
 
-</script>
+</script> -->
+<script src="<?php echo BASEURL ?>public/javascripts/st_auth_script.js"></script>
 
 </html>

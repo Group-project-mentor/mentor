@@ -51,9 +51,9 @@
                 <div class="class section">
                     <form>
                         <textarea id="w3review" name="w3review" rows="4" cols="50"></textarea>
-                        <br>
+                        <br><br>
                         <a href="<?php echo BASEURL ?>#">
-                            <div class="mid-back-btn">Submit</div>
+                            <div style="width:100px" class="back-btn">Submit</div>
                         </a>
                     </form>
                 </div>
@@ -63,7 +63,7 @@
         </div>
     </section>
 </body>
-<script>
+<!-- <script>
     let toggle = true;
 
     const getElement = (id) => document.getElementById(id);
@@ -95,6 +95,9 @@
             toggle = true;
         }
     })
-</script>
+</script> -->
+
+<script src="<?php echo BASEURL ?>public/javascripts/st_auth_script.js"></script>
+
 
 </html>

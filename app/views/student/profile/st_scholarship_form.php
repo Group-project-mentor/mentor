@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/x-icon" href="<?php echo BASEURL ?>assets/mentor.ico">
-    <title>Student Profile</title>
+    <title>Student Scholarship</title>
     <link rel="stylesheet" href="<?php echo BASEURL?>public/stylesheets/t_style.css">
     <link rel="stylesheet" href="<?php echo BASEURL?>public/stylesheets/t_profile.css">
     <link rel="stylesheet" href="<?php echo BASEURL?>public/stylesheets/t_card_set.css">
@@ -15,52 +15,8 @@
 <body>
     <section class="page">
         <!-- Navigation panel -->
-        <nav class="nav-bar" id="nav-bar">
+        <?php include_once "components/navbars/st_navbar_4.php" ?> <!-- used to include_once to add file -->
 
-            <!-- Navigation bar logos -->
-            <div class="nav-upper">
-                <div class="nav-logo-short">
-                    <img src="<?php echo BASEURL?>public/assets/clips/logo2.png" alt="logo" />
-                </div>
-                <div class="nav-logo-long" id="nav-logo-long">
-                    <img src="<?php echo BASEURL?>public/assets/clips/logo1.png" alt="logo" />
-                </div>
-            </div>
-
-                 <!-- Navigation buttons -->
-                 <div class="nav-links">
-                <a href="<?php BASEURL ?>" class="nav-link">
-                    <img class="active" src="<?php echo BASEURL?>public/assets/icons/icon_class.png" alt="home">
-                    <div class="nav-link-text">Classes</div>
-                </a>
-                <a href="#" class="nav-link">
-                    <img src="<?php echo BASEURL?>public/assets/icons/icon_premium.png" alt="cource">
-                    <div class="nav-link-text">Buy Premium</div>
-                </a>
-                <a href="<?php BASEURL ?>privateclass/report" class="nav-link">
-                    <img src="<?php echo BASEURL?>public/assets/icons/icon_report.png" alt="profile">
-                    <div class="nav-link-text">Report Issue</div>
-                </a>
-                <a href="#" class="nav-link">
-                    <img src="<?php echo BASEURL?>public/assets/icons/icon_billing.png" alt="report">
-                    <div class="nav-link-text">Billing</div>
-                </a>
-                <a href="#" class="nav-link">
-                    <img src="<?php echo BASEURL?>public/assets/icons/icon_bmc.png" alt="bmc">
-                    <div class="nav-link-text">Buy me a coffee</div>
-                </a>
-                <a href="#" class="nav-link">
-                    <img src="<?php echo BASEURL?>public/assets/icons/Scholarship.png" alt="bmc">
-                    <div class="nav-link-text">Get scholarship</div>
-                </a>
-            </div>
-
-
-            <!-- Navigation bar toggler -->
-            <div class="nav-toggler" id="nav-toggler">
-                <img src="<?php echo BASEURL?>public/assets/icons/toggler.png" alt="toggler">
-            </div>
-        </nav>
 
         <div class="content-area">
 
@@ -168,6 +124,7 @@
     </div>
     </section>
 </body>
+<script src="<?php echo BASEURL ?>public/javascripts/st_auth_script.js"></script>
 
 
 </html>
