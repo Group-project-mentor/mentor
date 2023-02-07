@@ -54,24 +54,24 @@
             <small id="sRegAlert" style="color: red;text-align:center;"></small>
             <div class="input-field">
               <i class="fas fa-user"></i>
-              <input type="text" placeholder="Enter your name"  id="sname" name="name"/>
+              <input type="text" placeholder="Enter your name"  id="stName" name="name"/>
             </div>
             <div class="input-field">
               <i class="fas fa-envelope"></i>
-              <input type="email" placeholder="Enter your email"  id="semail" name="email"/>
+              <input type="email" placeholder="Enter your email"  id="stEmail" name="email"/>
             </div>
             <div class="input-field">
               <i class="fas fa-user"></i>
-              <input type="text" placeholder="Enter your age" name="age" id="sage"/>
+              <input type="text" placeholder="Enter your age" name="stAge" id="sage"/>
 
             </div>
             <div class="input-field">
               <i class="fas fa-lock"></i>
-              <input type="password" placeholder="Enter your Password" id="spasswd" name="passwd" />
+              <input type="password" placeholder="Enter your Password" id="spasswd" name="stPasswd" />
             </div>
             <div class="input-field">
               <i class="fas fa-lock"></i>
-              <input type="password" placeholder="Re-enter your Password" id="spasswd_conf" name="cpasswd" />
+              <input type="password" placeholder="Re-enter your Password" id="spasswd_conf" name="stPassConf" />
             </div>
             <input type="submit" class="btn" value="Sign up" name="register" />
           </form>
