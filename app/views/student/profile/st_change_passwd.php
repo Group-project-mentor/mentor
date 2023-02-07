@@ -7,9 +7,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/x-icon" href="<?php echo BASEURL ?>assets/mentor.ico">
     <title>Student change Password</title>
-    <link rel="stylesheet" href="<?php echo BASEURL; ?>public/stylesheets/rc_main.css">
-    <link rel="stylesheet" href="<?php echo BASEURL; ?>public/stylesheets/rc_profile.css">
-    <link rel="stylesheet" href="<?php echo BASEURL; ?>public/stylesheets/rc_resources.css">
+    <link rel="stylesheet" href="<?php echo BASEURL; ?>public/stylesheets/Student/rc_main.css">
+    <link rel="stylesheet" href="<?php echo BASEURL; ?>public/stylesheets/Student/rc_profile.css">
+    <link rel="stylesheet" href="<?php echo BASEURL; ?>public/stylesheets/Student/rc_resources.css">
     <style>
         .rc-profile-change-name{
             max-width: 800px;
