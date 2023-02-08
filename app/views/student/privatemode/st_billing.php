@@ -7,8 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Student Billing</title>
     <link rel="icon" type="image/x-icon" href="<?php echo BASEURL ?>assets/mentor.ico">
-    <link rel="stylesheet" href="<?php echo BASEURL; ?>public/stylesheets/Student/t_style.css">
-    <link rel="stylesheet" href="<?php echo BASEURL; ?>public/stylesheets/Student/t_resources.css">
+    <link rel="stylesheet" href="<?php echo BASEURL; ?>public/stylesheets/t_style.css">
+    <link rel="stylesheet" href="<?php echo BASEURL; ?>public/stylesheets/t_resources.css">
 </head>
 
 <body>
@@ -53,10 +53,10 @@
                 </div>
                 <br><br>
                 <div style="display: flex; justify-content:space-around; align-items: center;">
-                    <a href="#">
+                    <a href="<?php echo BASEURL; ?>st_billing/st_billing_history">
                         <button style="background-color: green; border:green; color: white; border-radius: 30px; padding: 10px 65px;">See transaction history</button>
                     </a>
-                    <a href="<?php echo BASEURL; ?>st_billing/st_billing_details">
+                    <a href="<?php echo BASEURL; ?>st_billing/st_billing_withdrow">
                         <button style="background-color: green; border:green; color: white; border-radius: 30px; padding: 10px 65px;">Withdraw money</button>
                     </a>
                 </div>
