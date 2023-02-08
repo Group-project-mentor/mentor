@@ -7,8 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Resource other</title>
     <link rel="icon" type="image/x-icon" href="<?php echo BASEURL ?>assets/mentor.ico">
-    <link rel="stylesheet" href="<?php echo BASEURL . '/public/stylesheets/rc_main.css' ?> ">
-    <link rel="stylesheet" href="<?php echo BASEURL . '/public/stylesheets/rc_resources.css' ?> ">
+    <link rel="stylesheet" href="<?php echo BASEURL . '/public/stylesheets/resourceCreator/rc_main.css' ?> ">
+    <link rel="stylesheet" href="<?php echo BASEURL . '/public/stylesheets/resourceCreator/rc_resources.css' ?> ">
 </head>
 
 <body>
@@ -61,7 +61,9 @@
                             </div>
                         </a>
                     </div>
-
+                    <?php
+                    $types = ['pdf', 'png', 'jpg', 'bmp', 'js', 'txt'];
+                    if(!empty($data)){?>
                     <div class="rc-resource-table">
                         <div class="rc-resource-row rc-table-title">
                             <div class="rc-resource-col">Resource name</div>
@@ -69,8 +71,6 @@
                             <div></div>
                         </div>
                         <?php
-                            $types = ['pdf', 'png', 'jpg', 'bmp', 'js', 'txt'];
-                            if(!empty($data)){
                                 foreach ($data as $row) {
                                     echo "<div class='rc-resource-row'>
                                             <div class='rc-resource-col'>".$row['name']."</div>
@@ -91,8 +91,11 @@
                                         </div>
                                         ";
                                     }
-                                }
-                            ?>
+                                }else{ ?>
+                            <h2 class="rc-no-data-msg" style="text-align: center;">No Data to Display</h2>
+                            <?php } ?>
+
+                        <?php if(count($data) > 25){ ?>
                         <div class="pagination-set">
                             <div class="pagination-set-left">
                                 <b>25</b> Results
@@ -105,6 +108,8 @@
                                 <button> > </button>
                             </div>
                         </div>
+                        <?php } ?>
+
                     </div>
     </section>
 </body>

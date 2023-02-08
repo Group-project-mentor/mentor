@@ -7,8 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quizzes</title>
     <link rel="icon" type="image/x-icon" href="<?php echo BASEURL ?>assets/mentor.ico">
-    <link rel="stylesheet" href="<?php echo BASEURL . '/public/stylesheets/rc_main.css' ?> ">
-    <link rel="stylesheet" href="<?php echo BASEURL . '/public/stylesheets/rc_resources.css' ?> ">
+    <link rel="stylesheet" href="<?php echo BASEURL . '/public/stylesheets/resourceCreator/rc_main.css' ?> ">
+    <link rel="stylesheet" href="<?php echo BASEURL . '/public/stylesheets/resourceCreator/rc_resources.css' ?> ">
 </head>
 
 <body>
@@ -57,7 +57,7 @@
                     <h6>My Subjects / <?php echo ucfirst($_SESSION['sname']) ?> / quizzes</h6>
                 </div>
 
-                <!-- Grade choosing interface -->
+                <!-- -->
                 <div class="container-box">
                     <div class="rc-resource-header">
                         <h1>QUIZZES</h1>
@@ -98,9 +98,13 @@
                         </div>
                         <?php        }
                         }
-                        ?>
+                        else{ ?>
+                            <h2 class="rc-no-data-msg" style="text-align: center;">No Data to Display</h2>
+                        <?php } ?>
                     </section>
                 </div>
+
+                <?php if(count($data[0]) > 25){ ?>
                 <div class="pagination-set">
                     <div class="pagination-set-left">
                         <b>25</b> Results
@@ -113,6 +117,8 @@
                         <button> > </button>
                     </div>
                 </div>
+                <?php } ?>
+
             </div>
     </section>
 </body>

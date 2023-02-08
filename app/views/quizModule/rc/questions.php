@@ -36,7 +36,7 @@
                 <a href="#">
                     <img src="<?php echo BASEURL ?>public/assets/icons/icon_notify.png" alt="notify">
                 </a>
-                <a href="#">
+                <a href="<?php echo BASEURL . 'rcProfile' ?>">
                     <img src="<?php echo BASEURL ?>public/assets/icons/icon_profile_black.png" alt="profile">
                 </a>
             </div>
@@ -57,10 +57,11 @@
                     <h1><?php echo ucfirst($data[1][1]) ?></h1>
                     <div class="rc-quiz-top-btns">
 
-                        <a href="">
+                        <a href="<?php echo BASEURL.'quizPreview/instructions/'.$data[4] ?>">
                             <div class="rc-add-btn">
                                 Preview
                             </div>
+                        </a>
                             <a href="<?php echo BASEURL . "quiz/addQuestion/" . $data[1][0] ?>">
                                 <div class="rc-add-btn">
                                     + Add Question

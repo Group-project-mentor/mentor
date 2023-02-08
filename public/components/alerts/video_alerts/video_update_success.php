@@ -8,7 +8,7 @@
             <img src="<?php echo BASEURL?>assets/clips/msg_1.png" alt="error image">
         </div>
         <div class="message-btn">
-            <a  href="<?php echo BASEURL."rcResources/videos/".$_SESSION['gid']."/".$_SESSION['sid'] ?>">OK</a>
+            <a  href="<?php echo BASEURL."rcResources/preview/video/".$data[0][0] ?>">OK</a>
         </div>
     </div>
 </div>

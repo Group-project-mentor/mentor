@@ -7,17 +7,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Videos</title>
     <link rel="icon" type="image/x-icon" href="<?php echo BASEURL ?>assets/mentor.ico">
-    <link rel="stylesheet" href="<?php echo BASEURL . '/public/stylesheets/rc_main.css' ?> ">
-    <link rel="stylesheet" href="<?php echo BASEURL . '/public/stylesheets/rc_resources.css' ?> ">
+    <link rel="stylesheet" href="<?php echo BASEURL . '/public/stylesheets/resourceCreator/rc_main.css' ?> ">
+    <link rel="stylesheet" href="<?php echo BASEURL . '/public/stylesheets/resourceCreator/rc_resources.css' ?> ">
 </head>
 
 <body>
     <?php include_once "components/alerts/rc_delete_alert.php"?>
 
-    <?php 
-        if($data[1] == "success"){
-            include_once "components/alerts/video_alerts/video_update_success.php"; 
+    <?php
+    if(!empty($_SESSION['message'])) {
+        if ($_SESSION['message'] == "success") {
+            include_once "components/alerts/video_alerts/video_update_success.php";
         }
+    }
     ?>
 
     <section class="page">
@@ -57,7 +59,7 @@
                     <h6>My Subjects / <?php echo ucfirst($_SESSION['sname']) ?> / videos</h6>
                 </div>
 
-                <!-- Grade choosing interface -->
+                <!--  -->
                 <div class="container-box">
                     <div class="rc-resource-header">
                         <h1>VIDEOS</h1>
@@ -71,31 +73,26 @@
                         <?php
                             if(!empty($data[0])){
                                 $count = 1;
-                                foreach ($data[0] as $row) {
-                                    echo "<div class='rc-video-card'>
-                                            <img src='".BASEURL."assets/patterns/".$count++.".png' alt='' />
-                                            <a href='".BASEURL."rcResources/preview/video/".$row['id']."'>
-                                                <label>".$row['name']."</label>
-                                            </a>
-                                            <!-- <div class='rc-video-card-btns'>
-                                                <button class='rc-video-delete-btn' onclick='delConfirm(".$row['id'].",1)'>
-                                                    <img src='".BASEURL."assets/icons/icon_delete.png' alt=''>
-                                                </button>
-                                                <a class='rc-video-delete-btn' href='".BASEURL."rcEdit/video/".$row['id']."'>
-                                                    <img src='".BASEURL."assets/icons/icon_edit.png' alt=''>
-                                                </a>
-                                            </div> -->
-                                        </div>";
-                                }
+                                foreach ($data[0] as $row) { ?>
+                                    <div class='rc-video-card' style="align-items: center;">
+                                        <img alt='' src="<?php echo BASEURL."assets/patterns/".$count++.'.png'?>"  />
+                                        <a href='<?php echo BASEURL."rcResources/preview/video/".$row['id']?>' >
+                                            <label><?php echo $row['name'] ?></label>
+                                        </a>
+                                        <a href='<?php echo BASEURL."rcResources/preview/video/".$row['id']?>' style="background: rgb(24, 100, 55);cursor: pointer;">
+                                            <label style="color: white;">View</label>
+                                            <img style="width: 15px" src='<?php echo BASEURL?>assets/icons/icon_eye_white.png' alt='' />
+                                        </a>
+                                    </div>";
+                           <?php     }
                             }
-                            else{
-                                echo "No data";
-                            }
-                        ?> 
+                            else{ ?>
+                                <h2 class="rc-no-data-msg" style="text-align: center;">No Data to Display</h2>
+                        <?php  } ?>
 
                     </div>
                 </div>
-
+                <?php if(count($data[0]) > 25){ ?>
                 <div class="pagination-set">
                     <div class="pagination-set-left">
                         <b>25</b> Results
@@ -108,7 +105,7 @@
                         <button> > </button>
                     </div>
                 </div>
-
+                <?php } ?>
         </div>
 
 
