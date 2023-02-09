@@ -8,8 +8,8 @@
     <link rel="icon" type="image/x-icon" href="<?php echo BASEURL ?>assets/mentor.ico">
     <title>Student private mode</title>
     <link rel="icon" type="image/x-icon" href="<?php echo BASEURL ?>assets/mentor.ico">
-    <link rel="stylesheet" href="<?php echo BASEURL; ?>public/stylesheets/style.css">
-    <link rel="stylesheet" href="<?php echo BASEURL; ?>public/stylesheets/st_card_set.css">
+    <link rel="stylesheet" href="<?php echo BASEURL; ?>public/stylesheets/Student/style.css">
+    <link rel="stylesheet" href="<?php echo BASEURL; ?>public/stylesheets/Student/st_card_set.css">
     <style>
         .join {
             opacity: 1.0;
@@ -107,5 +107,6 @@
         </div>
     </section>
 </body>
+<script src="<?php echo BASEURL ?>public/javascripts/st_auth_script.js"></script>
 
 </html>

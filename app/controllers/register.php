@@ -9,24 +9,24 @@ class Register extends Controller
     //! Not completed
     public function verify_register_student()
     {
-        if (isset($_POST["register"])) {
+//        if (isset($_POST["register"])) {
             $email_pattern = "/[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]/";
             $name_pattern = "/[A-Za-z0-9]+/";
 
-            $email = trim($_POST["email"]);
-            $password = $_POST["passwd"];
-            $name = $_POST["name"];
-            $age = $_POST["age"];
+            $email = trim($_POST["stEmail"]);
+            $password = $_POST["stPasswd"];
+            $name = $_POST["stName"];
+            $age = $_POST["stAge"];
 
-            // $result = null;
+            $response = array("message"=>"");
 
-            if (preg_match($email_pattern, $email) and preg_match($name_pattern, $name and $password == $_POST["cpasswd"])) {
+        // $result = null;
+
+            if (preg_match($email_pattern, $email) and preg_match($name_pattern, $name and $password == $_POST["stPassConf"])) {
                 $hash = password_hash($password, PASSWORD_BCRYPT, ["cost" => 10]);
 
                 if ($this->model("userModel")->registrationStudent($email, $name, $hash, $age)) {
-                    echo "Registration successful !";
-                    // header("location:login.php?success=Sccessfully Registered");
-                    header("location:" . BASEURL . "login");
+                    $response['message'] = "successful";
                 } else {
                     echo "Registration unsuccessful !";
                     // header("location:register.php?error=Can't add the user");
@@ -37,11 +37,12 @@ class Register extends Controller
                 // header("location:" . BASEURL . "register/index/2");
                 // header("location:register.php?error=Invalid Data");
             }
-        } else {
-            header("location:" . BASEURL . "login");
-        }
+//        } else {
+//            header("location:" . BASEURL . "login");
+//        }
     }
 
+    // ?Done
     public function verify_register_teacher()
     {
         // if (isset($_POST["register"])) {
@@ -58,14 +59,14 @@ class Register extends Controller
                 $hash = password_hash($password, PASSWORD_BCRYPT, ["cost" => 10]);
 
                 if ($this->model("userModel")->registrationTeacher($email, $name, $hash)) {
-                    $response['message'] = "Registration successful !";
+                    $response['message'] = "successful";
                     // header("location:" . BASEURL . "login");
                 } else {
-                    $response['message'] = "Registration unsuccessful !";
+                    $response['message'] = "unsuccessful";
                     // header("location:" . BASEURL . "register/index/1");
                 }
             } else {
-                $response['message'] = "Invalid Data !";
+                $response['message'] = "invalid";
                 // header("location:" . BASEURL . "register/index/2");
             }
         // } else {

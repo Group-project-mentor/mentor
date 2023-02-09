@@ -1,11 +1,20 @@
 *{
     font-family: Roboto;
+    
+}
+body{
+    background:#D9D9D9;
+
 }
 .ad_mid-content{
     background:#D9D9D9;
     padding: 0px;
     margin: 0px;
 
+}
+
+.earnings{
+    /* margin: 10px; */
 }
 
 .content-area{

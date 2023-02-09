@@ -184,6 +184,8 @@
     max-height: 300px;
     overflow: scroll;
     overflow-x: hidden;
+    backdrop-filter: blur(5px);
+    background-color: rgba(255, 255, 255, 0.7);
 }
 
 .sponsor-student-prof>.bottom-details h4{
@@ -193,7 +195,7 @@
     background: white;
     font-family: "Poppins", sans-serif;
     text-align: center;
-    padding: 10px 20px;
+    padding: 15px 20px;
 }
 
 .sponsor-student-prof>.bottom-details .sp-subject-report{
@@ -204,6 +206,8 @@
     border-radius: 10px;
     flex: 1;
     margin: 0 25px;
+    backdrop-filter: blur(5px);
+    background-color: rgba(255, 255, 255, 0.7);
 }
 .border-no{
     border: none;

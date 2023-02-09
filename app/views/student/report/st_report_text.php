@@ -51,9 +51,9 @@
                 <div class="class section">
                     <form>
                         <textarea id="w3review" name="w3review" rows="4" cols="50"></textarea>
-                        <br>
+                        <br><br>
                         <a href="<?php echo BASEURL ?>#">
-                            <div class="mid-back-btn">Submit</div>
+                            <div style="width:100px" class="back-btn">Submit</div>
                         </a>
                     </form>
                 </div>
@@ -63,38 +63,9 @@
         </div>
     </section>
 </body>
-<script>
-    let toggle = true;
 
-    const getElement = (id) => document.getElementById(id);
 
-    let togglerBtn = getElement("nav-toggler");
-    let nav = getElement("nav-bar");
-    let logoLong = getElement("nav-logo-long");
-    let navMiddle = getElement("nav-middle");
-    let navLinkTexts = document.getElementsByClassName("nav-link-text");
+<script src="<?php echo BASEURL ?>public/javascripts/st_auth_script.js"></script>
 
-    togglerBtn.addEventListener('click', () => {
-        nav.classList.toggle("nav-bar-small");
-
-        if (toggle) {
-            logoLong.classList.add("hidden");
-            navMiddle.classList.add("hidden");
-            togglerBtn.classList.add("toggler-rotate");
-            for (i = 0; i < navLinkTexts.length; i++) {
-                navLinkTexts[i].classList.add("hidden");
-            }
-            toggle = false;
-        } else {
-            logoLong.classList.remove("hidden");
-            navMiddle.classList.remove("hidden");
-            togglerBtn.classList.remove("toggler-rotate");
-            for (i = 0; i < navLinkTexts.length; i++) {
-                navLinkTexts[i].classList.remove("hidden");
-            }
-            toggle = true;
-        }
-    })
-</script>
 
 </html>

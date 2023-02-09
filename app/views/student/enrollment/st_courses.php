@@ -9,8 +9,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/x-icon" href="<?php echo BASEURL ?>assets/mentor.ico">
     <title>Student Cources</title>
-    <link rel="stylesheet" href="<?php echo BASEURL; ?>public/stylesheets/style.css">
-    <link rel="stylesheet" href="<?php echo BASEURL; ?>public/stylesheets/st_card_set.css">
+    <link rel="stylesheet" href="<?php echo BASEURL; ?>public/stylesheets/Student/style.css">
+    <link rel="stylesheet" href="<?php echo BASEURL; ?>public/stylesheets/Student/st_card_set.css">
 </head>
 
 <body>
@@ -62,7 +62,7 @@
                     <!-- tempary movement -->
                     <div class="subject-card" >
                         <img src="<?php echo BASEURL  ?>assets/patterns/1.png" alt="" />
-                        <a href="<?php echo BASEURL  ?>st_Inside_subject"><label>C89 - Dancing</label></a>
+                        <a href="<?php echo BASEURL  ?>st_video"><label>C89 - Dancing</label></a>
                         <label>Grade 8</label>
                     </div>
 
@@ -92,7 +92,7 @@
                         <div class="subject-card-set">
                             <?php foreach($data[0] as $row) {?>
                             <div class="subject-card">
-                                <img src="<?php echo BASEURL  ?>assets/patterns/1.png" alt="" />
+                                <img src="<?php echo BASEURL  ?>assets/patterns/2.png" alt="" />
                                 <a href="#"><label><?php echo $row['name'] ?></label></a>
                                 <label>Grade 8</label>
                             </div>

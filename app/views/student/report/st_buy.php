@@ -41,7 +41,7 @@
                  <!-- Title and sub title of middle part -->
                 <div class="mid-title">
                     <h1>BUY ME A COFFEE</h1>
-                    <h6>Teacher Home/ Buy Me a Coffee</h6>
+                    <h6>Student Home/ Buy Me a Coffee</h6>
                     <br><br><br>
                     <h3>Enter the amount</h3>
                 </div>
@@ -50,8 +50,8 @@
                     <form action="<?php echo BASEURL;?>St_buy" method="POST">
                       <label for="class_name"></label>
                       <input type="text" id="class_name" name="class_name" placeholder="Enter the amount">
-                     
-                      <a href="<?php echo BASEURL?>St_buy/St_buy_in"><div class="mid-back-btn">Next</div></a>
+                     <br><br>
+                      <a href="<?php echo BASEURL?>St_buy/St_buy_in"><div style="width:100px" class="back-btn">Next</div></a>
                     </form>
                   </div>
 
@@ -69,43 +69,7 @@
         </div>  
     </section>      
 </body>
-<script>
-    let toggle = true;
 
-    const getElement = (id) => document.getElementById(id);
-
-    let togglerBtn = getElement("nav-toggler");
-    let nav = getElement("nav-bar");
-    let logoLong = getElement("nav-logo-long");
-    let navMiddle = getElement("nav-middle");
-    let navLinkTexts = document.getElementsByClassName("nav-link-text");
-
-    togglerBtn.addEventListener('click', () => {
-        nav.classList.toggle("nav-bar-small");
-
-        if (toggle) {
-            logoLong.classList.add("hidden");
-            navMiddle.classList.add("hidden");
-            togglerBtn.classList.add("toggler-rotate");
-            for (i = 0; i < navLinkTexts.length; i++) {
-                navLinkTexts[i].classList.add("hidden");
-            }
-            toggle = false;
-        }
-
-        else {
-            logoLong.classList.remove("hidden");
-            navMiddle.classList.remove("hidden");
-            togglerBtn.classList.remove("toggler-rotate");
-            for (i = 0; i < navLinkTexts.length; i++) {
-                navLinkTexts[i].classList.remove("hidden");
-            }
-            toggle = true;
-        }
-    })
-
-
-
-</script>
+<script src="<?php echo BASEURL ?>public/javascripts/st_auth_script.js"></script>
 
 </html>
