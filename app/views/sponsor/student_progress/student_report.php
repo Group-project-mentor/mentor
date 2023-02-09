@@ -14,7 +14,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Student Report</title>
 
-    <link rel="stylesheet" href="<?php echo BASEURL . '/public/stylesheets/rc_main.css' ?> ">
+    <link rel="stylesheet" href="<?php echo BASEURL . '/public/stylesheets/resourceCreator/rc_main.css' ?> ">
     <link rel="stylesheet" href="<?php echo BASEURL . '/public/stylesheets/sponsor/sp_styles.css' ?> ">
 </head>
 
@@ -35,13 +35,13 @@
                 </a>
             </div>
             <div class="top-bar-btns">
-                <a href="">
-                    <div class="back-btn">Back</div>
-                </a>
+<!--                <a href="">-->
+<!--                    <div class="back-btn">Back</div>-->
+<!--                </a>-->
                 <a href="#">
                     <img src="<?php echo BASEURL ?>assets/icons/icon_notify.png" alt="notify">
                 </a>
-                <a href="<?php echo BASEURL . 'rcProfile' ?>">
+                <a href="<?php echo BASEURL . 'sponsor/profile' ?>">
                     <img src="<?php echo BASEURL ?>assets/icons/icon_profile_black.png" alt="profile">
                 </a>
             </div>
@@ -59,7 +59,7 @@
             <!-- bottom part -->
             <section class="bottom-section-grades" style="flex-direction: column;align-items: flex-end;">
                 <div class="bottom-section-title">
-                    <a class="sponsor-button">
+                    <a class="sponsor-button" href="<?php echo BASEURL?>sponsor/new_student" style="text-decoration: none;">
                         New
                         <img src="<?php echo BASEURL ?>assets/icons/add_teacher.png" alt="" style="width: 20px;">
                     </a>
@@ -72,13 +72,13 @@
                         <div class="sponsor-list-item sponsor-list-item-title flex-2">
                             Image
                         </div>
-                        <div class="sponsor-list-item sponsor-list-item-title flex-3">
+                        <div class="sponsor-list-item sponsor-list-item-title flex-5">
                             Name
                         </div>
-                        <div class="sponsor-list-item sponsor-list-item-title flex-4">
+                        <div class="sponsor-list-item sponsor-list-item-title flex-3">
                             Fund
                         </div>
-                        <div class="sponsor-list-item sponsor-list-item-title flex-5">
+                        <div class="sponsor-list-item sponsor-list-item-title flex-1">
 
                         </div>
                     </div>
@@ -90,16 +90,16 @@
                         <div class="sponsor-list-item flex-2">
                             <img src="<?php echo BASEURL ?>assets/icons/icon_profile_black.png" alt="profile">
                         </div>
-                        <div class="sponsor-list-item flex-3">
+                        <div class="sponsor-list-item flex-5">
                             D.K.S.Siriwardhana
                         </div>
-                        <div class="sponsor-list-item flex-4">
+                        <div class="sponsor-list-item flex-3">
                             Rs.2000.00
                         </div>
-                        <div class="sponsor-list-item flex-5">
-                            <div>
+                        <div class="sponsor-list-item flex-1">
+                            <a href="<?php echo BASEURL ?>sponsor/see_student">
                                 <img src="<?php echo BASEURL ?>assets/icons/icon_eye.png" alt="" style="width: 20px;">
-                            </div>
+                            </a>
                         </div>
                     </div>
                 </div>

@@ -202,7 +202,7 @@
         form1.style.display = "none";
         form2.style.display = "none";
 
-        fetch('<?php BASEURL?>rcReport/saveReport',{
+        fetch('<?php echo BASEURL?>rcReport/saveReport',{
             method : 'post',
             body : mainForm
         })
