@@ -1,0 +1,18 @@
+.videos{
+    flex-wrap: wrap;
+    display: flex;
+    justify-content: space-evenly;
+    
+}
+
+.videoslist{
+    width: 180px;
+    padding: 10px;
+    margin: 10px;
+}
+
+.quizz{
+    width: 180px;
+    padding: 10px;
+    margin: 10px;
+}

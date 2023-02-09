@@ -94,7 +94,7 @@
 
                 <!-- Title and sub title of middle part -->
                 <div class="mid-title">
-                    <h1>Videos</h1>
+                    <h1>Pdf's</h1>
                 </div>
 
                 <div class="content" id="comp-content" >
@@ -103,12 +103,12 @@
                         
                     </div>
                     <div class="videos">
-                        <img class="videoslist" src="<?php echo BASEURL ?>assets/admin/videoslist.png">
-                        <img class="videoslist" src="<?php echo BASEURL ?>assets/admin/videoslist.png">
-                        <img class="videoslist" src="<?php echo BASEURL ?>assets/admin/videoslist.png">
-                        <img class="videoslist" src="<?php echo BASEURL ?>assets/admin/videoslist.png">
-                        <img class="videoslist" src="<?php echo BASEURL ?>assets/admin/videoslist.png">
-                        <img class="videoslist" src="<?php echo BASEURL ?>assets/admin/videoslist.png">
+                        <img class="quizz" src="<?php echo BASEURL ?>assets/admin/quizz.png">
+                        <img class="quizz" src="<?php echo BASEURL ?>assets/admin/quizz.png">
+                        <img class="quizz" src="<?php echo BASEURL ?>assets/admin/quizz.png">
+                        <img class="quizz" src="<?php echo BASEURL ?>assets/admin/quizz.png">
+                        <img class="quizz" src="<?php echo BASEURL ?>assets/admin/quizz.png">
+                        <img class="quizz" src="<?php echo BASEURL ?>assets/admin/quizz.png">
                     </div>
                 </div>
                 
