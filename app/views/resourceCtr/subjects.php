@@ -20,7 +20,7 @@ if (!isset($_SESSION['user'])) {
 <body>
     <section class="page">
         <!-- Navigation panel -->
-        <?php include_once "components/navbars/rc_nav_1.php"?>
+        <?php include_once "components/navbars/rc_nav_1.php" ?>
 
         <div class="content-area">
 
@@ -29,7 +29,7 @@ if (!isset($_SESSION['user'])) {
                 <div class="search-bar">
                     <input type="text" name="" id="" placeholder="Search...">
                     <a href="">
-                        <img src="<?php echo BASEURL?>assets/icons/icon_search.png" alt="">
+                        <img src="<?php echo BASEURL ?>assets/icons/icon_search.png" alt="">
                     </a>
                 </div>
                 <div class="top-bar-btns">
@@ -37,10 +37,10 @@ if (!isset($_SESSION['user'])) {
                         <div class="back-btn">Back</div>
                     </a>
                     <a href="#">
-                        <img src="<?php echo BASEURL?>assets/icons/icon_notify.png" alt="notify">
+                        <img src="<?php echo BASEURL ?>assets/icons/icon_notify.png" alt="notify">
                     </a>
                     <a href="<?php echo BASEURL . 'rcProfile' ?>">
-                        <img src="<?php echo BASEURL?>assets/icons/icon_profile_black.png" alt="profile">
+                        <img src="<?php echo BASEURL ?>assets/icons/icon_profile_black.png" alt="profile">
                     </a>
                 </div>
             </section>
@@ -59,32 +59,32 @@ if (!isset($_SESSION['user'])) {
                     <div class="subject-card-set">
 
                         <?php
-                            if(!empty($data)){
-                                $count = 1;
-                                foreach ($data as $row) {
-                                    ?>
-                                    <div class='subject-card'>
-                                        <div class="subject-card-inside">
-                                            <img src='<?php echo BASEURL?>assets/patterns/<?php echo $count ?>.png' alt='' />
-                                        </div>
-                                        <div class="subject-card-titles">
-                                            <label class="subject-card-texts"><?php echo ucfirst($row['sname']) ?> </label>
-                                            <label class="subject-card-texts">Grade  <?php echo $row['gname'] ?> </label>
-                                        </div>
-
-                                        <a href='<?php echo BASEURL."rcResources/videos/".$row['gid']."/".$row['sid'] ?>'>
-                                            <label>Enter</label>
-                                            <img src='<?php echo BASEURL?>assets/icons/icon-enter.png' alt='' />
-                                        </a>
+                        if (!empty($data)) {
+                            $count = 1;
+                            foreach ($data as $row) {
+                        ?>
+                                <div class='subject-card'>
+                                    <div class="subject-card-inside">
+                                        <img src='<?php echo BASEURL ?>assets/patterns/<?php echo $count ?>.png' alt='' />
                                     </div>
-                    <?php           $count++;
-                                    if($count>12) $count = 1;
-                                }
+                                    <div class="subject-card-titles">
+                                        <label class="subject-card-texts"><?php echo ucfirst($row['sname']) ?> </label>
+                                        <label class="subject-card-texts">Grade <?php echo $row['gname'] ?> </label>
+                                    </div>
+
+                                    <a href='<?php echo BASEURL . "rcResources/videos/" . $row['gid'] . "/" . $row['sid'] ?>'>
+                                        <label>Enter</label>
+                                        <img src='<?php echo BASEURL ?>assets/icons/icon-enter.png' alt='' />
+                                    </a>
+                                </div>
+                        <?php $count++;
+                                if ($count > 12) $count = 1;
                             }
-                        ?> 
-                                    
-                                
-                        
+                        }
+                        ?>
+
+
+
                     </div>
                 </div>
 
