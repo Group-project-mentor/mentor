@@ -44,9 +44,6 @@ if (!empty($data[1]) && $data[1] == "success") {
 
             <!-- Middle part for whole content -->
             <section class="mid-content">
-
-
-
                 <div class="rc-resource-header">
                         <!-- Title and sub title of middle part -->
                         <div class="mid-title">
