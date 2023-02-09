@@ -8,22 +8,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Edit Video</title>
     <link rel="icon" type="image/x-icon" href="<?php echo BASEURL ?>assets/mentor.ico">
-    <link rel="stylesheet" href="<?php echo BASEURL . '/public/stylesheets/rc_main.css' ?> ">
-    <link rel="stylesheet" href="<?php echo BASEURL . '/public/stylesheets/rc_resources.css' ?> ">
+    <link rel="stylesheet" href="<?php echo BASEURL . '/public/stylesheets/resourceCreator/rc_main.css' ?> ">
+    <link rel="stylesheet" href="<?php echo BASEURL . '/public/stylesheets/resourceCreator/rc_resources.css' ?> ">
 </head>
 
 <body>
-    <?php 
-        if($data[1] == "update_err"){
-            include_once "components/alerts/video_alerts/video_update_err.php"; 
-        }
-        elseif($data[1] == "url_err"){
+
+    <?php
+    if(!empty($_SESSION['message'])) {
+        if ($_SESSION['message'] == "update_err") {
+            include_once "components/alerts/video_alerts/video_update_err.php";
+        } elseif ($_SESSION['message'] == "url_err") {
             include_once "components/alerts/video_alerts/video_url_err.php";
-        }
-        elseif($data[1] == "empty_err"){
+        } elseif ($_SESSION['message'] == "empty_err") {
             include_once "components/alerts/video_alerts/video_empty_err.php";
+        } elseif ($_SESSION['message'] == "success") {
+            include_once "components/alerts/video_alerts/video_update_success.php";
         }
+    }
     ?>
+
     <section class="page">
 
         <!-- Navigation panel -->

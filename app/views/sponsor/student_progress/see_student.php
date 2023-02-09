@@ -139,7 +139,6 @@
                                         </div>
                                     </div>
                                 </div>
-
                             </div>
                             <div class="sp-subject-report">
                                 <h4>Detail Chart</h4>

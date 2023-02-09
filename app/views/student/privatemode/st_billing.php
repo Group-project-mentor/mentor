@@ -7,8 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Student Billing</title>
     <link rel="icon" type="image/x-icon" href="<?php echo BASEURL ?>assets/mentor.ico">
-    <link rel="stylesheet" href="<?php echo BASEURL; ?>public/stylesheets/Student/t_style.css">
-    <link rel="stylesheet" href="<?php echo BASEURL; ?>public/stylesheets/Student/t_resources.css">
+    <link rel="stylesheet" href="<?php echo BASEURL; ?>public/stylesheets/t_style.css">
+    <link rel="stylesheet" href="<?php echo BASEURL; ?>public/stylesheets/t_resources.css">
 </head>
 
 <body>
@@ -53,10 +53,10 @@
                 </div>
                 <br><br>
                 <div style="display: flex; justify-content:space-around; align-items: center;">
-                    <a href="#">
+                    <a href="<?php echo BASEURL; ?>st_billing/st_billing_history">
                         <button style="background-color: green; border:green; color: white; border-radius: 30px; padding: 10px 65px;">See transaction history</button>
                     </a>
-                    <a href="<?php echo BASEURL; ?>st_billing/st_billing_details">
+                    <a href="<?php echo BASEURL; ?>st_billing/st_billing_withdrow">
                         <button style="background-color: green; border:green; color: white; border-radius: 30px; padding: 10px 65px;">Withdraw money</button>
                     </a>
                 </div>
@@ -75,38 +75,8 @@
         </div>
     </section>
 </body>
-<script>
-    let toggle = true;
 
-    const getElement = (id) => document.getElementById(id);
+<script src="<?php echo BASEURL ?>public/javascripts/st_auth_script.js"></script>
 
-    let togglerBtn = getElement("nav-toggler");
-    let nav = getElement("nav-bar");
-    let logoLong = getElement("nav-logo-long");
-    let navMiddle = getElement("nav-middle");
-    let navLinkTexts = document.getElementsByClassName("nav-link-text");
-
-    togglerBtn.addEventListener('click', () => {
-        nav.classList.toggle("nav-bar-small");
-
-        if (toggle) {
-            logoLong.classList.add("hidden");
-            navMiddle.classList.add("hidden");
-            togglerBtn.classList.add("toggler-rotate");
-            for (i = 0; i < navLinkTexts.length; i++) {
-                navLinkTexts[i].classList.add("hidden");
-            }
-            toggle = false;
-        } else {
-            logoLong.classList.remove("hidden");
-            navMiddle.classList.remove("hidden");
-            togglerBtn.classList.remove("toggler-rotate");
-            for (i = 0; i < navLinkTexts.length; i++) {
-                navLinkTexts[i].classList.remove("hidden");
-            }
-            toggle = true;
-        }
-    })
-</script>
 
 </html>

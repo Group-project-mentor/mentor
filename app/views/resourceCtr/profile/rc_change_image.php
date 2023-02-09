@@ -7,8 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/x-icon" href="<?php echo BASEURL ?>assets/mentor.ico">
     <title>change image</title>
-    <link rel="stylesheet" href="<?php echo BASEURL; ?>public/stylesheets/rc_main.css">
-    <link rel="stylesheet" href="<?php echo BASEURL; ?>public/stylesheets/rc_profile.css">
+    <link rel="stylesheet" href="<?php echo BASEURL; ?>public/stylesheets/resourceCreator/rc_main.css">
+    <link rel="stylesheet" href="<?php echo BASEURL; ?>public/stylesheets/resourceCreator/rc_profile.css">
 </head>
 
 <body>

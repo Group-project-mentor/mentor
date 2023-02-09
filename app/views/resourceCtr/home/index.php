@@ -13,8 +13,9 @@
     <link rel="icon" type="image/x-icon" href="<?php echo BASEURL ?>assets/mentor.ico">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    
-    <link rel="stylesheet" href="<?php echo BASEURL . '/public/stylesheets/rc_main.css' ?> ">
+
+    <link rel="stylesheet" href="<?php echo BASEURL . '/public/stylesheets/resourceCreator/rc_main.css' ?> ">
+    <link rel="stylesheet" href="<?php echo BASEURL . '/public/stylesheets/sponsor/sp_styles.css' ?> ">
 </head>
 
 <body>
@@ -52,69 +53,62 @@
                     <h6>welcome <?php echo $_SESSION['name'] ?></h6>
                 </div>
 
-                <!-- Grade choosing interface -->
-                <!-- <div class="container-box">
-                    <div class="grade-switcher">
-                        <img src="assets/icons/icon_prev.png" alt="left">
-                        <div class="grades">
-                            <div class="grade-card">
-                                <img src="assets/grades/grade9.png" alt="">
-                                <label for="title">Grade 9</label>
-                            </div>
-                            <div class="grade-card front">
-                                <img src="assets/grades/grade8.png" alt="">
-                                <label for="title">Grade 8</label>
-                            </div>
-                            <div class="grade-card">
-                                <img src="assets/grades/grade7.png" alt="">
-                                <label for="title">Grade 7</label>
-                            </div>
-                        </div>
-                        <img src="assets/icons/icon_next.png" alt="right">
-                    </div>
-                </div> -->
-
                 <!-- bottom part -->
                 <section class="bottom-section-grades">
-                    <!-- <div class="grade-table">
-                        <h1>Grades</h1>
-                        <hr>
-                        <div class="grade-values">
-                            <li>
-                                <span>Grade 9</span>
-                                <div>
-                                    <div class="nav-switch">
-                                        <label class="switch">
-                                            <input type="checkbox" checked>
-                                            <span class="slider round"></span>
-                                        </label>
+
+<!--                    <div class="decorator">-->
+<!--                        <img src="assets/clips/lap_man.png" alt="lap man">-->
+<!--                    </div>-->
+                    <div class="sponsor-student-prof">
+                        <div class="bottom-details" style="margin: 10px 10px;height: 50vh;background: url('<?php echo BASEURL ?>assets/clips/lap_man.png') no-repeat;backdrop-filter: opacity(10)">
+                            <div>
+                                <div class="sp-subject-details">
+                                    <h4>Subjects involved in</h4>
+                                    <div class="sponsor-list-main border-no">
+                                        <div class="sponsor-list-row">
+                                            <div class="sponsor-list-item flex-1 sponsor-grade-cell" >
+                                                Mathematics
+                                            </div>
+                                        </div>
+                                        <div class="sponsor-list-row">
+                                            <div class="sponsor-list-item flex-1 sponsor-grade-cell" >
+                                                Sinhala
+                                            </div>
+                                        </div>
+                                        <div class="sponsor-list-row">
+                                            <div class="sponsor-list-item flex-1 sponsor-grade-cell" >
+                                                Sinhala
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                            </li>
-                            <li>
-                                <span>Grade 10</span>
-                                <div>
-                                    <div class="nav-switch">
-                                        <label class="switch">
-                                            <input type="checkbox" checked>
-                                            <span class="slider round"></span>
-                                        </label>
+                                <div class="sp-subject-report">
+                                    <h4>Detail Chart</h4>
+                                    <img src="<?php echo BASEURL?>assets/clips/chart.webp" style="width: 400px;">
+                                </div>
+                            </div>
+
+                            <div class="sp-subject-details">
+                                <h4>Notifications</h4>
+                                <div class="sponsor-list-main border-no">
+                                    <div class="sponsor-list-row">
+                                        <div class="sponsor-list-item flex-1 sponsor-grade-cell" >
+                                            Mathematics
+                                        </div>
+                                    </div>
+                                    <div class="sponsor-list-row">
+                                        <div class="sponsor-list-item flex-1 sponsor-grade-cell" >
+                                            Sinhala
+                                        </div>
                                     </div>
                                 </div>
-                            </li>
+                            </div>
                         </div>
-                        <div>
-                            <button type="submit">Save</button>
-                        </div>
-                    </div> -->
-                    <div class="decorator">
-                        <img src="assets/clips/lap_man.png" alt="lap man">
                     </div>
+
                 </section>
 
         </div>
-    </section>
-    </div>
     </section>
 </body>
 

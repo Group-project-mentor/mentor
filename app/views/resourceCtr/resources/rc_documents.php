@@ -7,8 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/x-icon" href="<?php echo BASEURL ?>assets/mentor.ico">
     <title>RC-Cources</title>
-        <link rel="stylesheet" href="<?php echo BASEURL . '/public/stylesheets/rc_main.css' ?> ">
-        <link rel="stylesheet" href="<?php echo BASEURL . '/public/stylesheets/rc_resources.css' ?> ">
+        <link rel="stylesheet" href="<?php echo BASEURL . '/public/stylesheets/resourceCreator/rc_main.css' ?> ">
+        <link rel="stylesheet" href="<?php echo BASEURL . '/public/stylesheets/resourceCreator/rc_resources.css' ?> ">
 </head>
 
 <body>
@@ -51,7 +51,7 @@
                     <h6>My Subjects / <?php echo ucfirst($_SESSION['sname']) ?> / documents</h6>
                 </div>
 
-                <!-- Grade choosing interface -->
+                <!--  -->
                 <div class="container-box">
                     <div class="rc-resource-header">
                         <h1>DOCUMENTS</h1>
@@ -61,29 +61,14 @@
                             </div>
                         </a>
                     </div>
-
+                    <?php
+                    if(!empty($data)){ ?>
                     <div class="rc-resource-table">
                         <div class="rc-table-title">
                             <div class="rc-resource-col">Name</div>
                             <div></div>
                         </div>
-
-                        <!-- <div class="rc-pdf-row">
-                            <div class="rc-resource-col">Lesson 1 </div>
-                            <div class="rc-quiz-row-btns">
-                                <button>
-                                    <img src="<?php echo BASEURL ?>assets/icons/icon_delete.png" alt="delete">
-                                </button>
-                                <button>
-                                    <img src="<?php echo BASEURL ?>assets/icons/icon_edit.png" alt="edit">
-                                </button>
-                            </div>
-                        </div> -->
-
-
-                            <?php
-                            if(!empty($data)){
-                                foreach ($data as $row) {
+                                <?php foreach ($data as $row) {
                                     echo "<div class='rc-pdf-row'>
                                                 <div class='rc-resource-col'>".$row['name']."</div>                     
                                                 <div class='rc-quiz-row-btns'>
@@ -100,12 +85,15 @@
                                             </div>";
                                     }
                                 }
-                            ?>
+                            else{ ?>
+                                <h2 class="rc-no-data-msg" style="text-align: center;">No Data to Display</h2>
+                            <?php } ?>
 
 
                     </div>
-
                 </div>
+
+                <?php if(count($data) > 25){ ?>
                 <div class="pagination-set">
                     <div class="pagination-set-left">
                         <b>25</b> Results
@@ -118,6 +106,8 @@
                         <button> > </button>
                     </div>
                 </div>
+                <?php } ?>
+
         </div>
     </section>
 </body>

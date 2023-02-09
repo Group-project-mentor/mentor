@@ -52,61 +52,9 @@
                     <h6>welcome <?php echo $_SESSION['name'] ?></h6>
                 </div>
 
-                <!-- Grade choosing interface -->
-                <!-- <div class="container-box">
-                    <div class="grade-switcher">
-                        <img src="assets/icons/icon_prev.png" alt="left">
-                        <div class="grades">
-                            <div class="grade-card">
-                                <img src="assets/grades/grade9.png" alt="">
-                                <label for="title">Grade 9</label>
-                            </div>
-                            <div class="grade-card front">
-                                <img src="assets/grades/grade8.png" alt="">
-                                <label for="title">Grade 8</label>
-                            </div>
-                            <div class="grade-card">
-                                <img src="assets/grades/grade7.png" alt="">
-                                <label for="title">Grade 7</label>
-                            </div>
-                        </div>
-                        <img src="assets/icons/icon_next.png" alt="right">
-                    </div>
-                </div> -->
-
                 <!-- bottom part -->
                 <section class="bottom-section-grades">
-                    <!-- <div class="grade-table">
-                        <h1>Grades</h1>
-                        <hr>
-                        <div class="grade-values">
-                            <li>
-                                <span>Grade 9</span>
-                                <div>
-                                    <div class="nav-switch">
-                                        <label class="switch">
-                                            <input type="checkbox" checked>
-                                            <span class="slider round"></span>
-                                        </label>
-                                    </div>
-                                </div>
-                            </li>
-                            <li>
-                                <span>Grade 10</span>
-                                <div>
-                                    <div class="nav-switch">
-                                        <label class="switch">
-                                            <input type="checkbox" checked>
-                                            <span class="slider round"></span>
-                                        </label>
-                                    </div>
-                                </div>
-                            </li>
-                        </div>
-                        <div>
-                            <button type="submit">Save</button>
-                        </div>
-                    </div> -->
+
                     <div class="decorator">
                         <img src="assets/clips/lap_man.png" alt="lap man">
                     </div>
