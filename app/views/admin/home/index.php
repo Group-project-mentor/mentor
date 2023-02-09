@@ -304,32 +304,19 @@
         <!-- <div class="tab">
                 jhxj
             </div> -->
-        <div class="tab">
+        <div class="tab" style="border-top-left-radius:20px;border-top-right-radius:20px">
             <a href="<?php echo BASEURL ?>adProfile" class="popup-link">
                 <div class="tabcont">
-
                     <img class="icon" src="<?php echo BASEURL ?>assets/admin/profileicon.png">
                     Profile
-
-
-
-
-
                 </div>
             </a>
-
         </div>
         <div class="tab">
             <a href="<?php echo BASEURL ?>adSetting" class="popup-link">
                 <div class="tabcont">
-
                     <img class="icon" src="<?php echo BASEURL ?>assets/admin/settingicon.png">
                     Settings
-
-
-
-
-
                 </div>
             </a>
         </div>
@@ -339,32 +326,17 @@
 
                     <img class="icon" src="<?php echo BASEURL ?>assets/admin/activitylogicon.png">
                     Activity Log
-
-
-
-
-
                 </div>
             </a>
-
         </div>
-        <div class="tab">
+        <div class="tab" style="border-bottom-left-radius:20px;border-bottom-right-radius:20px">
             <a href="<?php echo BASEURL ?>login" class="popup-link">
                 <div class="tabcont">
-
                     <img class="icon" src="<?php echo BASEURL ?>assets/admin/logouticon.png">
                     Logout
-
-
-
-
-
                 </div>
             </a>
-
         </div>
-
-
     </section>
     </div>
 
