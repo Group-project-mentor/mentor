@@ -25,8 +25,13 @@ class Login extends Controller{
                     while ($record = $data->fetch_row()) {
                         $result = $record;
                     }
+<<<<<<< HEAD
+                   if (password_verify($_POST["passwd"], $result[2])) {
+                    //if (true) {
+=======
                     if (password_verify($_POST["passwd"], $result[2])) {
 //                    if (true) {
+>>>>>>> 99af173f209efc34d0584715becfbfd22503ba00
                         $_SESSION["id"] = $result[0];
                         $_SESSION["user"] = $email;
                         $_SESSION["name"] = $result[3];

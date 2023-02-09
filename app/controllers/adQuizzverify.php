@@ -1,6 +1,6 @@
 <?php
 
-class Ad_dashboard extends Controller{
+class AdQuizzverify extends Controller{
     public function __construct()
     {
         // sessionValidator();
@@ -8,7 +8,7 @@ class Ad_dashboard extends Controller{
 
     public function index()
     {
-        $this->view('admin/Resource_creators');
+        $this->view('admin/resourceVerificationQuizzes');
     }
 
 }
