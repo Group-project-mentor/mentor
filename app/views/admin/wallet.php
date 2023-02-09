@@ -92,52 +92,39 @@
             <section class="mid-content ad_mid-content">
 
                 <!-- Title and sub title of middle part -->
-                <div class="mid-title">
-                    <h1>Wallet</h1>
-                </div>
-                <div class="content" id="comp-content" >
+
+
+                <div class="content" id="comp-content">
                     <div class="bckclose">
                         <img class="back" src="<?php echo BASEURL ?>assets/admin/Arrow---Left.png">
-                        
+                        <img class="close" src="<?php echo BASEURL ?>assets/admin/Close-Square.png">
                     </div>
-                    <div class="resource">
-                         <!-- Title and sub title of middle part -->
-                <div class="mid-title">
-                </div>
+                    <form class="form" action="<?php echo BASEURL ?>adAddnewadmin/add" method="POST">
+                        <div class="mid-title">
+                            <h1>Wallet </h1>
+                        </div><br><br>
 
-                <div class="hr" id="rc">
-                    <div class="bgbox">
-                        <div class="team">
-                            <div class="title">
-                            <h3>Available Balance in your wallet</h3>
-                            </div>
-                            <div class="btn">
-                                <button class="btns" type="button">
-                                    <p>View All</p>
-                                </button>
-                                
-                            </div>
+                        <div class="mid-title">
+                            <h3>Available balance in your wallet </h3>
+                        </div><br><br><br>
 
-                        </div>
-                    </div>
-
-                </div>
-</h3>
-                  
-                    
-                
-
-                <div style="display: flex;justify-content: center;font-size:30px">
+                        <div style="display: flex;justify-content: center;font-size:30px">
                     <h1>Rs.*******</h1>
+                  </div><br><br><br>
+
+                      
+
+                         <div class="btn" style="display: flex; justify-content:space-around; align-items: center;">
+                <a class="btns" href="<?php echo BASEURL?>privateclass/transHistory" style=" background-color: #4CAF50; /* Green */ border: none; color: white; text-align: center; padding: 12px 28px; border-radius: 12px; text-decoration: none;display: inline-block;font-size: 16px;margin: 4px 2px;cursor: pointer; text-decoration:none"><div class="mid-back-btn">See transaction history</div></a>
+                <a href="<?php echo BASEURL?>adWithdraw" style=" background-color: #4CAF50; /* Green */ border: none; color: white; text-align: center; padding: 12px 28px; border-radius: 12px; text-decoration: none;display: inline-block;font-size: 16px;margin: 4px 2px;cursor: pointer; text-decoration:none"><div class="mid-back-btn">Withdraw money</div></a>
                   </div>
-                  
 
+                        
 
-                
+                    </form>
 
-               
-                  
-                
+                </div>
+
             </section>
         </div>
     </section>

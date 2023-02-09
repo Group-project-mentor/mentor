@@ -9,7 +9,6 @@
     <link rel="stylesheet" href="<?php echo BASEURL ?>stylesheets/admin/ad_complaints.css">
     <link rel="stylesheet" href="<?php echo BASEURL ?>stylesheets/admin/ad_verification.css">
     <link rel="stylesheet" href="<?php echo BASEURL ?>stylesheets/admin/style.css">
-    <link rel="stylesheet" href="<?php echo BASEURL ?>stylesheets/admin/ad_verify.css">
 
 </head>
 <nav>
@@ -93,25 +92,84 @@
             <section class="mid-content ad_mid-content">
 
                 <!-- Title and sub title of middle part -->
-                <div class="mid-title">
-                    <h1>Videos</h1>
-                </div>
 
-                <div class="content" id="comp-content" >
+
+                <div class="content" id="comp-content">
                     <div class="bckclose">
                         <img class="back" src="<?php echo BASEURL ?>assets/admin/Arrow---Left.png">
-                        
+                        <img class="close" src="<?php echo BASEURL ?>assets/admin/Close-Square.png">
                     </div>
-                    <div class="videos">
-                        <img class="videoslist" src="<?php echo BASEURL ?>assets/admin/videoslist.png">
-                        <img class="videoslist" src="<?php echo BASEURL ?>assets/admin/videoslist.png">
-                        <img class="videoslist" src="<?php echo BASEURL ?>assets/admin/videoslist.png">
-                        <img class="videoslist" src="<?php echo BASEURL ?>assets/admin/videoslist.png">
-                        <img class="videoslist" src="<?php echo BASEURL ?>assets/admin/videoslist.png">
-                        <img class="videoslist" src="<?php echo BASEURL ?>assets/admin/videoslist.png">
-                    </div>
-                </div>
+                    <form class="form" action="<?php echo BASEURL ?>adAddnewadmin/add" method="POST">
+                        <div class="mid-title">
+                            <h1>Wallet </h1>
+                        </div><br><br>
+
+                                         <!-- Title and sub title of middle part -->
                 
+
+            
+
+                <br><br>
+                <!-- Middle part for whole content -->
+            <section class="mid-content ad_mid-content">
+
+<!-- Title and sub title of middle part -->
+
+
+<div class="content" id="comp-content">
+    <div class="bckclose">
+        <img class="back" src="<?php echo BASEURL ?>assets/admin/Arrow---Left.png">
+        <img class="close" src="<?php echo BASEURL ?>assets/admin/Close-Square.png">
+    </div>
+    <form class="form" action="<?php echo BASEURL ?>adAddnewadmin/add" method="POST">
+        <div class="mid-title">
+            <h1>Add New Admin </h1>
+        </div>
+
+        <div class="dataentry">
+            <div class="l">
+                <label for="Name" id="newadminname">New co-Admin name</label><br>
+                <input type="Name" name="admin-name" placeholder="   Enter co-Admin's Name" class="inputfield"><br>
+            </div>
+            
+
+            <div class="l">
+                <label for="co-useremail" id="co-useremail">New co-Admin email</label><br>
+                <input type="email" name="admin-mail" placeholder="   Enter co-Admin's email address" class="inputfield"><br>
+            </div>
+
+            
+
+
+        </div>
+        <div class="btns">
+                <button class="comp-btns">Add and Send link via mail</button>
+
+         </div>
+
+        
+
+    </form>
+
+</div>
+
+</section>
+
+                
+                  <a class="btns" href="#" style=" background-color: #4CAF50; /* Green */ border: none; color: white; text-align: center; padding: 12px 28px; border-radius: 12px; text-decoration: none;display: inline-block;font-size: 16px;margin: 4px 2px;cursor: pointer; text-decoration:none"><div class="mid-back-btn">See transaction history</div></a>
+                      
+
+                         <div class="btn" style="display: flex; justify-content:space-around; align-items: center;">
+                <a class="btns" href="#" style=" background-color: #4CAF50; /* Green */ border: none; color: white; text-align: center; padding: 12px 28px; border-radius: 12px; text-decoration: none;display: inline-block;font-size: 16px;margin: 4px 2px;cursor: pointer; text-decoration:none"><div class="mid-back-btn">See transaction history</div></a>
+                <a href="<?php echo BASEURL?>privateclass/premiumCheckout" style=" background-color: #4CAF50; /* Green */ border: none; color: white; text-align: center; padding: 12px 28px; border-radius: 12px; text-decoration: none;display: inline-block;font-size: 16px;margin: 4px 2px;cursor: pointer; text-decoration:none"><div class="mid-back-btn">Withdraw money</div></a>
+                  </div>
+
+                        
+
+                    </form>
+
+                </div>
+
             </section>
         </div>
     </section>

@@ -123,10 +123,11 @@
                                 <h1>co-Admins</h1>
                             </div>
                             <div class="btn">
-                                <a class="btns" type="button" >
-                                    View All
+                            <a class="btns" href="<?php echo BASEURL ?>adResource" style="text-decoration:none">
+                                Add New
                                 </a>
-                                <a class="btns" href="<?php echo BASEURL ?>adAddnewadmin">
+                                <a class="btns" href="<?php echo BASEURL  ?>adWithdraw" style="text-decoration:none">
+                                
                                 Add New
                                 </a>
                             </div>
@@ -137,7 +138,7 @@
                                 <?php foreach ($data[0] as $row) { ?>
                                     <div class="subject-card">
                                         <img src="<?php echo BASEURL ?>assets/admin/user.png" width="5%" height="5%" />
-                                        <a href="#"><label> <?php echo $row['name'] ?></label></a>
+                                        <a class="btns" href="<?php echo BASEURL ?>adResource" style="text-decoration:none"><label> <?php echo $row['name'] ?></label></a>
 
                                     </div>
                                 <?php } ?>
