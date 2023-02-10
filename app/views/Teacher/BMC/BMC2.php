@@ -14,6 +14,7 @@
   
     <section class="page">
         <!-- Navigation panel -->
+        <!-- Navigation panel -->
         <?php include_once "components/navbars/t_nav_1.php"?>
 
         <div class="content-area">
