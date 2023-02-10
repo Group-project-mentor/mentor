@@ -7,15 +7,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/x-icon" href="<?php echo BASEURL ?>assets/mentor.ico">
     <title>Student Profile</title>
-    <link rel="stylesheet" href="<?php echo BASEURL?>public/stylesheets/Teacher/style.css">
-    <link rel="stylesheet" href="<?php echo BASEURL?>public/stylesheets/Teacher/profile.css">
-    <link rel="stylesheet" href="<?php echo BASEURL?>public/stylesheets/Teacher/card_set.css">
+    <link rel="stylesheet" href="<?php echo BASEURL ?>public/stylesheets/Teacher/style.css">
+    <link rel="stylesheet" href="<?php echo BASEURL ?>public/stylesheets/Teacher/profile.css">
+    <link rel="stylesheet" href="<?php echo BASEURL ?>public/stylesheets/Teacher/card_set.css">
+    <link rel="stylesheet" href="<?php echo BASEURL?>public/stylesheets/quiz/quiz_styles.css">
 </head>
 
 <body>
     <section class="page">
-         <!-- Navigation panel -->
-         <?php include_once "components/navbars/st_navbar_4.php" ?> <!-- used to include_once to add file -->
+        <!-- Navigation panel -->
+        <?php include_once "components/navbars/st_navbar_4.php" ?> <!-- used to include_once to add file -->
 
 
         <div class="content-area">
@@ -25,20 +26,20 @@
                 <div class="search-bar">
                     <input type="text" name="" id="" placeholder="Search...">
                     <a href="">
-                        <img src="<?php echo BASEURL?>public/assets/icons/icon_search.png" alt="">
+                        <img src="<?php echo BASEURL ?>public/assets/icons/icon_search.png" alt="">
                     </a>
                 </div>
                 <div class="top-bar-btns">
-                    <a href="<?php echo BASEURL?>st_profile">
+                    <a href="<?php echo BASEURL ?>st_profile">
                         <div class="back-btn">Back</div>
                     </a>
                     <a href="#">
-                        <img src="<?php echo BASEURL?>public/assets/icons/icon_notify.png" alt="notify">
+                        <img src="<?php echo BASEURL ?>public/assets/icons/icon_notify.png" alt="notify">
                     </a>
                     <a href="#">
-                        <img src="<?php echo BASEURL?>public/assets/icons/icon_profile_black.png" alt="profile">
+                        <img src="<?php echo BASEURL ?>public/assets/icons/icon_profile_black.png" alt="profile">
                     </a>
-                    <a href="<?php echo BASEURL?>logout">
+                    <a href="<?php echo BASEURL ?>logout">
                         <div class="back-btn">Log Out</div>
                     </a>
                 </div>
@@ -52,7 +53,7 @@
                     <h1>Request Scholarship</h1>
                     <h4>Hello, Mr. kamal</h4>
                     <br><br><br>
-                </div>
+                    <!-- </div>
                 <div>
                     <h2 style="color:red">Please read all the instructions ... </h2>
                     <br>
@@ -80,14 +81,44 @@
                         but the There are many variations of passages of Lorem Ipsum available, 
                         but the</li>
                         </ol>
-                </div>
-                <br><br><br>
-                <!-- &#x2022; can used to put point mark -->
-                <div class="top-bar-btns">
-                    <a href="<?php echo BASEURL?>st_profile/Scholarship_page2">
-                        <div class="back-btn">Request Form</div>
-                    </a>
-                </div>
+                </div> -->
+
+                    <div class="quiz-preview-container">
+                        <h2 id="question-number">INSTRUCTIONS</h2>
+                        <hr />
+                        <div class="quiz-preview-question">
+                            <h3 id="question-number">Please Read the Instructions First</h3>
+                            <p id="question-name">
+                                <b> (+)</b> One of the most common uses for a list view is displaying data that you fetch from a server.
+                                To do that, you will need to learn about networking in React Native.
+                            </p>
+                            <p id="question-name">
+                                <b> (+)</b> One of the most common uses for a list view is displaying data that you fetch from a server.
+                                To do that, you will need to learn about networking in React Native.
+                            </p>
+                            <p id="question-name">
+                                <b> (+)</b> One of the most common uses for a <i>list view</i> is displaying data that you fetch from a server.
+                                To do that, you will need to learn about networking in React Native.
+                            </p>
+                            <p id="question-name">
+                                <b> (+)</b> One of the most common uses for a list view is displaying data that you fetch from a server.
+                                To do that, you will need to learn about networking in React Native.
+                            </p>
+                            <p id="question-name">
+                                <b> (+)</b> One of the <b> most common </b> uses for a list view is displaying data that you fetch from a server.
+                                To do that, you will need to learn about networking in React Native.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!--  -->
+                    <br><br><br>
+                    <!-- &#x2022; can used to put point mark -->
+                    <div class="top-bar-btns">
+                        <a href="<?php echo BASEURL ?>st_profile/Scholarship_page2">
+                            <div class="back-btn">Request Form</div>
+                        </a>
+                    </div>
             </section>
         </div>
     </section>
