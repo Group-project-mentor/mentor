@@ -50,7 +50,7 @@
             <img src="<?php echo BASEURL?>assets/icons/icon_other.png" alt="Subjects">
             <div class="nav-link-text">Other resources</div>
         </a>
-        <a href="#" class="nav-link">
+        <a href="" class="nav-link">
             <img src="<?php echo BASEURL?>assets/icons/icon_settings.png" alt="Subjects">
             <div class="nav-link-text">Settings</div>
         </a>
