@@ -80,12 +80,12 @@
                 
                 <div class="top-bar-btns">
                 <a href="#">
-                        <a class="back-btn" href="<?php echo BASEURL ?>privateclass/generateReport">Back</a>
+                        <a class="back-btn" href="<?php echo BASEURL ?>TReport/generateReport">Back</a>
                     </a>
                     <a href="#">
                     <img src="<?php echo BASEURL?>public/assets/Teacher/icons/icon_notify.png" alt="notify">
                     </a>
-                    <a href="<?php echo  BASEURL ?>privateclass/profile">
+                    <a href="<?php echo  BASEURL ?>TProfile/profile">
                     <img src="<?php echo BASEURL?>public/assets/Teacher/icons/icon_profile_black.png" alt="profile">
                     </a>
                 </div>

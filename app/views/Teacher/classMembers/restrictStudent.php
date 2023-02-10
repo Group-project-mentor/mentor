@@ -79,11 +79,11 @@
            <section class="top-bar">
                 
                 <div class="top-bar-btns">
-                    <a href="#">
-                        <div class="back-btn">Back</div>
+                <a href="#">
+                        <a class="back-btn" href="<?php echo BASEURL ?>TClassMembers/memDetails">Back</a>
                     </a>
                     <a href="#">
-                        <img src="<?php echo BASEURL?>public/assets/Teacher/icons/icon_notify.pngg" alt="notify">
+                        <img src="<?php echo BASEURL?>public/assets/Teacher/icons/icon_notify.png" alt="notify">
                     </a>
                     <a href="<?php echo  BASEURL ?>privateclass/profile">
                         <img src="<?php echo BASEURL?>public/assets/Teacher/icons/icon_profile_black.png" alt="profile">

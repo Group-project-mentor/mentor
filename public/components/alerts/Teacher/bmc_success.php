@@ -8,7 +8,7 @@
             <img src="<?php echo BASEURL?>assets/clips/msg_1.png" alt="error image">
         </div>
         <div class="message-btn">
-            <a href="<?php echo BASEURL."rcProfile"?>">OK</a>
+            <a href="<?php echo BASEURL."TBmc/BMC1"?>">OK</a>
         </div>
     </div>
 </div>

@@ -45,7 +45,7 @@
                     <img src="<?php echo BASEURL?>public/assets/Teacher/icons/icon_premium.png" alt="cource">
                     <div class="nav-link-text">Buy Premium</div>
                 </a>
-                <a href="<?php BASEURL ?>TReportIssue/reportissue" class="nav-link">
+                <a href="<?php BASEURL ?>TReportIssue/reportissues" class="nav-link">
                     <img src="<?php echo BASEURL?>public/assets/Teacher/icons/icon_report.png" alt="profile">
                     <div class="nav-link-text">Report Issue</div>
                 </a>
@@ -88,41 +88,76 @@
                 </div>
             </section>
 
-            <!-- Middle part for whole content -->
-            <section class="mid-content">
+<!-- Middle part for whole content -->
+<section class="mid-content">
 
-                <!-- Title and sub title of middle part -->
-                <div class="mid-title">
-                    <h1>Teacher Home</h1>
-                    <h6>Hello...</h6>
-                </div>
+<!-- Title and sub title of middle part -->
+<div class="mid-title">
+    <h1>Teacher Home</h1>
+    <h6>Hello...</h6>
+</div>
 
-                <!-- subject cards -->
-                <div class="container-box">
-                    <div class="mid-down-title">
-                        <br><br>
-                        <h3>Ongoing classes</h3> 
-                    </div>
-                    <div class="mid-bar-btns">  
-                    <a href="<?php BASEURL ?>TClassRoom/createclass">
-                        <div class="mid-back-btn">Create class</div>
-                    </a>
-                </div>
-                <?php if(!empty($data)){?>
-                    <div class="subject-card-set">
-                        <?php foreach($data as $row){ ?>
-                        <div class="subject-card">
-                        <a href="<?php BASEURL ?>privateclass/insideClass">
-                                <img src="<?php echo BASEURL?>public/assets/Teacher/patterns/1.png" alt="" />
-                        </a>
-                            <a href="#"><label><?php echo $row['class_id'];?></label></a>
-                            <a href="#"><label><?php echo $row['class_name'];?></label></a>
-                        </div>        
-                        <?php }?>                
-                    </div>
-                    <?php }else{echo "no data!";} ?>
-                </div>
-            </section>
+<!-- subject cards -->
+<div class="container-box">
+    <div class="mid-down-title">
+        <br><br>
+        <h3>Ongoing classes</h3> 
+    </div>
+    <div class="mid-bar-btns">  
+    <a href="TClassRoom/createclass">
+        <div class="mid-back-btn">Create new class</div>
+    </a>
+</div>
+    <div class="subject-card-set">
+        <div class="subject-card">
+                <img src="<?php echo BASEURL?>public/assets/Teacher/patterns/1.png" alt="" />
+            <a href="<?php BASEURL ?>TInsideClass/InClass"><label>C79 - Science</label></a>
+            <label>Grade 6</label>
+        </div>
+        <div class="subject-card">
+            <img src="<?php echo BASEURL?>public/assets/Teacher/patterns/2.png" alt="" />
+            <a href="<?php BASEURL ?>TInsideClass/InClass"><label>C101 - Science</label></a>
+            <label>Grade 7</label>
+        </div>
+        <div class="subject-card">
+        <img src="<?php echo BASEURL?>public/assets/Teacher/patterns/3.png" alt="" />
+            <a href="<?php BASEURL ?>TInsideClass/InClass"><label>C122 - Science</label></a>
+            <label>Grade 8</label>
+        </div>
+        <div class="subject-card">
+        <img src="<?php echo BASEURL?>public/assets/Teacher/patterns/4.png" alt="" />
+            <a href="<?php BASEURL ?>TInsideClass/InClass"><label>C136 - Science</label></a>
+            <label>Grade 9</label>
+        </div>
+        <div class="subject-card">
+        <img src="<?php echo BASEURL?>public/assets/Teacher/patterns/5.png" alt="" />
+            <a href="<?php BASEURL ?>TInsideClass/InClass"><label>C154 - Science</label></a>
+            <label>Grade 10</label>
+        </div>
+        <div class="subject-card">
+        <img src="<?php echo BASEURL?>public/assets/Teacher/patterns/6.png" alt="" />
+            <a href="<?php BASEURL ?>TInsideClass/InClass"><label>C165 - Science</label></a>
+            <label>Grade 11</label>
+        </div>
+        <div class="subject-card">
+        <img src="<?php echo BASEURL?>public/assets/Teacher/patterns/7.png" alt="" />
+            <a href="<?php BASEURL ?>TInsideClass/InClass"><label>C172 - Biology</label></a>
+            <label>Grade 12</label>
+        </div>
+        <div class="subject-card">
+        <img src="<?php echo BASEURL?>public/assets/Teacher/patterns/8.png" alt="" />
+            <a href="<?php BASEURL ?>TInsideClass/InClass"><label>C136 - Biology</label></a>
+            <label>Grade 13</label>
+        </div>
+        <div class="subject-card">
+        <img src="<?php echo BASEURL?>public/assets/Teacher/patterns/9.png" alt="" />
+            <a href="<?php BASEURL ?>TInsideClass/InClass"><label>C175 - Biology</label></a>
+            <label>Revision</label>
+        </div>
+        
+    </div>
+</div>
+</section>
         </div>
 
     </section>

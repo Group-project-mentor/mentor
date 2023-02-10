@@ -38,29 +38,29 @@
 </div>
         
 
-                                       <!-- Navigation buttons -->
+            <!-- Navigation buttons -->
             <div class="nav-links">
-                <a href="<?php BASEURL ?>TClassMembers/memDetails" class="nav-link">
+                <a href="<?php echo BASEURL ?>TClassMembers/memDetails" class="nav-link">
                     <img class="active" src="<?php echo BASEURL?>public/assets/Teacher/icons/participants.png" alt="home">
                     <div class="nav-link-text">Participants</div>
                 </a>
-                <a href="<?php BASEURL ?>TResources/resource" class="nav-link">
+                <a href="<?php echo BASEURL ?>TResources/resource" class="nav-link">
                     <img class="active" src="<?php echo BASEURL?>public/assets/Teacher/icons/icon_resources.png" alt="home">
                     <div class="nav-link-text">Resources</div>
                 </a>
-                <a href="<?php BASEURL ?>TInsideClass/addTr" class="nav-link">
+                <a href="<?php echo BASEURL ?>TInsideClass/addTr" class="nav-link">
                     <img class="active" src="<?php echo BASEURL?>public/assets/Teacher/icons/add_teacher.png" alt="home">
                     <div class="nav-link-text">Add Teacher</div>
                 </a>
-                <a href="<?php BASEURL ?>TInsideClass/addSt" class="nav-link" class="nav-link">
+                <a href="<?php echo BASEURL ?>TInsideClass/addSt" class="nav-link" class="nav-link">
                     <img class="active" src="<?php echo BASEURL?>public/assets/Teacher/icons/add_student.png" alt="home">
                     <div class="nav-link-text">Add Student</div>
                 </a>
-                <a href="<?php BASEURL ?>TReport/generateReport" class="nav-link">
+                <a href="<?php echo BASEURL ?>TReport/generateReport" class="nav-link">
                     <img class="active" src="<?php echo BASEURL?>public/assets/Teacher/icons/generate_report.png" alt="home">
                     <div class="nav-link-text">Generate Reports</div>
                 </a>
-                <a href="<?php BASEURL ?>TResources/forum" class="nav-link">
+                <a href="<?php echo BASEURL ?>TResources/forum" class="nav-link">
                     <img class="active" src="<?php echo BASEURL?>public/assets/Teacher/icons/forum.png" alt="home">
                     <div class="nav-link-text">Create Forum</div>
                 </a>
@@ -84,7 +84,7 @@
                 </div>
                 <div class="top-bar-btns">
                 <a href="#">
-                        <a class="back-btn" href="<?php echo BASEURL ?>privateclass/InsideClass">Back</a>
+                        <a class="back-btn" href="<?php echo BASEURL ?>TInsideClass/InClass">Back</a>
                     </a>
                     <a href="#">
                     <img src="<?php echo BASEURL?>public/assets/Teacher/icons/icon_notify.png" alt="notify">
@@ -175,7 +175,7 @@
                     <div class="rc-pp-row">
                             
                         <img src="<?php echo BASEURL?>public/assets/Teacher/icons/teach.png" alt="delete">    
-                        <div class="rc-resource-col">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Mr.X.X.XXXXX&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Teacher&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No Groups&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1 second ago&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button class="button button1">Remove</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <div class="rc-resource-col">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Mr.X.X.XXXXX&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Teacher&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No Groups&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1 second ago&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="back-btn" href="<?php echo BASEURL ?>TClassMembers/restrictSt" style="text-decoration:none">Restrict</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             <style>
                                 .button {
                                   border: none;

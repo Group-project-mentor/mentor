@@ -1,11 +1,19 @@
 <?php
 
 class Login extends Controller{
+    public function __construct()
+    {
+        session_start();
+        if (isset($_SESSION['user'])) {
+           header("location:" . BASEURL . "home");
+    }
+    }
 
     public function index($err=null)
     {
         $this->view("auth/login",$err);
     }
+
 
     public function verify_login()
     {
@@ -25,13 +33,9 @@ class Login extends Controller{
                     while ($record = $data->fetch_row()) {
                         $result = $record;
                     }
-<<<<<<< HEAD
+
                    if (password_verify($_POST["passwd"], $result[2])) {
                     //if (true) {
-=======
-                    if (password_verify($_POST["passwd"], $result[2])) {
-//                    if (true) {
->>>>>>> 99af173f209efc34d0584715becfbfd22503ba00
                         $_SESSION["id"] = $result[0];
                         $_SESSION["user"] = $email;
                         $_SESSION["name"] = $result[3];

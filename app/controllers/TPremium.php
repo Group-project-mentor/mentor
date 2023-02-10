@@ -1,11 +1,17 @@
 <?php
 
 class TPremium extends Controller{
+    private $user = "tch";
+
     public function __construct()
     {
-        session_start();
+        sessionValidator();
+        $this->userValidate($this->user);
         flashMessage();
+
+       
     }
+
 
     public function premiumCheck(){
         $this->view('Teacher/Premium/premiumCheckout');

@@ -1,11 +1,15 @@
 <?php
 
 class TClassMembers extends Controller{
+    private $user = "tch";
+
     public function __construct()
     {
-        session_start();
+        sessionValidator();
+        $this->userValidate($this->user);
         flashMessage();
     }
+
 
     public function changeHost(){
         $this->view('Teacher/classMembers/changeHost');

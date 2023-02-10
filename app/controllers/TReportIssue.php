@@ -1,14 +1,17 @@
 <?php
 
 class TReportIssue extends Controller{
+    private $user = "tch";
+
     public function __construct()
     {
-        session_start();
+        sessionValidator();
+        $this->userValidate($this->user);
         flashMessage();
     }
 
-    public function reportIssue(){
-        $this->view('Teacher/reportissue/reportissue');
+    public function reportIssues(){
+        $this->view('Teacher/reportissue/reportissueMain');
     }   
 
     public function reportIssueOne(){
