@@ -56,7 +56,7 @@
                         <!-- tempary movement 1-->
                         <div class="subject-card" style="text-align:center ;">
                             <img src="<?php echo BASEURL  ?>assets/patterns/1.png" alt="" style="width : 250px ; height:150px;"/>
-                            <a href="<?php echo BASEURL  ?>st_private_mode/st_classroom_inside" ><label>Mathematics</label></a>
+                            <label>Mathematics</label>
                             <label>Grade 8</label>
                             <label>Mr.Thimira Galahitiyawa</label>
                         </div>
