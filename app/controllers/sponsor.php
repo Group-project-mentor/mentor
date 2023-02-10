@@ -21,4 +21,20 @@ class Sponsor extends Controller
     public function see_student(){
         $this->view('sponsor/student_progress/see_student');
     }
+
+    public function profile(){
+        $this->view('sponsor/profile/sp_profile');
+    }
+
+    public function reportIssue(){
+        $this->view('sponsor/reportIssue/report');
+    }
+
+    public function transactionHistory(){
+        $this->view('sponsor/payments/transactionHistory');
+    }
+
+    public function paymentsInProgress(){
+        $this->view('sponsor/payments/paymentsInProgress');
+    }
 }

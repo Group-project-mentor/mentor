@@ -6,11 +6,13 @@ class RcReport extends Controller
 
     public function __construct()
     {
+        sessionValidator();
     }
 
     public function index()
     {
-        $this->view('resourceCtr/reportIssue/reportIssue');
+        $result = $this->model("reportIssue")->getReportTypes($_SESSION['usertype']);
+        $this->view('resourceCtr/reportIssue/reportIssue',array($result));
     }
 
     public function saveReport(){

@@ -94,23 +94,21 @@
 
                 <!-- Title and sub title of middle part -->
                 <div class="mid-title">
-                    <h1>Past Papers</h1>
+                    <h1>Pdf's</h1>
                 </div>
 
                 <div class="content" id="comp-content" >
                     <div class="bckclose">
-                        <a href="<?php echo BASEURL ?>adVerification" class="back"
-                            <img class="back" src="<?php echo BASEURL ?>assets/admin/Arrow---Left.png">
-                        </a>
+                        <img class="back" src="<?php echo BASEURL ?>assets/admin/Arrow---Left.png">
                         
                     </div>
                     <div class="videos">
-                        <img class="pstpprs" src="<?php echo BASEURL ?>assets/admin/pstpprs.png">
-                        <img class="pstpprs" src="<?php echo BASEURL ?>assets/admin/pstpprs.png">
-                        <img class="pstpprs" src="<?php echo BASEURL ?>assets/admin/pstpprs.png">
-                        <img class="pstpprs" src="<?php echo BASEURL ?>assets/admin/pstpprs.png">
-                        <img class="pstpprs" src="<?php echo BASEURL ?>assets/admin/pstpprs.png">
-                        <img class="pstpprs" src="<?php echo BASEURL ?>assets/admin/pstpprs.png">
+                        <img class="others" src="<?php echo BASEURL ?>assets/admin/others.webp">
+                        <img class="others" src="<?php echo BASEURL ?>assets/admin/others.webp">
+                        <img class="others" src="<?php echo BASEURL ?>assets/admin/others.webp">
+                        <img class="others" src="<?php echo BASEURL ?>assets/admin/others.webp">
+                        <img class="others" src="<?php echo BASEURL ?>assets/admin/others.webp">
+                        <img class="others" src="<?php echo BASEURL ?>assets/admin/others.webp">
                     </div>
                 </div>
                 

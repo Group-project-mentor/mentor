@@ -120,7 +120,6 @@
                     Sign up
                   </button>
                 </div>
-
                 <img src="<?php echo BASEURL ?>public/assets/Teacher/clips/login.png" alt="home" class="image">
               </div>
               <div class="panel right-panel">
