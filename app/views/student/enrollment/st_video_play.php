@@ -7,8 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Watch Videos</title>
     <link rel="icon" type="image/x-icon" href="<?php echo BASEURL ?>assets/mentor.ico">
-    <link rel="stylesheet" href="<?php echo BASEURL?>stylesheets/Student/style.css">
-    <link rel="stylesheet" href="<?php echo BASEURL?>stylesheets/Student/st_card_set.css">
+    <link rel="stylesheet" href="<?php echo BASEURL ?>stylesheets/Student/style.css">
+    <link rel="stylesheet" href="<?php echo BASEURL ?>stylesheets/Student/st_card_set.css">
 </head>
 
 <body>
@@ -24,18 +24,18 @@
                 <div class="search-bar">
                     <input type="text" name="" id="" placeholder="Search...">
                     <a href="">
-                        <img src="<?php echo BASEURL?>assets/icons/icon_search.png" alt="">
+                        <img src="<?php echo BASEURL ?>assets/icons/icon_search.png" alt="">
                     </a>
                 </div>
                 <div class="top-bar-btns">
-                    <a href="<?php echo BASEURL?>st_video">
+                    <a href="<?php echo BASEURL ?>st_video">
                         <div class="back-btn">Back</div>
                     </a>
                     <a href="#">
-                        <img src="<?php echo BASEURL?>assets/icons/icon_notify.png" alt="notify">
+                        <img src="<?php echo BASEURL ?>assets/icons/icon_notify.png" alt="notify">
                     </a>
-                    <a href="<?php echo BASEURL?>st_profile">
-                        <img src="<?php echo BASEURL?>assets/icons/icon_profile_black.png" alt="profile">
+                    <a href="<?php echo BASEURL ?>st_profile">
+                        <img src="<?php echo BASEURL ?>assets/icons/icon_profile_black.png" alt="profile">
                     </a>
                 </div>
             </section>
@@ -49,14 +49,17 @@
                     <h6>Hello </h6>
                 </div>
 
-                
+
                 <!-- subject cards -->
                 <div class="container-box">
                     <h2>C79 - lesson 1</h2>
 
                     <div class="subject-card-watching">
-                        <img src="<?php echo BASEURL?>assets/patterns/1.png" alt="" />
+                        <img src="<?php echo BASEURL ?>assets/patterns/1.png" alt="" />
                     </div>
+
+
+
 
                     <h2>Description</h2>
                     <p class="Description">
@@ -74,39 +77,39 @@
                         and want to learn – when students want to learn, academic results can naturally be seen </p>
 
                     <div>
-                        <h3>Related Videos</h3>
-                    </div>
-                    <div class="subject-card-set">
-                        <div class="subject-card">
-                            <img src="<?php echo BASEURL?>assets/patterns/2.png" alt="" />
-                            <a href="#"><label>C79 - lesson 2</label></a>
-                            <label>Grade 8</label>
-                            <button class="Enter-btn">Enter</button>
-                        </div>
-                        <div class="subject-card">
-                            <img src="<?php echo BASEURL?>assets/patterns/3.png" alt="" />
-                            <a href="#"><label>C79 - lesson 3</label></a>
-                            <label>Grade 8</label>
-                            <button class="Enter-btn">Enter</button>
-                        </div>
-                        <div class="subject-card">
-                            <img src="<?php echo BASEURL?>assets/patterns/3.png" alt="" />
-                            <a href="#"><label>C79 - lesson 4</label></a>
-                            <label>Grade 8</label>
-                            <button class="Enter-btn">Enter</button>
-                        </div>
-                        <div class="subject-card">
-                            <img src="<?php echo BASEURL?>assets/patterns/3.png" alt="" />
-                            <a href="#"><label>C79 - lesson 5</label></a>
-                            <label>Grade 8</label>
-                            <button class="Enter-btn">Enter</button>
-                        </div>
-                        
-                        </div>
-                    </div>
+                    <h3>Related Videos</h3>
                 </div>
-            </section>
+                <div class="subject-card-set">
+                    <div class="subject-card">
+                        <img src="<?php echo BASEURL ?>assets/patterns/2.png" alt="" />
+                        <a href="#"><label>C79 - lesson 2</label></a>
+                        <label>Grade 8</label>
+                        <button class="Enter-btn">Enter</button>
+                    </div>
+                    <div class="subject-card">
+                        <img src="<?php echo BASEURL ?>assets/patterns/3.png" alt="" />
+                        <a href="#"><label>C79 - lesson 3</label></a>
+                        <label>Grade 8</label>
+                        <button class="Enter-btn">Enter</button>
+                    </div>
+                    <div class="subject-card">
+                        <img src="<?php echo BASEURL ?>assets/patterns/3.png" alt="" />
+                        <a href="#"><label>C79 - lesson 4</label></a>
+                        <label>Grade 8</label>
+                        <button class="Enter-btn">Enter</button>
+                    </div>
+                    <div class="subject-card">
+                        <img src="<?php echo BASEURL ?>assets/patterns/3.png" alt="" />
+                        <a href="#"><label>C79 - lesson 5</label></a>
+                        <label>Grade 8</label>
+                        <button class="Enter-btn">Enter</button>
+                    </div>
+
+                </div>
         </div>
+        </div>
+    </section>
+    </div>
     </section>
 </body>
 <script src="<?php echo BASEURL ?>public/javascripts/st_auth_script.js"></script>

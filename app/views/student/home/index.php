@@ -9,7 +9,7 @@
     <link rel="icon" type="image/x-icon" href="<?php echo BASEURL ?>assets/mentor.ico">
     <title>Student Home</title>
 
-    <link rel="stylesheet" href="<?php echo BASEURL?>stylesheets/style.css">    <!-- BASEURL use to navigate pages -->
+    <link rel="stylesheet" href="<?php echo BASEURL?>stylesheets/Student/style.css">    <!-- BASEURL use to navigate pages -->
     <link rel="stylesheet" href="<?php echo BASEURL?>stylesheets/st_student.css">
 </head>
 

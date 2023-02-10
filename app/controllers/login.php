@@ -1,5 +1,6 @@
 <?php
 
+<<<<<<< HEAD
 class Login extends Controller{
     public function __construct()
     {
@@ -8,10 +9,14 @@ class Login extends Controller{
            header("location:" . BASEURL . "home");
     }
     }
+=======
+class Login extends Controller
+{
+>>>>>>> 3f4a1d005344f32099224728e553eaea16fbcc48
 
-    public function index($err=null)
+    public function index($err = null)
     {
-        $this->view("auth/login",$err);
+        $this->view("auth/login", $err);
     }
 
 
@@ -34,28 +39,30 @@ class Login extends Controller{
                         $result = $record;
                     }
 
-                   if (password_verify($_POST["passwd"], $result[2])) {
-                    //if (true) {
-                        $_SESSION["id"] = $result[0];
-                        $_SESSION["user"] = $email;
-                        $_SESSION["name"] = $result[3];
-                        $_SESSION["usertype"] = $result[4];
-                        // echo "Login successful !\nWelcome $result[3]";
-                        header("location:" . BASEURL . "home");
+                    if (password_verify($_POST["passwd"], $result[2])) {
+                        //if (true) {
+                        if (password_verify($_POST["passwd"], $result[2])) {
+                            //                    if (true) {
+                            $_SESSION["id"] = $result[0];
+                            $_SESSION["user"] = $email;
+                            $_SESSION["name"] = $result[3];
+                            $_SESSION["usertype"] = $result[4];
+                            // echo "Login successful !\nWelcome $result[3]";
+                            header("location:" . BASEURL . "home");
+                        } else {
+                            header("location:" . BASEURL . "login/index/1");
+                        }
                     } else {
-                        header("location:" . BASEURL . "login/index/1");
+                        // echo "Login unsuccessful !";
+                        header("location:" . BASEURL . "login/index/2");
                     }
                 } else {
-                    // echo "Login unsuccessful !";
-                    header("location:" . BASEURL . "login/index/2");
+                    // echo "invalid email !";
+                    header("location:" . BASEURL . "login/index/3");
                 }
             } else {
-                // echo "invalid email !";
-                header("location:" . BASEURL . "login/index/3");
-
+                header("location:" . BASEURL . "login/index/4");
             }
-        } else {
-            header("location:" . BASEURL . "login/index/4");
         }
     }
 }
