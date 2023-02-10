@@ -29,7 +29,6 @@ class UserModel extends Model
         $stmt = $this->prepare("INSERT INTO user(email,name,password,type) VALUES (?,?,?,'tch')");
         $stmt -> bind_param('sss',$email, $name, $hash);
         return $stmt->execute();
-
     }
 
     public function getUserData($id)

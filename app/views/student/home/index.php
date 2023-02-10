@@ -51,7 +51,7 @@
                 <a class="see-all-btn" href="<?php echo BASEURL  ?>" style="text-decoration: none; "></a>
                 
                 <!-- Grade choosing interface -->
-                <div class="container-box">
+                <div class="container-box" style="padding-left: 160px;">
                     <div class="grade-switcher">
                         <img src="<?php echo BASEURL  ?>assets/icons/icon_prev.png" alt="left">
                         <div class="grades">

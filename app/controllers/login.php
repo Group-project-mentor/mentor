@@ -1,6 +1,5 @@
 <?php
 
-<<<<<<< HEAD
 class Login extends Controller{
     public function __construct()
     {
@@ -9,11 +8,6 @@ class Login extends Controller{
            header("location:" . BASEURL . "home");
     }
     }
-=======
-class Login extends Controller
-{
->>>>>>> 3f4a1d005344f32099224728e553eaea16fbcc48
-
     public function index($err = null)
     {
         $this->view("auth/login", $err);
