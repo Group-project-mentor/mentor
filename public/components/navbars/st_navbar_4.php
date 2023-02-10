@@ -31,7 +31,7 @@
             <img class="active" src="<?php echo BASEURL ?>public/assets/icons/icon_class.png" alt="home">
             <div class="nav-link-text">Classes</div>
         </a>
-        <a href="<?php BASEURL ?>privateclass/report" class="nav-link">
+        <a href="<?php BASEURL ?>st_report_main" class="nav-link">
             <img src="<?php echo BASEURL ?>public/assets/icons/icon_report.png" alt="profile">
             <div class="nav-link-text">Report Issue</div>
         </a>
