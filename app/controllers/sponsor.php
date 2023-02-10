@@ -30,7 +30,7 @@ class Sponsor extends Controller
         $this->view('sponsor/reportIssue/report');
     }
 
-    public function spPayment1(){
+    public function transactionHistory(){
         $this->view('sponsor/payments/transactionHistory');
     }
 

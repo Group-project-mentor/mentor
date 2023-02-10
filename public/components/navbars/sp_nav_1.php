@@ -43,7 +43,7 @@ if (!isset($_SESSION['navtog'])) {
                     <img src="<?php echo BASEURL ?>assets/icons/icon_profile.png" alt="profile">
                     <div class="nav-link-text">Profile</div>
                 </a> -->
-        <a href="<?php echo BASEURL . 'sponsor/spPayment1' ?>" class="nav-link">
+        <a href="<?php echo BASEURL . 'sponsor/paymentsInProgress' ?>" class="nav-link">
             <img src="<?php echo BASEURL ?>assets/icons/icon_wallet.png" alt="report">
             <div class="nav-link-text">Donate Funds</div>
         </a>

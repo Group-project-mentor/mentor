@@ -27,9 +27,9 @@
                 </a>
             </div>
             <div class="top-bar-btns">
-                <a href="#">
-                    <a class="back-btn" href="<?php echo BASEURL ?>privateclass/billing">Back</a>
-                </a>
+<!--                <a href="#">-->
+<!--                    <a class="back-btn" href="--><?php //echo BASEURL ?><!--privateclass/billing">Back</a>-->
+<!--                </a>-->
                 <a href="#">
                     <img src="<?php echo BASEURL?>public/assets/Teacher/icons/icon_notify.png" alt="notify">
                 </a>
@@ -50,79 +50,12 @@
 
             <!-- Grade choosing interface -->
             <div class="container-box">
-                <div class="rc-resource-header">
-                    <h3>Choose the time period </h3>
-                </div>
-                <div class="rc-resource-header">
-                    <h4>From</h4>
-                    <a href="">
-                        <div class="filter-container">
-                            <form>
-                                <label for="issue"></label>
-                                <select id="issue" name="issue">
-                                    <option value="Category1">Filter 1</option>
-                                    <option value="Category2">Filter 2</option>
-                                    <option value="Category3">Filter 3</option>
-                                    <option value="Category4">Filter 4</option>
-                                    <option value="Category5">Filter 5</option>
-                                    <option value="Category6">Filter 6</option>
-                                </select>
-                            </form>
-                        </div>
-                    </a>
-
-
-                    <div class="filter-container">
-                        <form>
-                            <label for="issue"></label>
-                            <select id="issue" name="issue">
-                                <option value="Category1">Filter 1</option>
-                                <option value="Category2">Filter 2</option>
-                                <option value="Category3">Filter 3</option>
-                                <option value="Category4">Filter 4</option>
-                                <option value="Category5">Filter 5</option>
-                                <option value="Category6">Filter 6</option>
-                            </select>
-                            <input type="submit" value="Apply" class="green-button" >
-                        </form>
+                <div style="margin-top: 20px;display: flex;justify-content: space-between;">
+                    <div class="rc-resource-header">
+                        <h3>Pay your remaining payment :  </h3>
                     </div>
+                    <a href="<?php echo BASEURL?>sponsor/transactionHistory" type="button" class="sponsor-button"  style="font-size: large;margin: 0 5px;text-decoration: none;">Transaction History</a>
                 </div>
-
-                <div class="rc-resource-header">
-                    <h4>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;To</h4>
-                    <a href="">
-                        <div class="filter-container">
-                            <form>
-                                <label for="issue"></label>
-                                <select id="issue" name="issue">
-                                    <option value="Category1">Filter 1</option>
-                                    <option value="Category2">Filter 2</option>
-                                    <option value="Category3">Filter 3</option>
-                                    <option value="Category4">Filter 4</option>
-                                    <option value="Category5">Filter 5</option>
-                                    <option value="Category6">Filter 6</option>
-                                </select>
-                            </form>
-                        </div>
-                    </a>
-
-
-                    <div class="filter-container">
-                        <form>
-                            <label for="issue"></label>
-                            <select id="issue" name="issue">
-                                <option value="Category1">Filter 1</option>
-                                <option value="Category2">Filter 2</option>
-                                <option value="Category3">Filter 3</option>
-                                <option value="Category4">Filter 4</option>
-                                <option value="Category5">Filter 5</option>
-                                <option value="Category6">Filter 6</option>
-                            </select>
-                            <input type="submit" value="Apply" class="green-button" >
-                        </form>
-                    </div>
-                </div>
-
                 <div style="margin-top: 30px;">
                     <div class="sponsor-list-main row-decoration">
                         <div class="sponsor-list-row">
@@ -145,7 +78,6 @@
                                 Amount
                             </div>
                         </div>
-
                         <div class="sponsor-list-row">
                             <div class="sponsor-list-item flex-1">
                                 01
@@ -166,7 +98,6 @@
                                 Rs: 2000.00
                             </div>
                         </div>
-
                         <div class="sponsor-list-row">
                             <div class="sponsor-list-item flex-1">
                                 02
@@ -187,7 +118,6 @@
                                 Rs: 2000.00
                             </div>
                         </div>
-
                         <div class="sponsor-list-row">
                             <div class="sponsor-list-item flex-1">
                                 03
@@ -210,7 +140,7 @@
                         </div>
                         <div class="sponsor-list-row">
                             <div class="sponsor-list-item flex-1">
-                                03
+                                04
                             </div>
                             <div class="sponsor-list-item flex-3">
                                 Mr.Kamal Kumara
@@ -230,7 +160,7 @@
                         </div>
                         <div class="sponsor-list-row">
                             <div class="sponsor-list-item flex-1">
-                                03
+                                05
                             </div>
                             <div class="sponsor-list-item flex-3">
                                 Mr.Kamal Kumara
@@ -246,10 +176,32 @@
                             </div>
                             <div class="sponsor-list-item flex-2">
                                 Rs: 2000.00
+                            </div>
+                        </div>
+                        <!-- Last Row -->
+                        <div class="sponsor-list-row" style="padding: 15px 0;background: rgba(89,89,89,0.92);border-radius: 0 0 10px 10px;">
+                            <div class="sponsor-list-item flex-1">
+                            </div>
+                            <div class="sponsor-list-item flex-3" style="color: #ffffff;font-size: medium;">
+                                Total Payment
+                            </div>
+                            <div class="sponsor-list-item flex-3">
+                            </div>
+                            <div class="sponsor-list-item flex-2">
+                            </div>
+                            <div class="sponsor-list-item flex-1">
+                            </div>
+                            <div class="sponsor-list-item flex-2" style="color: #ffffff;font-size: medium;">
+                                Rs: 10000.00
                             </div>
                         </div>
                     </div>
                 </div>
+
+                <div style="margin-top: 20px;display: flex;justify-content: flex-end;">
+                    <div type="button" class="sponsor-button"  style="font-size: large;margin: 0 5px;">Pay Total Fund</div>
+                </div>
+
             </div>
     </div>
 </section>

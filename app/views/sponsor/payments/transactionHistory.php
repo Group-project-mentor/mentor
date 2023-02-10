@@ -28,7 +28,7 @@
             </div>
             <div class="top-bar-btns">
                 <a href="#">
-                    <a class="back-btn" href="<?php echo BASEURL ?>privateclass/billing">Back</a>
+                    <a class="back-btn" href="<?php echo BASEURL ?>sponsor/paymentsInProgress">Back</a>
                 </a>
                 <a href="#">
                     <img src="<?php echo BASEURL?>public/assets/Teacher/icons/icon_notify.png" alt="notify">
