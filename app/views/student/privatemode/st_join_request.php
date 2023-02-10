@@ -8,9 +8,9 @@
     <link rel="icon" type="image/x-icon" href="<?php echo BASEURL ?>assets/mentor.ico">
     <title>Student private mode</title>
     <link rel="icon" type="image/x-icon" href="<?php echo BASEURL ?>assets/mentor.ico">
-    <link rel="stylesheet" href="<?php echo BASEURL; ?>public/stylesheets/style.css">
-    <link rel="stylesheet" href="<?php echo BASEURL; ?>public/stylesheets/st_card_set.css">
-    <link rel="stylesheet" href="<?php echo BASEURL; ?>public/stylesheets/t_resources.css">
+    <link rel="stylesheet" href="<?php echo BASEURL; ?>public/stylesheets/Teacher/style.css">
+    <link rel="stylesheet" href="<?php echo BASEURL; ?>public/stylesheets/Teacher/card_set.css">
+    <link rel="stylesheet" href="<?php echo BASEURL; ?>public/stylesheets/Teacher/t_resources.css">
     <style>
         body {
             background-image: url('../public/assets/clips/HyperspaceMaintenanceDay');

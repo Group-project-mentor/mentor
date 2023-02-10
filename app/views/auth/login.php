@@ -54,15 +54,15 @@
             <small id="sRegAlert" style="color: red;text-align:center;"></small>
             <div class="input-field">
               <i class="fas fa-user"></i>
-              <input type="text" placeholder="Enter your name"  id="stName" name="name"/>
+              <input type="text" placeholder="Enter your name"  id="stName" name="stName"/>
             </div>
             <div class="input-field">
               <i class="fas fa-envelope"></i>
-              <input type="email" placeholder="Enter your email"  id="stEmail" name="email"/>
+              <input type="email" placeholder="Enter your email"  id="stEmail" name="stEmail"/>
             </div>
             <div class="input-field">
               <i class="fas fa-user"></i>
-              <input type="text" placeholder="Enter your age" name="stAge" id="sage"/>
+              <input type="text" placeholder="Enter your age" name="stAge" id="stAge"/>
 
             </div>
             <div class="input-field">
