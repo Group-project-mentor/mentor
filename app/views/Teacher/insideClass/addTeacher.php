@@ -28,29 +28,29 @@
 
           
 
-                                        <!-- Navigation buttons -->
-            <div class="nav-links">
-                <a href="<?php BASEURL ?>TClassMembers/memDetails" class="nav-link">
+          <!-- Navigation buttons -->
+          <div class="nav-links">
+                <a href="<?php echo BASEURL ?>TClassMembers/memDetails" class="nav-link">
                     <img class="active" src="<?php echo BASEURL?>public/assets/Teacher/icons/participants.png" alt="home">
                     <div class="nav-link-text">Participants</div>
                 </a>
-                <a href="<?php BASEURL ?>TResources/resource" class="nav-link">
+                <a href="<?php echo BASEURL ?>TResources/resource" class="nav-link">
                     <img class="active" src="<?php echo BASEURL?>public/assets/Teacher/icons/icon_resources.png" alt="home">
                     <div class="nav-link-text">Resources</div>
                 </a>
-                <a href="<?php BASEURL ?>TInsideClass/addTr" class="nav-link">
+                <a href="<?php echo BASEURL ?>TInsideClass/addTr" class="nav-link">
                     <img class="active" src="<?php echo BASEURL?>public/assets/Teacher/icons/add_teacher.png" alt="home">
                     <div class="nav-link-text">Add Teacher</div>
                 </a>
-                <a href="<?php BASEURL ?>TInsideClass/addSt" class="nav-link" class="nav-link">
+                <a href="<?php echo BASEURL ?>TInsideClass/addSt" class="nav-link" class="nav-link">
                     <img class="active" src="<?php echo BASEURL?>public/assets/Teacher/icons/add_student.png" alt="home">
                     <div class="nav-link-text">Add Student</div>
                 </a>
-                <a href="<?php BASEURL ?>TReport/generateReport" class="nav-link">
+                <a href="<?php echo BASEURL ?>TReport/generateReport" class="nav-link">
                     <img class="active" src="<?php echo BASEURL?>public/assets/Teacher/icons/generate_report.png" alt="home">
                     <div class="nav-link-text">Generate Reports</div>
                 </a>
-                <a href="<?php BASEURL ?>TResources/forum" class="nav-link">
+                <a href="<?php echo BASEURL ?>TResources/forum" class="nav-link">
                     <img class="active" src="<?php echo BASEURL?>public/assets/Teacher/icons/forum.png" alt="home">
                     <div class="nav-link-text">Create Forum</div>
                 </a>
@@ -69,12 +69,12 @@
                 
                 <div class="top-bar-btns">
                 <a href="#">
-                        <a class="back-btn" href="<?php echo BASEURL ?>privateclass/InsideClass">Back</a>
+                        <a class="back-btn" href="<?php echo BASEURL ?>TInsideClass/InClass">Back</a>
                     </a>
                     <a href="#">
                     <img src="<?php echo BASEURL?>public/assets/Teacher/icons/icon_notify.png" alt="notify">
                     </a>
-                    <a href="<?php echo  BASEURL ?>privateclass/profile">
+                    <a href="<?php echo  BASEURL ?>TProfile/profile">
                     <img src="<?php echo BASEURL?>public/assets/Teacher/icons/icon_profile_black.png" alt="profile">
                     </a>
                 </div>
@@ -110,7 +110,7 @@
                       <input type="text" id="class" name="class name" placeholder="New teacher id..">
                     
                      <!-- <input type="submit" value="Add">-->
-                      <a href="<?php echo BASEURL?>privateclass/addTeacherNext"><div class="mid-back-btn">Next</div></a>
+                      <a href="<?php echo BASEURL?>TInsideClass/addTrNext" style="text-decoration:none"><div class="mid-back-btn">Next</div></a>
                     </form>
                   </div>
 

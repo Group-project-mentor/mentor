@@ -7,10 +7,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/x-icon" href="<?php echo BASEURL ?>assets/mentor.ico">
     <title>Student Profile</title>
+<<<<<<< HEAD
     <link rel="stylesheet" href="<?php echo BASEURL ?>public/stylesheets/Teacher/style.css">
     <link rel="stylesheet" href="<?php echo BASEURL ?>public/stylesheets/Teacher/profile.css">
     <link rel="stylesheet" href="<?php echo BASEURL ?>public/stylesheets/Teacher/card_set.css">
     <link rel="stylesheet" href="<?php echo BASEURL?>public/stylesheets/quiz/quiz_styles.css">
+=======
+    <link rel="stylesheet" href="<?php echo BASEURL?>public/stylesheets/Student/t_style.css">
+    <link rel="stylesheet" href="<?php echo BASEURL?>public/stylesheets/Student/t_profile.css">
+    <link rel="stylesheet" href="<?php echo BASEURL?>public/stylesheets/Student/t_card_set.css">
+>>>>>>> 886de9bd40db0cf394aa0dd232180d457c7b0551
 </head>
 
 <body>

@@ -5,8 +5,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="icon" type="image/x-icon" href="<?php echo BASEURL ?>assets/mentor.ico">
-  <title>Student Withdraw - checkout</title>
+  <title>Student Withdraw - Premium checkout</title>
   <link rel="stylesheet" href="<?php echo BASEURL ?>public/stylesheets/Teacher/style.css">
   <link rel="stylesheet" href="<?php echo BASEURL ?>public/stylesheets/Teacher/card_set.css">
   <link rel="stylesheet" href="<?php echo BASEURL ?>public/stylesheets/Student/st_withdrow.css">
@@ -14,8 +13,8 @@
 
 <body>
   <section class="page">
-    <!-- Navigation panel -->
-    <?php include_once "components/navbars/st_navbar_3.php" ?> <!-- used to include_once to add file -->
+     <!-- Navigation panel -->
+     <?php include_once "components/navbars/st_navbar_3.php" ?> <!-- used to include_once to add file -->
 
 
     <div class="content-area">
@@ -30,7 +29,7 @@
           <a href="#">
             <img src="<?php echo BASEURL ?>public/assets/Teacher/icons/icon_notify.png" alt="notify">
           </a>
-          <a href="<?php echo BASEURL?>st_profile">
+          <a href="<?php echo  BASEURL ?>privateclass/profile">
             <img src="<?php echo BASEURL ?>public/assets/Teacher/icons/icon_profile_black.png" alt="profile">
           </a>
         </div>
@@ -41,8 +40,8 @@
 
         <!-- Title and sub title of middle part -->
         <div class="mid-title">
-          <h1>Checkout</h1>
-          <h6>Student Home/ Student withdraw - Checkout</h6>
+          <h1>Premium Plan - Checkout</h1>
+          <h6>Teacher Home/ Premium Plan - Checkout</h6>
           <br><br><br>
 
         </div>
@@ -52,7 +51,12 @@
           <div class="panel-body">
             <h2 class="title">Checkout</h2>
 
-            
+            <div class="progress-bar">
+              <div class="step active"></div>
+              <div class="step active"></div>
+              <div class="step"></div>
+              <div class="step"></div>
+            </div>
 
             <div class="payment-method">
               <label for="card" class="method card">
@@ -104,6 +108,9 @@
           </div>
 
           <div class="panel-footer">
+            <a href="<?php echo BASEURL ?>st_billing/st_billing_change_plan">
+              <button class="btn back-btn">Change Plan</button>
+            </a>
             <button class="btn next-btn">Buy Now</button>
           </div>
         </div>

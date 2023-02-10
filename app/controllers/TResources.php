@@ -1,11 +1,15 @@
 <?php
 
 class TResources extends Controller{
-    public function __construct()
-    {
-        session_start();
-        flashMessage();
-    }
+    private $user = "tch";
+
+public function __construct()
+{
+    sessionValidator();
+    $this->userValidate($this->user);
+    flashMessage();
+}
+
 
     public function forum(){
         $this->view('Teacher/resources/forum');

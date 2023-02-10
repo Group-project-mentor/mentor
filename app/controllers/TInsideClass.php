@@ -1,11 +1,15 @@
 <?php
 
 class TInsideClass extends Controller{
+    private $user = "tch";
+
     public function __construct()
     {
-        session_start();
+        sessionValidator();
+        $this->userValidate($this->user);
         flashMessage();
     }
+
 
     public function addSt(){
         $this->view('Teacher/insideClass/addStudent');

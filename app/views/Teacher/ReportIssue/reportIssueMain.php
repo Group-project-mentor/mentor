@@ -5,9 +5,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BMC</title>
+    <title>Teacher Report issue 1</title>
     <link rel="stylesheet" href="<?php echo BASEURL?>public/stylesheets/Teacher/style.css">
-    <link rel="stylesheet" href="<?php echo BASEURL?>public/stylesheets/Teacher/card_set.css">
+    <link rel="stylesheet" href="<?php echo BASEURL?>public/stylesheets/Teacher/card_set.css"> 
 </head>
 
 <body>
@@ -21,8 +21,8 @@
             <section class="top-bar">
                 
                 <div class="top-bar-btns">
-                <a href="#">
-                        <a class="back-btn" href="<?php echo BASEURL ?>">Back</a>
+                    <a href="#">
+                        <a class="back-btn" href="<?php echo BASEURL ?>home">Back</a>
                     </a>
                     <a href="#">
                         <img src="<?php echo BASEURL?>public/assets/Teacher/icons/icon_notify.png" alt="notify">
@@ -38,35 +38,42 @@
 
                  <!-- Title and sub title of middle part -->
                 <div class="mid-title">
-                    <h1>BUY ME A COFFEE</h1>
-                    <h6>Teacher Home/ Buy Me a Coffee</h6>
+                    <h1>Report Issues</h1>
+                    <h6>Teacher Home/ Report Issues</h6>
                     <br><br><br>
-                    <h3>Enter the amount</h3>
+                    <h3>Choose a category under your complaint</h3>
                 </div>
-
+                
                 <div class="class section">
-                    <form action="<?php echo BASEURL;?>privateclass/createAction" method="POST">
-                      <label for="class_name"></label>
-                      <input type="text" id="class_name" name="class_name" placeholder="Enter the amount">
-                     
-                      <a href="<?php echo BASEURL?>TBmc/BMC2" style="text-decoration:none"><div class="mid-back-btn">Next</div></a>
+                    <form>
+                  
+                      <label for="issue"></label>
+                      <select id="issue" name="issue">
+                        <option value="Category1">Category 1</option>
+                        <option value="Category2">Category 2</option>
+                        <option value="Category3">Category 3</option>
+                        <option value="Category4">Category 4</option>
+                        <option value="Category5">Category 5</option>
+                        <option value="Category6">Category 6</option>
+                      </select>
+                    
+                      <!--<input type="submit" value="Next">-->
+                      <a href="<?php echo BASEURL?>TReportIssue/reportIssueOne" style="text-decoration:none"><div class="mid-back-btn">Next</div></a>
                     </form>
                   </div>
 
             </section>
 
-            <!-- bottom part -->
-            <section class="Teacher-class-bottom">
-                <div class="Teacher-decorator">
-                    <img src="<?php echo BASEURL?>public/assets/Teacher/clips/bmc1.png" alt="lap man">
+             <!-- bottom part -->
+             <section class="Teacher-class-bottom">
+                <div class="issue-decorator">
+                    <img src="<?php echo BASEURL?>public/assets/Teacher/clips/issue.png" alt="profile">
                 </div>
             </section>
-
 
             
         </div>  
     </section>      
 </body>
-
 
 </html>

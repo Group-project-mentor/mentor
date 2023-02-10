@@ -1,10 +1,13 @@
 <?php
 
 class TBMC extends Controller{
+    private $user = "tch";
+
     public function __construct()
     {
-        session_start();
-      
+        sessionValidator();
+        $this->userValidate($this->user);
+        flashMessage();
     }
 
     public function BMC1(){
@@ -12,7 +15,9 @@ class TBMC extends Controller{
     }   
 
     public function BMC2(){
+        
         $this->view('Teacher/BMC/BMC2');
+
     } 
 
 }

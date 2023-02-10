@@ -14,14 +14,23 @@
 
     <!-- Navigation bar private - public switch -->
     <div class="nav-middle" id="nav-middle">
-        <p>Public</p>
+        
         <div class="nav-switch">
+        <p>Public</p>
             <label class="switch">
                 <input type="checkbox" checked>
                 <span class="slider round"></span>
             </label>
         </div>
-        <p class="nav-switch-txt">Private</p>
+        
+        <div class="nav-switch">
+        <p >Private</p>
+            <label class="switch">
+                <input type="checkbox" checked>
+                <span class="slider round"></span>
+            </label>
+        </div>
+        
     </div>
 
     <!-- Navigation buttons -->

@@ -45,7 +45,7 @@
             <img src="<?php echo BASEURL ?>assets/icons/icon_billing" alt="bmc">
             <div class="nav-link-text">Billing</div>
         </a>
-        <a href="" class="nav-link">
+        <a href="<?php echo BASEURL ?>#" class="nav-link">
             <img src="<?php echo BASEURL ?>assets/icons/Settings" alt="bmc">
             <div class="nav-link-text">Settings</div>
         </a>

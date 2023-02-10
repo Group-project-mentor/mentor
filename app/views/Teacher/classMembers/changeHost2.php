@@ -84,7 +84,7 @@
                     <a href="#">
                     <img src="<?php echo BASEURL?>public/assets/Teacher/icons/icon_notify.png" alt="notify">
                     </a>
-                    <a href="<?php echo  BASEURL ?>privateclass/profile">
+                    <a href="<?php echo  BASEURL ?>TProfile/profile">
                     <img src="<?php echo BASEURL?>public/assets/Teacher/icons/icon_profile_black.png" alt="profile">
                     </a>
                 </div>

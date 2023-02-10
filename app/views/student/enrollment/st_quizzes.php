@@ -28,7 +28,7 @@
                     </a>
                 </div>
                 <div class="top-bar-btns">
-                <a href="<?php echo BASEURL?>st_video">
+                <a href="<?php echo BASEURL?>st_Inside_subject">
                         <div class="back-btn">Back</div>
                     </a>
                     <a href="#">
@@ -71,7 +71,7 @@
                                     <img src="<?php echo BASEURL?>assets/icons/Interface Arrows Button Down Double by Streamlinehq.png" alt="">
                                 </a>
                                 <button>
-                                    <img src="<?php echo BASEURL?>assets/icons/icon_eye.png" alt="">
+                                    <img src="<?php echo BASEURL?>assets/icons/icon_edit.png" alt="">
                                 </button>
                             </div>
                         </div>
@@ -85,7 +85,7 @@
                                     <img src="<?php echo BASEURL?>assets/icons/Interface Arrows Button Down Double by Streamlinehq.png" alt="">
                                 </a>
                                 <button>
-                                    <img src="<?php echo BASEURL?>assets/icons/icon_eye.png" alt="">
+                                    <img src="<?php echo BASEURL?>assets/icons/icon_edit.png" alt="">
                                 </button>
                                 </button>
                             </div>
@@ -100,7 +100,7 @@
                                         <img src="<?php echo BASEURL?>assets/icons/Interface Arrows Button Down Double by Streamlinehq.png" alt="">
                                     </a>
                                     <button>
-                                    <img src="<?php echo BASEURL?>assets/icons/icon_eye.png" alt="">
+                                    <img src="<?php echo BASEURL?>assets/icons/icon_edit.png" alt="">
                                 </button>
                                 </button>
                             </div>
