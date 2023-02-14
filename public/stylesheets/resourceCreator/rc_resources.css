@@ -45,6 +45,10 @@
     display: none !important;
 }
 
+.hidden-toggle{
+    display: none !important;
+}
+
 .rc-popup-menu{
     position: absolute;
     right: 20px;
@@ -53,6 +57,7 @@
     display: flex;
     flex-direction: column;
     border-radius: 10px;
+    z-index: 20;
     box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
 }
 
@@ -348,6 +353,31 @@
     opacity: 0;
 
 }
+
+.progress-container{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    /*padding:10px;*/
+    align-items: center;
+}
+
+.progress-container>p{
+   font-size: small;
+    color: #0b9040;
+    min-width: 30px;
+    text-align: right;
+}
+
+.progress-container>progress{
+    width: 80%;
+    accent-color: rgba(11, 144, 64, 0.69);
+}
+.progress-container>img{
+    width: 30px;
+    cursor: pointer;
+}
+
 
 .rc-form-group>div {
     padding: 40px;

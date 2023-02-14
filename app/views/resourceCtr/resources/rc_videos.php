@@ -73,7 +73,7 @@
                             <img src="<?php echo BASEURL?>assets/icons/icon_down_white.png" alt="profile" class="rc-resource-button-icon-s">
                         </div>
                         <div class="rc-popup-menu popup-toggle" id="popup-menu">
-                            <a class="rc-popup-item" href="">
+                            <a class="rc-popup-item" href="<?php echo BASEURL . 'rcAdd/videoUpload' ?>">
                                 <img src="<?php echo BASEURL?>assets/icons/icon_upload_green.png" class="rc-resource-button-icon-m"/>
                                 <div>
                                     Upload Video
