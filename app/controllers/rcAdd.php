@@ -93,22 +93,18 @@ class RcAdd extends Controller
                     if (file_exists($temp_path) and !file_exists($new_path)){
                         rename($temp_path,$new_path);
                         unset($_SESSION['temporary_file']);
-                        echo "success";
+                        flashMessage( "success");
                     }else{
-                        echo "SavingError";
+                        flashMessage( "SavingError");
                     }
                 } else {
-                    echo "DatabaseError";
+                    flashMessage( "DatabaseError");
                 }
             }else{
-                echo "FileNotExist";
+                flashMessage( "FileNotExist");
             }
-//            header("location:" . BASEURL . "rcAdd/video");
+            header("location:" . BASEURL . "rcAdd/video");
         }
-    }
-
-    public  function addVideoUpload2(){
-        echo "hello";
     }
 
     public function addDocument($grade, $subject)
@@ -133,20 +129,24 @@ class RcAdd extends Controller
                     if (!file_exists($fileDest)) {
                         move_uploaded_file($_FILES["resource"]["tmp_name"], $fileDest);
                         if ($this->model("resourceModel")->addDocument($nameId, $grade, $subject, $_POST["title"], $newFileName)) {
-                            header("location:" . BASEURL . "rcAdd/document/success");
+                            flashMessage("success");
+                            header("location:" . BASEURL . "rcResources/documents/" . $_SESSION['gid'] . "/".$_SESSION['sid']);
                         } else {
-                            header("location:" . BASEURL . "rcAdd/document/error");
+                            flashMessage("error");
+                            header("location:" . BASEURL . "rcAdd/document");
                         }
                     } else {
-                        echo "Upload unsuccessful !";
-                        header("location:" . BASEURL . "rcAdd/document/error");
+                        flashMessage("error");
+                        header("location:" . BASEURL . "rcAdd/document");
                     }
                 }
             } else {
-                header("location:" . BASEURL . "rcAdd/document/error");
+                flashMessage("error");
+                header("location:" . BASEURL . "rcAdd/document");
             }
         } else {
-            header("location:" . BASEURL . "rcAdd/document/error");
+            flashMessage("error");
+            header("location:" . BASEURL . "rcAdd/document");
         }
     }
 
@@ -163,7 +163,8 @@ class RcAdd extends Controller
                 // echo $extention=="pdf";
                 // if(!array_key_exists($extention, $typeArray)) header("location:" . BASEURL . "add/document/error");
                 if ($fileData["size"] > $maxFileSize) {
-                    header("location:" . BASEURL . "rcAdd/document/error");
+                    flashMessage("error");
+                    header("location:" . BASEURL . "rcAdd/other");
                 }
 
                 $nameId = $this->getId();
@@ -175,20 +176,25 @@ class RcAdd extends Controller
                     move_uploaded_file($_FILES["resource"]["tmp_name"], $fileDest);
                     //    echo "Upload successful !";
                     if ($this->model("resourceModel")->addOther($nameId, $grade, $subject, $_POST["title"], $newFileName, $extention)) {
-                        header("location:" . BASEURL . "rcAdd/other/success");
+                        flashMessage("success");
+                        header("location:" . BASEURL . "rcResources/others/" . $_SESSION['gid'] . "/".$_SESSION['sid']);
                     } else {
-                        header("location:" . BASEURL . "rcAdd/other/error");
+                        flashMessage("error");
+                        header("location:" . BASEURL . "rcAdd/other");
                     }
                 } else {
                     echo "Upload unsuccessful !";
-                    header("location:" . BASEURL . "rcAdd/other/error");
+                    flashMessage("error");
+                    header("location:" . BASEURL . "rcAdd/other");
                 }
                 // }
             } else {
-                header("location:" . BASEURL . "rcAdd/other/error");
+                flashMessage("error");
+                header("location:" . BASEURL . "rcAdd/other");
             }
         } else {
-            header("location:" . BASEURL . "rcAdd/other/error");
+            flashMessage("error");
+            header("location:" . BASEURL . "rcAdd/other");
         }
     }
 

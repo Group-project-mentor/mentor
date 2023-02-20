@@ -43,5 +43,20 @@ class DB{
             }
             return $row_set;
         }
+
+        public function fetchOneObj($stmt){
+            $stmt->execute();
+            return $stmt->get_result()->fetch_object();
+        }
+
+        public function fetchObjs($stmt){
+            $stmt->execute();
+            $result =  $stmt->get_result();
+            $row_set = array();
+            while ($row = $result->fetch_object()) {
+                $row_set[] = $row;
+            }
+            return $row_set;
+        }
     }
 ?>

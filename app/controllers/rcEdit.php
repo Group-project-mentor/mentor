@@ -35,6 +35,12 @@ class RcEdit extends Controller
         $this->view("resourceCtr/editViews/rc_edit_video", array($result, $msg));
     }
 
+    public function pastpaper($id)
+    {
+        $result = $this->model("resourceModel")->getpastPaper($id,$_SESSION['gid'],$_SESSION['sid']);
+        $this->view("resourceCtr/editViews/rc_edit_pastPaper", array($result));
+    }
+
 //? Action functions of editing views
     // this is for update document
     public function editDocument($id)
@@ -117,12 +123,12 @@ class RcEdit extends Controller
                 $fileData = array("name" => $_FILES["resource"]["name"],
                     "type" => $_FILES["resource"]["type"],
                     "size" => $_FILES["resource"]["size"]);
-                $extention = pathinfo($fileData["name"], PATHINFO_EXTENSION);
+                $extension = pathinfo($fileData["name"], PATHINFO_EXTENSION);
                 if ($fileData["size"] > $maxFileSize) {
                     header("location:" . BASEURL . "rcAdd/document/error");
                 }
                 // if(in_array($fileData['type'],$typeArray)){
-                $newFileName = uniqid() . $_POST['title'] . "." . $extention;
+                $newFileName = uniqid() . $_POST['title'] . "." . $extension;
                 $fileDest = "public_resources/others/" . $newFileName;
                 $oldFileName = $this->model("resourceModel")->getLocation($id);
 
@@ -131,7 +137,7 @@ class RcEdit extends Controller
                     move_uploaded_file($_FILES["resource"]["tmp_name"], $fileDest);
                     unlink("public_resources/others/" . $oldFileName);
 
-                    if ($this->model("resourceModel")->updateOther($id, $_POST["title"], $newFileName, $extention)) {
+                    if ($this->model("resourceModel")->updateOther($id, $_POST["title"], $newFileName, $extension)) {
                         flashMessage("success");
 //                        header("location:" . BASEURL . "rcEdit/other/$id/success");
                     } else {
@@ -146,8 +152,8 @@ class RcEdit extends Controller
                 // }else{}
             } else {
                 $oldFileName = $this->model("resourceModel")->getLocation($id);
-                $extention = pathinfo($oldFileName, PATHINFO_EXTENSION);
-                if ($this->model("resourceModel")->updateOther($id, $_POST["title"], $oldFileName, $extention)) {
+                $extension = pathinfo($oldFileName, PATHINFO_EXTENSION);
+                if ($this->model("resourceModel")->updateOther($id, $_POST["title"], $oldFileName, $extension)) {
                     flashMessage("success");
 //                    header("location:" . BASEURL . "rcEdit/other/$id/success");
                 } else {
@@ -158,5 +164,27 @@ class RcEdit extends Controller
         }
         header("location:" . BASEURL . "rcEdit/other/$id");
     }
+
+    public function getQuizListInfo(){
+        $result = $this->model("resourceModel")->getAllQuizIds($_SESSION['gid'],$_SESSION['sid']);
+        header("Content-Type:Application/json");
+        echo json_encode($result);
+    }
+
+    public function changePPQuiz($ppid){
+        $res = $this->model("resourceModel")->changeQuizId($ppid,$_POST['quiz_id']);
+        if ($res){
+            echo "Done";
+        }else{
+            echo "Error";
+        }
+    }
+
+    public function getSpecificQuizInfo($qid){
+        $result = $this->model('resourceModel')->getSpecificQuiz($qid);
+        header("Content-Type:Application/json");
+        echo json_encode($result);
+    }
+
 
 }

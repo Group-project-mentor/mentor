@@ -62,28 +62,30 @@
                     <?php
                     if(!empty($data)){ ?>
                     <div class="rc-resource-table">
-                        <div class="rc-table-title">
+                        <div class="rc-pp-row rc-pp-title">
                             <div class="rc-resource-col">Pastpaper</div>
                             <div class="rc-resource-col">year</div>
                             <div class="rc-resource-col">Part</div>
                             <div></div>
                         </div>
-                        <?php foreach ($data as $row) {
-                                    echo "<div class='rc-pp-row'>
-                                                <div class='rc-resource-col'>".$row['name']."</div>
-                                                <div class='rc-resource-col'>".$row['year']."</div>
-                                                <div class='rc-resource-col'>".$row['part']."</div>                       
-                                                <div class='rc-quiz-row-btns'>
-                                                    <button onclick='delConfirm(".$row['id'].",3)'>
-                                                        <img src='".BASEURL."assets/icons/icon_delete.png' alt=''>
-                                                    </button>
-                                                    <button>
-                                                        <img src='".BASEURL."assets/icons/icon_edit.png' alt=''>
-                                                    </button>
-                                                </div>
-                                            </div>
-                                         </div>";
-                                }
+                        <?php foreach ($data as $row) { ?>
+                                    <div class='rc-pp-row'>
+                                        <div class='rc-resource-col'><?php echo $row['name'] ?></div>
+                                        <div class='rc-resource-col'><?php echo $row['year'] ?></div>
+                                        <div class='rc-resource-col'><?php echo $row['part'] ?></div>
+                                        <div class='rc-quiz-row-btns'>
+                                            <a onclick='delConfirm(<?php echo $row['id'] ?>,3)'>
+                                                <img src='<?php echo BASEURL ?>assets/icons/icon_delete.png' alt=''>
+                                            </a>
+                                            <a href='<?php echo BASEURL."rcEdit/pastpaper/".$row['id']?>' >
+                                                <img src='<?php echo BASEURL ?>assets/icons/icon_edit.png' alt=''>
+                                            </a>
+                                            <a>
+                                                <img src='<?php echo BASEURL ?>assets/icons/icon_eye.png' alt=''>
+                                            </a>
+                                        </div>
+                                    </div>
+                             <?php   }
                             }else{ ?>
                             <h2 class="rc-no-data-msg" style="text-align: center;">No Data to Display</h2>
                         <?php } ?>
