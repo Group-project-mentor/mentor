@@ -1,6 +1,6 @@
 <?php
 
-class AdPstpprverify extends Controller{
+class AdOtherverify extends Controller{
     public function __construct()
     {
         // sessionValidator();
@@ -8,7 +8,7 @@ class AdPstpprverify extends Controller{
 
     public function index()
     {
-        $this->view('admin/resourceVerificationPstppr');
+        $this->view('admin/resourceVerificationOther');
     }
 
 }

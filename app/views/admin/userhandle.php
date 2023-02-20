@@ -110,10 +110,10 @@
                         </div>
                         <div class="icons">
                             <div class="view">
-                                <button type="button"><img src="<?php echo BASEURL?>assets/admin/view.png"></button>
+                                <a href="<?php echo BASEURL?>adUserHandleView"><img src="<?php echo BASEURL?>assets/admin/view.png"></a>
                             </div>
                             <div class="addtm">
-                                <button type="button"><img src="<?php echo BASEURL?>assets/admin/addtm.png"></button>
+                                <a href="<?php echo BASEURL?>adTask"><img src="<?php echo BASEURL?>assets/admin/addtm.png"></button>
                             </div>
                             <div class="delete">
                                 <button type="button"><img src="<?php echo BASEURL?>assets/admin/Delete.png"></button>

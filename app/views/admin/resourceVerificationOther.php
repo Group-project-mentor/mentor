@@ -5,9 +5,12 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>login</title>
-    <link rel="stylesheet" href="<?php echo BASEURL?>stylesheets/admin/ad_task.css">
-    <link rel="stylesheet" href="<?php echo BASEURL?>stylesheets/admin/style.css">
+    <title>complaints</title>
+    <link rel="stylesheet" href="<?php echo BASEURL ?>stylesheets/admin/ad_complaints.css">
+    <link rel="stylesheet" href="<?php echo BASEURL ?>stylesheets/admin/ad_verification.css">
+    <link rel="stylesheet" href="<?php echo BASEURL ?>stylesheets/admin/style.css">
+    <link rel="stylesheet" href="<?php echo BASEURL ?>stylesheets/admin/ad_verify.css">
+
 </head>
 <nav>
     <div class="ad_nav">
@@ -23,16 +26,16 @@
             <!-- Navigation bar logos -->
             <div class="nav-upper">
                 <div class="nav-logo-short">
-                    <img src="<?php echo BASEURL?>assets/admin/minilogo 1.png" alt="logo" />
+                    <img src="<?php echo BASEURL ?>assets/admin/minilogo 1.png" alt="logo" />
                 </div>
                 <div class="nav-logo-long" id="nav-logo-long">
-                    <img src="<?php echo BASEURL?>assets/admin/logo-w.png" alt="logo" />
+                    <img src="<?php echo BASEURL ?>assets/admin/logo-w.png" alt="logo" />
                 </div>
             </div>
 
 
-            <!-- Navigation buttons -->
-            <div class="nav-links">
+           <!-- Navigation buttons -->
+           <div class="nav-links">
                 <a href="<?php echo BASEURL ?>" class="nav-link">
                     <img class="active" src="<?php echo BASEURL ?>assets/admin/bi_grid-fill.png" alt="dsh">
                     <div class="nav-link-text">Dashboard</div>
@@ -62,7 +65,7 @@
 
             <!-- Navigation bar toggler -->
             <div class="nav-toggler" id="nav-toggler">
-                <img src="<?php echo BASEURL?>assets/admin/toogle.png" alt="toggler">
+                <img src="<?php echo BASEURL ?>assets/admin/toogle.png" alt="toggler">
             </div>
         </nav>
 
@@ -74,15 +77,15 @@
                 <div class="search-bar">
                     <input type="text" name="" id="" placeholder="Search...">
                     <a href="">
-                        <img src="<?php echo BASEURL?>assets/admin/Vector (2).png" alt="">
+                        <img src="<?php echo BASEURL ?>assets/admin/Vector (2).png" alt="">
                     </a>
                 </div>
                 <div class="top-bar-btns">
                     <a href="#">
-                        <img src="<?php echo BASEURL?>assets/admin/Vector (3).png" alt="notify">
+                        <img src="<?php echo BASEURL ?>assets/admin/Vector (3).png" alt="notify">
                     </a>
                     <a href="#">
-                        <img src="<?php echo BASEURL?>assets/admin/Ellipse 2.png" alt="profile">
+                        <img src="<?php echo BASEURL ?>assets/admin/Ellipse 2.png" alt="profile">
                     </a>
                 </div>
             </section>
@@ -91,65 +94,25 @@
 
                 <!-- Title and sub title of middle part -->
                 <div class="mid-title">
-                    <h1>Task Manager</h1>
+                    <h1>Others</h1>
                 </div>
 
-                <div class="content">
-                    <a href="<?php echo BASEURL?>adComplaintaction" style="text-decoration: none; color:black;">
-                        <div class="complaints">
-                            <div class="pp">
-                                <img  class="profile" src="<?php echo BASEURL?>assets/admin/comphand.png">
-                            </div>
-                            <div class="name">
-                                <p>Complaint Handling</p>
-                            </div>
-                            <div class="description">
-                                <p>jahsgfbdssauygefiBCJHBVCGDUDSSDFCSJH FUSHDFUJHFH</p>
-                            </div>
-                            <div class="icons">
-                                <div class="view">
-                                    <button type="button" id="btn">In Pogress</button>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                    <a href="<?php echo BASEURL?>adComplaintaction" style="text-decoration: none; color:black;">
-                        <div class="complaints">
-                            <div class="pp">
-                                <img  class="profile" src="<?php echo BASEURL?>assets/admin/comphand.png">
-                            </div>
-                            <div class="name">
-                                <p>Complaint Handling</p>
-                            </div>
-                            <div class="description">
-                                <p>jahsgfbdssauygefiBCJHBVCGDUDSSDFCSJH FUSHDFUJHFH</p>
-                            </div>
-                            <div class="icons">
-                                <div class="view">
-                                    <button type="button" id="btn">In Pogress</button>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                    <a href="<?php echo BASEURL?>adComplaintaction" style="text-decoration: none; color:black;">
-                        <div class="complaints">
-                            <div class="pp">
-                                <img  class="profile" src="<?php echo BASEURL?>assets/admin/comphand.png">
-                            </div>
-                            <div class="name">
-                                <p>Complaint Handling</p>
-                            </div>
-                            <div class="description">
-                                <p>jahsgfbdssauygefiBCJHBVCGDUDSSDFCSJH FUSHDFUJHFH</p>
-                            </div>
-                            <div class="icons">
-                                <div class="view">
-                                    <button type="button" id="btn">In Pogress</button>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
+                <div class="content" id="comp-content" >
+                    <div class="bckclose">
+                        <a href="<?php echo BASEURL ?>adVerification" class="back">
+                            <img class="back" src="<?php echo BASEURL ?>assets/admin/Arrow---Left.png">
+                        </a>
+                    </div>
+                    <div class="videos">
+                        <img class="others" src="<?php echo BASEURL ?>assets/admin/others.jpg">
+                        <img class="others" src="<?php echo BASEURL ?>assets/admin/others.jpg">
+                        <img class="others" src="<?php echo BASEURL ?>assets/admin/others.jpg">
+                        <img class="others" src="<?php echo BASEURL ?>assets/admin/others.jpg">
+                        <img class="others" src="<?php echo BASEURL ?>assets/admin/others.jpg">
+                        <img class="others" src="<?php echo BASEURL ?>assets/admin/others.jpg">
+                    </div>
                 </div>
+                
             </section>
         </div>
     </section>
@@ -177,9 +140,7 @@
                 navLinkTexts[i].classList.add("hidden");
             }
             toggle = false;
-        }
-
-        else {
+        } else {
             logoLong.classList.remove("hidden");
             // navMiddle.classList.remove("hidden");
             togglerBtn.classList.remove("toggler-rotate");
@@ -189,9 +150,4 @@
             toggle = true;
         }
     })
-
-
-
 </script>
-
-            

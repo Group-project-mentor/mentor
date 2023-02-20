@@ -113,7 +113,7 @@
                         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente expedita fugit culpa optio accusantium mollitia eius deserunt architecto, sit minus maxime minima eos quidem quam nesciunt non veritatis, eum dolores!</p>
                     </div>
                     <div class="btns">
-                        <button class="comp-btns">Add to task manager</button>
+                        <a href="<?php echo BASEURL?>adTask"><button class="comp-btns">Add to task manager</button></a>
                         <button class="comp-btns">Delete</button>    
                     </div>
                 </div>
