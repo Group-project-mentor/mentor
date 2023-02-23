@@ -9,7 +9,7 @@
     <link rel="icon" type="image/x-icon" href="<?php echo BASEURL ?>assets/mentor.ico">
     <title>Student Home</title>
 
-    <link rel="stylesheet" href="<?php echo BASEURL?>stylesheets/style.css">    <!-- BASEURL use to navigate pages -->
+    <link rel="stylesheet" href="<?php echo BASEURL?>stylesheets/Student/style.css">    <!-- BASEURL use to navigate pages -->
     <link rel="stylesheet" href="<?php echo BASEURL?>stylesheets/st_student.css">
 </head>
 
@@ -51,7 +51,7 @@
                 <a class="see-all-btn" href="<?php echo BASEURL  ?>" style="text-decoration: none; "></a>
                 
                 <!-- Grade choosing interface -->
-                <div class="container-box">
+                <div class="container-box" style="padding-left: 160px;">
                     <div class="grade-switcher">
                         <img src="<?php echo BASEURL  ?>assets/icons/icon_prev.png" alt="left">
                         <div class="grades">

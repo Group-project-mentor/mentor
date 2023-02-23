@@ -15,4 +15,10 @@ class ReportIssue extends Model
         $stmt->bind_param('issi', $userId, $type, $descr, $solved);
         return $stmt->execute();
     }
+
+    public function getReportTypes($user){
+        $stmt = $this->prepare("SELECT * FROM report_type WHERE userType = ? or userType = 'all' ");
+        $stmt->bind_param('s',$user);
+        return $this->fetchAll($stmt);
+    }
 }

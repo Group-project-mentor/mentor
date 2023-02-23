@@ -6,8 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>login</title>
-    <link rel="stylesheet" href="<?php echo BASEURL?>stylesheets/admin/ad_complaintHandle.css">
-    <link rel="stylesheet" href="<?php echo BASEURL?>stylesheets/admin/style.css">
+    <link rel="stylesheet" href="<?php echo BASEURL ?>stylesheets/admin/ad_complaintHandle.css">
+    <link rel="stylesheet" href="<?php echo BASEURL ?>stylesheets/admin/style.css">
 </head>
 <nav>
     <div class="ad_nav">
@@ -23,10 +23,10 @@
             <!-- Navigation bar logos -->
             <div class="nav-upper">
                 <div class="nav-logo-short">
-                    <img src="<?php echo BASEURL?>assets/admin/minilogo 1.png" alt="logo" />
+                    <img src="<?php echo BASEURL ?>assets/admin/minilogo 1.png" alt="logo" />
                 </div>
                 <div class="nav-logo-long" id="nav-logo-long">
-                    <img src="<?php echo BASEURL?>assets/admin/logo-w.png" alt="logo" />
+                    <img src="<?php echo BASEURL ?>assets/admin/logo-w.png" alt="logo" />
                 </div>
             </div>
 
@@ -62,7 +62,7 @@
 
             <!-- Navigation bar toggler -->
             <div class="nav-toggler" id="nav-toggler">
-                <img src="<?php echo BASEURL?>assets/admin/toogle.png" alt="toggler">
+                <img src="<?php echo BASEURL ?>assets/admin/toogle.png" alt="toggler">
             </div>
         </nav>
 
@@ -74,15 +74,15 @@
                 <div class="search-bar">
                     <input type="text" name="" id="" placeholder="Search...">
                     <a href="">
-                        <img src="<?php echo BASEURL?>assets/admin/Vector (2).png" alt="">
+                        <img src="<?php echo BASEURL ?>assets/admin/Vector (2).png" alt="">
                     </a>
                 </div>
                 <div class="top-bar-btns">
                     <a href="#">
-                        <img src="<?php echo BASEURL?>assets/admin/Vector (3).png" alt="notify">
+                        <img src="<?php echo BASEURL ?>assets/admin/Vector (3).png" alt="notify">
                     </a>
                     <a href="#">
-                        <img src="<?php echo BASEURL?>assets/admin/Ellipse 2.png" alt="profile">
+                        <img src="<?php echo BASEURL ?>assets/admin/Ellipse 2.png" alt="profile">
                     </a>
                 </div>
             </section>
@@ -97,7 +97,7 @@
                 <div class="content">
                     <div class="complaints">
                         <div class="pp">
-                            <img  class="profile" src="<?php echo BASEURL?>assets/admin/pp.png">
+                            <img  class="profile" src="<?php echo BASEURL ?>assets/admin/pp.png">
                         </div>
                         <div class="name">
                             <p>Jaydon Aminoff</p>
@@ -110,7 +110,7 @@
                         </div>
                         <div class="icons">
                             <div class="view">
-                                <a href="<?php echo BASEURL?>adComplaintView"><img src="<?php echo BASEURL?>assets/admin/view.png"></a>
+                                <a href="<?php echo BASEURL ?>adComplaintView"><img src="<?php echo BASEURL ?>assets/admin/view.png"></a>
                             </div>
                             <div class="addtm">
                                 <a href="<?php echo BASEURL?>adTask"><img src="<?php echo BASEURL?>assets/admin/addtm.png"></a>
@@ -166,4 +166,3 @@
 
 </script>
 
-            

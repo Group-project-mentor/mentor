@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Watch Videos</title>
     <link rel="icon" type="image/x-icon" href="<?php echo BASEURL ?>assets/mentor.ico">
-    <link rel="stylesheet" href="<?php echo BASEURL ?>stylesheets/style.css">
+    <link rel="stylesheet" href="<?php echo BASEURL ?>stylesheets/Student/style.css">
     <link rel="stylesheet" href="<?php echo BASEURL ?>stylesheets/Student/st_card_set.css">
     <link rel="stylesheet" href="<?php echo BASEURL . '/public/stylesheets/resourceCreator/rc_resources.css' ?> ">
 </head>

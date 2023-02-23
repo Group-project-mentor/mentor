@@ -39,3 +39,18 @@ function flashMessage($message=null){
         $_SESSION['msgTag'] = true;
     }
 }
+
+function tempFileRemover(){
+//    if (session_status() == PHP_SESSION_NONE) {
+//        session_start();
+//    }
+    if(isset($_SESSION['temporary_file']) and $_SESSION['tempTag']){
+        $_SESSION['tempTag'] = false;
+    }
+    elseif(isset($_SESSION['temporary_file']) and !$_SESSION['tempTag']){
+        unlink('public_resources/temp/'.$_SESSION['temporary_file']);
+        unset($_SESSION['temporary_file']);
+    }
+}
+
+tempFileRemover();

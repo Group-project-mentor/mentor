@@ -7,8 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Student-classroom inside</title>
     <link rel="icon" type="image/x-icon" href="<?php echo BASEURL ?>assets/mentor.ico">
-    <link rel="stylesheet" href="<?php echo BASEURL; ?>public/stylesheets/t_style.css">
-    <link rel="stylesheet" href="<?php echo BASEURL; ?>public/stylesheets/t_resources.css">
+    <link rel="stylesheet" href="<?php echo BASEURL; ?>public/stylesheets/Teacher/style.css">
+    <link rel="stylesheet" href="<?php echo BASEURL; ?>public/stylesheets/Teacher/resources.css">
 </head>
 
 <body>

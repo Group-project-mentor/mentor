@@ -12,25 +12,17 @@
         </div>
     </div>
 
+
     <!-- Navigation bar private - public switch -->
     <div class="nav-middle" id="nav-middle">
-        
-        <div class="nav-switch">
         <p>Public</p>
-            <label class="switch">
-                <input type="checkbox" checked>
-                <span class="slider round"></span>
-            </label>
-        </div>
-        
         <div class="nav-switch">
-        <p >Private</p>
             <label class="switch">
                 <input type="checkbox" checked>
                 <span class="slider round"></span>
             </label>
         </div>
-        
+        <p class="nav-switch-txt">Private</p>
     </div>
 
     <!-- Navigation buttons -->
@@ -39,7 +31,7 @@
             <img class="active" src="<?php echo BASEURL ?>public/assets/icons/icon_class.png" alt="home">
             <div class="nav-link-text">Classes</div>
         </a>
-        <a href="<?php BASEURL ?>privateclass/report" class="nav-link">
+        <a href="<?php BASEURL ?>st_report_main" class="nav-link">
             <img src="<?php echo BASEURL ?>public/assets/icons/icon_report.png" alt="profile">
             <div class="nav-link-text">Report Issue</div>
         </a>

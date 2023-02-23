@@ -63,11 +63,29 @@
                 <div class="container-box">
                     <div class="rc-resource-header">
                         <h1>VIDEOS</h1>
-                        <a href="<?php echo BASEURL . 'rcAdd/video' ?>">
-                            <div class="rc-add-btn">
-                                Add Video
-                            </div>
-                        </a>
+<!--                        <a href="--><?php //echo BASEURL . 'rcAdd/video' ?><!--">-->
+<!--                            <div class="rc-add-btn">-->
+<!--                                Add Video-->
+<!--                            </div>-->
+<!--                        </a>-->
+                        <div class="rc-add-btn" id="video-add-button" style="align-items: center;">
+                            Add Video
+                            <img src="<?php echo BASEURL?>assets/icons/icon_down_white.png" alt="profile" class="rc-resource-button-icon-s">
+                        </div>
+                        <div class="rc-popup-menu popup-toggle" id="popup-menu">
+                            <a class="rc-popup-item" href="<?php echo BASEURL . 'rcAdd/videoUpload' ?>">
+                                <img src="<?php echo BASEURL?>assets/icons/icon_upload_green.png" class="rc-resource-button-icon-m"/>
+                                <div>
+                                    Upload Video
+                                </div>
+                            </a>
+                            <a class="rc-popup-item" href="<?php echo BASEURL . 'rcAdd/video' ?>">
+                                <img src="<?php echo BASEURL?>assets/icons/icon_youtube_green.png" class="rc-resource-button-icon-m"/>
+                                <div>
+                                    Youtube Link
+                                </div>
+                            </a>
+                        </div>
                     </div>
                     <div class="rc-video-card-set">
                         <?php
@@ -83,7 +101,7 @@
                                             <label style="color: white;">View</label>
                                             <img style="width: 15px" src='<?php echo BASEURL?>assets/icons/icon_eye_white.png' alt='' />
                                         </a>
-                                    </div>";
+                                    </div>
                            <?php     }
                             }
                             else{ ?>
@@ -111,6 +129,11 @@
 
     </section>
 </body>
+<script>
+    document.getElementById('video-add-button').addEventListener('click',()=>{
+        document.getElementById('popup-menu').classList.toggle('popup-toggle');
+    });
+</script>
 <script src="<?php echo BASEURL . '/public/javascripts/rc_alert_control.js' ?>"></script>
 
 </html>

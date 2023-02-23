@@ -28,18 +28,22 @@ class Register extends Controller
                 if ($this->model("userModel")->registrationStudent($email, $name, $hash, $age)) {
                     $response['message'] = "successful";
                 } else {
-                    echo "Registration unsuccessful !";
+//                    echo "Registration unsuccessful !";
+                    $response['message'] = "unsuccessful";
                     // header("location:register.php?error=Can't add the user");
                     // header("location:" . BASEURL . "register/index/1");
                 }
             } else {
-                echo "Invalid Data !";
+//                echo "Invalid Data !";
+                $response['message'] = "INVALID";
                 // header("location:" . BASEURL . "register/index/2");
                 // header("location:register.php?error=Invalid Data");
             }
 //        } else {
 //            header("location:" . BASEURL . "login");
 //        }
+//        header('Content-Type: application/json');
+        echo json_encode($response);
     }
 
     // ?Done

@@ -14,13 +14,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 
-    <link rel="stylesheet" href="<?php echo BASEURL . '/public/stylesheets/rc_main.css' ?> ">
+    <link rel="stylesheet" href="<?php echo BASEURL . '/public/stylesheets/resourceCreator/rc_main.css' ?> ">
 </head>
 
 <body>
     <section class="page">
         <!-- Navigation panel -->
-        <?php include_once "components/navbars/rc_nav_1.php"?>
+        <?php include_once "components/navbars/sp_nav_1.php"?>
 
         <!-- Right side container -->
         <div class="content-area">
@@ -28,17 +28,14 @@
             <!-- Top bar -->
             <section class="top-bar">
                 <div class="search-bar">
-                    <input type="text" name="" id="" placeholder="Search...">
-                    <a href="">
-                        <img src="assets/icons/icon_search.png" alt="">
-                    </a>
+
                 </div>
                 <div class="top-bar-btns">
                     <a href="#">
-                        <img src="assets/icons/icon_notify.png" alt="notify">
+                        <img src="<?php echo BASEURL ?>assets/icons/icon_notify.png" alt="notify">
                     </a>
-                    <a href="<?php echo BASEURL . 'rcProfile' ?>">
-                        <img src="assets/icons/icon_profile_black.png" alt="profile">
+                    <a href="<?php echo BASEURL . 'sponsor/profile' ?>">
+                        <img src="<?php echo BASEURL ?>assets/icons/icon_profile_black.png" alt="profile">
                     </a>
                 </div>
             </section>
@@ -48,7 +45,7 @@
 
                 <!-- Title and sub title of middle part -->
                 <div class="mid-title">
-                    <h1>Resource Creator</h1>
+                    <h1>Sponsor</h1>
                     <h6>welcome <?php echo $_SESSION['name'] ?></h6>
                 </div>
 

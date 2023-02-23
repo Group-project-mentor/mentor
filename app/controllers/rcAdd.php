@@ -35,6 +35,12 @@ class RcAdd extends Controller
         $this->view("resourceCtr/uploadViews/rc_upload_video", $data);
     }
 
+    public function videoUpload($message = null)
+    {
+        $data = array("$message", "video");
+        $this->view("resourceCtr/uploadViews/rc_upload_video_2", $data);
+    }
+
 // these are for get upload data
 
     public function addVideo()
@@ -49,6 +55,60 @@ class RcAdd extends Controller
             header("location:" . BASEURL . "rcAdd/video");
         }
 
+    }
+
+    public function addVideoUpload()
+    {
+        if (isset($_FILES['resource']) && $_FILES['resource']['error'] === 0) {
+            $fileName = $_FILES['resource']['name'];
+            $tmp_name = $_FILES['resource']['tmp_name'];
+//            $extension = pathinfo($fileName, PATHINFO_EXTENSION);
+            $newFileName = uniqid().$fileName;
+            $fileDest = "public_resources/temp/" . $newFileName ;
+            if (move_uploaded_file($tmp_name, $fileDest)) {
+                if(!empty($_SESSION['temporary_file'])){
+                    $path = "public_resources/temp/".$_SESSION['temporary_file'];
+                    if (file_exists($path)){
+                        unlink($path);
+                    }
+                }
+                $_SESSION['temporary_file']= $newFileName;
+                $_SESSION['tempTag'] = true;
+                echo 'UploadSuccess';
+            } else {
+                echo 'UploadError';
+            }
+        }else{
+            echo 'FileNotExist';
+        }
+    }
+
+    public function addVideoUploadForm(){
+        if ($_SERVER['REQUEST_METHOD'] === 'POST'){
+            if(!empty($_SESSION['temporary_file'])){
+                $Id = $this->getId();
+                if ($this->model("resourceModel")->addVideo($Id, $_SESSION['gid'], $_SESSION['sid'], $_POST['title'], $_POST['lec'], $_SESSION['temporary_file'], $_POST['descr'],'U')) {
+                    $new_path = "public_resources/videos/".$_SESSION['temporary_file'];
+                    $temp_path = "public_resources/temp/".$_SESSION['temporary_file'];
+                    if (file_exists($temp_path) and !file_exists($new_path)){
+                        rename($temp_path,$new_path);
+                        unset($_SESSION['temporary_file']);
+                        echo "success";
+                    }else{
+                        echo "SavingError";
+                    }
+                } else {
+                    echo "DatabaseError";
+                }
+            }else{
+                echo "FileNotExist";
+            }
+//            header("location:" . BASEURL . "rcAdd/video");
+        }
+    }
+
+    public  function addVideoUpload2(){
+        echo "hello";
     }
 
     public function addDocument($grade, $subject)

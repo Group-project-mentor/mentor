@@ -57,7 +57,7 @@ class ResourceModel extends Model
         $result = $this->getData("public_resource", null, "id", "desc", 1);
         if ($result->num_rows > 0) {
             $row = $result->fetch_row();
-            echo $row[0];
+//            echo $row[0];
             return $row[0];
         } else {
             return 0;
@@ -67,8 +67,8 @@ class ResourceModel extends Model
 
 //? Functions for add a resource 
 
-    public function addVideo($id, $grade, $subject, $name, $lec, $link, $descr){
-        $sql = "insert into video(id, name, lecturer, description, link) values ($id, '$name', '$lec', '$descr', '$link')";
+    public function addVideo($id, $grade, $subject, $name, $lec, $link, $descr,$type = 'L'){
+        $sql = "insert into video(id, name, lecturer, description, link, type) values ($id, '$name', '$lec', '$descr', '$link','$type')";
         return ($this->addResource($id, $grade, $subject, null , 'video') && $this->executeQuery($sql));
     }
 

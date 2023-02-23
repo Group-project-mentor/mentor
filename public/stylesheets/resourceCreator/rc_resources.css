@@ -2,10 +2,19 @@
 
 /* ----- resource header ----- */
 .rc-resource-header {
+    position: relative;
     display: flex;
     padding: 10px 20px;
     justify-content: space-between;
     align-items: center;
+}
+
+.rc-resource-button-icon-s{
+    width: 15px;
+    margin: 0 0 0 10px;
+}
+.rc-resource-button-icon-m{
+    width: 30px;
 }
 
 .rc-resource-header h1 {
@@ -19,15 +28,68 @@
 }
 
 .rc-add-btn {
+    user-select: none;
+    -moz-user-select: none;
     padding: 10px;
     background-color: green;
     border-radius: 10px;
     font-weight: 500;
     color: white;
     text-align: center;
+    cursor: pointer;
+    display: flex;
+}
+
+/* ?-- Resource Creator Small Popup Menu--- */
+.popup-toggle{
+    display: none !important;
+}
+
+.hidden-toggle{
+    display: none !important;
+}
+
+.rc-popup-menu{
+    position: absolute;
+    right: 20px;
+    bottom: -90px;
+    backdrop-filter: blur(5px);
+    display: flex;
+    flex-direction: column;
+    border-radius: 10px;
+    z-index: 20;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
 }
 
 
+.rc-popup-item{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    cursor: pointer;
+    border-radius: 10px;
+    padding: 8px;
+}
+
+.rc-popup-item:nth-last-of-type(1){
+    border-radius: 0 0 10px 10px;
+}
+.rc-popup-item:first-of-type{
+    border-radius: 10px 10px 0 0;
+}
+
+.rc-popup-item:hover{
+    background-color: rgba(217, 217, 217, 0.5);
+}
+
+.rc-popup-item>img{
+    margin: 0 10px;
+}
+
+.rc-popup-item>div{
+    color: green;
+    margin-right: 10px;
+}
 
 /* ----- Card set for video list ------*/
 
@@ -291,6 +353,31 @@
     opacity: 0;
 
 }
+
+.progress-container{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    /*padding:10px;*/
+    align-items: center;
+}
+
+.progress-container>p{
+   font-size: small;
+    color: #0b9040;
+    min-width: 30px;
+    text-align: right;
+}
+
+.progress-container>progress{
+    width: 80%;
+    accent-color: rgba(11, 144, 64, 0.69);
+}
+.progress-container>img{
+    width: 30px;
+    cursor: pointer;
+}
+
 
 .rc-form-group>div {
     padding: 40px;
