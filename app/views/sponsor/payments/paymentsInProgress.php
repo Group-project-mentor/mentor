@@ -203,7 +203,7 @@
                 </div>
 
                 <div style="margin-top: 20px;display: flex;justify-content: flex-end;">
-                    <div type="button" class="sponsor-button"  style="font-size: large;margin: 0 5px;">Pay Total Fund</div>
+                    <a href="<?php echo BASEURL.'sponsor/paymentTest' ?>" class="sponsor-button"  style="font-size:large;margin: 0 5px;text-decoration: none;">Pay Total Fund</a>
                 </div>
 
             </div>
