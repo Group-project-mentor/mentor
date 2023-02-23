@@ -14,10 +14,7 @@
 
 <body>
     <?php 
-        if(isset($data[1]) && $data[0] == "success"){
-            include_once "components/alerts/uploadSuccess.php"; 
-        }
-        elseif(isset($data[1]) && $data[0] == "error"){
+        if(isset($_SESSION['message']) && $_SESSION['message']== "error"){
             include_once "components/alerts/uploadFailed.php";
         }
     ?>

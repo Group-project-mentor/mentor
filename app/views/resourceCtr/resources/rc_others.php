@@ -14,6 +14,15 @@
 <body>
     <?php include_once "components/alerts/rc_delete_alert.php"?>
 
+    <?php
+    $category = "others";
+    if(!empty($_SESSION['message'])) {
+        if ($_SESSION['message'] == "success") {
+            include_once "components/alerts/categoryUploadSuccess.php";
+        }
+    }
+    ?>
+
     <section class="page">
 
         <!-- Navigation panel -->

@@ -7,6 +7,7 @@ class RcResources extends Controller{
     public function __construct(){
         sessionValidator();
         $this->userValidate($this->user);
+        flashMessage();
     }
 
     public function index(){
@@ -131,6 +132,7 @@ class RcResources extends Controller{
     public function settings($grade,$subject){
         $this->view('resourceCtr/resources/rc_settings');
     }
+
 
     private function filterVideoId($link){
         $splitted_link = explode('/',$link);

@@ -30,7 +30,7 @@ class ResourceModel extends Model
     {
         $sql = "select pastpaper.id, pastpaper.name, pastpaper.year, pastpaper.part from pastpaper, public_resource WHERE pastpaper.id = public_resource.id and
                 public_resource.id IN (SELECT rsrc_id FROM rs_subject_grade WHERE subject_id=$subject and grade_id=$grade)
-                and public_resource.type = 'pastpaper'";
+                and public_resource.type = 'pastp'";
         return $this->executeQuery($sql);
     }
 
@@ -105,6 +105,7 @@ class ResourceModel extends Model
         }
         return array();
     }
+
 
 
 //? Functions for delete resource
@@ -182,6 +183,17 @@ class ResourceModel extends Model
         return array(); 
     }
 
+    public function getPastPaper($id, $gid, $sid){
+        $sql = "select pastpaper.id, pastpaper.name, pastpaper.year, pastpaper.part, pastpaper.qid, public_resource.type, public_resource.location 
+                    from pastpaper inner join rs_subject_grade on pastpaper.id = rs_subject_grade.rsrc_id 
+                    inner join public_resource on public_resource.id = rs_subject_grade.rsrc_id 
+                    where pastpaper.id = ? and rs_subject_grade.subject_id = ?
+                    and rs_subject_grade.grade_id = ?";
+        $stmt = $this->prepare($sql);
+        $stmt->bind_param('iii',$id,$sid,$gid);
+        return $this->fetchOneObj($stmt);
+    }
+
 
 //? Functions for update/edit resource
     public function updateDocument($id, $title, $file){
@@ -213,6 +225,24 @@ class ResourceModel extends Model
         return null;
     }
 
-}
+    public function getAllQuizIds($gid, $sid){
+        $stmt = $this->prepare("SELECT rsrc_id,quiz.name FROM rs_subject_grade, public_resource, quiz 
+                                     WHERE rs_subject_grade.grade_id = ? AND rs_subject_grade.subject_id = ? AND 
+                                           public_resource.type = 'quiz' AND rs_subject_grade.rsrc_id = public_resource.id AND 
+                                           public_resource.id = quiz.id");
+        $stmt->bind_param('ii',$gid, $sid);
+        return $this->fetchAll($stmt);
+    }
 
-?>
+    public function changeQuizId($ppid, $qid){
+        $stmt = $this->prepare("UPDATE pastpaper SET pastpaper.qid = ? WHERE pastpaper.id = ?;");
+        $stmt->bind_param('ii',$qid,$ppid);
+        return $this->executePrepared($stmt);
+    }
+
+    public function getSpecificQuiz($qid){
+        $stmt = $this->prepare("SELECT * FROM quiz WHERE id = ? ");
+        $stmt->bind_param('i',$qid);
+        return $this->fetchOneObj($stmt);
+    }
+}

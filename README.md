@@ -1,4 +1,15 @@
 # MENTOR
+is a comprehensive **learning management system**
+designed to support teachers and students in online learning 
+environments. Our platform offers a range of features to 
+facilitate virtual learning, including course management 
+tools, communication systems, assessment and evaluation tools, 
+and analytics and reporting capabilities. We're dedicated to 
+providing a seamless online learning experience for both 
+educators and learners, and our platform is designed to be 
+user-friendly, flexible, and customizable. Join us in 
+revolutionizing online education and empowering the next 
+generation of learners.
 ## Learning Management System..
 > This is the project we are developing for our second year group project.
 

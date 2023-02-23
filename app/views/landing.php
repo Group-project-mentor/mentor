@@ -105,7 +105,7 @@ if (isset($_SESSION['user'])) {
                     quod rem reprehenderit sed vero voluptates?
                     Lorem ipsum dolor sit amet, <b>consectetur adipisicing</b> elit. Adipisci aliquam aperiam cupiditate
                 </div>
-                <a class="landing-BMC-btn">
+                <a class="landing-BMC-btn" href="https://sandbox.payhere.lk/pay/o22d098a8">
                     <i class="fa-solid fa-hand-holding-dollar fa-beat-fade"></i>
                     BUY US A COFFEE
                 </a>
