@@ -216,7 +216,7 @@
                                 </div>
                                 <div class="btn">
                                     <button type="button">
-                                        <p><a href="<?php echo BASEURL ?>adComplaintHandle">View All</a></p>
+                                        <p ><a href="<?php echo BASEURL ?>adComplaintHandle" style="color:white;">View All</a></p>
                                     </button>
                                 </div>
 
@@ -255,7 +255,7 @@
                                 </div>
                                 <div class="btn">
                                     <a href="<?php echo BASEURL ?>adUserHandle">
-                                        <p>View All</p>
+                                        <p style="color:white">View All</p>
                                     </a>
                                 </div>
 

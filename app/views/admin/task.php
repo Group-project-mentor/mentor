@@ -95,23 +95,60 @@
                 </div>
 
                 <div class="content">
-                    <div class="complaints">
-                        <div class="pp">
-                            <img  class="profile" src="<?php echo BASEURL?>assets/admin/comphand.png">
-                        </div>
-                        <div class="name">
-                            <p>Complaint Handling</p>
-                        </div>
-                        <div class="description">
-                            <p>jahsgfbdssauygefiBCJHBVCGDUDSSDFCSJH FUSHDFUJHFH</p>
-                        </div>
-                        <div class="icons">
-                            <div class="view">
-                                <button type="button" id="btn">In Pogress</button>
+                    <a href="<?php echo BASEURL?>adComplaintaction" style="text-decoration: none; color:black;">
+                        <div class="complaints">
+                            <div class="pp">
+                                <img  class="profile" src="<?php echo BASEURL?>assets/admin/comphand.png">
+                            </div>
+                            <div class="name">
+                                <p>Complaint Handling</p>
+                            </div>
+                            <div class="description">
+                                <p>jahsgfbdssauygefiBCJHBVCGDUDSSDFCSJH FUSHDFUJHFH</p>
+                            </div>
+                            <div class="icons">
+                                <div class="view">
+                                    <button type="button" id="btn">In Pogress</button>
+                                </div>
                             </div>
                         </div>
-
-                    </div>
+                    </a>
+                    <a href="<?php echo BASEURL?>adComplaintaction" style="text-decoration: none; color:black;">
+                        <div class="complaints">
+                            <div class="pp">
+                                <img  class="profile" src="<?php echo BASEURL?>assets/admin/comphand.png">
+                            </div>
+                            <div class="name">
+                                <p>Complaint Handling</p>
+                            </div>
+                            <div class="description">
+                                <p>jahsgfbdssauygefiBCJHBVCGDUDSSDFCSJH FUSHDFUJHFH</p>
+                            </div>
+                            <div class="icons">
+                                <div class="view">
+                                    <button type="button" id="btn">In Pogress</button>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="<?php echo BASEURL?>adComplaintaction" style="text-decoration: none; color:black;">
+                        <div class="complaints">
+                            <div class="pp">
+                                <img  class="profile" src="<?php echo BASEURL?>assets/admin/comphand.png">
+                            </div>
+                            <div class="name">
+                                <p>Complaint Handling</p>
+                            </div>
+                            <div class="description">
+                                <p>jahsgfbdssauygefiBCJHBVCGDUDSSDFCSJH FUSHDFUJHFH</p>
+                            </div>
+                            <div class="icons">
+                                <div class="view">
+                                    <button type="button" id="btn">In Pogress</button>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
                 </div>
             </section>
         </div>

@@ -102,26 +102,36 @@
                         
                     </div>
                     <div class="resource">
-                        <div class="r">
-                            <img src="<?php echo BASEURL ?>assets/admin/videos.png">
-                            <p>Videos</p>
-                        </div>
-                        <div class="r">
-                            <img src="<?php echo BASEURL ?>assets/admin/Quiz.png">
-                            <p>Quizes</p>
-                        </div>
-                        <div class="r">
-                            <img src="<?php echo BASEURL ?>assets/admin/pastppers.png">
-                            <p>Past Papers</p>
-                        </div>
-                        <div class="r">
-                            <img src="<?php echo BASEURL ?>assets/admin/pdf.png">
-                            <p>PDFs</p>
-                        </div>
-                        <div class="r">
-                            <img src="<?php echo BASEURL ?>assets/admin/other.png">
-                            <p>Other</p>
-                        </div>
+                        <a href="<?php echo BASEURL ?>adVideoverify" class="resource-link">
+                            <div class="r">
+                                <img src="<?php echo BASEURL ?>assets/admin/videos.png">
+                                <p>Videos</p>
+                            </div>
+                        </a>
+                        <a href="<?php echo BASEURL ?>adQuizzverify" class="resource-link">
+                            <div class="r">
+                                <img src="<?php echo BASEURL ?>assets/admin/Quiz.png">
+                                <p>Quizes</p>
+                            </div>
+                        </a>
+                        <a href="<?php echo BASEURL ?>adPstpprverify" class="resource-link">
+                            <div class="r">
+                                <img src="<?php echo BASEURL ?>assets/admin/pastppers.png">
+                                <p>Past Papers</p>
+                            </div>
+                        </a>
+                        <a href="<?php echo BASEURL ?>adPdfsverify" class="resource-link">
+                            <div class="r">
+                                <img src="<?php echo BASEURL ?>assets/admin/pdf.png">
+                                <p>PDFs</p>
+                            </div>
+                        </a>
+                        <a href="<?php echo BASEURL ?>adOtherverify" class="resource-link">
+                            <div class="r">
+                                <img src="<?php echo BASEURL ?>assets/admin/other.png">
+                                <p>Other</p>
+                            </div>
+                        </a>
                     </div>
                 </div>
                 

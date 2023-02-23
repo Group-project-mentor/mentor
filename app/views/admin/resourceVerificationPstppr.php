@@ -103,6 +103,9 @@
                             <img class="back" src="<?php echo BASEURL ?>assets/admin/Arrow---Left.png">
                         </a>
                         
+                        <a href="<?php echo BASEURL ?>adVerification" class="back">
+                            <img class="back" src="<?php echo BASEURL ?>assets/admin/Arrow---Left.png">
+                        </a>
                     </div>
                     <div class="videos">
                         <img class="pstpprs" src="<?php echo BASEURL ?>assets/admin/pstpprs.png">

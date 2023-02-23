@@ -99,10 +99,9 @@
 
                 <div class="content" id="comp-content" >
                     <div class="bckclose">
-                        <a href="<?php echo BASEURL ?>adVerification" class="back"
+                        <a href="<?php echo BASEURL ?>adVerification" class="back">
                             <img class="back" src="<?php echo BASEURL ?>assets/admin/Arrow---Left.png">
                         </a>
-                        
                     </div>
                     <div class="videos">
                         <img class="videoslist" src="<?php echo BASEURL ?>assets/admin/videoslist.png">
