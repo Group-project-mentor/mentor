@@ -90,7 +90,7 @@
                                id="next-btn"
                                href="<?php echo BASEURL.'quizPreview/question/'.$data[0] ?>">
                                 Start
-                                <img src="<?php echo BASEURL ?>assets/icons/icon_next_white" alt="">
+                                <img src="<?php echo BASEURL ?>assets/icons/icon_next_white.png" alt="">
                             </a>
                         </div>
                     </div>

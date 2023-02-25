@@ -245,4 +245,10 @@ class ResourceModel extends Model
         $stmt->bind_param('i',$qid);
         return $this->fetchOneObj($stmt);
     }
+
+    public function unlinkQuiz($ppid){
+        $stmt = $this->prepare("UPDATE pastpaper SET pastpaper.qid=NULL WHERE id = ? ");
+        $stmt->bind_param("i",$ppid);
+        return $this->executePrepared($stmt);
+    }
 }

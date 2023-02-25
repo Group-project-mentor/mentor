@@ -186,5 +186,15 @@ class RcEdit extends Controller
         echo json_encode($result);
     }
 
+    public function pastPaperUnlinkQuiz($ppid){
+        $result = $this->model('resourceModel')->unlinkQuiz($ppid);
+        if ($result){
+            flashMessage("unlinked");
+        }else{
+            flashMessage("failed");
+        }
+        header("location:".BASEURL."rcEdit/pastpaper/$ppid");
+    }
+
 
 }

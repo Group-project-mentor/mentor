@@ -142,6 +142,8 @@ elseif(isset($_SESSION['message']) && $_SESSION['message']== "error"){
             })
     }
 
+// TODO : Should made the cancellation part of the uploading
+
     const uploadFile = () => {
         progressContainer.classList.remove('hidden-toggle');
         progressBar.style.display = 'inline';

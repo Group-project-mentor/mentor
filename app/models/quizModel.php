@@ -25,6 +25,20 @@ class quizModel extends Model
         }
     }
 
+    public function getQuiz( $id, $grade, $subject)
+    {
+        $stmt = $this->prepare("SELECT quiz.id, quiz.name, quiz.marks, quiz.questions FROM quiz,public_resource WHERE quiz.id = public_resource.id AND quiz.id = ? and 
+                public_resource.id IN (SELECT rsrc_id FROM `rs_subject_grade` WHERE subject_id= ? AND grade_id= ?)");
+        $stmt->bind_param('iii',$id,$subject, $grade);
+        return $this->fetchOneObj($stmt);
+    }
+    public function editQuiz( $id, $name, $marks)
+    {
+        $stmt = $this->prepare("UPDATE quiz SET quiz.name=? , quiz.marks=? WHERE quiz.id = ? ");
+        $stmt->bind_param('sii', $name,$marks, $id);
+        return $this->executePrepared($stmt);
+    }
+
     public function getQuestionData($quiz, $qno)
     {
         $stmt = $this->prepare("select * from question where quiz_id = ? and number = ?");

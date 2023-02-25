@@ -2,9 +2,12 @@
 
 class Quiz extends Controller
 {
+    private $user1 = "rc";
     public function __construct()
     {
-        session_start();
+        sessionValidator();
+        $this->userValidate($this->user1);
+        flashMessage();
     }
 
     public function index()
@@ -25,6 +28,26 @@ class Quiz extends Controller
             header("location:" . BASEURL . "quiz/questions/$id");
         } else {
             header("location:" . BASEURL . "quiz/create/error");
+        }
+    }
+
+    public function editQuiz($quizId){
+        $res = $this->model('quizModel')->getQuiz($quizId, $_SESSION['gid'], $_SESSION['sid']);
+        $this->view("quizModule/rc/editQuizInfo", array($quizId,$res));
+    }
+
+    public function editAction($quizId){
+        if($this->model('quizModel')->validateQuiz($quizId,$_SESSION['gid'],$_SESSION['sid'])){
+            if($this->model('quizModel')->editQuiz($quizId, $_POST['quiz_name'], $_POST['tot_mark'])){
+                flashMessage("done");
+            }else{
+                flashMessage("failed");
+            }
+            header("location:".BASEURL."quiz/editQuiz/$quizId");
+        }else{
+            flashMessage("unauthorized");
+//            header("location:".BASEURL."rcResources/quizzes/".$_SESSION['gid']."/".$_SESSION['sid']);
+            header("location:".BASEURL."quiz/editQuiz/$quizId");
         }
     }
 

@@ -79,7 +79,7 @@
                         <img src="" alt="" id="image_tag" >
                     </div>
 
-                    <input type="hidden" name="ques_img" value="" id="image_data">
+<!--                    <input type="hidden" name="ques_img" value="" id="image_data">-->
 
                 </div>
             </form>

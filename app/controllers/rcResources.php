@@ -62,6 +62,8 @@ class RcResources extends Controller{
         $this->view('resourceCtr/resources/rc_pastpapers', $rows);
     }
 
+
+
     public function documents($grade, $subject, $msg = null)
     {
         $_SESSION["gid"] = $grade;

@@ -453,6 +453,8 @@
     border-radius: 5px;
     transition: 0.5s all;
     cursor: pointer;
+    font-size: small;
+    text-decoration: none;
 }
 .pp-vertical-btn:hover{
     color: green;
