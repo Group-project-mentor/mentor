@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="<?php echo BASEURL ?>stylesheets/Student/st_card_set.css">
     <link rel="stylesheet" href="<?php echo BASEURL . '/public/stylesheets/resourceCreator/rc_resources.css' ?> ">
 </head>
-
+<!--TODO: There are two types of videos. Only youtube preview is working other should be implemented -->
 <body>
     <?php include_once "components/alerts/rc_delete_alert.php"?>
 
@@ -19,7 +19,7 @@
     <!-- Navigation panel -->
     <?php include_once "components/navbars/rc_nav_2.php"?>
 
-    <div class="content-area">
+    <section class="content-area">
 
         <!-- Top bar -->
         <section class="top-bar">
@@ -80,10 +80,10 @@
                     </div>
                 </div>
             </div>
-    </div>
+        </section>
+    </section>
 </section>
-</div>
-</section>
+
 </body>
 <script src="<?php echo BASEURL . '/public/javascripts/rc_alert_control.js' ?>"></script>
 </html>

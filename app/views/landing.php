@@ -97,13 +97,10 @@ if (isset($_SESSION['user'])) {
             <div>
                 <h1>BUY US A COFFEE . . .</h1>
                 <div class="landing-BMC-description">
-                    &nbsp;&nbsp;Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci aliquam aperiam
-                    cupiditate delectus, doloribus eius illum impedit ipsa molestiae nobis optio possimus quaerat quis
-                    quod rem reprehenderit sed vero voluptates?
-                    Lo<b>consectetur adipisicing</b>sit amet, consectetur adipisicing elit. Adipisci aliquam aperiam
-                    cupiditate delectus, doloribus eius illum impedit ipsa molestiae nobis optio possimus quaerat quis
-                    quod rem reprehenderit sed vero voluptates?
-                    Lorem ipsum dolor sit amet, <b>consectetur adipisicing</b> elit. Adipisci aliquam aperiam cupiditate
+                    Our website offers a way for users to support our mission of providing free public services for students.
+                    By buying us a coffee, users can contribute to the maintenance and development of our public Learning
+                    Management System (LMS). The LMS provides access to educational resources, study materials, and online
+                    courses for students around the world. Your support helps us continue to offer these services for free.
                 </div>
                 <a class="landing-BMC-btn" href="https://sandbox.payhere.lk/pay/o22d098a8">
                     <i class="fa-solid fa-hand-holding-dollar fa-beat-fade"></i>
@@ -117,16 +114,16 @@ if (isset($_SESSION['user'])) {
         <section class="landing-sponsor">
             <div class="landing-sponsor-area">
                 <h1 class="landing-sp-heading">
-                    Help Child to See the Light
+                    The greatest gift you can give someone is education
                 </h1>
 
                 <div class="landing-sp-description">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quam quod quasi temporibus cumque
-                    accusamus repellendus omnis odit, quas quae culpa esse cum, excepturi molestias. Doloribus magnam
-                    impeditaccusamus repellendus omnis odit, quas quae culpa esse cum, excepturi molestias. Doloribus
-                    magnam
-                    impedit
-                    fugiat corporis ratione?
+                    Our website provides a platform for students to get funding from registered sponsors.
+                    By registering as a sponsor, individuals and organizations can make donations to support
+                    students' education. Students can create profiles and apply for funding, while sponsors
+                    can browse profiles and select the students they wish to support. Our website streamlines
+                    the process of connecting students with sponsors, making it easier for both parties to benefit
+                    from this arrangement.
                 </div>
 
                 <div class="landing-sp-btn">
