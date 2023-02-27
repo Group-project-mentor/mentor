@@ -58,6 +58,17 @@ class RcDelete extends Controller
         }
     }
 
+    public function pastpaper($id){
+        $row = $this->model("resourceModel")->getResource($id, $_SESSION['gid'], $_SESSION['sid'], 'pastpaper');
+        if (!empty($row)) {
+            if ($this->model("resourceModel")->deleteResource($id, 'video') == true) {
+                header("location:" . BASEURL . "rcResources/videos/" . $_SESSION["gid"] . "/" . $_SESSION["sid"]);
+            } else {
+                header("location:" . BASEURL . "rcResources/videos/" . $_SESSION["gid"] . "/" . $_SESSION["sid"] . "/error");
+            }
+        }
+    }
+
     public function quiz($id)
     {
         $row = $this->model("resourceModel")->getResource($id, $_SESSION['gid'], $_SESSION['sid'], 'quiz');
@@ -68,6 +79,5 @@ class RcDelete extends Controller
                 header("location:" . BASEURL . "rcResources/quizzes/" . $_SESSION["gid"] . "/" . $_SESSION["sid"] . "/error");
             }
         }
-
     }
 }

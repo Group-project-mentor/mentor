@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Add Video</title>
+    <title>Edit Video</title>
     <link rel="icon" type="image/x-icon" href="<?php echo BASEURL ?>assets/mentor.ico">
     <link rel="stylesheet" href="<?php echo BASEURL . '/public/stylesheets/resourceCreator/rc_main.css' ?> ">
     <link rel="stylesheet" href="<?php echo BASEURL . '/public/stylesheets/resourceCreator/rc_resources.css' ?> ">
@@ -14,16 +14,16 @@
 
 <body>
 <?php
-if(isset($_SESSION['message']) && $_SESSION['message']== "success"){
-    include_once "components/alerts/uploadSuccess.php";
-}
-//        if(isset($data[1]) && $data[0] == "success"){
-//            include_once "components/alerts/uploadSuccess.php";
-//        }
-elseif(isset($_SESSION['message']) && $_SESSION['message']== "error"){
-    include_once "components/alerts/uploadFailed.php";
-}
-?>
+//if(isset($_SESSION['message']) && $_SESSION['message']== "success"){
+//    include_once "components/alerts/uploadSuccess.php";
+//}
+////        if(isset($data[1]) && $data[0] == "success"){
+////            include_once "components/alerts/uploadSuccess.php";
+////        }
+//elseif(isset($_SESSION['message']) && $_SESSION['message']== "error"){
+//    include_once "components/alerts/uploadFailed.php";
+//}
+//?>
 <section class="page">
 
     <!-- Navigation panel -->
@@ -51,34 +51,35 @@ elseif(isset($_SESSION['message']) && $_SESSION['message']== "error"){
         <!-- Middle part for whole content -->
         <section class="mid-content">
 
-            <!-- Title and sub title of middle part -->
+            <!-- Title and subtitle of middle part -->
             <div class="mid-title">
                 <h1><?php echo "Grade ".$_SESSION['gname']." - ".ucfirst($_SESSION['sname']) ?></h1>
-                <h6>My Subjects / <?php echo ucfirst($_SESSION['sname']) ?> / video / add </h6>
+                <h6>My Subjects / <?php echo ucfirst($_SESSION['sname']) ?> / video / edit </h6>
+                <?php echo $_SESSION['message'] ?>
             </div>
 
             <!-- Grade choosing interface -->
             <div class="container-box">
                 <div class="rc-resource-header">
-                    <h1>ADD VIDEO</h1>
+                    <h1>UPDATE VIDEO</h1>
                 </div>
             </div>
             <div class="rc-upload-box">
-                <form action="<?php echo BASEURL.'rcAdd/addVideo'?>" enctype="multipart/form-data" method="POST" class="rc-upload-form" id="upload-form">
+                <form action="<?php echo BASEURL.'rcEdit/editVideoUploaded/'.$data[0][0] ?>" enctype="multipart/form-data" method="POST" class="rc-upload-form" id="upload-form">
                     <div class="rc-upload-home-title">
-                        Upload Video
+                        Update Video
                     </div>
                     <div class="rc-form-group">
-                        <label> Add title * : </label>
-                        <input type="text" name="title" placeholder="title" />
+                        <label> Title * : </label>
+                        <input type="text" name="title" placeholder="title" value="<?php echo $data[0][1]?>"/>
                     </div>
                     <div class="rc-form-group">
                         <label> Lecturer : </label>
-                        <input type="text" name="lec" placeholder="lecturer or source"/>
+                        <input type="text" name="lec" placeholder="lecturer or source" value="<?php echo $data[0][2]?>"/>
                     </div>
                     <div class="rc-form-group">
                         <label> Video Description :  </label>
-                        <textarea class="rc-video-descr" placeholder="Description" name="descr"></textarea>
+                        <textarea class="rc-video-descr" placeholder="Description" name="descr"><?php echo $data[0][3]?></textarea>
                     </div>
                     <div class="rc-form-group">
                         <label>Upload Video File * : </label>
@@ -90,54 +91,61 @@ elseif(isset($_SESSION['message']) && $_SESSION['message']== "error"){
                         <section class="progress-container hidden-toggle" id="progress-container" >
                             <img alt="" id="upload-video" src="<?php echo BASEURL?>assets/icons/icon_incorrect.png" />
                             <progress value="46" max="100" id="progress-bar"></progress>
-                            <p id="progress-percent">46%</p>
+                            <p id="progress-percent"></p>
                         </section>
 
-                        <p id="fileName" style="text-align:right;">no file selected</p>
+                        <p id="fileName" style="text-align:right;"><?php echo $data[0][4]?></p>
                         <h5 id="fileSize" style="text-align:right;"></h5>
                     </div>
                     <div class="rc-upload-button">
-                        <button type="submit" name="submit" col="200">Add Video</button>
+                        <button type="submit" name="submit">Edit Video</button>
                     </div>
-
                 </form>
             </div>
     </div>
 </section>
 </body>
+
 <script src="<?php echo BASEURL?>javascripts/middleFunctions.js"></script>
 <script>
+    let videoId = '<?php echo $data[0][0] ?>';
+    const BASEURL = "<?php echo BASEURL?>";
+
     const uploadForm = document.getElementById('upload-form');
     const uploadBtn = document.getElementById('inputBtn');
     const progressContainer = document.getElementById('progress-container');
     const progressBar = document.getElementById('progress-bar');
     const progressTxt = document.getElementById('progress-percent');
 
+    let fileName = document.getElementById("fileName");
+    fileName.innerHTML = refactorFileName(fileName.innerHTML);
+
     uploadBtn.onchange = ({target}) => {
         let file = target.files[0];
         if(file){
             let name = file.name;
-            document.getElementById('fileName').textContent = (file.name) ? file.name.slice(0,20)+"..." : 'No files selected';
+            document.getElementById('fileName').textContent = (file.name) ? refactorFileName(file.name) : 'No files selected';
             document.getElementById('fileSize').textContent = (file.size) ? converter(file.size) : '';
             uploadFile(name);
         }
     }
 
-    uploadForm.onsubmit = (e) => {
-        e.preventDefault();
-        let formData = new FormData(uploadForm);
-        fetch("<?php echo BASEURL?>rcAdd/addVideoUploadForm",{
-            method:"post",
-            body:formData
-            })
-            .then(response => response.text())
-            .then(data => {
-                document.getElementById('errerr').innerHTML = data;
-            })
-            .catch(e => {
-                console.log(e);
-            })
-    }
+    // uploadForm.onsubmit = (e) => {
+    //     e.preventDefault();
+    //     let formData = new FormData(uploadForm);
+    //     fetch(`${BASEURL}rcEdit/editVideoUploaded/${videoId}`,{
+    //         method:"post",
+    //         body:formData
+    //         })
+    //         .then(response => response.text())
+    //         .then(data => {
+    //             // document.getElementById('errerr').innerHTML = data;
+    //             console.log(data);
+    //         })
+    //         .catch(e => {
+    //             console.log(e);
+    //         })
+    // }
 
 // TODO : Should made the cancellation part of the uploading
 
@@ -145,7 +153,7 @@ elseif(isset($_SESSION['message']) && $_SESSION['message']== "error"){
         progressContainer.classList.remove('hidden-toggle');
         progressBar.style.display = 'inline';
         let xhr = new XMLHttpRequest();
-        xhr.open("POST","<?php echo BASEURL?>rcAdd/addVideoUpload");
+        xhr.open("POST",`${BASEURL}rcEdit/editVideoUpload`);
         xhr.upload.addEventListener('progress',
             ({loaded, total}) => {
                 let progressLoaded = Math.floor((loaded / total) * 100);
@@ -160,6 +168,7 @@ elseif(isset($_SESSION['message']) && $_SESSION['message']== "error"){
             if (xhr.readyState === 4 && xhr.status === 200) {
                 // handle the response here
                 // document.getElementById('errerr').innerHTML = xhr.responseText;
+                console.log(xhr.responseText);
             }
         };
 

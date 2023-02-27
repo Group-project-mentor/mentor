@@ -169,7 +169,7 @@ class ResourceModel extends Model
 
     public function getVideo($id){
         $sql = "select video.id, video.name, video.lecturer, video.description, video.link, 
-                    video.thumbnail, public_resource.location ,public_resource.type 
+                    video.thumbnail, video.type, public_resource.location ,public_resource.type
                     from video inner join rs_subject_grade on video.id = rs_subject_grade.rsrc_id 
                     inner join public_resource on public_resource.id = rs_subject_grade.rsrc_id 
                     where video.id = $id and rs_subject_grade.subject_id =".$_SESSION['sid']." 
@@ -250,5 +250,17 @@ class ResourceModel extends Model
         $stmt = $this->prepare("UPDATE pastpaper SET pastpaper.qid=NULL WHERE id = ? ");
         $stmt->bind_param("i",$ppid);
         return $this->executePrepared($stmt);
+    }
+
+    public function updateVideoUploaded($id, $title, $lecture, $description, $fileName=null){
+        if(!empty($fileName)) {
+            $stmt = $this->prepare("UPDATE video SET video.name=? , video.lecturer=? , video.description=? , video.link=? WHERE video.id=?");
+            $stmt->bind_param('ssssi', $title, $lecture, $description, $fileName, $id);
+            return $this->executePrepared($stmt);
+        }else{
+            $stmt = $this->prepare("UPDATE video SET video.name=? , video.lecturer=? , video.description=? WHERE video.id=?");
+            $stmt->bind_param('sssi', $title, $lecture, $description, $id);
+            return $this->executePrepared($stmt);
+        }
     }
 }

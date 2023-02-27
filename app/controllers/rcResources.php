@@ -119,11 +119,9 @@ class RcResources extends Controller{
             case 'video':
                 $file = $this->model("resourceModel")->getResource($id,$_SESSION['gid'],$_SESSION['sid'],'video');
                 $resourceData = $this->model("resourceModel")->getVideo($id);
-                $resourceData[4] = $this->filterVideoId($resourceData[4]);
+                if($resourceData[6] === "L")
+                    $resourceData[4] = $this->filterVideoId($resourceData[4]);
                 $this->view("resourceCtr/previews/video_preview",array($file,$resourceData));
-                break;
-            case 'quiz':
-                // todo : under development
                 break;
             case 'pastpaper':
                 // todo : under development

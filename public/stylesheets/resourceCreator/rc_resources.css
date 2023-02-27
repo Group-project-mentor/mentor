@@ -579,6 +579,11 @@
     box-shadow: rgba(42, 42, 42, 0.4) 3px 3px 6px 0px inset, rgb(5, 109, 54) -3px -3px 6px 1px inset;
 }
 
+video.rc-uploaded-video{
+    width: 600px;
+    height: 300px;
+}
+
 
 /** media queries  */
 
@@ -594,6 +599,11 @@
     .rc-add-btn {
         padding: 8px;
         font-size: small;
+    }
+
+    video.rc-uploaded-video{
+        width: 400px;
+        height: 200px;
     }
 }
 
@@ -691,5 +701,9 @@
 
     .rc-form-group label {
         margin: 5px;
+    }
+    video.rc-uploaded-video{
+        width: 250px;
+        height: 125px;
     }
 }

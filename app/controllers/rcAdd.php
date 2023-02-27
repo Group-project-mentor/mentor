@@ -41,6 +41,10 @@ class RcAdd extends Controller
         $this->view("resourceCtr/uploadViews/rc_upload_video_2", $data);
     }
 
+    public function pastPaper(){
+
+    }
+
 // these are for get upload data
 
     public function addVideo()
@@ -64,7 +68,7 @@ class RcAdd extends Controller
             $tmp_name = $_FILES['resource']['tmp_name'];
 //            $extension = pathinfo($fileName, PATHINFO_EXTENSION);
             $newFileName = uniqid().$fileName;
-            $fileDest = "public_resources/temp/" . $newFileName ;
+            $fileDest = "public_resources/temp/" . $newFileName;
             if (move_uploaded_file($tmp_name, $fileDest)) {
                 if(!empty($_SESSION['temporary_file'])){
                     $path = "public_resources/temp/".$_SESSION['temporary_file'];

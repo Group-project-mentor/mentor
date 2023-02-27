@@ -11,7 +11,6 @@
     <link rel="stylesheet" href="<?php echo BASEURL ?>stylesheets/Student/st_card_set.css">
     <link rel="stylesheet" href="<?php echo BASEURL . '/public/stylesheets/resourceCreator/rc_resources.css' ?> ">
 </head>
-<!--TODO: There are two types of videos. Only youtube preview is working other should be implemented -->
 <body>
     <?php include_once "components/alerts/rc_delete_alert.php"?>
 
@@ -60,7 +59,18 @@
                 <h2 style="margin: 0 20px;"><?php echo $data[1][1] ?></h2>
 
                 <div class="subject-card-watching">
-                    <iframe style="width: 720px;height:480px;" src="<?php echo $data[1][4] ?>" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                    <?php if($data[1][6] === "L"){ ?>
+                        <iframe style="width: 720px;height:480px;" src="<?php echo $data[1][4] ?>"
+                                title="YouTube video player" frameborder="0"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                allowfullscreen>
+                        </iframe>
+                    <?php }elseif($data[1][6] === "U"){ ?>
+                        <video class="rc-uploaded-video" controls>
+                            <source src="<?php echo BASEURL.'public/public_resources/videos/'.$data[1][4] ?>" >
+                            Your browser does not support the video tag.
+                        </video>
+                    <?php } ?>
                 </div>
 
                 <h2>Description</h2>
