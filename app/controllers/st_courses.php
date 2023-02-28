@@ -8,10 +8,11 @@ class St_courses extends Controller
         $this->hasLogged();
     }
 
-    public function index()
+    public function index($gid)
     {
-        $res=$this->model('st_courses_model')->getClasses();
-        $res2=$this->model('st_courses_model')->getClasses2();
+        $_SESSION['gid'] = $gid;
+        $res=$this->model('st_courses_model')->getClasses($gid);
+        $res2=$this->model('st_courses_model')->getClasses2($gid, $_SESSION['id']);
         $this->view('student/enrollment/st_courses',array($res,$res2));
     }
 

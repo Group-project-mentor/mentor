@@ -62,20 +62,21 @@
                     <!-- tempary movement -->
                     <div class="subject-card" >
                         <img src="<?php echo BASEURL  ?>assets/patterns/1.png" alt="" />
-                        <a href="<?php echo BASEURL  ?>st_video"><label>C89 - Dancing</label></a>
+                        <a href="<?php echo BASEURL  ?>st_video/index/"><label>C89 - Dancing</label></a>
                         <label>Grade 8</label>
                     </div>
 
                     <?php if(!empty($data[1])){?>
                         <div class="subject-card-set">
-                            <?php foreach($data[1] as $row) {?>
+                            <?php foreach($data[1] as $row) {?>    <!-- foreach == for -->
                             <div class="subject-card">
                                 <img src="<?php echo BASEURL  ?>assets/patterns/1.png" alt="" />
-                                <a href="#"><label><?php echo $row['name'] ?></label></a>
+                                <a href="<?php echo BASEURL.'st_video/index/'.$_SESSION['gid'].'/'.$row->id  ?>"><label><?php echo $row->name ?></label></a>
                                 <label>Grade 8</label>
                             </div>
                             <?php } ?>
                         </div>
+
                         <?php }
                         else { ?>
                         <br><br>
@@ -90,10 +91,11 @@
                     </div>
                     <?php if(!empty($data[0])){?>
                         <div class="subject-card-set">
+
                             <?php foreach($data[0] as $row) {?>
                             <div class="subject-card">
                                 <img src="<?php echo BASEURL  ?>assets/patterns/2.png" alt="" />
-                                <a href="#"><label><?php echo $row['name'] ?></label></a>
+                                <a href="#"><label><?php echo $row->name ?></label></a>
                                 <label>Grade 8</label>
                             </div>
                             <?php } ?>

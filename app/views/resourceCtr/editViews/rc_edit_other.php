@@ -66,7 +66,7 @@
                     </div>
                 </div>
                 <?php 
-                if(empty($data[0])){ 
+                if(empty($data[0])){
                     echo "<center style='color:red;font-size:x-large;'>You are not authorized to do this action !</center>";
                 }
                 else{
