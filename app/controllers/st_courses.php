@@ -16,9 +16,10 @@ class St_courses extends Controller
         $this->view('student/enrollment/st_courses',array($res,$res2));
     }
 
-    public function Enroll_subject_all(){
-        $res=$this->model('st_enrolled_subject_model')->getClasses2();
-        $this->view('student/enrollment/st_enrolled_subject',$res);
+    public function Enroll_subject_all($gid)
+    {
+        $res=$this->model('st_courses_model')->getClasses3($gid, $_SESSION['id']);
+        $this->view('student/enrollment/st_enrolled_subject', array($res));
     }
 
     public function Subject_to_Enroll_all(){

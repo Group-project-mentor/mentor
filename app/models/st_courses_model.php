@@ -23,5 +23,14 @@ class St_courses_model extends Model{
         return $result;
     }
 
+    public function getClasses3($grade_id,$student_id) {
+        $q ="SELECT * from st_enroll_subject INNER JOIN subject on st_enroll_subject.subject_id = subject.id WHERE st_enroll_subject.grade_id = ? and st_enroll_subject.student_id = ? ";
+        $stmt = $this->prepare($q);
+        $stmt->bind_param('ii',$grade_id,$student_id);
+        
+        $result = $this->fetchObjs($stmt);
+        return $result;
+    }
+
 }
 

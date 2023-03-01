@@ -47,7 +47,7 @@
 
                 <!-- Title and sub title of middle part -->
                 <div class="mid-title">
-                    <h1>Subjects</h1>
+                    <h1><?php echo $_SESSION['gid']?></h1>
                     <h6>Hello </h6>
                 </div>
 
@@ -56,15 +56,10 @@
                 <div class="container-box">
                     <div>
                         <h2>Enrolled Subjects</h2>
-                        <a class="see-all-btn" href="<?php echo BASEURL  ?>st_courses/Enroll_subject_all" style="text-decoration: none; ">See All</a>
+                        <a class="see-all-btn" href="<?php echo BASEURL.'st_courses/Enroll_subject_all/'.$_SESSION['gid']  ?>" style="text-decoration: none; ">See All</a>
                     </div>
 
-                    <!-- tempary movement -->
-                    <div class="subject-card" >
-                        <img src="<?php echo BASEURL  ?>assets/patterns/1.png" alt="" />
-                        <a href="<?php echo BASEURL  ?>st_video/index/"><label>C89 - Dancing</label></a>
-                        <label>Grade 8</label>
-                    </div>
+        
 
                     <?php if(!empty($data[1])){?>
                         <div class="subject-card-set">

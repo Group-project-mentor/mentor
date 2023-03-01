@@ -16,6 +16,7 @@ class st_public_model extends Model{
         $result = $this->fetchObjs($stmt);
         return $result;
     }
+
 }
 
 

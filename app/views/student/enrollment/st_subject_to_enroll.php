@@ -28,7 +28,7 @@
                 </div>
                 <div class="top-bar-btns">
                     <a href="#">
-                        <a class="back-btn" href="<?php echo BASEURL  ?>st_courses">Back</a>
+                        <a class="back-btn" href="<?php echo BASEURL.'st_courses/index/'.$_SESSION['gid'] ?>">Back</a>
                     </a>
                     <a href="#">
                         <img src="<?php echo BASEURL  ?>assets/icons/icon_notify.png" alt="notify">

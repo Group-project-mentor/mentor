@@ -68,7 +68,6 @@
                                                 <button class="Enter-btn"><a href="<?php echo BASEURL ?>st_video_play" style="color:white ;">Play</a></button>
                                             </a>
                                     </div>
-                                
                              <?php   }
                             } else {
                                 echo "No data";
