@@ -56,18 +56,19 @@
                     </div>
                     
                     </div>
-                    <?php if(!empty($data)){?>
+                    <?php if(!empty($data[0])){?>
                         <div class="subject-card-set">
-                            <?php foreach($data as $row) {?>
+
+                            <?php foreach($data[0] as $row) {?>
                             <div class="subject-card">
-                                <img src="<?php echo BASEURL  ?>assets/patterns/1.png" alt="" />
-                                <a href="#"><label><?php echo $row['name'] ?></label></a>
+                                <img src="<?php echo BASEURL  ?>assets/patterns/2.png" alt="" />
+                                <a href="#"><label><?php echo $row->name ?></label></a>
                                 <label>Grade 8</label>
-                                <a href="<?php echo BASEURL."st_courses/enroll_records/3/".$row['id']?>" class="Enter-btn" style="background-color: #0A2917 ; color:white ; border : 3px">Enroll</a>
                             </div>
                             <?php } ?>
                         </div>
                         <?php } else {echo "no data!";} ?>
+                    
                     </div>
 
                 </div>

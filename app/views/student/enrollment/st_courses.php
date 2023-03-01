@@ -47,8 +47,9 @@
 
                 <!-- Title and sub title of middle part -->
                 <div class="mid-title">
+                    <h1>Subjects</h1>
                     <h1><?php echo $_SESSION['gid']?></h1>
-                    <h6>Hello </h6>
+                    <h6>Hello</h6>
                 </div>
 
 
@@ -82,7 +83,7 @@
                     </div>
                     <div>
                         <h2>Subject to Enrolled</h2>
-                        <a class="see-all-btn" href="<?php echo BASEURL  ?>st_courses/Subject_to_Enroll_all" style="text-decoration: none;">See All</a>
+                        <a class="see-all-btn" href="<?php echo BASEURL.'st_courses/Subject_to_Enroll_all/'.$_SESSION['gid']  ?>" style="text-decoration: none;">See All</a>
                     </div>
                     <?php if(!empty($data[0])){?>
                         <div class="subject-card-set">
