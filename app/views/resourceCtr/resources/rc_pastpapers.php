@@ -53,7 +53,7 @@
                 <div class="container-box">
                     <div class="rc-resource-header">
                         <h1>PAST PAPERS</h1>
-                        <a href="">
+                        <a href="<?php echo BASEURL?>rcAdd/pastpaper">
                             <div class="rc-add-btn">
                                 Add Pastpaper
                             </div>

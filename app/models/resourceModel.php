@@ -30,7 +30,7 @@ class ResourceModel extends Model
     {
         $sql = "select pastpaper.id, pastpaper.name, pastpaper.year, pastpaper.part from pastpaper, public_resource WHERE pastpaper.id = public_resource.id and
                 public_resource.id IN (SELECT rsrc_id FROM rs_subject_grade WHERE subject_id=$subject and grade_id=$grade)
-                and public_resource.type = 'pastp'";
+                and public_resource.type = 'paper'";
         return $this->executeQuery($sql);
     }
 
@@ -67,45 +67,55 @@ class ResourceModel extends Model
 
 //? Functions for add a resource 
 
-    public function addVideo($id, $grade, $subject, $name, $lec, $link, $descr,$type = 'L'){
+    public function addVideo($id, $grade, $subject, $name, $lec, $link, $descr,$creator,$type = 'L'){ //!done
         $sql = "insert into video(id, name, lecturer, description, link, type) values ($id, '$name', '$lec', '$descr', '$link','$type')";
-        return ($this->addResource($id, $grade, $subject, null , 'video') && $this->executeQuery($sql));
+        return ($this->addResource($id, $grade, $subject, null , 'video',$creator) && $this->executeQuery($sql));
     }
 
-    public function addDocument($id, $grade, $subject, $name, $file)
+    public function addDocument($id, $grade, $subject, $name, $file,$creator) //!done
     {
         $sql = "insert into document values ($id ,'$name')";
-        return ($this->addResource($id, $grade, $subject, $file,'pdf') && $this->executeQuery($sql));
+        return ($this->addResource($id, $grade, $subject, $file,'pdf',$creator) && $this->executeQuery($sql));
     }
 
-    public function addOther($id, $grade, $subject, $name, $file, $ext)
+    public function addOther($id, $grade, $subject, $name, $file, $ext,$creator) //!done
     {
         $sql = "insert into other values ($id ,'$name', '$ext')";
-        return ($this->addResource($id, $grade, $subject, $file,'other') && $this->executeQuery($sql));
+        return ($this->addResource($id, $grade, $subject, $file,'other',$creator) && $this->executeQuery($sql));
     }
 
-    private function addResource($id, $grade, $subject, $file, $type)
-    {
-        $sql1 = "insert into public_resource values ($id ,'$type', '$file')";
-        if(empty($file)){
-            $sql1 = "insert into public_resource(id, type) values ($id ,'$type')";
+    public function addPastPaper($id, $gid, $sid, $name, $year, $part, $qid, $file, $ext,$creator){ //!done
+        if($qid != 0){
+            $stmt = $this->prepare("INSERT INTO pastpaper VALUES (?,?,?,?,?)");
+            $stmt->bind_param('iiisi' ,$id, $year, $part, $name, $qid);
+        }else{
+            $stmt = $this->prepare("INSERT INTO pastpaper VALUES (?,?,?,?,NULL)");
+            $stmt->bind_param('iiis',$id, $year, $part, $name);
         }
-        $sql2 = "insert into rs_subject_grade values ($id ,$subject ,$grade)";
+        return ( $this->addResource($id, $gid, $sid, $file, 'paper',$creator)
+            and $this->executePrepared($stmt));
+
+    }
+
+    private function addResource($id, $grade, $subject, $file, $type, $creator) //!done
+    {
+        $sql1 = "insert into public_resource values ($id ,'$type', '$file',0,NULL)";
+        if(empty($file)){
+            $sql1 = "insert into public_resource(id, type,approved) values ($id ,'$type',0)";
+        }
+        $sql2 = "insert into rs_subject_grade values ($id ,$subject ,$grade,$creator)";
         return ($this->executeQuery($sql1) && $this->executeQuery($sql2));
     }
 
 //? get reaource for preview => document | other
-    public function getResource($id, $gid=null, $sid=null, $type=null){
-        $sql = "select public_resource.id, public_resource.type, public_resource.location from public_resource 
-        inner join rs_subject_grade on public_resource.id = rs_subject_grade.rsrc_id 
-        where public_resource.id = $id and rs_subject_grade.subject_id =$sid and rs_subject_grade.grade_id =$gid and type = '$type'";
-        $result =  $this->executeQuery($sql);
-        if($result->num_rows > 0){
-            return $result->fetch_row();
-        }
-        return array();
-    }
 
+    public function getResource($id, $gid=null, $sid=null, $type=null){
+        $stmt = $this->prepare('select public_resource.id, public_resource.type, public_resource.location from public_resource 
+        inner join rs_subject_grade on public_resource.id = rs_subject_grade.rsrc_id 
+        where public_resource.id = ? and rs_subject_grade.subject_id =? and rs_subject_grade.grade_id =? and type = ?');
+        $stmt->bind_param('iiis',$id,$gid,$sid,$type);
+        return $this->executePrepared($stmt);
+    }
 
 
 //? Functions for delete resource
@@ -123,7 +133,14 @@ class ResourceModel extends Model
         if($table == 'quiz'){
             return ($res1 && $res2 && $res3 && $this->deleteQuiz($id));    
         }
+//        elseif ($table == 'pastpaper'){
+//            return ($res1 && $res2 && $res3 && $this->deletePaper($id));
+//        }
         return ($res1 && $res2 && $res3);
+    }
+
+    public function deletePaper($id){ //TODO:
+
     }
 
     private function deleteQuiz($id){
@@ -136,9 +153,11 @@ class ResourceModel extends Model
     }
 
 
+
+
 //? Functions for find specific resource
-    public function getDocument($id){
-        $sql = "select document.id, document.name, public_resource.location, public_resource.type 
+    public function getDocument($id){ //!done
+        $sql = "select document.id, document.name, public_resource.location, public_resource.type,rs_subject_grade.creator_id 
                     from document inner join rs_subject_grade on document.id = rs_subject_grade.rsrc_id 
                     inner join public_resource on public_resource.id = rs_subject_grade.rsrc_id 
                     where document.id = $id and rs_subject_grade.subject_id =".$_SESSION['sid']." 
@@ -152,8 +171,8 @@ class ResourceModel extends Model
         return array(); 
     }
 
-    public function getOther($id){
-        $sql = "select other.id, other.name, public_resource.location, public_resource.type 
+    public function getOther($id){ //!done
+        $sql = "select other.id, other.name, public_resource.location, public_resource.type,rs_subject_grade.creator_id 
                     from other inner join rs_subject_grade on other.id = rs_subject_grade.rsrc_id 
                     inner join public_resource on public_resource.id = rs_subject_grade.rsrc_id 
                     where other.id = $id and rs_subject_grade.subject_id =".$_SESSION['sid']." 
@@ -167,9 +186,9 @@ class ResourceModel extends Model
         return array(); 
     }
 
-    public function getVideo($id){
+    public function getVideo($id){ //!done
         $sql = "select video.id, video.name, video.lecturer, video.description, video.link, 
-                    video.thumbnail, video.type, public_resource.location ,public_resource.type
+                    video.thumbnail, video.type, public_resource.location ,public_resource.type,rs_subject_grade.creator_id
                     from video inner join rs_subject_grade on video.id = rs_subject_grade.rsrc_id 
                     inner join public_resource on public_resource.id = rs_subject_grade.rsrc_id 
                     where video.id = $id and rs_subject_grade.subject_id =".$_SESSION['sid']." 
@@ -183,8 +202,8 @@ class ResourceModel extends Model
         return array(); 
     }
 
-    public function getPastPaper($id, $gid, $sid){
-        $sql = "select pastpaper.id, pastpaper.name, pastpaper.year, pastpaper.part, pastpaper.qid, public_resource.type, public_resource.location 
+    public function getPastPaper($id, $gid, $sid){ //!done
+        $sql = "select pastpaper.id, pastpaper.name, pastpaper.year, pastpaper.part, pastpaper.qid, public_resource.type, public_resource.location,rs_subject_grade.creator_id 
                     from pastpaper inner join rs_subject_grade on pastpaper.id = rs_subject_grade.rsrc_id 
                     inner join public_resource on public_resource.id = rs_subject_grade.rsrc_id 
                     where pastpaper.id = ? and rs_subject_grade.subject_id = ?
@@ -262,5 +281,14 @@ class ResourceModel extends Model
             $stmt->bind_param('sssi', $title, $lecture, $description, $id);
             return $this->executePrepared($stmt);
         }
+    }
+
+//    ? For rc main page Chart -> Resources can Access
+    public function getChartCounts($rcid){
+        $stmt = $this->prepare("SELECT public_resource.type,count(public_resource.id) as resCount FROM rc_has_subject,rs_subject_grade,public_resource 
+                                         WHERE rc_has_subject.subject_id = rs_subject_grade.subject_id AND rs_subject_grade.rsrc_id = public_resource.id AND 
+                                               rc_has_subject.rc_id = ? GROUP BY public_resource.type");
+        $stmt->bind_param('i',$rcid);
+        return $this->fetchObjs($stmt);
     }
 }

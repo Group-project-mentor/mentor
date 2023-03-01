@@ -9,6 +9,7 @@ class RcDelete extends Controller
     {
         sessionValidator();
         $this->userValidate($this->user);
+        flashMessage();
     }
 
     public function index()
@@ -59,13 +60,17 @@ class RcDelete extends Controller
     }
 
     public function pastpaper($id){
-        $row = $this->model("resourceModel")->getResource($id, $_SESSION['gid'], $_SESSION['sid'], 'pastpaper');
+        $row = $this->model("resourceModel")->getResource($id, $_SESSION['gid'], $_SESSION['sid'], 'paper');
         if (!empty($row)) {
-            if ($this->model("resourceModel")->deleteResource($id, 'video') == true) {
-                header("location:" . BASEURL . "rcResources/videos/" . $_SESSION["gid"] . "/" . $_SESSION["sid"]);
+            $location = $row[2];
+            $fileDest = "public_resources/pastpapers/" . $location;
+            if ($this->model("resourceModel")->deleteResource($id, 'pastpaper')) {
+                unlink($fileDest);
+                flashMessage("done");
             } else {
-                header("location:" . BASEURL . "rcResources/videos/" . $_SESSION["gid"] . "/" . $_SESSION["sid"] . "/error");
+                flashMessage("failed");
             }
+            header("location:" . BASEURL . "rcResources/pastpapers/" . $_SESSION["gid"] . "/" . $_SESSION["sid"]);
         }
     }
 

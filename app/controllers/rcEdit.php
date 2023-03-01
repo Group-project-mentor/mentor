@@ -117,19 +117,6 @@ class RcEdit extends Controller
         header("location:".BASEURL."rcEdit/video/$id");
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
     public function editVideoUploaded($Id)
     {
         // $maxFileSize = 50*1024*1024;
