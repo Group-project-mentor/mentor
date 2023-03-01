@@ -3,8 +3,10 @@ const refactorFileName = (fileName, n=10) => {
     let firstPart = nameParts[0];
     if(nameParts[0].length > n){
         firstPart = nameParts[0].substring(0,n);
+        return `${firstPart}...${nameParts[nameParts.length - 1]}`;
+    }else{
+        return fileName;
     }
-    return `${firstPart}...${nameParts[nameParts.length - 1]}`;
 }
 
 const converter = (val) => {
