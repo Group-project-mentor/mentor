@@ -28,7 +28,7 @@
                     </a>
                 </div>
                 <div class="top-bar-btns">
-                <a href="<?php echo BASEURL?>st_Inside_subject">
+                <a href="<?php echo BASEURL.'st_video/index/'.$_SESSION['gid'].'/'.$_SESSION['sid'] ?>">
                         <div class="back-btn">Back</div>
                     </a>
                     <a href="#">
@@ -48,7 +48,7 @@
                     <h1>Quizzes</h1>
                     <h6>Hello</h6>
                     <br>
-                    <h2>C79 - Science</h2>
+                    
                 </div>
 
                 <!-- Grade choosing interface -->
@@ -61,8 +61,9 @@
                             
                             <div></div>
                         </div>
+                        <!-- temporary date hard code -->
 
-                        <div class="rc-resource-row">
+                        <!-- <div class="rc-resource-row">
                             <div class="rc-resource-col">Genaral </div>
                             <div class="rc-resource-col">1</div>
                             <div class="rc-quiz-row-btns">
@@ -74,37 +75,9 @@
                                     <img src="<?php echo BASEURL?>assets/icons/icon_edit.png" alt="">
                                 </button>
                             </div>
-                        </div>
-                        <div class="rc-resource-row">
-                            <div class="rc-resource-col">Tutorial 1</div>
-                            <div class="rc-resource-col">2</div>
-                            <div class="rc-quiz-row-btns">
-                                
-                                <button>
-                                <a href="<?php echo BASEURL?>st_quizzes/st_quizzes_do">
-                                    <img src="<?php echo BASEURL?>assets/icons/Interface Arrows Button Down Double by Streamlinehq.png" alt="">
-                                </a>
-                                <button>
-                                    <img src="<?php echo BASEURL?>assets/icons/icon_edit.png" alt="">
-                                </button>
-                                </button>
-                            </div>
-                        </div>
-                        <div class="rc-resource-row">
-                            <div class="rc-resource-col">Tutorial 2</div>
-                            <div class="rc-resource-col">1</div>
-                            <div class="rc-quiz-row-btns">
-                                
-                                <button>
-                                    <a href="<?php echo BASEURL?>st_quizzes/st_quizzes_do">    
-                                        <img src="<?php echo BASEURL?>assets/icons/Interface Arrows Button Down Double by Streamlinehq.png" alt="">
-                                    </a>
-                                    <button>
-                                    <img src="<?php echo BASEURL?>assets/icons/icon_edit.png" alt="">
-                                </button>
-                                </button>
-                            </div>
-                        </div>
+                        </div> -->
+                        
+                        
 
                     </div>
 
