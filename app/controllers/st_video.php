@@ -9,9 +9,7 @@ class St_video extends Controller
     public function index($gid,$sid)
     {
         $_SESSION['sid'] = $sid;
-        //echo $_SESSION['gid'];
-        //echo $_SESSION['sid'];
-        $res = $this->model('st_public_model')->get_videos($gid, $sid);
+        $res = $this->model('st_public_model')->findVideos($gid, $sid);
         $this->view('student/enrollment/st_video', array($res));
 
     }
@@ -33,13 +31,7 @@ class St_video extends Controller
         $_SESSION["gid"] = $grade;
         $_SESSION["sid"] = $subject;
         $result = $this->model("resourceModel")->findVideos($grade, $subject);
-        $rows = array();
-        if (!empty($result) and $result->num_rows > 0) {
-            while ($row = $result->fetch_assoc()) {
-                $rows[] = $row;
-            }
-        }
-        $this->view('student/enrollment/st_video', array($rows, $msg));
+        $this->view('student/enrollment/st_video', array($result, $msg));
     }
 
     private function getNames($gid, $sid)

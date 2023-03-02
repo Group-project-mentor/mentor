@@ -28,7 +28,7 @@
                     </a>
                 </div>
                 <div class="top-bar-btns">
-                    <a href="<?php echo BASEURL ?>st_Inside_subject">
+                    <a href="<?php echo BASEURL.'st_video/index/'.$_SESSION['gid'].'/'.$_SESSION['sid'] ?>">
                         <div class="back-btn">Back</div>
                     </a>
                     <a href="#">
