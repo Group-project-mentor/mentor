@@ -55,7 +55,7 @@
                                 </div>
                             </a>
                         </div>
-                    </div>
+                </div>
                 <h2 style="margin: 0 20px;"><?php echo $data[1][1] ?></h2>
 
                 <div class="subject-card-watching">

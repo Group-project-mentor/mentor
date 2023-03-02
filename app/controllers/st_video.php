@@ -3,12 +3,14 @@ class St_video extends Controller
 {
     public function __construct(){
         sessionValidator();
-        $this->hasLogged();
+        //$this->hasLogged();
     }
 
     public function index($gid,$sid)
     {
         $_SESSION['sid'] = $sid;
+        //echo $_SESSION['gid'];
+        //echo $_SESSION['sid'];
         $res = $this->model('st_public_model')->get_videos($gid, $sid);
         $this->view('student/enrollment/st_video', array($res));
 

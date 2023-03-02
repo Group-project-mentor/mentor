@@ -17,8 +17,33 @@ class st_public_model extends Model{
         return $result;
     }
 
-}
+    public function getResource($id, $gid=null, $sid=null, $type=null){
+        $q = "select public_resource.id, public_resource.type, public_resource.location from public_resource 
+        inner join rs_subject_grade on public_resource.id = rs_subject_grade.rsrc_id 
+        where public_resource.id = ? and rs_subject_grade.subject_id =? and rs_subject_grade.grade_id =? and type =? ";
 
+        $stmt = $this->prepare($q);
+        $stmt->bind_param('iiis',$id,$sid,$gid,$type);
+
+        $result = $this->fetchObjs($stmt);
+        return $result;
+    }
+
+    public function getVideo($id,$sid=null,$gid=null){
+        $q = "select video.id, video.name, video.lecturer, video.description, video.link, 
+                    video.thumbnail, video.type, public_resource.location ,public_resource.type AS Rtype
+                    from video inner join rs_subject_grade on video.id = rs_subject_grade.rsrc_id 
+                    inner join public_resource on public_resource.id = rs_subject_grade.rsrc_id 
+                    where video.id = ? and rs_subject_grade.subject_id =?  
+                    and rs_subject_grade.grade_id =?" ;
+
+        $stmt = $this->prepare($q);
+        $stmt->bind_param('iii',$id,$sid,$gid);
+
+        $result = $this->fetchOneObj($stmt);
+        return $result;
+    }
+}
 
 ?>
 

@@ -47,14 +47,13 @@
                 <div class="mid-title">
                     <h1>Subjects</h1>
                     <h6>Hello </h6>
+                    <!-- <?php echo "Grade ".$_SESSION['gid'+5]." - ".ucfirst($_SESSION['sid']) ?> -->
                 </div>
 
 
                 <!-- subject cards -->
                 <div class="container-box">
-                    <div>
-                        <h2>Grade 9 - C79 - Science</h2>
-                    </div>
+                    
                     <div class="subject-card-set">
                         <div class="rc-video-card-set">
                             <?php
@@ -62,11 +61,13 @@
                             if (!empty($data[0])) {
                                 $count = 1;
                                 foreach ($data[0] as $row) { ?>
-                                    <div class='subject-card'>
-                                            <img src='<?php echo BASEURL . "assets/patterns/" . $count++ .'.png'?>' alt='' />
-                                                <label><?php echo $row->name ?></label>
-                                                <button class="Enter-btn"><a href="<?php echo BASEURL ?>st_video_play" style="color:white ;">Play</a></button>
-                                            </a>
+                                    <div class='subject-card' style="align-items: center;">
+                                        <img src='<?php echo BASEURL . "assets/patterns/" . $count++ .'.png'?>' alt='' />
+                                        <label><?php echo $row->name ?></label>
+                                        <a href='<?php echo BASEURL."st_video_play/preview/video/".$row->id ?>' style="background: rgb(24, 100, 55);cursor: pointer;" >
+                                            <label style="color: white;">Play</label>
+                                            <!-- <img style="width: 25px" src='<?php echo BASEURL?>assets/icons/icon_eye_white.png' alt='' /> -->
+                                        </a>
                                     </div>
                              <?php   }
                             } else {
