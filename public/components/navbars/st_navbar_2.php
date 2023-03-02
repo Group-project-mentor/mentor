@@ -26,27 +26,32 @@
         <p class="nav-switch-txt">Private</p>
     </div>
 
+    <?php 
+        $gid = $_SESSION["gid"];
+        $sid = $_SESSION["sid"]; 
+    ?>
+
 
     <!-- Navigation buttons -->
     <div class="nav-links">
         
-        <a href="<?php echo BASEURL?>st_video" class="nav-link">
+        <a href="<?php echo BASEURL?>st_video/index/<?php echo "$gid/$sid"; ?>" class="nav-link">
             <img src="<?php echo BASEURL?>assets/icons/icon_video.png" alt="Subjects">
             <div class="nav-link-text">Videos</div>
         </a>
-        <a href="<?php echo BASEURL?>st_quizzes" class="nav-link">
+        <a href="<?php echo BASEURL?>st_quizzes/index/<?php echo "$gid/$sid"; ?>" class="nav-link">
             <img src="<?php echo BASEURL?>assets/icons/icon_quizzes.png" alt="Subjects">
             <div class="nav-link-text">Quizzes</div>
         </a>
-        <a href="<?php echo BASEURL?>st_pastpapers" class="nav-link">
+        <a href="<?php echo BASEURL?>st_pastpapers/index/<?php echo "$gid/$sid"; ?>" class="nav-link">
             <img src="<?php echo BASEURL?>assets/icons/icon_past_papers.png" alt="Subjects">
             <div class="nav-link-text">Past Papers</div>
         </a>
-        <a href="<?php echo BASEURL?>st_documents" class="nav-link">
+        <a href="<?php echo BASEURL?>st_documents/index/<?php echo "$gid/$sid"; ?>" class="nav-link">
             <img src="<?php echo BASEURL?>assets/icons/icon_pdf.png" alt="Subjects">
             <div class="nav-link-text">PDFs</div>
         </a>
-        <a href="<?php echo BASEURL?>st_other" class="nav-link">
+        <a href="<?php echo BASEURL?>st_other/index/<?php echo "$gid/$sid"; ?>" class="nav-link">
             <img src="<?php echo BASEURL?>assets/icons/icon_other.png" alt="Subjects">
             <div class="nav-link-text">Other resources</div>
         </a>

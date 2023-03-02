@@ -11,6 +11,13 @@
 
     <link rel="stylesheet" href="<?php echo BASEURL?>stylesheets/Student/style.css">    <!-- BASEURL use to navigate pages -->
     <link rel="stylesheet" href="<?php echo BASEURL?>stylesheets/st_student.css">
+
+    <style>
+        .see-all-btn{
+            text-decoration: none; 
+            padding: 3px;
+            width:10%; }
+    </style>
 </head>
 
 <body>
@@ -53,13 +60,14 @@
                 <!-- Grade choosing interface -->
                 <div class="container-box" style="padding-left: 160px;">
                     <div class="grade-switcher">
+                        <!-- 
                         <img src="<?php echo BASEURL  ?>assets/icons/icon_prev.png" alt="left">
-                        <div class="grades">
+                         <div class="grades">
                             <div class="grade-card">
                                 <img src="<?php echo BASEURL  ?>assets/grades/9.png" alt="">
                                 <label for="title">Grade 9</label>
                             </div>
-                            <a class="grade-card front" href="<?php echo BASEURL?>st_courses" style="text-decoration: none; color:black;">
+                            <a class="grade-card front" href="<?php echo BASEURL?>st_courses/index/3" style="text-decoration: none; color:black;">
                                     <img src="<?php echo BASEURL  ?>assets/grades/8.png" alt="">
                                     <label for="title">Grade 8</label>
                             </a>
@@ -67,8 +75,18 @@
                                 <img src="<?php echo BASEURL  ?>assets/grades/7.png" alt="">
                                 <label for="title">Grade 7</label>
                             </div>
-                        </div>
+                        </div> 
                         <img src="<?php echo BASEURL  ?>assets/icons/icon_next.png" alt="right">
+                        -->
+
+                        <a class="see-all-btn" href="<?php echo BASEURL  ?>st_courses/index/1">Grade 6</a>
+                        <a class="see-all-btn" href="<?php echo BASEURL  ?>st_courses/index/2">Grade 7</a>
+                        <a class="see-all-btn" href="<?php echo BASEURL  ?>st_courses/index/3">Grade 8</a>
+                        <a class="see-all-btn" href="<?php echo BASEURL  ?>st_courses/index/4">Grade 9</a>
+                        <a class="see-all-btn" href="<?php echo BASEURL  ?>st_courses/index/5">Grade 10</a>
+                        <a class="see-all-btn" href="<?php echo BASEURL  ?>st_courses/index/6">O/L</a>
+                        <a class="see-all-btn" href="<?php echo BASEURL  ?>st_courses/index/7">A/L</a>
+                
                     </div>
                         <!-- <img src="<?php echo BASEURL  ?>assets/grades/logo1.png" > -->
                         
