@@ -9,6 +9,7 @@ class RcAdd extends Controller
         sessionValidator();
         $this->userValidate($this->user);
         flashMessage();
+        $this->getNames($_SESSION['gid'], $_SESSION['sid']);
     }
 
     public function index()
@@ -41,17 +42,19 @@ class RcAdd extends Controller
         $this->view("resourceCtr/uploadViews/rc_upload_video_2", $data);
     }
 
-    public function pastPaper(){
-
+    public function pastpaper($message = null){
+        $data = array("$message", "pastpaper");
+        $this->view("resourceCtr/uploadViews/rc_upload_pastpaper");
     }
+
 
 // these are for get upload data
 
-    public function addVideo()
+    public function addVideo() //!done
     {
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $Id = $this->getId();
-            if ($this->model("resourceModel")->addVideo($Id, $_SESSION['gid'], $_SESSION['sid'], $_POST['title'], $_POST['lec'], $_POST['link'], $_POST['descr'])) {
+            if ($this->model("resourceModel")->addVideo($Id, $_SESSION['gid'], $_SESSION['sid'], $_POST['title'], $_POST['lec'], $_POST['link'], $_POST['descr'],$_SESSION['id'])) {
                 flashMessage("success");
             } else {
                 flashMessage("error");
@@ -61,7 +64,7 @@ class RcAdd extends Controller
 
     }
 
-    public function addVideoUpload()
+    public function addVideoUpload() //!done
     {
         if (isset($_FILES['resource']) && $_FILES['resource']['error'] === 0) {
             $fileName = $_FILES['resource']['name'];
@@ -87,11 +90,11 @@ class RcAdd extends Controller
         }
     }
 
-    public function addVideoUploadForm(){
+    public function addVideoUploadForm(){ //!done
         if ($_SERVER['REQUEST_METHOD'] === 'POST'){
             if(!empty($_SESSION['temporary_file'])){
                 $Id = $this->getId();
-                if ($this->model("resourceModel")->addVideo($Id, $_SESSION['gid'], $_SESSION['sid'], $_POST['title'], $_POST['lec'], $_SESSION['temporary_file'], $_POST['descr'],'U')) {
+                if ($this->model("resourceModel")->addVideo($Id, $_SESSION['gid'], $_SESSION['sid'], $_POST['title'], $_POST['lec'], $_SESSION['temporary_file'], $_POST['descr'],$_SESSION['id'],'U')) {
                     $new_path = "public_resources/videos/".$_SESSION['temporary_file'];
                     $temp_path = "public_resources/temp/".$_SESSION['temporary_file'];
                     if (file_exists($temp_path) and !file_exists($new_path)){
@@ -111,7 +114,7 @@ class RcAdd extends Controller
         }
     }
 
-    public function addDocument($grade, $subject)
+    public function addDocument($grade, $subject) //!done
     {
         // $maxFileSize = 50*1024*1024;
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -132,7 +135,7 @@ class RcAdd extends Controller
                     $fileDest = "public_resources/documents/" . $newFileName;
                     if (!file_exists($fileDest)) {
                         move_uploaded_file($_FILES["resource"]["tmp_name"], $fileDest);
-                        if ($this->model("resourceModel")->addDocument($nameId, $grade, $subject, $_POST["title"], $newFileName)) {
+                        if ($this->model("resourceModel")->addDocument($nameId, $grade, $subject, $_POST["title"], $newFileName,$_SESSION['id'])) {
                             flashMessage("success");
                             header("location:" . BASEURL . "rcResources/documents/" . $_SESSION['gid'] . "/".$_SESSION['sid']);
                         } else {
@@ -154,7 +157,7 @@ class RcAdd extends Controller
         }
     }
 
-    public function addOther($grade, $subject)
+    public function addOther($grade, $subject) //!done
     {
         $maxFileSize = 50 * 1024 * 1024;
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -179,7 +182,7 @@ class RcAdd extends Controller
                 if (!file_exists($fileDest)) {
                     move_uploaded_file($_FILES["resource"]["tmp_name"], $fileDest);
                     //    echo "Upload successful !";
-                    if ($this->model("resourceModel")->addOther($nameId, $grade, $subject, $_POST["title"], $newFileName, $extention)) {
+                    if ($this->model("resourceModel")->addOther($nameId, $grade, $subject, $_POST["title"], $newFileName, $extention,$_SESSION['id'])) {
                         flashMessage("success");
                         header("location:" . BASEURL . "rcResources/others/" . $_SESSION['gid'] . "/".$_SESSION['sid']);
                     } else {
@@ -202,10 +205,72 @@ class RcAdd extends Controller
         }
     }
 
+    public function addPastPaper(){ //!done
+        $maxFileSize = 50 * 1024 * 1024;
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            if (isset($_FILES["resource"]) && $_FILES["resource"]["error"] == 0) {
+                // $typeArray = array("pdf"=>"application/pdf");
+                $fileData = array(
+                    "name" => $_FILES["resource"]["name"],
+                    "type" => $_FILES["resource"]["type"],
+                    "size" => $_FILES["resource"]["size"]
+                );
+                $extention = pathinfo($fileData["name"], PATHINFO_EXTENSION);
+                // echo $extention=="pdf";
+                // if(!array_key_exists($extention, $typeArray)) header("location:" . BASEURL . "add/document/error");
+                if ($fileData["size"] > $maxFileSize) {
+                    flashMessage("error");
+                    header("location:" . BASEURL . "rcAdd/pastpaper");
+                }
+
+                $nameId = $this->getId();
+                // if(in_array($fileData['type'],$typeArray)){
+                $newFileName = uniqid() . $_POST["name"] . "." . $extention;
+                $fileDest = "public_resources/pastpapers/" . $newFileName;
+                 var_dump($fileDest);
+                if (!file_exists($fileDest)) {
+                    move_uploaded_file($_FILES["resource"]["tmp_name"], $fileDest);
+                        echo "Upload successful !";
+                    if ($this->model("resourceModel")->addPastPaper($nameId, $_SESSION['gid'], $_SESSION['sid'], $_POST["name"], $_POST["year"], $_POST["part"], $_POST["question"], $newFileName, $extention,$_SESSION['id'])) {
+                        flashMessage("success");
+                        header("location:" . BASEURL . "rcResources/pastpapers/" . $_SESSION['gid'] . "/".$_SESSION['sid']);
+                    } else {
+                        flashMessage("error");
+                        header("location:" . BASEURL . "rcAdd/pastpaper");
+                    }
+                } else {
+                    echo "Upload unsuccessful !";
+                    flashMessage("error");
+                    header("location:" . BASEURL . "rcAdd/pastpaper");
+                }
+                // }
+            } else {
+                flashMessage("error");
+                header("location:" . BASEURL . "rcAdd/pastpaper");
+            }
+        } else {
+            flashMessage("error");
+            header("location:" . BASEURL . "rcAdd/pastpaper");
+        }
+    }
+
+
 // get the most id from table
     private function getId()
     {
         $result = $this->model("resourceModel")->getLastId();
         return $result + 1;
+    }
+
+    private function getNames($gid, $sid)
+    {
+        if (!isset($_SESSION["gname"])) {
+            $result1 = $this->model("gradeModel")->getGrade($gid)[1];
+            $_SESSION["gname"] = $result1;
+        }
+        if (!isset($_SESSION["sname"])) {
+            $result2 = $this->model("subjectModel")->getSubject($sid)[1];
+            $_SESSION["sname"] = $result2;
+        }
     }
 }

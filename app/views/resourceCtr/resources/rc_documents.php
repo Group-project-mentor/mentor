@@ -77,24 +77,36 @@
                             <div class="rc-resource-col">Name</div>
                             <div></div>
                         </div>
-                                <?php foreach ($data as $row) {
-                                    echo "<div class='rc-pdf-row'>
-                                                <div class='rc-resource-col'>".$row['name']."</div>                     
+                                <?php
+                                foreach ($data as $row) {
+                                    $approval = $this->approvedGenerator($row->approved);
+                                    ?>
+                                    <div class='rc-pdf-row'>
+                                                <div class='rc-resource-col' style="display: flex;align-items: center;justify-content: flex-start;">
+                                                    <img src='<?php echo BASEURL."assets/icons/".$approval ?>' alt='' class="resource-approved-sign">
+                                                    <div>
+                                                        <?php echo $row->name ?>
+                                                    </div>
+                                                </div>
                                                 <div class='rc-quiz-row-btns'>
-                                                    <button onclick='delConfirm(".$row['id'].",4)' >
-                                                        <img src='".BASEURL."assets/icons/icon_delete.png' alt=''>
+                                                    <?php if($this->isCreatedBy($row->creator_id)){ ?>
+
+                                                    <button onclick='delConfirm(<?php echo $row->id ?>,4)' >
+                                                        <img src='<?php echo BASEURL ?>assets/icons/icon_delete.png' alt=''>
                                                     </button>
-                                                    <a href='".BASEURL."rcEdit/document/".$row['id']."'>
-                                                        <img src='".BASEURL."assets/icons/icon_edit.png' alt=''>
+                                                    <a href='".BASEURL."rcEdit/document/<?php echo $row->id ?>'>
+                                                        <img src='<?php echo BASEURL ?>assets/icons/icon_edit.png' alt=''>
                                                     </a>
-                                                    <a href='".BASEURL."rcResources/preview/document/".$row['id']."'>
-                                                        <img src='".BASEURL."assets/icons/icon_eye.png' alt=''>
+
+                                                    <?php } ?>
+                                                    <a href='<?php echo BASEURL ?>rcResources/preview/document/<?php echo $row->id ?>'>
+                                                        <img src='<?php echo BASEURL ?>assets/icons/icon_eye.png' alt=''>
                                                     </a>
                                                 </div>
-                                            </div>";
-                                    }
+                                            </div>
+                                <?php }
                                 }
-                            else{ ?>
+                         else{ ?>
                                 <h2 class="rc-no-data-msg" style="text-align: center;">No Data to Display</h2>
                             <?php } ?>
 

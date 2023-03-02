@@ -11,43 +11,50 @@ class ResourceModel extends Model
 //? get all resource data from combination of (subject & grade)
     public function findVideos($grade, $subject)
     {
-        $sql = "select video.id, video.name, video.lecturer from video, public_resource
-        WHERE video.id = public_resource.id and public_resource.id
-        IN (SELECT rsrc_id FROM `rs_subject_grade` WHERE subject_id=$subject and grade_id=$grade) and public_resource.type = 'video';";
-        return $this->executeQuery($sql);
-
+        $stmt = $this->prepare("SELECT video.id, video.name, video.lecturer ,public_resource.approved,rs_subject_grade.creator_id 
+                                        FROM video, public_resource,rs_subject_grade WHERE video.id = public_resource.id AND
+                                         public_resource.id=rs_subject_grade.rsrc_id AND rs_subject_grade.subject_id=? AND rs_subject_grade.grade_id=?");
+        $stmt->bind_param('ii',$subject,$grade);
+        return $this->fetchObjs($stmt);
     }
 
     public function findQuizzes($grade, $subject)
     {
-        $sql = "select quiz.id, quiz.name, quiz.marks from quiz, public_resource WHERE quiz.id = public_resource.id and
-                public_resource.id IN (SELECT rsrc_id FROM `rs_subject_grade` WHERE subject_id=$subject and grade_id=$grade)
-                and public_resource.type = 'quiz'";
-        return $this->executeQuery($sql);
+        $stmt = $this->prepare("SELECT quiz.id, quiz.name, quiz.marks ,public_resource.approved,rs_subject_grade.creator_id 
+                                        FROM quiz, public_resource,rs_subject_grade WHERE quiz.id = public_resource.id AND
+                                         public_resource.id=rs_subject_grade.rsrc_id AND rs_subject_grade.subject_id=? AND rs_subject_grade.grade_id=?");
+        $stmt->bind_param('ii',$subject,$grade);
+        return $this->fetchObjs($stmt);
     }
 
     public function findPastpapers($grade, $subject)
     {
-        $sql = "select pastpaper.id, pastpaper.name, pastpaper.year, pastpaper.part from pastpaper, public_resource WHERE pastpaper.id = public_resource.id and
-                public_resource.id IN (SELECT rsrc_id FROM rs_subject_grade WHERE subject_id=$subject and grade_id=$grade)
-                and public_resource.type = 'paper'";
-        return $this->executeQuery($sql);
+        $stmt = $this->prepare("SELECT pastpaper.id,pastpaper.name, pastpaper.year, pastpaper.part ,public_resource.approved,rs_subject_grade.creator_id 
+                                        FROM pastpaper, public_resource,rs_subject_grade WHERE pastpaper.id = public_resource.id AND
+                                         public_resource.id=rs_subject_grade.rsrc_id AND rs_subject_grade.subject_id=? AND rs_subject_grade.grade_id=?");
+        $stmt->bind_param('ii',$subject,$grade);
+        return $this->fetchObjs($stmt);
     }
 
-    public function findDocuments($grade, $subject)
+    public function findDocuments($grade, $subject) //!done
     {
-        $sql = "select document.id, document.name from document, public_resource WHERE document.id = public_resource.id and
-                public_resource.id IN (SELECT rsrc_id FROM rs_subject_grade WHERE subject_id=$subject and grade_id=$grade)
-                and public_resource.type = 'pdf'";
-        return $this->executeQuery($sql);
+//        $sql = "select document.id, document.name from document, public_resource WHERE document.id = public_resource.id and
+//                public_resource.id IN (SELECT rsrc_id FROM rs_subject_grade WHERE subject_id=$subject and grade_id=$grade)
+//                and public_resource.type = 'pdf'";
+        $stmt = $this->prepare("SELECT document.id,document.name,public_resource.approved,rs_subject_grade.creator_id 
+                                        FROM document, public_resource,rs_subject_grade WHERE document.id = public_resource.id AND
+                                         public_resource.id=rs_subject_grade.rsrc_id AND rs_subject_grade.subject_id=? AND rs_subject_grade.grade_id=?");
+        $stmt->bind_param('ii',$subject,$grade);
+        return $this->fetchObjs($stmt);
     }
 
     public function findOthers($grade, $subject)
     {
-        $sql = "select other.id, other.name, other.type from other, public_resource WHERE other.id = public_resource.id and
-                public_resource.id IN (SELECT rsrc_id FROM rs_subject_grade WHERE subject_id=$subject and grade_id=$grade)
-                and public_resource.type = 'other'";
-        return $this->executeQuery($sql);
+        $stmt = $this->prepare("SELECT other.id, other.name, other.type,public_resource.approved,rs_subject_grade.creator_id 
+                                        FROM other, public_resource,rs_subject_grade WHERE other.id = public_resource.id AND
+                                         public_resource.id=rs_subject_grade.rsrc_id AND rs_subject_grade.subject_id=? AND rs_subject_grade.grade_id=?");
+        $stmt->bind_param('ii',$subject,$grade);
+        return $this->fetchObjs($stmt);
     }
 
 //? get the last resource id from table
@@ -99,9 +106,9 @@ class ResourceModel extends Model
 
     private function addResource($id, $grade, $subject, $file, $type, $creator) //!done
     {
-        $sql1 = "insert into public_resource values ($id ,'$type', '$file',0,NULL)";
+        $sql1 = "insert into public_resource values ($id ,'$type', '$file',NULL,NULL)";
         if(empty($file)){
-            $sql1 = "insert into public_resource(id, type,approved) values ($id ,'$type',0)";
+            $sql1 = "insert into public_resource(id, type,approved) values ($id ,'$type',NULL)";
         }
         $sql2 = "insert into rs_subject_grade values ($id ,$subject ,$grade,$creator)";
         return ($this->executeQuery($sql1) && $this->executeQuery($sql2));
@@ -244,8 +251,8 @@ class ResourceModel extends Model
         return null;
     }
 
-    public function getAllQuizIds($gid, $sid){
-        $stmt = $this->prepare("SELECT rsrc_id,quiz.name FROM rs_subject_grade, public_resource, quiz 
+    public function getAllQuizIds($gid, $sid){ //!done
+        $stmt = $this->prepare("SELECT rsrc_id,quiz.name,rs_subject_grade.creator_id FROM rs_subject_grade, public_resource, quiz 
                                      WHERE rs_subject_grade.grade_id = ? AND rs_subject_grade.subject_id = ? AND 
                                            public_resource.type = 'quiz' AND rs_subject_grade.rsrc_id = public_resource.id AND 
                                            public_resource.id = quiz.id");
@@ -284,11 +291,18 @@ class ResourceModel extends Model
     }
 
 //    ? For rc main page Chart -> Resources can Access
-    public function getChartCounts($rcid){
+    public function getChartCounts($rcid){ //!done
         $stmt = $this->prepare("SELECT public_resource.type,count(public_resource.id) as resCount FROM rc_has_subject,rs_subject_grade,public_resource 
                                          WHERE rc_has_subject.subject_id = rs_subject_grade.subject_id AND rs_subject_grade.rsrc_id = public_resource.id AND 
-                                               rc_has_subject.rc_id = ? GROUP BY public_resource.type");
-        $stmt->bind_param('i',$rcid);
+                                                rs_subject_grade.creator_id = ? AND rc_has_subject.rc_id = ? GROUP BY public_resource.type");
+        $stmt->bind_param('ii',$rcid,$rcid);
         return $this->fetchObjs($stmt);
+    }
+
+//    ? verification functions
+    public function isVerifiedAccess($res_id, $gid, $sid, $rc_id){
+        $stmt = $this->prepare("SELECT rs_subject_grade.rsrc_id FROM rs_subject_grade WHERE rsrc_id=? AND grade_id=? AND subject_id=? AND creator_id=?");
+        $stmt->bind_param('iiii',$res_id,$gid,$sid,$rc_id);
+        return $this->fetchOne($stmt);
     }
 }

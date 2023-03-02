@@ -55,7 +55,7 @@
             <div class="mid-title">
                 <h1><?php echo "Grade ".$_SESSION['gname']." - ".ucfirst($_SESSION['sname']) ?></h1>
                 <h6>My Subjects / <?php echo ucfirst($_SESSION['sname']) ?> / video / edit </h6>
-                <?php echo $_SESSION['message'] ?>
+<!--                --><?php //echo $_SESSION['message'] ?>
             </div>
 
             <!-- Grade choosing interface -->

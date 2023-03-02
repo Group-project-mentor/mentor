@@ -23,13 +23,7 @@ class RcResources extends Controller{
         $_SESSION["gid"] = $grade;
         $_SESSION["sid"] = $subject;
         $result = $this->model("resourceModel")->findVideos($grade, $subject);
-        $rows = array();
-        if (!empty($result) and $result->num_rows > 0) {
-            while ($row = $result->fetch_assoc()) {
-                $rows[] = $row;
-            }
-        }
-        $this->view('resourceCtr/resources/rc_videos', array($rows, $msg));
+        $this->view('resourceCtr/resources/rc_videos', array($result, $msg));
     }
 
     public function quizzes($grade, $subject, $msg = null)
@@ -38,13 +32,7 @@ class RcResources extends Controller{
         $_SESSION["gid"] = $grade;
         $_SESSION["sid"] = $subject;
         $result = $this->model("resourceModel")->findQuizzes($grade, $subject);
-        $rows = array();
-        if (!empty($result) and $result->num_rows > 0) {
-            while ($row = $result->fetch_assoc()) {
-                $rows[] = $row;
-            }
-        }
-        $this->view('resourceCtr/resources/rc_quizzes', array($rows,$msg));
+        $this->view('resourceCtr/resources/rc_quizzes', array($result,$msg));
     }
 
     public function pastpapers($grade, $subject, $msg = null)
@@ -53,16 +41,8 @@ class RcResources extends Controller{
         $_SESSION["gid"] = $grade;
         $_SESSION["sid"] = $subject;
         $result = $this->model("resourceModel")->findPastpapers($grade, $subject);
-        $rows = array();
-        if (!empty($result) and $result->num_rows > 0) {
-            while ($row = $result->fetch_assoc()) {
-                $rows[] = $row;
-            }
-        }
-        $this->view('resourceCtr/resources/rc_pastpapers', $rows);
+        $this->view('resourceCtr/resources/rc_pastpapers', $result);
     }
-
-
 
     public function documents($grade, $subject, $msg = null)
     {
@@ -70,13 +50,7 @@ class RcResources extends Controller{
         $_SESSION["sid"] = $subject;
         $this->getNames($grade, $subject);
         $result = $this->model("resourceModel")->findDocuments($grade, $subject);
-        $rows = array();
-        if (!empty($result) and $result->num_rows > 0) {
-            while ($row = $result->fetch_assoc()) {
-                $rows[] = $row;
-            }
-        }
-        $this->view('resourceCtr/resources/rc_documents', $rows);
+        $this->view('resourceCtr/resources/rc_documents', $result);
     }
 
     public function others($grade, $subject, $msg = null)
@@ -85,13 +59,7 @@ class RcResources extends Controller{
         $_SESSION["sid"] = $subject;
         $this->getNames($grade, $subject);
         $result = $this->model("resourceModel")->findOthers($grade, $subject);
-        $rows = array();
-        if (!empty($result) and $result->num_rows > 0) {
-            while ($row = $result->fetch_assoc()) {
-                $rows[] = $row;
-            }
-        }
-        $this->view('resourceCtr/resources/rc_others', $rows);
+        $this->view('resourceCtr/resources/rc_others', $result);
     }
 
     private function getNames($gid, $sid)
@@ -147,6 +115,27 @@ class RcResources extends Controller{
             return $link;
         }
         // var_dump($splitted_link);
+    }
+
+    protected function approvedGenerator($approval){
+        if($approval == 'N'){
+            return "icon_not_approved.png";
+        }
+        elseif($approval == 'Y'){
+            return "icon_approved.png";
+        }
+        else{
+            return "icon_pending.png";
+        }
+    }
+
+    protected function isCreatedBy($creator){
+        if($creator == $_SESSION['id']){
+            return true;
+        }
+        else{
+            return false;
+        }
     }
 
 

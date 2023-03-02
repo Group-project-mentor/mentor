@@ -19,28 +19,44 @@ class RcEdit extends Controller
 //? For excecute resource editing views
     public function document($id, $msg = null)
     {
-        $result = $this->model("resourceModel")->getDocument($id);
-        $this->view("resourceCtr/editViews/rc_edit_document", array($result, $msg));
+        if($this->isVerifiedOperation($id)) {
+            $result = $this->model("resourceModel")->getDocument($id);
+            $this->view("resourceCtr/editViews/rc_edit_document", array($result, $msg));
+        }else{
+            $this->view("resourceCtr/editViews/rc_edit_document", array(null, $msg));
+        }
     }
 
     public function other($id, $msg = null)
     {
-        $result = $this->model("resourceModel")->getOther($id);
-        $this->view("resourceCtr/editViews/rc_edit_other", array($result, $msg));
+        if($this->isVerifiedOperation($id)) {
+            $result = $this->model("resourceModel")->getOther($id);
+            $this->view("resourceCtr/editViews/rc_edit_other", array($result, $msg));
+        }else{
+            $this->view("resourceCtr/editViews/rc_edit_other", array(null, $msg));
+        }
     }
 
     public function video($id, $msg = null)
     {
-        $result = $this->model("resourceModel")->getVideo($id);
-        if($result[6] === "L")
-            $this->view("resourceCtr/editViews/rc_edit_video", array($result, $msg));
-        elseif ($result[6] === "U")
-            $this->view("resourceCtr/editViews/rc_edit_video_2", array($result, $msg));
+        if($this->isVerifiedOperation($id)) {
+            $result = $this->model("resourceModel")->getVideo($id);
+            if ($result[6] === "L")
+                $this->view("resourceCtr/editViews/rc_edit_video", array($result, $msg));
+            elseif ($result[6] === "U")
+                $this->view("resourceCtr/editViews/rc_edit_video_2", array($result, $msg));
+        }else{
+            $this->view("resourceCtr/editViews/rc_edit_video", array(null, $msg));
+        }
     }
 
     public function pastpaper($id)
     {
-        $result = $this->model("resourceModel")->getpastPaper($id,$_SESSION['gid'],$_SESSION['sid']);
+        if($this->isVerifiedOperation($id)){
+            $result = $this->model("resourceModel")->getpastPaper($id,$_SESSION['gid'],$_SESSION['sid']);
+        }else{
+            $result = null;
+        }
         $this->view("resourceCtr/editViews/rc_edit_pastPaper", array($result));
     }
 
@@ -254,6 +270,16 @@ class RcEdit extends Controller
             flashMessage("failed");
         }
         header("location:".BASEURL."rcEdit/pastpaper/$ppid");
+    }
+
+    private function isVerifiedOperation($res_id){
+        $result = $this->model("resourceModel")->isVerifiedAccess($res_id,$_SESSION['gid'],$_SESSION['sid'],$_SESSION['id']);
+        if(empty($result)){
+            return false;
+        }
+        else{
+            return true;
+        }
     }
 
 

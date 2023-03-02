@@ -24,7 +24,7 @@ class Quiz extends Controller
     {
         $id = $this->model('resourceModel')->getLastId() + 1;
 //        echo $id." ".$_POST['quiz_name']." ".$_POST['tot_mark'] ;
-        if ($this->model('quizModel')->createQuiz($_POST['quiz_name'], $_POST['tot_mark'], $id, $_SESSION['gid'], $_SESSION['sid'])) {
+        if ($this->model('quizModel')->createQuiz($_POST['quiz_name'], $_POST['tot_mark'], $id, $_SESSION['gid'], $_SESSION['sid'],$_SESSION['id'])) {
             header("location:" . BASEURL . "quiz/questions/$id");
         } else {
             header("location:" . BASEURL . "quiz/create/error");

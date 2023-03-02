@@ -88,7 +88,11 @@ if(!empty($_SESSION['message'])) {
             <section class="tab-container" style="display: flex;justify-content: center;">
                 <?php
                 if(empty($data[0])){
-                    echo "<p style='color:red;font-size:x-large;text-align: center;'>You are not authorized to do this action !</p>";
+                    echo
+                    '<div style="text-align: center;font-size: x-large;color: darkred;">
+                        <br>
+                        You are not authorized to do this action !
+                    </div>';
                 }
                 else{
                     ?>
