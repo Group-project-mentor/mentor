@@ -122,7 +122,7 @@ if(!empty($_SESSION['message'])) {
                                 <p id="fileName" style="text-align:right;"><?php echo $data[0]->location ?></p>
                                 <h5 id="fileSize" style="text-align:right;"></h5>
                             </div>
-                            <div class="rc-upload-button">
+                            <div class="rc-upload-button" >
                                 <button type="submit" name="submit">Update</button>
                             </div>
 

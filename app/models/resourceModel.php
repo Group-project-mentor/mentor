@@ -117,11 +117,14 @@ class ResourceModel extends Model
 //? get reaource for preview => document | other
 
     public function getResource($id, $gid=null, $sid=null, $type=null){
-        $stmt = $this->prepare('select public_resource.id, public_resource.type, public_resource.location from public_resource 
-        inner join rs_subject_grade on public_resource.id = rs_subject_grade.rsrc_id 
-        where public_resource.id = ? and rs_subject_grade.subject_id =? and rs_subject_grade.grade_id =? and type = ?');
-        $stmt->bind_param('iiis',$id,$gid,$sid,$type);
-        return $this->executePrepared($stmt);
+        $stmt = $this->prepare('select public_resource.id, public_resource.type, public_resource.location from public_resource,rs_subject_grade 
+        where public_resource.id = rs_subject_grade.rsrc_id AND public_resource.id = ? AND rs_subject_grade.subject_id =? 
+          AND rs_subject_grade.grade_id =? AND type = ?');
+//        $stmt = $this->prepare('select public_resource.id, public_resource.type, public_resource.location from public_resource
+//        inner join rs_subject_grade on public_resource.id = rs_subject_grade.rsrc_id
+//        where public_resource.id = ? and rs_subject_grade.subject_id =? and rs_subject_grade.grade_id =? and type = ?');
+        $stmt->bind_param('iiis',$id,$sid,$gid,$type);
+        return $this->fetchOneObj($stmt);
     }
 
 

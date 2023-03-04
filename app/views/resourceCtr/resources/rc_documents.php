@@ -94,7 +94,7 @@
                                                     <button onclick='delConfirm(<?php echo $row->id ?>,4)' >
                                                         <img src='<?php echo BASEURL ?>assets/icons/icon_delete.png' alt=''>
                                                     </button>
-                                                    <a href='".BASEURL."rcEdit/document/<?php echo $row->id ?>'>
+                                                    <a href='<?php echo BASEURL?>rcEdit/document/<?php echo $row->id ?>'>
                                                         <img src='<?php echo BASEURL ?>assets/icons/icon_edit.png' alt=''>
                                                     </a>
 

@@ -80,13 +80,13 @@ class RcEdit extends Controller
                 if (in_array($fileData['type'], $typeArray)) {
                     // if(($fileData["name"]))
                     $newFileName = uniqid() . $_POST['title'] . "." . $extention;
-                    $fileDest = "public_resources/documents/" . $newFileName;
+//                    $fileDest = "public_resources/documents/" . $newFileName;
                     $oldFileName = $this->model("resourceModel")->getLocation($id);
 
-                    if (!file_exists($fileDest) && file_exists("public_resources/documents/" . $oldFileName)) {
+                    if (updateFile($_FILES["resource"]["tmp_name"],$newFileName,$oldFileName,"documents",$_SESSION['gid'],$_SESSION['sid'])) {
 
-                        move_uploaded_file($_FILES["resource"]["tmp_name"], $fileDest);
-                        unlink("public_resources/documents/" . $oldFileName);
+//                        move_uploaded_file($_FILES["resource"]["tmp_name"], $fileDest);
+//                        unlink("public_resources/documents/" . $oldFileName);
 
                         if ($this->model("resourceModel")->updateDocument($id, $_POST["title"], $newFileName)) {
                             flashMessage("success");
@@ -138,13 +138,13 @@ class RcEdit extends Controller
         // $maxFileSize = 50*1024*1024;
         if ($_SERVER['REQUEST_METHOD'] === 'POST'){
             if(!empty($_SESSION['temporary_file'])){
-                $fileName = $this->model("resourceModel")->getVideo($Id)[4];
-                unlink("public_resources/videos/$fileName");
+                $oldFileName = $this->model("resourceModel")->getVideo($Id)[4];
+//                unlink("public_resources/videos/$fileName");
                 if ($this->model("resourceModel")->updateVideoUploaded($Id ,$_POST['title'], $_POST['lec'], $_POST['descr'],$_SESSION['temporary_file'])) {
-                    $new_path = "public_resources/videos/".$_SESSION['temporary_file'];
+//                    $new_path = "public_resources/videos/".$_SESSION['temporary_file'];
                     $temp_path = "public_resources/temp/".$_SESSION['temporary_file'];
-                    if (file_exists($temp_path) and !file_exists($new_path)){
-                        rename($temp_path,$new_path);
+                    if (updateFile($temp_path,$_SESSION['temporary_file'],$oldFileName,"videos",$_SESSION['gid'],$_SESSION['sid'])){
+//                        rename($temp_path,$new_path);
                         unset($_SESSION['temporary_file']);
                         flashMessage("success");
                     }else{
@@ -205,13 +205,13 @@ class RcEdit extends Controller
                 }
                 // if(in_array($fileData['type'],$typeArray)){
                 $newFileName = uniqid() . $_POST['title'] . "." . $extension;
-                $fileDest = "public_resources/others/" . $newFileName;
+//                $fileDest = "public_resources/others/" . $newFileName;
                 $oldFileName = $this->model("resourceModel")->getLocation($id);
 
-                if (!file_exists($fileDest) && file_exists("public_resources/others/" . $oldFileName)) {
+                if (updateFile($_FILES["resource"]["tmp_name"],$newFileName,$oldFileName,"others",$_SESSION['gid'],$_SESSION['sid'])) {
 
-                    move_uploaded_file($_FILES["resource"]["tmp_name"], $fileDest);
-                    unlink("public_resources/others/" . $oldFileName);
+//                    move_uploaded_file($_FILES["resource"]["tmp_name"], $fileDest);
+//                    unlink("public_resources/others/" . $oldFileName);
 
                     if ($this->model("resourceModel")->updateOther($id, $_POST["title"], $newFileName, $extension)) {
                         flashMessage("success");

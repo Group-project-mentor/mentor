@@ -67,7 +67,7 @@
                         </iframe>
                     <?php }elseif($data[1][6] === "U"){ ?>
                         <video class="rc-uploaded-video" controls>
-                            <source src="<?php echo BASEURL.'public/public_resources/videos/'.$data[1][4] ?>" >
+                            <source src="<?php echo BASEURL.'public/public_resources/videos/'.$_SESSION['gid']."/".$_SESSION['sid']."/".$data[1][4] ?>" >
                             Your browser does not support the video tag.
                         </video>
                     <?php } ?>

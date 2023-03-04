@@ -95,10 +95,9 @@ class RcAdd extends Controller
             if(!empty($_SESSION['temporary_file'])){
                 $Id = $this->getId();
                 if ($this->model("resourceModel")->addVideo($Id, $_SESSION['gid'], $_SESSION['sid'], $_POST['title'], $_POST['lec'], $_SESSION['temporary_file'], $_POST['descr'],$_SESSION['id'],'U')) {
-                    $new_path = "public_resources/videos/".$_SESSION['temporary_file'];
                     $temp_path = "public_resources/temp/".$_SESSION['temporary_file'];
-                    if (file_exists($temp_path) and !file_exists($new_path)){
-                        rename($temp_path,$new_path);
+                    if (file_exists($temp_path)){
+                        saveFile($temp_path,$_SESSION['temporary_file'],"videos",$_SESSION['gid'],$_SESSION['sid']);
                         unset($_SESSION['temporary_file']);
                         flashMessage( "success");
                     }else{
@@ -132,9 +131,7 @@ class RcAdd extends Controller
                 $nameId = $this->getId();
                 if (in_array($fileData['type'], $typeArray)) {
                     $newFileName = uniqid() . $_POST["title"] . "." . $extention;
-                    $fileDest = "public_resources/documents/" . $newFileName;
-                    if (!file_exists($fileDest)) {
-                        move_uploaded_file($_FILES["resource"]["tmp_name"], $fileDest);
+                    if (saveFile($_FILES["resource"]["tmp_name"],$newFileName,"documents",$_SESSION['gid'],$_SESSION['sid'])) {
                         if ($this->model("resourceModel")->addDocument($nameId, $grade, $subject, $_POST["title"], $newFileName,$_SESSION['id'])) {
                             flashMessage("success");
                             header("location:" . BASEURL . "rcResources/documents/" . $_SESSION['gid'] . "/".$_SESSION['sid']);
@@ -177,11 +174,7 @@ class RcAdd extends Controller
                 $nameId = $this->getId();
                 // if(in_array($fileData['type'],$typeArray)){
                 $newFileName = uniqid() . $_POST["title"] . "." . $extention;
-                $fileDest = "public_resources/others/" . $newFileName;
-                // var_dump($fileDest);
-                if (!file_exists($fileDest)) {
-                    move_uploaded_file($_FILES["resource"]["tmp_name"], $fileDest);
-                    //    echo "Upload successful !";
+                if (saveFile($_FILES["resource"]["tmp_name"],$newFileName,"others",$_SESSION['gid'],$_SESSION['sid'])) {
                     if ($this->model("resourceModel")->addOther($nameId, $grade, $subject, $_POST["title"], $newFileName, $extention,$_SESSION['id'])) {
                         flashMessage("success");
                         header("location:" . BASEURL . "rcResources/others/" . $_SESSION['gid'] . "/".$_SESSION['sid']);
@@ -226,11 +219,7 @@ class RcAdd extends Controller
                 $nameId = $this->getId();
                 // if(in_array($fileData['type'],$typeArray)){
                 $newFileName = uniqid() . $_POST["name"] . "." . $extention;
-                $fileDest = "public_resources/pastpapers/" . $newFileName;
-                 var_dump($fileDest);
-                if (!file_exists($fileDest)) {
-                    move_uploaded_file($_FILES["resource"]["tmp_name"], $fileDest);
-                        echo "Upload successful !";
+                if (saveFile($_FILES["resource"]["tmp_name"],$newFileName,"pastpapers",$_SESSION['gid'],$_SESSION['sid'])) {
                     if ($this->model("resourceModel")->addPastPaper($nameId, $_SESSION['gid'], $_SESSION['sid'], $_POST["name"], $_POST["year"], $_POST["part"], $_POST["question"], $newFileName, $extention,$_SESSION['id'])) {
                         flashMessage("success");
                         header("location:" . BASEURL . "rcResources/pastpapers/" . $_SESSION['gid'] . "/".$_SESSION['sid']);

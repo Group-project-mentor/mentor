@@ -21,10 +21,11 @@ class RcDelete extends Controller
     {
         $row = $this->model("resourceModel")->getResource($id, $_SESSION['gid'], $_SESSION['sid'], 'pdf');
         if (!empty($row)) {
-            $location = $row[2];
-            $fileDest = "public_resources/documents/" . $location;
+            $location = $row->location;
+//            $fileDest = "public_resources/documents/" . $location;
             if ($this->model("resourceModel")->deleteResource($id, 'document') == true) {
-                unlink($fileDest);
+//                unlink($fileDest);
+                deleteFile($location,"documents",$_SESSION['gid'],$_SESSION['sid']);
                 header("location:" . BASEURL . "rcResources/documents/" . $_SESSION["gid"] . "/" . $_SESSION["sid"]);
             } else {
                 header("location:" . BASEURL . "rcResources/documents/" . $_SESSION["gid"] . "/" . $_SESSION["sid"] . "/error");
@@ -36,10 +37,11 @@ class RcDelete extends Controller
     {
         $row = $this->model("resourceModel")->getResource($id, $_SESSION['gid'], $_SESSION['sid'], 'other');
         if (!empty($row)) {
-            $location = $row[2];
+            $location = $row->location;
             $fileDest = "public_resources/others/" . $location;
             if ($this->model("resourceModel")->deleteResource($id, 'other') == true) {
-                unlink($fileDest);
+//                unlink($fileDest);
+                deleteFile($location,"others",$_SESSION['gid'],$_SESSION['sid']);
                 header("location:" . BASEURL . "rcResources/others/" . $_SESSION["gid"] . "/" . $_SESSION["sid"]);
             } else {
                 header("location:" . BASEURL . "rcResources/others/" . $_SESSION["gid"] . "/" . $_SESSION["sid"] . "/error");
@@ -51,6 +53,7 @@ class RcDelete extends Controller
     {
         $row = $this->model("resourceModel")->getResource($id, $_SESSION['gid'], $_SESSION['sid'], 'video');
         if (!empty($row)) {
+//            if($row->id)
             if ($this->model("resourceModel")->deleteResource($id, 'video') == true) {
                 header("location:" . BASEURL . "rcResources/videos/" . $_SESSION["gid"] . "/" . $_SESSION["sid"]);
             } else {
