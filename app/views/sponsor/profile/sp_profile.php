@@ -15,8 +15,11 @@
 <body>
 
 <?php
-if (!empty($data[1]) && $data[1] == "success") {
-    include_once "components/alerts/password_changed.php";
+if (!empty($_SESSION['message']) && $_SESSION['message'] == "invalid operation") {
+    include_once "components/alerts/sponsor/operationFailed.php";
+}
+elseif (!empty($_SESSION['message'])) {
+    include_once "components/alerts/sponsor/operationSuccess.php";
 }
 ?>
 

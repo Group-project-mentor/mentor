@@ -23,8 +23,11 @@ class Controller
 
     public function userValidate($user)
     {
-        if (!isset($_SESSION['usertype']) and !($_SESSION['usertype'] == $user)) {
+        if (!isset($_SESSION['usertype']) or !($_SESSION['usertype'] == $user)) {
             header("location:" . BASEURL . "home");
+        }
+        elseif (empty($_SESSION['usertype'])){
+            header("location:" . BASEURL . "logout");
         }
     }
 
