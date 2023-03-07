@@ -24,7 +24,7 @@ class St_pastpapers extends Controller
         $_SESSION["gid"] = $grade;
         $_SESSION["sid"] = $subject;
         $result = $this->model("resourceModel")->findPastpapers($grade, $subject);
-        $this->view('student/enrollment/st_pastpapers', $result,$msg);
+        $this->view('student/enrollment/st_pastpapers', array($result));
     }
 
     private function getNames($gid, $sid)
@@ -39,16 +39,23 @@ class St_pastpapers extends Controller
         }
     }
 
+    public function preview($type, $id){
+        switch ($type) {
+            case 'document':
+                $file = $this->model("resourceModel")->getResource($id,$_SESSION['gid'],$_SESSION['sid'],'pdf');
+                $this->view("student/enrollment/st_pastpaper_do",$file);
+                break;
+        }
+    }
+    
 
-    public function st_pastpaper_do()
+    public function st_pastpaper_down( $id)
     {
-        $this->view('student/enrollment/st_pastpaper_do');
+        $file = $this->model("resourceModel")->getResource($id,$_SESSION['gid'],$_SESSION['sid'],'pdf');
+        $this->view('student/enrollment/st_pastpaper_down',$file);
+
     }
 
-    public function st_pastpaper_down()
-    {
-        $this->view('student/enrollment/st_pastpaper_down');
-    }
 
     private function hasLogged()
     {
