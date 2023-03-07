@@ -105,7 +105,7 @@
                                 </div>
                                 <div>
                                     <h1>Total Student <br>
-                                        5430<br>
+                                        <?php echo $data['studentCount']; ?><br>
                                     </h1>
                                 </div>
                             </div>
@@ -127,7 +127,7 @@
                                 </div>
                                 <div>
                                     <h1>Total Teacher<br>
-                                        5430<br>
+                                        <?php echo $data['teacherCount']; ?><br>
                                     </h1>
                                 </div>
                             </div>
@@ -216,7 +216,7 @@
                                 </div>
                                 <div class="btn">
                                     <button type="button">
-                                        <p ><a href="<?php echo BASEURL ?>adComplaintHandle" style="color:white;">View All</a></p>
+                                        <p ><a href="<?php echo BASEURL ?>admins/complaints" style="color:white;">View All</a></p>
                                     </button>
                                 </div>
 
@@ -241,7 +241,7 @@
                                     <h1>Task Manager</h1>
                                 </div>
                                 <div class="btn">
-                                    <a href="<?php echo BASEURL ?>adTask">
+                                    <a href="<?php echo BASEURL ?>admins/taskmanager">
                                         <button type="button">View All</button>
                                     </a>
                                 </div>

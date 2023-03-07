@@ -91,6 +91,8 @@ button :hover{
     justify-content: space-between;
     /* width: 100%; */
     margin: 20px;
+    width: 10px;
+    height: 10px;
 }
 
 #comp-content{
@@ -101,8 +103,7 @@ button :hover{
 }
 
 .back,.close{
-    width: 10px;
-    height: 10px;
+    
 }
 
 #com-complaints{

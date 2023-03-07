@@ -376,3 +376,14 @@ input:checked+.slider:before {
     color: white;
     text-decoration: none;
 }
+
+
+
+.bckclose{
+    display: flex;
+    justify-content: space-between;
+    /* width: 100%; */
+    margin: 20px;
+    width: 10px;
+    height: 10px;
+}
