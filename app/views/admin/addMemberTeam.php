@@ -5,10 +5,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>complaints</title>
-    <link rel="stylesheet" href="<?php echo BASEURL ?>stylesheets/admin/ad_complaints.css">
+    <title>login</title>
+    <link rel="stylesheet" href="<?php echo BASEURL ?>stylesheets/admin/ad_complaintHandle.css">
     <link rel="stylesheet" href="<?php echo BASEURL ?>stylesheets/admin/style.css">
-
 </head>
 <nav>
     <div class="ad_nav">
@@ -91,35 +90,45 @@
             <section class="mid-content ad_mid-content">
 
                 <!-- Title and sub title of middle part -->
+                <div class="bckclose">
+                    <a href="<?php echo BASEURL ?>adhumanResource" class="back">
+                        <img class="back" src="<?php echo BASEURL ?>assets/admin/Arrow---Left.png">
+                    </a>
+                </div>
                 <div class="mid-title">
-                    <h1>Complaints</h1>
+                    <h1>Add members to your Team</h1>
                 </div>
 
-                <div class="content" id="comp-content" >
-                    <div class="bckclose">
-                        <img class="back" src="<?php echo BASEURL ?>assets/admin/Arrow---Left.png">
-                        <img class="close" src="<?php echo BASEURL ?>assets/admin/Close-Square.png">
-                    </div>
-                    <div class="complaints" id="com-complaints">
+                <div class="content">
+                    <div class="complaints">
                         <div class="pp">
-                            <img class="profile" src="<?php echo BASEURL ?>assets/admin/pp.png">
+                            <img  class="profile" src="<?php echo BASEURL ?>assets/admin/pp.png">
                         </div>
                         <div class="name">
                             <p>Jaydon Aminoff</p>
                         </div>
-                    </div>
-                    <div id="com-title">
-                        <h1>Title goes here</h1>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente expedita fugit culpa optio accusantium mollitia eius deserunt architecto, sit minus maxime minima eos quidem quam nesciunt non veritatis, eum dolores!</p>
-                    </div>
-                    <div class="btns">
-                        <form action="<?php echo BASEURL ?>admins/complaint/USER011" method="POST">
-                            <button class="comp-btns">Add to task manager</button>
-                        </form>
-                            <button class="comp-btns">Delete</button>     
+                        <div class="userid">
+                            <p>USER011</p>
+                        </div>
+                        <div class="description">
+                            <p>jahsgfbdssauygefiBCJHBVCGDUDSSDFCSJH FUSHDFUJHFH</p>
+                        </div>
+                        <div class="icons">
+                        <div class="addtm">
+                                <a href="<?php echo BASEURL?>adTask"><img src="<?php echo BASEURL?>assets/admin/addmemb.png"></a>
+                            </div>
+
+                            <div class="view">
+                                <a href="<?php echo BASEURL ?>adComplaintView"><img src="<?php echo BASEURL ?>assets/admin/view.png"></a>
+                            </div>
+                            
+                            <div class="delete">
+                                <a href="<?php echo BASEURL?>#"><img src="<?php echo BASEURL?>assets/admin/Delete.png"></a>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
-                
             </section>
         </div>
     </section>
@@ -147,7 +156,9 @@
                 navLinkTexts[i].classList.add("hidden");
             }
             toggle = false;
-        } else {
+        }
+
+        else {
             logoLong.classList.remove("hidden");
             // navMiddle.classList.remove("hidden");
             togglerBtn.classList.remove("toggler-rotate");
@@ -157,4 +168,8 @@
             toggle = true;
         }
     })
+
+
+
 </script>
+

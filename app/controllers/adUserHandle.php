@@ -14,4 +14,17 @@ class AdUserHandle extends Controller{
 }
 
 
+class AdUserHandleView extends Controller{
+    public function __construct()
+    {
+        // sessionValidator();
+    }
+
+    public function index()
+    {
+        $this->view('admin/userhandleview');
+    }
+
+}
+
 ?>

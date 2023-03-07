@@ -123,10 +123,10 @@
                                 <h1>co-Admins</h1>
                             </div>
                             <div class="btn">
-                            <a class="btns" href="<?php echo BASEURL ?>adResource" style="text-decoration:none">
-                                Add New
+                            <a class="btns" href="<?php echo BASEURL ?>adAddmember" style="text-decoration:none">
+                                View All
                                 </a>
-                                <a class="btns" href="<?php echo BASEURL  ?>adWithdraw" style="text-decoration:none">
+                                <a class="btns" href="<?php echo BASEURL  ?>adAddnewadmin" style="text-decoration:none">
                                 
                                 Add New
                                 </a>

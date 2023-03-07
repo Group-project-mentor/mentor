@@ -47,13 +47,24 @@
                 <div class="mid-title">
                     <h1>Past Papers</h1>
                     <h6>Hello</h6>
-                    <br>
-                    <h2>C79 - Science</h2>
+                    <?php 
+                    $ggid = $_SESSION['gid'] + 5; 
+                    $iid = 88; //use for emergency only ; have to implement that
+
+                    // add grade to path printing 
+                    if($_SESSION['sid'] == 1)         
+                        $ssid = 'Sinhala' ;
+                    if($_SESSION['sid'] == 2)         
+                        $ssid = 'Mathematics' ;     ?>
+                    <h1><?php echo "Grade ".$ggid." - ".ucfirst($ssid) ?></h1>
+                    <h6>My Subjects / <?php echo ucfirst($ssid) ?> / past papers</h6>
                 </div>
 
                 <!-- Grade choosing interface -->
                 <div class="container-box">
 
+                <?php
+                    if(!empty($data[0])){ ?>
                     <div class="rc-resource-table">
                         <div class="rc-pp-row rc-pp-row-head">
                             <div class="rc-resource-col">Past Papers Name</div>
@@ -61,49 +72,31 @@
                             <div class="rc-resource-col">Part</div>
                             <div></div>
                         </div>
-
-                        <div class="rc-pp-row">
-                            <div class="rc-resource-col">Genaral </div>
-                            <div class="rc-resource-col">2019</div>
-                            <div class="rc-resource-col">1</div>
+                        <?php foreach ($data[0] as $row) { ?>
+                        <div class='rc-pp-row'>
+                            <!-- <?php var_dump($row); ?> -->
+                            <div class='rc-resource-col' style="display: flex;align-items: center;justify-content: flex-start;">
+                                
+                                <div>
+                                    <?php echo $row->name ?>
+                                </div>
+                            </div>
+                            <div class="rc-resource-col"><?php echo $row->year ?></div>
+                            <div class="rc-resource-col"><?php echo $row->part ?></div>
                             <div class="rc-quiz-row-btns">
-                                <a href="<?php echo BASEURL ?>st_pastpapers/st_pastpaper_do">
+                                <a href="<?php echo BASEURL ?>st_pastpapers/preview/document/<?php echo $iid ?>">
                                     <img src="<?php echo BASEURL ?>assets/icons/Interface Arrows Button Down Double by Streamlinehq.png" alt="">
                                 </a>
-                                <a href="<?php echo BASEURL ?>st_pastpapers/st_pastpaper_down">
+                                <a href="<?php echo BASEURL ?>st_pastpapers/st_pastpaper_down/<?php echo $iid ?>">
                                     <img src="<?php echo BASEURL ?>assets/icons/External_Download_by_Streamlinehq.png" alt="">
                                 </a>
                             </div>
                         </div>
-                        <div class="rc-pp-row">
-                            <div class="rc-resource-col">Tutorial 1</div>
-                            <div class="rc-resource-col">2018</div>
-                            <div class="rc-resource-col">2</div>
-                            <div class="rc-quiz-row-btns">
-                                <a href="<?php echo BASEURL ?>st_pastpapers/st_pastpaper_do">
-                                    <img src="<?php echo BASEURL ?>assets/icons/Interface Arrows Button Down Double by Streamlinehq.png" alt="">
-                                </a>
-                                <a href="<?php echo BASEURL ?>st_pastpapers/st_pastpaper_down">
-                                    <img src="<?php echo BASEURL ?>assets/icons/External_Download_by_Streamlinehq.png" alt="">
-                                </a>
-                            </div>
-                        </div>
-                        <div class="rc-pp-row">
-                            <div class="rc-resource-col">Tutorial 2</div>
-                            <div class="rc-resource-col">2017</div>
-                            <div class="rc-resource-col">2</div>
-                            <div class="rc-quiz-row-btns">
-                                <a href="<?php echo BASEURL ?>st_pastpapers/st_pastpaper_do">
-                                    <img src="<?php echo BASEURL ?>assets/icons/Interface Arrows Button Down Double by Streamlinehq.png" alt="">
-                                </a>
-                                <a href="<?php echo BASEURL ?>st_pastpapers/st_pastpaper_down">
-                                    <img src="<?php echo BASEURL ?>assets/icons/External_Download_by_Streamlinehq.png" alt="">
-                                </a>
-                            </div>
-                        </div>
-
+                        <?php   }
+                            }else{ ?>
+                            <h2 class="rc-no-data-msg" style="text-align: center;">No Data to Display</h2>
+                        <?php } ?>
                     </div>
-
                 </div>
         </div>
     </section>

@@ -95,7 +95,7 @@
                 </div>
 
                 <div class="content">
-                    <a href="<?php echo BASEURL?>adComplaintaction" style="text-decoration: none; color:black;">
+                    <a href="<?php echo BASEURL?>admins/task/t001" style="text-decoration: none; color:black;">
                         <div class="complaints">
                             <div class="pp">
                                 <img  class="profile" src="<?php echo BASEURL?>assets/admin/comphand.png">
@@ -113,7 +113,7 @@
                             </div>
                         </div>
                     </a>
-                    <a href="<?php echo BASEURL?>adComplaintaction" style="text-decoration: none; color:black;">
+                    <a href="<?php echo BASEURL?>admins/complaintaction" style="text-decoration: none; color:black;">
                         <div class="complaints">
                             <div class="pp">
                                 <img  class="profile" src="<?php echo BASEURL?>assets/admin/comphand.png">

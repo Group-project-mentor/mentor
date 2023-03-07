@@ -55,7 +55,6 @@
                 <div class="container-box">
                     
                     <div class="subject-card-set">
-                        <div class="rc-video-card-set">
                             <?php
                             // var_dump($data[0]);
                             if (!empty($data[0])) {
@@ -74,8 +73,6 @@
                                 echo "No data";
                             }
                             ?>
-
-                        </div>
                     </div>
                 </div>
         </div>
