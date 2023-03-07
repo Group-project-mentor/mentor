@@ -110,7 +110,7 @@
                         </div>
                         <div class="icons">
                             <div class="view">
-                                <a href="<?php echo BASEURL ?>adComplaintView"><img src="<?php echo BASEURL ?>assets/admin/view.png"></a>
+                                <a href="<?php echo BASEURL ?>admins/complaint/USER011"><img src="<?php echo BASEURL ?>assets/admin/view.png"></a>
                             </div>
                             <div class="addtm">
                                 <a href="<?php echo BASEURL?>adTask"><img src="<?php echo BASEURL?>assets/admin/addtm.png"></a>

@@ -22,5 +22,6 @@ class adHumanResource_model extends Model
             return array();
         }
     }
+    
 }
 ?>

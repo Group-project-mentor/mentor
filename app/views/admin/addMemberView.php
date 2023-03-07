@@ -92,7 +92,7 @@
 
                 <!-- Title and sub title of middle part -->
                 <div class="mid-title">
-                    <h1>Complaints</h1>
+                    <h1>Add members to your Team</h1>
                 </div>
 
                 <div class="content" id="comp-content" >
@@ -113,10 +113,8 @@
                         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente expedita fugit culpa optio accusantium mollitia eius deserunt architecto, sit minus maxime minima eos quidem quam nesciunt non veritatis, eum dolores!</p>
                     </div>
                     <div class="btns">
-                        <form action="<?php echo BASEURL ?>admins/complaint/USER011" method="POST">
-                            <button class="comp-btns">Add to task manager</button>
-                        </form>
-                            <button class="comp-btns">Delete</button>     
+                        <button class="comp-btns">Add to your Team</button>
+                           
                     </div>
                 </div>
                 

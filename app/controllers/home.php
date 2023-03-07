@@ -2,6 +2,7 @@
 
 class Home extends Controller
 {
+    
     public function index()
     {
         sessionValidator();
@@ -16,8 +17,7 @@ class Home extends Controller
                 $this->view('resourceCtr/home/index',array($subjects,$chartData));
                 break;
             case 'ad':
-                $this->view('admin/home/index');
-
+                header("location:".BASEURL."admins/dashboard");
                 break;
             case 'tch':
                 $this->view('Teacher/home/index');

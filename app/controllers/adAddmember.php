@@ -1,6 +1,6 @@
 <?php
 
-class AdUserHandleView extends Controller{
+class AdAddmember extends Controller{
     public function __construct()
     {
         // sessionValidator();
@@ -8,7 +8,7 @@ class AdUserHandleView extends Controller{
 
     public function index()
     {
-        $this->view('admin/userhandleview');
+        $this->view('admin/addMemberTeam');
     }
 
 }
