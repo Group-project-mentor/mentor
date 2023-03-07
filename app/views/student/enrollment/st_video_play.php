@@ -28,7 +28,7 @@
                     </a>
                 </div>
                 <div class="top-bar-btns">
-                    <a href="<?php echo BASEURL ?>st_video">
+                    <a href="<?php echo BASEURL.'st_video/index/'.$_SESSION['gid'].'/'.$_SESSION['sid'] ?>">
                         <div class="back-btn">Back</div>
                     </a>
                     <a href="#">
@@ -41,41 +41,48 @@
             </section>
 
             <!-- Middle part for whole content -->
-            <section class="mid-content">
+            <section class="mid-content" style="margin: 10px 0 10px;">
 
                 <!-- Title and sub title of middle part -->
                 <div class="mid-title">
-                    <h1>Subjects</h1>
-                    <h6>Hello </h6>
+                <h1>V I D E O</h1>
                 </div>
 
 
                 <!-- subject cards -->
                 <div class="container-box">
-                    <h2>C79 - lesson 1</h2>
+                    <!-- <h2>C79 - lesson 1</h2> -->
+
+                    <!-- <div class="subject-card-watching">
+                        <img src="<?php echo BASEURL ?>assets/patterns/1.png" alt="" />
+                    </div> -->
+
+                    <!-- kavi -->
+
+                </div>
+                    <h2 style="margin: 0 20px;"><?php echo $data[1]->name ?></h2>
+                    <!-- <?php print_r($data) ?> -->
 
                     <div class="subject-card-watching">
-                        <img src="<?php echo BASEURL ?>assets/patterns/1.png" alt="" />
+                        <?php if($data[1]->type === "L"){ ?>
+                            <iframe style="width: 720px;height:480px;" src="<?php echo $data[1]->link ?>"
+                                    title="YouTube video player" frameborder="0"
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                    allowfullscreen>
+                            </iframe>
+                        <?php }elseif($data[1]->type === "U"){ ?>
+                            <video class="rc-uploaded-video" controls>
+                                <source src="<?php echo BASEURL.'public/public_resources/videos/'.$data[1]->link ?>" >
+                                Your browser does not support the video tag.
+                            </video>
+                        <?php } ?>
                     </div>
 
-
-
-
+                    <!-- kavi -->
                     <h2>Description</h2>
                     <p class="Description">
-                        We take learning very seriously at Success Tutorial School. <br>
-                        We have a special recipe for success and we owe everything to careful preparation. 
-                        Just like any good ol’ recipe, it takes the best ingredients, and careful preparation to ensure the best results. 
-                        To get our students ready for their lessons at school, we understand who they are, needs and goals. 
-                        From there, we carefully craft a program that works for them, not us. 
-                        After all, every student is different in their own way and have different goals they want to achieve, and we respect that! 
-                        When students see that others’ care about their needs and goals, they automatically become more engaged 
-                        and want to learn – when students want to learn, academic results can naturally be seen <br><br>
-                        From there, we carefully craft a program that works for them, not us. 
-                        After all, every student is different in their own way and have different goals they want to achieve, and we respect that! 
-                        When students see that others’ care about their needs and goals, they automatically become more engaged 
-                        and want to learn – when students want to learn, academic results can naturally be seen </p>
-
+                    <?php echo $data[1]->description?>
+                    </p>
                     <div>
                     <h3>Related Videos</h3>
                 </div>

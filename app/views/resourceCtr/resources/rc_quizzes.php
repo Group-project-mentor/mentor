@@ -71,27 +71,36 @@
                     <section class="quiz-card-list">
                         <?php
                         if(!empty($data[0])){
-                        foreach ($data[0] as $row) { ?>
+                        foreach ($data[0] as $row) {
+                            $approval = $this->approvedGenerator($row->approved);
+                            ?>
                         <div class="quiz-card-main">
+                            <div style="position: absolute;left: 3px;bottom: 3px;">
+                                <img src='<?php echo BASEURL."assets/icons/".$approval ?>' alt='' class="resource-approved-sign">
+                            </div>
                             <div class="quiz-card-title">
-                                <?php echo $row['name'] ?>
+                                <?php echo $row->name ?>
                             </div>
                             <div class="quiz-card-content">
                                 <div class="quiz-card-item">
-                                    <?php echo $row['marks'] ?> Marks
+                                    <?php echo $row->marks ?> Marks
                                 </div>
                                 <div class="quiz-card-item">
                                     10 Questions
                                 </div>
                             </div>
                             <div class="quiz-card-button-set">
-                                <a class="quiz-card-btn" onclick='delConfirm(<?php echo $row['id']?>,2)'>
+                                <?php if($this->isCreatedBy($row->creator_id)){ ?>
+
+                                <a class="quiz-card-btn" onclick='delConfirm(<?php echo $row->id ?>,2)'>
                                     <img src='<?php echo BASEURL."assets/icons/icon_delete.png" ?>' alt=''>
                                 </a>
-                                <a class="quiz-card-btn" href="<?php echo BASEURL.'quiz/questions/'.$row['id'] ?>">
+                                <a class="quiz-card-btn" href="<?php echo BASEURL.'quiz/questions/'.$row->id ?>">
                                     <img src='<?php echo BASEURL."assets/icons/icon_edit.png" ?>' alt=''>
                                 </a>
-                                <a class="quiz-card-btn" href="<?php echo BASEURL.'quizPreview/instructions/'.$row['id'] ?>">
+
+                                <?php } ?>
+                                <a class="quiz-card-btn" href="<?php echo BASEURL.'quizPreview/instructions/'.$row->id ?>">
                                     <img src='<?php echo BASEURL."assets/icons/icon_eye.png" ?>' alt=''>
                                 </a>
                             </div>

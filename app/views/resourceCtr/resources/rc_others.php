@@ -81,26 +81,34 @@
                         </div>
                         <?php
                                 foreach ($data as $row) {
-                                    echo "<div class='rc-resource-row'>
-                                            <div class='rc-resource-col'>".$row['name']."</div>
-                                            <div class='rc-resource-col'>".$row['type']."</div>
-                                            <div class='rc-quiz-row-btns'>
-                                                <a onclick='delConfirm(".$row['id'].",5)'>
-                                                    <img src='".BASEURL."assets/icons/icon_delete.png' alt=''>
-                                                </a>
-                                                <a href='".BASEURL."rcEdit/other/".$row['id']."'>
-                                                    <img src='".BASEURL."assets/icons/icon_edit.png' alt=''>
-                                                </a>";
-                                    echo (in_array($row['type'],$types)) ?" 
-                                                <a href='".BASEURL."rcResources/preview/other/".$row['id']."'>
-                                                    <img src='".BASEURL."assets/icons/icon_eye.png' alt=''>
-                                                </a>" : "<a></a>";
-                                    echo "
+                                    $approval = $this->approvedGenerator($row->approved);
+                                    ?>
+                                    <div class='rc-resource-row'>
+                                        <div class='rc-resource-col' style="display: flex;align-items: center;justify-content: flex-start;">
+                                            <img src='<?php echo BASEURL."assets/icons/".$approval ?>' alt='' class="resource-approved-sign">
+                                            <div>
+                                                <?php echo $row->name ?>
                                             </div>
                                         </div>
-                                        ";
+                                            <div class='rc-resource-col'><?php echo $row->type ?></div>
+                                            <div class='rc-quiz-row-btns'>
+                                                <?php if($this->isCreatedBy($row->creator_id)){ ?>
+                                                <a onclick='delConfirm(<?php echo $row->id ?>,5)'>
+                                                    <img src='<?php echo BASEURL ?>assets/icons/icon_delete.png' alt=''>
+                                                </a>
+                                                <a href='<?php echo BASEURL."rcEdit/other/".$row->id ?>'>
+                                                    <img src='<?php echo BASEURL ?>assets/icons/icon_edit.png' alt=''>
+                                                </a>
+                                <?php } echo (in_array($row->type,$types)) ?"
+                                                <a href='".BASEURL."rcResources/preview/other/".$row->id."'>
+                                                <img src='".BASEURL."assets/icons/icon_eye.png' alt=''>
+                                                </a>" : "<a></a>";
+                                echo "
+                                            </div>
+                                    </div>
+                                    ";
                                     }
-                                }else{ ?>
+                                    }else{ ?>
                             <h2 class="rc-no-data-msg" style="text-align: center;">No Data to Display</h2>
                             <?php } ?>
 

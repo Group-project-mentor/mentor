@@ -67,6 +67,7 @@
                         <h1>EDIT VIDEO</h1>
                     </div>
                 </div>
+                <?php if(!empty($data[0])){ ?>
                 <div class="rc-upload-box">
                     <form action="<?php echo BASEURL.'rcEdit/editVideo/'.$data[0][0]?>" method="POST" class="rc-upload-form">
                         <div class="rc-upload-home-title">
@@ -95,7 +96,12 @@
                         
                     </form>
                 </div>
-
+                <?php }else{ ?>
+                    <div style="text-align: center;font-size: x-large;color: darkred;">
+                        <br>
+                        You are not authorized to do this action !
+                    </div>
+                <?php } ?>
         </div>
 
     </section>

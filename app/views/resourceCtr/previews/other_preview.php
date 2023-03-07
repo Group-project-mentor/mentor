@@ -46,12 +46,12 @@
                 ?>
                 <!-- Title and sub title of middle part -->
                 <div class="mid-title">
-                    <h6>My Subjects / <?php echo ucfirst($_SESSION['sname']) ?> / others / <?php echo $data[2]?></h6>
+                    <h6>My Subjects / <?php echo ucfirst($_SESSION['sname']) ?> / others / <?php echo $data->id ?></h6>
                 </div>
 
                 <!-- Grade choosing interface -->
                 <div class="container-box" >
-                    <embed src="<?php echo BASEURL?>public_resources/others/<?php echo $data[2] ?>" style="width:50%;height:70vh;margin:auto;">
+                    <embed src="<?php echo BASEURL?>public_resources/others/<?php echo $_SESSION['gid']."/".$_SESSION['sid']."/".$data->location ?>" style="width:50%;height:70vh;margin:auto;">
                 </div>
                 <?php } ?>
             </section>

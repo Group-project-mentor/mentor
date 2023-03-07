@@ -71,13 +71,13 @@
                     <hr />
                     <div class="quiz-preview-bottom-set">
                         <button class="quiz-preview-bottom-button" id="back-btn">
-                            <img src="<?php echo BASEURL ?>assets/icons/icon_prev_white" alt="">
+                            <img src="<?php echo BASEURL ?>public/assets/icons/icon_prev_white.png" alt="">
                             Back
                         </button>
                         <progress value="0.3" id="quiz-progress"></progress>
                         <button class="quiz-preview-bottom-button" id="next-btn">
                             Next
-                            <img src="<?php echo BASEURL ?>assets/icons/icon_next_white" alt="">
+                            <img src="<?php echo BASEURL ?>public/assets/icons/icon_next_white.png" alt="">
                         </button>
                     </div>
 

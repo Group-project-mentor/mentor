@@ -2,8 +2,11 @@
 
 class Sponsor extends Controller
 {
+    private string $user = "sp";
     public function __construct(){
         sessionValidator();
+        $this->userValidate($this->user);
+        flashMessage();
     }
 
     public function index(){
@@ -38,7 +41,7 @@ class Sponsor extends Controller
         $this->view('sponsor/payments/paymentsInProgress');
     }
 
-    public function paymentTest(){
+    public function paymentTest1(){
         $this->view('sponsor/payments/paymentForm');
     }
 
@@ -84,6 +87,9 @@ class Sponsor extends Controller
 //
 //        curl_close($curl);
 //    }
+    public function paymentTest(){
+        $this->view('sponsor/payments/paymentForm2');
+    }
 
     public function paymentDone(){
         $this->view('sponsor/payments/paymentDone');
@@ -92,4 +98,27 @@ class Sponsor extends Controller
     public function paymentError(){
         $this->view('sponsor/payments/paymentError');
     }
+
+    public function paymentDetails(){
+        $res = $this->model("payments")->hasPaymentDetails($_SESSION['id']);
+        $this->view('sponsor/profile/getPaymentDetails',array($res));
+    }
+
+    public function details($method){
+        if($method == "update"){
+            $res = $this->model("payments")
+                ->updatePaymentDetails($_SESSION['id'],$_POST['fName'],$_POST['lName'],$_POST['email'],$_POST['telNo'],$_POST['address'],$_POST['city'],$_POST['country']);
+            flashMessage("Successfully Updated!");
+        }
+        elseif ($method == "add"){
+            $res = $this->model("payments")
+                ->savePaymentDetails($_SESSION['id'],$_POST['fName'],$_POST['lName'],$_POST['email'],$_POST['telNo'],$_POST['address'],$_POST['city'],$_POST['country']);
+            flashMessage("Successfully Added!");
+        }
+        else{
+            flashMessage("invalid operation");
+        }
+        header("location:".BASEURL."sponsor/profile");
+    }
+
 }

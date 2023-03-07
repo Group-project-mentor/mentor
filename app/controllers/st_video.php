@@ -3,12 +3,14 @@ class St_video extends Controller
 {
     public function __construct(){
         sessionValidator();
+        //$this->hasLogged();
     }
 
-    public function index()
+    public function index($gid,$sid)
     {
-        $this->hasLogged();
-        $this->view('student/enrollment/st_video');
+        $_SESSION['sid'] = $sid;
+        $res = $this->model('st_public_model')->findVideos($gid, $sid);
+        $this->view('student/enrollment/st_video', array($res));
 
     }
 
@@ -29,13 +31,7 @@ class St_video extends Controller
         $_SESSION["gid"] = $grade;
         $_SESSION["sid"] = $subject;
         $result = $this->model("resourceModel")->findVideos($grade, $subject);
-        $rows = array();
-        if (!empty($result) and $result->num_rows > 0) {
-            while ($row = $result->fetch_assoc()) {
-                $rows[] = $row;
-            }
-        }
-        $this->view('student/enrollment/st_video', array($rows, $msg));
+        $this->view('student/enrollment/st_video', array($result, $msg));
     }
 
     private function getNames($gid, $sid)

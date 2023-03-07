@@ -91,16 +91,21 @@
                         <?php
                             if(!empty($data[0])){
                                 $count = 1;
-                                foreach ($data[0] as $row) { ?>
+                                foreach ($data[0] as $row) {
+                                    $approval = $this->approvedGenerator($row->approved);
+                                    ?>
                                     <div class='rc-video-card' style="align-items: center;">
                                         <img alt='' src="<?php echo BASEURL."assets/patterns/".$count++.'.png'?>"  />
-                                        <a href='<?php echo BASEURL."rcResources/preview/video/".$row['id']?>' >
-                                            <label><?php echo $row['name'] ?></label>
+                                        <a href='<?php echo BASEURL."rcResources/preview/video/".$row->id ?>' >
+                                            <label><?php echo $row->name ?></label>
                                         </a>
-                                        <a href='<?php echo BASEURL."rcResources/preview/video/".$row['id']?>' style="background: rgb(24, 100, 55);cursor: pointer;">
+                                        <a href='<?php echo BASEURL."rcResources/preview/video/".$row->id ?>' style="background: rgb(24, 100, 55);cursor: pointer;">
                                             <label style="color: white;">View</label>
                                             <img style="width: 15px" src='<?php echo BASEURL?>assets/icons/icon_eye_white.png' alt='' />
                                         </a>
+                                        <div style="position: absolute;left: 15px;top: 15px;">
+                                            <img src='<?php echo BASEURL."assets/icons/".$approval ?>' alt='' class="resource-approved-sign">
+                                        </div>
                                     </div>
                            <?php     }
                             }

@@ -25,7 +25,12 @@ generation of learners.
 - temp
 - videos  
 
-
+#### In some resource folders (documents, others, videos) They have subdirectories like below
+documents  
+&nbsp;&nbsp;|__grade_id  
+&nbsp;&nbsp;&nbsp;&nbsp;|__subject_id  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|__file1  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|__file2
   
   
 

@@ -13,14 +13,15 @@ class RcSubjects extends Controller{
         unset($_SESSION["sname"]);
         unset($_SESSION["gname"]);
         $id = $_SESSION['id'];
-        $rows = array();
         $dataList = $this->model("rcHasSubjectModel")->getSubsGrades($id);
-        if($dataList->num_rows > 0){
-                while ($row = $dataList->fetch_assoc()) {
-                        $rows[] = $row;
-                }
-        }
-        $this->view('resourceCtr/subjects',$rows); 
+        $subjectList = $this->model("rcHasSubjectModel")->getSubjects($id);
+        $gradeList = $this->model("rcHasSubjectModel")->getGrades($id);
+        $this->view('resourceCtr/subjects',array($dataList, $gradeList, $subjectList));
+    }
+
+    public function filterByGradeSubject($gid,$sid){
+        $result = $this->model("rcHasSubjectModel")->getGradeSubjectFiltered($_SESSION['id'],$gid,$sid);
+        header("Content-Type:Application/json");
+        echo json_encode($result);
     }
 }
-?>

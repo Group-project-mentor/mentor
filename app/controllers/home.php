@@ -12,7 +12,9 @@ class Home extends Controller
                 $this->view('student/home/index');
                 break;
             case 'rc':
-                $this->view('resourceCtr/home/index');
+                $subjects = $this->model("rcHasSubjectModel")->getSubjects($_SESSION['id']);
+                $chartData = $this->model("resourceModel")->getChartCounts($_SESSION['id']);
+                $this->view('resourceCtr/home/index',array($subjects,$chartData));
                 break;
             case 'ad':
                 header("location:".BASEURL."admins/dashboard");
