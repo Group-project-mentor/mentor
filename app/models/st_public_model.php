@@ -29,6 +29,18 @@ class st_public_model extends Model{
         return $result;
     }
 
+    public function findPastpapers($gid, $sid)
+    {
+        $q = "SELECT pastpaper.id,pastpaper.name, pastpaper.year, pastpaper.part ,public_resource.approved,rs_subject_grade.creator_id 
+        FROM pastpaper, public_resource,rs_subject_grade WHERE pastpaper.id = public_resource.id AND
+         public_resource.id=rs_subject_grade.rsrc_id AND rs_subject_grade.subject_id=? AND rs_subject_grade.grade_id=?" ;
+        $stmt = $this->prepare($q);
+        $stmt->bind_param('ii',$sid,$gid);
+        
+        $result = $this->fetchObjs($stmt);
+        return $result;
+    }
+
     public function getResource($id, $gid=null, $sid=null, $type=null){
         $q = "select public_resource.id, public_resource.type, public_resource.location from public_resource 
         inner join rs_subject_grade on public_resource.id = rs_subject_grade.rsrc_id 
