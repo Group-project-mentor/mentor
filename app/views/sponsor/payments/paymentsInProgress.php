@@ -63,123 +63,44 @@
                 <div style="margin-top: 30px;">
                     <div class="sponsor-list-main row-decoration">
                         <div class="sponsor-list-row">
+                            <div class="sponsor-list-item sponsor-list-item-title flex-1" style="display:flex;flex-direction: column;align-items: center;justify-content: center;">
+                                <label style="font-size: smaller;margin-bottom: 10px;">all</label>
+                                <input id="chkAll" type="checkbox" class="save-info-check-main">
+                            </div>
                             <div class="sponsor-list-item sponsor-list-item-title flex-1">
-                                Number
+                                Student ID
                             </div>
                             <div class="sponsor-list-item sponsor-list-item-title flex-3">
-                                Receiver
-                            </div>
-                            <div class="sponsor-list-item sponsor-list-item-title flex-3">
-                                Account No
+                                Name
                             </div>
                             <div class="sponsor-list-item sponsor-list-item-title flex-2">
-                                Date
-                            </div>
-                            <div class="sponsor-list-item sponsor-list-item-title flex-1">
-                                Time
+                                month
                             </div>
                             <div class="sponsor-list-item sponsor-list-item-title flex-2">
                                 Amount
                             </div>
+                            <div class="sponsor-list-item sponsor-list-item-title flex-2">
+<!--                                See Details >-->
+                            </div>
                         </div>
                         <div class="sponsor-list-row">
+                            <div class="sponsor-list-item sponsor-list-item-title flex-1">
+                                <input type="checkbox"  class="save-info-check">
+                            </div>
                             <div class="sponsor-list-item flex-1">
                                 01
                             </div>
                             <div class="sponsor-list-item flex-3">
                                 Mr.Kamal Kumara
                             </div>
-                            <div class="sponsor-list-item flex-3">
-                                5566-8898-0999
-                            </div>
                             <div class="sponsor-list-item flex-2">
-                                09/10/2020
-                            </div>
-                            <div class="sponsor-list-item flex-1">
-                                20:00
+                                March
                             </div>
                             <div class="sponsor-list-item flex-2">
                                 Rs: 2000.00
                             </div>
-                        </div>
-                        <div class="sponsor-list-row">
-                            <div class="sponsor-list-item flex-1">
-                                02
-                            </div>
-                            <div class="sponsor-list-item flex-3">
-                                Mr.Kamal Kumara
-                            </div>
-                            <div class="sponsor-list-item flex-3">
-                                5566-8898-0999
-                            </div>
                             <div class="sponsor-list-item flex-2">
-                                09/10/2020
-                            </div>
-                            <div class="sponsor-list-item flex-1">
-                                20:00
-                            </div>
-                            <div class="sponsor-list-item flex-2">
-                                Rs: 2000.00
-                            </div>
-                        </div>
-                        <div class="sponsor-list-row">
-                            <div class="sponsor-list-item flex-1">
-                                03
-                            </div>
-                            <div class="sponsor-list-item flex-3">
-                                Mr.Kamal Kumara
-                            </div>
-                            <div class="sponsor-list-item flex-3">
-                                5566-8898-0999
-                            </div>
-                            <div class="sponsor-list-item flex-2">
-                                09/10/2020
-                            </div>
-                            <div class="sponsor-list-item flex-1">
-                                20:00
-                            </div>
-                            <div class="sponsor-list-item flex-2">
-                                Rs: 2000.00
-                            </div>
-                        </div>
-                        <div class="sponsor-list-row">
-                            <div class="sponsor-list-item flex-1">
-                                04
-                            </div>
-                            <div class="sponsor-list-item flex-3">
-                                Mr.Kamal Kumara
-                            </div>
-                            <div class="sponsor-list-item flex-3">
-                                5566-8898-0999
-                            </div>
-                            <div class="sponsor-list-item flex-2">
-                                09/10/2020
-                            </div>
-                            <div class="sponsor-list-item flex-1">
-                                20:00
-                            </div>
-                            <div class="sponsor-list-item flex-2">
-                                Rs: 2000.00
-                            </div>
-                        </div>
-                        <div class="sponsor-list-row">
-                            <div class="sponsor-list-item flex-1">
-                                05
-                            </div>
-                            <div class="sponsor-list-item flex-3">
-                                Mr.Kamal Kumara
-                            </div>
-                            <div class="sponsor-list-item flex-3">
-                                5566-8898-0999
-                            </div>
-                            <div class="sponsor-list-item flex-2">
-                                09/10/2020
-                            </div>
-                            <div class="sponsor-list-item flex-1">
-                                20:00
-                            </div>
-                            <div class="sponsor-list-item flex-2">
-                                Rs: 2000.00
+                                details >
                             </div>
                         </div>
                         <!-- Last Row -->
@@ -203,11 +124,35 @@
                 </div>
 
                 <div style="margin-top: 20px;display: flex;justify-content: flex-end;">
-                    <a href="<?php echo BASEURL.'sponsor/paymentTest' ?>" class="sponsor-button"  style="font-size:large;margin: 0 5px;text-decoration: none;">Pay Total Fund</a>
+                    <a href="<?php echo BASEURL.'sponsor/paymentTest' ?>" class="sponsor-button"  style="font-size:large;margin: 0 5px;text-decoration: none;">
+                        <img src="<?php echo BASEURL?>public/assets/icons/icon_addBill.png" alt="profile" style="width: 25px;">
+                        Add to bill
+                    </a>
                 </div>
 
             </div>
     </div>
 </section>
 </body>
+<script>
+    let chkAll = document.getElementById('chkAll');
+    let totalSum = 0;
+
+    chkAll.addEventListener('change',()=>{
+        let checkBtns = document.getElementsByClassName('save-info-check');
+        if (chkAll.checked){
+            for (const checkBtn of checkBtns) {
+                checkBtn.checked = true;
+            }
+       }else{
+            for (const checkBtn of checkBtns) {
+                checkBtn.checked = false;
+            }
+       }
+    });
+
+    const checkClicked = () => {
+
+    }
+</script>
 </html>
