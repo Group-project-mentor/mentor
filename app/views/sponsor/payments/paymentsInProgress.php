@@ -10,6 +10,8 @@
     <link rel="stylesheet" href="<?php echo BASEURL?>public/stylesheets/resourceCreator/rc_main.css">
     <link rel="stylesheet" href="<?php echo BASEURL?>public/stylesheets/resourceCreator/rc_resources.css">
     <link rel="stylesheet" href="<?php echo BASEURL . '/public/stylesheets/sponsor/sp_styles.css' ?> ">
+    <script defer src="<?php echo BASEURL ?>javascripts/spPaymentProgress.js"> </script>
+
 </head>
 
 <body>
@@ -74,35 +76,46 @@
                                 Name
                             </div>
                             <div class="sponsor-list-item sponsor-list-item-title flex-2">
-                                month
+                                Year
                             </div>
                             <div class="sponsor-list-item sponsor-list-item-title flex-2">
-                                Amount
+                                Month
                             </div>
                             <div class="sponsor-list-item sponsor-list-item-title flex-2">
-<!--                                See Details >-->
+                                Amount [LKR]
                             </div>
                         </div>
+                        <?php if(empty($data[0])){ ?>
+                            <div class="sponsor-list-row">
+                                <div class="sponsor-list-item flex-1">
+                                    NO DATA TO SHOW
+                                </div>
+                            </div>
+                        <?php } else {
+                            foreach ($data[0] as $row){
+                        ?>
                         <div class="sponsor-list-row">
                             <div class="sponsor-list-item sponsor-list-item-title flex-1">
-                                <input type="checkbox"  class="save-info-check">
+                                <input type="checkbox"  class="save-info-check" >
                             </div>
                             <div class="sponsor-list-item flex-1">
-                                01
+                                <?php echo $row["student_id"] ?>
                             </div>
                             <div class="sponsor-list-item flex-3">
-                                Mr.Kamal Kumara
+                                <?php echo $row["name"] ?>
                             </div>
                             <div class="sponsor-list-item flex-2">
-                                March
+                                <?php echo $row["year"] ?>
                             </div>
                             <div class="sponsor-list-item flex-2">
-                                Rs: 2000.00
+                                <?php echo getMonthName($row["month"]) ?>
                             </div>
-                            <div class="sponsor-list-item flex-2">
-                                details >
+                            <div class="sponsor-list-item flex-2 chk-amount">
+                                <?php echo number_format($row['amount'], 2, '.', '') ?>
                             </div>
                         </div>
+
+                        <?php }} ?>
                         <!-- Last Row -->
                         <div class="sponsor-list-row" style="padding: 15px 0;background: rgba(89,89,89,0.92);border-radius: 0 0 10px 10px;">
                             <div class="sponsor-list-item flex-1">
@@ -116,8 +129,8 @@
                             </div>
                             <div class="sponsor-list-item flex-1">
                             </div>
-                            <div class="sponsor-list-item flex-2" style="color: #ffffff;font-size: medium;">
-                                Rs: 10000.00
+                            <div class="sponsor-list-item flex-2" style="color: #ffffff;font-size: medium;" id="totalPrice">
+                                0
                             </div>
                         </div>
                     </div>
@@ -134,25 +147,4 @@
     </div>
 </section>
 </body>
-<script>
-    let chkAll = document.getElementById('chkAll');
-    let totalSum = 0;
-
-    chkAll.addEventListener('change',()=>{
-        let checkBtns = document.getElementsByClassName('save-info-check');
-        if (chkAll.checked){
-            for (const checkBtn of checkBtns) {
-                checkBtn.checked = true;
-            }
-       }else{
-            for (const checkBtn of checkBtns) {
-                checkBtn.checked = false;
-            }
-       }
-    });
-
-    const checkClicked = () => {
-
-    }
-</script>
 </html>

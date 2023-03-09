@@ -113,6 +113,10 @@ function deleteFile($fileName, $type, $folder1=null, $folder2=null):bool
     }
 }
 
+function getMonthName($monthNumber) {
+    return date("F", mktime(0, 0, 0, $monthNumber, 1));
+}
+
 function tempFileRemover(){
 //    if (session_status() == PHP_SESSION_NONE) {
 //        session_start();

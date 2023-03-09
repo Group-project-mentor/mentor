@@ -58,5 +58,16 @@ class DB{
             }
             return $row_set;
         }
+
+//        Transactions
+        public function transaction($info = null){
+            $this->connection->query("START TRANSACTION");
+        }
+        public function commit(){
+            $this->connection->query("COMMIT");
+        }
+        public function rollBack(){
+            $this->connection->query("ROLLBACK");
+        }
     }
 ?>

@@ -162,6 +162,7 @@
 <script type="text/javascript" src="https://www.payhere.lk/lib/payhere.js"></script>
 <script>
     const BASEURL = '<?php echo BASEURL ?>';
+    const TEMP_URL = '<?php echo $_ENV['TEMP_URL'] ?>';
     const userId = <?php echo $_SESSION['id'] ?>;
     const incomingData = <?php echo json_encode($data[0]) ?>;
     const MERCHID = '<?php echo $_ENV['MERCHANT_ID'] ?>';
@@ -192,7 +193,7 @@
         "merchant_id": MERCHID,    
         "return_url": undefined,     
         "cancel_url": undefined,     
-        "notify_url": `https://eighty-boxes-ring-103-21-165-109.loca.lt/mentor/payment/getDetails`,
+        "notify_url": `${TEMP_URL}/mentor/payment/getDetails`,
         "order_id": "O1234",
         "items": "",
         "amount": "1000",
