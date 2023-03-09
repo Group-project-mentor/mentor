@@ -8,21 +8,50 @@ class St_other extends Controller
         $this->hasLogged();
     }
     
-    public function index()
+    public function index($gid,$sid)
     {
-        $this->view('student/enrollment/st_other');
-
+        $_SESSION['sid'] = $sid;
+        $res = $this->model('st_public_model')->findOthers($gid, $sid);
+        $this->view('student/enrollment/st_other', array($res));
     }
 
-    public function st_other_do()
+    public function findOthers($grade, $subject, $msg = null)
     {
-        $this->view('student/enrollment/st_other_do');
-
+        if (!isset($_SESSION['user'])) {
+            header("location:" . BASEURL . "login");
+        }
+        $this->getNames($grade, $subject);
+        $_SESSION["gid"] = $grade;
+        $_SESSION["sid"] = $subject;
+        $result = $this->model("resourceModel")->findOthers($grade, $subject);
+        $this->view('student/enrollment/st_other', array($result));
     }
 
-    public function st_other_down()
+    private function getNames($gid, $sid)
     {
-        $this->view('student/enrollment/st_other_down');
+        if (!isset($_SESSION["gname"])) {
+            $result1 = $this->model("gradeModel")->getGrade($gid)[1];
+            $_SESSION["gname"] = $result1;
+        }
+        if (!isset($_SESSION["sname"])) {
+            $result2 = $this->model("subjectModel")->getSubject($sid)[1];
+            $_SESSION["sname"] = $result2;
+        }
+    }
+
+    public function preview($type, $id){
+        switch ($type) {
+            case 'others':
+                $file = $this->model("resourceModel")->getResource($id,$_SESSION['gid'],$_SESSION['sid'],'pdf');
+                $this->view("student/enrollment/st_other_do",$file);
+                break;
+        }
+    }
+
+    public function st_other_down($id)
+    {
+        $file = $this->model("resourceModel")->getResource($id,$_SESSION['gid'],$_SESSION['sid'],'pdf');
+        $this->view('student/enrollment/st_other_down',$file);
 
     }
 
