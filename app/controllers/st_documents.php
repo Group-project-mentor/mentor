@@ -5,17 +5,17 @@ class St_documents extends Controller
     public function __construct()
     {
         sessionValidator();
-        $this->hasLogged();
+        // $this->hasLogged();
     }
     
-    public function index($gid,$sid)
-    {
-        $_SESSION['sid'] = $sid;
-        $res = $this->model('st_public_model')->findDocuments($gid, $sid);
-        $this->view('student/enrollment/st_documents', array($res));
-    }
+    // public function index($gid,$sid)
+    // {
+    //     $_SESSION['sid'] = $sid;
+    //     $res = $this->model('st_public_model')->findDocuments($gid, $sid);
+    //     $this->view('student/enrollment/st_documents', array($res));
+    // }
 
-    public function documents($grade, $subject, $msg = null)
+    public function index($grade, $subject, $msg = null)
     {
         if (!isset($_SESSION['user'])) {
             header("location:" . BASEURL . "login");
@@ -23,7 +23,7 @@ class St_documents extends Controller
         $this->getNames($grade, $subject);
         $_SESSION["gid"] = $grade;
         $_SESSION["sid"] = $subject;
-        $result = $this->model("resourceModel")->findDocuments($grade, $subject);
+        $result = $this->model("st_public_model")->findDocuments($grade, $subject);
         $this->view('student/enrollment/st_documents', array($result));
     }
 
@@ -62,13 +62,13 @@ class St_documents extends Controller
 
     }
 
-    private function hasLogged()
-    {
-        if (!isset($_SESSION['user'])) {
-            header("location:" . BASEURL . "login");
-        }
+    // private function hasLogged()
+    // {
+    //     if (!isset($_SESSION['user'])) {
+    //         header("location:" . BASEURL . "login");
+    //     }
 
-    }
+    // }
 }
 
 ?>
