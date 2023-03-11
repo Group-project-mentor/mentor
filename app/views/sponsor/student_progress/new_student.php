@@ -32,7 +32,7 @@
 
             </div>
             <div class="top-bar-btns">
-                <a href="<?php echo BASEURL?>sponsor/student_report">
+                <a href="<?php echo BASEURL?>sponsor/allStudents">
                     <div class="back-btn">Back</div>
                 </a>
                 <a href="#">

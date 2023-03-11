@@ -35,8 +35,8 @@ if (!isset($_SESSION['navtog'])) {
             <img src="<?php echo BASEURL ?>assets/icons/icon_home.png" alt="home">
             <div class="nav-link-text">Home</div>
         </a>
-        <a href="<?php echo BASEURL . 'sponsor/student_report' ?>" class="nav-link">
-            <img src="<?php echo BASEURL ?>assets/icons/icon_help.png" alt="cource">
+        <a href="<?php echo BASEURL . 'sponsor/allStudents' ?>" class="nav-link">
+            <img src="<?php echo BASEURL ?>assets/icons/icon_help.png" alt="course">
             <div class="nav-link-text">Student program</div>
         </a>
         <!-- <a href="<?php echo BASEURL . 'rcProfile' ?>" class="nav-link">

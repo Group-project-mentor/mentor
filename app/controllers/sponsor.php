@@ -13,8 +13,9 @@ class Sponsor extends Controller
 
     }
 
-    public function student_report(){
-        $this->view('sponsor/student_progress/student_report');
+    public function allStudents(){
+        $result = $this->model("sponsorStModel")->getSponsorStudents($_SESSION['id']);
+        $this->view('sponsor/student_progress/student_report',array($result));
     }
 
     public function new_student(){
@@ -34,61 +35,124 @@ class Sponsor extends Controller
     }
 
     public function transactionHistory(){
-        $this->view('sponsor/payments/transactionHistory');
+        $res = $this->model('payments')->getTrasactionHistory($_SESSION['id']);
+        $this->view('sponsor/payments/transactionHistory',array($res));
     }
 
     public function paymentsInProgress(){
-        $this->view('sponsor/payments/paymentsInProgress');
+        $rowArray = array();
+        $month = intval(date('m'));
+        $year = intval(date('Y'));
+//        var_dump($year,$month);
+        $sponsorships = $this->model('sponsorStModel')->getSponsorship($_SESSION['id']); //! student_id, month, year
+
+//        ? check if sponsor has/not students assigned
+        if(!empty($sponsorships)){
+
+//        ? loop through that data
+            foreach ($sponsorships as $row){
+
+                // ? get the last paid month of each student
+                $lastPayment = $this->model('sponsorStModel')->getPaymentsLast($row->id); //! student_id, month, year, fundMonths, monthlyAmount
+                if (!empty($lastPayment)){
+                    if((intval($lastPayment->year)) < $year ){  //? If last funded on last year
+                        if ($row->fundMonths > 0){
+
+                            //? last year data
+                            for ($i = intval($lastPayment->month) ; $i <= 12; $i++){
+                                $rowArray[] = array(
+                                    "student_id"=>$lastPayment->student_id,
+                                    "name" => $row->name,
+                                    "year" => intval($lastPayment->year),
+                                    "month" => $i,
+                                    "amount" => $row->monthlyAmount
+                                );
+                            }
+
+                            //? this year data
+                            for ($i = 1; $i <= $month; $i++){
+                                $rowArray[] = array(
+                                    "student_id"=>$lastPayment->student_id,
+                                    "name" => $row->name,
+                                    "year" => $year,
+                                    "month" => $i,
+                                    "amount" => $row->monthlyAmount
+                                );
+                            }
+                        }
+                    }
+
+                    //? If last funded on this year
+                    elseif((intval($lastPayment->year)) == $year){
+                        if (intval($lastPayment->month) < $month and ($row->fundMonths > 0)){
+                            for ($i = intval($lastPayment->month) ; $i <= $month; $i++){
+                                $rowArray[] = array(
+                                    "student_id"=>$lastPayment->student_id,
+                                    "name" => $row->name,
+                                    "year" => $year,
+                                    "month" => $i,
+                                    "amount" => $row->monthlyAmount
+                                );
+                            }
+                        }
+                    }
+
+                //? If no paid any payment until assigned that student
+                } else{
+                    $acceptedDate = explode("-",$row->approved_date);
+                    $accMonth = intval($acceptedDate[1]);
+                    $accYear = intval($acceptedDate[0]);
+
+                    if($accYear < $year and $row->fundMonths > 0){
+                            for ($i = $accMonth ; $i <= 12; $i++){
+                                $rowArray[] = array(
+                                    "student_id"=>$row->id,
+                                    "name" => $row->name,
+                                    "year" => $accYear,
+                                    "month" => $i,
+                                    "amount" => $row->monthlyAmount
+                                );
+                            }
+                            for ($i = 1; $i <= $month; $i++){
+                                $rowArray[] = array(
+                                    "student_id"=>$row->id,
+                                    "name" => $row->name,
+                                    "year" => $year,
+                                    "month" => $i,
+                                    "amount" => $row->monthlyAmount
+                                );
+                            }
+                    }
+                    elseif($accYear == $year){
+                        if ($accMonth <= $month and ($row->fundMonths > 0)){
+                            for ($i = $accMonth; $i <= $month; $i++){
+                                $rowArray[] = array(
+                                    "student_id"=>$row->id,
+                                    "name" => $row->name,
+                                    "year" => $year,
+                                    "month" => $i,
+                                    "amount" => $row->monthlyAmount
+                                );
+                            }
+                        }
+                    }
+                }
+            }
+        }
+//        foreach ($rowArray as $r){
+//            print_r($r);
+//            echo '<br />';
+//        }
+        $this->view('sponsor/payments/paymentsInProgress',array($rowArray,$sponsorships));
     }
 
     public function paymentTest1(){
         $this->view('sponsor/payments/paymentForm');
     }
 
-//    public function checkoutPayment(){
-//        $return_url = "http://sample.com/return";
-//        $cancel_url = "http://sample.com/cancel";
-//        $notify_url = "http://sample.com/notify";
-//
-//        $hash = hashDetails($_POST['order_id'], $_POST['amount'], $_POST['currency']);
-//
-//        $data = array(
-//            'merchant_id' => $_ENV['MERCHANT_ID'],
-//            'return_url' => $return_url,
-//            'cancel_url' => $cancel_url,
-//            'notify_url' => $notify_url,
-//            'first_name' => $_POST['first_name'],
-//            'last_name' => $_POST['last_name'],
-//            'email' => $_POST['email'],
-//            'phone' => $_POST['phone'],
-//            'address' => $_POST['address'],
-//            'city' => $_POST['city'],
-//            'country' => "Sri Lanka",
-//            'order_id' => $_POST['order_id'],
-//            'items' => $_POST['items'],
-//            'currency' => $_POST['currency'],
-//            'amount' => $_POST['amount'],
-//            'hash' => $hash
-//        );
-//
-//        // Initialize curl
-//        $curl = curl_init();
-//
-//        // Set the options for the POST request
-//        curl_setopt($curl, CURLOPT_URL, CheckoutURL);
-//        curl_setopt($curl, CURLOPT_POST, true);
-//        curl_setopt($curl, CURLOPT_POSTFIELDS, http_build_query($data));
-//        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-//
-//        curl_setopt($curl, CURLOPT_FOLLOWLOCATION, true);
-//        curl_setopt($curl, CURLOPT_POSTREDIR, CURL_REDIR_POST_ALL);
-//
-//        header('Location: ' . curl_exec($curl));
-//
-//        curl_close($curl);
-//    }
     public function paymentTest(){
-        $this->view('sponsor/payments/paymentForm2');
+        $res = $this->model("payments")->hasPaymentDetails($_SESSION['id']);
+        $this->view('sponsor/payments/paymentForm2',array($res));
     }
 
     public function paymentDone(){
@@ -119,6 +183,10 @@ class Sponsor extends Controller
             flashMessage("invalid operation");
         }
         header("location:".BASEURL."sponsor/profile");
+    }
+
+    public function createBill(){
+        
     }
 
 }

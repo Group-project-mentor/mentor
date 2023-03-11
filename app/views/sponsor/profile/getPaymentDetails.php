@@ -101,7 +101,7 @@
                                 </label>
                             </div>
                         </div>
-                        <div class="rc-upload-button" style="">
+                        <div class="rc-upload-button">
                             <button type="submit" name="submit" col="200" id="payhere-payment" style="margin:10px auto;width: 100%;">
                                 Save
                             </button>

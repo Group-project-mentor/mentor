@@ -9,6 +9,8 @@
     <title>Quizzes</title>
     <link rel="stylesheet" href="<?php echo BASEURL ?>stylesheets/Student/style.css">
     <link rel="stylesheet" href="<?php echo BASEURL ?>stylesheets/Student/st_resources.css">
+    <link rel="stylesheet" href="<?php echo BASEURL . '/public/stylesheets/resourceCreator/rc_main.css' ?> ">
+    <link rel="stylesheet" href="<?php echo BASEURL . '/public/stylesheets/resourceCreator/rc_resources.css' ?> ">
 </head>
 
 <body>
@@ -47,11 +49,11 @@
                 <div class="mid-title">
                     <?php
                     $ggid = $_SESSION['gid'] + 5;
-                    
+
                     // add grade to path printing 
-                    if($_SESSION['sid'] == 1)         
-                        $ssid = 'Mathematics' ; ?>
-                    <h1><?php echo "Grade ".$ggid." - ".ucfirst($ssid) ?></h1>
+                    if ($_SESSION['sid'] == 1)
+                        $ssid = 'Mathematics'; ?>
+                    <h1><?php echo "Grade " . $ggid . " - " . ucfirst($ssid) ?></h1>
                     <h6>My Subjects / <?php echo ucfirst($_SESSION['sid']) ?> / quizzes</h6>
                 </div>
 
@@ -59,38 +61,16 @@
                 <div class="container-box">
 
                     <div class="rc-resource-table">
-                        <div class="rc-resource-row rc-resource-row-head">
-                            <div class="rc-resource-col">Quiz Name</div>
-                            <div class="rc-resource-col">Part</div>
 
-                            <div></div>
-                        </div>
-                        <!-- temporary date hard code -->
-
-                        <!-- <div class="rc-resource-row">
-                            <div class="rc-resource-col">Genaral </div>
-                            <div class="rc-resource-col">1</div>
-                            <div class="rc-quiz-row-btns">
-                                
-                                <a href="<?php echo BASEURL ?>st_quizzes/st_quizzes_do">
-                                    <img src="<?php echo BASEURL ?>assets/icons/Interface Arrows Button Down Double by Streamlinehq.png" alt="">
-                                </a>
-                                <button>
-                                    <img src="<?php echo BASEURL ?>assets/icons/icon_edit.png" alt="">
-                                </button>
-                            </div>
-                        </div> -->
 
                         <section class="quiz-card-list">
                             <?php
                             if (!empty($data[0])) {
                                 foreach ($data[0] as $row) {
-                                    $approval = $this->approvedGenerator($row->approved);
+
                             ?>
                                     <div class="quiz-card-main">
-                                        <div style="position: absolute;left: 3px;bottom: 3px;">
-                                            <img src='<?php echo BASEURL . "assets/icons/" . $approval ?>' alt='' class="resource-approved-sign">
-                                        </div>
+
                                         <div class="quiz-card-title">
                                             <?php echo $row->name ?>
                                         </div>
@@ -103,18 +83,10 @@
                                             </div>
                                         </div>
                                         <div class="quiz-card-button-set">
-                                            <?php if ($this->isCreatedBy($row->creator_id)) { ?>
-
-                                                <a class="quiz-card-btn" onclick='delConfirm(<?php echo $row->id ?>,2)'>
-                                                    <img src='<?php echo BASEURL . "assets/icons/icon_delete.png" ?>' alt=''>
-                                                </a>
-                                                <a class="quiz-card-btn" href="<?php echo BASEURL . 'quiz/questions/' . $row->id ?>">
-                                                    <img src='<?php echo BASEURL . "assets/icons/icon_edit.png" ?>' alt=''>
-                                                </a>
-
-                                            <?php } ?>
-                                            <a class="quiz-card-btn" href="<?php echo BASEURL . 'quizPreview/instructions/' . $row->id ?>">
-                                                <img src='<?php echo BASEURL . "assets/icons/icon_eye.png" ?>' alt=''>
+                                            <a class="quiz-card-btn" href="<?php echo BASEURL . 'st_quizzes/st_quizzes_do/' . $row->id ?>">
+                                                <div class="back-btn">
+                                                    View
+                                                </div>
                                             </a>
                                         </div>
                                     </div>
@@ -130,20 +102,21 @@
 
                 </div>
 
-                
-                <?php if(count($data[0]) > 25){ ?>
-                <div class="pagination-set">
-                    <div class="pagination-set-left">
-                        <b>25</b> Results
-                    </div>
-                    <div class="pagination-set-right">
-                        <button> < </button>
-                        <div class="pagination-numbers">
-                            1 of 10
+
+                <?php if (count($data[0]) > 25) { ?>
+                    <div class="pagination-set">
+                        <div class="pagination-set-left">
+                            <b>25</b> Results
                         </div>
-                        <button> > </button>
+                        <div class="pagination-set-right">
+                            <button>
+                                < </button>
+                                    <div class="pagination-numbers">
+                                        1 of 10
+                                    </div>
+                                    <button> > </button>
+                        </div>
                     </div>
-                </div>
                 <?php } ?>
         </div>
     </section>

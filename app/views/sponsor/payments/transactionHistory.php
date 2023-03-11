@@ -128,127 +128,57 @@
                     <div class="sponsor-list-main row-decoration">
                         <div class="sponsor-list-row">
                             <div class="sponsor-list-item sponsor-list-item-title flex-1">
-                                Number
+                                Pay No
                             </div>
-                            <div class="sponsor-list-item sponsor-list-item-title flex-3">
-                                Receiver
-                            </div>
-                            <div class="sponsor-list-item sponsor-list-item-title flex-3">
-                                Account No
-                            </div>
-                            <div class="sponsor-list-item sponsor-list-item-title flex-2">
+                            <div class="sponsor-list-item sponsor-list-item-title flex-1">
                                 Date
                             </div>
                             <div class="sponsor-list-item sponsor-list-item-title flex-1">
                                 Time
                             </div>
-                            <div class="sponsor-list-item sponsor-list-item-title flex-2">
+                            <div class="sponsor-list-item sponsor-list-item-title flex-1">
+                                Currency
+                            </div>
+                            <div class="sponsor-list-item sponsor-list-item-title flex-1">
                                 Amount
                             </div>
-                        </div>
+                            <div class="sponsor-list-item sponsor-list-item-title flex-1">
 
-                        <div class="sponsor-list-row">
-                            <div class="sponsor-list-item flex-1">
-                                01
-                            </div>
-                            <div class="sponsor-list-item flex-3">
-                                Mr.Kamal Kumara
-                            </div>
-                            <div class="sponsor-list-item flex-3">
-                                5566-8898-0999
-                            </div>
-                            <div class="sponsor-list-item flex-2">
-                                09/10/2020
-                            </div>
-                            <div class="sponsor-list-item flex-1">
-                                20:00
-                            </div>
-                            <div class="sponsor-list-item flex-2">
-                                Rs: 2000.00
                             </div>
                         </div>
-
+                        <?php if(empty($data[0])){ ?>
+                            <div class="sponsor-list-row">
+                                <div class="sponsor-list-item flex-1">
+                                    NO DATA TO SHOW
+                                </div>
+                            </div>
+                        <?php } else {
+                            foreach ($data[0] as $row){
+                                $dateTime = explode(" ",$row->timestamp);
+                            ?>
                         <div class="sponsor-list-row">
                             <div class="sponsor-list-item flex-1">
-                                02
-                            </div>
-                            <div class="sponsor-list-item flex-3">
-                                Mr.Kamal Kumara
-                            </div>
-                            <div class="sponsor-list-item flex-3">
-                                5566-8898-0999
-                            </div>
-                            <div class="sponsor-list-item flex-2">
-                                09/10/2020
+                                <?php echo $row->paymentId ?>
                             </div>
                             <div class="sponsor-list-item flex-1">
-                                20:00
+                                <?php echo $dateTime[0] ?>
                             </div>
-                            <div class="sponsor-list-item flex-2">
-                                Rs: 2000.00
+                            <div class="sponsor-list-item flex-1">
+                                <?php echo $dateTime[1] ?>
+                            </div>
+                            <div class="sponsor-list-item flex-1">
+                                <?php echo $row->currency ?>
+                            </div>
+                            <div class="sponsor-list-item flex-1">
+                                <?php echo number_format($row->amount, 2, '.', '') ?>
+                            </div>
+                            <div class="sponsor-list-item flex-1">
+                                <a href="http://localhost:8080" style="text-decoration: none;color: #056d36;">
+                                    See details >
+                                </a>
                             </div>
                         </div>
-
-                        <div class="sponsor-list-row">
-                            <div class="sponsor-list-item flex-1">
-                                03
-                            </div>
-                            <div class="sponsor-list-item flex-3">
-                                Mr.Kamal Kumara
-                            </div>
-                            <div class="sponsor-list-item flex-3">
-                                5566-8898-0999
-                            </div>
-                            <div class="sponsor-list-item flex-2">
-                                09/10/2020
-                            </div>
-                            <div class="sponsor-list-item flex-1">
-                                20:00
-                            </div>
-                            <div class="sponsor-list-item flex-2">
-                                Rs: 2000.00
-                            </div>
-                        </div>
-                        <div class="sponsor-list-row">
-                            <div class="sponsor-list-item flex-1">
-                                03
-                            </div>
-                            <div class="sponsor-list-item flex-3">
-                                Mr.Kamal Kumara
-                            </div>
-                            <div class="sponsor-list-item flex-3">
-                                5566-8898-0999
-                            </div>
-                            <div class="sponsor-list-item flex-2">
-                                09/10/2020
-                            </div>
-                            <div class="sponsor-list-item flex-1">
-                                20:00
-                            </div>
-                            <div class="sponsor-list-item flex-2">
-                                Rs: 2000.00
-                            </div>
-                        </div>
-                        <div class="sponsor-list-row">
-                            <div class="sponsor-list-item flex-1">
-                                03
-                            </div>
-                            <div class="sponsor-list-item flex-3">
-                                Mr.Kamal Kumara
-                            </div>
-                            <div class="sponsor-list-item flex-3">
-                                5566-8898-0999
-                            </div>
-                            <div class="sponsor-list-item flex-2">
-                                09/10/2020
-                            </div>
-                            <div class="sponsor-list-item flex-1">
-                                20:00
-                            </div>
-                            <div class="sponsor-list-item flex-2">
-                                Rs: 2000.00
-                            </div>
-                        </div>
+                        <?php }} ?>
                     </div>
                 </div>
             </div>

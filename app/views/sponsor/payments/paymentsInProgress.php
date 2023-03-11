@@ -10,6 +10,8 @@
     <link rel="stylesheet" href="<?php echo BASEURL?>public/stylesheets/resourceCreator/rc_main.css">
     <link rel="stylesheet" href="<?php echo BASEURL?>public/stylesheets/resourceCreator/rc_resources.css">
     <link rel="stylesheet" href="<?php echo BASEURL . '/public/stylesheets/sponsor/sp_styles.css' ?> ">
+    <script defer src="<?php echo BASEURL ?>javascripts/spPaymentProgress.js"> </script>
+
 </head>
 
 <body>
@@ -63,125 +65,57 @@
                 <div style="margin-top: 30px;">
                     <div class="sponsor-list-main row-decoration">
                         <div class="sponsor-list-row">
-                            <div class="sponsor-list-item sponsor-list-item-title flex-1">
-                                Number
-                            </div>
-                            <div class="sponsor-list-item sponsor-list-item-title flex-3">
-                                Receiver
-                            </div>
-                            <div class="sponsor-list-item sponsor-list-item-title flex-3">
-                                Account No
-                            </div>
-                            <div class="sponsor-list-item sponsor-list-item-title flex-2">
-                                Date
+                            <div class="sponsor-list-item sponsor-list-item-title flex-1" style="display:flex;flex-direction: column;align-items: center;justify-content: center;">
+                                <label style="font-size: smaller;margin-bottom: 10px;">all</label>
+                                <input id="chkAll" type="checkbox" class="save-info-check-main">
                             </div>
                             <div class="sponsor-list-item sponsor-list-item-title flex-1">
-                                Time
+                                Student ID
+                            </div>
+                            <div class="sponsor-list-item sponsor-list-item-title flex-3">
+                                Name
                             </div>
                             <div class="sponsor-list-item sponsor-list-item-title flex-2">
-                                Amount
+                                Year
+                            </div>
+                            <div class="sponsor-list-item sponsor-list-item-title flex-2">
+                                Month
+                            </div>
+                            <div class="sponsor-list-item sponsor-list-item-title flex-2">
+                                Amount [LKR]
                             </div>
                         </div>
+                        <?php if(empty($data[0])){ ?>
+                            <div class="sponsor-list-row">
+                                <div class="sponsor-list-item flex-1">
+                                    NO DATA TO SHOW
+                                </div>
+                            </div>
+                        <?php } else {
+                            foreach ($data[0] as $row){
+                        ?>
                         <div class="sponsor-list-row">
-                            <div class="sponsor-list-item flex-1">
-                                01
-                            </div>
-                            <div class="sponsor-list-item flex-3">
-                                Mr.Kamal Kumara
-                            </div>
-                            <div class="sponsor-list-item flex-3">
-                                5566-8898-0999
-                            </div>
-                            <div class="sponsor-list-item flex-2">
-                                09/10/2020
+                            <div class="sponsor-list-item sponsor-list-item-title flex-1">
+                                <input type="checkbox"  class="save-info-check" >
                             </div>
                             <div class="sponsor-list-item flex-1">
-                                20:00
+                                <?php echo $row["student_id"] ?>
+                            </div>
+                            <div class="sponsor-list-item flex-3">
+                                <?php echo $row["name"] ?>
                             </div>
                             <div class="sponsor-list-item flex-2">
-                                Rs: 2000.00
+                                <?php echo $row["year"] ?>
+                            </div>
+                            <div class="sponsor-list-item flex-2">
+                                <?php echo getMonthName($row["month"]) ?>
+                            </div>
+                            <div class="sponsor-list-item flex-2 chk-amount">
+                                <?php echo number_format($row['amount'], 2, '.', '') ?>
                             </div>
                         </div>
-                        <div class="sponsor-list-row">
-                            <div class="sponsor-list-item flex-1">
-                                02
-                            </div>
-                            <div class="sponsor-list-item flex-3">
-                                Mr.Kamal Kumara
-                            </div>
-                            <div class="sponsor-list-item flex-3">
-                                5566-8898-0999
-                            </div>
-                            <div class="sponsor-list-item flex-2">
-                                09/10/2020
-                            </div>
-                            <div class="sponsor-list-item flex-1">
-                                20:00
-                            </div>
-                            <div class="sponsor-list-item flex-2">
-                                Rs: 2000.00
-                            </div>
-                        </div>
-                        <div class="sponsor-list-row">
-                            <div class="sponsor-list-item flex-1">
-                                03
-                            </div>
-                            <div class="sponsor-list-item flex-3">
-                                Mr.Kamal Kumara
-                            </div>
-                            <div class="sponsor-list-item flex-3">
-                                5566-8898-0999
-                            </div>
-                            <div class="sponsor-list-item flex-2">
-                                09/10/2020
-                            </div>
-                            <div class="sponsor-list-item flex-1">
-                                20:00
-                            </div>
-                            <div class="sponsor-list-item flex-2">
-                                Rs: 2000.00
-                            </div>
-                        </div>
-                        <div class="sponsor-list-row">
-                            <div class="sponsor-list-item flex-1">
-                                04
-                            </div>
-                            <div class="sponsor-list-item flex-3">
-                                Mr.Kamal Kumara
-                            </div>
-                            <div class="sponsor-list-item flex-3">
-                                5566-8898-0999
-                            </div>
-                            <div class="sponsor-list-item flex-2">
-                                09/10/2020
-                            </div>
-                            <div class="sponsor-list-item flex-1">
-                                20:00
-                            </div>
-                            <div class="sponsor-list-item flex-2">
-                                Rs: 2000.00
-                            </div>
-                        </div>
-                        <div class="sponsor-list-row">
-                            <div class="sponsor-list-item flex-1">
-                                05
-                            </div>
-                            <div class="sponsor-list-item flex-3">
-                                Mr.Kamal Kumara
-                            </div>
-                            <div class="sponsor-list-item flex-3">
-                                5566-8898-0999
-                            </div>
-                            <div class="sponsor-list-item flex-2">
-                                09/10/2020
-                            </div>
-                            <div class="sponsor-list-item flex-1">
-                                20:00
-                            </div>
-                            <div class="sponsor-list-item flex-2">
-                                Rs: 2000.00
-                            </div>
-                        </div>
+
+                        <?php }} ?>
                         <!-- Last Row -->
                         <div class="sponsor-list-row" style="padding: 15px 0;background: rgba(89,89,89,0.92);border-radius: 0 0 10px 10px;">
                             <div class="sponsor-list-item flex-1">
@@ -195,15 +129,18 @@
                             </div>
                             <div class="sponsor-list-item flex-1">
                             </div>
-                            <div class="sponsor-list-item flex-2" style="color: #ffffff;font-size: medium;">
-                                Rs: 10000.00
+                            <div class="sponsor-list-item flex-2" style="color: #ffffff;font-size: medium;" id="totalPrice">
+                                0
                             </div>
                         </div>
                     </div>
                 </div>
 
                 <div style="margin-top: 20px;display: flex;justify-content: flex-end;">
-                    <a href="<?php echo BASEURL.'sponsor/paymentTest' ?>" class="sponsor-button"  style="font-size:large;margin: 0 5px;text-decoration: none;">Pay Total Fund</a>
+                    <a href="<?php echo BASEURL.'sponsor/paymentTest' ?>" class="sponsor-button"  style="font-size:large;margin: 0 5px;text-decoration: none;">
+                        <img src="<?php echo BASEURL?>public/assets/icons/icon_addBill.png" alt="profile" style="width: 25px;">
+                        Add to bill
+                    </a>
                 </div>
 
             </div>

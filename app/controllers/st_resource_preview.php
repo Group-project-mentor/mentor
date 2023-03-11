@@ -18,7 +18,6 @@ class St_resource_preview extends Controller
 
     }
 
-
     public function preview($type, $id)
     {
         switch ($type) {
