@@ -1,3 +1,4 @@
+<link rel="stylesheet" href="<?php echo BASEURL ?>stylesheets/admin/style.css">
 <section class="page">
         <!-- Navigation panel -->
         <nav class="nav-bar" id="nav-bar">
@@ -13,9 +14,8 @@
             </div>
 
 
-           <!-- Navigation buttons -->
-           
-           <div class="nav-links">
+            <!-- Navigation buttons -->
+            <div class="nav-links">
                 <a href="<?php echo BASEURL ?>" class="nav-link">
                     <img class="active" src="<?php echo BASEURL ?>assets/admin/bi_grid-fill.png" alt="dsh">
                     <div class="nav-link-text">Dashboard</div>
@@ -24,7 +24,7 @@
                     <img src="<?php echo BASEURL ?>assets/admin/bi_people-fill.png" alt="hr">
                     <div class="nav-link-text">Human Resource</div>
                 </a>
-                <a href="<?php echo BASEURL ?>admins/verify" class="nav-link">
+                <a href="<?php echo BASEURL ?>adVerification" class="nav-link">
                     <img src="<?php echo BASEURL ?>assets/admin/bi_patch-check-fill.png" alt="vc">
                     <div class="nav-link-text">Verification Center</div>
                 </a>
@@ -64,7 +64,7 @@
                     <a href="#">
                         <img src="<?php echo BASEURL ?>assets/admin/Vector (3).png" alt="notify">
                     </a>
-                    <a href="#">
+                    <a id="profile-btn">
                         <img src="<?php echo BASEURL ?>assets/admin/Ellipse 2.png" alt="profile">
                     </a>
                 </div>
