@@ -81,7 +81,7 @@
                     <a href="#">
                         <img src="<?php echo BASEURL ?>assets/admin/Vector (3).png" alt="notify">
                     </a>
-                    <a href="#">
+                    <a id="profile-btn">
                         <img src="<?php echo BASEURL ?>assets/admin/Ellipse 2.png" alt="profile">
                     </a>
                 </div>
@@ -115,7 +115,7 @@
                         </div>
                         <div class="icons">
                         <div class="addtm">
-                                <a href="<?php echo BASEURL?>adTask"><img src="<?php echo BASEURL?>assets/admin/addmemb.png"></a>
+                                <a href="<?php echo BASEURL?>"><img src="<?php echo BASEURL?>assets/admin/addmemb.png"></a>
                             </div>
 
                             <div class="view">
@@ -132,6 +132,7 @@
             </section>
         </div>
     </section>
+    <?php require_once("C:/xampp/htdocs/mentor/app/views/admin/popup.php"); ?>
 </body>
 
 <script>
@@ -168,6 +169,21 @@
             toggle = true;
         }
     })
+
+    const profileBtn = document.getElementById("profile-btn");
+    const popupMenu = document.getElementById("popup-menu")
+    let toggler = false;
+
+    profileBtn.addEventListener('click', () => {
+        if (toggler) {
+            popupMenu.style.display = "none";
+            toggler = false
+
+        } else {
+            popupMenu.style.display = "flex";
+            toggler = true
+        }
+    });
 
 
 

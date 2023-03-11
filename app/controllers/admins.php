@@ -121,6 +121,111 @@ class admins extends Controller {
 
     }
 
+    public function verify($element = "") {
+
+        sessionValidator();
+        $this->hasLogged();
+
+        if ($element == "") {
+
+            if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            
+            }
+
+            if ($_SERVER['REQUEST_METHOD'] == 'GET') {
+                
+                $this->view('admin/verification');
+
+            }
+        }
+
+        if ($element == "videos") {
+
+            if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            
+            }
+
+            if ($_SERVER['REQUEST_METHOD'] == 'GET') {
+                
+                $this->view('admin/resourceVerificationVideos');
+
+            }
+        }
+
+        if ($element == "quizzes") {
+
+            if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            
+            }
+
+            if ($_SERVER['REQUEST_METHOD'] == 'GET') {
+                
+                $this->view('admin/resourceVerificationQuizzes');
+
+            }
+        }
+
+        if ($element == "pastpappers") {
+
+            if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            
+            }
+
+            if ($_SERVER['REQUEST_METHOD'] == 'GET') {
+                
+                $this->view('admin/resourceVerificationPstppr');
+
+            }
+        }
+
+        if ($element == "pdf") {
+
+            if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            
+            }
+
+            if ($_SERVER['REQUEST_METHOD'] == 'GET') {
+                
+                $this->view('admin/resourceVerificationPdf');
+
+            }
+        }
+
+        if ($element == "others") {
+
+            if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            
+            }
+
+            if ($_SERVER['REQUEST_METHOD'] == 'GET') {
+                
+                $this->view('admin/resourceVerificationOther');
+
+            }
+        }
+
+    }
+
+    public function popup($element = "") {
+
+        sessionValidator();
+        $this->hasLogged();
+
+        if ($element == "") {
+
+            if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            
+            }
+
+            if ($_SERVER['REQUEST_METHOD'] == 'GET') {
+                
+                $this->view('admin/verification');
+
+            }
+        }
+        
+
+    }
 
     
 

@@ -18,6 +18,8 @@
 </nav>
 
 <body>
+    <?php require_once("C:/xampp/htdocs/mentor/app/views/admin/popup.php"); ?>
+    <?php //require("./navbar.php") ?>
     <section class="page">
         <!-- Navigation panel -->
         <nav class="nav-bar" id="nav-bar">
@@ -34,6 +36,7 @@
 
 
            <!-- Navigation buttons -->
+           
            <div class="nav-links">
                 <a href="<?php echo BASEURL ?>" class="nav-link">
                     <img class="active" src="<?php echo BASEURL ?>assets/admin/bi_grid-fill.png" alt="dsh">
@@ -43,7 +46,7 @@
                     <img src="<?php echo BASEURL ?>assets/admin/bi_people-fill.png" alt="hr">
                     <div class="nav-link-text">Human Resource</div>
                 </a>
-                <a href="<?php echo BASEURL ?>adVerification" class="nav-link">
+                <a href="<?php echo BASEURL ?>admins/verify" class="nav-link">
                     <img src="<?php echo BASEURL ?>assets/admin/bi_patch-check-fill.png" alt="vc">
                     <div class="nav-link-text">Verification Center</div>
                 </a>
@@ -102,31 +105,31 @@
                         
                     </div>
                     <div class="resource">
-                        <a href="<?php echo BASEURL ?>adVideoverify" class="resource-link">
+                        <a href="<?php echo BASEURL ?>admins/verify/videos" class="resource-link">
                             <div class="r">
                                 <img src="<?php echo BASEURL ?>assets/admin/videos.png">
                                 <p>Videos</p>
                             </div>
                         </a>
-                        <a href="<?php echo BASEURL ?>adQuizzverify" class="resource-link">
+                        <a href="<?php echo BASEURL ?>admins/verify/quizzes" class="resource-link">
                             <div class="r">
                                 <img src="<?php echo BASEURL ?>assets/admin/Quiz.png">
                                 <p>Quizes</p>
                             </div>
                         </a>
-                        <a href="<?php echo BASEURL ?>adPstpprverify" class="resource-link">
+                        <a href="<?php echo BASEURL ?>admins/verify/pastpappers" class="resource-link">
                             <div class="r">
                                 <img src="<?php echo BASEURL ?>assets/admin/pastppers.png">
                                 <p>Past Papers</p>
                             </div>
                         </a>
-                        <a href="<?php echo BASEURL ?>adPdfsverify" class="resource-link">
+                        <a href="<?php echo BASEURL ?>admins/verify/pdf" class="resource-link">
                             <div class="r">
                                 <img src="<?php echo BASEURL ?>assets/admin/pdf.png">
                                 <p>PDFs</p>
                             </div>
                         </a>
-                        <a href="<?php echo BASEURL ?>adOtherverify" class="resource-link">
+                        <a href="<?php echo BASEURL ?>admins/verify/others" class="resource-link">
                             <div class="r">
                                 <img src="<?php echo BASEURL ?>assets/admin/other.png">
                                 <p>Other</p>
@@ -138,8 +141,9 @@
             </section>
         </div>
     </section>
+        
 </body>
-
+<script src="C:\xampp\htdocs\mentor\public\javascripts\admin\popup.js"></script>
 <script>
     let toggle = true;
 

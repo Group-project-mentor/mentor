@@ -43,8 +43,8 @@
                     <a href="#">
                         <img src="<?php echo BASEURL ?>assets/icons/icon_notify.png" alt="notify">
                     </a>
-                    <a href="<?php echo BASEURL . 'rcProfile' ?>">
-                        <img src="<?php echo BASEURL ?>assets/icons/icon_profile_black.png" alt="profile">
+                    <a id="profile-btn">
+                        <img src="<?php echo BASEURL ?>assets/admin/Ellipse 2.png" alt="profile">
                     </a>
                 </div>
             </section>
@@ -98,6 +98,7 @@
         </div>
 
     </section>
+    <?php require_once("C:/xampp/htdocs/mentor/app/views/admin/popup.php"); ?>
 </body>
 <script>
     let inputBtn = document.getElementById('inputBtn');

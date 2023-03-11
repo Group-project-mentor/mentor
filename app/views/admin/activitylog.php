@@ -86,7 +86,7 @@
                     <a href="#">
                         <img src="<?php echo BASEURL ?>assets/admin/Vector (3).png" alt="notify">
                     </a>
-                    <a href="#">
+                    <a id="profile-btn">
                         <img src="<?php echo BASEURL ?>assets/admin/Ellipse 2.png" alt="profile">
                     </a>
                 </div>

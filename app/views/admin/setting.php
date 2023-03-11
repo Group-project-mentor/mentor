@@ -167,6 +167,7 @@
             </section>
         </div>
     </section>
+    <?php require_once("C:/xampp/htdocs/mentor/app/views/admin/popup.php"); ?>
 </body>
 
 <script>
