@@ -181,7 +181,7 @@
     flex: 1;
     margin: 0 25px;
     align-items: center;
-    max-height: 300px;
+    /*max-height: 300px;*/
     overflow: scroll;
     overflow-x: hidden;
     backdrop-filter: blur(5px);
@@ -216,3 +216,4 @@
 .sponsor-grade-cell{
     padding: 0;
 }
+

@@ -65,9 +65,13 @@
                         <h1>EDIT DOCUMENT</h1>
                     </div>
                 </div>
-                <?php 
-                if(empty($data[0])){ 
-                    echo "<center style='color:red;font-size:x-large;'>You are not authorized to do this action !</center>";
+                <?php
+                if(empty($data[0])){
+                    echo
+                    '<div style="text-align: center;font-size: x-large;color: darkred;">
+                        <br>
+                        You are not authorized to do this action !
+                    </div>';
                 }
                 else{
                 ?>

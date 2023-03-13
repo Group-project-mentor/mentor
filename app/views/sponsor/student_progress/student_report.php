@@ -66,35 +66,49 @@
                 </div>
                 <div class="sponsor-list-main row-decoration">
                     <div class="sponsor-list-row">
-                        <div class="sponsor-list-item sponsor-list-item-title flex-1">
-                            ID
-                        </div>
-                        <div class="sponsor-list-item sponsor-list-item-title flex-2">
-                            Image
-                        </div>
-                        <div class="sponsor-list-item sponsor-list-item-title flex-5">
+<!--                        <div class="sponsor-list-item sponsor-list-item-title flex-1">-->
+<!--                            ID-->
+<!--                        </div>-->
+                        <div class="sponsor-list-item sponsor-list-item-title flex-3">
                             Name
                         </div>
                         <div class="sponsor-list-item sponsor-list-item-title flex-3">
-                            Fund
+                            Email
+                        </div>
+                        <div class="sponsor-list-item sponsor-list-item-title flex-2">
+                            Months Remaining
+                        </div>
+                        <div class="sponsor-list-item sponsor-list-item-title flex-2">
+                            Monthly Amount (Rs.)
                         </div>
                         <div class="sponsor-list-item sponsor-list-item-title flex-1">
 
                         </div>
                     </div>
-
+                    <?php if(empty($data[0])){ ?>
+                        <div class="sponsor-list-row">
+                            <div class="sponsor-list-item flex-1">
+                                NO DATA TO SHOW
+                            </div>
+                        </div>
+                    <?php } else {
+                    foreach ($data[0] as $row){
+                    ?>
                     <div class="sponsor-list-row">
-                        <div class="sponsor-list-item flex-1">
-                            2000
-                        </div>
-                        <div class="sponsor-list-item flex-2">
-                            <img src="<?php echo BASEURL ?>assets/icons/icon_profile_black.png" alt="profile">
-                        </div>
-                        <div class="sponsor-list-item flex-5">
-                            D.K.S.Siriwardhana
+<!--                        <div class="sponsor-list-item flex-1">-->
+<!--                            --><?php //echo $row->id ?>
+<!--                        </div>-->
+                        <div class="sponsor-list-item flex-3">
+                            <?php echo $row->name ?>
                         </div>
                         <div class="sponsor-list-item flex-3">
-                            Rs.2000.00
+                            <?php echo $row->email ?>
+                        </div>
+                        <div class="sponsor-list-item flex-2">
+                            <?php echo $row->fundMonths ?>
+                        </div>
+                        <div class="sponsor-list-item flex-2">
+                           <?php echo number_format($row->monthlyAmount, 2, '.', '') ?>
                         </div>
                         <div class="sponsor-list-item flex-1">
                             <a href="<?php echo BASEURL ?>sponsor/see_student">
@@ -102,6 +116,7 @@
                             </a>
                         </div>
                     </div>
+                    <?php }} ?>
                 </div>
             </section>
 

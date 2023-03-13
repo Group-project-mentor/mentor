@@ -53,7 +53,7 @@
                 <div class="container-box">
                     <div class="rc-resource-header">
                         <h1>PAST PAPERS</h1>
-                        <a href="">
+                        <a href="<?php echo BASEURL?>rcAdd/pastpaper">
                             <div class="rc-add-btn">
                                 Add Pastpaper
                             </div>
@@ -68,18 +68,27 @@
                             <div class="rc-resource-col">Part</div>
                             <div></div>
                         </div>
-                        <?php foreach ($data as $row) { ?>
+                        <?php foreach ($data as $row) {
+                            $approval = $this->approvedGenerator($row->approved);
+                            ?>
                                     <div class='rc-pp-row'>
-                                        <div class='rc-resource-col'><?php echo $row['name'] ?></div>
-                                        <div class='rc-resource-col'><?php echo $row['year'] ?></div>
-                                        <div class='rc-resource-col'><?php echo $row['part'] ?></div>
+                                        <div class='rc-resource-col' style="display: flex;align-items: center;justify-content: flex-start;">
+                                            <img src='<?php echo BASEURL."assets/icons/".$approval ?>' alt='' class="resource-approved-sign">
+                                            <div>
+                                                <?php echo $row->name ?>
+                                            </div>
+                                        </div>
+                                        <div class='rc-resource-col'><?php echo $row->year ?></div>
+                                        <div class='rc-resource-col'><?php echo $row->part ?></div>
                                         <div class='rc-quiz-row-btns'>
-                                            <a onclick='delConfirm(<?php echo $row['id'] ?>,3)'>
+                                            <?php if($this->isCreatedBy($row->creator_id)){ ?>
+                                            <a onclick='delConfirm(<?php echo $row->id ?>,3)'>
                                                 <img src='<?php echo BASEURL ?>assets/icons/icon_delete.png' alt=''>
                                             </a>
-                                            <a href='<?php echo BASEURL."rcEdit/pastpaper/".$row['id']?>' >
+                                            <a href='<?php echo BASEURL."rcEdit/pastpaper/".$row->id ?>' >
                                                 <img src='<?php echo BASEURL ?>assets/icons/icon_edit.png' alt=''>
                                             </a>
+                                            <?php } ?>
                                             <a>
                                                 <img src='<?php echo BASEURL ?>assets/icons/icon_eye.png' alt=''>
                                             </a>

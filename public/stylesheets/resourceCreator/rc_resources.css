@@ -422,9 +422,15 @@
     width: 350px !important;
     height: 150px !important;
 }
+.rc-upload-button{
+    display: flex;
+    justify-content: center;
+    width: 80%;
+    margin: auto;
+}
 
 .rc-upload-button button {
-    padding: 7px 15px;
+    /*padding: 7px 15px;*/
     margin: auto;
     border-radius: 5px;
     border: none;
@@ -453,6 +459,8 @@
     border-radius: 5px;
     transition: 0.5s all;
     cursor: pointer;
+    font-size: small;
+    text-decoration: none;
 }
 .pp-vertical-btn:hover{
     color: green;
@@ -493,6 +501,7 @@
     justify-content: space-evenly;
 }
 .quiz-card-main{
+    position: relative;
     padding: 15px;
     display: flex;
     flex-direction: column;
@@ -577,6 +586,27 @@
     box-shadow: rgba(42, 42, 42, 0.4) 3px 3px 6px 0px inset, rgb(5, 109, 54) -3px -3px 6px 1px inset;
 }
 
+video.rc-uploaded-video{
+    width: 600px;
+    height: 300px;
+}
+
+.resource-approved-sign{
+    width: 20px !important;
+    margin-right: 15px !important;
+}
+
+.rc-form-group-hz{
+    display: flex;
+    margin: 0;
+    padding: 0;
+    flex-wrap: wrap;
+}
+
+.rc-form-group-hz > .rc-form-group{
+    margin: 5px;
+    flex: 1;
+}
 
 /** media queries  */
 
@@ -592,6 +622,11 @@
     .rc-add-btn {
         padding: 8px;
         font-size: small;
+    }
+
+    video.rc-uploaded-video{
+        width: 400px;
+        height: 200px;
     }
 }
 
@@ -667,6 +702,11 @@
         outline: none;
     }
 
+    .rc-form-group [type="email"] {
+        padding: 5px 10px;
+        border: 1px solid rgba(128, 128, 128, 0.345);
+        outline: none;
+    }
 
     .rc-form-group [type="file"] {
         font-size: small;
@@ -680,14 +720,23 @@
 
     .rc-upload-button {
         display: flex;
+        justify-content: center;
+        width: 90%;
     }
 
     .rc-upload-button button {
         padding: 7px 25px;
         margin: 10px auto;
+        margin: auto;
+        margin: 20px;
+
     }
 
     .rc-form-group label {
         margin: 5px;
+    }
+    video.rc-uploaded-video{
+        width: 250px;
+        height: 125px;
     }
 }

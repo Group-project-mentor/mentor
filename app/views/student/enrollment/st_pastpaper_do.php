@@ -7,8 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/x-icon" href="<?php echo BASEURL ?>assets/mentor.ico">
     <title>Past Papers</title>
-    <link rel="stylesheet" href="<?php echo BASEURL?>stylesheets/Student/style.css">
-    <link rel="stylesheet" href="<?php echo BASEURL?>stylesheets/Student/st_resources.css">
+    <link rel="stylesheet" href="<?php echo BASEURL ?>stylesheets/Student/style.css">
+    <link rel="stylesheet" href="<?php echo BASEURL ?>stylesheets/Student/st_resources.css">
 </head>
 
 <body>
@@ -24,33 +24,44 @@
                 <div class="search-bar">
                     <input type="text" name="" id="" placeholder="Search...">
                     <a href="">
-                        <img src="<?php echo BASEURL?>assets/icons/icon_search.png" alt="">
+                        <img src="<?php echo BASEURL ?>assets/icons/icon_search.png" alt="">
                     </a>
                 </div>
                 <div class="top-bar-btns">
-                    <a href="<?php echo BASEURL?>st_pastpapers">
+                    <a href="<?php echo BASEURL . 'st_pastpapers/index/' . $_SESSION['gid'] . '/' . $_SESSION['sid'] ?>">
                         <div class="back-btn">Back</div>
                     </a>
                     <a href="#">
-                        <img src="<?php echo BASEURL?>assets/icons/icon_notify.png" alt="notify">
+                        <img src="<?php echo BASEURL ?>assets/icons/icon_notify.png" alt="notify">
                     </a>
-                    <a href="<?php echo BASEURL?>st_profile">
-                        <img src="<?php echo BASEURL?>assets/icons/icon_profile_black.png" alt="profile">
+                    <a href="<?php echo BASEURL ?>st_profile">
+                        <img src="<?php echo BASEURL ?>assets/icons/icon_profile_black.png" alt="profile">
                     </a>
                 </div>
             </section>
 
-            <!-- Middle part for whole content -->
             <section class="mid-content">
+                <?php
+                if (empty($data)) {
+                    echo "<center style='color:red;font-size:x-large;'>No file ! </center>";
+                    // header("location:".BASEURL."rcResources/documents/".$_SESSION['gid']."/".$_SESSION['sid']);
+                } else {
+                ?>
+                    <!-- Title and sub title of middle part -->
 
-                <!-- Title and sub title of middle part -->
-                <div class="mid-title">
-                    <h2>C79 - Science</h2>
+                    <div class="mid-title">
+                        <h1><?php echo "Grade " . $_SESSION['gname'] . " - " . ucfirst($_SESSION['sname']) ?></h1>
+                        <h6>My Subjects / <?php echo ucfirst($_SESSION['sname']) ?> / past papers</h6>
+                    </div>
                     <br>
                     <hr style=" height:5px ; background-color:green ;">
                     <br>
-                    <embed type="text/html" src="st_courses.html"  width="1000" height="500" style="padding-left: 100px;">
-                <div>
+                    <!-- <embed type="text/html" src="st_courses.html"  width="1000" height="500" style="padding-left: 100px;"> -->
+                    <!-- Grade choosing interface -->
+                    <div class="container-box">
+                        <embed src="<?php echo BASEURL ?>public_resources/pastpapers/<?php echo $_SESSION['gid'] . "/" . $_SESSION['sid'] . "/" . $data->location ?>" style="width:50%;height:70vh;margin:auto;">
+                    </div>
+                <?php } ?>
             </section>
         </div>
     </section>

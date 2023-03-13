@@ -2,7 +2,7 @@
 
 class RcProfile extends Controller
 {
-    private $user = "rc";
+    private string $user = "rc";
     
     public function __construct()
     {

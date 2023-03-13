@@ -21,33 +21,7 @@
             include_once "components/alerts/res_update_failed.php"; 
         }
     ?>
-    <section class="page">
-
-        <!-- Navigation panel -->
-        <?php include_once "components/navbars/rc_nav_2.php" ?>
-
-        <div class="content-area">
-
-            <!-- Top bar -->
-            <section class="top-bar">
-                <div class="search-bar">
-                    <input type="text" name="" id="" placeholder="Search...">
-                    <a href="">
-                        <img src="-icons/icon_search.png" alt="">
-                    </a>
-                </div>
-                <div class="top-bar-btns">
-                    <a href="<?php echo BASEURL .'rcResources/documents/'.$_SESSION['gid']."/".$_SESSION["sid"] ?>">
-                        <div class="back-btn">Back</div>
-                    </a>
-                    <a href="#">
-                        <img src="<?php echo BASEURL ?>assets/icons/icon_notify.png" alt="notify">
-                    </a>
-                    <a href="<?php echo BASEURL . 'rcProfile' ?>">
-                        <img src="<?php echo BASEURL ?>assets/icons/icon_profile_black.png" alt="profile">
-                    </a>
-                </div>
-            </section>
+    <?php require_once("C:/xampp/htdocs/mentor/app/views/admin/navbar.php"); ?>
 
             <!-- Middle part for whole content -->
             <section class="mid-content">
@@ -98,6 +72,7 @@
         </div>
 
     </section>
+    <?php require_once("C:/xampp/htdocs/mentor/app/views/admin/popup.php"); ?>
 </body>
 <script>
     let inputBtn = document.getElementById('inputBtn');

@@ -103,12 +103,9 @@ elseif(isset($_SESSION['message']) && $_SESSION['message']== "error"){
                 </form>
             </div>
     </div>
-    <div id="errerr">
-
-    </div>
-
 </section>
 </body>
+<script src="<?php echo BASEURL?>javascripts/middleFunctions.js"></script>
 <script>
     const uploadForm = document.getElementById('upload-form');
     const uploadBtn = document.getElementById('inputBtn');
@@ -142,6 +139,8 @@ elseif(isset($_SESSION['message']) && $_SESSION['message']== "error"){
             })
     }
 
+// TODO : Should made the cancellation part of the uploading
+
     const uploadFile = () => {
         progressContainer.classList.remove('hidden-toggle');
         progressBar.style.display = 'inline';
@@ -160,21 +159,12 @@ elseif(isset($_SESSION['message']) && $_SESSION['message']== "error"){
         xhr.onreadystatechange = () => {
             if (xhr.readyState === 4 && xhr.status === 200) {
                 // handle the response here
-                document.getElementById('errerr').innerHTML = xhr.responseText;
+                // document.getElementById('errerr').innerHTML = xhr.responseText;
             }
         };
 
         let formData = new FormData(uploadForm);
         xhr.send(formData);
-    }
-
-    const converter = (val) => {
-        if(val < 1000)
-            return Math.round(inputBtn.files[0].size)+" B";
-        else if(val/1024 < 1000)
-            return Math.round((inputBtn.files[0].size)/1024)+" KB";
-        else if(val/(1024*1024) < 1000)
-            return Math.round((inputBtn.files[0].size)/(1024*1024))+" MB";
     }
 </script>
 </html>

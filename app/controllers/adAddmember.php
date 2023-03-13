@@ -1,6 +1,6 @@
 <?php
 
-class AdTask extends Controller{
+class AdAddmember extends Controller{
     public function __construct()
     {
         // sessionValidator();
@@ -8,8 +8,7 @@ class AdTask extends Controller{
 
     public function index()
     {
-        //sessionValidator();        
-        $this->view('admin/task');
+        $this->view('admin/addMemberTeam');
     }
 
 }

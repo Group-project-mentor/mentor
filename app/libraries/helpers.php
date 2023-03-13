@@ -40,6 +40,83 @@ function flashMessage($message=null){
     }
 }
 
+// ? Create a folder and save the file
+function saveFile($tempLocation ,$fileName, $type, $folder1=null, $folder2=null): bool
+{
+    $fileDest = findFileDest($type, $folder1, $folder2, $fileName);
+    if(!file_exists($fileDest)){
+        if($type == "videos") {
+            return rename($tempLocation, $fileDest);
+        }else{
+            return move_uploaded_file($tempLocation, $fileDest);
+        }
+    }else{
+        return false;
+    }
+}
+
+function updateFile($tempLocation, $newFileName, $oldFileName, $type, $folder1=null, $folder2=null): bool
+{
+    $flag = saveFile($tempLocation, $newFileName, $type, $folder1, $folder2);
+    $fileDest = findFileDest($type, $folder1, $folder2, $oldFileName);
+    if(file_exists($fileDest)){
+        return ($flag and unlink($fileDest));
+    }else{
+        return false;
+    }
+}
+
+function findFileDest($type, $folder1, $folder2, $fileName): string
+{
+    $fileDest = "public_resources/$type/";
+    if ($folder1 != null) {
+        $fileDest = $fileDest . $folder1;
+        if (!is_dir($fileDest)) {
+            mkdir($fileDest);
+        }
+        $fileDest = $fileDest . "/";
+        if ($folder2 != null) {
+            $fileDest = $fileDest . $folder2;
+            if (!is_dir($fileDest)) {
+                mkdir($fileDest);
+            }
+            $fileDest = $fileDest . "/";
+        }
+    }
+    return $fileDest . $fileName;
+}
+
+function deleteFile($fileName, $type, $folder1=null, $folder2=null):bool
+{
+    $fileDest = "public_resources/$type/";
+    if($folder1!=null){
+        if ($folder2 != null){
+            $fileDest = $fileDest.$folder1."/".$folder2."/".$fileName;
+            if(!file_exists($fileDest)){
+                return unlink($fileDest);
+            }else{
+                return false;
+            }
+        }
+        $fileDest = $fileDest.$folder1."/".$fileName;
+        if(!file_exists($fileDest)){
+            return unlink($fileDest);
+        }else{
+            return false;
+        }
+    }
+    $fileDest = $fileDest.$fileName;
+    if(!file_exists($fileDest)){
+        return unlink($fileDest);
+    }else{
+        return false;
+    }
+}
+
+function getMonthName($monthNumber) {
+    return date("F", mktime(0, 0, 0, $monthNumber, 1));
+}
+
 function tempFileRemover(){
 //    if (session_status() == PHP_SESSION_NONE) {
 //        session_start();

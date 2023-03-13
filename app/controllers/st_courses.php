@@ -8,21 +8,24 @@ class St_courses extends Controller
         $this->hasLogged();
     }
 
-    public function index()
+    public function index($gid)
     {
-        $res=$this->model('st_courses_model')->getClasses();
-        $res2=$this->model('st_courses_model')->getClasses2();
+        $_SESSION['gid'] = $gid;
+        echo $_SESSION['gid'];
+        $res=$this->model('st_courses_model')->getClasses($gid);
+        $res2=$this->model('st_courses_model')->getClasses2($gid, $_SESSION['id']);
         $this->view('student/enrollment/st_courses',array($res,$res2));
     }
 
-    public function Enroll_subject_all(){
-        $res=$this->model('st_enrolled_subject_model')->getClasses2();
-        $this->view('student/enrollment/st_enrolled_subject',$res);
+    public function Enroll_subject_all($gid)
+    {
+        $res=$this->model('st_courses_model')->getClasses3($gid, $_SESSION['id']);
+        $this->view('student/enrollment/st_enrolled_subject', array($res));
     }
 
-    public function Subject_to_Enroll_all(){
-        $res=$this->model('st_subject_to_enroll_model')->getClasses();
-        $this->view('student/enrollment/st_subject_to_enroll',$res);
+    public function Subject_to_Enroll_all($gid){
+        $res=$this->model('st_courses_model')->getClasses4($gid, $_SESSION['id']);
+        $this->view('student/enrollment/st_subject_to_enroll',array($res));
     }
 
     public function Enroll_records($gid, $sid)

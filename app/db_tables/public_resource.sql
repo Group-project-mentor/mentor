@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1:3306
--- Generation Time: Jan 09, 2023 at 11:52 PM
--- Server version: 5.7.36
--- PHP Version: 7.4.26
+-- Host: 127.0.0.1
+-- Generation Time: Mar 02, 2023 at 05:51 PM
+-- Server version: 10.4.25-MariaDB
+-- PHP Version: 8.1.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -27,25 +27,65 @@ SET time_zone = "+00:00";
 -- Table structure for table `public_resource`
 --
 
-DROP TABLE IF EXISTS `public_resource`;
-CREATE TABLE IF NOT EXISTS `public_resource` (
-  `id` int(100) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `public_resource` (
+  `id` int(100) NOT NULL,
   `type` varchar(10) NOT NULL,
   `location` varchar(200) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=34 DEFAULT CHARSET=latin1;
+  `approved` varchar(1) DEFAULT NULL,
+  `approved_by` int(10) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `public_resource`
 --
 
-INSERT INTO `public_resource` (`id`, `type`, `location`) VALUES
-(3, 'other', '6385b4a76a1a4_9.pdf'),
-(4, 'other', '63865e7ebc0ea_pexels-johannes-plenio-1136454.jpg'),
-(19, 'other', '639f400636560hello.py'),
-(14, 'pdf', '639b5227ae9f0This is sample.pdf'),
-(17, 'pdf', '639b5814183b8Helo.pdf'),
-(16, 'other', '639b52e0e4469hello.png');
+INSERT INTO `public_resource` (`id`, `type`, `location`, `approved`, `approved_by`) VALUES
+(4, 'other', '63865e7ebc0ea_pexels-johannes-plenio-1136454.jpg', NULL, NULL),
+(7, 'quiz', NULL, NULL, NULL),
+(19, 'other', '639f400636560hello.py', NULL, NULL),
+(62, 'pdf', '63eca06f8cd64adasd.pdf', NULL, NULL),
+(64, 'other', '63ee72cea84cellkll.exe', NULL, NULL),
+(73, 'pdf', '63f33cfbc423ddadf.pdf', NULL, NULL),
+(75, 'quiz', NULL, NULL, NULL),
+(76, 'video', NULL, NULL, NULL),
+(77, 'video', NULL, NULL, NULL),
+(78, 'video', NULL, NULL, NULL),
+(79, 'paper', '63fcce0860797hhh.pdf', NULL, NULL),
+(80, 'other', '63ffa22a83df4sdfgsd.png', NULL, NULL),
+(81, 'pdf', '640052228e4e3cbvb.pdf', 'Y', NULL),
+(82, 'quiz', NULL, NULL, NULL),
+(83, 'quiz', NULL, NULL, NULL);
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `public_resource`
+--
+ALTER TABLE `public_resource`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `approved_by` (`approved_by`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `public_resource`
+--
+ALTER TABLE `public_resource`
+  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=84;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `public_resource`
+--
+ALTER TABLE `public_resource`
+  ADD CONSTRAINT `public_resource_ibfk_1` FOREIGN KEY (`approved_by`) REFERENCES `admin` (`admin_id`) ON DELETE SET NULL ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -16,7 +16,9 @@
                         case 'pdf':
                             echo BASEURL."rcResources/documents/".$_SESSION['gid']."/".$_SESSION['sid'];
                             break;
-                    }?>">OK</a>
+                    } ?>">
+                OK
+            </a>
         </div>
     </div>
 </div>

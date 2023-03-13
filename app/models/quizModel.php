@@ -2,7 +2,7 @@
 
 class quizModel extends Model
 {
-    public function createQuiz($name, $marks, $id, $grade, $subject)
+    public function createQuiz($name, $marks, $id, $grade, $subject,$creator)
     {
         if ($id != null) {
             $stmt = $this->prepare("insert into quiz(id, name, marks) values (?,?,?)");
@@ -11,7 +11,7 @@ class quizModel extends Model
             $stmt = $this->prepare("insert into quiz(name, marks) values (?,?)");
             $stmt->bind_param('si', $name, $marks);
         }
-        return ($this->addResource($id, $grade, $subject, null, 'quiz') && $stmt->execute());
+        return ($this->addResource($id, $grade, $subject, null, 'quiz',$creator) && $stmt->execute());
     }
 
     public function getQuizData($id)
@@ -23,6 +23,20 @@ class quizModel extends Model
         } else {
             return array(0);
         }
+    }
+
+    public function getQuiz( $id, $grade, $subject)
+    {
+        $stmt = $this->prepare("SELECT quiz.id, quiz.name, quiz.marks, quiz.questions FROM quiz,public_resource WHERE quiz.id = public_resource.id AND quiz.id = ? and 
+                public_resource.id IN (SELECT rsrc_id FROM `rs_subject_grade` WHERE subject_id= ? AND grade_id= ?)");
+        $stmt->bind_param('iii',$id,$subject, $grade);
+        return $this->fetchOneObj($stmt);
+    }
+    public function editQuiz( $id, $name, $marks)
+    {
+        $stmt = $this->prepare("UPDATE quiz SET quiz.name=? , quiz.marks=? WHERE quiz.id = ? ");
+        $stmt->bind_param('sii', $name,$marks, $id);
+        return $this->executePrepared($stmt);
     }
 
     public function getQuestionData($quiz, $qno)
@@ -157,13 +171,13 @@ class quizModel extends Model
         return $stmt->execute();
     }
 
-    private function addResource($id, $grade, $subject, $file, $type)
+    private function addResource($id, $grade, $subject, $file, $type,$creator)
     {
-        $sql1 = "insert into public_resource values ($id ,'$type', '$file')";
+        $sql1 = "insert into public_resource values ($id ,'$type', '$file',NULL,NULL)";
         if (empty($file)) {
             $sql1 = "insert into public_resource(id, type) values ($id ,'$type')";
         }
-        $sql2 = "insert into rs_subject_grade values ($id ,$subject ,$grade)";
+        $sql2 = "insert into rs_subject_grade values ($id ,$subject ,$grade,$creator)";
         return ($this->executeQuery($sql1) && $this->executeQuery($sql2));
     }
 

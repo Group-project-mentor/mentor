@@ -80,6 +80,24 @@
     font-size: medium;
 }
 
+select.grade-chooser{
+    width: 100%;
+    padding: 5px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    border: 1px solid rgba(3, 66, 30, 0.29);
+    border-radius: 5px 5px 0 0;
+    background-color: rgba(6, 79, 34, 0.11);
+    transition: border-bottom-color 0.25s ease-in-out;
+}
+
+select.grade-chooser>option{
+    background-color: white;
+    color: black;
+    padding: 12px 20px;
+    border: none;
+    transition: background-color 0.25s ease-in-out;
+}
 
 
 @media screen and (max-width:720px) {
@@ -89,6 +107,20 @@
 
     .subject-card label:nth-of-type(2) {
         font-size: small;
+    }
+
+    select.grade-chooser{
+        padding: 5px;
+        margin: 8px 0;
+    }
+
+    select.grade-chooser>option{
+        background-color: white;
+        font-size: small;
+        color: black;
+        padding: 5px ;
+        border: none;
+        transition: background-color 0.25s ease-in-out;
     }
 }
 
@@ -100,6 +132,20 @@
 
     .subject-card label:nth-of-type(2) {
         font-size: x-small;
+    }
+    select.grade-chooser{
+        width: 100%;
+        padding: 5px;
+        margin: 8px 0;
+    }
+
+    select.grade-chooser>option{
+        background-color: white;
+        font-size: small;
+        color: black;
+        padding: 5px ;
+        border: none;
+        transition: background-color 0.25s ease-in-out;
     }
 }
 

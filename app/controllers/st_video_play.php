@@ -2,20 +2,28 @@
 
 class St_video_play extends Controller
 {
+    public function __construct(){
+        sessionValidator();
+        //$this->hasLogged();
+    }
+
     public function index()
     {
-        sessionValidator();
-        $this->hasLogged();
         $this->view('student/enrollment/st_video_play');
     }
 
     public function preview($type, $id)
     {
+
+       // echo $_SESSION['gid'];
         switch ($type) {
             case 'video':
-                $file = $this->model("resourceModel")->getResource($id, $_SESSION['gid'], $_SESSION['sid'], 'video');
-                $resourceData = $this->model("resourceModel")->getVideo($id);
-                $resourceData[4] = $this->filterVideoId($resourceData[4]);
+                $file = $this->model("st_public_model")->getResource($id, $_SESSION['gid'], $_SESSION['sid'], 'video');
+                
+                $resourceData = $this->model("st_public_model")->getVideo($id,$_SESSION['sid'],$_SESSION['gid']);
+                //var_dump($resourceData);
+                if($resourceData->type === "L")
+                    $resourceData->link = $this->filterVideoId($resourceData->link);
                 $this->view("student/enrollment/st_video_play", array($file, $resourceData));
                 break;
         }
@@ -37,10 +45,4 @@ class St_video_play extends Controller
     }
 
 
-    private function hasLogged()
-    {
-        if (!isset($_SESSION['user'])) {
-            header("location:" . BASEURL . "login");
-        }
-    }
 }

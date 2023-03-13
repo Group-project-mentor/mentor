@@ -28,7 +28,7 @@
                     </a>
                 </div>
                 <div class="top-bar-btns">
-                    <a href="<?php echo BASEURL ?>st_documents">
+                    <a href="<?php echo BASEURL.'st_documents/index/'.$_SESSION['gid'].'/'.$_SESSION['sid']?>">
                         <div class="back-btn">Back</div>
                     </a>
                     <a href="#">
@@ -42,10 +42,18 @@
 
             <!-- Middle part for whole content -->
             <section class="mid-content">
-
-                <!-- Title and sub title of middle part -->
+            <?php
+            if(empty($data)){
+                echo "<center style='color:red;font-size:x-large;'>No file ! </center>";
+                // header("location:".BASEURL."rcResources/documents/".$_SESSION['gid']."/".$_SESSION['sid']);
+            }
+            else{
+            ?>
                 <div class="mid-title">
-                    <h2>C79 - Science</h2>
+                    <?php 
+                    $ssid = 'sinhala'; ?>
+                    <h6>My Subjects / <?php echo ucfirst($ssid) ?> / documents / <?php echo $_SESSION['gid'] ?></h6>
+                </div>
                     <br>
                     <hr style=" height:5px ; background-color:green ;">
                     <br>
@@ -53,11 +61,12 @@
                         <p>Click on the image to download Document : </p>
                         <p>
                             <br>
-                            <a href="st_other.php" download>
+                            <a href="<?php echo BASEURL?>public_resources/documents/<?php echo $_SESSION['gid']."/".$_SESSION['sid']."/".$data->location ?>" download>
                                 <img src="<?php echo BASEURL ?>assets/icons/External_Download_by_Streamlinehq.png" alt="downloard">
                             </a>
                         </p>
                     </div>
+                    <?php } ?>
             </section>
         </div>
     </section>
