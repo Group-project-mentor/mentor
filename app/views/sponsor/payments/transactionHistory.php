@@ -137,9 +137,6 @@
                                 Time
                             </div>
                             <div class="sponsor-list-item sponsor-list-item-title flex-1">
-                                Currency
-                            </div>
-                            <div class="sponsor-list-item sponsor-list-item-title flex-1">
                                 Amount
                             </div>
                             <div class="sponsor-list-item sponsor-list-item-title flex-1">
@@ -167,13 +164,10 @@
                                 <?php echo $dateTime[1] ?>
                             </div>
                             <div class="sponsor-list-item flex-1">
-                                <?php echo $row->currency ?>
+                                <?php echo $row->currency ?> <?php echo number_format($row->amount, 2, '.', '') ?>
                             </div>
                             <div class="sponsor-list-item flex-1">
-                                <?php echo number_format($row->amount, 2, '.', '') ?>
-                            </div>
-                            <div class="sponsor-list-item flex-1">
-                                <a href="http://localhost:8080" style="text-decoration: none;color: #056d36;">
+                                <a href="<?php echo BASEURL.'sponsor/slip/payment/'.$row->id ?>" style="text-decoration: none;color: #056d36;">
                                     See details >
                                 </a>
                             </div>
