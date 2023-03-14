@@ -52,7 +52,7 @@
                 <div class="mid-title">
                     <?php 
                     $ssid = 'sinhala'; ?>
-                    <h6>My Subjects / <?php echo ucfirst($ssid) ?> / Other documents / <?php echo $_SESSION['gid'] ?></h6>
+                    <h6>My Subjects / <?php echo ucfirst($ssid) ?> / Past Papers / <?php echo $_SESSION['gid'] ?></h6>
                 </div>
                     <br>
                     <hr style=" height:5px ; background-color:green ;">
@@ -61,7 +61,7 @@
                         <p>Click on the image to download Past Paper : </p>
                         <p>
                             <br>
-                            <a href="<?php echo BASEURL?>public_resources/others/<?php echo $_SESSION['gid']."/".$_SESSION['sid']."/".$data->location ?>" download>
+                            <a href="<?php echo BASEURL?>public_resources/pastpapers/<?php echo $_SESSION['gid']."/".$_SESSION['sid']."/".$data->location ?>" download>
                                 <img src="<?php echo BASEURL ?>assets/icons/External_Download_by_Streamlinehq.png" alt="downloard">
                             </a>
                         </p>

@@ -5,7 +5,7 @@ class St_quizzes extends Controller
     public function __construct()
     {
         sessionValidator();
-        $this->hasLogged();
+        // $this->hasLogged();
     }
 
     public function index($gid,$sid)
@@ -39,19 +39,18 @@ class St_quizzes extends Controller
         }
     }
 
-    public function st_quizzes_do()
+    public function st_quizzes_do($id)
     {
-        $this->view('student/enrollment/st_quizzes_do');
-    }
-
-    private function hasLogged()
-    {
-        if (!isset($_SESSION['user'])) {
-            header("location:" . BASEURL . "login");
+        $result = $this->model('quizModel')->verifyAndQuizId($id, $_SESSION['gid'], $_SESSION['sid']);
+        if($result){
+            $this->view("student/enrollment/st_quizzes_do",array($id));
+        }else{
+            header("location:");
         }
-
     }
-}
+    }
+
+
 
 
 ?>

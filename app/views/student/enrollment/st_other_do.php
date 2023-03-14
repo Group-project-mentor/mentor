@@ -42,29 +42,27 @@
 
             <!-- Middle part for whole content -->
             <section class="mid-content">
-            <?php
-            if(empty($data)){
-                echo "<center style='color:red;font-size:x-large;'>No file ! </center>";
-                // header("location:".BASEURL."rcResources/documents/".$_SESSION['gid']."/".$_SESSION['sid']);
-            }
-            else{
-            ?>
-                <!-- Title and sub title of middle part -->
-                
-                <div class="mid-title">
-                    <?php 
-                    $ssid = 'sinhala'; ?>
-                    <h6>My Subjects / <?php echo ucfirst($ssid) ?> / Other Documents / <?php echo $_SESSION['gid'] ?></h6>
-                </div>
+                <?php
+                if (empty($data)) {
+                    echo "<center style='color:red;font-size:x-large;'>No file ! </center>";
+                    // header("location:".BASEURL."rcResources/documents/".$_SESSION['gid']."/".$_SESSION['sid']);
+                } else {
+                ?>
+                    <!-- Title and sub title of middle part -->
+
+                    <div class="mid-title">
+                        <h1><?php echo "Grade " . $_SESSION['gname'] . " - " . ucfirst($_SESSION['sname']) ?></h1>
+                        <h6>My Subjects / <?php echo ucfirst($_SESSION['sname']) ?> / Other documents</h6>
+                    </div>
                     <br>
                     <hr style=" height:5px ; background-color:green ;">
                     <br>
                     <!-- <embed type="text/html" src="st_courses.html"  width="1000" height="500" style="padding-left: 100px;"> -->
                     <!-- Grade choosing interface -->
-                <div class="container-box" >
-                    <embed src="<?php echo BASEURL?>public_resources/others/<?php echo $_SESSION['gid']."/".$_SESSION['sid']."/".$data->location ?>" style="width:50%;height:70vh;margin:auto;">
-                </div>
-            <?php } ?>
+                    <div class="container-box">
+                        <embed src="<?php echo BASEURL ?>public_resources/others/<?php echo $_SESSION['gid'] . "/" . $_SESSION['sid'] . "/" . $data->location ?>" style="width:50%;height:70vh;margin:auto;">
+                    </div>
+                <?php } ?>
             </section>
         </div>
     </section>

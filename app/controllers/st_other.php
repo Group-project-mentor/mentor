@@ -8,14 +8,14 @@ class St_other extends Controller
         $this->hasLogged();
     }
     
-    public function index($gid,$sid)
-    {
-        $_SESSION['sid'] = $sid;
-        $res = $this->model('st_public_model')->findOthers($gid, $sid);
-        $this->view('student/enrollment/st_other', array($res));
-    }
+    // public function index($gid,$sid)
+    // {
+    //     $_SESSION['sid'] = $sid;
+    //     $res = $this->model('st_public_model')->findOthers($gid, $sid);
+    //     $this->view('student/enrollment/st_other', array($res));
+    // }
 
-    public function findOthers($grade, $subject, $msg = null)
+    public function index($grade, $subject, $msg = null)
     {
         if (!isset($_SESSION['user'])) {
             header("location:" . BASEURL . "login");
@@ -23,7 +23,7 @@ class St_other extends Controller
         $this->getNames($grade, $subject);
         $_SESSION["gid"] = $grade;
         $_SESSION["sid"] = $subject;
-        $result = $this->model("resourceModel")->findOthers($grade, $subject);
+        $result = $this->model("st_public_model")->findOthers($grade, $subject);
         $this->view('student/enrollment/st_other', array($result));
     }
 

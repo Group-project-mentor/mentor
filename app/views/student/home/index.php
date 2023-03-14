@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -9,14 +8,29 @@
     <link rel="icon" type="image/x-icon" href="<?php echo BASEURL ?>assets/mentor.ico">
     <title>Student Home</title>
 
-    <link rel="stylesheet" href="<?php echo BASEURL?>stylesheets/Student/style.css">    <!-- BASEURL use to navigate pages -->
-    <link rel="stylesheet" href="<?php echo BASEURL?>stylesheets/st_student.css">
+    <link rel="stylesheet" href="<?php echo BASEURL ?>stylesheets/Student/style.css"> <!-- BASEURL use to navigate pages -->
+    <link rel="stylesheet" href="<?php echo BASEURL ?>stylesheets/st_student.css">
 
     <style>
-        .see-all-btn{
-            text-decoration: none; 
+        .see-all-btn {
+            text-decoration: none;
             padding: 3px;
-            width:10%; }
+            width: 10%;
+            
+        }
+
+        .image-container {
+            justify-content: center;
+            align-items: center;
+            /* Set the height of the container to the full viewport height */
+        }
+
+        body {
+            background-image: url('assets/grades/logo1.png');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center center;
+        }
     </style>
 </head>
 
@@ -26,7 +40,7 @@
         <?php include_once "components/navbars/st_navbar_1.php" ?> <!-- used to include_once to add file -->
 
 
-        <div class="content-area" >
+        <div class="content-area">
 
             <!-- Top bar -->
             <section class="top-bar">
@@ -45,39 +59,21 @@
                     </a>
                 </div>
             </section>
-
+            <a class="see-all-btn" href="<?php echo BASEURL  ?>" style="text-decoration: none; width:100%;"></a>
             <!-- Middle part for whole content -->
-            <section class="mid-content" >
+            <section class="mid-content">
 
                 <!-- Title and sub title of middle part -->
-                <div class="mid-title">
+                <div class="mid-title" style="width:50%;">
                     <h1>Student</h1>
-                    <h6>Hello </h6>
                     <br>
+                    <!-- <a class="see-all-btn" href="<?php echo BASEURL  ?>" style="text-decoration: none; width:100%;"></a> -->
                 </div>
-                <a class="see-all-btn" href="<?php echo BASEURL  ?>" style="text-decoration: none; "></a>
-                
+                <!-- <a class="see-all-btn" href="<?php echo BASEURL  ?>" style="text-decoration: none; width:100%;"></a> -->
+
                 <!-- Grade choosing interface -->
-                <div class="container-box" style="padding-left: 160px;">
+                <div class="container-box" style="padding-left: 160px; width:200%; height:10%;">
                     <div class="grade-switcher">
-                        <!-- 
-                        <img src="<?php echo BASEURL  ?>assets/icons/icon_prev.png" alt="left">
-                         <div class="grades">
-                            <div class="grade-card">
-                                <img src="<?php echo BASEURL  ?>assets/grades/9.png" alt="">
-                                <label for="title">Grade 9</label>
-                            </div>
-                            <a class="grade-card front" href="<?php echo BASEURL?>st_courses/index/3" style="text-decoration: none; color:black;">
-                                    <img src="<?php echo BASEURL  ?>assets/grades/8.png" alt="">
-                                    <label for="title">Grade 8</label>
-                            </a>
-                            <div class="grade-card">
-                                <img src="<?php echo BASEURL  ?>assets/grades/7.png" alt="">
-                                <label for="title">Grade 7</label>
-                            </div>
-                        </div> 
-                        <img src="<?php echo BASEURL  ?>assets/icons/icon_next.png" alt="right">
-                        -->
 
                         <a class="see-all-btn" href="<?php echo BASEURL  ?>st_courses/index/1">Grade 6</a>
                         <a class="see-all-btn" href="<?php echo BASEURL  ?>st_courses/index/2">Grade 7</a>
@@ -86,24 +82,23 @@
                         <a class="see-all-btn" href="<?php echo BASEURL  ?>st_courses/index/5">Grade 10</a>
                         <a class="see-all-btn" href="<?php echo BASEURL  ?>st_courses/index/6">O/L</a>
                         <a class="see-all-btn" href="<?php echo BASEURL  ?>st_courses/index/7">A/L</a>
-                
+
                     </div>
-                        <!-- <img src="<?php echo BASEURL  ?>assets/grades/logo1.png" > -->
-                        
                 </div>
                 <br><br>
-                <a class="see-all-btn" href="<?php echo BASEURL  ?>" style="text-decoration: none; "></a>
+                <!-- <a class="see-all-btn" href="<?php echo BASEURL  ?>" style="text-decoration: none; width:100%;"></a> -->
                 <div>
-                    <br><br><br><br><br>
-                <a class="see-all-btn" href="<?php echo BASEURL  ?>st_private_mode" style="text-decoration: none; width:10%">Private</a>
+
+                    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+                    <a class="see-all-btn" href="<?php echo BASEURL  ?>st_private_mode" style="text-decoration: none; width:10%">Private</a>
                 </div>
-       
+
         </div>
     </section>
     </div>
     </section>
 </body>
 
-    <script src="<?php echo BASEURL ?>javascripts/st_navbar_1.js"></script>
+<script src="<?php echo BASEURL ?>javascripts/st_navbar_1.js"></script>
 
 </html>
