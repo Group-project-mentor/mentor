@@ -8,7 +8,7 @@
     <title>login</title>
     <link rel="stylesheet" href="<?php echo BASEURL ?>stylesheets/admin/style.css">
     <link rel="stylesheet" href="<?php echo BASEURL ?>stylesheets/admin/ad_humanresource.css">
-    
+
 </head>
 <nav>
     <div class="ad_nav">
@@ -18,69 +18,69 @@
 
 <body>
     <?php require_once("C:/xampp/htdocs/mentor/app/views/admin/navbar.php"); ?>
-            <!-- Middle part for whole content -->
-            <section class="mid-content ad_mid-content">
+    <!-- Middle part for whole content -->
+    <section class="mid-content ad_mid-content">
 
-                <!-- Title and sub title of middle part -->
-                <div class="mid-title">
-                    <h1>Human Resource</h1>
-                    <h6>Welcome to Mentor Human Resouse page</h6>
-                </div>
+        <!-- Title and sub title of middle part -->
+        <div class="mid-title">
+            <h1>Human Resource</h1>
+            <h6>Welcome to Mentor Human Resouse page</h6>
+        </div>
 
-                <div class="hr" id="rc">
-                    <div class="bgbox">
-                        <div class="team">
-                            <div class="title">
-                                <h1>Resource Creators</h1>
-                            </div>
-                            <div class="btn">
-                                <button class="btns" type="button">
-                                    <p>View All</p>
-                                </button>
-                                <button class="btns" type="button">
-                                    <p>Add New</p>
-                                </button>
-                            </div>
-
-                        </div>
+        <div class="hr" id="rc">
+            <div class="bgbox">
+                <div class="team">
+                    <div class="title">
+                        <h1>Resource Creators</h1>
+                    </div>
+                    <div class="btn">
+                        <button class="btns" type="button">
+                            <p>View All</p>
+                        </button>
+                        <button class="btns" type="button">
+                            <p>Add New</p>
+                        </button>
                     </div>
 
                 </div>
+            </div>
 
-                <div class="hr" id="team">
-                    <div class="bgbox">
-                        <div class="team">
-                            <div class="title">
-                                <h1>co-Admins</h1>
-                            </div>
-                            <div class="btn">
-                            <a class="btns" href="<?php echo BASEURL ?>adAddmember" style="text-decoration:none">
-                                View All
-                                </a>
-                                <a class="btns" href="<?php echo BASEURL  ?>adAddnewadmin" style="text-decoration:none">
-                                
-                                Add New
-                                </a>
-                            </div>
+        </div>
 
-                        </div>
-                        <div class="users">
-                            <?php if (!empty($data[0])) { ?>
-                                <?php foreach ($data[0] as $row) { ?>
-                                    <div class="subject-card">
-                                        <img src="<?php echo BASEURL ?>assets/admin/user.png" width="5%" height="5%" />
-                                        <a class="btns" href="<?php echo BASEURL ?>adResource" style="text-decoration:none"><label> <?php echo $row['name'] ?></label></a>
-
-                                    </div>
-                                <?php } ?>
-                        </div>
-                    <?php } else {
-                                echo "no data";
-                            } ?>
-
-
+        <div class="hr" id="team">
+            <div class="bgbox">
+                <div class="team">
+                    <div class="title">
+                        <h1>co-Admins</h1>
                     </div>
+                    <div class="btn">
+                        <a class="btns" href="<?php echo BASEURL ?>admins/addMember" style="text-decoration:none">
+                            View All
+                        </a>
+                        <a class="btns" href="<?php echo BASEURL  ?>admins/addAdmin" style="text-decoration:none">
+
+                            Add New
+                        </a>
+                    </div>
+
                 </div>
+                <div class="users">
+                    <?php if (!empty($data['classes'])) { ?>
+                        <?php foreach ($data['classes'] as $row) { ?>
+                            <div class="subject-card">
+                                <img src="<?php echo BASEURL ?>assets/admin/user.png" width="5%" height="5%" />
+                                <a class="btns" href="<?php echo BASEURL ?>adResource" style="text-decoration:none"><label> <?php echo $row['name'] ?></label></a>
+
+                            </div>
+                        <?php } ?>
+                </div>
+            <?php } else {
+                        echo "no data";
+                    } ?>
+
+
+            </div>
+        </div>
 
 
         </div>

@@ -1,3 +1,11 @@
+.hideme {
+    visibility: hidden;
+}
+
+.showme {
+    visibility: visible;
+}
+
 .message-area{
     display: flex;
     width: 100vw;

@@ -30,8 +30,16 @@ class Home extends Controller
             default:
                 header("location:".BASEURL."login");
         }
+    }
 
-
+    public function toggle(){
+        session_start();
+        if($_SESSION['navtog'] == 1){
+            $_SESSION['navtog'] = 0;
+        }else{
+            $_SESSION['navtog'] = 1;
+        }
+        echo "jeyy";
     }
 
     private function hasLogged()

@@ -71,27 +71,36 @@ if (!isset($_SESSION['navtog'])) {
             // let navMiddle = getElement("nav-middle");
             let navLinkTexts = document.getElementsByClassName("nav-link-text");
 
-            togglerBtn.addEventListener("click", () => {
-                nav.classList.toggle("nav-bar-small");
+            toggleFunction();
 
+            togglerBtn.addEventListener("click", () => {
+                toggleFunction();
+                navToggle();
+            });
+
+            function navToggle(){
+                fetch("<?php echo BASEURL?>home/toggle");
+            }
+
+            function toggleFunction(){
                 if (toggle) {
+                    nav.classList.add("nav-bar-small");
                     logoLong.classList.add("hidden");
                     // navMiddle.classList.add("hidden");
                     togglerBtn.classList.add("toggler-rotate");
-                    for (i = 0; i < navLinkTexts.length; i++) {
+                    for (let i = 0; i < navLinkTexts.length; i++) {
                         navLinkTexts[i].classList.add("hidden");
                     }
                     toggle = false;
-                    <?php $_SESSION['navtog'] = false?>
                 } else {
+                    nav.classList.remove("nav-bar-small");
                     logoLong.classList.remove("hidden");
                     // navMiddle.classList.remove("hidden");
                     togglerBtn.classList.remove("toggler-rotate");
-                    for (i = 0; i < navLinkTexts.length; i++) {
+                    for (let i = 0; i < navLinkTexts.length; i++) {
                         navLinkTexts[i].classList.remove("hidden");
                     }
                     toggle = true;
-                    <?php $_SESSION['navtog'] = true?>
                 }
-            });
+            }
         </script>
