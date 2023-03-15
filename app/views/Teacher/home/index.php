@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -82,40 +84,50 @@
                 </div>
             </section>
 
+            
+
             <!-- Middle part for whole content -->
             <section class="mid-content">
 
                 <!-- Title and sub title of middle part -->
                 <div class="mid-title">
                     <h1>Teacher Home</h1>
-                    <h6>Hello...</h6>
+                    <h6>Hello <?php echo $_SESSION['name'] ?>,</h6>
                 </div>
 
                 <!-- subject cards -->
                 <div class="container-box">
                     <div class="mid-down-title">
                         <br><br>
-                        <h3>Ongoing classes</h3> 
+                        <h3>Ongoing classes</h3>
                     </div>
-                    <div class="mid-bar-btns">  
-                    <a href="<?php BASEURL ?>TClassRoom/createClass">
-                        <div class="mid-back-btn">Create class</div>
-                    </a>
-                </div>
-                <?php if(!empty($data)){?>
-                    <div class="subject-card-set">
-                        <?php foreach($data as $row){ ?>
-                        <div class="subject-card">
-                        <a href="<?php BASEURL ?>TInsideClass/InSideClass">
-                                <img src="<?php echo BASEURL?>public/assets/Teacher/patterns/1.png" alt="" />
+                    <div class="mid-bar-btns">
+                        <a href="<?php BASEURL ?>TClassRoom/createClass">
+                            <div class="mid-back-btn">Create class</div>
                         </a>
-                            <a href="#"><label><?php echo $row['class_id'];?></label></a>
-                            <a href="#"><label><?php echo $row['class_name'];?></label></a>
-                        </div>        
-                        <?php }?>                
                     </div>
-                    <?php }else{echo "no data!";} ?>
+                    <?php if (!empty($data[0])) {
+                        $count = 1
+                    ?>
+
+                        <div class="subject-card-set">
+                            <?php foreach ($data[0] as $row) { ?>
+                                <div class="subject-card">
+                                    <a href="<?php BASEURL ?>TInsideClass/InClass">
+                                        <img alt='' src="<?php echo BASEURL . "public/assets/Teacher/patterns/" . $count++ . '.png' ?>" />
+                                    </a>
+                                    <a href="#"><label><?php echo $row->class_id ?></label></a>
+                                    <a href="#"><label><?php echo $row->class_name ?></label></a>
+                                </div>
+                            <?php } ?>
+                        </div>
+                    <?php } else {
+                        echo "no data!";
+                    } ?>
+
                 </div>
+
+
 
 
             </section>
