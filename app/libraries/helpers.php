@@ -117,6 +117,12 @@ function getMonthName($monthNumber) {
     return date("F", mktime(0, 0, 0, $monthNumber, 1));
 }
 
+function getUnique($uid): string
+{
+    $r= str_pad($uid%1000, 3, '0', STR_PAD_LEFT);
+    return uniqid().$r;
+}
+
 function tempFileRemover(){
 //    if (session_status() == PHP_SESSION_NONE) {
 //        session_start();

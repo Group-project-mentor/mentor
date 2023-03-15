@@ -98,16 +98,16 @@
                             <div class="sponsor-list-item sponsor-list-item-title flex-1">
                                 <input type="checkbox"  class="save-info-check" >
                             </div>
-                            <div class="sponsor-list-item flex-1">
+                            <div class="sponsor-list-item flex-1 chk-ids">
                                 <?php echo $row["student_id"] ?>
                             </div>
-                            <div class="sponsor-list-item flex-3">
+                            <div class="sponsor-list-item flex-3 chk-names">
                                 <?php echo $row["name"] ?>
                             </div>
-                            <div class="sponsor-list-item flex-2">
+                            <div class="sponsor-list-item flex-2 chk-years">
                                 <?php echo $row["year"] ?>
                             </div>
-                            <div class="sponsor-list-item flex-2">
+                            <div class="sponsor-list-item flex-2 chk-months">
                                 <?php echo getMonthName($row["month"]) ?>
                             </div>
                             <div class="sponsor-list-item flex-2 chk-amount">
@@ -117,7 +117,7 @@
 
                         <?php }} ?>
                         <!-- Last Row -->
-                        <div class="sponsor-list-row" style="padding: 15px 0;background: rgba(89,89,89,0.92);border-radius: 0 0 10px 10px;">
+                        <div class="sponsor-list-row" style="padding: 15px 0;background: rgba(65,65,65,0.92) !important;border-radius: 0 0 10px 10px;">
                             <div class="sponsor-list-item flex-1">
                             </div>
                             <div class="sponsor-list-item flex-3" style="color: #ffffff;font-size: medium;">
@@ -137,14 +137,72 @@
                 </div>
 
                 <div style="margin-top: 20px;display: flex;justify-content: flex-end;">
-                    <a href="<?php echo BASEURL.'sponsor/paymentTest' ?>" class="sponsor-button"  style="font-size:large;margin: 0 5px;text-decoration: none;">
+                    <button  class="sponsor-button"  style="font-size:large;margin: 0 5px;text-decoration: none;" id="bill-btn">
                         <img src="<?php echo BASEURL?>public/assets/icons/icon_addBill.png" alt="profile" style="width: 25px;">
                         Add to bill
-                    </a>
+                    </button>
                 </div>
 
             </div>
     </div>
 </section>
 </body>
+<script>
+    const BASEURL = "<?php echo BASEURL ?>";
+    let billBtn = document.getElementById('bill-btn');
+    let bill = "";
+    billBtn.addEventListener('click',(e)=>{
+        e.preventDefault();
+
+        let dataArray = [];
+        let formData = new FormData();
+
+        formData.append("currency","LKR");
+        formData.append("amount",totalSum);
+
+        fetch(`${BASEURL}sponsor/createBill`,{
+            method : "post",
+            body : formData
+        })
+            .then(response => response.json())
+            .then(data => {
+                console.log(data);
+                if(data.billNo !== undefined){
+                    bill = data.billNo;
+                    let completed = 0;
+                    for (let i =0; i < chkList.length;i++){
+                        if (chkList[i].checked){
+                            let form = new FormData();
+
+                            form.append('student_id',ids[i].innerHTML.trim());
+                            form.append('month', `${monthToNumber(months[i].innerHTML.trim())}`);
+                            form.append('year', years[i].innerHTML.trim());
+                            form.append('billNo', bill);
+
+                            fetch(`${BASEURL}sponsor/insertBillData`,{
+                                method:"post",
+                                body:form
+                            })
+                                .then(res => res.json())
+                                .then(data => {
+                                    console.log(data);
+                                    if(data.status){
+                                        completed++;
+                                    }
+                                })
+                            // dataArray.push(form);
+                        }
+                    }
+                    totalSum = 0;
+                    location.href = BASEURL+"sponsor/slips/bills/"+bill;
+                }else{
+                    console.log("No bill number !");
+                }
+            })
+            .catch(err => console.log(err));
+
+
+
+    })
+</script>
 </html>
