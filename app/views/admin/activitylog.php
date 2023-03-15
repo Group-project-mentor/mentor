@@ -88,6 +88,7 @@
             </section>
         </div>
     </section>
+    <?php require_once("C:/xampp/htdocs/mentor/app/views/admin/popup.php"); ?>
 </body>
 
 <script>
@@ -122,4 +123,19 @@
             toggle = true;
         }
     })
+
+    const profileBtn = document.getElementById("profile-btn");
+    const popupMenu = document.getElementById("popup-menu")
+    let toggler = false;
+
+    profileBtn.addEventListener('click', () => {
+        if (toggler) {
+            popupMenu.style.display = "none";
+            toggler = false
+
+        } else {
+            popupMenu.style.display = "flex";
+            toggler = true
+        }
+    });
 </script>
