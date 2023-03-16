@@ -8,14 +8,9 @@
     <title>complaints</title>
     <link rel="stylesheet" href="<?php echo BASEURL ?>stylesheets/admin/ad_complaints.css">
     <link rel="stylesheet" href="<?php echo BASEURL ?>stylesheets/admin/ad_verification.css">
-    <link rel="stylesheet" href="<?php echo BASEURL ?>stylesheets/admin/style.css">
-
+    
 </head>
-<nav>
-    <div class="ad_nav">
 
-    </div>
-</nav>
 
 <body>
     <?php require_once("C:/xampp/htdocs/mentor/app/views/admin/navbar.php"); ?>
@@ -69,9 +64,10 @@
             </section>
         </div>
     </section>
+    <?php require_once("C:/xampp/htdocs/mentor/app/views/admin/popup.php"); ?>
         
 </body>
-<script src="C:\xampp\htdocs\mentor\public\javascripts\admin\popup.js"></script>
+<!-- <script src="C:\xampp\htdocs\mentor\public\javascripts\admin\popup.js"></script> -->
 <script>
     let toggle = true;
 
@@ -104,4 +100,19 @@
             toggle = true;
         }
     })
+
+    const profileBtn = document.getElementById("profile-btn");
+    const popupMenu = document.getElementById("popup-menu")
+    let toggler = false;
+
+    profileBtn.addEventListener('click', () => {
+        if (toggler) {
+            popupMenu.style.display = "none";
+            toggler = false
+
+        } else {
+            popupMenu.style.display = "flex";
+            toggler = true
+        }
+    });
 </script>

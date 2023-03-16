@@ -88,30 +88,23 @@
                     <h1>Add Student</h1>
                     <h6>Teacher Home/ C136-member details/Add student</h6>
                     <br><br><br>
-                    <h3>Student name</h3>
+                    <h3>Student ID</h3>
                 </div>
 
                 <div class="class section">
-                    <form>
-                      <label for="class_name"></label>
-                      <input type="text" id="class_name" name="class name" placeholder="New student name..">
+                <form action="<?php echo BASEURL; ?>TInsideClass/createAction" method="POST">
+                      <label for="student_id"></label>
+                      <input type="text" id="student_id" name="student_id" placeholder="New student ID..">
+                      <input type="submit" value="Add">
                     </form>
                   </div>
 
                   <div class="mid-title">
             
                     <br>
-                    <h3>Student ID</h3>
+                    
                 </div>
 
-                <div class="class section">
-                    <form>
-                      <label for="class_name"></label>
-                      <input type="text" id="class" name="class name" placeholder="New student id..">
-                    
-                      <input type="submit" value="Add">
-                    </form>
-                  </div>
 
 
             </section>

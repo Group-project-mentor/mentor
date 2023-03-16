@@ -24,8 +24,14 @@ class TClassMembers extends Controller{
     }   
 
     public function memDetails(){
-        $this->view('Teacher/classMembers/membersDetails');
+        
+        $l_id = 1;
+        var_dump($l_id);
+        $res = $this->model('teacher_data')->getStudents($l_id);
+        $this->view('Teacher/classMembers/membersDetails',array($res));
+        
     }
+
 
     public function restrictSt(){
         $this->view('Teacher/classMembers/restrictStudent');

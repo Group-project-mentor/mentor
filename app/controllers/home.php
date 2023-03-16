@@ -20,7 +20,8 @@ class Home extends Controller
                 header("location:".BASEURL."admins/dashboard");
                 break;
             case 'tch':
-                $this->view('Teacher/home/index');
+                $classes = $this->model("teacher_data")->getClasses($_SESSION['id']);
+                $this->view('Teacher/home/index',array($classes));
 
                 break;
             case 'sp':

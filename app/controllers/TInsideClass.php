@@ -27,6 +27,26 @@ class TInsideClass extends Controller{
         $this->view('Teacher/insideClass/InsideClass');
     }
 
+    public function createAction(){
+        $l_id = $_POST['student_id'];
+        var_dump($l_id);
+        if($this->model('teacher_data')->addStudentsClass($l_id) ){
+            
+            header("location:".BASEURL."TInsideClass/inClass");
+        }
+        else{
+            header("location:".BASEURL."TInsideClass/addSt");
+        }
+
+    }
+
+    public function getStudentId(){
+        $l_id = $_POST['student_id'];
+        var_dump($l_id);
+        $res = $this->model('teacher_data')->getStudents($l_id);
+        $this->view('Teacher/classMembers/membersDetails',array($res));
+    }
+
     
 }
 

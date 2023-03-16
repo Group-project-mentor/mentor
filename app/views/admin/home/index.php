@@ -184,7 +184,7 @@
                                     <h1>User Handling</h1>
                                 </div>
                                 <div class="btn">
-                                    <a href="<?php echo BASEURL ?>adUserHandle">
+                                    <a href="<?php echo BASEURL ?>admins/userhandling">
                                         <p style="color:white">View All</p>
                                     </a>
                                 </div>

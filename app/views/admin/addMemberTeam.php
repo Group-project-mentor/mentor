@@ -50,7 +50,7 @@
                             </div>
 
                             <div class="view">
-                                <a href="<?php echo BASEURL ?>adComplaintView"><img src="<?php echo BASEURL ?>assets/admin/view.png"></a>
+                                <a href="<?php echo BASEURL ?>admins/addmemberview"><img src="<?php echo BASEURL ?>assets/admin/view.png"></a>
                             </div>
                             
                             <div class="delete">
