@@ -46,6 +46,7 @@ class Sponsor extends Controller
         $rowArray = array();
         $month = intval(date('m'));
         $year = intval(date('Y'));
+        $billData = $this->model($this->table1)->getBillNo($_SESSION['id']);
 //        var_dump($year,$month);
         $sponsorships = $this->model($this->table1)->getSponsorship($_SESSION['id']); //! student_id, month, year, fundMonths, monthlyAmount, , fundMonths, approved_date
 
@@ -183,16 +184,21 @@ class Sponsor extends Controller
                 }
             }
         }
-        $this->view('sponsor/payments/paymentsInProgress',array($rowArray,$sponsorships));
+        $this->view('sponsor/payments/paymentsInProgress',array($rowArray,$sponsorships,$billData));
     }
 
     public function paymentTest1(){
         $this->view('sponsor/payments/paymentForm');
     }
 
-    public function paymentTest(){
+    public function paymentTest($bill_id){
+        $billData = $this->model($this->table1)->getBillData($bill_id);
+        $totalPayment = 0;
+        foreach ($billData as $row){
+            $totalPayment += $row->monthlyAmount;
+        }
         $res = $this->model("payments")->hasPaymentDetails($_SESSION['id']);
-        $this->view('sponsor/payments/paymentForm2',array($res));
+        $this->view('sponsor/payments/paymentForm2',array($res,$bill_id,$totalPayment));
     }
 
     public function paymentDone(){
@@ -264,15 +270,21 @@ class Sponsor extends Controller
         echo json_encode($response);
     }
 
-    public function deleteBillData(){
-
+    public function deleteBillData($bill_id){
+        if($this->model('sponsorStModel')->deleteBill($bill_id,$_SESSION['id'])){
+            flashMessage("Deleted");
+        }else{
+            flashMessage("Not Deleted");
+        }
+        header("location:".BASEURL."sponsor/paymentsInProgress");
     }
 
     public function slips($viewType, $id){
         switch ($viewType){
             case "payments":
+                $bill = $this->model($this->table1)->getPayBill($id);
                 $result =$this->model($this->table1)->getPaymentDetails($id);
-                $this->view("sponsor/detailedViews/paymentView",array($result));
+                $this->view("sponsor/detailedViews/paymentView",array($result,$bill));
                 break;
             case "bills":
                 $billDetails =$this->model($this->table1)->getBillDetails($id,$_SESSION['id']);
@@ -287,115 +299,5 @@ class Sponsor extends Controller
                 break;
         }
     }
-
-    //    public function paymentsInProgressOld(){
-//        $rowArray = array();
-//        $month = intval(date('m'));
-//        $year = intval(date('Y'));
-////        var_dump($year,$month);
-//        $sponsorships = $this->model($this->table1)->getSponsorship($_SESSION['id']); //! student_id, month, year
-//
-////        ? check if sponsor has/not students assigned
-//        if(!empty($sponsorships)){
-//
-////        ? loop through that data
-//            foreach ($sponsorships as $row){
-//
-////          TODO : has a critical issue in this if statement : Logical Error
-////                ! There is no check of previous months payments so can't detect them after paying to a front month
-//
-//                // ? get the last paid month of each student
-//                $lastPayment = $this->model($this->table1)->getPaymentsLast($row->id); //! student_id, month, year, fundMonths, monthlyAmount
-//                if (!empty($lastPayment)){
-//                    if((intval($lastPayment->year)) < $year ){  //? If last funded on last year
-//                        if ($row->fundMonths > 0){
-//
-//                            //? last year data
-//                            for ($i = intval($lastPayment->month)+1 ; $i <= 12; $i++){
-//                                $rowArray[] = array(
-//                                    "student_id"=>$lastPayment->student_id,
-//                                    "name" => $row->name,
-//                                    "year" => intval($lastPayment->year),
-//                                    "month" => $i,
-//                                    "amount" => $row->monthlyAmount
-//                                );
-//                            }
-//
-//                            //? this year data
-//                            for ($i = 1; $i <= $month; $i++){
-//                                $rowArray[] = array(
-//                                    "student_id"=>$lastPayment->student_id,
-//                                    "name" => $row->name,
-//                                    "year" => $year,
-//                                    "month" => $i,
-//                                    "amount" => $row->monthlyAmount
-//                                );
-//                            }
-//                        }
-//                    }
-//
-//                    //? If last funded on this year
-//                    elseif((intval($lastPayment->year)) == $year){
-//                        if (intval($lastPayment->month) < $month and ($row->fundMonths > 0)){
-//                            for ($i = intval($lastPayment->month)+1 ; $i <= $month; $i++){
-//                                $rowArray[] = array(
-//                                    "student_id"=>$lastPayment->student_id,
-//                                    "name" => $row->name,
-//                                    "year" => $year,
-//                                    "month" => $i,
-//                                    "amount" => $row->monthlyAmount
-//                                );
-//                            }
-//                        }
-//                    }
-//
-//                //? If no paid any payment until assigned that student
-//                } else{
-//                    $acceptedDate = explode("-",$row->approved_date);
-//                    $accMonth = intval($acceptedDate[1]);
-//                    $accYear = intval($acceptedDate[0]);
-//
-//                    if($accYear < $year and $row->fundMonths > 0){
-//                            for ($i = $accMonth ; $i <= 12; $i++){
-//                                $rowArray[] = array(
-//                                    "student_id"=>$row->id,
-//                                    "name" => $row->name,
-//                                    "year" => $accYear,
-//                                    "month" => $i,
-//                                    "amount" => $row->monthlyAmount
-//                                );
-//                            }
-//                            for ($i = 1; $i <= $month; $i++){
-//                                $rowArray[] = array(
-//                                    "student_id"=>$row->id,
-//                                    "name" => $row->name,
-//                                    "year" => $year,
-//                                    "month" => $i,
-//                                    "amount" => $row->monthlyAmount
-//                                );
-//                            }
-//                    }
-//                    elseif($accYear == $year){
-//                        if ($accMonth <= $month and ($row->fundMonths > 0)){
-//                            for ($i = $accMonth; $i <= $month; $i++){
-//                                $rowArray[] = array(
-//                                    "student_id"=>$row->id,
-//                                    "name" => $row->name,
-//                                    "year" => $year,
-//                                    "month" => $i,
-//                                    "amount" => $row->monthlyAmount
-//                                );
-//                            }
-//                        }
-//                    }
-//                }
-//            }
-//        }
-////        foreach ($rowArray as $r){
-////            print_r($r);
-////            echo '<br />';
-////        }
-//        $this->view('sponsor/payments/paymentsInProgress',array($rowArray,$sponsorships));
-//    }
 
 }

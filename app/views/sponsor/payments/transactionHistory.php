@@ -167,7 +167,7 @@
                                 <?php echo $row->currency ?> <?php echo number_format($row->amount, 2, '.', '') ?>
                             </div>
                             <div class="sponsor-list-item flex-1">
-                                <a href="<?php echo BASEURL.'sponsor/slip/payment/'.$row->id ?>" style="text-decoration: none;color: #056d36;">
+                                <a href="<?php echo BASEURL.'sponsor/slips/payments/'.$row->paymentId ?>" style="text-decoration: none;color: #056d36;">
                                     See details >
                                 </a>
                             </div>

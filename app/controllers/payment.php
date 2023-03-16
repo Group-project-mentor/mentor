@@ -68,7 +68,7 @@ class payment extends Controller
     public function getDetails()
     {
         $merchant_id         = $_POST['merchant_id'];
-        $order_id            = $_POST['order_id'];
+        $bill_id            = $_POST['order_id'];
         $payhere_amount      = $_POST['payhere_amount'];
         $payhere_currency    = $_POST['payhere_currency'];
         $status_code         = $_POST['status_code'];
@@ -78,7 +78,7 @@ class payment extends Controller
         $local_md5sig = strtoupper(
             md5(
                 $merchant_id .
-                $order_id .
+                $bill_id .
                 $payhere_amount .
                 $payhere_currency .
                 $status_code .
@@ -88,7 +88,7 @@ class payment extends Controller
 
         if (($local_md5sig === $md5sig) AND ($status_code == 2) ){
             $res = $this->model("payments")
-                ->savePayment($_POST['payment_id'],$userId,$_POST['payhere_currency'],$_POST['payhere_amount'],$des,$_POST['method']);
+                ->savePayment($_POST['payment_id'],$userId,$_POST['payhere_currency'],$_POST['payhere_amount'],$des,$_POST['method'],$bill_id);
         }
         // header("ngrok-skip-browser-warning: true");
         // header("Content-Type:Application/json");

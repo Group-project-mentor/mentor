@@ -27,9 +27,9 @@
 
             </div>
             <div class="top-bar-btns">
-                <!--                <a href="#">-->
-                <!--                    <a class="back-btn" href="--><?php //echo BASEURL ?><!--privateclass/billing">Back</a>-->
-                <!--                </a>-->
+                <a href="#">
+                    <a class="back-btn" href="<?php echo BASEURL ?>sponsor/paymentsInProgress">Back</a>
+                </a>
                 <a href="#">
                     <img src="<?php echo BASEURL?>public/assets/Teacher/icons/icon_notify.png" alt="notify">
                 </a>
@@ -60,7 +60,7 @@
                         See Payment Slip
                     </a>
                     <?php }elseif(empty($data[0]->status)){ ?>
-                        <a href="<?php echo BASEURL?>" type="button" class="sponsor-button"  style="background:darkred;font-size: medium;margin: 0 5px;text-decoration: none;display: flex;align-items: center;">
+                        <a href="<?php echo BASEURL."sponsor/deleteBillData/".$data[0]->id ?>" type="button" class="sponsor-button"  style="background:darkred;font-size: medium;margin: 0 5px;text-decoration: none;display: flex;align-items: center;">
                             <img src="<?php echo BASEURL?>public/assets/icons/icon_delete_white.png" alt="profile" style="width: 20px;">
                             Delete
                         </a>
@@ -135,7 +135,7 @@
 
                 <?php if(empty($data[0]->status) and !empty($data[0]->id) and !empty($data[1])){ ?>
                 <div style="margin-top: 20px;display: flex;justify-content: flex-end;">
-                    <a href="<?php echo BASEURL.'sponsor/paymentTest' ?>" class="sponsor-button"  style="font-size:large;margin: 0 5px;text-decoration: none;">
+                    <a href="<?php echo BASEURL.'sponsor/paymentTest/'.$data[0]->id ?>" class="sponsor-button"  style="font-size:large;margin: 0 5px;text-decoration: none;">
                         <img src="<?php echo BASEURL?>public/assets/icons/icon_cash.png" alt="profile" style="width: 25px;">
                         Pay bill
                     </a>

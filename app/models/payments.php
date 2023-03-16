@@ -33,9 +33,11 @@ class payments extends Model
         return $this->fetchObjs($stmt);
     }
 
-    public function savePayment($payID, $userID, $currency, $amount ,$description , $method){
-        $stmt = $this->prepare("INSERT INTO payment(paymentId,userId,currency,amount,type,method) VALUES (?,?,?,?,?,?)");
-        $stmt->bind_param("iisdss",$payID,$userID,$currency,$amount,$description,$method);
-        return $this->executePrepared($stmt);
+    public function savePayment($payID, $userID, $currency, $amount ,$description , $method,$billID){
+        $stmt1 = $this->prepare("INSERT INTO payment(paymentId,userId,currency,amount,type,method) VALUES (?,?,?,?,?,?)");
+        $stmt1->bind_param("iisdss",$payID,$userID,$currency,$amount,$description,$method);
+        $stmt2 = $this->prepare("UPDATE bill SET bill.status = 1, bill.payment_id = ? WHERE bill.id = ?");
+        $stmt2->bind_param('is',$payID,$billID);
+        return $this->executePrepared($stmt1) and $this->executePrepared($stmt2);
     }
 }

@@ -190,7 +190,6 @@
         }
         form1.style.display = "none";
         form2.style.display = "flex";
-
     });
 
     form2.addEventListener('submit',(e)=>{

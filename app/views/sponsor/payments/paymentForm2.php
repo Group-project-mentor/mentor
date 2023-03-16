@@ -134,15 +134,15 @@
                                     </select>
                                 </label>
                             </div>
-                            <div class="rc-form-group" style="flex: 1;">
-                                <label> Currency* : </label>
-                                <label>
-                                    <select class="pp-quiz-chooser" name="currency">
-                                        <option value="LKR" selected>LKR</option>
-                                        <option value="USD">USD</option>
-                                    </select>
-                                </label>
-                            </div>
+<!--                            <div class="rc-form-group" style="flex: 1;">-->
+<!--                                <label> Currency* : </label>-->
+<!--                                <label>-->
+<!--                                    <select class="pp-quiz-chooser" name="currency">-->
+<!--                                        <option value="LKR" selected>LKR</option>-->
+<!--                                        <option value="USD">USD</option>-->
+<!--                                    </select>-->
+<!--                                </label>-->
+<!--                            </div>-->
                         </div>
                         <div class="answer-correctness-btn" style="justify-self:flex-end;">
                             <input type="checkbox" id="save-info-check" value="correct" />
@@ -165,6 +165,8 @@
     const TEMP_URL = '<?php echo $_ENV['TEMP_URL'] ?>';
     const userId = <?php echo $_SESSION['id'] ?>;
     const incomingData = <?php echo json_encode($data[0]) ?>;
+    const bill_id = "<?php echo $data[1] ?>";
+    const totalAmount = <?php echo $data[2] ?>;
     const MERCHID = '<?php echo $_ENV['MERCHANT_ID'] ?>';
     //const MERCHSECR = '<?php //echo $data[1]?>//';
 
@@ -194,9 +196,9 @@
         "return_url": undefined,     
         "cancel_url": undefined,     
         "notify_url": `${TEMP_URL}/mentor/payment/getDetails`,
-        "order_id": "O1234",
+        "order_id": bill_id,
         "items": "",
-        "amount": "1000",
+        "amount": `${totalAmount}`,
         "currency": "LKR",
         "hash": "",
         "first_name": "",
@@ -224,10 +226,7 @@
     const setPaymetDetails = () => {
         let formData = new FormData(document.getElementById('paymentForm'));
 
-        payment.order_id = "O1234";
         payment.items = "Sudent Fund";
-        payment.amount = '1000';
-        payment.currency = formData.get('currency');
         payment.first_name = formData.get('fName');
         payment.last_name = formData.get('lName');
         payment.email = formData.get('email');

@@ -32,8 +32,20 @@ class sponsorStModel extends Model
     }
 
     public function getPaymentDetails($id){
-        $stmt = $this->prepare("SELECT * FROM payment WHERE payment.id = ?");
+        $stmt = $this->prepare("SELECT * FROM payment WHERE payment.paymentId = ?");
         $stmt->bind_param('i',$id);
+        return $this->fetchOneObj($stmt);
+    }
+
+    public function getBillNo($userID){
+        $stmt = $this->prepare("SELECT id FROM bill WHERE user_id = ? and status = 0");
+        $stmt->bind_param('i',$userID);
+        return $this->fetchOneObj($stmt);
+    }
+
+    public function getPayBill($payID){
+        $stmt = $this->prepare("SELECT id FROM bill WHERE payment_id = ?");
+        $stmt->bind_param('i',$payID);
         return $this->fetchOneObj($stmt);
     }
 
@@ -65,6 +77,12 @@ class sponsorStModel extends Model
     public function insertBillRow($stID, $year, $month, $bill_id){
         $stmt = $this->prepare("INSERT INTO sp_pay(sp_pay.student_id, sp_pay.year,sp_pay.month, sp_pay.billNo) VALUES (?,?,?,?)");
         $stmt->bind_param("iiis",$stID, $year, $month, $bill_id);
+        return $this->executePrepared($stmt);
+    }
+
+    public function deleteBill($bill_id,$user_id){
+        $stmt = $this->prepare("DELETE FROM bill WHERE bill.id = ? AND bill.user_id = ? AND bill.status = 0");
+        $stmt->bind_param("ii", $bill_id,$user_id);
         return $this->executePrepared($stmt);
     }
 
