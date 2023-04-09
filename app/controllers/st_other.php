@@ -8,12 +8,6 @@ class St_other extends Controller
         $this->hasLogged();
     }
     
-    // public function index($gid,$sid)
-    // {
-    //     $_SESSION['sid'] = $sid;
-    //     $res = $this->model('st_public_model')->findOthers($gid, $sid);
-    //     $this->view('student/enrollment/st_other', array($res));
-    // }
 
     public function index($grade, $subject, $msg = null)
     {

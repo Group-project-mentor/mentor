@@ -8,14 +8,8 @@ class St_quizzes extends Controller
         // $this->hasLogged();
     }
 
-    public function index($gid,$sid)
-    {
-        $_SESSION['sid'] = $sid;
-        $res = $this->model('st_public_model')->findQuizzes($gid, $sid);
-        $this->view('student/enrollment/st_quizzes', array($res));
-    }
 
-    public function quizzes($grade, $subject, $msg = null)
+    public function index($grade, $subject, $msg = null)
     {
         if (!isset($_SESSION['user'])) {
             header("location:" . BASEURL . "login");
@@ -41,13 +35,28 @@ class St_quizzes extends Controller
 
     public function st_quizzes_do($id)
     {
+        
         $result = $this->model('quizModel')->verifyAndQuizId($id, $_SESSION['gid'], $_SESSION['sid']);
         if($result){
+            
             $this->view("student/enrollment/st_quizzes_do",array($id));
         }else{
             header("location:");
         }
     }
+
+    public function st_quizzes_intro($id)
+    {
+        
+        $result = $this->model('quizModel')->verifyAndQuizId($id, $_SESSION['gid'], $_SESSION['sid']);
+        if($result){
+            $this->view("student/enrollment/st_quizzes_intro",array($id));
+        }else{
+            header("location:");
+        }
+    }
+
+
     }
 
 

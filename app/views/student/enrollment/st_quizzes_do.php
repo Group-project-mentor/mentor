@@ -28,7 +28,7 @@
                     </a>
                 </div>
                 <div class="top-bar-btns">
-                    <a href="<?php echo BASEURL.'st_quizzes/index/' . $_SESSION['gid'] . '/' . $_SESSION['sid'] ?>" >
+                    <a href="<?php echo BASEURL.'st_quizzes/st_quizzes_intro/85'?>" >
                         <div class="back-btn">Back</div>
                     </a>
                     <a href="#">
