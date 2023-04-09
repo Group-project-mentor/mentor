@@ -64,7 +64,7 @@ if (!empty($data[1]) && $data[1] == "success") {
                 <div class="rc-profile">
                     <div class="rc-profile-main">
                         <a class="rc-profile-image" href="<?php echo BASEURL ?>rcProfile/change/image">
-                            <img src="<?php echo (!empty($data[0][4])) ? $data[0][4] : BASEURL . "assets/clips/profile_img.webp" ?>"
+                            <img src="<?php echo (!empty($data[0]->image)) ? $data[0]->image : BASEURL . "assets/clips/profile_img.webp" ?>"
                                  alt="profile"
                                  id="profileImg"
                                  style="object-fit: cover;"/>
@@ -77,7 +77,7 @@ if (!empty($data[1]) && $data[1] == "success") {
                                 </div>
                                 <div class="rc-profile-right">
                                     <div>
-                                        <?php echo (!empty($data[0])) ? $data[0][0] : "" ?>
+                                        <?php echo (!empty($data[0]->id)) ? $data[0]->id : "" ?>
                                     </div>
                                 </div>
                             </div>
@@ -87,7 +87,7 @@ if (!empty($data[1]) && $data[1] == "success") {
                                 </div>
                                 <div class="rc-profile-right">
                                     <div>
-                                        <?php echo (!empty($data[0])) ? $data[0][1] : "" ?>
+                                        <?php echo (!empty($data[0]->name)) ? $data[0]->name : "" ?>
                                     </div>
                                     <a href="<?php echo BASEURL ?>rcProfile/change/name">
                                         <img src="<?php echo BASEURL ?>assets/icons/icon_next.png" alt="notify" class="rc-profile-arrow-btn">
@@ -100,7 +100,7 @@ if (!empty($data[1]) && $data[1] == "success") {
                                 </div>
                                 <div class="rc-profile-right">
                                     <div>
-                                        <?php echo (!empty($data[0])) ? $data[0][2] : "" ?>
+                                        <?php echo (!empty($data[0])) ? $data[0]->email : "" ?>
                                     </div>
                                     <a>
                                         <img src="<?php echo BASEURL ?>assets/icons/icon_next.png" alt="notify" class="rc-profile-arrow-btn">
@@ -113,7 +113,7 @@ if (!empty($data[1]) && $data[1] == "success") {
                                 </div>
                                 <div class="rc-profile-right">
                                     <div>
-                                        <?php echo (!empty($data[0])) ? $data[0][3] : "" ?>
+                                        <?php echo (!empty($data[0])) ? $data[0]->mobile_no : "" ?>
                                     </div>
                                     <a href="<?php echo BASEURL ?>rcProfile/change/mobile">
                                         <img src="<?php echo BASEURL ?>assets/icons/icon_next.png" alt="notify" class="rc-profile-arrow-btn">
@@ -142,8 +142,7 @@ if (!empty($data[1]) && $data[1] == "success") {
             </section>
         </div>
     </section>
-    </div>
-    </section>
+
 </body>
 
 <script>

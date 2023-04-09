@@ -13,6 +13,15 @@ class sponsorStModel extends Model
         return $this->fetchObjs($stmt);
     }
 
+    public function getSponsorStudentsSearch($spID, $search){
+        $stmt = $this->prepare("SELECT student.id,user.name,user.email,student.fundMonths,student.monthlyAmount FROM student,user 
+                                        WHERE student.id = user.id AND sponsor_id = ? AND student.fundMonths > 0 
+                                        AND (user.name LIKE ? OR student.id LIKE ? OR user.email LIKE ?)");
+        $search = "%$search%";
+        $stmt->bind_param('isss',$spID,$search,$search,$search);
+        return $this->fetchObjs($stmt);
+    }
+
     public function getPaymentsLast($id, $month=null, $year=null){
         $stmt = $this->prepare("SELECT student_id, month, year FROM sp_pay,student WHERE sp_pay.student_id = ? AND student.id = sp_pay.student_id ORDER BY year DESC,month DESC LIMIT 1");
         $stmt->bind_param('i',$id);
@@ -84,6 +93,31 @@ class sponsorStModel extends Model
         $stmt = $this->prepare("DELETE FROM bill WHERE bill.id = ? AND bill.user_id = ? AND bill.status = 0");
         $stmt->bind_param("ii", $bill_id,$user_id);
         return $this->executePrepared($stmt);
+    }
+
+    public function getApprovedStudents(){
+        $stmt= $this->prepare("SELECT student.id,user.name,student.monthlyAmount FROM student,user WHERE user.id = student.id AND student.sponsor_id IS NULL AND student.approved_by IS NOT NULL");
+        return $this->fetchObjs($stmt);
+    }
+
+    public function getApprovedStudentsSearch($search){
+        $stmt= $this->prepare("SELECT student.id,user.name,student.monthlyAmount FROM student,user WHERE user.id = student.id AND student.sponsor_id IS NULL AND student.approved_by IS NOT NULL
+                                        AND (student.id LIKE ? OR user.name LIKE ? OR monthlyAmount LIKE ?)");
+        $search = "%$search%";
+        $stmt->bind_param("sss",$search,$search,$search);
+        return $this->fetchObjs($stmt);
+    }
+
+    public function connectSponsor($st_id, $sp_id){
+        $stmt = $this->prepare("UPDATE student SET sponsor_id = ? WHERE student.id = ?");
+        $stmt->bind_param("ii",$sp_id,$st_id);
+        return $this->executePrepared($stmt);
+    }
+
+    public function isStudentStatus($id ,$status){
+        $stmt = $this->prepare("SELECT id from student WHERE id = ? AND status = ?");
+        $stmt->bind_param("is",$id,$status);
+        return $this->fetchOneObj($stmt);
     }
 
 

@@ -309,4 +309,73 @@ class ResourceModel extends Model
         $stmt->bind_param('iiii',$res_id,$gid,$sid,$rc_id);
         return $this->fetchOne($stmt);
     }
+
+    public function getMyResourcesCount($uid){
+        $stmt = $this->prepare("SELECT COUNT(rs_subject_grade.rsrc_id) as res_count FROM rs_subject_grade WHERE creator_id=?");
+        $stmt->bind_param('i',$uid);
+        return $this->fetchOneObj($stmt);
+    }
+
+    public function getTypeCount($uid){
+        $stmt = $this->prepare("SELECT approved as status, COUNT(rs_subject_grade.rsrc_id) as res_count FROM rs_subject_grade,public_resource WHERE rs_subject_grade.rsrc_id=public_resource.id AND creator_id=? GROUP BY approved");
+        $stmt->bind_param('i',$uid);
+        return $this->fetchObjs($stmt);
+    }
+
+//    * Search functions
+
+    public function searchVideos($gid,$sid,$searchText){
+        $stmt = $this->prepare("SELECT video.id, video.name, video.lecturer ,public_resource.approved,rs_subject_grade.creator_id 
+                                        FROM video, public_resource,rs_subject_grade WHERE video.id = public_resource.id AND
+                                         public_resource.id=rs_subject_grade.rsrc_id AND rs_subject_grade.subject_id=? AND rs_subject_grade.grade_id=? 
+                                         AND (video.name LIKE ? OR video.lecturer LIKE ?)");
+        $searchText = "%$searchText%";
+        $stmt->bind_param("iiss",$sid,$gid,$searchText,$searchText);
+        return $this->fetchObjs($stmt);
+    }
+
+    public function searchQuizzes($grade, $subject,$searchText)
+    {
+        $stmt = $this->prepare("SELECT quiz.id, quiz.name, quiz.marks ,public_resource.approved,rs_subject_grade.creator_id 
+                                        FROM quiz, public_resource,rs_subject_grade WHERE quiz.id = public_resource.id AND
+                                         public_resource.id=rs_subject_grade.rsrc_id AND rs_subject_grade.subject_id=? AND rs_subject_grade.grade_id=?
+                                         AND (quiz.name LIKE ?)");
+        $searchText = "%$searchText%";
+        $stmt->bind_param('iis',$subject,$grade,$searchText);
+        return $this->fetchObjs($stmt);
+    }
+
+    public function searchPastpapers($grade, $subject,$searchText)
+    {
+        $stmt = $this->prepare("SELECT pastpaper.id,pastpaper.name, pastpaper.year, pastpaper.part ,public_resource.approved,rs_subject_grade.creator_id 
+                                        FROM pastpaper, public_resource,rs_subject_grade WHERE pastpaper.id = public_resource.id AND
+                                         public_resource.id=rs_subject_grade.rsrc_id AND rs_subject_grade.subject_id=? AND rs_subject_grade.grade_id=?
+                                         AND (pastpaper.name LIKE ? OR pastpaper.year LIKE ? OR pastpaper.part LIKE ?)");
+        $searchText = "%$searchText%";
+        $stmt->bind_param('iisss',$subject,$grade,$searchText,$searchText,$searchText);
+        return $this->fetchObjs($stmt);
+    }
+
+    public function searchDocuments($grade, $subject,$searchText) //!done
+    {
+        $stmt = $this->prepare("SELECT document.id,document.name,public_resource.approved,rs_subject_grade.creator_id 
+                                        FROM document, public_resource,rs_subject_grade WHERE document.id = public_resource.id AND
+                                         public_resource.id=rs_subject_grade.rsrc_id AND rs_subject_grade.subject_id=? AND rs_subject_grade.grade_id=?
+                                         AND (document.name LIKE ?)");
+        $searchText = "%$searchText%";
+        $stmt->bind_param('iis',$subject,$grade,$searchText);
+        return $this->fetchObjs($stmt);
+    }
+
+    public function searchOthers($grade, $subject,$searchText)
+    {
+        $stmt = $this->prepare("SELECT other.id, other.name, other.type,public_resource.approved,rs_subject_grade.creator_id 
+                                        FROM other, public_resource,rs_subject_grade WHERE other.id = public_resource.id AND
+                                         public_resource.id=rs_subject_grade.rsrc_id AND rs_subject_grade.subject_id=? AND rs_subject_grade.grade_id=?
+                                         AND (other.name LIKE ? OR other.type LIKE ?)");
+        $searchText = "%$searchText%";
+        $stmt->bind_param('iiss',$subject,$grade,$searchText,$searchText);
+        return $this->fetchObjs($stmt);
+    }
+
 }

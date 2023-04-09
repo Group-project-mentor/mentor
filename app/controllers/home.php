@@ -12,9 +12,15 @@ class Home extends Controller
                 $this->view('student/home/index');
                 break;
             case 'rc':
+                $typeCount = $this->model('resourceModel')->getTypeCount($_SESSION['id']);
+                $typeCountList = array();
+                foreach ($typeCount as $row){
+                    $typeCountList[$row->status] = $row->res_count;
+                }
+                $mySubjectCount = $this->model("resourceModel")->getMyResourcesCount($_SESSION['id']);
                 $subjects = $this->model("rcHasSubjectModel")->getSubjects($_SESSION['id']);
                 $chartData = $this->model("resourceModel")->getChartCounts($_SESSION['id']);
-                $this->view('resourceCtr/home/index',array($subjects,$chartData));
+                $this->view('resourceCtr/home/index',array($subjects,$chartData,$mySubjectCount,$typeCountList));
                 break;
             case 'ad':
                 header("location:".BASEURL."admins/dashboard");

@@ -47,3 +47,8 @@ const genPayHash = (orderId, amount, currency, merchId, merchSecr) => {
             md5(merchSecr).toUpperCase()
     ).toUpperCase();
 }
+
+function upperFirstCase(str){
+    return (str.trim().charAt(0).toUpperCase() + str.trim().slice(1));
+}
+
