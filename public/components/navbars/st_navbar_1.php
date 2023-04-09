@@ -1,6 +1,6 @@
 <!-- Navigation bar for basic pages in public mode -->
 
-        
+
 <nav class="nav-bar" id="nav-bar">
 
     <!-- Navigation bar logos -->
@@ -17,14 +17,15 @@
 
     <!-- Navigation bar private - public switch -->
     <div class="nav-middle" id="nav-middle">
-        <p>Public</p>
-        <div class="nav-switch">
-            <label class="switch">
-                <input type="checkbox" checked>
-                <span class="slider round"></span>
-            </label>
-        </div>
-        <p class="nav-switch-txt">Private</p>
+
+        <a href="<?php echo BASEURL ?>home" class="nav-link">
+            <img src="<?php echo BASEURL ?>assets/icons/on-button.png" alt="report">
+            <div class="nav-link-text">Public</div>
+        </a>
+        <a href="<?php echo BASEURL ?>st_private_mode" class="nav-link">
+            <img src="<?php echo BASEURL ?>assets/icons/off-button.png" alt="report">
+            <div class="nav-link-text">Private</div>
+        </a>
     </div>
 
 
@@ -35,7 +36,7 @@
             <img src="<?php echo BASEURL ?>assets/icons/icon_report.png" alt="report">
             <div class="nav-link-text"> Report</div>
         </a>
-        <a href="<?php echo BASEURL?>st_buy" class="nav-link">
+        <a href="<?php echo BASEURL ?>st_buy" class="nav-link">
             <img src="<?php echo BASEURL ?>assets/icons/icon_bmc.png" alt="bmc">
             <div class="nav-link-text">Buy me a coffee</div>
         </a>
@@ -46,6 +47,6 @@
     <div class="nav-toggler" id="nav-toggler">
         <img src="<?php echo BASEURL ?>assets/icons/toggler.png" alt="toggler">
     </div>
-</nav>  
+</nav>
 
 <script src="<?php echo BASEURL . '/public/javascripts/st_navbar_1.js' ?>"></script>
