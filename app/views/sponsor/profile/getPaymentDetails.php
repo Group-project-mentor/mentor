@@ -27,6 +27,9 @@
             <div class="search-bar">
             </div>
             <div class="top-bar-btns">
+                <a onclick="history.back()">
+                    <div class="back-btn">Back</div>
+                </a>
                 <a href="#">
                     <img src="<?php echo BASEURL?>public/assets/Teacher/icons/icon_notify.png" alt="notify">
                 </a>

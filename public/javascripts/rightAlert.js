@@ -4,14 +4,15 @@ let closeBtn = document.getElementById("close-btn");
 let AlertTxt = document.getElementById("right-alert-text");
 let a;
 closeBtn.addEventListener("click", () => {
-    msgMain.classList.add("message-hide");
+    messageContent.classList.add("message-hide");
+    clearInterval(a);
 });
 
 const activeMsg = () => {
-    document . getElementById('message-main') . classList . remove('message-hide');
+    messageContent. classList . remove('message-hide');
     if(a)  clearInterval(a);
     a = setInterval(()=>{
-        document . getElementById('message-main') . classList . add('message-hide');
+        messageContent. classList . add('message-hide');
     },5000)
 }
 

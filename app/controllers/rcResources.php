@@ -138,6 +138,30 @@ class RcResources extends Controller{
         }
     }
 
+//    * Search Functions
+    public function searchResource($type,$searchText){
+        $result = array();
+        switch ($type){
+            case "videos" :
+                $result = $this->model("resourceModel")->searchVideos($_SESSION['gid'],$_SESSION['sid'],$searchText);
+                break;
+            case "quizzes":
+                $result = $this->model("resourceModel")->searchQuizzes($_SESSION['gid'],$_SESSION['sid'],$searchText);
+                break;
+            case "documents":
+                $result = $this->model("resourceModel")->searchDocuments($_SESSION['gid'],$_SESSION['sid'],$searchText);
+                break;
+            case "others":
+                $result = $this->model("resourceModel")->searchOthers($_SESSION['gid'],$_SESSION['sid'],$searchText);
+                break;
+            case "pastpapers":
+                $result = $this->model("resourceModel")->searchPastpapers($_SESSION['gid'],$_SESSION['sid'],$searchText);
+                break;
+        }
+        header("Content-Type:Application/json");
+        echo json_encode($result);
+    }
+
 
 
 }

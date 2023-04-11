@@ -28,6 +28,64 @@ let years = document.getElementsByClassName('chk-years');
 let months = document.getElementsByClassName('chk-months');
 let ids = document.getElementsByClassName('chk-ids');
 let amounts = document.getElementsByClassName('chk-amount');
+let billBtn = document.getElementById('bill-btn');
+let bill = "";
+billBtn.addEventListener('click',(e)=>{
+    e.preventDefault();
+
+    // let dataArray = [];
+    let formData = new FormData();
+
+    formData.append("currency","LKR");
+    formData.append("amount",totalSum);
+
+    if(totalSum !== 0) {
+        fetch(`${BASEURL}sponsor/createBill`, {
+            method: "post",
+            body: formData
+        })
+            .then(response => response.json())
+            .then(data => {
+                console.log(data);
+                if (data.billNo !== undefined) {
+                    bill = data.billNo;
+                    let completed = 0;
+                    for (let i = 0; i < chkList.length; i++) {
+                        if (chkList[i].checked) {
+                            let form = new FormData();
+
+                            form.append('student_id', ids[i].innerHTML.trim());
+                            form.append('month', `${monthToNumber(months[i].innerHTML.trim())}`);
+                            form.append('year', years[i].innerHTML.trim());
+                            form.append('billNo', bill);
+
+                            fetch(`${BASEURL}sponsor/insertBillData`, {
+                                method: "post",
+                                body: form
+                            })
+                                .then(res => res.json())
+                                .then(data => {
+                                    console.log(data);
+                                    if (data.status) {
+                                        completed++;
+                                    }
+                                })
+                            // dataArray.push(form);
+                        }
+                    }
+                    totalSum = 0;
+                    location.href = BASEURL + "sponsor/slips/bills/" + bill;
+                } else {
+                    makeError("Pay the remaining bill !");
+                    activeMsg();
+                }
+            })
+            .catch(err => console.log(err));
+    }else {
+        makeError("No selected payments");
+        activeMsg();
+    }
+})
 
 for (let i =0; i < chkList.length;i++){
     chkList[i].addEventListener('change',() => {

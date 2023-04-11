@@ -35,7 +35,11 @@ elseif (!empty($_SESSION['message'])) {
         <section class="top-bar">
             <div class="search-bar">
             </div>
+
             <div class="top-bar-btns">
+                <a onclick="history.back()">
+                    <div class="back-btn">Back</div>
+                </a>
                 <a href="#">
                     <img src="<?php echo BASEURL ?>assets/icons/icon_notify.png" alt="notify">
                 </a>
@@ -66,8 +70,8 @@ elseif (!empty($_SESSION['message'])) {
 
             <div class="rc-profile">
                 <div class="rc-profile-main">
-                    <a class="rc-profile-image" href="<?php echo BASEURL ?>rcProfile/change/image">
-                        <img src="<?php echo (!empty($data[0][4])) ? $data[0][4] : BASEURL . "assets/clips/profile_img.webp" ?>"
+                    <a class="rc-profile-image" href="<?php echo BASEURL ?>sponsor/editProfile/image">
+                        <img src="<?php echo (!empty($data[0]->image)) ? $data[0]->image : BASEURL . "assets/clips/profile_img.webp" ?>"
                              alt="profile"
                              id="profileImg"
                              style="object-fit: cover;"/>
@@ -80,32 +84,19 @@ elseif (!empty($_SESSION['message'])) {
                             </div>
                             <div class="rc-profile-right">
                                 <div>
-                                    <?php echo (!empty($data[0])) ? $data[0][0] : "1" ?>
+                                    <?php echo $_SESSION['id']  ?>
                                 </div>
                             </div>
                         </div>
                         <div class="rc-profile-row">
                             <div class="rc-profile-left">
-                                First Name
+                                Name
                             </div>
                             <div class="rc-profile-right">
                                 <div>
-                                    <?php echo (!empty($data[0])) ? $data[0][1] : "Sample" ?>
+                                    <?php echo $_SESSION['name'] ?>
                                 </div>
-                                <a href="<?php echo BASEURL ?>rcProfile/change/name">
-                                    <img src="<?php echo BASEURL ?>assets/icons/icon_next.png" alt="notify" class="rc-profile-arrow-btn">
-                                </a>
-                            </div>
-                        </div>
-                        <div class="rc-profile-row">
-                            <div class="rc-profile-left">
-                                Second Name
-                            </div>
-                            <div class="rc-profile-right">
-                                <div>
-                                    <?php echo (!empty($data[0])) ? $data[0][1] : "Sample" ?>
-                                </div>
-                                <a href="<?php echo BASEURL ?>rcProfile/change/name">
+                                <a href="<?php echo BASEURL ?>sponsor/editProfile/name">
                                     <img src="<?php echo BASEURL ?>assets/icons/icon_next.png" alt="notify" class="rc-profile-arrow-btn">
                                 </a>
                             </div>
@@ -116,9 +107,9 @@ elseif (!empty($_SESSION['message'])) {
                             </div>
                             <div class="rc-profile-right">
                                 <div>
-                                    <?php echo (!empty($data[0])) ? $data[0][1] : "Sample" ?>
+                                    <?php echo (!empty($data[0]->dispName)) ? $data[0]->dispName : "Sample" ?>
                                 </div>
-                                <a href="<?php echo BASEURL ?>rcProfile/change/name">
+                                <a href="<?php echo BASEURL ?>sponsor/editProfile/name">
                                     <img src="<?php echo BASEURL ?>assets/icons/icon_next.png" alt="notify" class="rc-profile-arrow-btn">
                                 </a>
                             </div>
@@ -129,7 +120,7 @@ elseif (!empty($_SESSION['message'])) {
                             </div>
                             <div class="rc-profile-right">
                                 <div>
-                                    <?php echo (!empty($_SESSION['email'])) ? $_SESSION['user'] : "email" ?>
+                                    <?php echo (!empty($_SESSION['user'])) ? $_SESSION['user'] : "email" ?>
                                 </div>
                                 <a>
                                     <img src="<?php echo BASEURL ?>assets/icons/icon_next.png" alt="notify" class="rc-profile-arrow-btn">
@@ -142,9 +133,9 @@ elseif (!empty($_SESSION['message'])) {
                             </div>
                             <div class="rc-profile-right">
                                 <div>
-                                    <?php echo (!empty($data[0])) ? $data[0][3] : "077777777" ?>
+                                    <?php echo (!empty($data[0]->mobileNo)) ? $data[0]->mobileNo : "" ?>
                                 </div>
-                                <a href="<?php echo BASEURL ?>rcProfile/change/mobile">
+                                <a href="<?php echo BASEURL ?>sponsor/editProfile/mobile">
                                     <img src="<?php echo BASEURL ?>assets/icons/icon_next.png" alt="notify" class="rc-profile-arrow-btn">
                                 </a>
                             </div>
@@ -155,14 +146,26 @@ elseif (!empty($_SESSION['message'])) {
                             </div>
                             <div class="rc-profile-right">
                                 <div>
-                                    <?php echo (!empty($_SESSION['email'])) ? $_SESSION['user'] : "Hello" ?>
+                                    <?php echo (!empty($data[0]->description)) ? substr($data[0]->description, 0, 20)."..." : "" ?>
                                 </div>
-                                <a>
+                                <a href="<?php echo BASEURL ?>sponsor/editProfile/others">
                                     <img src="<?php echo BASEURL ?>assets/icons/icon_next.png" alt="notify" class="rc-profile-arrow-btn">
                                 </a>
                             </div>
                         </div>
-                        <a class="rc-profile-row" style="text-decoration:none;padding:10px" href="<?php echo BASEURL ?>rcProfile/change/password">
+                        <div class="rc-profile-row">
+                            <div class="rc-profile-left">
+                                Go to payment info
+                            </div>
+                            <div class="rc-profile-right">
+                                <div>
+                                </div>
+                                <a href="<?php echo BASEURL ?>sponsor/paymentDetails">
+                                    <img src="<?php echo BASEURL ?>assets/icons/icon_next.png" alt="notify" class="rc-profile-arrow-btn">
+                                </a>
+                            </div>
+                        </div>
+                        <a class="rc-profile-row" style="text-decoration:none;padding:10px" href="<?php echo BASEURL ?>sponsor/editProfile/password">
                             <div class="rc-profile-left" style="color:black;">
                                 Update Password
                             </div>

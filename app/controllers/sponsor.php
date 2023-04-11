@@ -14,22 +14,190 @@ class Sponsor extends Controller
 
     }
 
-    public function allStudents(){
-        $result = $this->model($this->table1)->getSponsorStudents($_SESSION['id']);
-        $this->view('sponsor/student_progress/student_report',array($result));
+    public function allStudents($search = null){
+        $this->view('sponsor/student_progress/student_report',array($this->getStudents($search)));
     }
 
-    public function new_student(){
-        $this->view('sponsor/student_progress/new_student');
+    public function getStudents($search){
+        if (empty($search)){
+            return $this->model($this->table1)->getSponsorStudents($_SESSION['id']);
+        }
+        else{
+            $result = $this->model($this->table1)->getSponsorStudentsSearch($_SESSION['id'],$search);
+            echo json_encode($result);
+        }
+    }
+
+    public function new_student($search = null){
+        $approvedStudents = $this->getNewStudents($search);
+        $this->view('sponsor/student_progress/new_student',array($approvedStudents));
+    }
+
+    public function getNewStudents($search){
+        if (empty($search)){
+            return $this->model($this->table1)->getApprovedStudents();
+        }
+        else{
+            $result = $this->model($this->table1)->getApprovedStudentsSearch($search);
+            echo json_encode($result);
+        }
     }
 
     public function see_student(){
         $this->view('sponsor/student_progress/see_student');
     }
 
-    public function profile(){
-        $this->view('sponsor/profile/sp_profile');
+//    ? Used transaction in this
+    public function connectSponsorStudent($st_id){
+        $this->model($this->table1)->transaction();
+        try{
+            if ($this->model($this->table1)->isStudentStatus($st_id,"AP")){
+                if($this->model($this->table1)->connectSponsor($st_id,$_SESSION['id'])){
+                    flashMessage("Student Added!");
+                }else{
+                    flashMessage("unsuccessful");
+                }
+                header("location:".BASEURL."sponsor/new_student");
+            }else{
+                flashMessage("unsuccessful");
+                header("location:".BASEURL."sponsor/new_student");
+            }
+            $this->model($this->table1)->commit();
+        }catch (Exception $e){
+            $this->model($this->table1)->rollback();
+        }
+
     }
+
+//    * Profile part Starts
+
+    public function profile(){
+        $result = $this->model("userModel")->getSponsorData($_SESSION['id']);
+        $this->view('sponsor/profile/sp_profile',array($result));
+    }
+
+    public function editProfile($infoType){
+        switch ($infoType) {
+            case 'image':
+                $this->image();
+                break;
+            case 'name':
+                $this->name();
+                break;
+            case 'mobile':
+                $this->mobile();
+                break;
+            case 'password':
+                $this->password();
+                break;
+            case 'email':
+                $this->email();
+                break;
+            case 'others':
+                $this->others();
+                break;
+            default:
+                header("location:" . BASEURL . "rcProfile");
+                break;
+        }
+    }
+
+    private function image()
+    {
+        $result = $this->model("userModel")->getImage($_SESSION['id']);
+        $this->view("sponsor/profile/sp_change_image", $result);
+    }
+
+    private function email()
+    {
+
+    }
+
+    private function mobile()
+    {
+        $result = $this->model("userModel")->getOptSponsorDetails($_SESSION['id']);
+        $this->view("sponsor/profile/sp_change_mobile", array($result));
+    }
+
+    private function name()
+    {
+        $result = $this->model('userModel')->getOptSponsorDetails($_SESSION['id']);
+        $this->view("sponsor/profile/sp_change_name",array($result));
+    }
+
+    private function password()
+    {
+        $this->view("sponsor/profile/sp_change_passwd");
+    }
+
+    public function changeImage()
+    {
+        if (isset($_POST['image'])) {
+            if($this->model("userModel")->changeImg($_SESSION['id'],$_POST['image'])){
+                echo "success";
+            }else{
+                echo "unsuccess";
+            }
+        }
+    }
+
+    public function changeName()
+    {
+        if (isset($_POST['name']) && isset($_POST['dispName'])) {
+            if ((preg_match('/[a-zA-Z][a-zA-Z ]+/',$_POST['name']))) {
+                $this->model("userModel")->updateName($_POST['name'], $_SESSION['id'], $_POST['dispName']);
+                $_SESSION['name'] = $_POST['name'];
+                flashMessage("success");
+                header("location:" . BASEURL . 'sponsor/profile');
+            } else {
+                flashMessage("wrongName");
+                header("location:" . BASEURL . 'sponsor/editProfile/name');
+            }
+        } else {
+            flashMessage("Error");
+            header("location:" . BASEURL . 'sponsor/editProfile/name');
+        }
+    }
+
+    public function changeMobile(){
+        if (isset($_POST['mobile'])) {
+            if ((preg_match('/[0-9]{10}/',$_POST['mobile'])) && ($_POST['mobile'] != '')) {
+                $this->model("userModel")->updateMobile($_POST['mobile'], $_SESSION['id'],"sponsor");
+                flashMessage("success");
+                header("location:" . BASEURL . 'sponsor/profile');
+            } else {
+                flashMessage("wrongName");
+                header("location:" . BASEURL . 'sponsor/editProfile/mobile');
+            }
+        } else {
+            flashMessage("Error");
+            header("location:" . BASEURL . 'sponsor/editProfile/mobile');
+        }
+    }
+
+    public function changeOther(){
+        if (isset($_POST['desc'])) {
+//            if ((preg_match('/^[A-Za-z0-9.]+$/',$_POST['desc'])) && ($_POST['desc'] != '')) {
+                $this->model("userModel")->updateOthers($_POST['desc'], $_SESSION['id']);
+                flashMessage("success");
+                header("location:" . BASEURL . 'sponsor/profile');
+//            } else {
+//                flashMessage("wrongName");
+//                header("location:" . BASEURL . 'sponsor/editProfile/other');
+//            }
+        } else {
+            flashMessage("Error");
+            header("location:" . BASEURL . 'sponsor/editProfile/others');
+        }
+    }
+
+    private function others()
+    {
+        $result = $this->model('userModel')->getOptSponsorDetails($_SESSION['id']);
+        $this->view("sponsor/profile/sp_change_others",array($result));
+    }
+
+//    * Profile part Ends
 
     public function reportIssue(){
         $this->view('sponsor/reportIssue/report');
@@ -40,12 +208,11 @@ class Sponsor extends Controller
         $this->view('sponsor/payments/transactionHistory',array($res));
     }
 
-
-
     public function paymentsInProgress(){
         $rowArray = array();
         $month = intval(date('m'));
         $year = intval(date('Y'));
+        $billData = $this->model($this->table1)->getBillNo($_SESSION['id']);
 //        var_dump($year,$month);
         $sponsorships = $this->model($this->table1)->getSponsorship($_SESSION['id']); //! student_id, month, year, fundMonths, monthlyAmount, , fundMonths, approved_date
 
@@ -183,16 +350,17 @@ class Sponsor extends Controller
                 }
             }
         }
-        $this->view('sponsor/payments/paymentsInProgress',array($rowArray,$sponsorships));
+        $this->view('sponsor/payments/paymentsInProgress',array($rowArray,$sponsorships,$billData));
     }
 
-    public function paymentTest1(){
-        $this->view('sponsor/payments/paymentForm');
-    }
-
-    public function paymentTest(){
+    public function paymentTest($bill_id){
+        $billData = $this->model($this->table1)->getBillData($bill_id);
+        $totalPayment = 0;
+        foreach ($billData as $row){
+            $totalPayment += $row->monthlyAmount;
+        }
         $res = $this->model("payments")->hasPaymentDetails($_SESSION['id']);
-        $this->view('sponsor/payments/paymentForm2',array($res));
+        $this->view('sponsor/payments/paymentForm2',array($res,$bill_id,$totalPayment));
     }
 
     public function paymentDone(){
@@ -264,15 +432,21 @@ class Sponsor extends Controller
         echo json_encode($response);
     }
 
-    public function deleteBillData(){
-
+    public function deleteBillData($bill_id){
+        if($this->model('sponsorStModel')->deleteBill($bill_id,$_SESSION['id'])){
+            flashMessage("Deleted");
+        }else{
+            flashMessage("Not Deleted");
+        }
+        header("location:".BASEURL."sponsor/paymentsInProgress");
     }
 
     public function slips($viewType, $id){
         switch ($viewType){
             case "payments":
+                $bill = $this->model($this->table1)->getPayBill($id);
                 $result =$this->model($this->table1)->getPaymentDetails($id);
-                $this->view("sponsor/detailedViews/paymentView",array($result));
+                $this->view("sponsor/detailedViews/paymentView",array($result,$bill));
                 break;
             case "bills":
                 $billDetails =$this->model($this->table1)->getBillDetails($id,$_SESSION['id']);
@@ -288,114 +462,6 @@ class Sponsor extends Controller
         }
     }
 
-    //    public function paymentsInProgressOld(){
-//        $rowArray = array();
-//        $month = intval(date('m'));
-//        $year = intval(date('Y'));
-////        var_dump($year,$month);
-//        $sponsorships = $this->model($this->table1)->getSponsorship($_SESSION['id']); //! student_id, month, year
-//
-////        ? check if sponsor has/not students assigned
-//        if(!empty($sponsorships)){
-//
-////        ? loop through that data
-//            foreach ($sponsorships as $row){
-//
-////          TODO : has a critical issue in this if statement : Logical Error
-////                ! There is no check of previous months payments so can't detect them after paying to a front month
-//
-//                // ? get the last paid month of each student
-//                $lastPayment = $this->model($this->table1)->getPaymentsLast($row->id); //! student_id, month, year, fundMonths, monthlyAmount
-//                if (!empty($lastPayment)){
-//                    if((intval($lastPayment->year)) < $year ){  //? If last funded on last year
-//                        if ($row->fundMonths > 0){
-//
-//                            //? last year data
-//                            for ($i = intval($lastPayment->month)+1 ; $i <= 12; $i++){
-//                                $rowArray[] = array(
-//                                    "student_id"=>$lastPayment->student_id,
-//                                    "name" => $row->name,
-//                                    "year" => intval($lastPayment->year),
-//                                    "month" => $i,
-//                                    "amount" => $row->monthlyAmount
-//                                );
-//                            }
-//
-//                            //? this year data
-//                            for ($i = 1; $i <= $month; $i++){
-//                                $rowArray[] = array(
-//                                    "student_id"=>$lastPayment->student_id,
-//                                    "name" => $row->name,
-//                                    "year" => $year,
-//                                    "month" => $i,
-//                                    "amount" => $row->monthlyAmount
-//                                );
-//                            }
-//                        }
-//                    }
-//
-//                    //? If last funded on this year
-//                    elseif((intval($lastPayment->year)) == $year){
-//                        if (intval($lastPayment->month) < $month and ($row->fundMonths > 0)){
-//                            for ($i = intval($lastPayment->month)+1 ; $i <= $month; $i++){
-//                                $rowArray[] = array(
-//                                    "student_id"=>$lastPayment->student_id,
-//                                    "name" => $row->name,
-//                                    "year" => $year,
-//                                    "month" => $i,
-//                                    "amount" => $row->monthlyAmount
-//                                );
-//                            }
-//                        }
-//                    }
-//
-//                //? If no paid any payment until assigned that student
-//                } else{
-//                    $acceptedDate = explode("-",$row->approved_date);
-//                    $accMonth = intval($acceptedDate[1]);
-//                    $accYear = intval($acceptedDate[0]);
-//
-//                    if($accYear < $year and $row->fundMonths > 0){
-//                            for ($i = $accMonth ; $i <= 12; $i++){
-//                                $rowArray[] = array(
-//                                    "student_id"=>$row->id,
-//                                    "name" => $row->name,
-//                                    "year" => $accYear,
-//                                    "month" => $i,
-//                                    "amount" => $row->monthlyAmount
-//                                );
-//                            }
-//                            for ($i = 1; $i <= $month; $i++){
-//                                $rowArray[] = array(
-//                                    "student_id"=>$row->id,
-//                                    "name" => $row->name,
-//                                    "year" => $year,
-//                                    "month" => $i,
-//                                    "amount" => $row->monthlyAmount
-//                                );
-//                            }
-//                    }
-//                    elseif($accYear == $year){
-//                        if ($accMonth <= $month and ($row->fundMonths > 0)){
-//                            for ($i = $accMonth; $i <= $month; $i++){
-//                                $rowArray[] = array(
-//                                    "student_id"=>$row->id,
-//                                    "name" => $row->name,
-//                                    "year" => $year,
-//                                    "month" => $i,
-//                                    "amount" => $row->monthlyAmount
-//                                );
-//                            }
-//                        }
-//                    }
-//                }
-//            }
-//        }
-////        foreach ($rowArray as $r){
-////            print_r($r);
-////            echo '<br />';
-////        }
-//        $this->view('sponsor/payments/paymentsInProgress',array($rowArray,$sponsorships));
-//    }
+
 
 }
