@@ -25,8 +25,8 @@ class TClassMembers extends Controller{
 
     public function memDetails(){
         
-        $l_id = 1;
-        var_dump($l_id);
+        $l_id = $_SESSION['class_id'];
+        
         $res = $this->model('teacher_data')->getStudents($l_id);
         $this->view('Teacher/classMembers/membersDetails',array($res));
         

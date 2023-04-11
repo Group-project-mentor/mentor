@@ -1,5 +1,4 @@
 
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -13,6 +12,8 @@
 </head>
 
 <body>
+
+
     <section class="page">
         <!-- Navigation panel -->
         <nav class="nav-bar" id="nav-bar">
@@ -84,7 +85,7 @@
                 </div>
             </section>
 
-            
+
 
             <!-- Middle part for whole content -->
             <section class="mid-content">
@@ -93,6 +94,7 @@
                 <div class="mid-title">
                     <h1>Teacher Home</h1>
                     <h6>Hello <?php echo $_SESSION['name'] ?>,</h6>
+
                 </div>
 
                 <!-- subject cards -->
@@ -124,6 +126,16 @@
                     <?php } else {
                         echo "no data!";
                     } ?>
+
+                    <?php
+                    // Set session variables
+                    $_SESSION["class_id"] = $row->class_id;
+                    
+                    ?>
+
+                   
+
+
 
                 </div>
 

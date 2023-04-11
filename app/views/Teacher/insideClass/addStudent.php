@@ -86,7 +86,7 @@
                  <!-- Title and sub title of middle part -->
                 <div class="mid-title">
                     <h1>Add Student</h1>
-                    <h6>Teacher Home/ C136-member details/Add student</h6>
+                    <h6>Teacher Home/ <?php echo $_SESSION['class_id']?>-member details/Add student</h6>
                     <br><br><br>
                     <h3>Student ID</h3>
                 </div>
