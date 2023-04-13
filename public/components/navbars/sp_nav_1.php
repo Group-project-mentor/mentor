@@ -53,7 +53,7 @@ if (!isset($_SESSION['navtog'])) {
             <div class="nav-link-text">Report</div>
         </a>
 
-        <a href="#" class="nav-link">
+        <a href="<?php echo BASEURL . 'home/bmc' ?>" class="nav-link">
             <img src="<?php echo BASEURL ?>assets/icons/icon_bmc.png" alt="bmc">
             <div class="nav-link-text">Buy me a coffee</div>
         </a>

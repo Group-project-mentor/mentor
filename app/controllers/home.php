@@ -2,7 +2,11 @@
 
 class Home extends Controller
 {
-    
+    public function __construct()
+    {
+        flashMessage();
+    }
+
     public function index()
     {
         sessionValidator();
@@ -36,6 +40,19 @@ class Home extends Controller
             default:
                 header("location:".BASEURL."login");
         }
+    }
+
+    public function bmc(){
+        $this->view('BMC');
+    }
+
+    public function saveBmc(){
+        $count = $_POST['custom_1'];
+        $name = $_POST['card_holder_name'];
+        $amount = $_POST['payhere_amount'];
+        $email = $_POST['custom_2'];
+        $this->model("payments")->saveBMC($name,$email,$amount,$count);
+        flashMessage("Success");
     }
 
     public function toggle(){

@@ -40,4 +40,16 @@ class payments extends Model
         $stmt2->bind_param('is',$payID,$billID);
         return $this->executePrepared($stmt1) and $this->executePrepared($stmt2);
     }
+
+    public function testMe($data){
+        $stmt = $this->prepare("INSERT INTO test VALUES (?)");
+        $stmt->bind_param('s',$data);
+        $this->executePrepared($stmt);
+    }
+
+    public function saveBMC($name,$email,$amount,$count){
+        $stmt = $this->prepare("INSERT INTO bmc (name, email, count, amount) VALUES (?,?,?,?)");
+        $stmt->bind_param("ssid",$name,$email,$count,$amount);
+        return $this->executePrepared($stmt);
+    }
 }
