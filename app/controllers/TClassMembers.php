@@ -23,12 +23,32 @@ class TClassMembers extends Controller{
         $this->view('Teacher/classMembers/changeHost3');
     }   
 
-    public function memDetails(){
-        
-        $l_id = 1;
-        var_dump($l_id);
-        $res = $this->model('teacher_data')->getStudents($l_id);
+    public function memDetails($class_id)
+    {
+        if (!isset($_SESSION['user'])) {
+            header("location:" . BASEURL . "login");
+        }
+        $this->getClass($class_id);
+        $_SESSION["cid"]=$class_id;
+        $res = $this->model('teacher_data')->getStudents($class_id);
         $this->view('Teacher/classMembers/membersDetails',array($res));
+        
+    }
+
+    private function getClass($class_id)
+    {
+        if (!isset($_SESSION["cid"])) {
+            $result1 = $this->model("classModel")->getClassId($class_id)[1];
+            $_SESSION["cid"] = $result1;
+        }
+    }
+
+    public function rmvSt($student_id,$class_id)
+    {
+       
+            $this->model("teacher_data")->deleteSt($student_id,$class_id);
+                header("location:" . BASEURL . "TClassMembers/memDetails/" . $_SESSION["cid"]);
+            
         
     }
 
@@ -37,5 +57,6 @@ class TClassMembers extends Controller{
         $this->view('Teacher/classMembers/restrictStudent');
     }
 }
+
 
 ?>

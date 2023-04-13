@@ -1,5 +1,4 @@
 
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -13,6 +12,8 @@
 </head>
 
 <body>
+
+
     <section class="page">
         <!-- Navigation panel -->
         <nav class="nav-bar" id="nav-bar">
@@ -84,7 +85,7 @@
                 </div>
             </section>
 
-            
+
 
             <!-- Middle part for whole content -->
             <section class="mid-content">
@@ -93,6 +94,8 @@
                 <div class="mid-title">
                     <h1>Teacher Home</h1>
                     <h6>Hello <?php echo $_SESSION['name'] ?>,</h6>
+                    
+
                 </div>
 
                 <!-- subject cards -->
@@ -113,17 +116,23 @@
                         <div class="subject-card-set">
                             <?php foreach ($data[0] as $row) { ?>
                                 <div class="subject-card">
-                                    <a href="<?php BASEURL ?>TInsideClass/InClass">
+                                    <a href='<?php echo BASEURL . "TClassMembers/memDetails/" . $row->cid  ?>'>
                                         <img alt='' src="<?php echo BASEURL . "public/assets/Teacher/patterns/" . $count++ . '.png' ?>" />
                                     </a>
-                                    <a href="#"><label><?php echo $row->class_id ?></label></a>
-                                    <a href="#"><label><?php echo $row->class_name ?></label></a>
+                                    <a href="#"><label><?php echo $row->cid ?></label></a>
+                                    <a href="#"><label><?php echo $row->cname ?></label></a>
                                 </div>
                             <?php } ?>
                         </div>
                     <?php } else {
                         echo "no data!";
                     } ?>
+
+                 
+
+                   
+
+
 
                 </div>
 
