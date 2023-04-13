@@ -23,13 +23,24 @@ class TClassMembers extends Controller{
         $this->view('Teacher/classMembers/changeHost3');
     }   
 
-    public function memDetails(){
-        
-        $l_id = $_SESSION['class_id'];
-        
-        $res = $this->model('teacher_data')->getStudents($l_id);
+    public function memDetails($class_id)
+    {
+        if (!isset($_SESSION['user'])) {
+            header("location:" . BASEURL . "login");
+        }
+        $this->getClass($class_id);
+        $_SESSION["cid"]=$class_id;
+        $res = $this->model('teacher_data')->getStudents($class_id);
         $this->view('Teacher/classMembers/membersDetails',array($res));
         
+    }
+
+    private function getClass($class_id)
+    {
+        if (!isset($_SESSION["cid"])) {
+            $result1 = $this->model("classModel")->getClassId($class_id)[1];
+            $_SESSION["cid"] = $result1;
+        }
     }
 
 

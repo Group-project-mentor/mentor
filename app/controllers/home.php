@@ -26,6 +26,8 @@ class Home extends Controller
                 header("location:".BASEURL."admins/dashboard");
                 break;
             case 'tch':
+                unset($_SESSION["cid"]);
+                unset($_SESSION["cname"]);
                 $classes = $this->model("teacher_data")->getClasses($_SESSION['id']);
                 $this->view('Teacher/home/index',array($classes));
 

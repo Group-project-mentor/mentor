@@ -6,7 +6,7 @@ class Teacher_data extends Model{
 
     public function getClasses($id){
         
-        $q = "select private_class.class_id, private_class.class_name from private_class inner join
+        $q = "select private_class.class_id as cid, private_class.class_name as cname from private_class inner join
          teacher_has_class on teacher_has_class.class_id = private_class.class_id where teacher_has_class.teacher_id=? ";
         $result = $this->prepare($q);
         $result->bind_param('i',$id);
@@ -37,14 +37,14 @@ class Teacher_data extends Model{
 
     public function getStudents($id){
         
-        $q = "select DISTINCT user.id, user.name from user inner join classes_has_students on classes_has_students.student_id=user.id where user.type='st' and classes_has_students.class_id=? ";
+        $q = "select user.id,user.name from user inner join classes_has_students on user.id=classes_has_students.student_id where user.type='st' and classes_has_students.class_id=? ";
         $result = $this->prepare($q);
         $result->bind_param('i',$id);
         return $this->fetchObjs($result);
     }
 
     public function addStudentsClass($id){
-        $q = "INSERT INTO classes_has_students(class_id,student_id) VALUES (".$_SESSION['class_id'].",".$id.")";
+        $q = "INSERT INTO classes_has_students(class_id,student_id) VALUES (".$_SESSION['cid'].",".$id.")";
         $result = $this->executeQuery($q);
         return $result;
     }

@@ -94,6 +94,7 @@
                 <div class="mid-title">
                     <h1>Teacher Home</h1>
                     <h6>Hello <?php echo $_SESSION['name'] ?>,</h6>
+                    
 
                 </div>
 
@@ -115,11 +116,11 @@
                         <div class="subject-card-set">
                             <?php foreach ($data[0] as $row) { ?>
                                 <div class="subject-card">
-                                    <a href="<?php BASEURL ?>TInsideClass/InClass">
+                                    <a href='<?php echo BASEURL . "TClassMembers/memDetails/" . $row->cid  ?>'>
                                         <img alt='' src="<?php echo BASEURL . "public/assets/Teacher/patterns/" . $count++ . '.png' ?>" />
                                     </a>
-                                    <a href="#"><label><?php echo $row->class_id ?></label></a>
-                                    <a href="#"><label><?php echo $row->class_name ?></label></a>
+                                    <a href="#"><label><?php echo $row->cid ?></label></a>
+                                    <a href="#"><label><?php echo $row->cname ?></label></a>
                                 </div>
                             <?php } ?>
                         </div>
@@ -127,11 +128,7 @@
                         echo "no data!";
                     } ?>
 
-                    <?php
-                    // Set session variables
-                    $_SESSION["class_id"] = $row->class_id;
-                    
-                    ?>
+                 
 
                    
 
