@@ -49,7 +49,14 @@ class Teacher_data extends Model{
         return $result;
     }
 
-   
-}
+    public function deleteSt($student_id,$class_id){
+        
+        $q = "delete from classes_has_students where student_id=? and class_id=? ";
+        $result = $this->prepare($q);
+        $result->bind_param('ii',$student_id,$class_id);
+        return $result->execute();
+        }
+    }
+
 
 ?>

@@ -168,7 +168,19 @@
                                                 /* Green */
                                             </style>
                                        
-                                            <button class="button button1">Remove</button>
+                                       <a href="<?php echo BASEURL . 'TClassMembers/rmvSt/' . $row->id.  "/" . $_SESSION["cid"]?>  style="
+                                                    border: none;
+                                                    color: white;
+                                                    padding: 8px 10px;
+                                                    text-align: center;
+                                                    text-decoration: none;
+                                                    display: inline-block;
+                                                    font-size: 16px;
+                                                    margin: 4px 2px;
+                                                    cursor: pointer;
+                                                    border-radius: 12px;
+                                                ">     
+                                       <button class="button button1" >Remove</button></a>
 
                                             <style>
                                                 .button {

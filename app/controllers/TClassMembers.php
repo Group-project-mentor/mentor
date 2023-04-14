@@ -43,10 +43,20 @@ class TClassMembers extends Controller{
         }
     }
 
+    public function rmvSt($student_id,$class_id)
+    {
+       
+            $this->model("teacher_data")->deleteSt($student_id,$class_id);
+                header("location:" . BASEURL . "TClassMembers/memDetails/" . $_SESSION["cid"]);
+            
+        
+    }
+
 
     public function restrictSt(){
         $this->view('Teacher/classMembers/restrictStudent');
     }
 }
+
 
 ?>
