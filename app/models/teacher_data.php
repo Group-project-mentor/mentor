@@ -92,4 +92,13 @@ class Teacher_data extends Model
         $result->bind_param('ii', $teacher_id, $class_id);
         return $result->execute();
     }
+
+    public function getHostTeacher($id)
+    {
+
+        $q = "select user.id,user.name from user inner join teacher_has_class on user.id=teacher_has_class.teacher_id where user.type='tch' and teacher_has_class.class_id=? ";
+        $result = $this->prepare($q);
+        $result->bind_param('i', $id);
+        return $this->fetchObjs($result);
+    }
 }

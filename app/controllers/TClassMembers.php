@@ -32,7 +32,8 @@ class TClassMembers extends Controller{
         $_SESSION["cid"]=$class_id;
         $res1 = $this->model('teacher_data')->getStudents($class_id);
         $res2 = $this->model('teacher_data')->getTeachers($class_id);
-        $this->view('Teacher/classMembers/membersDetails',array($res1,$res2));
+        $res3 = $this->model('teacher_data')->getHostTeacher($class_id);
+        $this->view('Teacher/classMembers/membersDetails',array($res1,$res2,$res3));
         
     }
 
