@@ -92,32 +92,29 @@
                 <div class="mid-title">
                     <h1>Add Teacher</h1>
                     <h6>Teacher Home/ C136-member details/Add teacher</h6>
-                    <br><br><br>
+                    <br><br>
+                    <br>
                     <h3>Teacher name</h3>
                 </div>
 
                 <div class="class section">
-                    <form>
-                        <label for="class_name"></label>
-                        <input type="text" id="class_name" name="class name" placeholder="New teacher name..">
-                    </form>
-                </div>
+                    <form action="<?php echo BASEURL; ?>TInsideClass/addTchAction" method="POST">
+                        <label for="teacher_name"></label>
+                        <input type="text" id="teacher_name" name="teacher_name" placeholder="New teacher name..">
+                        <h3>Teacher Id</h3>
+                        <label for="teacher_id"></label>
+                        <input type="text" id="teacher_id" name="teacher_id" placeholder="New teacher id..">
+                        <br>
+                        <h3>Teacher Privilege</h3>
+                        <label for="teacher_privilege"></label>
+                        <select id="teacher_privilege" name="teacher_privilege">
+                            <option value="1">Only add students</option>
+                            <option value="2">Only add, restrict and delete students</option>
+                            <option value="3">Only add resources</option>
+                            <option value="4">Only add,edit and delete resources</option>
+                        </select>
+                        <input type="submit" value="Add">
 
-                <div class="mid-title">
-
-                    <br>
-                    <h3>Teacher ID</h3>
-                </div>
-
-                <div class="class section">
-                    <form>
-                        <label for="class_name"></label>
-                        <input type="text" id="class" name="class name" placeholder="New teacher id..">
-
-                        <!-- <input type="submit" value="Add">-->
-                        <a href="<?php echo BASEURL ?>TInsideClass/addTrNext" style="text-decoration:none">
-                            <div class="mid-back-btn">Next</div>
-                        </a>
                     </form>
                 </div>
 

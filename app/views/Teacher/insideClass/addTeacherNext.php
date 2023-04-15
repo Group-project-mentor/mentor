@@ -96,14 +96,14 @@
                 </div>
 
                 <div class="class section">
-                    <form>
+                <form >
 
-                        <label for="issue"></label>
-                        <select id="issue" name="issue">
-                            <option value="Category1">Privilege 1</option>
-                            <option value="Category2">Privilege 2</option>
-                            <option value="Category3">Privilege 3</option>
-                            <option value="Category4">Privilege 4</option>
+                        <label for="teacher_privilege"></label>
+                        <select id="teacher_privilege" name="teacher_privilege">
+                            <option value="Category1">1</option>
+                            <option value="Category2">2</option>
+                            <option value="Category3">3</option>
+                            <option value="Category4">4</option>
                         </select>
 
                         <input type="submit" value="Next">

@@ -205,10 +205,92 @@
                                         </div>
                                     </div>
                                 <?php } ?>
+                        
+                    <?php }  ?>
+                    
+                
+
+                <!-- Grade choosing interface -->
+                            
+                            <?php if (!empty($data[1])) { ?>
+                                <div class="sponsor-list-row">
+                                </div>
+                                <?php foreach ($data[1] as $row) {
+
+                                ?>
+                                    <div class="sponsor-list-row">
+                                        <div class="sponsor-list-item flex-1">
+                                            <?php echo $row->name ?>
+                                        </div>
+                                        <div class="sponsor-list-item flex-1">
+                                            Teacher
+                                        </div>
+                                        <div class="sponsor-list-item flex-1">
+                                            1 second
+                                        </div>
+                                        <div class="sponsor-list-item flex-1">
+                                            <button class="button button1">Restrict</button>
+
+                                            <style>
+                                                .button {
+                                                    border: none;
+                                                    color: white;
+                                                    padding: 8px 10px;
+                                                    text-align: center;
+                                                    text-decoration: none;
+                                                    display: inline-block;
+                                                    font-size: 16px;
+                                                    margin: 4px 2px;
+                                                    cursor: pointer;
+                                                    border-radius: 12px;
+                                                }
+
+                                                .button1 {
+                                                    background-color: #186537
+                                                }
+
+                                                /* Green */
+                                            </style>
+                                       
+                                       <a href="<?php echo BASEURL . 'TClassMembers/rmvTch/' . $row->id.  "/" . $_SESSION["cid"]?>  style="
+                                                    border: none;
+                                                    color: white;
+                                                    padding: 8px 10px;
+                                                    text-align: center;
+                                                    text-decoration: none;
+                                                    display: inline-block;
+                                                    font-size: 16px;
+                                                    margin: 4px 2px;
+                                                    cursor: pointer;
+                                                    border-radius: 12px;
+                                                ">     
+                                       <button class="button button1" >Remove</button></a>
+
+                                            <style>
+                                                .button {
+                                                    border: none;
+                                                    color: white;
+                                                    padding: 8px 10px;
+                                                    text-align: center;
+                                                    text-decoration: none;
+                                                    display: inline-block;
+                                                    font-size: 16px;
+                                                    margin: 4px 2px;
+                                                    cursor: pointer;
+                                                    border-radius: 12px;
+                                                }
+
+                                                .button1 {
+                                                    background-color: #186537
+                                                }
+
+                                                /* Green */
+                                            </style>
+                                        </div>
+                                    </div>
+                                <?php } ?>
                         </div>
-                    <?php } else {
-                                echo "no data!";
-                            } ?>
+                    <?php } ?>
                     </div>
                 </div>
         </div>
