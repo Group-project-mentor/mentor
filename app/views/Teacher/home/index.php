@@ -147,19 +147,41 @@
                         <h3>Coordinating classes</h3>
                     </div>
 
-                    <?php if (!empty($data[1])) {
+                    <?php
+                    if (!empty($data[1])) {
                         $count = 1;
+                        $classPId = '';
+                        foreach ($data[2] as $row) {
+                            $privilegeId = $row->pid;
+                            switch ($privilegeId) {
+                                case 1:
+                                    $classPId = '1';
+                                    break;
+                                case 2:
+                                    $classPId = '2';
+                                    break;
+                                case 3:
+                                    $classPId = '3';
+                                    break;
+                                case 4:
+                                    $classPId = '14';
+                                    break;
+                                default:
+                                    $classPId = '';
+                            }
+                        }
                     ?>
                         <div class="subject-card-set">
                             <?php foreach ($data[1] as $row) {
                                 if ($count <= 3) {
                             ?>
                                     <div class="subject-card">
-                                        <a href='<?php echo BASEURL . "TClassMembers/memDetails/" . $row->cid ?>'>
+                                        <a href='<?php echo BASEURL . "TPrivileges/p{$classPId}MemberDetails/" . $row->cid ?>'>
                                             <img alt='' src="<?php echo BASEURL . "public/assets/Teacher/patterns/" . $count . '.png' ?>" />
                                         </a>
                                         <a href="#"><label><?php echo $row->cid ?></label></a>
                                         <a href="#"><label><?php echo $row->cname ?></label></a>
+                                        <?php echo $privilegeId ?>
                                     </div>
                             <?php
                                     $count++;

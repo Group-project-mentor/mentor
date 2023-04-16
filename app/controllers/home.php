@@ -33,7 +33,8 @@ class Home extends Controller
                 unset($_SESSION["cname"]);
                 $classes1 = $this->model("teacher_data")->getClasses($_SESSION['id']);
                 $classes2 = $this->model("teacher_data")->getCoordinateClasses($_SESSION['id']);
-                $this->view('Teacher/home/index',array($classes1,$classes2));
+                $privilege=$this->model("teacher_data")->getTPrivilege($_SESSION['id'],$classes2);
+                $this->view('Teacher/home/index',array($classes1,$classes2,$privilege));
 
                 break;
             case 'sp':
