@@ -36,9 +36,11 @@ class TClassRoom extends Controller{
     }
 
     public function allCoordinateClasses(){
-        unset($_SESSION["cid"]);
+        
          $classes = $this->model("teacher_data")->getCoordinateClasses($_SESSION['id']);
-         $this->view('Teacher/classRoom/AllCoordinateClass',array($classes));
+         $privilege=$this->model("teacher_data")->getTPrivilege($_SESSION['id'],$classes);
+         $this->view('Teacher/classRoom/AllCoordinateClass',array($classes,$privilege));
+         unset($_SESSION["cid"]);
     }
  
     

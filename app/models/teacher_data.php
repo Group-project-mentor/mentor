@@ -111,4 +111,14 @@ class Teacher_data extends Model
         $result->bind_param('i', $id);
         return $this->fetchObjs($result);
     }
+    
+    public function getTPrivilege($id1,$id2)
+    {
+
+        $q = "select classes_has_extra_teachers.teacher_privilege as pid from classes_has_extra_teachers where classes_has_extra_teachers.teacher_id=? and classes_has_extra_teachers.class_id=?; ";
+        $result = $this->prepare($q);
+        $result->bind_param('ii', $id1,$id2);
+        return $this->fetchObjs($result);
+    }
+
 }
