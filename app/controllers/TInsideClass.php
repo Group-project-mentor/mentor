@@ -15,12 +15,9 @@ class TInsideClass extends Controller{
         $this->view('Teacher/insideClass/addStudent');
     }   
 
+   
     public function addTr(){
         $this->view('Teacher/insideClass/addTeacher');
-    }  
-
-    public function addTrNext(){
-        $this->view('Teacher/insideClass/addTeacherNext');
     }   
 
     public function InClass(){
@@ -39,6 +36,21 @@ class TInsideClass extends Controller{
         }
 
     }
+
+    public function addTchAction(){
+        $id2 = $_POST['teacher_name'];
+        $id1 = $_POST['teacher_id'];
+        $id3 = $_POST['teacher_privilege'];
+        var_dump($id1,$id2,$id3);
+        if($this->model('teacher_data')->addExtraTeachersClass($id1,$id2,$id3) ){
+            
+            header("location:".BASEURL."TInsideClass/inClass");
+        }
+        else{
+            header("location:".BASEURL."TInsideClass/addTr");
+        }
+    }  
+
 
     public function getStudentId(){
         $l_id = $_POST['student_id'];

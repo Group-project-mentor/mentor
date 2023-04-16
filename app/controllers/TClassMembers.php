@@ -30,8 +30,10 @@ class TClassMembers extends Controller{
         }
         $this->getClass($class_id);
         $_SESSION["cid"]=$class_id;
-        $res = $this->model('teacher_data')->getStudents($class_id);
-        $this->view('Teacher/classMembers/membersDetails',array($res));
+        $res1 = $this->model('teacher_data')->getStudents($class_id);
+        $res2 = $this->model('teacher_data')->getTeachers($class_id);
+        $res3 = $this->model('teacher_data')->getHostTeacher($class_id);
+        $this->view('Teacher/classMembers/membersDetails',array($res1,$res2,$res3));
         
     }
 
@@ -47,6 +49,15 @@ class TClassMembers extends Controller{
     {
        
             $this->model("teacher_data")->deleteSt($student_id,$class_id);
+                header("location:" . BASEURL . "TClassMembers/memDetails/" . $_SESSION["cid"]);
+            
+        
+    }
+
+    public function rmvTch($teacher_id,$class_id)
+    {
+       
+            $this->model("teacher_data")->deleteTch($teacher_id,$class_id);
                 header("location:" . BASEURL . "TClassMembers/memDetails/" . $_SESSION["cid"]);
             
         
