@@ -162,6 +162,10 @@ class RcResources extends Controller{
         echo json_encode($result);
     }
 
+    public function organized($grade_id, $subject_id){
+        $this->view('resourceCtr/resources/organized');
+    }
+
 
 
 }

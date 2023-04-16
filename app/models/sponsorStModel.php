@@ -120,5 +120,31 @@ class sponsorStModel extends Model
         return $this->fetchOneObj($stmt);
     }
 
+    public function getTotalPaidData($id){
+        $stmt = $this->prepare("SELECT student.id AS id, user.name AS name, (fundMonths*monthlyAmount) AS total 
+                                        FROM student,user WHERE student.id = user.id AND sponsor_id = ?");
+        $stmt->bind_param("i",$id);
+        return $this->fetchObjs($stmt);
+    }
+
+    public function getTotalFundedAmount($id){
+        $stmt = $this->prepare("SELECT SUM(st.monthlyAmount) AS total FROM sp_pay sp LEFT JOIN student st on sp.student_id = st.id 
+                WHERE st.sponsor_id = ? ");
+        $stmt->bind_param("i",$id);
+        return $this->fetchOneObj($stmt);
+    }
+
+    public function getMonthlyData($id){
+        $stmt = $this->prepare("SELECT student.id, user.name, student.monthlyAmount FROM user,student WHERE student.id = user.id AND sponsor_id = ?");
+        $stmt->bind_param("i",$id);
+        return $this->fetchObjs($stmt);
+    }
+
+    public function getMonthlyBillData($id, $year){
+        $stmt = $this->prepare("SELECT b.id, p.currency, p.amount, p.timestamp FROM bill b,payment p WHERE p.paymentId = b.payment_id AND b.user_id = ? AND YEAR(p.timestamp) = ? AND b.payment_id IS NOT NULL");
+        $stmt->bind_param("ii",$id,$year);
+        return $this->fetchObjs($stmt);
+    }
+
 
 }
