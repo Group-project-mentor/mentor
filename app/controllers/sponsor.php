@@ -14,8 +14,15 @@ class Sponsor extends Controller
 
     }
 
-    public function allStudents($search = null){
-        $this->view('sponsor/student_progress/student_report',array($this->getStudents($search)));
+    public function allStudents($search = null, $page = 1){
+        $limit = paginationRowLimit;
+        $offset = 0;
+        if($page != 1){
+            $offset = ($page - 1) * $limit;
+        }
+        $rowCount = $this->model($this->table1)->getSponsorStudentsCount($search);
+        $res = $this->model($this->table1)->getSponsorStudents($_SESSION['id'],$limit,$offset);
+        $this->view('sponsor/student_progress/student_report',array($this->getStudents($search), $search));
     }
 
     public function getStudents($search){
@@ -203,9 +210,19 @@ class Sponsor extends Controller
         $this->view('sponsor/reportIssue/report');
     }
 
-    public function transactionHistory(){
-        $res = $this->model('payments')->getTrasactionHistory($_SESSION['id']);
-        $this->view('sponsor/payments/transactionHistory',array($res));
+    public function transactionHistory($page = 1){
+        $limit = paginationRowLimit;
+        $offset = 0;
+        if($page != 1){
+            $offset = ($page - 1) * $limit;
+        }
+        $rowCount = $this->model('payments')->getTrasactionHistoryCount($_SESSION['id'])->count;
+        $res = $this->model('payments')->getTrasactionHistory($_SESSION['id'],$offset,$limit);
+        $pageData = array($page,ceil($rowCount/$limit));
+        if($page < 1 || $page > $pageData[1]){
+            header("location:".BASEURL."sponsor/transactionHistory");
+        }
+        $this->view('sponsor/payments/transactionHistory',array($res,$pageData,$rowCount));
     }
 
     public function paymentsInProgress(){
@@ -213,13 +230,13 @@ class Sponsor extends Controller
         $month = intval(date('m'));
         $year = intval(date('Y'));
         $billData = $this->model($this->table1)->getBillNo($_SESSION['id']);
-//        var_dump($year,$month);
+        //        var_dump($year,$month);
         $sponsorships = $this->model($this->table1)->getSponsorship($_SESSION['id']); //! student_id, month, year, fundMonths, monthlyAmount, , fundMonths, approved_date
 
-//        ? check if sponsor has/not students assigned
+        //        ? check if sponsor has/not students assigned
         if(!empty($sponsorships)){
 
-//        ? loop through that data
+        //        ? loop through that data
             foreach ($sponsorships as $row){
                 $acceptedDate = explode("-",$row->approved_date);
                 $accMonth = intval($acceptedDate[1]);
@@ -237,7 +254,7 @@ class Sponsor extends Controller
                         foreach ($payments as $payment){
                             $payDate = $payment->year."-".$payment->month;
                             $timeArray[] = $payDate;
-    //                    var_dump(in_array($payDate,$timeArray));
+        //                    var_dump(in_array($payDate,$timeArray));
                         }
 
                         if ($year == $accYear){

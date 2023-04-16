@@ -27,10 +27,22 @@ class payments extends Model
         return $this->executePrepared($stmt);
     }
 
-    public function getTrasactionHistory($id){
-        $stmt = $this->prepare("SELECT * FROM payment WHERE payment.userId = ? ORDER BY payment.timestamp DESC");
-        $stmt->bind_param('i',$id );
+    public function getTrasactionHistory($id,$offset,$limit){
+        if($offset == 0){
+            $stmt = $this->prepare("SELECT * FROM payment WHERE payment.userId = ? ORDER BY payment.timestamp DESC LIMIT ?");
+            $stmt->bind_param('ii',$id, $limit );
+        }
+        else{
+            $stmt = $this->prepare("SELECT * FROM payment WHERE payment.userId = ? ORDER BY payment.timestamp DESC LIMIT ?, ?");
+            $stmt->bind_param('iii',$id, $offset, $limit );
+        }
         return $this->fetchObjs($stmt);
+    }
+
+    public function getTrasactionHistoryCount($id){
+        $stmt = $this->prepare("SELECT COUNT(payment.id) as count FROM payment WHERE payment.userId = ? ORDER BY payment.timestamp DESC");
+        $stmt->bind_param('i',$id );
+        return $this->fetchOneObj($stmt);
     }
 
     public function savePayment($payID, $userID, $currency, $amount ,$description , $method,$billID){

@@ -7,8 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Teacher-Transaction History</title>
     <link rel="icon" type="image/x-icon" href="<?php echo BASEURL ?>assets/mentor.ico">
-    <link rel="stylesheet" href="<?php echo BASEURL?>public/stylesheets/resourceCreator/rc_main.css">
-    <link rel="stylesheet" href="<?php echo BASEURL?>public/stylesheets/resourceCreator/rc_resources.css">
+    <link rel="stylesheet" href="<?php echo BASEURL ?>public/stylesheets/resourceCreator/rc_main.css">
+    <link rel="stylesheet" href="<?php echo BASEURL ?>public/stylesheets/resourceCreator/rc_resources.css">
     <link rel="stylesheet" href="<?php echo BASEURL . '/public/stylesheets/sponsor/sp_styles.css' ?> ">
 </head>
 
@@ -24,7 +24,7 @@
             <div class="search-bar">
                 <input type="text" name="" id="" placeholder="Search...">
                 <a href="">
-                    <img src="<?php echo BASEURL?>public/assets/Teacher/icons/icon_search.png" alt="">
+                    <img src="<?php echo BASEURL ?>public/assets/Teacher/icons/icon_search.png" alt="">
                 </a>
             </div>
             <div class="top-bar-btns">
@@ -32,10 +32,10 @@
                     <a class="back-btn" href="<?php echo BASEURL ?>sponsor/paymentsInProgress">Back</a>
                 </a>
                 <a href="#">
-                    <img src="<?php echo BASEURL?>public/assets/Teacher/icons/icon_notify.png" alt="notify">
+                    <img src="<?php echo BASEURL ?>public/assets/Teacher/icons/icon_notify.png" alt="notify">
                 </a>
-                <a href="<?php echo  BASEURL ?>sponsor/profile">
-                    <img src="<?php echo BASEURL?>public/assets/Teacher/icons/icon_profile_black.png" alt="profile">
+                <a href="<?php echo BASEURL ?>sponsor/profile">
+                    <img src="<?php echo BASEURL ?>public/assets/Teacher/icons/icon_profile_black.png" alt="profile">
                 </a>
             </div>
         </section>
@@ -143,16 +143,16 @@
 
                             </div>
                         </div>
-                        <?php if(empty($data[0])){ ?>
+                        <?php if (empty($data[0])) {?>
                             <div class="sponsor-list-row">
                                 <div class="sponsor-list-item flex-1">
                                     NO DATA TO SHOW
                                 </div>
                             </div>
                         <?php } else {
-                            foreach ($data[0] as $row){
-                                $dateTime = explode(" ",$row->timestamp);
-                            ?>
+    foreach ($data[0] as $row) {
+        $dateTime = explode(" ", $row->timestamp);
+        ?>
                         <div class="sponsor-list-row">
                             <div class="sponsor-list-item flex-1">
                                 <?php echo $row->paymentId ?>
@@ -167,14 +167,32 @@
                                 <?php echo $row->currency ?> <?php echo number_format($row->amount, 2, '.', '') ?>
                             </div>
                             <div class="sponsor-list-item flex-1">
-                                <a href="<?php echo BASEURL.'sponsor/slips/payments/'.$row->paymentId ?>" style="text-decoration: none;color: #056d36;">
+                                <a href="<?php echo BASEURL . 'sponsor/slips/payments/' . $row->paymentId ?>" style="text-decoration: none;color: #056d36;">
                                     See details >
                                 </a>
                             </div>
                         </div>
-                        <?php }} ?>
+                        <?php }}?>
                     </div>
                 </div>
+
+                <div class="pagination-set">
+                    <div class="pagination-set-left">
+                        <b><?php echo ($data[1][0] == $data[1][1]) ? count($data[0]) : 3 ?></b> Rows
+                    </div>
+                    <div class="pagination-set-right">
+                        <?php if ($data[1][0] != 1) {?>
+                            <a href="<?php echo BASEURL . "sponsor/transactionHistory/" . ($data[1][0]) - 1 ?>"> < </a>
+                        <?php }?>
+                        <div class="pagination-numbers">
+                            Page <?php echo $data[1][0] ?> of <?php echo $data[1][1] ?>
+                        </div>
+                        <?php if ($data[1][0] < $data[1][1]) {?>
+                            <a href="<?php echo BASEURL . "sponsor/transactionHistory/" . ($data[1][0] + 1) ?>"> > </a>
+                        <?php }?>
+                    </div>
+                </div>
+
             </div>
     </div>
 </section>
