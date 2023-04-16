@@ -38,16 +38,16 @@
             <img src="<?php echo BASEURL ?>assets/icons/icon_report.png" alt="report">
             <div class="nav-link-text">Report Issue</div>
         </a>
-        <a href="<?php echo BASEURL ?>st_buy" class="nav-link">
+        <a href="<?php echo BASEURL ?>home/bmc" class="nav-link">
             <img src="<?php echo BASEURL ?>assets/icons/icon_bmc.png" alt="bmc">
             <div class="nav-link-text">Buy me a coffee</div>
         </a>
         <a href="<?php echo BASEURL ?>st_billing" class="nav-link">
-            <img src="<?php echo BASEURL ?>assets/icons/icon_billing" alt="bmc">
+            <img src="<?php echo BASEURL ?>assets/icons/icon_billing.png" alt="bmc">
             <div class="nav-link-text">Billing</div>
         </a>
         <a href="<?php echo BASEURL ?>#" class="nav-link">
-            <img src="<?php echo BASEURL ?>assets/icons/Settings" alt="bmc">
+            <img src="<?php echo BASEURL ?>assets/icons/Settings.png" alt="bmc">
             <div class="nav-link-text">Settings</div>
         </a>
     </div>
