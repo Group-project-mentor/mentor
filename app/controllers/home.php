@@ -32,8 +32,9 @@ class Home extends Controller
             case 'tch':
                 unset($_SESSION["cid"]);
                 unset($_SESSION["cname"]);
-                $classes = $this->model("teacher_data")->getClasses($_SESSION['id']);
-                $this->view('Teacher/home/index',array($classes));
+                $classes1 = $this->model("teacher_data")->getClasses($_SESSION['id']);
+                $classes2 = $this->model("teacher_data")->getCoordinateClasses($_SESSION['id']);
+                $this->view('Teacher/home/index',array($classes1,$classes2));
 
                 break;
             case 'sp':

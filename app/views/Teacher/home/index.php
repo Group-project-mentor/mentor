@@ -78,7 +78,7 @@
                     <a href="#">
                         <img src="<?php echo BASEURL ?>public/assets/Teacher/icons/icon_notify.png" alt="notify">
                     </a>
-                    <a href="<?php echo  BASEURL ?>privateclass/profile">
+                    <a href="<?php echo  BASEURL ?>TProfile/profile">
                         <img src="<?php echo BASEURL ?>public/assets/Teacher/icons/icon_profile_black.png" alt="profile">
                     </a>
                 </div>
@@ -130,11 +130,11 @@
                             }
                             ?>
                         </div>
-                    <?php
-                    } else {
-                        echo "no data!";
-                    }
-                    ?>
+                        <?php   } else {?>
+                        <br><br>
+                        <h2 style="color:green ; text-align:center ;padding: 5px 10px;">
+                            <?php echo "You haven't create any class yet !";} ?>
+                        </h2>
 
                     <div class="mid-bar-btns">
                         <a href="<?php BASEURL ?>TClassRoom/allHostClasses">
@@ -147,11 +147,11 @@
                         <h3>Coordinating classes</h3>
                     </div>
 
-                    <?php if (!empty($data[0])) {
+                    <?php if (!empty($data[1])) {
                         $count = 1;
                     ?>
                         <div class="subject-card-set">
-                            <?php foreach ($data[0] as $row) {
+                            <?php foreach ($data[1] as $row) {
                                 if ($count <= 3) {
                             ?>
                                     <div class="subject-card">
@@ -170,9 +170,11 @@
                             ?>
                         </div>
                     <?php
-                    } else {
-                        echo "no data!";
-                    } ?>
+                    } else {?>
+                        <br><br>
+                        <h2 style="color:green ; text-align:center ;padding: 5px 10px;">
+                            <?php echo "You are not assigned as a Co-Teacher of another class yet !";} ?>
+                        </h2>
                     <div class="mid-bar-btns">
                         <a href="<?php BASEURL ?>TClassRoom/allCoordinateClasses">
                             <div class="mid-back-btn">See All</div>

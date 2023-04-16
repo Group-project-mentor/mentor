@@ -37,7 +37,7 @@ class TClassRoom extends Controller{
 
     public function allCoordinateClasses(){
         unset($_SESSION["cid"]);
-         $classes = $this->model("teacher_data")->getClasses($_SESSION['id']);
+         $classes = $this->model("teacher_data")->getCoordinateClasses($_SESSION['id']);
          $this->view('Teacher/classRoom/AllCoordinateClass',array($classes));
     }
  

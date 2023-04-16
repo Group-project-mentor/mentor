@@ -115,9 +115,11 @@
                                 </div>
                             <?php } ?>
                         </div>
-                    <?php } else {
-                        echo "no data!";
-                    } ?>
+                        <?php   } else {?>
+                        <br><br>
+                        <h2 style="color:green ; text-align:center ;padding: 5px 10px;">
+                            <?php echo "You haven't create any class yet !";} ?>
+                        </h2>
                     
 
 

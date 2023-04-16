@@ -101,4 +101,14 @@ class Teacher_data extends Model
         $result->bind_param('i', $id);
         return $this->fetchObjs($result);
     }
+
+    public function getCoordinateClasses($id)
+    {
+
+        $q = "select private_class.class_id as cid, private_class.class_name as cname from private_class inner join
+         classes_has_extra_teachers on classes_has_extra_teachers.class_id = private_class.class_id where classes_has_extra_teachers.teacher_id=? ";
+        $result = $this->prepare($q);
+        $result->bind_param('i', $id);
+        return $this->fetchObjs($result);
+    }
 }
