@@ -73,9 +73,9 @@
                                 To do that, you will need to learn about networking in React Native.
                                 echo $id;
                             </p>
-                            <!-- <?php echo $row->id ?> -->
+                            <!-- <?php echo $data[0] ?> -->
                             <div class="quiz-preview-bottom-set" style="justify-content: flex-end;">
-                                <a class="quiz-preview-bottom-button" href="<?php echo BASEURL . 'st_quizzes/st_quizzes_do/85' ?>">
+                                <a class="quiz-preview-bottom-button" href="<?php echo BASEURL . 'st_quizzes/st_quizzes_do/'.$data[0] ?>">
                                     Start
                                     <img src="<?php echo BASEURL ?>assets/icons/icon_next_white.png" alt="">
                                 </a>

@@ -111,4 +111,17 @@ class Teacher_data extends Model
         $result->bind_param('i', $id);
         return $this->fetchObjs($result);
     }
+    
+    public function getTPrivilege($id1, $classIds)
+{
+    $placeholders = rtrim(str_repeat('?,', count($classIds)), ',');
+    $q = "select classes_has_extra_teachers.class_id as cid, classes_has_extra_teachers.teacher_privilege as pid from classes_has_extra_teachers where classes_has_extra_teachers.teacher_id=? and classes_has_extra_teachers.class_id IN ($placeholders); ";
+    $stmt = $this->prepare($q);
+    $bind_params = array_merge([$id1], $classIds);
+    $types = str_repeat('i', count($bind_params));
+    $stmt->bind_param($types, ...$bind_params);
+    return $this->fetchObjs($stmt);
+}
+
+
 }
