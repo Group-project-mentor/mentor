@@ -14,52 +14,77 @@ class RcResources extends Controller{
         $this->view('resourceCtr/resources/rc_videos');
     }
 
-    public function videos($grade, $subject, $msg = null)
+    public function videos($grade, $subject, $page = 1)
     {
-        if (!isset($_SESSION['user'])) {
-            header("location:" . BASEURL . "login");
-        }
+        $limit = paginationRowLimit;
+        $offset = ($page != 1)? ($page - 1) * $limit : 0;
         $this->getNames($grade, $subject);
+        $rowCount = $this->model("resourceModel")->getResourceCount("video", $grade, $subject)->count;
         $_SESSION["gid"] = $grade;
         $_SESSION["sid"] = $subject;
-        $result = $this->model("resourceModel")->findVideos($grade, $subject);
-        $this->view('resourceCtr/resources/rc_videos', array($result, $msg));
+        $result = $this->model("resourceModel")->findVideos($grade, $subject, $offset, $limit);
+        $pageData = array($page, ceil($rowCount / $limit));
+        if($page < 1 || $page > $pageData[1]){
+            header("location:".BASEURL."rcResources/videos/".$grade."/".$subject);
+        }
+        $this->view('resourceCtr/resources/rc_videos', array($result, $pageData));
     }
 
-    public function quizzes($grade, $subject, $msg = null)
+    public function quizzes($grade, $subject)
     {
         $this->getNames($grade, $subject);
         $_SESSION["gid"] = $grade;
         $_SESSION["sid"] = $subject;
         $result = $this->model("resourceModel")->findQuizzes($grade, $subject);
-        $this->view('resourceCtr/resources/rc_quizzes', array($result,$msg));
+        $this->view('resourceCtr/resources/rc_quizzes', array($result));
     }
 
-    public function pastpapers($grade, $subject, $msg = null)
+    public function pastpapers($grade, $subject, $page = 1)
     {
+        $limit = paginationRowLimit;
+        $offset = ($page != 1)? ($page - 1) * $limit : 0;
         $this->getNames($grade, $subject);
         $_SESSION["gid"] = $grade;
         $_SESSION["sid"] = $subject;
-        $result = $this->model("resourceModel")->findPastpapers($grade, $subject);
-        $this->view('resourceCtr/resources/rc_pastpapers', $result);
+        $rowCount = $this->model("resourceModel")->getResourceCount("pastpaper", $grade, $subject)->count;
+        $result = $this->model("resourceModel")->findPastpapers($grade, $subject, $offset, $limit);
+        $pageData = array($page, ceil($rowCount / $limit));
+        if($page < 1 || $page > $pageData[1]){
+            header("location:".BASEURL."rcResources/pastpapers/".$grade."/".$subject);
+        }
+        $this->view('resourceCtr/resources/rc_pastpapers', array($result, $pageData));
     }
 
-    public function documents($grade, $subject, $msg = null)
+    public function documents($grade, $subject, $page = 1)
     {
+        $limit = paginationRowLimit;
+        $offset = ($page != 1)? ($page - 1) * $limit : 0;
         $_SESSION["gid"] = $grade;
         $_SESSION["sid"] = $subject;
         $this->getNames($grade, $subject);
-        $result = $this->model("resourceModel")->findDocuments($grade, $subject);
-        $this->view('resourceCtr/resources/rc_documents', $result);
+        $rowCount = $this->model("resourceModel")->getResourceCount("pdf", $grade, $subject)->count;
+        $result = $this->model("resourceModel")->findDocuments($grade, $subject, $offset, $limit);
+        $pageData = array($page, ceil($rowCount / $limit));
+        if($page < 1 || $page > $pageData[1]){
+            header("location:".BASEURL."rcResources/documents/".$grade."/".$subject);
+        }
+        $this->view('resourceCtr/resources/rc_documents', array($result, $pageData));
     }
 
-    public function others($grade, $subject, $msg = null)
+    public function others($grade, $subject, $page = 1)
     {
+        $limit = paginationRowLimit;
+        $offset = ($page != 1)? ($page - 1) * $limit : 0;
         $_SESSION["gid"] = $grade;
         $_SESSION["sid"] = $subject;
         $this->getNames($grade, $subject);
-        $result = $this->model("resourceModel")->findOthers($grade, $subject);
-        $this->view('resourceCtr/resources/rc_others', $result);
+        $rowCount = $this->model("resourceModel")->getResourceCount("other", $grade, $subject)->count;
+        $result = $this->model("resourceModel")->findOthers($grade, $subject, $offset, $limit);
+        $pageData = array($page, ceil($rowCount / $limit));
+        if($page < 1 || $page > $pageData[1]){
+            header("location:".BASEURL."rcResources/others/".$grade."/".$subject);
+        }
+        $this->view('resourceCtr/resources/rc_others', array($result, $pageData));
     }
 
     private function getNames($gid, $sid)

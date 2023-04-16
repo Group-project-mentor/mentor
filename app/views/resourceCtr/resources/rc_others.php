@@ -72,7 +72,7 @@
                     </div>
                     <?php
                     $types = ['pdf', 'png', 'jpg', 'bmp', 'js', 'txt'];
-                    if(!empty($data)){?>
+                    if(!empty($data[0])){?>
                     <div class="rc-resource-table" id="rc-resource-table">
                         <div class="rc-resource-row rc-table-title">
                             <div class="rc-resource-col">Resource name</div>
@@ -80,7 +80,7 @@
                             <div></div>
                         </div>
                         <?php
-                                foreach ($data as $row) {
+                                foreach ($data[0] as $row) {
                                     $approval = $this->approvedGenerator($row->approved);
                                     ?>
                                     <div class='rc-resource-row'>
@@ -112,22 +112,25 @@
                             <h2 class="rc-no-data-msg" style="text-align: center;">No Data to Display</h2>
                             <?php } ?>
 
-                        <?php if(count($data) > 25){ ?>
-                        <div class="pagination-set">
-                            <div class="pagination-set-left">
-                                <b>25</b> Results
-                            </div>
-                            <div class="pagination-set-right">
-                                <button> < </button>
-                                <div class="pagination-numbers">
-                                    1 of 10
-                                </div>
-                                <button> > </button>
-                            </div>
-                        </div>
-                        <?php } ?>
 
+                <div class="pagination-set">
+                    <div class="pagination-set-left">
+                        <b><?php echo ($data[1][0] == $data[1][1]) ? count($data[0]) : paginationRowLimit ?></b> Rows
                     </div>
+                    <div class="pagination-set-right">
+                        <?php if ($data[1][0] != 1) {?>
+                            <a href="<?php echo BASEURL . "rcResources/others/".$_SESSION['gid']."/".$_SESSION['sid']."/". ($data[1][0]) - 1 ?>"> < </a>
+                        <?php }?>
+                        <div class="pagination-numbers">
+                            Page <?php echo $data[1][0] ?> of <?php echo $data[1][1] ?>
+                        </div>
+                        <?php if ($data[1][0] < $data[1][1]) {?>
+                            <a href="<?php echo BASEURL . "rcResources/others/".$_SESSION['gid']."/".$_SESSION['sid']."/". ($data[1][0]) + 1 ?>"> < </a>
+                        <?php }?>
+                    </div>
+                </div>
+
+            </div>
     </section>
 </body>
 <script>

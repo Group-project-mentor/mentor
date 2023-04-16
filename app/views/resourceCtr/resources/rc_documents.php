@@ -71,14 +71,14 @@
                         </a>
                     </div>
                     <?php
-                    if(!empty($data)){ ?>
+                    if(!empty($data[0])){ ?>
                     <div class="rc-resource-table" id="rc-resource-table">
                         <div class="rc-table-title">
                             <div class="rc-resource-col">Name</div>
                             <div></div>
                         </div>
                                 <?php
-                                foreach ($data as $row) {
+                                foreach ($data[0] as $row) {
                                     $approval = $this->approvedGenerator($row->approved);
                                     ?>
                                     <div class='rc-pdf-row'>
@@ -114,20 +114,22 @@
                     </div>
                 </div>
 
-                <?php if(count($data) > 25){ ?>
                 <div class="pagination-set">
                     <div class="pagination-set-left">
-                        <b>25</b> Results
+                        <b><?php echo ($data[1][0] == $data[1][1]) ? count($data[0]) : paginationRowLimit ?></b> Rows
                     </div>
                     <div class="pagination-set-right">
-                        <button> < </button>
+                        <?php if ($data[1][0] != 1) {?>
+                            <a href="<?php echo BASEURL . "rcResources/documents/".$_SESSION['gid']."/".$_SESSION['sid']."/". ($data[1][0]) - 1 ?>"> < </a>
+                        <?php }?>
                         <div class="pagination-numbers">
-                            1 of 10
+                            Page <?php echo $data[1][0] ?> of <?php echo $data[1][1] ?>
                         </div>
-                        <button> > </button>
+                        <?php if ($data[1][0] < $data[1][1]) {?>
+                            <a href="<?php echo BASEURL . "rcResources/documents/".$_SESSION['gid']."/".$_SESSION['sid']."/" . ($data[1][0] + 1) ?>"> > </a>
+                        <?php }?>
                     </div>
                 </div>
-                <?php } ?>
 
         </div>
     </section>

@@ -14,15 +14,19 @@ class Sponsor extends Controller
 
     }
 
-    public function allStudents($search = null, $page = 1){
+    public function allStudents($page = 1){
         $limit = paginationRowLimit;
         $offset = 0;
         if($page != 1){
             $offset = ($page - 1) * $limit;
         }
-        $rowCount = $this->model($this->table1)->getSponsorStudentsCount($search);
-        $res = $this->model($this->table1)->getSponsorStudents($_SESSION['id'],$limit,$offset);
-        $this->view('sponsor/student_progress/student_report',array($this->getStudents($search), $search));
+        $rowCount = $this->model($this->table1)->getSponsorStudentsCount($_SESSION['id'])->count;
+        $res = $this->model($this->table1)->getSponsorStudents($_SESSION['id'], $offset, $limit);
+        $pageData = array($page, ceil($rowCount / $limit));
+        if($page < 1 || $page > $pageData[1]){
+            header("location:".BASEURL."sponsor/allsStudents");
+        }
+        $this->view('sponsor/student_progress/student_report',array($res,$pageData)); 
     }
 
     public function getStudents($search){
@@ -184,14 +188,14 @@ class Sponsor extends Controller
 
     public function changeOther(){
         if (isset($_POST['desc'])) {
-//            if ((preg_match('/^[A-Za-z0-9.]+$/',$_POST['desc'])) && ($_POST['desc'] != '')) {
+        //            if ((preg_match('/^[A-Za-z0-9.]+$/',$_POST['desc'])) && ($_POST['desc'] != '')) {
                 $this->model("userModel")->updateOthers($_POST['desc'], $_SESSION['id']);
                 flashMessage("success");
                 header("location:" . BASEURL . 'sponsor/profile');
-//            } else {
-//                flashMessage("wrongName");
-//                header("location:" . BASEURL . 'sponsor/editProfile/other');
-//            }
+        //            } else {
+        //                flashMessage("wrongName");
+        //                header("location:" . BASEURL . 'sponsor/editProfile/other');
+        //            }
         } else {
             flashMessage("Error");
             header("location:" . BASEURL . 'sponsor/editProfile/others');
@@ -411,7 +415,7 @@ class Sponsor extends Controller
     }
 
     public function createBill(){
-//        echo "hllo";
+        //        echo "hllo";
         $id = getUnique($_SESSION['id']);
         $currency = $_POST['currency'];
         $amount = $_POST['amount'];

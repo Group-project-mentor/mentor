@@ -7,10 +7,16 @@ class sponsorStModel extends Model
         parent::__construct();
     }
 
-    public function getSponsorStudents($spID){
-        $stmt = $this->prepare("SELECT student.id,user.name,user.email,student.fundMonths,student.monthlyAmount FROM student,user WHERE student.id = user.id AND sponsor_id = ? AND student.fundMonths > 0");
-        $stmt->bind_param('i',$spID);
+    public function getSponsorStudents($spID, $offset, $limit){
+        $stmt = $this->prepare("SELECT student.id,user.name,user.email,student.fundMonths,student.monthlyAmount FROM student,user WHERE student.id = user.id AND sponsor_id = ? AND student.fundMonths > 0 LIMIT ?,?");
+        $stmt->bind_param('iii',$spID,$offset,$limit);
         return $this->fetchObjs($stmt);
+    }
+
+    public function getSponsorStudentsCount($spID){
+        $stmt = $this->prepare("SELECT COUNT(student.id) AS count FROM student,user WHERE student.id = user.id AND sponsor_id = ? AND student.fundMonths > 0");
+        $stmt->bind_param('i',$spID);
+        return $this->fetchOneObj($stmt);
     }
 
     public function getSponsorStudentsSearch($spID, $search){
