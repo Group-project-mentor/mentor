@@ -442,7 +442,7 @@ button[type="submit"] {
     display: flex;
     align-items: center;
 }
-.pagination-set-right>button{
+.pagination-set-right>a{
     padding: 5px 10px;
     border-radius: 5px;
     outline: none;
@@ -451,6 +451,7 @@ button[type="submit"] {
     background: #0f6805;
     cursor: pointer;
     font-weight: 600;
+    text-decoration: none;
 
 }
 .pagination-numbers{
