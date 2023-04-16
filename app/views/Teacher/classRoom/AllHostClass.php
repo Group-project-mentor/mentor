@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,7 +6,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Teacher home</title>
+    <title>All Host Classes</title>
     <link rel="stylesheet" href="<?php echo BASEURL ?>public/stylesheets/Teacher/style.css">
     <link rel="stylesheet" href="<?php echo BASEURL ?>public/stylesheets/Teacher/card_set.css">
 </head>
@@ -72,7 +73,7 @@
                     </a>
                 </div>
                 <div class="top-bar-btns">
-                    <a href="#">
+                    <a href="<?php echo BASEURL ?>">
                         <div class="back-btn">Back</div>
                     </a>
                     <a href="#">
@@ -90,94 +91,35 @@
             <section class="mid-content">
 
                 <!-- Title and sub title of middle part -->
-                <div class="mid-title">
-                    <h1>Teacher Home</h1>
-                    <h6>Hello <?php echo $_SESSION['name'] ?>,</h6>
-
-
-                </div>
+                <div class="mid-down-title">
+                        <br><br>
+                        <h3>All Hosting classes</h3>
+                    </div>
 
                 <!-- subject cards -->
                 <div class="container-box">
-                    <div class="mid-down-title">
-                        <br><br>
-                        <h3>Hosting classes</h3>
-                    </div>
-                    <div class="mid-bar-btns">
-                        <a href="<?php BASEURL ?>TClassRoom/createClass">
-                            <div class="mid-back-btn">Create class</div>
-                        </a>
-                    </div>
+                   
+                    
                     <?php if (!empty($data[0])) {
-                        $count = 1;
+                        $count = 1
                     ?>
+
                         <div class="subject-card-set">
-                            <?php foreach ($data[0] as $row) {
-                                if ($count <= 3) {
-                            ?>
-                                    <div class="subject-card">
-                                        <a href='<?php echo BASEURL . "TClassMembers/memDetails/" . $row->cid ?>'>
-                                            <img alt='' src="<?php echo BASEURL . "public/assets/Teacher/patterns/" . $count . '.png' ?>" />
-                                        </a>
-                                        <a href="#"><label><?php echo $row->cid ?></label></a>
-                                        <a href="#"><label><?php echo $row->cname ?></label></a>
-                                    </div>
-                            <?php
-                                    $count++;
-                                } else {
-                                    break;
-                                }
-                            }
-                            ?>
+                            <?php foreach ($data[0] as $row) { ?>
+                                <div class="subject-card">
+                                    <a href='<?php echo BASEURL . "TClassMembers/memDetails/" . $row->cid  ?>'>
+                                        <img alt='' src="<?php echo BASEURL . "public/assets/Teacher/patterns/" . $count++ . '.png' ?>" />
+                                    </a>
+                                    <a href="#"><label><?php echo $row->cid ?></label></a>
+                                    <a href="#"><label><?php echo $row->cname ?></label></a>
+                                </div>
+                            <?php } ?>
                         </div>
-                    <?php
-                    } else {
-                        echo "no data!";
-                    }
-                    ?>
-
-                    <div class="mid-bar-btns">
-                        <a href="<?php BASEURL ?>TClassRoom/allHostClasses">
-                            <div class="mid-back-btn">See All</div>
-                        </a>
-                    </div>
-
-                    <div class="mid-down-title">
-                        <br><br>
-                        <h3>Coordinating classes</h3>
-                    </div>
-
-                    <?php if (!empty($data[0])) {
-                        $count = 1;
-                    ?>
-                        <div class="subject-card-set">
-                            <?php foreach ($data[0] as $row) {
-                                if ($count <= 3) {
-                            ?>
-                                    <div class="subject-card">
-                                        <a href='<?php echo BASEURL . "TClassMembers/memDetails/" . $row->cid ?>'>
-                                            <img alt='' src="<?php echo BASEURL . "public/assets/Teacher/patterns/" . $count . '.png' ?>" />
-                                        </a>
-                                        <a href="#"><label><?php echo $row->cid ?></label></a>
-                                        <a href="#"><label><?php echo $row->cname ?></label></a>
-                                    </div>
-                            <?php
-                                    $count++;
-                                } else {
-                                    break;
-                                }
-                            }
-                            ?>
-                        </div>
-                    <?php
-                    } else {
+                    <?php } else {
                         echo "no data!";
                     } ?>
-                    <div class="mid-bar-btns">
-                        <a href="<?php BASEURL ?>TClassRoom/allCoordinateClasses">
-                            <div class="mid-back-btn">See All</div>
-                        </a>
-                    </div>
+                    
+
 
                 </div>
 
