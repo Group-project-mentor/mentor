@@ -18,9 +18,9 @@ class St_quizzes extends Controller
         $_SESSION["gid"] = $grade;
         $_SESSION["sid"] = $subject;
         $result = $this->model("resourceModel")->findQuizzes($grade, $subject);
-        $this->view('student/enrollment/st_quizzes', array($result,$msg));
+        $this->view('student/enrollment/st_quizzes', array($result, $msg));
     }
-    
+
     private function getNames($gid, $sid)
     {
         if (!isset($_SESSION["gname"])) {
@@ -35,34 +35,11 @@ class St_quizzes extends Controller
 
     public function st_quizzes_do($id)
     {
-        
-        $result = $this->model('quizModel')->verifyAndQuizId($id, $_SESSION['gid'], $_SESSION['sid']);
-        if($result){
-            
-            $this->view("student/enrollment/st_quizzes_do",array($id));
-        }else{
-            header("location:");
-        }
+        $this->view("student/enrollment/st_quizzes_do", array($id));
     }
 
     public function st_quizzes_intro($id)
     {
-        
-        $result = $this->model('quizModel')->verifyAndQuizId($id, $_SESSION['gid'], $_SESSION['sid']);
-        if($result){
-            $this->view("student/enrollment/st_quizzes_intro",array($id));
-        }else{
-            header("location:");
-        }
+        $this->view("student/enrollment/st_quizzes_intro", array($id));
     }
-
-
-    }
-
-
-
-
-?>
-
-
-
+}
