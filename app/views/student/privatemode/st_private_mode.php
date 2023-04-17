@@ -51,15 +51,35 @@
                 </div>
 
                 <!-- subject cards -->
-                <div class="container-box" >
+                <div class="container-box">
                     <div>
                         <!-- tempary movement 1-->
-                        <div class="subject-card" style="text-align:center ;">
+                        <!-- <div class="subject-card" style="text-align:center ;">
                             <img src="<?php echo BASEURL  ?>assets/patterns/1.png" alt="" style="width : 250px ; height:150px;"/>
                             <a href="<?php echo BASEURL  ?>st_private_mode/st_classroom_inside" ><label>Mathematics</label></a>
                             <label>Grade 8</label>
                             <label>Mr.Thimira Galahitiyawa</label>
-                        </div>
+                        </div> -->
+
+                        <!-- new data from DB -->
+                        <?php if (!empty($data[0])) { ?>
+                            <div class="subject-card-set">
+
+                                <?php foreach ($data[0] as $row) { ?>
+                                    <div class="subject-card">
+                                        <img src="<?php echo BASEURL  ?>assets/patterns/2.png" alt="" />
+                                        <a href="#"><label><?php echo $row->class_name ?></label></a>
+                                        <label>Grade 8</label>
+                                        </div>
+                                <?php } ?>
+                            </div>
+                        <?php } else {
+                            echo "no data!";
+                        } ?>
+                    </div>
+
+                    <div>
+                        <br><br><br><br><br>
                         <a class="see-all-btn" href="<?php echo BASEURL  ?>st_private_mode/st_myclasses" style="text-decoration: none; ">My classes</a>
                     </div>
 

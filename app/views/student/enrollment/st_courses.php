@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -35,7 +34,7 @@
                     <a href="#">
                         <img src="<?php echo BASEURL  ?>assets/icons/icon_notify.png" alt="notify">
                     </a>
-                    <a href="<?php echo BASEURL?>st_profile">
+                    <a href="<?php echo BASEURL ?>st_profile">
                         <img src="<?php echo BASEURL  ?>assets/icons/icon_profile_black.png" alt="profile">
                     </a>
                 </div>
@@ -47,7 +46,7 @@
                 <!-- Title and sub title of middle part -->
                 <div class="mid-title">
                     <h1>Subjects</h1>
-                    <h1><?php echo $_SESSION['gid']?></h1>
+                    <h1><?php echo $_SESSION['gid'] ?></h1>
                     <h6>Hello</h6>
                 </div>
 
@@ -56,55 +55,56 @@
                 <div class="container-box">
                     <div>
                         <h2>Enrolled Subjects</h2>
-                        <a class="see-all-btn" href="<?php echo BASEURL.'st_courses/Enroll_subject_all/'.$_SESSION['gid']  ?>" style="text-decoration: none; ">See All</a>
+                        <a class="see-all-btn" href="<?php echo BASEURL . 'st_courses/Enroll_subject_all/' . $_SESSION['gid']  ?>" style="text-decoration: none; ">See All</a>
                     </div>
 
-        
 
-                    <?php if(!empty($data[1])){?>
+
+                    <?php if (!empty($data[1])) { ?>
                         <div class="subject-card-set">
-                            <?php foreach($data[1] as $row) {?>    <!-- foreach == for -->
-                            <div class="subject-card">
-                                <img src="<?php echo BASEURL  ?>assets/patterns/1.png" alt="" />
-                                <a href="<?php echo BASEURL.'st_video/index/'.$_SESSION['gid'].'/'.$row->id  ?>"><label><?php echo $row->name ?></label></a>
-                                <label>Grade 8</label>
-                            </div>
+                            <?php foreach ($data[1] as $row) { ?> <!-- foreach == for -->
+                                <div class="subject-card">
+                                    <img src="<?php echo BASEURL  ?>assets/patterns/1.png" alt="" />
+                                    <a href="<?php echo BASEURL . 'st_video/index/' . $_SESSION['gid'] . '/' . $row->id  ?>"><label><?php echo $row->name ?></label></a>
+                                    <label>Grade 8</label>
+                                </div>
                             <?php } ?>
                         </div>
 
-                        <?php }
-                        else { ?>
+                    <?php } else { ?>
                         <br><br>
                         <h2 style="color:green ; text-align:center ;padding: 5px 10px;">
-                            <?php echo "No Courses Enrolled yet !";} ?>
+                        <?php echo "No Courses Enrolled yet !";
+                    } ?>
                         </h2>
                         <br><br>
-                    </div>
-                    <div>
-                        <h2>Subject to Enrolled</h2>
-                        <a class="see-all-btn" href="<?php echo BASEURL.'st_courses/Subject_to_Enroll_all/'.$_SESSION['gid']  ?>" style="text-decoration: none;">See All</a>
-                    </div>
-                    <?php if(!empty($data[0])){?>
-                        <div class="subject-card-set">
+                </div>
+                <div>
+                    <h2>Subject to Enrolled</h2>
+                    <a class="see-all-btn" href="<?php echo BASEURL . 'st_courses/Subject_to_Enroll_all/' . $_SESSION['gid']  ?>" style="text-decoration: none;">See All</a>
+                </div>
+                <?php if (!empty($data[0])) { ?>
+                    <div class="subject-card-set">
 
-                            <?php foreach($data[0] as $row) {?>
+                        <?php foreach ($data[0] as $row) { ?>
                             <div class="subject-card">
                                 <img src="<?php echo BASEURL  ?>assets/patterns/2.png" alt="" />
                                 <a href="#"><label><?php echo $row->name ?></label></a>
                                 <label>Grade 8</label>
                             </div>
-                            <?php } ?>
-                        </div>
-                        <?php } else {echo "no data!";} ?>
-                    
+                        <?php } ?>
                     </div>
-                </div>
+                <?php } else {
+                    echo "no data!";
+                } ?>
+
+        </div>
+        </div>
 
         </div>
 
     </section>
 </body>
-    <script src="<?php echo BASEURL ?>public/javascripts/st_auth_script.js"></script>
+<script src="<?php echo BASEURL ?>public/javascripts/st_auth_script.js"></script>
 
 </html>
-
