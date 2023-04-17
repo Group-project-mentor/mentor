@@ -22,7 +22,7 @@ class St_video extends Controller
         $this->getNames($grade, $subject);
         $_SESSION["gid"] = $grade;
         $_SESSION["sid"] = $subject;
-        $result = $this->model("resourceModel")->findVideos($grade, $subject);
+        $result = $this->model("st_public_model")->findVideos($grade, $subject);
         $this->view('student/enrollment/st_video', array($result, $msg));
     }
 
