@@ -37,12 +37,17 @@ class TClassRoom extends Controller{
 
     public function allCoordinateClasses(){
         
-         $classes = $this->model("teacher_data")->getCoordinateClasses($_SESSION['id']);
-         $privilege=$this->model("teacher_data")->getTPrivilege($_SESSION['id'],$classes);
-         $this->view('Teacher/classRoom/AllCoordinateClass',array($classes,$privilege));
-         unset($_SESSION["cid"]);
-    }
- 
+        $classes = $this->model("teacher_data")->getCoordinateClasses($_SESSION['id']);
+        $classIds = array_column($classes, 'cid'); // get an array of class ids
+        $privileges = $this->model("teacher_data")->getTPrivilege($_SESSION['id'], $classIds);
+        $privilegeMap = [];
+        foreach ($privileges as $privilege) {
+            $privilegeMap[$privilege->cid] = $privilege->pid;
+        }
+        $this->view('Teacher/classRoom/AllCoordinateClass', array($classes, $privilegeMap));
+        unset($_SESSION["cid"]);
+   }
+   
     
     
 

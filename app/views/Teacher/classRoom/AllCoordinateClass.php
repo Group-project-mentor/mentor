@@ -102,49 +102,42 @@
                     <?php
                     if (!empty($data[0])) {
                         $count = 1;
-                        $classPId = '';
-                        foreach ($data[1] as $row) {
-                            $privilegeId = $row->pid;
-                            switch ($privilegeId) {
-                                case 1:
-                                    $classPId = '1';
+                        foreach ($data[0] as $row) {
+                            $classPId = isset($data[1][$row->cid]) ? $data[1][$row->cid] : '';
+                            switch ($classPId) {
+                                case '1':
+                                    $classRId = 'TPrivileges/p1MemberDetails';
                                     break;
-                                case 2:
-                                    $classPId = '2';
+                                case '2':
+                                    $classRId = 'TPrivileges/p2MemberDetails';
                                     break;
-                                case 3:
-                                    $classPId = '3';
-                                    break;
-                                case 4:
-                                    $classPId = '14';
-                                    break;
-                                default:
-                                    $classPId = '';
+                                
+                                    
                             }
-                        }
                     ?>
-                        <div class="subject-card-set">
-                            <?php foreach ($data[0] as $row) { ?>
+                            <div class="subject-card-set">
                                 <div class="subject-card">
-                                    <a href='<?php echo BASEURL . "TPrivileges/p{$classPId}MemberDetails/" . $row->cid ?>'>
+                                    <a href='<?php echo BASEURL . $classRId . "/" . $row->cid ?>'>
                                         <img alt='' src="<?php echo BASEURL . "public/assets/Teacher/patterns/" . $count++ . '.png' ?>" />
                                     </a>
                                     <a href="#"><label><?php echo $row->cid ?></label></a>
                                     <a href="#"><label><?php echo $row->cname ?></label></a>
-                                    <?php echo $privilegeId ?>
+                                    <?php echo $classPId ?>
                                 </div>
-                            <?php } ?>
-                        </div>
-                    <?php
+                            </div>
+                        <?php
+                        }
                     } else {
-                    ?>
+                        ?>
                         <br><br>
                         <h2 style="color:green ; text-align:center ;padding: 5px 10px;">
                             <?php echo "You are not assigned as a Co-Teacher of another class yet !"; ?>
                         </h2>
                     <?php
                     }
+
                     ?>
+
 
 
                 </div>

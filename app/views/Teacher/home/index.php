@@ -147,56 +147,52 @@
                         <h3>Coordinating classes</h3>
                     </div>
 
+                    
                     <?php
-                    if (!empty($data[1])) {
-                        $count = 1;
-                        $classPId = '';
-                        foreach ($data[2] as $row) {
-                            $privilegeId = $row->pid;
-                            switch ($privilegeId) {
-                                case 1:
-                                    $classPId = '1';
-                                    break;
-                                case 2:
-                                    $classPId = '2';
-                                    break;
-                                case 3:
-                                    $classPId = '3';
-                                    break;
-                                case 4:
-                                    $classPId = '14';
-                                    break;
-                                default:
-                                    $classPId = '';
-                            }
-                        }
+if (!empty($data[1])) {
+    $count = 1;
+    $classesToShow = 3; // Set the number of classes to show here
+    foreach ($data[1] as $row) {
+        if ($count > $classesToShow) {
+            break; // Break out of the loop once we have shown the desired number of classes
+        }
+
+        $classPId = isset($data[2][$row->cid]) ? $data[2][$row->cid] : '';
+        switch ($classPId) {
+            case '1':
+                $classRId = 'TPrivileges/p1MemberDetails';
+                break;
+            case '2':
+                $classRId = 'TPrivileges/p2MemberDetails';
+                break;
+            default:
+                $classRId = '';
+                break;
+        }
+?>
+        <div class="subject-card-set">
+            <div class="subject-card">
+                <a href='<?php echo BASEURL . $classRId . "/" . $row->cid ?>'>
+                    <img alt='' src="<?php echo BASEURL . "public/assets/Teacher/patterns/" . $count++ . '.png' ?>" />
+                </a>
+                <a href="#"><label><?php echo $row->cid ?></label></a>
+                <a href="#"><label><?php echo $row->cname ?></label></a>
+                <?php echo $classPId ?>
+            </div>
+        </div>
+    <?php
+    }
+} else {
+    ?>
+    <br><br>
+    <h2 style="color:green ; text-align:center ;padding: 5px 10px;">
+        <?php echo "You are not assigned as a Co-Teacher of another class yet !"; ?>
+    </h2>
+<?php
+}
+
+
                     ?>
-                        <div class="subject-card-set">
-                            <?php foreach ($data[1] as $row) {
-                                if ($count <= 3) {
-                            ?>
-                                    <div class="subject-card">
-                                        <a href='<?php echo BASEURL . "TPrivileges/p{$classPId}MemberDetails/" . $row->cid ?>'>
-                                            <img alt='' src="<?php echo BASEURL . "public/assets/Teacher/patterns/" . $count . '.png' ?>" />
-                                        </a>
-                                        <a href="#"><label><?php echo $row->cid ?></label></a>
-                                        <a href="#"><label><?php echo $row->cname ?></label></a>
-                                        <?php echo $privilegeId ?>
-                                    </div>
-                            <?php
-                                    $count++;
-                                } else {
-                                    break;
-                                }
-                            }
-                            ?>
-                        </div>
-                    <?php
-                    } else {?>
-                        <br><br>
-                        <h2 style="color:green ; text-align:center ;padding: 5px 10px;">
-                            <?php echo "You are not assigned as a Co-Teacher of another class yet !";} ?>
-                        </h2>
                     <div class="mid-bar-btns">
                         <a href="<?php BASEURL ?>TClassRoom/allCoordinateClasses">
                             <div class="mid-back-btn">See All</div>

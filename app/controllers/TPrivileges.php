@@ -59,7 +59,7 @@ class TPrivileges extends Controller{
         $res1 = $this->model('teacher_data')->getStudents($class_id);
         $res2 = $this->model('teacher_data')->getTeachers($class_id);
         $res3 = $this->model('teacher_data')->getHostTeacher($class_id);
-        $this->view('Teacher/TPrivilege1/memberDetailsP1',array($res1,$res2,$res3));
+        $this->view('Teacher/TPrivilege2/memberDetailsP2',array($res1,$res2,$res3));
     }
 
     public function p2AddSt(){
