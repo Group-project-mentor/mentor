@@ -96,7 +96,6 @@
 
 
                 </div>
-
                 <!-- subject cards -->
                 <div class="container-box">
                     <div class="mid-down-title">
@@ -157,7 +156,7 @@ if (!empty($data[1])) {
             break; // Break out of the loop once we have shown the desired number of classes
         }
 
-        $classPId = isset($data[2][$row->cid]) ? $data[2][$row->cid] : '';
+        $classPId = isset($data[2][$row->cid]);
         switch ($classPId) {
             case '1':
                 $classRId = 'TPrivileges/p1MemberDetails';

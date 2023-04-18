@@ -98,37 +98,25 @@
                 <!-- subject cards -->
                 <div class="container-box">
 
-
-                    <?php
-                    if (!empty($data[0])) {
-                        $count = 1;
-                        foreach ($data[0] as $row) {
-                            $classPId = isset($data[1][$row->cid]) ? $data[1][$row->cid] : '';
-                            switch ($classPId) {
-                                case '1':
-                                    $classRId = 'TPrivileges/p1MemberDetails';
-                                    break;
-                                case '2':
-                                    $classRId = 'TPrivileges/p2MemberDetails';
-                                    break;
-                                
-                                    
-                            }
+                       
+                <?php if (!empty($data[0])) {
+                        $count = 1
                     ?>
-                            <div class="subject-card-set">
-                                <div class="subject-card">
-                                    <a href='<?php echo BASEURL . $classRId . "/" . $row->cid ?>'>
-                                        <img alt='' src="<?php echo BASEURL . "public/assets/Teacher/patterns/" . $count++ . '.png' ?>" />
-                                    </a>
-                                    <a href="#"><label><?php echo $row->cid ?></label></a>
-                                    <a href="#"><label><?php echo $row->cname ?></label></a>
-                                    <?php echo $classPId ?>
-                                </div>
+
+                        <div class="subject-card-set">
+                            <?php foreach ($data[0] as $row) { ?>
+                            <div class="subject-card">
+                                <a href='<?php echo BASEURL   . "TPrivileges/pMemberDetails/" . $row->cid ?>'>
+                                    <img alt='' src="<?php echo BASEURL . "public/assets/Teacher/patterns/" . $count++ . '.png' ?>" />
+                                </a>
+                                <a href="#"><label><?php echo $row->cid ?></label></a>
+                                <a href="#"><label><?php echo $row->cname ?></label></a>
                             </div>
-                        <?php
-                        }
+                            <?php } ?>
+                        </div>
+                    <?php
                     } else {
-                        ?>
+                    ?>
                         <br><br>
                         <h2 style="color:green ; text-align:center ;padding: 5px 10px;">
                             <?php echo "You are not assigned as a Co-Teacher of another class yet !"; ?>
@@ -137,6 +125,10 @@
                     }
 
                     ?>
+
+
+
+
 
 
 

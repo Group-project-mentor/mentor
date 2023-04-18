@@ -33,13 +33,8 @@ class Home extends Controller
                 unset($_SESSION["cname"]);
                 $classes1 = $this->model("teacher_data")->getClasses($_SESSION['id']);
                 $classes = $this->model("teacher_data")->getCoordinateClasses($_SESSION['id']);
-                $classIds = array_column($classes, 'cid'); // get an array of class ids
-                $privileges = $this->model("teacher_data")->getTPrivilege($_SESSION['id'], $classIds);
-                $privilegeMap = [];
-                foreach ($privileges as $privilege) {
-                    $privilegeMap[$privilege->cid] = $privilege->pid;
-                }
-                $this->view('Teacher/home/index', array($classes1, $classes, $privilegeMap));
+                $privileges = $this->model("teacher_data")->getTPrivilege($_SESSION['id'], $classes);
+                $this->view('Teacher/home/index', array($classes1, $classes, $privileges));
 
                 break;
             case 'sp':
