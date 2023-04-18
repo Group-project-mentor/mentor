@@ -46,8 +46,8 @@
                 <!-- Title and sub title of middle part -->
                 <div class="mid-title">
                     <h1>Subjects</h1>
-                    <h1><?php echo $_SESSION['gid'] ?></h1>
-                    <h6>Hello</h6>
+                    <h3>Grade <?php echo $_SESSION['gid']+5 ?></h3>
+                    <h6>Hello ! Welcome To Your Page</h6>
                 </div>
 
 
@@ -65,8 +65,8 @@
                             <?php foreach (array_slice($data[1], 0, 3) as $row) { ?> <!-- foreach == for -->
                                 <div class="subject-card">
                                     <img src="<?php echo BASEURL  ?>assets/patterns/1.png" alt="" />
-                                    <a href="<?php echo BASEURL . 'st_video/index/' . $_SESSION['gid'] . '/' . $row->id  ?>"><label><?php echo $row->name ?></label></a>
-                                    <label>Grade 8</label>
+                                    <label><?php echo $row->name ?></label>
+                                    <label>Grade <?php echo $_SESSION['gid']+5 ?></label>
                                 </div>
                             <?php } ?>
                         </div>
@@ -89,7 +89,7 @@
                         <?php foreach (array_slice($data[0], 0, 3) as $row) { ?>
                             <div class="subject-card">
                                 <img src="<?php echo BASEURL  ?>assets/patterns/2.png" alt="" />
-                                <a href="#"><label><?php echo $row->name ?></label></a>
+                                <label><?php echo $row->name ?></label>
                                 <label>Grade 8</label>
                             </div>
                         <?php } ?>

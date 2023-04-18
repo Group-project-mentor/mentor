@@ -14,7 +14,7 @@ class St_video extends Controller
 
     }
 
-    public function index($grade, $subject, $msg = null)
+    public function index($grade, $subject, $name=null)
     {
         if (!isset($_SESSION['user'])) {
             header("location:" . BASEURL . "login");
@@ -23,7 +23,7 @@ class St_video extends Controller
         $_SESSION["gid"] = $grade;
         $_SESSION["sid"] = $subject;
         $result = $this->model("st_public_model")->findVideos($grade, $subject);
-        $this->view('student/enrollment/st_video', array($result, $msg));
+        $this->view('student/enrollment/st_video', array($result, $name));
     }
 
     private function getNames($gid, $sid)

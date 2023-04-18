@@ -28,7 +28,7 @@
                     </a>
                 </div>
                 <div class="top-bar-btns">
-                    <a href="<?php echo BASEURL.'st_courses/index/'.$_SESSION['gid'] ?>">
+                    <a href="<?php echo BASEURL.'st_courses/Enroll_subject_all/'.$_SESSION['gid'] ?>">
                         <div class="back-btn">Back</div>
                     </a>
                     <a href="#">
@@ -45,7 +45,7 @@
 
                 <!-- Title and sub title of middle part -->
                 <div class="mid-title">
-                    <h1>Subjects</h1>
+                    <!-- <h1> <?php echo $data[1] ?> </h1> -->
                     <h6>Hello </h6>
                     <!-- <?php echo "Grade ".$_SESSION['gid'+5]." - ".ucfirst($_SESSION['sid']) ?> -->
                 </div>
@@ -63,8 +63,8 @@
                                     <div class='subject-card' style="align-items: center;">
                                         <img src='<?php echo BASEURL . "assets/patterns/" . $count++ .'.png'?>' alt='' />
                                         <label><?php echo $row->name ?></label>
-                                        <a href='<?php echo BASEURL."st_video_play/preview/video/".$row->id ?>' style="background: rgb(24, 100, 55);cursor: pointer;" >
-                                            <label style="color: white;">Play</label>
+                                        <a href='<?php echo BASEURL."st_video_play/preview/video/".$row->id ?>'  >
+                                            <label>Play</label>
                                             <!-- <img style="width: 25px" src='<?php echo BASEURL?>assets/icons/icon_eye_white.png' alt='' /> -->
                                         </a>
                                     </div>
