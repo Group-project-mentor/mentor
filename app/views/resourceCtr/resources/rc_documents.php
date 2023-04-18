@@ -33,8 +33,8 @@
             <!-- Top bar -->
             <section class="top-bar">
                 <div class="search-bar">
-                    <input type="text" name="" id="" placeholder="Search...">
-                    <a href="">
+                    <input type="text" name="" id="search-inp" placeholder="Search...">
+                    <a id="search-btn">
                         <img src="<?php echo BASEURL ?>assets/icons/icon_search.png" alt="">
                     </a>
                 </div>
@@ -71,14 +71,14 @@
                         </a>
                     </div>
                     <?php
-                    if(!empty($data)){ ?>
-                    <div class="rc-resource-table">
+                    if(!empty($data[0])){ ?>
+                    <div class="rc-resource-table" id="rc-resource-table">
                         <div class="rc-table-title">
                             <div class="rc-resource-col">Name</div>
                             <div></div>
                         </div>
                                 <?php
-                                foreach ($data as $row) {
+                                foreach ($data[0] as $row) {
                                     $approval = $this->approvedGenerator($row->approved);
                                     ?>
                                     <div class='rc-pdf-row'>
@@ -112,25 +112,101 @@
 
 
                     </div>
-                </div>
-
-                <?php if(count($data) > 25){ ?>
-                <div class="pagination-set">
-                    <div class="pagination-set-left">
-                        <b>25</b> Results
-                    </div>
-                    <div class="pagination-set-right">
-                        <button> < </button>
-                        <div class="pagination-numbers">
-                            1 of 10
+                    
+                    <div class="pagination-set">
+                        <div class="pagination-set-left">
+                            <b><?php echo ($data[1][0] == $data[1][1] || $data[1][1] == 0) ? count($data[0]) : paginationRowLimit ?></b> Rows
                         </div>
-                        <button> > </button>
-                    </div>
-                </div>
-                <?php } ?>
+                        <div class="pagination-set-right">
+                            <?php if ($data[1][0] != 1) {?>
+                                <a href="<?php echo BASEURL . "rcResources/documents/".$_SESSION['gid']."/".$_SESSION['sid']."/". ($data[1][0]) - 1 ?>"> < </a>
+                                <?php }?>
+                                <div class="pagination-numbers">
+                                    Page <?php echo $data[1][0] ?> of <?php echo ($data[1][1])?$data[1][1]:1 ?>
+                                </div>
+                                <?php if ($data[1][0] < $data[1][1]) {?>
+                                    <a href="<?php echo BASEURL . "rcResources/documents/".$_SESSION['gid']."/".$_SESSION['sid']."/" . ($data[1][0] + 1) ?>"> > </a>
+                                    <?php }?>
+                                </div>
+                            </div>
+                        </div>
 
         </div>
     </section>
 </body>
+<script>
+    const BASEURL = '<?php echo BASEURL ?>';
+    const USER = <?php echo $_SESSION['id']?>;
+
+    let searchInput = document.getElementById('search-inp');
+    let searchButton = document.getElementById('search-btn');
+    let cardHolder = document.getElementById('rc-resource-table');
+
+    searchButton.onclick = () => {
+        let searchTxt = searchInput.value.trim();
+        if (searchTxt !== ""){
+            cardHolder.innerHTML = `<div class="rc-table-title">
+                                        <div class="rc-resource-col">Name</div>
+                                         <div></div>
+                                    </div>`;
+            fetch(`${BASEURL}rcResources/searchResource/documents/${searchTxt}`)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.length > 0){
+                        data.forEach(row => {
+                            cardHolder.innerHTML += renderDocumentData(row,USER);
+                        })
+                    }else {
+                        cardHolder.innerHTML = `<h2 class="rc-no-data-msg" style="text-align:center;">No Data to Display</h2>`;
+                    }
+                })
+                .catch(e => console.log(e));
+        }else {
+            location.reload();
+        }
+    }
+
+    function approvedGenerator(approval) {
+        if (approval === 'N') {
+            return 'icon_not_approved.png';
+        }
+        else if (approval === 'Y') {
+            return 'icon_approved.png';
+        }
+        else {
+            return 'icon_pending.png';
+        }
+    }
+
+    function renderDocumentData (data,USER){
+        let approval = approvedGenerator(data.approval);
+        let rendered =
+            `<div class='rc-pdf-row'>
+                <div class='rc-resource-col' style="display: flex;align-items: center;justify-content: flex-start;">
+                  <img src='${BASEURL}assets/icons/${approval}' alt='' class="resource-approved-sign">
+                         <div>
+                            ${data.name}
+                                 </div>
+                         </div>
+                         <div class='rc-quiz-row-btns'>`;
+
+        if(data.creator_id === USER){
+            rendered += ` <button onclick='delConfirm(${data.id},4)' >
+                                                        <img src='${BASEURL}assets/icons/icon_delete.png' alt=''>
+                                                    </button>
+                                                    <a href='${BASEURL}rcEdit/document/${data.id}'>
+                                                        <img src='${BASEURL}assets/icons/icon_edit.png' alt=''>
+                                                    </a>`
+        }
+
+        rendered +=  `<a href='${data.id}rcResources/preview/document/${data.id}'>
+                            <img src='${data.id}assets/icons/icon_eye.png' alt=''>
+                       </a>
+                    </div>
+                </div>`
+
+        return rendered;
+    }
+</script>
 <script src="<?php echo BASEURL . '/public/javascripts/rc_alert_control.js' ?>"></script>
 </html>

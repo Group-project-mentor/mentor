@@ -11,6 +11,8 @@
 </head>
 
 <body>
+
+
     <section class="page">
         <!-- Navigation panel -->
         <nav class="nav-bar" id="nav-bar">
@@ -76,11 +78,13 @@
                     <a href="#">
                         <img src="<?php echo BASEURL ?>public/assets/Teacher/icons/icon_notify.png" alt="notify">
                     </a>
-                    <a href="<?php echo  BASEURL ?>privateclass/profile">
+                    <a href="<?php echo  BASEURL ?>TProfile/profile">
                         <img src="<?php echo BASEURL ?>public/assets/Teacher/icons/icon_profile_black.png" alt="profile">
                     </a>
                 </div>
             </section>
+
+
 
             <!-- Middle part for whole content -->
             <section class="mid-content">
@@ -88,34 +92,115 @@
                 <!-- Title and sub title of middle part -->
                 <div class="mid-title">
                     <h1>Teacher Home</h1>
-                    <h6>Hello...</h6>
-                </div>
+                    <h6>Hello <?php echo $_SESSION['name'] ?>,</h6>
 
+
+                </div>
                 <!-- subject cards -->
                 <div class="container-box">
                     <div class="mid-down-title">
                         <br><br>
-                        <h3>Ongoing classes</h3> 
+                        <h3>Hosting classes</h3>
                     </div>
-                    <div class="mid-bar-btns">  
-                    <a href="<?php BASEURL ?>TClassRoom/createClass">
-                        <div class="mid-back-btn">Create class</div>
-                    </a>
-                </div>
-                <?php if(!empty($data)){?>
-                    <div class="subject-card-set">
-                        <?php foreach($data as $row){ ?>
-                        <div class="subject-card">
-                        <a href="<?php BASEURL ?>TInsideClass/InSideClass">
-                                <img src="<?php echo BASEURL?>public/assets/Teacher/patterns/1.png" alt="" />
+                    <div class="mid-bar-btns">
+                        <a href="<?php BASEURL ?>TClassRoom/createClass">
+                            <div class="mid-back-btn">Create class</div>
                         </a>
-                            <a href="#"><label><?php echo $row['class_id'];?></label></a>
-                            <a href="#"><label><?php echo $row['class_name'];?></label></a>
-                        </div>        
-                        <?php }?>                
                     </div>
-                    <?php }else{echo "no data!";} ?>
+                    <?php if (!empty($data[0])) {
+                        $count = 1;
+                    ?>
+                        <div class="subject-card-set">
+                            <?php foreach ($data[0] as $row) {
+                                if ($count <= 3) {
+                            ?>
+                                    <div class="subject-card">
+                                        <a href='<?php echo BASEURL . "TClassMembers/memDetails/" . $row->cid ?>'>
+                                            <img alt='' src="<?php echo BASEURL . "public/assets/Teacher/patterns/" . $count . '.png' ?>" />
+                                        </a>
+                                        <a href="#"><label><?php echo $row->cid ?></label></a>
+                                        <a href="#"><label><?php echo $row->cname ?></label></a>
+                                    </div>
+                            <?php
+                                    $count++;
+                                } else {
+                                    break;
+                                }
+                            }
+                            ?>
+                        </div>
+                        <?php   } else {?>
+                        <br><br>
+                        <h2 style="color:green ; text-align:center ;padding: 5px 10px;">
+                            <?php echo "You haven't create any class yet !";} ?>
+                        </h2>
+
+                    <div class="mid-bar-btns">
+                        <a href="<?php BASEURL ?>TClassRoom/allHostClasses">
+                            <div class="mid-back-btn">See All</div>
+                        </a>
+                    </div>
+
+                    <div class="mid-down-title">
+                        <br><br>
+                        <h3>Coordinating classes</h3>
+                    </div>
+
+                    
+                    <?php
+if (!empty($data[1])) {
+    $count = 1;
+    $classesToShow = 3; // Set the number of classes to show here
+    foreach ($data[1] as $row) {
+        if ($count > $classesToShow) {
+            break; // Break out of the loop once we have shown the desired number of classes
+        }
+
+        $classPId = isset($data[2][$row->cid]);
+        switch ($classPId) {
+            case '1':
+                $classRId = 'TPrivileges/p1MemberDetails';
+                break;
+            case '2':
+                $classRId = 'TPrivileges/p2MemberDetails';
+                break;
+            default:
+                $classRId = '';
+                break;
+        }
+?>
+        <div class="subject-card-set">
+            <div class="subject-card">
+                <a href='<?php echo BASEURL . $classRId . "/" . $row->cid ?>'>
+                    <img alt='' src="<?php echo BASEURL . "public/assets/Teacher/patterns/" . $count++ . '.png' ?>" />
+                </a>
+                <a href="#"><label><?php echo $row->cid ?></label></a>
+                <a href="#"><label><?php echo $row->cname ?></label></a>
+                <?php echo $classPId ?>
+            </div>
+        </div>
+    <?php
+    }
+} else {
+    ?>
+    <br><br>
+    <h2 style="color:green ; text-align:center ;padding: 5px 10px;">
+        <?php echo "You are not assigned as a Co-Teacher of another class yet !"; ?>
+    </h2>
+<?php
+}
+
+
+                    ?>
+                    <div class="mid-bar-btns">
+                        <a href="<?php BASEURL ?>TClassRoom/allCoordinateClasses">
+                            <div class="mid-back-btn">See All</div>
+                        </a>
+                    </div>
+
                 </div>
+
+
 
 
             </section>

@@ -1,0 +1,48 @@
+.see-all-btn {
+    text-decoration: none;
+    padding: 3px;
+    width: 10%;
+
+}
+
+.image-container {
+    justify-content: center;
+    align-items: center;
+    /* Set the height of the container to the full viewport height */
+}
+
+body {
+    background-image: url('public/assets/grades/logo1.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+table {
+    border-collapse: collapse;
+    height: 1000px;
+    width: 900px;
+}
+
+td {
+    padding: 20px;
+    text-align: center;
+}
+
+button {
+    background-color: #186537;
+    border: none;
+    color: white;
+    cursor: pointer;
+    padding: 10px 20px;
+    font-size: 17px;
+    border-radius: 10px;
+}
+
+a{
+    text-decoration: none;
+    color: white;
+}

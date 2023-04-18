@@ -1,46 +1,122 @@
-<?php 
-class Teacher_data extends Model{
-    public function __construct(){
+<?php
+class Teacher_data extends Model
+{
+    public function __construct()
+    {
         parent::__construct();
     }
 
-    public function getClasses(){
-        $id = 1;
-        $q = "select private_class.class_id, private_class.class_name from private_class inner join teacher_has_class on teacher_has_class.class_id = private_class.class_id where teacher_has_class.teacher_id = 1";
-        $result = $this->executeQuery($q);
-        if($result->num_rows > 0){
-            $row = array();
-            while($row = $result->fetch_assoc()){
-                $rows[] = $row;
-            }
-            return $rows;
-        }
-        else{
-            return array() ;
-        } 
+    public function getClasses($id)
+    {
+
+        $q = "select private_class.class_id as cid, private_class.class_name as cname from private_class inner join
+         teacher_has_class on teacher_has_class.class_id = private_class.class_id where teacher_has_class.teacher_id=? ";
+        $result = $this->prepare($q);
+        $result->bind_param('i', $id);
+        return $this->fetchObjs($result);
     }
 
-    public function addClass($id,$name){
-        $q = "INSERT INTO private_class (class_id,class_name) VALUES (".$id.",'".$name."')";
+    public function addClass($id, $name)
+    {
+        $q = "INSERT INTO private_class (class_id,class_name) VALUES (" . $id . ",'" . $name . "')";
         $result = $this->executeQuery($q);
         return $result;
     }
 
-    public function getLastClassID(){
+    public function getLastClassID()
+    {
         $query = "select class_id from private_class order by class_id desc limit 1";
         $result = $this->executeQuery($query)->fetch_row();
-        if(!empty($result)){
+        if (!empty($result)) {
             return ++$result[0];
-        }else{
+        } else {
             return 1;
         }
     }
 
-    public function teacherHasClass($id){
-        $q = "INSERT INTO teacher_has_class (teacher_id,class_id,host_teacher_id) VALUES (1,".$id.",1)";
+    public function teacherHasClass($id)
+    {
+        $q = "INSERT INTO teacher_has_class (teacher_id,class_id,host_teacher_id) VALUES (" . $_SESSION['id'] . "," . $id . ",1)";
         $result = $this->executeQuery($q);
         return $result;
     }
-}
 
-?>
+    public function getStudents($id)
+    {
+
+        $q = "select user.id,user.name from user inner join classes_has_students on user.id=classes_has_students.student_id where user.type='st' and classes_has_students.class_id=? ";
+        $result = $this->prepare($q);
+        $result->bind_param('i', $id);
+        return $this->fetchObjs($result);
+    }
+
+    public function addStudentsClass($id)
+    {
+        $q = "INSERT INTO classes_has_students(class_id,student_id) VALUES (" . $_SESSION['cid'] . "," . $id . ")";
+        $result = $this->executeQuery($q);
+        return $result;
+    }
+
+    public function deleteSt($student_id, $class_id)
+    {
+
+        $q = "delete from classes_has_students where student_id=? and class_id=? ";
+        $result = $this->prepare($q);
+        $result->bind_param('ii', $student_id, $class_id);
+        return $result->execute();
+    }
+
+    public function addExtraTeachersClass($id1, $id2, $id3)
+    {
+        $stmt = $this->prepare("INSERT INTO classes_has_extra_teachers(class_id,teacher_id,teacher_name,teacher_privilege) VALUES (?, ?,?,?)");
+        $stmt->bind_param("iiss", $_SESSION['cid'], $id1, $id2, $id3);
+        $result = $stmt->execute();
+        $stmt->close();
+        return $result;
+    }
+
+    public function getTeachers($id)
+    {
+
+        $q = "select user.id,user.name from user inner join classes_has_extra_teachers on user.id=classes_has_extra_teachers.teacher_id where user.type='tch' and classes_has_extra_teachers.class_id=? ";
+        $result = $this->prepare($q);
+        $result->bind_param('i', $id);
+        return $this->fetchObjs($result);
+    }
+
+    public function deleteTch($teacher_id, $class_id)
+    {
+
+        $q = "delete from classes_has_extra_teachers where teacher_id=? and class_id=? ";
+        $result = $this->prepare($q);
+        $result->bind_param('ii', $teacher_id, $class_id);
+        return $result->execute();
+    }
+
+    public function getHostTeacher($id)
+    {
+
+        $q = "select user.id,user.name from user inner join teacher_has_class on user.id=teacher_has_class.teacher_id where user.type='tch' and teacher_has_class.class_id=? ";
+        $result = $this->prepare($q);
+        $result->bind_param('i', $id);
+        return $this->fetchObjs($result);
+    }
+
+    public function getCoordinateClasses($id)
+    {
+
+        $q = "select private_class.class_id as cid, private_class.class_name as cname from private_class inner join
+         classes_has_extra_teachers on classes_has_extra_teachers.class_id = private_class.class_id where classes_has_extra_teachers.teacher_id=? ";
+        $result = $this->prepare($q);
+        $result->bind_param('i', $id);
+        return $this->fetchObjs($result);
+    }
+
+    public function getTPrivilege($id1, $id2)
+    {
+        $q = "select classes_has_extra_teachers.teacher_privilege as pid from classes_has_extra_teachers where classes_has_extra_teachers.teacher_id=? and classes_has_extra_teachers.class_id=?; ";
+        $result = $this->prepare($q);
+        $result->bind_param('ii', $id1, $id2);
+        return $this->fetchObjs($result, true);
+    }
+}

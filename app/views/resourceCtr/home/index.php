@@ -12,10 +12,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <link rel="icon" type="image/x-icon" href="<?php echo BASEURL ?>assets/mentor.ico">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Home</title>
 
     <link rel="stylesheet" href="<?php echo BASEURL . '/public/stylesheets/resourceCreator/rc_main.css' ?> ">
     <link rel="stylesheet" href="<?php echo BASEURL . '/public/stylesheets/sponsor/sp_styles.css' ?> ">
+    <style>
+        .resource-chart{
+            max-width: 400px;
+        }
+    </style>
 </head>
 
 <body>
@@ -58,28 +63,31 @@
                     <div class="sponsor-student-prof">
                         <div class="bottom-details" style="margin: 10px 10px;height: 50vh;">
                             <div>
-                                <div class="sp-subject-report">
+                                <div class="sp-subject-report resource-chart">
                                     <h4>Resources You Can Access</h4>
-                                    <!--                                    <img src="--><?php //echo BASEURL?><!--assets/clips/chart.webp" style="width: 400px;">-->
-                                    <canvas id="myChart">
+                                    <canvas id="myChart1" class="resource-chart">
 
                                     </canvas>
                                 </div>
                                 <div style="display: flex;flex-direction: column;">
                                     <div class="rc-dash-info-card-set">
                                         <div class="rc-dash-info-card">
-                                            <h2>All Resources</h2>
-                                            <h1>10</h1>
+                                            <h2>Your Resources</h2>
+                                            <h1><?php echo !empty($data[2]->res_count)?$data[2]->res_count:0 ?></h1>
                                         </div>
                                     </div>
                                     <div class="rc-dash-info-card-set">
                                         <div class="rc-dash-info-card">
-                                            <h2>Not Approved</h2>
-                                            <h1>7</h1>
+                                            <h2>Approved</h2>
+                                            <h1><?php echo !empty($data[3]['Y'])?$data[3]['Y']:0 ?></h1>
                                         </div>
                                         <div class="rc-dash-info-card">
-                                            <h2>Approved</h2>
-                                            <h1>3</h1>
+                                            <h2>Pending</h2>
+                                            <h1><?php echo !empty($data[3]['P'])?$data[3]['P']:0 ?></h1>
+                                        </div>
+                                        <div class="rc-dash-info-card">
+                                            <h2>Not Approved</h2>
+                                            <h1><?php echo !empty($data[3]['N'])?$data[3]['N']:0 ?></h1>
                                         </div>
                                     </div>
                                 </div>
@@ -103,6 +111,7 @@
                                     } ?>
                                 </div>
                             </div>
+
                         </div>
                     </div>
 
@@ -122,7 +131,7 @@
     });
 
     // console.log(Data,Labels);
-    const chart = document.getElementById('myChart');
+    const chart = document.getElementById('myChart1');
 
     new Chart(chart, {
         type: 'doughnut',
@@ -142,6 +151,7 @@
             }]
         },
         options: {
+            responsive:true,
             scales: {
 
             }

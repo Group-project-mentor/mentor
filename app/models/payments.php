@@ -27,15 +27,128 @@ class payments extends Model
         return $this->executePrepared($stmt);
     }
 
-    public function getTrasactionHistory($id){
-        $stmt = $this->prepare("SELECT * FROM payment WHERE payment.userId = ? ORDER BY payment.timestamp DESC");
-        $stmt->bind_param('i',$id );
+    public function getTrasactionHistory($id,$offset,$limit,$filters){
+        $types = "i";
+        $q = "SELECT * FROM payment WHERE payment.userId = ? ";
+        if(!empty($filters['amountStart']) && !empty($filters['amountEnd'])){
+            $q .= "AND (payment.amount >= ? AND payment.amount <= ?) ";
+            $types .= "dd";
+        }
+        if(!empty($filters['startDate']) && !empty($filters['endDate'])){
+            $q .= "AND (DATE(payment.timestamp) BETWEEN ? AND ?) ";
+            $types .= "ss";
+        }
+        switch($types){
+            case "i":
+                if($offset == 0){
+                    $q .= " ORDER BY payment.timestamp DESC LIMIT ?";
+                    $types .= "i";
+                    $stmt = $this->prepare($q);
+                    $stmt->bind_param($types ,$id,$limit);
+                }
+                else{
+                    $q .= " ORDER BY payment.timestamp DESC LIMIT ?, ?";
+                    $types .= "ii";
+                    $stmt = $this->prepare($q);
+                    $stmt->bind_param($types ,$id,$offset,$limit);
+                }
+                break;
+            case "idd":
+                if($offset == 0){
+                    $q .= " ORDER BY payment.timestamp DESC LIMIT ?";
+                    $types .= "i";
+                    $stmt = $this->prepare($q);
+                    $stmt->bind_param($types,$id,$filters['amountStart'],$filters['amountEnd'],$limit);
+                }
+                else{
+                    $q .= " ORDER BY payment.timestamp DESC LIMIT ?, ?";
+                    $types .= "ii";
+                    $stmt = $this->prepare($q);
+                    $stmt->bind_param($types,$id,$filters['amountStart'],$filters['amountEnd'],$offset,$limit);
+                }
+                break;
+            case "iss":
+                if($offset == 0){
+                    $q .= " ORDER BY payment.timestamp DESC LIMIT ?";
+                    $types .= "i";
+                    $stmt = $this->prepare($q);
+                    $stmt->bind_param($types,$id,$filters['startDate'],$filters['endDate'],$limit);
+                }
+                else{
+                    $q .= " ORDER BY payment.timestamp DESC LIMIT ?, ?";
+                    $types .= "ii";
+                    $stmt = $this->prepare($q);
+                    $stmt->bind_param($types,$id,$filters['startDate'],$filters['endDate'],$offset,$limit);
+                }
+                break;
+            case "iddss":
+                if($offset == 0){
+                    $q .= " ORDER BY payment.timestamp DESC LIMIT ?";
+                    $types .= "i";
+                    $stmt = $this->prepare($q);
+                    $stmt->bind_param($types,$id,$filters['amountStart'],$filters['amountEnd'],$filters['startDate'],$filters['endDate'],$limit);
+                }
+                else{
+                    $q .= " ORDER BY payment.timestamp DESC LIMIT ?, ?";
+                    $types .= "ii";
+                    $stmt = $this->prepare($q);
+                    $stmt->bind_param($types,$id,$filters['amountStart'],$filters['amountEnd'],$filters['startDate'],$filters['endDate'],$offset,$limit);
+                }
+                break;
+        }   
         return $this->fetchObjs($stmt);
     }
 
-    public function savePayment($payID, $userID, $currency, $amount ,$description , $method){
-        $stmt = $this->prepare("INSERT INTO payment(paymentId,userId,currency,amount,type,method) VALUES (?,?,?,?,?,?)");
-        $stmt->bind_param("iisdss",$payID,$userID,$currency,$amount,$description,$method);
+    public function getTrasactionHistoryCount($id, $filters){
+        $types = "i";
+        $q = "SELECT COUNT(payment.id) as count FROM payment WHERE payment.userId = ? ";
+        if(!empty($filters['amountStart']) && !empty($filters['amountEnd'])){
+            $q .= "AND (payment.amount >= ? AND payment.amount <= ?) ";
+            $types .= "dd";
+        }
+        if(!empty($filters['startDate']) && !empty($filters['endDate'])){
+            $q .= "AND (DATE(payment.timestamp) BETWEEN ? AND ?) ";
+            $types .= "ss";
+        }
+        $q .= "ORDER BY payment.timestamp DESC";
+        switch($types){
+            case "i":
+                $stmt = $this->prepare($q);
+                $stmt->bind_param('i',$id);
+                break;
+            case "idd":
+                $stmt = $this->prepare($q);
+                $stmt->bind_param('idd',$id,$filters['amountStart'],$filters['amountEnd']);
+                break;
+            case "iss":
+                $stmt = $this->prepare($q);
+                $stmt->bind_param('iss',$id,$filters['startDate'],$filters['endDate']);
+                break;
+            case "iddss":
+                $stmt = $this->prepare($q);
+                $stmt->bind_param('iddss',$id,$filters['amountStart'],$filters['amountEnd'],$filters['startDate'],$filters['endDate']);
+                break;
+        }
+        return $this->fetchOneObj($stmt);
+    }
+
+    public function savePayment($payID, $userID, $currency, $amount ,$description , $method,$billID){
+        $stmt1 = $this->prepare("INSERT INTO payment(paymentId,userId,currency,amount,type,method) VALUES (?,?,?,?,?,?)");
+        $stmt1->bind_param("iisdss",$payID,$userID,$currency,$amount,$description,$method);
+        $stmt2 = $this->prepare("UPDATE bill SET bill.status = 1, bill.payment_id = ? WHERE bill.id = ?");
+        $stmt2->bind_param('is',$payID,$billID);
+        return $this->executePrepared($stmt1) and $this->executePrepared($stmt2);
+    }
+
+    public function testMe($data){
+        $stmt = $this->prepare("INSERT INTO test VALUES (?)");
+        $stmt->bind_param('s',$data);
+        $this->executePrepared($stmt);
+    }
+
+    public function saveBMC($name,$email,$amount,$count){
+        $stmt = $this->prepare("INSERT INTO bmc (name, email, count, amount) VALUES (?,?,?,?)");
+        $stmt->bind_param("ssid",$name,$email,$count,$amount);
         return $this->executePrepared($stmt);
     }
 }

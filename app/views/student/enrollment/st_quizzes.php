@@ -83,8 +83,8 @@
                                             </div>
                                         </div>
                                         <div class="quiz-card-button-set">
-                                            <a class="quiz-card-btn" href="<?php echo BASEURL . 'st_quizzes/st_quizzes_do/' . $row->id ?>">
-                                                <div class="back-btn">
+                                            <a class="quiz-card-btn" href="<?php echo BASEURL . 'st_quizzes/st_quizzes_intro/' . $row->id ?>">
+                                            <div class="back-btn">
                                                     View
                                                 </div>
                                             </a>

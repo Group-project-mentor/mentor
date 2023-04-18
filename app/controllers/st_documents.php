@@ -8,12 +8,6 @@ class St_documents extends Controller
         // $this->hasLogged();
     }
     
-    // public function index($gid,$sid)
-    // {
-    //     $_SESSION['sid'] = $sid;
-    //     $res = $this->model('st_public_model')->findDocuments($gid, $sid);
-    //     $this->view('student/enrollment/st_documents', array($res));
-    // }
 
     public function index($grade, $subject, $msg = null)
     {

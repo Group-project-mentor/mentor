@@ -61,13 +61,12 @@ class DB{
 
 //        Transactions
         public function transaction($info = null){
-            $this->connection->query("START TRANSACTION");
+            $this->connection->begin_transaction();
         }
         public function commit(){
-            $this->connection->query("COMMIT");
+            $this->connection->commit();
         }
         public function rollBack(){
-            $this->connection->query("ROLLBACK");
+            $this->connection->rollback();
         }
     }
-?>

@@ -10,7 +10,6 @@
     <link rel="stylesheet" href="<?php echo BASEURL?>public/stylesheets/resourceCreator/rc_main.css">
     <link rel="stylesheet" href="<?php echo BASEURL?>public/stylesheets/resourceCreator/rc_resources.css">
     <link rel="stylesheet" href="<?php echo BASEURL . '/public/stylesheets/sponsor/sp_styles.css' ?> ">
-    <script defer src="<?php echo BASEURL ?>javascripts/spPaymentProgress.js"> </script>
 
 </head>
 
@@ -18,16 +17,17 @@
 <section class="page">
     <!-- Navigation panel -->
     <?php include_once "components/navbars/sp_nav_1.php"?>
+    <?php include_once "components/alerts/rightAlert.php"?>
 
     <div class="content-area">
 
         <!-- Top bar -->
         <section class="top-bar">
             <div class="search-bar">
-                <input type="text" name="" id="" placeholder="Search...">
-                <a href="">
-                    <img src="<?php echo BASEURL?>public/assets/Teacher/icons/icon_search.png" alt="">
-                </a>
+<!--                <input type="text" name="" id="" placeholder="Search...">-->
+<!--                <a href="">-->
+<!--                    <img src="--><?php //echo BASEURL?><!--public/assets/Teacher/icons/icon_search.png" alt="">-->
+<!--                </a>-->
             </div>
             <div class="top-bar-btns">
 <!--                <a href="#">-->
@@ -54,9 +54,15 @@
             <!-- Grade choosing interface -->
             <div class="container-box">
                 <div style="margin-top: 20px;display: flex;justify-content: space-between;">
-                    <div class="rc-resource-header">
-                        <h3>Pay your remaining payment :  </h3>
+                    <div>
+                        <?php if(!empty($data[2])){ ?>
+                            <a href="<?php echo BASEURL."sponsor/slips/bills/".$data[2]->id ?>" type="button" class="sponsor-button"  style="font-size: large;margin: 0 5px;text-decoration: none;display: flex;align-items: center;">
+                                <img src="<?php echo BASEURL?>public/assets/icons/icon-pending-clock.png" alt="profile" style="width: 25px;">
+                                Remaining Bill
+                            </a>
+                        <?php } ?>
                     </div>
+
                     <a href="<?php echo BASEURL?>sponsor/transactionHistory" type="button" class="sponsor-button"  style="font-size: large;margin: 0 5px;text-decoration: none;display: flex;align-items: center;">
                         <img src="<?php echo BASEURL?>public/assets/icons/icon_cash.png" alt="profile" style="width: 25px;">
                         Transaction History
@@ -88,7 +94,7 @@
                         <?php if(empty($data[0])){ ?>
                             <div class="sponsor-list-row">
                                 <div class="sponsor-list-item flex-1">
-                                    NO DATA TO SHOW
+                                    : ) &nbsp; No Payments in Progress !
                                 </div>
                             </div>
                         <?php } else {
@@ -149,60 +155,6 @@
 </body>
 <script>
     const BASEURL = "<?php echo BASEURL ?>";
-    let billBtn = document.getElementById('bill-btn');
-    let bill = "";
-    billBtn.addEventListener('click',(e)=>{
-        e.preventDefault();
-
-        let dataArray = [];
-        let formData = new FormData();
-
-        formData.append("currency","LKR");
-        formData.append("amount",totalSum);
-
-        fetch(`${BASEURL}sponsor/createBill`,{
-            method : "post",
-            body : formData
-        })
-            .then(response => response.json())
-            .then(data => {
-                console.log(data);
-                if(data.billNo !== undefined){
-                    bill = data.billNo;
-                    let completed = 0;
-                    for (let i =0; i < chkList.length;i++){
-                        if (chkList[i].checked){
-                            let form = new FormData();
-
-                            form.append('student_id',ids[i].innerHTML.trim());
-                            form.append('month', `${monthToNumber(months[i].innerHTML.trim())}`);
-                            form.append('year', years[i].innerHTML.trim());
-                            form.append('billNo', bill);
-
-                            fetch(`${BASEURL}sponsor/insertBillData`,{
-                                method:"post",
-                                body:form
-                            })
-                                .then(res => res.json())
-                                .then(data => {
-                                    console.log(data);
-                                    if(data.status){
-                                        completed++;
-                                    }
-                                })
-                            // dataArray.push(form);
-                        }
-                    }
-                    totalSum = 0;
-                    location.href = BASEURL+"sponsor/slips/bills/"+bill;
-                }else{
-                    console.log("No bill number !");
-                }
-            })
-            .catch(err => console.log(err));
-
-
-
-    })
 </script>
+<script src="<?php echo BASEURL ?>javascripts/spPaymentProgress.js"> </script>
 </html>

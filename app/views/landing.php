@@ -34,7 +34,7 @@ if (isset($_SESSION['user'])) {
             <div class="landing-nav-links nav-hidden" id="nav-links">
                 <a class="landing-nav-link" href="#Home">Home</a>
                 <a class="landing-nav-link">About</a>
-                <a class="landing-nav-link" href="#BMC">Buy me a coffee</a>
+                <a class="landing-nav-link" href="#BMC">Buy us a coffee</a>
                 <a class="landing-nav-link" href="#footer">Contact us</a>
                 <a class="landing-nav-link landing-special-btn" href="<?php echo BASEURL ?>login">Login</a>
             </div>
@@ -76,7 +76,6 @@ if (isset($_SESSION['user'])) {
                     <img src="<?php echo BASEURL ?>assets/landing/image2.png" alt="">
                 </div>
             </div>
-            <a name="BMC"></a>
         </section>
 
         <section class="landing-mid-container">
@@ -91,6 +90,7 @@ if (isset($_SESSION['user'])) {
                     </ul>
                 </div>
             </div>
+            <a name="BMC"></a>
         </section>
 
         <section class="landing-BMC">
@@ -102,7 +102,7 @@ if (isset($_SESSION['user'])) {
                     Management System (LMS). The LMS provides access to educational resources, study materials, and online
                     courses for students around the world. Your support helps us continue to offer these services for free.
                 </div>
-                <a class="landing-BMC-btn" href="https://sandbox.payhere.lk/pay/o22d098a8">
+                <a class="landing-BMC-btn" href="<?php echo BASEURL."home/bmc" ?>">
                     <i class="fa-solid fa-hand-holding-dollar fa-beat-fade"></i>
                     BUY US A COFFEE
                 </a>

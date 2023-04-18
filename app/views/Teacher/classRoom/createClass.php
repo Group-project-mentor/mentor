@@ -86,6 +86,8 @@
                     <h3>Enter class name</h3>
                 </div>
 
+
+
                 <div class="class section">
                     <form action="<?php echo BASEURL; ?>TClassRoom/createAction" method="POST">
                         <label for="class_name"></label>
@@ -93,6 +95,7 @@
                         <input type="submit" value="create">
                     </form>
                 </div>
+
 
             </section>
 

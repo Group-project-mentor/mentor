@@ -9,27 +9,19 @@
     <title>Student Home</title>
 
     <link rel="stylesheet" href="<?php echo BASEURL ?>stylesheets/Student/style.css"> <!-- BASEURL use to navigate pages -->
-    <link rel="stylesheet" href="<?php echo BASEURL ?>stylesheets/st_student.css">
+    <link rel="stylesheet" href="<?php echo BASEURL ?>stylesheets/Student/st_student.css">
+    <link rel="stylesheet" href="<?php echo BASEURL ?>stylesheets/Student/st_homepage.css">
+
 
     <style>
-        .see-all-btn {
-            text-decoration: none;
-            padding: 3px;
-            width: 10%;
-            
-        }
-
-        .image-container {
-            justify-content: center;
-            align-items: center;
-            /* Set the height of the container to the full viewport height */
-        }
-
         body {
-            background-image: url('assets/grades/logo1.png');
+            background-image: url('public/assets/grades/logo1.png');
             background-size: cover;
             background-repeat: no-repeat;
             background-position: center center;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
         }
     </style>
 </head>
@@ -73,25 +65,25 @@
 
                 <!-- Grade choosing interface -->
                 <div class="container-box" style="padding-left: 160px; width:200%; height:10%;">
-                    <div class="grade-switcher">
-
-                        <a class="see-all-btn" href="<?php echo BASEURL  ?>st_courses/index/1">Grade 6</a>
-                        <a class="see-all-btn" href="<?php echo BASEURL  ?>st_courses/index/2">Grade 7</a>
-                        <a class="see-all-btn" href="<?php echo BASEURL  ?>st_courses/index/3">Grade 8</a>
-                        <a class="see-all-btn" href="<?php echo BASEURL  ?>st_courses/index/4">Grade 9</a>
-                        <a class="see-all-btn" href="<?php echo BASEURL  ?>st_courses/index/5">Grade 10</a>
-                        <a class="see-all-btn" href="<?php echo BASEURL  ?>st_courses/index/6">O/L</a>
-                        <a class="see-all-btn" href="<?php echo BASEURL  ?>st_courses/index/7">A/L</a>
-
-                    </div>
+                    <table>
+                        <tr>
+                            <td><button><a href="<?php echo BASEURL  ?>st_courses/index/1">Grade 6</a></button></td>
+                            <td><button><a href="<?php echo BASEURL  ?>st_courses/index/2">Grade 7</a></button></td>
+                            <td><button><a href="<?php echo BASEURL  ?>st_courses/index/3">Grade 8</a></button></td>
+                            <td><button><a href="<?php echo BASEURL  ?>st_courses/index/4">Grade 9</a></button></td>
+                            <td><button><a href="<?php echo BASEURL  ?>st_courses/index/5">Grade 10</a></button></td>
+                        </tr>
+                    </table>
+                    <table>
+                        <tr>
+                            <td><button><a href="<?php echo BASEURL  ?>st_courses/index/6"> Ordinary Level </a></button></td>
+                            <td><button><a href="<?php echo BASEURL  ?>st_courses/index/7"> Advanced Level </a></button></td>
+                        </tr>
+                    </table>
                 </div>
                 <br><br>
                 <!-- <a class="see-all-btn" href="<?php echo BASEURL  ?>" style="text-decoration: none; width:100%;"></a> -->
-                <div>
 
-                    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-                    <a class="see-all-btn" href="<?php echo BASEURL  ?>st_private_mode" style="text-decoration: none; width:10%">Private</a>
-                </div>
 
         </div>
     </section>

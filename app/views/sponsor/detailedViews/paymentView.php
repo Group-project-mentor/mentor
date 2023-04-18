@@ -96,7 +96,8 @@
                                     <?php echo $date[1] ?>
                                 </div>
                             </div>
-                            <a class="sponsor-button" style="margin-top: 10px;width: 90%;justify-content: center;font-size: smaller;">
+                            <a  class="sponsor-button" style="margin-top: 10px;width: 90%;justify-content: center;font-size: smaller;"
+                                href="<?php echo BASEURL.'sponsor/slips/bills/'.$data[1]->id ?>" >
                                 See Bill Details >>
                             </a>
                     </div>

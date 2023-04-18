@@ -2,40 +2,100 @@
 
 class Home extends Controller
 {
-    
+    public function __construct()
+    {
+    }
+
     public function index()
     {
         sessionValidator();
         $this->hasLogged();
-        switch ($_SESSION['usertype']){
+        switch ($_SESSION['usertype']) {
             case 'st':
                 $this->view('student/home/index');
                 break;
             case 'rc':
+                $typeCount = $this->model('resourceModel')->getTypeCount($_SESSION['id']);
+                $typeCountList = array();
+                foreach ($typeCount as $row) {
+                    $typeCountList[$row->status] = $row->res_count;
+                }
+                $mySubjectCount = $this->model("resourceModel")->getMyResourcesCount($_SESSION['id']);
                 $subjects = $this->model("rcHasSubjectModel")->getSubjects($_SESSION['id']);
                 $chartData = $this->model("resourceModel")->getChartCounts($_SESSION['id']);
-                $this->view('resourceCtr/home/index',array($subjects,$chartData));
+                $this->view('resourceCtr/home/index', array($subjects, $chartData, $mySubjectCount, $typeCountList));
                 break;
             case 'ad':
-                header("location:".BASEURL."admins/dashboard");
+                header("location:" . BASEURL . "admins/dashboard");
                 break;
             case 'tch':
-                $this->view('Teacher/home/index');
+                unset($_SESSION["cid"]);
+                unset($_SESSION["cname"]);
+                $classes1 = $this->model("teacher_data")->getClasses($_SESSION['id']);
+                $classes = $this->model("teacher_data")->getCoordinateClasses($_SESSION['id']);
+                $privileges = $this->model("teacher_data")->getTPrivilege($_SESSION['id'], $classes);
+                $this->view('Teacher/home/index', array($classes1, $classes, $privileges));
 
                 break;
             case 'sp':
-                $this->view('sponsor/home/index');
+                $totalFundingChart = $this->model("sponsorStModel")->getTotalPaidData($_SESSION['id']);
+                $totalFunded = $this->model("sponsorStModel")->getTotalFundedAmount($_SESSION['id'])->total;
+                $totalFunding = 0;
+                foreach ($totalFundingChart as $row) {
+                    $totalFunding += $row->total;
+                }
+
+                $monthlyChartData = $this->model("sponsorStModel")->getMonthlyData($_SESSION['id']);
+
+                $monthlyBillData = $this->model("sponsorStModel")->getMonthlyBillData($_SESSION['id'], date('Y'));
+                $monthlyBillArray = $this->createEmptyMonthArray();
+                foreach ($monthlyBillData as $row) {
+                    $date = new DateTime($row->timestamp);
+                    $monthName = getMonthName($date->format('n'));
+                    if (!array_key_exists($monthName, $monthlyBillArray)) {
+                        $monthlyBillArray[$monthName] = 0;
+                    }
+                    $monthlyBillArray[$monthName] += $row->amount;
+                }
+
+                $this->view(
+                    'sponsor/home/index',
+                    array(
+                        "totalFundingChart" => $totalFundingChart,
+                        "stCount" => count($totalFundingChart),
+                        "totalFunded" => $totalFunded,
+                        "remainingAmount" => ($totalFunding - $totalFunded),
+                        "monthlyAverage" => $totalFunding / count($totalFundingChart),
+                        "monthlyChartData" => $monthlyChartData,
+                        "monthlyBillArray" => $monthlyBillArray,
+                    )
+                );
                 break;
             default:
-                header("location:".BASEURL."login");
+                header("location:" . BASEURL . "login");
         }
     }
 
-    public function toggle(){
+    public function bmc()
+    {
+        $this->view('BMC');
+    }
+
+    public function saveBmc()
+    {
+        $count = $_POST['custom_1'];
+        $name = $_POST['card_holder_name'];
+        $amount = $_POST['payhere_amount'];
+        $email = $_POST['custom_2'];
+        $this->model("payments")->saveBMC($name, $email, $amount, $count);
+    }
+
+    public function toggle()
+    {
         session_start();
-        if($_SESSION['navtog'] == 1){
+        if ($_SESSION['navtog'] == 1) {
             $_SESSION['navtog'] = 0;
-        }else{
+        } else {
             $_SESSION['navtog'] = 1;
         }
         echo "jeyy";
@@ -46,12 +106,15 @@ class Home extends Controller
         if (!isset($_SESSION['user'])) {
             header("location:" . BASEURL . "login");
         }
-
     }
 
-
+    private function createEmptyMonthArray()
+    {
+        $monthArray = array();
+        for ($i = 1; $i <= 12; $i++) {
+            $date = DateTime::createFromFormat('!m', $i);
+            $monthArray[$date->format('F')] = 0;
+        }
+        return $monthArray;
+    }
 }
-
-?>
-
-

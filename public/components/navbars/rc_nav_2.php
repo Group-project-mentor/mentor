@@ -36,28 +36,33 @@ if (!isset($_SESSION['navtog'])) {
             ?>
             <!-- Navigation buttons -->
             <div class="nav-links">
+                <a href="<?php echo BASEURL?>rcResources/organized/<?php echo "$gid/$sid"; ?>" class="nav-link">
+                    <img class="" src="<?php echo BASEURL?>assets/icons/icon-category.png" alt="category">
+                    <div class="nav-link-text">Resources</div>
+                </a>
+                <a class="nav-link"></a>
                 <a href="<?php echo BASEURL?>rcResources/videos/<?php echo "$gid/$sid"; ?>" class="nav-link">
-                    <img class="active" src="<?php echo BASEURL?>assets/icons/icon_video.png" alt="home">
+                    <img class="" src="<?php echo BASEURL?>assets/icons/icon_video.png" alt="video">
                     <div class="nav-link-text">Video</div>
                 </a>
                 <a href="<?php echo BASEURL ?>rcResources/quizzes/<?php echo "$gid/$sid"; ?>" class="nav-link">
-                    <img src="<?php echo BASEURL?>assets/icons/icon_quizzes.png" alt="cource">
+                    <img src="<?php echo BASEURL?>assets/icons/icon_quizzes.png" alt="quiz">
                     <div class="nav-link-text">Quizzes</div>
                 </a>
                 <a href="<?php echo BASEURL ?>rcResources/pastpapers/<?php echo "$gid/$sid"; ?>" class="nav-link">
-                    <img src="<?php echo BASEURL?>assets/icons/icon_past_papers.png" alt="profile">
+                    <img src="<?php echo BASEURL?>assets/icons/icon_past_papers.png" alt="pp">
                     <div class="nav-link-text">Past papers</div>
                 </a>
                 <a href="<?php echo BASEURL ?>rcResources/documents/<?php echo "$gid/$sid"; ?>" class="nav-link">
-                    <img src="<?php echo BASEURL?>assets/icons/icon_pdf.png" alt="report">
+                    <img src="<?php echo BASEURL?>assets/icons/icon_pdf.png" alt="pdf">
                     <div class="nav-link-text">PDF</div>
                 </a>
                 <a href="<?php echo BASEURL ?>rcResources/others/<?php echo "$gid/$sid"; ?>" class="nav-link">
-                    <img src="<?php echo BASEURL?>assets/icons/icon_other.png" alt="bmc">
+                    <img src="<?php echo BASEURL?>assets/icons/icon_other.png" alt="other">
                     <div class="nav-link-text">Other resource</div>
                 </a>
                 <a href="<?php echo BASEURL ?>rcResources/settings/<?php echo "$gid/$sid"; ?>" class="nav-link">
-                    <img src="<?php echo BASEURL?>assets/icons/icon_settings.png" alt="report">
+                    <img src="<?php echo BASEURL?>assets/icons/icon_settings.png" alt="settings">
                     <div class="nav-link-text">Settings</div>
                 </a>
 <!--                <a href="--><?php //echo BASEURL ?><!--report" class="nav-link">-->

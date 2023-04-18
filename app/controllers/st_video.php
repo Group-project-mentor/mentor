@@ -3,15 +3,7 @@ class St_video extends Controller
 {
     public function __construct(){
         sessionValidator();
-        //$this->hasLogged();
-    }
-
-    public function index($gid,$sid)
-    {
-        $_SESSION['sid'] = $sid;
-        $res = $this->model('st_public_model')->findVideos($gid, $sid);
-        $this->view('student/enrollment/st_video', array($res));
-
+        $this->hasLogged();
     }
 
     private function hasLogged()
@@ -22,7 +14,7 @@ class St_video extends Controller
 
     }
 
-    public function videos($grade, $subject, $msg = null)
+    public function index($grade, $subject, $msg = null)
     {
         if (!isset($_SESSION['user'])) {
             header("location:" . BASEURL . "login");
@@ -30,7 +22,7 @@ class St_video extends Controller
         $this->getNames($grade, $subject);
         $_SESSION["gid"] = $grade;
         $_SESSION["sid"] = $subject;
-        $result = $this->model("resourceModel")->findVideos($grade, $subject);
+        $result = $this->model("st_public_model")->findVideos($grade, $subject);
         $this->view('student/enrollment/st_video', array($result, $msg));
     }
 

@@ -5,8 +5,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Report issue 1</title>
-    <link rel="stylesheet" href="<?php echo BASEURL; ?>public/stylesheets/resourceCreator/rc_main.css">
+    <link rel="icon" type="image/x-icon" href="<?php echo BASEURL ?>assets/mentor.ico">
+    <title>Report issue</title>
+    <link rel="stylesheet" href="<?php echo BASEURL ?>public/stylesheets/resourceCreator/rc_main.css">
     <style>
         @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800&display=swap");
 
@@ -107,10 +108,10 @@
                 </div>
                 <div class="top-bar-btns">
                     <a href="#">
-                        <img src="assets/icons/icon_notify.png" alt="notify">
+                        <img src="<?php echo BASEURL ?>assets/icons/icon_notify.png" alt="notify">
                     </a>
                     <a href="<?php echo BASEURL . 'rcProfile' ?>">
-                        <img src="assets/icons/icon_profile_black.png" alt="profile">
+                        <img src="<?php echo BASEURL ?>assets/icons/icon_profile_black.png" alt="profile">
                     </a>
                 </div>
             </section>
@@ -129,7 +130,7 @@
                         <select name="reportOptions" id="selection">
                             <option value="0" selected disabled>Choose a type</option>
                             <?php foreach ($data[0] as $row){ ?>
-                                <option value="<?php echo $row[1] ?>"><?php echo $row[1] ?></option>
+                                <option value="<?php echo $row->id ?>"><?php echo $row->name ?></option>
                             <?php } ?>
                         </select>
                         <div style="display: flex;">
@@ -200,19 +201,17 @@
         form1.style.display = "none";
         form2.style.display = "none";
 
-        fetch('<?php BASEURL?>rcReport/saveReport',{
+        fetch('<?php echo BASEURL?>rcProfile/saveReport',{
             method : 'post',
             body : mainForm
         })
-        .then(response =>
-        {
-            return response.json()
-        }
-        )
+        .then(response => response.json())
         .then(data => {
-            if(data.message == "success"){
+            if(data.message === "success"){
                 document.getElementById('success-msg').style.display = "flex";
             }else{
+                console.log(data)
+                document.getElementById("jjj").innerHTML = data;
                 form1.style.display = "flex";
                 form2.style.display = "none";
                 document.getElementById('right-alert-text').textContent = "Fill all data !";
@@ -233,7 +232,6 @@
                 clearInterval(a);
             },5000)
         });
-
     });
 
     document.getElementById("form2-back").addEventListener('click',()=>{
