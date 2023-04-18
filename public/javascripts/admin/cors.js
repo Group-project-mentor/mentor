@@ -20,3 +20,6 @@ function addAdmin() {
     xhttp.send("admin-name="+adminName+"&admin-mail="+adminMail);
 }
 
+function addComplaintToTask(){
+    
+}

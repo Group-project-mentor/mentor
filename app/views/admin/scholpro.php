@@ -26,23 +26,37 @@
                     <h6>Welcome to Mentor Scholoship Programe page</h6>
                 </div>
 
-                <div class="hr" id="rc">
-                    <div class="bgbox">
-                        <div class="team">
-                            <div class="title">
-                                <h1>Applied Students</h1>
-                            </div>
-                            <div class="btn">
-                                <button class="btns" type="button">
-                                    <p>View All</p>
-                                </button>
-                                
-                            </div>
-
-                        </div>
+                <div class="hr" id="team">
+            <div class="bgbox">
+                <div class="team">
+                    <div class="title">
+                        <h1>Students Applied for Sponsorship Programe</h1>
+                    </div>
+                    <div class="btn">
+                        <a class="btns" href="<?php echo BASEURL ?>admins/addMember" style="text-decoration:none">
+                            View All
+                        </a>
+                        
                     </div>
 
                 </div>
+                <div class="users">
+                    <?php if (!empty($data['classes'])) { ?>
+                        <?php foreach ($data['classes'] as $row) { ?>
+                            <div class="subject-card">
+                                <img src="<?php echo BASEURL ?>assets/admin/user.png" width="5%" height="5%" />
+                                <a class="btns" href="<?php echo BASEURL ?>adResource" style="text-decoration:none"><label> <?php echo $row['name'] ?></label></a>
+
+                            </div>
+                        <?php } ?>
+                </div>
+            <?php } else {
+                        echo "no data";
+                    } ?>
+
+
+            </div>
+        </div>
 
         </div>
 

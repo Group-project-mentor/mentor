@@ -35,15 +35,18 @@ class admins extends Controller {
         sessionValidator();
         $this->hasLogged();
 
-        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+        // if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
-        }
+        // }
 
         if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 
             $data = [];
             $data['studentCount'] = $this->adminModel->studentCount();
             $data['teacherCount'] = $this->adminModel->teacherCount();
+            $data['complaints'] = $this->adminModel->complaints();
+
+            // print_r($data);
 
             $this->view('admin/home/index',$data);
 
@@ -57,12 +60,20 @@ class admins extends Controller {
         $this->hasLogged();
 
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+           
+
 
         }
 
         if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 
-            $this->view('admin/complaintHandle');
+
+            $data = [];
+            $data['complaints'] = $this->adminModel->complaints();
+
+
+
+            $this->view('admin/complaintHandle',$data);
 
         }
 
@@ -79,7 +90,12 @@ class admins extends Controller {
 
         if ($_SERVER['REQUEST_METHOD'] == 'GET') {
             
-            $this->view('admin/complaintview');
+
+            $data = [];
+            $data['complaints'] = $this->adminModel->complaints();
+
+            
+            $this->view('admin/complaintview',$data);
 
         }
 
@@ -125,7 +141,15 @@ class admins extends Controller {
         $this->hasLogged();
 
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-           
+
+            
+            $name = $_POST['user-name'];
+            //$id = $_POST['user-id'];
+            //$description =$_POST['user-description']
+
+            $this->model('ad_admin')->addAdmin($name);
+
+            echo "Success";
         }
 
         if ($_SERVER['REQUEST_METHOD'] == 'GET') {
@@ -296,6 +320,8 @@ class admins extends Controller {
         $this->hasLogged();
 
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+            $id = $this
            
         }
 
