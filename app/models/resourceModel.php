@@ -9,12 +9,12 @@ class ResourceModel extends Model
     }
 
 //? get all resource data from combination of (subject & grade)
-    public function findVideos($grade, $subject)
+    public function findVideos($grade, $subject, $offset, $limit)
     {
         $stmt = $this->prepare("SELECT video.id, video.name, video.lecturer ,public_resource.approved,rs_subject_grade.creator_id 
                                         FROM video, public_resource,rs_subject_grade WHERE video.id = public_resource.id AND
-                                         public_resource.id=rs_subject_grade.rsrc_id AND rs_subject_grade.subject_id=? AND rs_subject_grade.grade_id=?");
-        $stmt->bind_param('ii',$subject,$grade);
+                                         public_resource.id=rs_subject_grade.rsrc_id AND rs_subject_grade.subject_id=? AND rs_subject_grade.grade_id=? LIMIT ?,?");
+        $stmt->bind_param('iiii',$subject,$grade,$offset,$limit);
         return $this->fetchObjs($stmt);
     }
 
@@ -27,34 +27,59 @@ class ResourceModel extends Model
         return $this->fetchObjs($stmt);
     }
 
-    public function findPastpapers($grade, $subject)
+    public function findPastpapers($grade, $subject, $offset, $limit)
     {
         $stmt = $this->prepare("SELECT pastpaper.id,pastpaper.name, pastpaper.year, pastpaper.part ,public_resource.approved,rs_subject_grade.creator_id 
                                         FROM pastpaper, public_resource,rs_subject_grade WHERE pastpaper.id = public_resource.id AND
-                                         public_resource.id=rs_subject_grade.rsrc_id AND rs_subject_grade.subject_id=? AND rs_subject_grade.grade_id=?");
-        $stmt->bind_param('ii',$subject,$grade);
+                                         public_resource.id=rs_subject_grade.rsrc_id AND rs_subject_grade.subject_id=? AND rs_subject_grade.grade_id=? LIMIT ?,?");
+        $stmt->bind_param('iiii',$subject,$grade,$offset,$limit);
         return $this->fetchObjs($stmt);
     }
 
-    public function findDocuments($grade, $subject) //!done
+    public function findDocuments($grade, $subject, $offset, $limit)
     {
-//        $sql = "select document.id, document.name from document, public_resource WHERE document.id = public_resource.id and
-//                public_resource.id IN (SELECT rsrc_id FROM rs_subject_grade WHERE subject_id=$subject and grade_id=$grade)
-//                and public_resource.type = 'pdf'";
         $stmt = $this->prepare("SELECT document.id,document.name,public_resource.approved,rs_subject_grade.creator_id 
                                         FROM document, public_resource,rs_subject_grade WHERE document.id = public_resource.id AND
-                                         public_resource.id=rs_subject_grade.rsrc_id AND rs_subject_grade.subject_id=? AND rs_subject_grade.grade_id=?");
-        $stmt->bind_param('ii',$subject,$grade);
+                                         public_resource.id=rs_subject_grade.rsrc_id AND rs_subject_grade.subject_id=? AND rs_subject_grade.grade_id=? LIMIT ?,?");
+        $stmt->bind_param('iiii',$subject,$grade,$offset,$limit);
         return $this->fetchObjs($stmt);
     }
 
-    public function findOthers($grade, $subject)
+    public function findOthers($grade, $subject, $offset, $limit)
     {
         $stmt = $this->prepare("SELECT other.id, other.name, other.type,public_resource.approved,rs_subject_grade.creator_id 
                                         FROM other, public_resource,rs_subject_grade WHERE other.id = public_resource.id AND
-                                         public_resource.id=rs_subject_grade.rsrc_id AND rs_subject_grade.subject_id=? AND rs_subject_grade.grade_id=?");
-        $stmt->bind_param('ii',$subject,$grade);
+                                         public_resource.id=rs_subject_grade.rsrc_id AND rs_subject_grade.subject_id=? AND rs_subject_grade.grade_id=? LIMIT ?,?");
+        $stmt->bind_param('iiii',$subject,$grade,$offset,$limit);
         return $this->fetchObjs($stmt);
+    }
+
+    public function getResourceCount($type, $grade, $subject)
+    {
+        switch($type){
+            case "pdf":
+                $stmt = $this->prepare("SELECT COUNT(document.id) AS count FROM document, public_resource,rs_subject_grade WHERE document.id = public_resource.id AND
+                                         public_resource.id=rs_subject_grade.rsrc_id AND rs_subject_grade.subject_id=? AND rs_subject_grade.grade_id=?");
+                break;
+            case "video":
+                $stmt = $this->prepare("SELECT COUNT(video.id) AS count FROM video, public_resource,rs_subject_grade WHERE video.id = public_resource.id AND
+                                         public_resource.id=rs_subject_grade.rsrc_id AND rs_subject_grade.subject_id=? AND rs_subject_grade.grade_id=?");
+                break;
+            case "quiz":
+                $stmt = $this->prepare("SELECT COUNT(quiz.id) AS count FROM quiz, public_resource,rs_subject_grade WHERE quiz.id = public_resource.id AND
+                                         public_resource.id=rs_subject_grade.rsrc_id AND rs_subject_grade.subject_id=? AND rs_subject_grade.grade_id=?");
+                break;  
+            case "pastpaper":
+                $stmt = $this->prepare("SELECT COUNT(pastpaper.id) AS count FROM pastpaper, public_resource,rs_subject_grade WHERE pastpaper.id = public_resource.id AND
+                                         public_resource.id=rs_subject_grade.rsrc_id AND rs_subject_grade.subject_id=? AND rs_subject_grade.grade_id=?");
+                break;
+            case "other":
+                $stmt = $this->prepare("SELECT COUNT(other.id) AS count FROM other, public_resource,rs_subject_grade WHERE other.id = public_resource.id AND
+                                         public_resource.id=rs_subject_grade.rsrc_id AND rs_subject_grade.subject_id=? AND rs_subject_grade.grade_id=?");
+                break;
+    }
+        $stmt->bind_param('ii',$subject,$grade);
+        return $this->fetchOneObj($stmt);
     }
 
 //? get the last resource id from table

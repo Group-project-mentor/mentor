@@ -115,20 +115,23 @@
 
                     </div>
                 </div>
-                <?php if(count($data[0]) > 25){ ?>
+                
                 <div class="pagination-set">
                     <div class="pagination-set-left">
-                        <b>25</b> Results
+                        <b><?php echo ($data[1][0] == $data[1][1] || $data[1][1] == 0) ? count($data[0]) : paginationRowLimit ?></b> Rows
                     </div>
                     <div class="pagination-set-right">
-                        <button> < </button>
+                        <?php if ($data[1][0] != 1) {?>
+                            <a href="<?php echo BASEURL . "rcResources/videos/".$_SESSION['gid']."/".$_SESSION['sid']."/". ($data[1][0]) - 1 ?>"> < </a>
+                        <?php }?>
                         <div class="pagination-numbers">
-                            1 of 10
+                            Page <?php echo $data[1][0] ?> of <?php echo ($data[1][1])?$data[1][1]:1 ?>
                         </div>
-                        <button> > </button>
+                        <?php if ($data[1][0] < $data[1][1]) {?>
+                            <a href="<?php echo BASEURL . "rcResources/videos/".$_SESSION['gid']."/".$_SESSION['sid']."/". ($data[1][0]) + 1 ?>"> < </a>
+                        <?php }?>
                     </div>
                 </div>
-                <?php } ?>
         </div>
 
 

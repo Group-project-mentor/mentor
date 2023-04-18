@@ -27,21 +27,108 @@ class payments extends Model
         return $this->executePrepared($stmt);
     }
 
-    public function getTrasactionHistory($id,$offset,$limit){
-        if($offset == 0){
-            $stmt = $this->prepare("SELECT * FROM payment WHERE payment.userId = ? ORDER BY payment.timestamp DESC LIMIT ?");
-            $stmt->bind_param('ii',$id, $limit );
+    public function getTrasactionHistory($id,$offset,$limit,$filters){
+        $types = "i";
+        $q = "SELECT * FROM payment WHERE payment.userId = ? ";
+        if(!empty($filters['amountStart']) && !empty($filters['amountEnd'])){
+            $q .= "AND (payment.amount >= ? AND payment.amount <= ?) ";
+            $types .= "dd";
         }
-        else{
-            $stmt = $this->prepare("SELECT * FROM payment WHERE payment.userId = ? ORDER BY payment.timestamp DESC LIMIT ?, ?");
-            $stmt->bind_param('iii',$id, $offset, $limit );
+        if(!empty($filters['startDate']) && !empty($filters['endDate'])){
+            $q .= "AND (DATE(payment.timestamp) BETWEEN ? AND ?) ";
+            $types .= "ss";
         }
+        switch($types){
+            case "i":
+                if($offset == 0){
+                    $q .= " ORDER BY payment.timestamp DESC LIMIT ?";
+                    $types .= "i";
+                    $stmt = $this->prepare($q);
+                    $stmt->bind_param($types ,$id,$limit);
+                }
+                else{
+                    $q .= " ORDER BY payment.timestamp DESC LIMIT ?, ?";
+                    $types .= "ii";
+                    $stmt = $this->prepare($q);
+                    $stmt->bind_param($types ,$id,$offset,$limit);
+                }
+                break;
+            case "idd":
+                if($offset == 0){
+                    $q .= " ORDER BY payment.timestamp DESC LIMIT ?";
+                    $types .= "i";
+                    $stmt = $this->prepare($q);
+                    $stmt->bind_param($types,$id,$filters['amountStart'],$filters['amountEnd'],$limit);
+                }
+                else{
+                    $q .= " ORDER BY payment.timestamp DESC LIMIT ?, ?";
+                    $types .= "ii";
+                    $stmt = $this->prepare($q);
+                    $stmt->bind_param($types,$id,$filters['amountStart'],$filters['amountEnd'],$offset,$limit);
+                }
+                break;
+            case "iss":
+                if($offset == 0){
+                    $q .= " ORDER BY payment.timestamp DESC LIMIT ?";
+                    $types .= "i";
+                    $stmt = $this->prepare($q);
+                    $stmt->bind_param($types,$id,$filters['startDate'],$filters['endDate'],$limit);
+                }
+                else{
+                    $q .= " ORDER BY payment.timestamp DESC LIMIT ?, ?";
+                    $types .= "ii";
+                    $stmt = $this->prepare($q);
+                    $stmt->bind_param($types,$id,$filters['startDate'],$filters['endDate'],$offset,$limit);
+                }
+                break;
+            case "iddss":
+                if($offset == 0){
+                    $q .= " ORDER BY payment.timestamp DESC LIMIT ?";
+                    $types .= "i";
+                    $stmt = $this->prepare($q);
+                    $stmt->bind_param($types,$id,$filters['amountStart'],$filters['amountEnd'],$filters['startDate'],$filters['endDate'],$limit);
+                }
+                else{
+                    $q .= " ORDER BY payment.timestamp DESC LIMIT ?, ?";
+                    $types .= "ii";
+                    $stmt = $this->prepare($q);
+                    $stmt->bind_param($types,$id,$filters['amountStart'],$filters['amountEnd'],$filters['startDate'],$filters['endDate'],$offset,$limit);
+                }
+                break;
+        }   
         return $this->fetchObjs($stmt);
     }
 
-    public function getTrasactionHistoryCount($id){
-        $stmt = $this->prepare("SELECT COUNT(payment.id) as count FROM payment WHERE payment.userId = ? ORDER BY payment.timestamp DESC");
-        $stmt->bind_param('i',$id );
+    public function getTrasactionHistoryCount($id, $filters){
+        $types = "i";
+        $q = "SELECT COUNT(payment.id) as count FROM payment WHERE payment.userId = ? ";
+        if(!empty($filters['amountStart']) && !empty($filters['amountEnd'])){
+            $q .= "AND (payment.amount >= ? AND payment.amount <= ?) ";
+            $types .= "dd";
+        }
+        if(!empty($filters['startDate']) && !empty($filters['endDate'])){
+            $q .= "AND (DATE(payment.timestamp) BETWEEN ? AND ?) ";
+            $types .= "ss";
+        }
+        $q .= "ORDER BY payment.timestamp DESC";
+        switch($types){
+            case "i":
+                $stmt = $this->prepare($q);
+                $stmt->bind_param('i',$id);
+                break;
+            case "idd":
+                $stmt = $this->prepare($q);
+                $stmt->bind_param('idd',$id,$filters['amountStart'],$filters['amountEnd']);
+                break;
+            case "iss":
+                $stmt = $this->prepare($q);
+                $stmt->bind_param('iss',$id,$filters['startDate'],$filters['endDate']);
+                break;
+            case "iddss":
+                $stmt = $this->prepare($q);
+                $stmt->bind_param('iddss',$id,$filters['amountStart'],$filters['amountEnd'],$filters['startDate'],$filters['endDate']);
+                break;
+        }
         return $this->fetchOneObj($stmt);
     }
 

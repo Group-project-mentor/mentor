@@ -14,9 +14,9 @@
 <body>
     <?php include_once "components/alerts/rc_delete_alert.php"?>
     <?php 
-        if($data[1] == "dper"){
-            include_once "components/alerts/no_permission.php"; 
-        }
+        // if($data[1] == "dper"){
+        //     include_once "components/alerts/no_permission.php"; 
+        // }
         // elseif($data[1] == "failed"){
         //     include_once "components/alerts/res_update_failed.php"; 
         // }

@@ -14,15 +14,19 @@ class Sponsor extends Controller
 
     }
 
-    public function allStudents($search = null, $page = 1){
+    public function allStudents($page = 1){
         $limit = paginationRowLimit;
         $offset = 0;
         if($page != 1){
             $offset = ($page - 1) * $limit;
         }
-        $rowCount = $this->model($this->table1)->getSponsorStudentsCount($search);
-        $res = $this->model($this->table1)->getSponsorStudents($_SESSION['id'],$limit,$offset);
-        $this->view('sponsor/student_progress/student_report',array($this->getStudents($search), $search));
+        $rowCount = $this->model($this->table1)->getSponsorStudentsCount($_SESSION['id'])->count;
+        $res = $this->model($this->table1)->getSponsorStudents($_SESSION['id'], $offset, $limit);
+        $pageData = array($page, ceil($rowCount / $limit));
+        if($page < 1 || $page > $pageData[1]){
+            header("location:".BASEURL."sponsor/allsStudents");
+        }
+        $this->view('sponsor/student_progress/student_report',array($res,$pageData)); 
     }
 
     public function getStudents($search){
@@ -109,36 +113,30 @@ class Sponsor extends Controller
         }
     }
 
-    private function image()
-    {
+    private function image(){
         $result = $this->model("userModel")->getImage($_SESSION['id']);
         $this->view("sponsor/profile/sp_change_image", $result);
     }
 
-    private function email()
-    {
+    private function email(){
 
     }
 
-    private function mobile()
-    {
+    private function mobile(){
         $result = $this->model("userModel")->getOptSponsorDetails($_SESSION['id']);
         $this->view("sponsor/profile/sp_change_mobile", array($result));
     }
 
-    private function name()
-    {
+    private function name(){
         $result = $this->model('userModel')->getOptSponsorDetails($_SESSION['id']);
         $this->view("sponsor/profile/sp_change_name",array($result));
     }
 
-    private function password()
-    {
+    private function password(){
         $this->view("sponsor/profile/sp_change_passwd");
     }
 
-    public function changeImage()
-    {
+    public function changeImage(){
         if (isset($_POST['image'])) {
             if($this->model("userModel")->changeImg($_SESSION['id'],$_POST['image'])){
                 echo "success";
@@ -148,8 +146,7 @@ class Sponsor extends Controller
         }
     }
 
-    public function changeName()
-    {
+    public function changeName(){
         if (isset($_POST['name']) && isset($_POST['dispName'])) {
             if ((preg_match('/[a-zA-Z][a-zA-Z ]+/',$_POST['name']))) {
                 $this->model("userModel")->updateName($_POST['name'], $_SESSION['id'], $_POST['dispName']);
@@ -184,22 +181,21 @@ class Sponsor extends Controller
 
     public function changeOther(){
         if (isset($_POST['desc'])) {
-//            if ((preg_match('/^[A-Za-z0-9.]+$/',$_POST['desc'])) && ($_POST['desc'] != '')) {
+        //            if ((preg_match('/^[A-Za-z0-9.]+$/',$_POST['desc'])) && ($_POST['desc'] != '')) {
                 $this->model("userModel")->updateOthers($_POST['desc'], $_SESSION['id']);
                 flashMessage("success");
                 header("location:" . BASEURL . 'sponsor/profile');
-//            } else {
-//                flashMessage("wrongName");
-//                header("location:" . BASEURL . 'sponsor/editProfile/other');
-//            }
+        //            } else {
+        //                flashMessage("wrongName");
+        //                header("location:" . BASEURL . 'sponsor/editProfile/other');
+        //            }
         } else {
             flashMessage("Error");
             header("location:" . BASEURL . 'sponsor/editProfile/others');
         }
     }
 
-    private function others()
-    {
+    private function others(){
         $result = $this->model('userModel')->getOptSponsorDetails($_SESSION['id']);
         $this->view("sponsor/profile/sp_change_others",array($result));
     }
@@ -207,22 +203,41 @@ class Sponsor extends Controller
 //    * Profile part Ends
 
     public function reportIssue(){
-        $this->view('sponsor/reportIssue/report');
+        $result = $this->model("reportIssue")->getReportTypes($_SESSION['usertype']);
+        $this->view('sponsor/reportIssue/report',array($result));
+    }
+
+    public function saveReport(){
+        $response = array("alert"=>"","message"=>"");
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            if($_POST['reportOptions'] == "0" or empty($_POST['reportDesc'])){
+                $response['alert'] = "fill all";
+            }else{
+                if($this->model('reportIssue')->saveIssue($_SESSION['id'], $_POST['reportOptions'], $_POST['reportDesc'])){
+                    $response['message'] = "success";
+                }else{
+                    $response['message'] = "failed";
+                }
+            }
+        }
+        // header('Content-Type:application/json');
+        echo json_encode($response);
     }
 
     public function transactionHistory($page = 1){
-        $limit = paginationRowLimit;
-        $offset = 0;
-        if($page != 1){
-            $offset = ($page - 1) * $limit;
-        }
-        $rowCount = $this->model('payments')->getTrasactionHistoryCount($_SESSION['id'])->count;
-        $res = $this->model('payments')->getTrasactionHistory($_SESSION['id'],$offset,$limit);
-        $pageData = array($page,ceil($rowCount/$limit));
-        if($page < 1 || $page > $pageData[1]){
-            header("location:".BASEURL."sponsor/transactionHistory");
-        }
-        $this->view('sponsor/payments/transactionHistory',array($res,$pageData,$rowCount));
+            $filters = $_GET;
+            $limit = paginationRowLimit;
+            $offset = 0;
+            if($page != 1){
+                $offset = ($page - 1) * $limit;
+            }
+            $rowCount = $this->model('payments')->getTrasactionHistoryCount($_SESSION['id'],$filters)->count;
+            $res = $this->model('payments')->getTrasactionHistory($_SESSION['id'],$offset,$limit,$filters);
+            $pageData = array($page,ceil($rowCount/$limit));
+            if($page < 1 || ($page > $pageData[1] and $pageData[1] != 0)){
+                header("location:".BASEURL."sponsor/transactionHistory");
+            }
+            $this->view('sponsor/payments/transactionHistory',array($res,$pageData,$rowCount));
     }
 
     public function paymentsInProgress(){
@@ -411,7 +426,7 @@ class Sponsor extends Controller
     }
 
     public function createBill(){
-//        echo "hllo";
+        //        echo "hllo";
         $id = getUnique($_SESSION['id']);
         $currency = $_POST['currency'];
         $amount = $_POST['amount'];
@@ -478,7 +493,4 @@ class Sponsor extends Controller
                 break;
         }
     }
-
-
-
 }

@@ -60,7 +60,7 @@
                         </a>
                     </div>
                     <?php
-                    if(!empty($data)){ ?>
+                    if(!empty($data[0])){ ?>
                     <div class="rc-resource-table" id="rc-resource-table">
                         <div class="rc-pp-row rc-pp-title">
                             <div class="rc-resource-col">Pastpaper</div>
@@ -68,7 +68,7 @@
                             <div class="rc-resource-col">Part</div>
                             <div></div>
                         </div>
-                        <?php foreach ($data as $row) {
+                        <?php foreach ($data[0] as $row) {
                             $approval = $this->approvedGenerator($row->approved);
                             ?>
                                     <div class='rc-pp-row'>
@@ -100,20 +100,23 @@
                         <?php } ?>
 
                 </div>
-                    <?php if(count($data) > 25){ ?>
-                        <div class="pagination-set">
-                            <div class="pagination-set-left">
-                                <b>25</b> Results
-                            </div>
-                            <div class="pagination-set-right">
-                                <button> < </button>
-                                <div class="pagination-numbers">
-                                    1 of 10
-                                </div>
-                                <button> > </button>
-                            </div>
+                
+                <div class="pagination-set">
+                    <div class="pagination-set-left">
+                        <b><?php echo ($data[1][0] == $data[1][1] || $data[1][1] == 0) ? count($data[0]) : paginationRowLimit ?></b> Rows
+                    </div>
+                    <div class="pagination-set-right">
+                        <?php if ($data[1][0] != 1) {?>
+                            <a href="<?php echo BASEURL . "rcResources/pastpapers/".$_SESSION['gid']."/".$_SESSION['sid']."/". ($data[1][0]) - 1 ?>"> < </a>
+                        <?php }?>
+                        <div class="pagination-numbers">
+                            Page <?php echo $data[1][0] ?> of <?php echo ($data[1][1])?$data[1][1]:1 ?>
                         </div>
-                    <?php } ?>
+                        <?php if ($data[1][0] < $data[1][1]) {?>
+                            <a href="<?php echo BASEURL . "rcResources/pastpapers/".$_SESSION['gid']."/".$_SESSION['sid']."/". ($data[1][0]) + 1 ?>"> < </a>
+                        <?php }?>
+                    </div>
+                </div>
         </div>
     </section>
 </body>

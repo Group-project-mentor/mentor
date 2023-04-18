@@ -27,19 +27,14 @@ if (!isset($_SESSION['user'])) {
             <!-- Top bar -->
             <section class="top-bar">
                 <div style="display: flex;align-items: center;">
-                    <div class="search-bar">
-                        <input type="text" name="" id="" placeholder="Search...">
-                        <a href="">
-                            <img src="<?php echo BASEURL ?>assets/icons/icon_search.png" alt="">
-                        </a>
-                    </div>
+                    <a href="<?php echo BASEURL . 'home' ?>" style="text-decoration:none;">
+                        <div class="back-btn">Back</div>
+                    </a>
 
                 </div>
 
                 <div class="top-bar-btns">
-                    <a href="<?php echo BASEURL . 'home' ?>">
-                        <div class="back-btn">Back</div>
-                    </a>
+                    
                     <a href="#">
                         <img src="<?php echo BASEURL ?>assets/icons/icon_notify.png" alt="notify">
                     </a>

@@ -17,7 +17,7 @@ class St_quizzes extends Controller
         $this->getNames($grade, $subject);
         $_SESSION["gid"] = $grade;
         $_SESSION["sid"] = $subject;
-        $result = $this->model("resourceModel")->findQuizzes($grade, $subject);
+        $result = $this->model("st_public_model")->findQuizzes($grade, $subject);
         $this->view('student/enrollment/st_quizzes', array($result, $msg));
     }
 

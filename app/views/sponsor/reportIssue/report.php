@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="<?php echo BASEURL ?>assets/mentor.ico">
     <title>Report Issue</title>
     <link rel="stylesheet" href="<?php echo BASEURL; ?>public/stylesheets/resourceCreator/rc_main.css">
     <style>
@@ -128,11 +129,9 @@
             <div class="container">
                 <select name="reportOptions" id="selection">
                     <option value="0" selected disabled>Choose a type</option>
-                    <option value="option1">option 1</option>
-                    <option value="option2">option 2</option>
-                    <option value="option3">option 3</option>
-                    <option value="option4">option 4</option>
-                    <option value="option5">option 5</option>
+                    <?php foreach ($data[0] as $row){ ?>
+                        <option value="<?php echo $row->id ?>"><?php echo $row->name ?></option>
+                    <?php } ?>
                 </select>
                 <div style="display: flex;">
                     <button type="button" id="form1-next">
@@ -168,7 +167,7 @@
         <!-- Middle part for whole content -->
         <section class="mid-content" id="success-msg" style="display: none;">
             <div class="inbuilt-success-msg">
-                <img src="<?php echo BASEURL ?>/public/assets/icons/big-icon-success.png" alt="jj">
+                <img src="<?php echo BASEURL ?>public/assets/icons/big-icon-success.png" alt="jj">
                 <h1>Successfully Reported the Issue</h1>
                 <button type="button" onclick="location.reload();">OK</button>
             </div>
@@ -225,6 +224,7 @@
                 }
             })
             .catch(e => {
+                console.log("hello")
                 form1.style.display = "flex";
                 form2.style.display = "none";
                 document.getElementById('right-alert-text').textContent = "Fill all data !";
