@@ -43,6 +43,30 @@
             <!-- Middle part for whole content -->
             <section class="mid-content">
                 <h2>My Classes</h2>
+                <!-- subject cards -->
+                <div class="container-box">
+                    <div>
+
+                        <!-- new data from DB -->
+                        <?php if (!empty($data[0])) { ?>
+                            <div class="subject-card-set">
+
+                                <?php foreach ($data[0] as $row) { ?>
+                                    <div class="subject-card">
+                                        <img src="<?php echo BASEURL  ?>assets/patterns/2.png" alt="" />
+                                        <a href="#"><label><?php echo $row->class_name ?></label></a>
+                                        <label>Grade <?php echo $row->grade + 5 ?></label>
+                                        <a href="<?php echo BASEURL  ?>st_private_mode/st_classroom_inside"><label>View</label></a>
+
+                                    </div>
+                                <?php } ?>
+                            </div>
+                        <?php } else {
+                            echo "no data!";
+                        } ?>
+                    </div>
+
+                </div>
 
             </section>
     </section>
