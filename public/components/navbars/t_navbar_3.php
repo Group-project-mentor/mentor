@@ -30,9 +30,8 @@ if (!isset($_SESSION['navtog'])) {
                 <p class="nav-switch-txt">Private</p>
             </div> -->
 
-            <//?php 
-                $gid = $_SESSION["gid"];
-                $sid = $_SESSION["sid"]; 
+            <?php 
+                $cid = $_SESSION["cid"]; 
             ?>
             <!-- Navigation buttons -->
             <div class="nav-links">
@@ -41,7 +40,7 @@ if (!isset($_SESSION['navtog'])) {
                     <div class="nav-link-text">Resources</div>
                 </a>
                 <a class="nav-link"></a>
-                <a href="<?php echo BASEURL?>rcResources/videos" class="nav-link">
+                <a href="<?php echo BASEURL?>rcResources/videos/<?php echo "$cid"; ?>" class="nav-link">
                     <img class="" src="<?php echo BASEURL?>assets/icons/icon_video.png" alt="video">
                     <div class="nav-link-text">Video</div>
                 </a>

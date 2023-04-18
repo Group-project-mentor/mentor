@@ -27,17 +27,19 @@ public function __construct()
         $this->view('Teacher/resources/video');
     }
 
-    public function videos($cid)
+    public function videos($cid,$page=1)
     {
-        echo "called";
-        if (!isset($_SESSION['user'])) {
-            header("location:" . BASEURL . "login");
-        }
+        $limit = paginationRowLimit;
+        $offset = ($page != 1) ? ($page - 1) * $limit : 0;
         $this->getClass($cid);
+        $rowCount = $this->model("TchResourceModel")->getResourceCount("video", $cid)->count;
         $_SESSION["cid"] = $cid;
-        $result = $this->model("TchresourceModel")->findVideos($cid);
-        
-        $this->view('Teacher/resources/video',array($result));
+        $result = $this->model("TchResourceModel")->findVideos($cid, $offset, $limit);
+        $pageData = array($page, ceil($rowCount / $limit));
+        if ($page < 1 || ($page > $pageData[1] and $pageData[1] != 0)) {
+            header("location:" . BASEURL . "rcResources/videos/" . $cid);
+        }
+        $this->view('Teacher/resources/video', array($result, $pageData));
     }
 
     private function getClass($class_id)
@@ -63,7 +65,7 @@ public function __construct()
                 $resourceData = $this->model("TChResourceModel")->getVideo($id);
                 if($resourceData[6] === "L")
                     $resourceData[4] = $this->filterVideoId($resourceData[4]);
-                $this->view("resourceCtr/previews/video_preview",array($file,$resourceData));
+                $this->view("Teacher/preview/video_preview",array($file,$resourceData));
                 break;
             case 'pastpaper':
                 // todo : under development
@@ -85,6 +87,9 @@ public function __construct()
         }
         // var_dump($splitted_link);
     }
+
+    
+
 }
 
 ?>

@@ -88,10 +88,10 @@
                                     ?>
                                     <div class='rc-video-card' style="align-items: center;">
                                         <img alt='' src="<?php echo BASEURL."assets/patterns/".$count++.'.png'?>"  />
-                                        <a href='#' >
+                                        <a href='<?php echo BASEURL."TResources/preview/video/".$row->id ?>' >
                                             <label><?php echo $row->name ?></label>
                                         </a>
-                                        <a href='#' style="background: rgb(24, 100, 55);cursor: pointer;">
+                                        <a href='<?php echo BASEURL."TResources/preview/video/".$row->id ?>' style="background: rgb(24, 100, 55);cursor: pointer;">
                                             <label style="color: white;">View</label>
                                             <img style="width: 15px" src='<?php echo BASEURL?>assets/icons/icon_eye_white.png' alt='' />
                                         </a>
@@ -104,7 +104,7 @@
 
                     </div>
                 </div>
-                <//?php if(count($data[0]) > 25){ ?>
+                <?php if(count($data[0]) > 25){ ?>
                 <div class="pagination-set">
                     <div class="pagination-set-left">
                         <b>25</b> Results
@@ -117,7 +117,7 @@
                         <button> > </button>
                     </div>
                 </div>
-                <//?php } ?>
+                <?php } ?>
         </div>
 
 

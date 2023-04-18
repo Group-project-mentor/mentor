@@ -44,7 +44,7 @@
                 <div class="rc-resource-header">
                         <h1>V I D E O</h1>
                         <div style="display: flex;">
-                            <a href="<?php echo BASEURL . 'rcEdit/video/' . $data[1][0] ?>" style="margin:5px 10px;">
+                            <a href="<?php echo BASEURL . 'TEdit/video/' . $data[1][0] ?>" style="margin:5px 10px;">
                                 <div class="rc-add-btn">
                                     Edit <img style="width: 15px;" src="<?php echo BASEURL ?>assets/icons/icon_edit_white.png" alt=''>
                                 </div>
