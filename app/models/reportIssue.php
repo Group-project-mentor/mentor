@@ -12,13 +12,13 @@ class ReportIssue extends Model
 
     public function saveIssue($userId, $type, $descr, $solved = 0){
         $stmt = $this->prepare("INSERT INTO issue(userId, type, description, solved) VALUES (?,?,?,?)");
-        $stmt->bind_param('issi', $userId, $type, $descr, $solved);
+        $stmt->bind_param('iisi', $userId, $type, $descr, $solved);
         return $this->executePrepared($stmt);
     }
 
     public function getReportTypes($user){
-        $stmt = $this->prepare("SELECT * FROM report_type WHERE userType = ? or userType = 'all' ");
+        $stmt = $this->prepare("SELECT * FROM report_type WHERE userType = ? OR userType = 'all' ");
         $stmt->bind_param('s',$user);
-        return $this->fetchAll($stmt);
+        return $this->fetchObjs($stmt);
     }
 }
