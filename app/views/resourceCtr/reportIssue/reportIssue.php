@@ -206,6 +206,7 @@
         })
         .then(response =>
         {
+            console.log(response);
             return response.json()
         }
         )
@@ -224,6 +225,7 @@
             }
         })
         .catch(e => {
+            document.write(e)
             form1.style.display = "flex";
             form2.style.display = "none";
             document.getElementById('right-alert-text').textContent = "Fill all data !";

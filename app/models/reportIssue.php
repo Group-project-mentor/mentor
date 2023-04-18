@@ -13,7 +13,7 @@ class ReportIssue extends Model
     public function saveIssue($userId, $type, $descr, $solved = 0){
         $stmt = $this->prepare("INSERT INTO issue(userId, type, description, solved) VALUES (?,?,?,?)");
         $stmt->bind_param('issi', $userId, $type, $descr, $solved);
-        return $stmt->execute();
+        return $this->executePrepared($stmt);
     }
 
     public function getReportTypes($user){
