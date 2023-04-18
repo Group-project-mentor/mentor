@@ -45,8 +45,8 @@
                             <p>jahsgfbdssauygefiBCJHBVCGDUDSSDFCSJH FUSHDFUJHFH</p>
                         </div>
                         <div class="icons">
-                        <div class="addtm">
-                                <a href="<?php echo BASEURL?>"><img src="<?php echo BASEURL?>assets/admin/addmemb.png"></a>
+                            <div class="addtm">
+                                <button class="comp-btns" onclick="addMember()" type="button"><a href="<?php echo BASEURL?>"><img src="<?php echo BASEURL?>assets/admin/addmemb.png"></a></button>
                             </div>
 
                             <div class="view">

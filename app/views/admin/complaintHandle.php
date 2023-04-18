@@ -17,44 +17,50 @@
 
 <body>
     <?php require_once("C:/xampp/htdocs/mentor/app/views/admin/navbar.php"); ?>
-            <!-- Middle part for whole content -->
-            <section class="mid-content ad_mid-content">
+    <!-- Middle part for whole content -->
+    <section class="mid-content ad_mid-content">
 
-                <!-- Title and sub title of middle part -->
-                <div class="mid-title">
-                    <h1>Complaints</h1>
-                </div>
+        <!-- Title and sub title of middle part -->
+        <div class="mid-title">
+            <h1>Complaints</h1>
+        </div>
 
-                <div class="content">
-                    <div class="complaints">
-                        <div class="pp">
-                            <img  class="profile" src="<?php echo BASEURL ?>assets/admin/pp.png">
-                        </div>
-                        <div class="name">
-                            <p>Jaydon Aminoff</p>
-                        </div>
-                        <div class="userid">
-                            <p>USER011</p>
-                        </div>
-                        <div class="description">
-                            <p>jahsgfbdssauygefiBCJHBVCGDUDSSDFCSJH FUSHDFUJHFH</p>
+        <div class="content">
+            <?php
+            foreach ($data['complaints'] as $value) {
+                echo '<div class="content">
+                            <div class="complaints">
+                                <div class="pp">
+                                    <img class="profile" src="' . BASEURL . 'assets/admin/pp.png">
+                                </div>
+                                <div class="name" id="user-name">
+                                    <p>' . $value['name'] . '</p>
+                                </div>
+                                <div class="userid" id="user-id">
+                                    <p>' . $value['id'] . '</p>
+                                </div>
+                                <div class="description" id="user-description">
+                                    <p>' . $value['description'] . '</p>
                         </div>
                         <div class="icons">
                             <div class="view">
-                                <a href="<?php echo BASEURL ?>admins/complaint/USER011"><img src="<?php echo BASEURL ?>assets/admin/view.png"></a>
+                                <a href="'. BASEURL .'admins/complaint/' . $value['work_id'] . '?id=' . $value['work_id'] .'"><img src="'. BASEURL .'assets/admin/view.png"></a>
                             </div>
                             <div class="addtm">
-                                <a href="<?php echo BASEURL?>adTask"><img src="<?php echo BASEURL?>assets/admin/addtm.png"></a>
+                                <button class="comp-btns" onclick="addComplaintToTask()" type="button"><img src="'. BASEURL .'assets/admin/addtm.png"></button>
                             </div>
                             <div class="delete">
-                                <a href="<?php echo BASEURL?>#"><img src="<?php echo BASEURL?>assets/admin/Delete.png"></a>
+                                <a href="'. BASEURL .'#"><img src="'. BASEURL .'assets/admin/Delete.png"></a>
                             </div>
                         </div>
-
-                    </div>
-                </div>
-            </section>
+                            </div>
+                        </div>';
+            }
+            ?>
+            
         </div>
+    </section>
+    </div>
     </section>
     <?php require_once("C:/xampp/htdocs/mentor/app/views/admin/popup.php"); ?>
 </body>
@@ -81,9 +87,7 @@
                 navLinkTexts[i].classList.add("hidden");
             }
             toggle = false;
-        }
-
-        else {
+        } else {
             logoLong.classList.remove("hidden");
             // navMiddle.classList.remove("hidden");
             togglerBtn.classList.remove("toggler-rotate");
@@ -108,8 +112,4 @@
             toggler = true
         }
     });
-
-
-
 </script>
-

@@ -141,28 +141,43 @@ button{
 
 .task{
     display: flex;
-    justify-content: space-between;
-    width: fit-content;
+    flex-direction: column;
+    width: 710px;
     padding: 20px; 
+}
+.task-top{
+    display: flex;
+    justify-content: space-between;
+}
+
+.complaints{
+    display: flex;
+    justify-content:space-between;
+    padding: 10px;
 }
 
 .user{
     display: flex;
+    flex-direction: column;
     justify-content:flex-end;
     width: fit-content;
     padding: 20px;  
+}
+.user-top{
+    display: flex;
+    justify-content: space-between;
 }
 .ad_section4{
     padding: 20px;;
     width: 100%; 
 }
+
 .team{
     display: flex;
-    justify-content:space-evenly;
-    width: fit-content;
+    justify-content:space-between;
     padding: 20px;
+    
 }
-
 
 
 
