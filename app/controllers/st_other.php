@@ -9,7 +9,7 @@ class St_other extends Controller
     }
     
 
-    public function index($grade, $subject, $msg = null)
+    public function index($grade, $subject)
     {
         if (!isset($_SESSION['user'])) {
             header("location:" . BASEURL . "login");
@@ -36,7 +36,7 @@ class St_other extends Controller
     public function preview($type, $id){
         switch ($type) {
             case 'others':
-                $file = $this->model("resourceModel")->getResource($id,$_SESSION['gid'],$_SESSION['sid'],'pdf');
+                $file = $this->model("st_public_model")->getResource($id,$_SESSION['gid'],$_SESSION['sid'],'pdf');
                 $this->view("student/enrollment/st_other_do",$file);
                 break;
         }
@@ -44,7 +44,7 @@ class St_other extends Controller
 
     public function st_other_down($id)
     {
-        $file = $this->model("resourceModel")->getResource($id,$_SESSION['gid'],$_SESSION['sid'],'pdf');
+        $file = $this->model("st_public_model")->getResource($id,$_SESSION['gid'],$_SESSION['sid'],'pdf');
         $this->view('student/enrollment/st_other_down',$file);
 
     }

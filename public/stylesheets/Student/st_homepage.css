@@ -21,10 +21,11 @@ body {
     height: 100vh;
 }
 
+
 table {
     border-collapse: collapse;
-    height: 1000px;
-    width: 900px;
+    height: 100px;
+    width: 100px;
 }
 
 td {

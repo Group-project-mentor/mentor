@@ -46,7 +46,7 @@
                 <!-- Title and sub title of middle part -->
                 <div class="mid-title">
                     <h1>Subjects</h1>
-                    <h3>Grade <?php echo $_SESSION['gid']+5 ?></h3>
+                    <h2>Grade <?php echo $_SESSION['gid']+5 ?></h2>
                     <h6>Hello ! Welcome To Your Page</h6>
                 </div>
 

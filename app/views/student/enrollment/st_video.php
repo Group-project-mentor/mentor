@@ -45,9 +45,11 @@
 
                 <!-- Title and sub title of middle part -->
                 <div class="mid-title">
-                    <!-- <h1> <?php echo $data[1] ?> </h1> -->
-                    <h6>Hello </h6>
-                    <!-- <?php echo "Grade ".$_SESSION['gid'+5]." - ".ucfirst($_SESSION['sid']) ?> -->
+                    <?php
+                    $ggid = $_SESSION['gid'] + 5;
+ ?>
+                    <h1><?php echo "Grade " . $ggid . " - " . ucfirst($_SESSION['sname']) ?></h1>
+                    <h6>My Subjects / <?php echo ucfirst($_SESSION['sname']) ?> / Videos</h6>
                 </div>
 
 

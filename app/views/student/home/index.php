@@ -55,16 +55,8 @@
             <!-- Middle part for whole content -->
             <section class="mid-content">
 
-                <!-- Title and sub title of middle part -->
-                <div class="mid-title" style="width:50%;">
-                    <h1>Student</h1>
-                    <br>
-                    <!-- <a class="see-all-btn" href="<?php echo BASEURL  ?>" style="text-decoration: none; width:100%;"></a> -->
-                </div>
-                <!-- <a class="see-all-btn" href="<?php echo BASEURL  ?>" style="text-decoration: none; width:100%;"></a> -->
-
                 <!-- Grade choosing interface -->
-                <div class="container-box" style="padding-left: 160px; width:200%; height:10%;">
+                <div class="container-box" style="padding-left: 160px; width:auto; height:300px;">
                     <table>
                         <tr>
                             <td><button><a href="<?php echo BASEURL  ?>st_courses/index/1">Grade 6</a></button></td>
@@ -72,17 +64,14 @@
                             <td><button><a href="<?php echo BASEURL  ?>st_courses/index/3">Grade 8</a></button></td>
                             <td><button><a href="<?php echo BASEURL  ?>st_courses/index/4">Grade 9</a></button></td>
                             <td><button><a href="<?php echo BASEURL  ?>st_courses/index/5">Grade 10</a></button></td>
-                        </tr>
-                    </table>
-                    <table>
-                        <tr>
+                        
                             <td><button><a href="<?php echo BASEURL  ?>st_courses/index/6"> Ordinary Level </a></button></td>
                             <td><button><a href="<?php echo BASEURL  ?>st_courses/index/7"> Advanced Level </a></button></td>
                         </tr>
                     </table>
                 </div>
-                <br><br>
-                <!-- <a class="see-all-btn" href="<?php echo BASEURL  ?>" style="text-decoration: none; width:100%;"></a> -->
+                <br><br><br><br><br><br><br><br><br><br>
+                <a class="see-all-btn" href="<?php echo BASEURL  ?>" style="text-decoration: none; width:100%;"></a>
 
 
         </div>
