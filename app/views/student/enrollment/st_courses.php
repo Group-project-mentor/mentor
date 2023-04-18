@@ -62,7 +62,7 @@
 
                     <?php if (!empty($data[1])) { ?>
                         <div class="subject-card-set">
-                            <?php foreach ($data[1] as $row) { ?> <!-- foreach == for -->
+                            <?php foreach (array_slice($data[1], 0, 3) as $row) { ?> <!-- foreach == for -->
                                 <div class="subject-card">
                                     <img src="<?php echo BASEURL  ?>assets/patterns/1.png" alt="" />
                                     <a href="<?php echo BASEURL . 'st_video/index/' . $_SESSION['gid'] . '/' . $row->id  ?>"><label><?php echo $row->name ?></label></a>
@@ -86,7 +86,7 @@
                 <?php if (!empty($data[0])) { ?>
                     <div class="subject-card-set">
 
-                        <?php foreach ($data[0] as $row) { ?>
+                        <?php foreach (array_slice($data[0], 0, 3) as $row) { ?>
                             <div class="subject-card">
                                 <img src="<?php echo BASEURL  ?>assets/patterns/2.png" alt="" />
                                 <a href="#"><label><?php echo $row->name ?></label></a>

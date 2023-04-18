@@ -55,7 +55,7 @@
                                     <div class="subject-card">
                                         <img src="<?php echo BASEURL  ?>assets/patterns/2.png" alt="" />
                                         <a href="#"><label><?php echo $row->class_name ?></label></a>
-                                        <label>Grade 8</label>
+                                        <label>Grade <?php echo $row->grade + 5 ?></label>
                                         <a href="<?php echo BASEURL  ?>st_private_mode/st_classroom_inside"><label>View</label></a>
 
                                     </div>

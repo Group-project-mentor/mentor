@@ -60,16 +60,17 @@
                             <label>Grade 8</label>
                             <label>Mr.Thimira Galahitiyawa</label>
                         </div> -->
-
+                        <h3> Some Private classes You Enrolled</h3>
+                        <br><br>
                         <!-- new data from DB -->
                         <?php if (!empty($data[0])) { ?>
                             <div class="subject-card-set">
 
-                                <?php foreach ($data[0] as $row) { ?>
+                                <?php foreach (array_slice($data[0], 0, 3) as $row) { ?>
                                     <div class="subject-card">
                                         <img src="<?php echo BASEURL  ?>assets/patterns/2.png" alt="" />
                                         <a href="#"><label><?php echo $row->class_name ?></label></a>
-                                        <label>Grade 8</label>
+                                        <label>Grade <?php echo $row->grade + 5 ?></label>
                                         </div>
                                 <?php } ?>
                             </div>

@@ -17,6 +17,18 @@
             background-position: center;
             background-size: cover;
         }
+
+        .rc-pp-row {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .subject-card {
+            width: 50%;
+            float: left;
+        }
+    </style>
+
     </style>
 </head>
 
@@ -55,96 +67,26 @@
                 </div>
             </section>
             <section>
-                <div class="rc-pp-row">
+                <?php if (!empty($data[0])) { ?>
+                    <div class="rc-pp-row">
+                        <?php foreach ($data[0] as $row) { ?>
+                            <div class="subject-card-set">
+                                <img src="<?php echo BASEURL; ?>assets/icons/pdf_resources.png" alt="delete">
+                                <div class="rc-resource-col">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?php echo $row->class_name ?></div>
+                                <div class="rc-resource-col"><?php echo $row->grade ?></div>
+                                <div class="rc-resource-col"></div>
+                                <div class="rc-quiz-row-btns">
+                                    <button>
+                                        <img src="<?php echo BASEURL; ?>assets/icons/icon_edit.png" alt="edit">
+                                    </button>
+                                </div>
+                            <?php } ?>
+                            </div>
 
-                    <img src="<?php echo BASEURL; ?>assets/icons/pdf_resources.png" alt="delete">
-                    <div class="rc-resource-col">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Thimira Galahitiyawa</div>
-                    <div class="rc-resource-col">Mathematics</div>
-                    <div class="rc-resource-col"></div>
-                    <div class="rc-quiz-row-btns">
-                        <button>
-                            <img src="<?php echo BASEURL; ?>assets/icons/icon_delete.png" alt="delete">
-                        </button>
-                        <button>
-                            <img src="<?php echo BASEURL; ?>assets/icons/icon_edit.png" alt="edit">
-                        </button>
+                        <?php } else {
+                        echo "no data!";
+                    } ?>
                     </div>
-                </div>
-                <div class="rc-pp-row">
-
-                    <img src="<?php echo BASEURL; ?>assets/icons/pdf_resources.png" alt="delete">
-                    <div class="rc-resource-col">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Kavishka Sulakshana</div>
-                    <div class="rc-resource-col">Science</div>
-                    <div class="rc-resource-col"></div>
-                    <div class="rc-quiz-row-btns">
-                        <button>
-                            <img src="<?php echo BASEURL; ?>assets/icons/icon_delete.png" alt="delete">
-                        </button>
-                        <button>
-                            <img src="<?php echo BASEURL; ?>assets/icons/icon_edit.png" alt="edit">
-                        </button>
-                    </div>
-                </div>
-                <div class="rc-pp-row">
-
-                    <img src="<?php echo BASEURL; ?>assets/icons/pdf_resources.png" alt="delete">
-                    <div class="rc-resource-col">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Sanduni gunawardhana</div>
-                    <div class="rc-resource-col">Dancing</div>
-                    <div class="rc-resource-col"></div>
-                    <div class="rc-quiz-row-btns">
-                        <button>
-                            <img src="<?php echo BASEURL; ?>assets/icons/icon_delete.png" alt="delete">
-                        </button>
-                        <button>
-                            <img src="<?php echo BASEURL; ?>assets/icons/icon_edit.png" alt="edit">
-                        </button>
-                    </div>
-                </div>
-                <div class="rc-pp-row">
-
-                    <img src="<?php echo BASEURL; ?>assets/icons/pdf_resources.png" alt="delete">
-                    <div class="rc-resource-col">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Kanishka Sewwandi</div>
-                    <div class="rc-resource-col">IT</div>
-                    <div class="rc-resource-col"></div>
-                    <div class="rc-quiz-row-btns">
-                        <button>
-                            <img src="<?php echo BASEURL; ?>assets/icons/icon_delete.png" alt="delete">
-                        </button>
-                        <button>
-                            <img src="<?php echo BASEURL; ?>assets/icons/icon_edit.png" alt="edit">
-                        </button>
-                    </div>
-                </div>
-                <div class="rc-pp-row">
-
-                    <img src="<?php echo BASEURL; ?>assets/icons/pdf_resources.png" alt="delete">
-                    <div class="rc-resource-col">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Anushka Perera</div>
-                    <div class="rc-resource-col">Sinhala</div>
-                    <div class="rc-resource-col"></div>
-                    <div class="rc-quiz-row-btns">
-                        <button>
-                            <img src="<?php echo BASEURL; ?>assets/icons/icon_delete.png" alt="delete">
-                        </button>
-                        <button>
-                            <img src="<?php echo BASEURL; ?>assets/icons/icon_edit.png" alt="edit">
-                        </button>
-                    </div>
-                </div>
-                <div class="rc-pp-row">
-
-                    <img src="<?php echo BASEURL; ?>assets/icons/pdf_resources.png" alt="delete">
-                    <div class="rc-resource-col">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Shithara Kumari</div>
-                    <div class="rc-resource-col">Science</div>
-                    <div class="rc-resource-col"></div>
-                    <div class="rc-quiz-row-btns">
-                        <button>
-                            <img src="<?php echo BASEURL; ?>assets/icons/icon_delete.png" alt="delete">
-                        </button>
-                        <button>
-                            <img src="<?php echo BASEURL; ?>assets/icons/icon_edit.png" alt="edit">
-                        </button>
-                    </div>
-                </div>
             </section>
         </div>
     </section>
