@@ -46,10 +46,10 @@
             <img src="<?php echo BASEURL ?>assets/icons/icon_billing.png" alt="bmc">
             <div class="nav-link-text">Billing</div>
         </a>
-        <a href="<?php echo BASEURL ?>#" class="nav-link">
+        <!-- <a href="<?php echo BASEURL ?>#" class="nav-link">
             <img src="<?php echo BASEURL ?>assets/icons/Settings.png" alt="bmc">
             <div class="nav-link-text">Settings</div>
-        </a>
+        </a> -->
     </div>
 
     <!-- Navigation bar toggler -->

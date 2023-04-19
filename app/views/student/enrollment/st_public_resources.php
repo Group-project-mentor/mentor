@@ -29,7 +29,7 @@
                     </a>
                 </div>
                 <div class="top-bar-btns">
-                    <a href="<?php echo BASEURL; ?>st_private_mode/st_myclasses">
+                    <a href="<?php echo BASEURL . 'st_courses/Enroll_subject_all/' . $_SESSION['gid']  ?>">
                         <div class="back-btn">Back</div>
                     </a>
                     <a href="#">

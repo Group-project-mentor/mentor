@@ -60,11 +60,11 @@
                     <div class="container-box" style="padding-left: 160px; width:auto; height: 100px;">
                         <table>
                             <tr>
-                                <td><button><a href="<?php echo BASEURL  ?>st_courses/index/1">Videos</a></button></td>
-                                <td><button><a href="<?php echo BASEURL  ?>st_courses/index/2">Documents</a></button></td>
-                                <td><button><a href="<?php echo BASEURL  ?>st_courses/index/3">Past Papers</a></button></td>
-                                <td><button><a href="<?php echo BASEURL  ?>st_courses/index/4">Quizzes</a></button></td>
-                                <td><button><a href="<?php echo BASEURL  ?>st_courses/index/5">Other Resources</a></button></td>
+                                <td><button><a href="<?php echo BASEURL  . 'st_private_resources/index_videos/' . $_SESSION['gid'] . '/' . $_SESSION['sid'] ?> ">Videos</a></button></td>
+                                <td><button><a href="<?php echo BASEURL  . 'st_private_resources/index_documents/' . $_SESSION['gid'] . '/' . $_SESSION['sid'] ?>">Documents</a></button></td>
+                                <td><button><a href="<?php echo BASEURL  . 'st_private_resources/index_past_papers/' . $_SESSION['gid'] . '/' . $_SESSION['sid']  ?>">Past Papers</a></button></td>
+                                <td><button><a href="<?php echo BASEURL  . 'st_private_resources/index_quizzes/' . $_SESSION['gid'] . '/' . $_SESSION['sid']  ?>">Quizzes</a></button></td>
+                                <td><button><a href="<?php echo BASEURL  . 'st_private_resources/index_others/' . $_SESSION['gid'] . '/' . $_SESSION['sid']   ?>">Other Resources</a></button></td>
                             </tr>
                         </table>
                     </div>
