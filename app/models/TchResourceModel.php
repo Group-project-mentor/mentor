@@ -26,6 +26,15 @@ class TchResourceModel extends Model
         return $this->fetchObjs($stmt);
     }
 
+    public function findOthers($cid, $offset, $limit)
+    {
+        $stmt = $this->prepare("SELECT teacher_other.id, teacher_other.name, teacher_other.type,teacher_class_resources.upload_teacher_id 
+                                        FROM teacher_other, private_resource,teacher_class_resources WHERE teacher_other.id = private_resource.id AND
+                                         private_resource.id=teacher_class_resources.rs_id AND teacher_class_resources.class_id=? LIMIT ?,?");
+        $stmt->bind_param('iii',$cid,$offset,$limit);
+        return $this->fetchObjs($stmt);
+    }
+
     //? Functions for add a resource
 
     public function addVideo($id,$cid,$name, $lec, $link, $descr ,$tid,$type = 'L'){ //!done
@@ -39,6 +48,13 @@ class TchResourceModel extends Model
         $sql = "insert into teacher_document values ($id ,'$name')";
         return ($this->addResource($id, $cid, $file,'pdf',$tid) && $this->executeQuery($sql));
     }
+
+    public function addOther($id, $cid, $name, $file, $ext,$tid) //!done
+    {
+        $sql = "insert into teacher_other values ($id ,'$name', '$ext')";
+        return ($this->addResource($id, $cid, $file,'other',$tid) && $this->executeQuery($sql));
+    }
+
 
     private function addResource($id, $cid, $file, $type, $uploader) //!done
     {
@@ -84,8 +100,8 @@ class TchResourceModel extends Model
                                          public_resource.id=rs_subject_grade.rsrc_id AND rs_subject_grade.subject_id=? AND rs_subject_grade.grade_id=?");
                 break;
             case "other":
-                $stmt = $this->prepare("SELECT COUNT(other.id) AS count FROM other, public_resource,rs_subject_grade WHERE other.id = public_resource.id AND
-                                         public_resource.id=rs_subject_grade.rsrc_id AND rs_subject_grade.subject_id=? AND rs_subject_grade.grade_id=?");
+                $stmt = $this->prepare("SELECT COUNT(teacher_other.id) AS count FROM teacher_other, private_resource,teacher_class_resources WHERE teacher_other.id = private_resource.id AND
+                                         private_resource.id=teacher_class_resources.rs_id AND teacher_class_resources.class_id=?");
                 break;
     }
         $stmt->bind_param('i',$cid);
@@ -131,6 +147,19 @@ class TchResourceModel extends Model
         return array();
     }
 
+    public function getOther($id){ //!done
+        $sql = "select teacher_other.id, teacher_other.name, private_resource.location, private_resource.type,teacher_class_resources.upload_teacher_id from teacher_other inner join
+         teacher_class_resources on teacher_other.id = teacher_class_resources.rs_id inner join private_resource on private_resource.id = teacher_class_resources.rs_id where 
+         teacher_other.id = $id and teacher_class_resources.class_id =".$_SESSION['cid'];
+
+        $result = $this->executeQuery($sql);
+
+        if($result->num_rows > 0){
+            return $result->fetch_row();
+        }
+        return array();
+    }
+
 //? Functions for update/edit resource
     public function updateVideo($id, $title, $lec, $link, $description){
         $sql = "update teacher_videos set teacher_videos.name = '$title', teacher_videos.lecturer = '$lec', teacher_videos.description = '$description', teacher_videos.link='$link' where teacher_videos.id = $id";
@@ -154,6 +183,12 @@ class TchResourceModel extends Model
             return $this->executePrepared($stmt);
         }
     }
+    public function updateOther($id, $title, $file, $type){
+        $sql1 = "update private_resource set private_resource.location = '$file' where private_resource.id = $id";
+        $sql2 = "update teacher_other set teacher_other.name = '$title', teacher_other.type = '$type' where teacher_other.id = $id";
+        return ($this->executeQuery($sql1) && $this->executeQuery($sql2));
+    }
+
 
 //? Functions for delete resource
     public function deleteResource($id,$table){

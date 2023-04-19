@@ -60,6 +60,7 @@ function TsaveFile($tempLocation ,$fileName, $type, $folder1=null): bool
     $fileDest = TfindFileDest($type, $folder1, $fileName);
     if(!file_exists($fileDest)){
         if($type == "videos") {
+            
             return rename($tempLocation, $fileDest);
         }else{
             return move_uploaded_file($tempLocation, $fileDest);
@@ -116,7 +117,9 @@ function TfindFileDest($type, $folder1, $fileName): string
     $fileDest = "private_resources/$type/";
     if ($folder1 != null) {
         $fileDest = $fileDest . $folder1;
-         mkdir($fileDest);
+        if (!is_dir($fileDest)) {
+            mkdir($fileDest);
+        }
         $fileDest = $fileDest."/";
     }
     return $fileDest . $fileName;
@@ -193,5 +196,19 @@ function tempFileRemover(){
     }
 }
 
+function TtempFileRemover(){
+//    if (session_status() == PHP_SESSION_NONE) {
+//        session_start();
+//    }
+    if(isset($_SESSION['temporary_file']) and $_SESSION['tempTag']){
+        $_SESSION['tempTag'] = false;
+    }
+    elseif(isset($_SESSION['temporary_file']) and !$_SESSION['tempTag']){
+        unlink('private_resources/temp/'.$_SESSION['temporary_file']);
+        unset($_SESSION['temporary_file']);
+    }
+}
+
 
 tempFileRemover();
+TtempFileRemover();

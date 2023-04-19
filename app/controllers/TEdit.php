@@ -28,6 +28,14 @@ class TEdit extends Controller
             $this->view("Teacher/editViews/edit_video_2", array($result, $msg));
     }
 
+    public function other($id, $msg = null)
+    {
+
+        $result = $this->model("TchResourceModel")->getOther($id);
+        $this->view("Teacher/editViews/edit_other", array($result, $msg));
+    }
+
+
     public function editVideo($id)
     {
         // $maxFileSize = 50*1024*1024;
@@ -156,4 +164,56 @@ class TEdit extends Controller
             header("location:" . BASEURL . "TEdit/document/$id");
         }
     }
+
+     // this is for update other resource
+     public function editOther($id)
+    {
+        $maxFileSize = 50 * 1024 * 1024;
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            if (isset($_FILES["resource"]) && $_FILES["resource"]["error"] == 0) {
+                $fileData = array("name" => $_FILES["resource"]["name"],
+                    "type" => $_FILES["resource"]["type"],
+                    "size" => $_FILES["resource"]["size"]);
+                $extension = pathinfo($fileData["name"], PATHINFO_EXTENSION);
+                if ($fileData["size"] > $maxFileSize) {
+                    header("location:" . BASEURL . "TAdd/document/error");
+                }
+                // if(in_array($fileData['type'],$typeArray)){
+                $newFileName = uniqid() . $_POST['title'] . "." . $extension;
+//                $fileDest = "public_resources/others/" . $newFileName;
+                $oldFileName = $this->model("TchResourceModel")->getLocation($id);
+
+                if (TupdateFile($_FILES["resource"]["tmp_name"],$newFileName,$oldFileName,"others",$_SESSION['cid'])) {
+
+//                    move_uploaded_file($_FILES["resource"]["tmp_name"], $fileDest);
+//                    unlink("public_resources/others/" . $oldFileName);
+
+                    if ($this->model("TchResourceModel")->updateOther($id, $_POST["title"], $newFileName, $extension)) {
+                        flashMessage("success");
+//                        header("location:" . BASEURL . "rcEdit/other/$id/success");
+                    } else {
+                        flashMessage("failed");
+//                        header("location:" . BASEURL . "rcEdit/other/$id/failed");
+                    }
+                } else {
+                    echo "Upload unsuccessful !";
+                    flashMessage("failed");
+//                    header("location:" . BASEURL . "rcEdit/other/$id/failed");
+                }
+                // }else{}
+            } else {
+                $oldFileName = $this->model("TchResourceModel")->getLocation($id);
+                $extension = pathinfo($oldFileName, PATHINFO_EXTENSION);
+                if ($this->model("TchResourceModel")->updateOther($id, $_POST["title"], $oldFileName, $extension)) {
+                    flashMessage("success");
+//                    header("location:" . BASEURL . "rcEdit/other/$id/success");
+                } else {
+                    flashMessage("failed");
+//                    header("location:" . BASEURL . "rcEdit/other/$id/failed");
+                }
+            }
+        }
+        header("location:" . BASEURL . "TEdit/other/$id");
+    }
+
 }
