@@ -30,7 +30,7 @@
                     </a>
                 </div>
                 <div class="top-bar-btns">
-                    <a href="<?php echo BASEURL . 'st_video/index/' . $_SESSION['gid'] . '/' . $_SESSION['sid'] ?>">
+                    <a href="<?php echo BASEURL . 'st_public_resources/index_videos/' . $_SESSION['gid'] . '/' . $_SESSION['sid'] ?>">
                         <div class="back-btn">Back</div>
                     </a>
                     <a href="#">
@@ -80,7 +80,7 @@
                                             </div>
                                         </div>
                                         <div class="quiz-card-button-set">
-                                            <a class="quiz-card-btn" href="<?php echo BASEURL . 'st_quizzes/st_quizzes_intro/' . $row->id ?>" style="text-decoration: none;">
+                                            <a class="quiz-card-btn" href="<?php echo BASEURL . 'st_public_resources/st_quizzes_intro/' . $row->id ?>" style="text-decoration: none;">
                                             <div class="back-btn">
                                                     View
                                                 </div>

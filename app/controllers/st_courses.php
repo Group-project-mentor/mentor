@@ -20,6 +20,8 @@ class St_courses extends Controller
 
     public function Enroll_subject_all($gid)
     {
+        unset($_SESSION["gname"]);
+        unset($_SESSION["sname"]);
         $res = $this->model('st_courses_model')->getClasses3($gid, $_SESSION['id']);
         $this->view('student/enrollment/st_enrolled_subject', array($res));
     }
