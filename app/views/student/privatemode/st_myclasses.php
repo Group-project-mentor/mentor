@@ -56,7 +56,7 @@
                                         <img src="<?php echo BASEURL  ?>assets/patterns/2.png" alt="" />
                                         <a href="#"><label><?php echo $row->class_name ?></label></a>
                                         <label>Grade <?php echo $row->grade + 5 ?></label>
-                                        <a href="<?php echo BASEURL . 'st_private_resources/index/' ?>"><label>View</label></a>
+                                        <a href="<?php echo BASEURL . 'st_private_resources/index/'. $row->class_name . '/' .$row->grade ?>"><label>View</label></a>
 
                                     </div>
                                 <?php } ?>
