@@ -17,12 +17,27 @@ class TchResourceModel extends Model
         return $this->fetchObjs($stmt);
     }
 
+    public function findDocuments($cid, $offset, $limit)
+    {
+        $stmt = $this->prepare("SELECT teacher_document.id,teacher_document.name,teacher_class_resources.upload_teacher_id 
+                                        FROM teacher_document, teacher_class_resources,private_resource WHERE teacher_document.id = private_resource.id AND
+                                         private_resource.id=teacher_class_resources.rs_id AND teacher_class_resources.class_id=? LIMIT ?,?");
+        $stmt->bind_param('iii',$cid,$offset,$limit);
+        return $this->fetchObjs($stmt);
+    }
+
     //? Functions for add a resource
 
     public function addVideo($id,$cid,$name, $lec, $link, $descr ,$tid,$type = 'L'){ //!done
     
         $sql = "insert into teacher_videos(id, name, lecturer, description, link, type) values ($id, '$name', '$lec', '$descr', '$link','$type')";
         return ($this->addResource($id, $cid, null , 'video',$tid) && $this->executeQuery($sql));
+    }
+
+    public function addDocument($id, $cid, $name, $file,$tid) //!done
+    {
+        $sql = "insert into teacher_document values ($id ,'$name')";
+        return ($this->addResource($id, $cid, $file,'pdf',$tid) && $this->executeQuery($sql));
     }
 
     private function addResource($id, $cid, $file, $type, $uploader) //!done
@@ -53,8 +68,8 @@ class TchResourceModel extends Model
     {
         switch($type){
             case "pdf":
-                $stmt = $this->prepare("SELECT COUNT(document.id) AS count FROM document, public_resource,rs_subject_grade WHERE document.id = public_resource.id AND
-                                         public_resource.id=rs_subject_grade.rsrc_id AND rs_subject_grade.subject_id=? AND rs_subject_grade.grade_id=?");
+                $stmt = $this->prepare("SELECT COUNT(teacher_document.id) AS count FROM teacher_document, private_resource,teacher_class_resources WHERE teacher_document.id = private_resource.id AND
+                                         private_resource.id=teacher_class_resources.rs_id AND teacher_class_resources.class_id=?");
                 break;
             case "video":
                 $stmt = $this->prepare("SELECT COUNT(teacher_videos.id) AS count FROM teacher_videos, private_resource,teacher_class_resources WHERE teacher_videos.id = private_resource.id AND

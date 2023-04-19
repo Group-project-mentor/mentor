@@ -18,7 +18,7 @@
     $category = "documents";
     if(!empty($_SESSION['message'])) {
         if ($_SESSION['message'] == "success") {
-            include_once "components/alerts/categoryUploadSuccess.php";
+            include_once "components/alerts/Teacher/CategoryUploadSucess.php";
         }
     }
     ?>
@@ -64,7 +64,7 @@
                 <div class="container-box">
                     <div class="rc-resource-header">
                         <h1>DOCUMENTS</h1>
-                        <a href="<?php echo BASEURL . 'rcAdd/document' ?>">
+                        <a href="<?php echo BASEURL . 'TAdd/document' ?>">
                             <div class="rc-add-btn">
                                 Add Document
                             </div>
@@ -78,28 +78,24 @@
                             <div></div>
                         </div>
                                 <?php
-                                foreach ($data[0] as $row) {
-                                    $approval = $this->approvedGenerator($row->approved);
-                                    ?>
+                                foreach ($data[0] as $row) {?>
                                     <div class='rc-pdf-row'>
                                                 <div class='rc-resource-col' style="display: flex;align-items: center;justify-content: flex-start;">
-                                                    <img src='<?php echo BASEURL."assets/icons/".$approval ?>' alt='' class="resource-approved-sign">
                                                     <div>
                                                         <?php echo $row->name ?>
                                                     </div>
                                                 </div>
                                                 <div class='rc-quiz-row-btns'>
-                                                    <?php if($this->isCreatedBy($row->creator_id)){ ?>
 
-                                                    <button onclick='delConfirm(<?php echo $row->id ?>,4)' >
+                                                    <button  >
                                                         <img src='<?php echo BASEURL ?>assets/icons/icon_delete.png' alt=''>
                                                     </button>
-                                                    <a href='<?php echo BASEURL?>rcEdit/document/<?php echo $row->id ?>'>
+                                                    <a href='#'>
                                                         <img src='<?php echo BASEURL ?>assets/icons/icon_edit.png' alt=''>
                                                     </a>
 
-                                                    <?php } ?>
-                                                    <a href='<?php echo BASEURL ?>rcResources/preview/document/<?php echo $row->id ?>'>
+                                                    
+                                                    <a href='<?php echo BASEURL ?>TResources/preview/document/<?php echo $row->id ?>'>
                                                         <img src='<?php echo BASEURL ?>assets/icons/icon_eye.png' alt=''>
                                                     </a>
                                                 </div>
@@ -119,13 +115,13 @@
                         </div>
                         <div class="pagination-set-right">
                             <?php if ($data[1][0] != 1) {?>
-                                <a href="<?php echo BASEURL . "rcResources/documents/".$_SESSION['gid']."/".$_SESSION['sid']."/". ($data[1][0]) - 1 ?>"> < </a>
+                                <a href="<?php echo BASEURL . "TResources/documents/".$_SESSION['cid']."/". ($data[1][0]) - 1 ?>"> < </a>
                                 <?php }?>
                                 <div class="pagination-numbers">
                                     Page <?php echo $data[1][0] ?> of <?php echo ($data[1][1])?$data[1][1]:1 ?>
                                 </div>
                                 <?php if ($data[1][0] < $data[1][1]) {?>
-                                    <a href="<?php echo BASEURL . "rcResources/documents/".$_SESSION['gid']."/".$_SESSION['sid']."/" . ($data[1][0] + 1) ?>"> > </a>
+                                    <a href="<?php echo BASEURL . "TResources/documents/".$_SESSION['cid']."/" . ($data[1][0] + 1) ?>"> > </a>
                                     <?php }?>
                                 </div>
                             </div>

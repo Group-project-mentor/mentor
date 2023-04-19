@@ -37,9 +37,25 @@ public function __construct()
         $result = $this->model("TchResourceModel")->findVideos($cid, $offset, $limit);
         $pageData = array($page, ceil($rowCount / $limit));
         if ($page < 1 || ($page > $pageData[1] and $pageData[1] != 0)) {
-            header("location:" . BASEURL . "rcResources/videos/" . $cid);
+            header("location:" . BASEURL . "TResources/videos/" . $cid);
         }
         $this->view('Teacher/resources/video', array($result, $pageData));
+    }
+
+    public function documents($cid, $page = 1)
+    {
+        $limit = paginationRowLimit;
+        $offset = ($page != 1) ? ($page - 1) * $limit : 0;
+        $_SESSION["cid"] = $cid;
+        $this->getClass($cid);
+        $rowCount = $this->model("TchResourceModel")->getResourceCount("pdf", $cid)->count;
+        $result = $this->model("TchResourceModel")->findDocuments($cid, $offset, $limit);
+        $pageData = array($page, ceil($rowCount / $limit));
+        if ($page < 1 || ($page > $pageData[1] and $pageData[1] != 0)) {
+
+            header("location:" . BASEURL . "TResources/document/" . $cid );
+        }
+        $this->view('Teacher/resources/document', array($result, $pageData));
     }
 
     private function getClass($class_id)
@@ -54,7 +70,7 @@ public function __construct()
         switch ($type) {
             case 'document':
                 $file = $this->model("TchResourceModel")->getResource($id,$_SESSION['cid'],'pdf');
-                $this->view("resourceCtr/previews/doc_preview",$file);
+                $this->view("Teacher/preview/doc_preview",$file);
                 break;
             case 'other' :
                 $file = $this->model("TchResourceModel")->getResource($id,$_SESSION['cid'],'other');

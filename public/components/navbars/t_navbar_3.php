@@ -52,7 +52,7 @@ if (!isset($_SESSION['navtog'])) {
                     <img src="<?php echo BASEURL?>assets/icons/icon_past_papers.png" alt="pp">
                     <div class="nav-link-text">Past papers</div>
                 </a>
-                <a href="<?php echo BASEURL ?>rcResources/documents" class="nav-link">
+                <a href="<?php echo BASEURL ?>TResources/documents/<?php echo "$cid"; ?>" class="nav-link">
                     <img src="<?php echo BASEURL?>assets/icons/icon_pdf.png" alt="pdf">
                     <div class="nav-link-text">PDF</div>
                 </a>

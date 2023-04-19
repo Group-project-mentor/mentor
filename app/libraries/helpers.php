@@ -55,6 +55,20 @@ function saveFile($tempLocation ,$fileName, $type, $folder1=null, $folder2=null)
     }
 }
 
+function TsaveFile($tempLocation ,$fileName, $type, $folder1=null): bool
+{
+    $fileDest = TfindFileDest($type, $folder1, $fileName);
+    if(!file_exists($fileDest)){
+        if($type == "videos") {
+            return rename($tempLocation, $fileDest);
+        }else{
+            return move_uploaded_file($tempLocation, $fileDest);
+        }
+    }else{
+        return false;
+    }
+}
+
 function updateFile($tempLocation, $newFileName, $oldFileName, $type, $folder1=null, $folder2=null): bool
 {
     $flag = saveFile($tempLocation, $newFileName, $type, $folder1, $folder2);
@@ -82,6 +96,17 @@ function findFileDest($type, $folder1, $folder2, $fileName): string
             }
             $fileDest = $fileDest . "/";
         }
+    }
+    return $fileDest . $fileName;
+}
+
+function TfindFileDest($type, $folder1, $fileName): string
+{
+    $fileDest = "private_resources/$type/";
+    if ($folder1 != null) {
+        $fileDest = $fileDest . $folder1;
+         mkdir($fileDest);
+        $fileDest = $fileDest."/";
     }
     return $fileDest . $fileName;
 }
