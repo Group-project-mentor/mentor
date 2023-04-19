@@ -24,4 +24,20 @@ class TDelete extends Controller
             }
         }
     }
+
+    public function document($id)
+    {
+        $row = $this->model("TchResourceModel")->getResource($id, $_SESSION['cid'], 'pdf');
+        if (!empty($row)) {
+            $location = $row->location;
+//            $fileDest = "public_resources/documents/" . $location;
+            if ($this->model("TchResourceModel")->deleteResource($id, 'document') == true) {
+//                unlink($fileDest);
+                TdeleteFile($location,"documents",$_SESSION['cid']);
+                header("location:" . BASEURL . "TResources/documents/" .  $_SESSION["cid"]);
+            } else {
+                header("location:" . BASEURL . "TResources/documents/" .  $_SESSION["cid"] . "/error");
+            }
+        }
+    }
 }

@@ -56,7 +56,7 @@ if (!isset($_SESSION['navtog'])) {
                     <img src="<?php echo BASEURL?>assets/icons/icon_pdf.png" alt="pdf">
                     <div class="nav-link-text">PDF</div>
                 </a>
-                <a href="<?php echo BASEURL ?>rcResources/others" class="nav-link">
+                <a href="<?php echo BASEURL ?>TResources/others/<?php echo "$cid"; ?>" class="nav-link">
                     <img src="<?php echo BASEURL?>assets/icons/icon_other.png" alt="other">
                     <div class="nav-link-text">Other resource</div>
                 </a>

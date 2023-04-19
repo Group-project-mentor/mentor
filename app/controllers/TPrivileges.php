@@ -19,7 +19,7 @@ class TPrivileges extends Controller{
 
 
     public function pMemberDetails($class_id){
-        echo "Controller function called!";
+        
         if (!isset($_SESSION['user'])) {
             header("location:" . BASEURL . "login");
         }
@@ -28,10 +28,9 @@ class TPrivileges extends Controller{
         $res1 = $this->model('teacher_data')->getStudents($class_id);
         $res2 = $this->model('teacher_data')->getTeachers($class_id);
         $res3 = $this->model('teacher_data')->getHostTeacher($class_id);
-        var_dump($res1,$res2,$res3);
-        $this->view('Teacher/TPrivilege2/memberDetailsP2',array($res1,$res2,$res3));
-        $privilege=($this->model("teacher_data")->getTPrivilege($_SESSION['id'], $class_id));
-        var_dump($privilege);
+       
+        
+        $privilege=($this->model("teacher_data")->getTPrivilege($_SESSION['id'], $class_id)->pid);
         
         if($privilege==1)
         {

@@ -30,11 +30,10 @@ class Home extends Controller
                 break;
             case 'tch':
                 unset($_SESSION["cid"]);
-                unset($_SESSION["cname"]);
                 $classes1 = $this->model("teacher_data")->getClasses($_SESSION['id']);
                 $classes = $this->model("teacher_data")->getCoordinateClasses($_SESSION['id']);
-                $privileges = $this->model("teacher_data")->getTPrivilege($_SESSION['id'], $classes);
-                $this->view('Teacher/home/index', array($classes1, $classes, $privileges));
+                $this->view('Teacher/home/index', array($classes1, $classes));
+                
 
                 break;
             case 'sp':

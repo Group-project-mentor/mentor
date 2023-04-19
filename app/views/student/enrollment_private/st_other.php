@@ -14,7 +14,7 @@
 <body>
     <section class="page">
         <!-- Navigation panel -->
-        <?php include_once "components/navbars/st_navbar_2.php" ?> <!-- used to include_once to add file -->
+        <?php include_once "components/navbars/st_navbar_5.php" ?> <!-- used to include_once to add file -->
 
 
         <div class="content-area">
@@ -28,7 +28,7 @@
                     </a>
                 </div>
                 <div class="top-bar-btns">
-                    <a href="<?php echo BASEURL . 'st_public_resources/index/' . $_SESSION['gid'] . '/' . $_SESSION['sid'] ?>">
+                    <a href="<?php echo BASEURL . 'st_private_resources/index/' ?>">
                         <div class="back-btn">Back</div>
                     </a>
                     <a href="#">
