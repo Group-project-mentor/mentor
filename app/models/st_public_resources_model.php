@@ -1,6 +1,6 @@
 <?php
 
-class st_public_model extends Model{
+class St_public_resources_model extends Model{
     public function __construct(){
         parent::__construct();
     }

@@ -1,6 +1,7 @@
 <?php
+// this is use to set view of all public resources through this controller.
 
-class St_public_resources extends Controller
+class St_private_resources extends Controller
 {
     public function __construct()
     {
@@ -8,52 +9,52 @@ class St_public_resources extends Controller
     }
 
     // this is use to set view of all public resources through this controller.
-    public function index($grade, $subject, $name = null)
+    public function index()
     {
         if (!isset($_SESSION['user'])) {
             header("location:" . BASEURL . "login");
         }
-        $this->getNames($grade, $subject);
-        $_SESSION["gid"] = $grade;
-        $_SESSION["sid"] = $subject;
-        $this->view('student/enrollment/st_public_resources', array($grade, $subject));
+        // $this->getNames($grade, $subject);
+        // $_SESSION["gid"] = $grade;
+        // $_SESSION["sid"] = $subject;
+        $this->view('student/enrollment_private/st_private_resources');
         
     }
 
-    public function index_documents($grade, $subject)
+    public function index_documents()
     {
         if (!isset($_SESSION['user'])) {
             header("location:" . BASEURL . "login");
         }
-        $this->getNames($grade, $subject);
-        $_SESSION["gid"] = $grade;
-        $_SESSION["sid"] = $subject;
-        $result = $this->model("st_public_resources_model")->findDocuments($grade, $subject);
-        $this->view('student/enrollment/st_documents', array($result));
+        // $this->getNames($grade, $subject);
+        // $_SESSION["gid"] = $grade;
+        // $_SESSION["sid"] = $subject;
+        // $result = $this->model("St_private_resources_model")->findDocuments($grade, $subject);
+        $this->view('student/enrollment_private/st_documents');
     }
 
-    public function index_others($grade, $subject)
+    public function index_others()
     {
         if (!isset($_SESSION['user'])) {
             header("location:" . BASEURL . "login");
         }
-        $this->getNames($grade, $subject);
-        $_SESSION["gid"] = $grade;
-        $_SESSION["sid"] = $subject;
-        $result = $this->model("st_public_resources_model")->findOthers($grade, $subject);
-        $this->view('student/enrollment/st_other', array($result));
+        // $this->getNames($grade, $subject);
+        // $_SESSION["gid"] = $grade;
+        // $_SESSION["sid"] = $subject;
+        // $result = $this->model("St_private_resources_model")->findOthers($grade, $subject);
+        $this->view('student/enrollment_private/st_other');
     }
 
-    public function index_quizzes($grade, $subject)
+    public function index_quizzes()
     {
         if (!isset($_SESSION['user'])) {
             header("location:" . BASEURL . "login");
         }
-        $this->getNames($grade, $subject);
-        $_SESSION["gid"] = $grade;
-        $_SESSION["sid"] = $subject;
-        $result = $this->model("st_public_resources_model")->findQuizzes($grade, $subject);
-        $this->view('student/enrollment/st_quizzes', array($result));
+        // $this->getNames($grade, $subject);
+        // $_SESSION["gid"] = $grade;
+        // $_SESSION["sid"] = $subject;
+        // $result = $this->model("St_private_resources_model")->findQuizzes($grade, $subject);
+        $this->view('student/enrollment_private/st_quizzes');
     }
 
     public function st_quizzes_do($id)
@@ -66,35 +67,35 @@ class St_public_resources extends Controller
         $this->view("student/enrollment/st_quizzes_intro", array($id));
     }
 
-    public function index_past_papers($grade, $subject)
+    public function index_past_papers()
     {
         if (!isset($_SESSION['user'])) {
             header("location:" . BASEURL . "login");
         }
-        $this->getNames($grade, $subject);
-        $_SESSION["gid"] = $grade;
-        $_SESSION["sid"] = $subject;
-        $result = $this->model("st_public_resources_model")->findPastpapers($grade, $subject);
-        $this->view('student/enrollment/st_pastpapers', array($result));
+        // $this->getNames($grade, $subject);
+        // $_SESSION["gid"] = $grade;
+        // $_SESSION["sid"] = $subject;
+        // $result = $this->model("St_private_resources_model")->findPastpapers($grade, $subject);
+        $this->view('student/enrollment_private/st_pastpapers');
     }
 
     public function st_pastpaper_link_Quiz($id)
     {
-        $file = $this->model("st_public_resources_model")->getResource($id,$_SESSION['gid'],$_SESSION['sid'],'paper');
+        $file = $this->model("St_private_resources_model")->getResource($id,$_SESSION['gid'],$_SESSION['sid'],'paper');
         $this->view('student/enrollment/st_pastpaper_link_Quiz',$file);
 
     }
 
-    public function index_videos($grade, $subject)
+    public function index_videos()
     {
         if (!isset($_SESSION['user'])) {
             header("location:" . BASEURL . "login");
         }
-        $this->getNames($grade, $subject);
-        $_SESSION["gid"] = $grade;
-        $_SESSION["sid"] = $subject;
-        $result = $this->model("st_public_resources_model")->findVideos($grade, $subject);
-        $this->view('student/enrollment/st_video', array($result));
+        // $this->getNames($grade, $subject);
+        // $_SESSION["gid"] = $grade;
+        // $_SESSION["sid"] = $subject;
+        // $result = $this->model("St_private_resources_model")->findVideos($grade, $subject);
+        $this->view('student/enrollment_private/st_video');
     }
 
     public function index_video_play()
@@ -118,21 +119,21 @@ class St_public_resources extends Controller
     {
         switch ($type) {
             case 'document':
-                $file = $this->model("st_public_resources_model")->getResource($id, $_SESSION['gid'], $_SESSION['sid'], 'pdf');
+                $file = $this->model("St_private_resources_model")->getResource($id, $_SESSION['gid'], $_SESSION['sid'], 'pdf');
                 $this->view("student/enrollment/st_document_do", $file);
                 break;
             case 'others':
-                $file = $this->model("st_public_resources_model")->getResource($id, $_SESSION['gid'], $_SESSION['sid'], 'other');
+                $file = $this->model("St_private_resources_model")->getResource($id, $_SESSION['gid'], $_SESSION['sid'], 'other');
                 $this->view("student/enrollment/st_other_do", $file);
                 break;
             case 'paper':
-                $file = $this->model("st_public_resources_model")->getResource($id, $_SESSION['gid'], $_SESSION['sid'], 'paper');
+                $file = $this->model("St_private_resources_model")->getResource($id, $_SESSION['gid'], $_SESSION['sid'], 'paper');
                 $this->view("student/enrollment/st_pastpaper_do", $file);
                 break;
             case 'video':
-                $file = $this->model("st_public_resources_model")->getResource($id, $_SESSION['gid'], $_SESSION['sid'], 'video');
+                $file = $this->model("St_private_resources_model")->getResource($id, $_SESSION['gid'], $_SESSION['sid'], 'video');
 
-                $resourceData = $this->model("st_public_resources_model")->getVideo($id, $_SESSION['sid'], $_SESSION['gid']);
+                $resourceData = $this->model("St_private_resources_model")->getVideo($id, $_SESSION['sid'], $_SESSION['gid']);
                 //var_dump($resourceData);
                 if ($resourceData->type === "L")
                     $resourceData->link = $this->filterVideoId($resourceData->link);

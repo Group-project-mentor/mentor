@@ -6,15 +6,16 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/x-icon" href="<?php echo BASEURL ?>assets/mentor.ico">
-    <title>Other Resource</title>
+    <title>Document</title>
     <link rel="stylesheet" href="<?php echo BASEURL ?>stylesheets/Student/style.css">
     <link rel="stylesheet" href="<?php echo BASEURL ?>stylesheets/Student/st_resources.css">
 </head>
 
 <body>
     <section class="page">
+
         <!-- Navigation panel -->
-        <?php include_once "components/navbars/st_navbar_2.php" ?> <!-- used to include_once to add file -->
+        <?php include_once "components/navbars/st_navbar_5.php" ?> <!-- used to include_once to add file -->
 
 
         <div class="content-area">
@@ -28,7 +29,7 @@
                     </a>
                 </div>
                 <div class="top-bar-btns">
-                    <a href="<?php echo BASEURL . 'st_public_resources/index/' . $_SESSION['gid'] . '/' . $_SESSION['sid'] ?>">
+                    <a href="<?php echo BASEURL . 'st_private_resources/index/'  ?>">
                         <div class="back-btn">Back</div>
                     </a>
                     <a href="#">
@@ -49,19 +50,19 @@
                     $ggid = $_SESSION['gid'] + 5;
  ?>
                     <h1><?php echo "Grade " . $ggid . " - " . ucfirst($_SESSION['sname']) ?></h1>
-                    <h6>My Subjects / <?php echo ucfirst($_SESSION['sname']) ?> / Other Resource</h6>
+                    <h6>My Subjects / <?php echo ucfirst($_SESSION['sname']) ?> / Documents</h6>
                 </div>
-
 
                     <!-- Grade choosing interface -->
                     <div class="container-box">
+
                         <?php
-                        $types = ['pdf', 'png', 'jpg', 'bmp', 'js', 'txt'];
-                        if (!empty($data)) { ?>
+                        if (!empty($data[0])) { ?>
                             <div class="rc-resource-table">
                                 <div class="rc-pp-row rc-pp-row-head">
-                                    <div class="rc-resource-col">Resource Name</div>
-                                    <div class="rc-resource-col">Type</div>
+                                    <div class="rc-resource-col">PDF Name</div>
+                                    <div class="rc-resource-col"> </div>
+                                    <div class="rc-resource-col"> </div>
                                     <div></div>
                                 </div>
                                 <?php foreach ($data[0] as $row) { ?>
@@ -76,7 +77,7 @@
                                         <div class="rc-resource-col"></div>
                                         <div class="rc-resource-col"></div>
                                         <div class="rc-quiz-row-btns">
-                                            <a href="<?php echo BASEURL . 'st_public_resources/preview/others/' . $row->id ?>">
+                                            <a href="<?php echo BASEURL . 'st_public_resources/preview/document/' . $row->id ?>">
                                                 <img src="<?php echo BASEURL ?>assets/icons/icon_eye.png" alt="">
                                             </a>
                                         </div>
@@ -104,6 +105,7 @@
                     </div>
             </section>
 </body>
+
 <script src="<?php echo BASEURL ?>public/javascripts/st_auth_script.js"></script>
 
 
