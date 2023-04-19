@@ -403,4 +403,37 @@ class ResourceModel extends Model
         return $this->fetchObjs($stmt);
     }
 
+    // The ordered resources
+
+    public function getNotOrganizedResources($gid, $sid){
+        $stmt = $this->prepare("SELECT public_resource.id, public_resource.type FROM public_resource,rs_subject_grade 
+                                        WHERE public_resource.id=rs_subject_grade.rsrc_id AND rs_subject_grade.grade_id=? 
+                                        AND rs_subject_grade.subject_id=? AND public_resource.topic_id IS NULL 
+                                        AND public_resource.approved='Y'");
+        $stmt->bind_param('ii',$gid,$sid);
+        return $this->fetchObjs($stmt);
+    }
+
+    public function getOrganizedResources($gid, $sid){
+        $stmt = $this->prepare("SELECT public_resource.id, public_resource.type, public_resource.topic_id, topic.name, topic.decription, topic.ord 
+                                        FROM public_resource,rs_subject_grade,topic 
+                                        WHERE public_resource.id=rs_subject_grade.rsrc_id AND public_resource.topic_id = topic.id
+                                        AND rs_subject_grade.grade_id=? 
+                                        AND rs_subject_grade.subject_id=? 
+                                        AND public_resource.topic_id IS NOT NULL");
+        $stmt->bind_param('ii',$gid,$sid);
+        return $this->fetchObjs($stmt);
+    }
+
+    public function getTopicIDs($gid, $sid){
+        $stmt = $this->prepare("SELECT public_resource.topic_id, topic.name 
+                                        FROM public_resource,rs_subject_grade,topic 
+                                        WHERE public_resource.id=rs_subject_grade.rsrc_id AND public_resource.topic_id = topic.id
+                                        AND rs_subject_grade.grade_id=? 
+                                        AND rs_subject_grade.subject_id=? 
+                                        AND public_resource.topic_id IS NOT NULL GROUP BY public_resource.topic_id");
+        $stmt->bind_param('ii',$gid,$sid);
+        return $this->fetchObjs($stmt);
+    }
+
 }

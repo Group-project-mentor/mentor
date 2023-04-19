@@ -89,23 +89,9 @@ class payment extends Controller
         if (($local_md5sig === $md5sig) AND ($status_code == 2) ){
             $res = $this->model("payments")
                 ->savePayment($_POST['payment_id'],$userId,$_POST['payhere_currency'],$_POST['payhere_amount'],$des,$_POST['method'],$bill_id);
+            $notifyMsg = "Successfully paid the payment :".$_POST['payhere_amount']." ".$_POST['payhere_currency'];
+            $this->notify($userId,$notifyMsg,"payment");
         }
-        // header("ngrok-skip-browser-warning: true");
-        // header("Content-Type:Application/json");
-        // echo "Done";
-        // echo $_POST['merchant_id ']."___"
-        //     .$_POST['payment_id '];
-//        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-//            $res = $this->model("payments")
-//                ->savePaymentDetails(6, $_POST['merchant_id'], $_POST['payment_id'], "bokka", "hi", "bokka", "bokka", "bokka");
-//        } else if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-//            $res = $this->model("payments")
-//                ->savePaymentDetails(6, "getBn", "ayyo", "bokka", "hi", "bokka", "bokka", "bokka");
-//        } else {
-//            $res = $this->model("payments")
-//    ->savePaymentDetails(6, "getBn", "ayyo", "bokka", "hi", "bokka", "bokka", "bokka");
-//
-//        }
     }
 
     public function transactionHistory($filter){
