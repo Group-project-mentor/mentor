@@ -31,4 +31,16 @@ class Controller
         }
     }
 
+    public function notify($user, $message, $type=null, $validity=null){
+        // if(preg_match('/^\d+(Y,y)$/', $validity))
+        //     $validity = date('Y-m-d', strtotime('+1 year'));
+        // elseif(preg_match('/^\d+(M,m)$/', $validity))
+        //     $validity = date('Y-m-d', strtotime('+1 month'));
+        // elseif(preg_match('/^\d+(D,d)$/', $validity))
+        //     $validity = date('Y-m-d', strtotime('+1 day'));
+        
+        $res = $this->model('NotificationModel')->notify($user, $message, $type, $validity);
+        return $res;
+    }
+
 }
