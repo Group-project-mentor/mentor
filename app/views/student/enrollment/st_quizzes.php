@@ -49,12 +49,9 @@
                 <div class="mid-title">
                     <?php
                     $ggid = $_SESSION['gid'] + 5;
-
-                    // add grade to path printing 
-                    if ($_SESSION['sid'] == 1)
-                        $ssid = 'Mathematics'; ?>
-                    <h1><?php echo "Grade " . $ggid . " - " . ucfirst($ssid) ?></h1>
-                    <h6>My Subjects / <?php echo ucfirst($_SESSION['sid']) ?> / quizzes</h6>
+ ?>
+                    <h1><?php echo "Grade " . $ggid . " - " . ucfirst($_SESSION['sname']) ?></h1>
+                    <h6>My Subjects / <?php echo ucfirst($_SESSION['sname']) ?> / quizzes</h6>
                 </div>
 
                 <!-- Grade choosing interface -->
@@ -83,7 +80,7 @@
                                             </div>
                                         </div>
                                         <div class="quiz-card-button-set">
-                                            <a class="quiz-card-btn" href="<?php echo BASEURL . 'st_quizzes/st_quizzes_intro/' . $row->id ?>">
+                                            <a class="quiz-card-btn" href="<?php echo BASEURL . 'st_quizzes/st_quizzes_intro/' . $row->id ?>" style="text-decoration: none;">
                                             <div class="back-btn">
                                                     View
                                                 </div>
