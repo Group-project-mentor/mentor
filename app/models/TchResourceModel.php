@@ -117,10 +117,30 @@ class TchResourceModel extends Model
         return array();
     }
 
+    //? Functions for find specific resource
+    public function getDocument($id){ //!done
+        $sql = "select teacher_document.id, teacher_document.name, private_resource.location, private_resource.type,teacher_class_resources.upload_teacher_id from teacher_document inner 
+        join teacher_class_resources on teacher_document.id = teacher_class_resources.rs_id inner join private_resource on private_resource.id = teacher_class_resources.rs_id where teacher_document.id = $id
+        and teacher_class_resources.class_id =".$_SESSION['cid'];
+
+        $result = $this->executeQuery($sql);
+
+        if($result->num_rows > 0){
+            return $result->fetch_row();
+        }
+        return array();
+    }
+
 //? Functions for update/edit resource
     public function updateVideo($id, $title, $lec, $link, $description){
         $sql = "update teacher_videos set teacher_videos.name = '$title', teacher_videos.lecturer = '$lec', teacher_videos.description = '$description', teacher_videos.link='$link' where teacher_videos.id = $id";
         return ($this->executeQuery($sql));
+    }
+
+    public function updateDocument($id, $title, $file){
+        $sql1 = "update private_resource set private_resource.location = '$file' where private_resource.id = $id";
+        $sql2 = "update teacher_document set teacher_document.name = '$title' where teacher_document.id = $id";
+        return ($this->executeQuery($sql1) && $this->executeQuery($sql2));
     }
 
     public function updateVideoUploaded($id, $title, $lecture, $description, $fileName=null){
@@ -135,6 +155,7 @@ class TchResourceModel extends Model
         }
     }
 
+//? Functions for delete resource
     public function deleteResource($id,$table){
         $res1 = $this->deleteData('teacher_class_resources',"rs_id = $id");
         $res2 = $this->deleteData($table, "id = $id");
@@ -143,6 +164,24 @@ class TchResourceModel extends Model
 //            return ($res1 && $res2 && $res3 && $this->deletePaper($id));
 //        }
         return ($res1 && $res2 && $res3);
+    }
+
+    public function deleteDoc($id){
+        $res1 = $this->deleteData('teacher_class_resources',"rs_id = $id");
+        $res2 = $this->deleteData('document', "id = $id");
+        $res3 = $this->deleteData('private_resource',"id = $id");
+        return ($res1 && $res2 && $res3);
+    }
+
+    //? get the saved filename of a specific resource
+    public function getLocation($id){
+        $sql = "select private_resource.location from private_resource where id = $id";
+        $result = $this->executeQuery($sql);
+        if($result->num_rows > 0){
+            $row = $result->fetch_row();
+            return $row[0];
+        }
+        return null;
     }
 
 

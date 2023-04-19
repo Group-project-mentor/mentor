@@ -87,10 +87,10 @@
                                                 </div>
                                                 <div class='rc-quiz-row-btns'>
 
-                                                    <button  >
+                                                    <button onclick='delConfirm(<?php echo $row->id ?>,4)' >
                                                         <img src='<?php echo BASEURL ?>assets/icons/icon_delete.png' alt=''>
                                                     </button>
-                                                    <a href='#'>
+                                                    <a href='<?php echo BASEURL?>TEdit/document/<?php echo $row->id ?>'>
                                                         <img src='<?php echo BASEURL ?>assets/icons/icon_edit.png' alt=''>
                                                     </a>
 

@@ -80,6 +80,17 @@ function updateFile($tempLocation, $newFileName, $oldFileName, $type, $folder1=n
     }
 }
 
+function TupdateFile($tempLocation, $newFileName, $oldFileName, $type, $folder1=null): bool
+{
+    $flag = TsaveFile($tempLocation, $newFileName, $type, $folder1);
+    $fileDest = TfindFileDest($type, $folder1,  $oldFileName);
+    if(file_exists($fileDest)){
+        return ($flag and unlink($fileDest));
+    }else{
+        return false;
+    }
+}
+
 function findFileDest($type, $folder1, $folder2, $fileName): string
 {
     $fileDest = "public_resources/$type/";
@@ -137,6 +148,27 @@ function deleteFile($fileName, $type, $folder1=null, $folder2=null):bool
         return false;
     }
 }
+
+function TdeleteFile($fileName, $type, $folder1=null):bool
+{
+    $fileDest = "private_resources/$type/";
+    if($folder1!=null)
+    {
+        $fileDest = $fileDest.$folder1."/".$fileName;
+        if(!file_exists($fileDest)){
+            return unlink($fileDest);
+        }else{
+            return false;
+        }
+    }
+    $fileDest = $fileDest.$fileName;
+    if(!file_exists($fileDest)){
+        return unlink($fileDest);
+    }else{
+        return false;
+    }
+}
+
 
 function getMonthName($monthNumber) {
     return date("F", mktime(0, 0, 0, $monthNumber, 1));
