@@ -36,17 +36,10 @@ class St_other extends Controller
     public function preview($type, $id){
         switch ($type) {
             case 'others':
-                $file = $this->model("st_public_model")->getResource($id,$_SESSION['gid'],$_SESSION['sid'],'pdf');
+                $file = $this->model("st_public_model")->getResource($id,$_SESSION['gid'],$_SESSION['sid'],'other');
                 $this->view("student/enrollment/st_other_do",$file);
                 break;
         }
-    }
-
-    public function st_other_down($id)
-    {
-        $file = $this->model("st_public_model")->getResource($id,$_SESSION['gid'],$_SESSION['sid'],'pdf');
-        $this->view('student/enrollment/st_other_down',$file);
-
     }
 
     private function hasLogged()

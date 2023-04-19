@@ -48,21 +48,6 @@ class St_documents extends Controller
         }
     }
     
-
-    public function st_documents_down( $id)
-    {
-        $file = $this->model("resourceModel")->getResource($id,$_SESSION['gid'],$_SESSION['sid'],'pdf');
-        $this->view('student/enrollment/st_documents_down',$file);
-
-    }
-
-    // private function hasLogged()
-    // {
-    //     if (!isset($_SESSION['user'])) {
-    //         header("location:" . BASEURL . "login");
-    //     }
-
-    // }
 }
 
 ?>

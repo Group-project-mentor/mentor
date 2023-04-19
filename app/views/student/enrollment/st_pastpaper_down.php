@@ -28,7 +28,7 @@
                     </a>
                 </div>
                 <div class="top-bar-btns">
-                    <a href="<?php echo BASEURL.'st_pastpapers/index/'.$_SESSION['gid'].'/'.$_SESSION['sid']?>">
+                    <a href="<?php echo BASEURL . 'st_pastpapers/index/' . $_SESSION['gid'] . '/' . $_SESSION['sid'] ?>">
                         <div class="back-btn">Back</div>
                     </a>
                     <a href="#">
@@ -42,31 +42,29 @@
 
             <!-- Middle part for whole content -->
             <section class="mid-content">
-            <?php
-            if(empty($data)){
-                echo "<center style='color:red;font-size:x-large;'>No file ! </center>";
-                // header("location:".BASEURL."rcResources/documents/".$_SESSION['gid']."/".$_SESSION['sid']);
-            }
-            else{
-            ?>
-                <div class="mid-title">
-                    <?php 
-                    $ssid = 'sinhala'; ?>
-                    <h6>My Subjects / <?php echo ucfirst($ssid) ?> / Past Papers / <?php echo $_SESSION['gid'] ?></h6>
-                </div>
+                <?php
+                if (empty($data)) {
+                    echo "<center style='color:red;font-size:x-large;'>No file ! </center>";
+                    // header("location:".BASEURL."rcResources/documents/".$_SESSION['gid']."/".$_SESSION['sid']);
+                } else {
+                ?>
+                    <div class="mid-title">
+                        <?php
+                        $ssid = 'sinhala'; ?>
+                        <h6>My Subjects / <?php echo ucfirst($ssid) ?> / Past Papers / <?php echo $_SESSION['gid'] ?></h6>
+                    </div>
                     <br>
                     <hr style=" height:5px ; background-color:green ;">
                     <br>
                     <div>
-                        <p>Click on the image to download Past Paper : </p>
+                        <p>Click on the image to Go to the Related Quizzes </p>
                         <p>
                             <br>
-                            <a href="<?php echo BASEURL?>public_resources/pastpapers/<?php echo $_SESSION['gid']."/".$_SESSION['sid']."/".$data->location ?>" download>
-                                <img src="<?php echo BASEURL ?>assets/icons/External_Download_by_Streamlinehq.png" alt="downloard">
-                            </a>
+                            <img src="<?php echo BASEURL ?>assets/icons/icon_quiz_black.png" alt="downloard">
+
                         </p>
                     </div>
-                    <?php } ?>
+                <?php } ?>
             </section>
         </div>
     </section>

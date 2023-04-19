@@ -80,11 +80,10 @@
                                                 <img src="<?php echo BASEURL ?>assets/icons/icon_eye.png" alt="">
                                             </a>
 
-                                            <!-- download option -->
-                                            <!-- <?php $loc = 'paper' ;?> 
+                                            <!-- <?php $loc = 'paper' ;?>  -->
                                             <a href="<?php echo BASEURL. 'st_pastpapers/st_pastpaper_down/' . $row->id ?>">
-                                                <img src="<?php echo BASEURL ?>assets/icons/External_Download_by_Streamlinehq.png" alt="">
-                                            </a> -->
+                                                <img src="<?php echo BASEURL ?>assets/icons/icon_quiz_black.png" alt="">
+                                            </a>
                                         </div>
                                     </div>
                                 <?php   }
