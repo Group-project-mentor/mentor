@@ -18,7 +18,7 @@ class St_private_mode extends Controller
 
     public function st_classroom_inside()
     {
-        $this->view('student/privatemode/st_classroom_inside');
+        $this->view('student/enrollment_private/st_classroom_inside');
     }
 
     public function st_myclasses()

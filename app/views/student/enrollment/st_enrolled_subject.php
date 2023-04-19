@@ -58,7 +58,7 @@
                                     <img src="<?php echo BASEURL  ?>assets/patterns/1.png" alt="" />
                                     <a href="#"><label><?php echo $row->name ?></label></a>
                                     <label>Grade <?php echo $_SESSION['gid'] + 5 ?></label>
-                                    <a href="<?php echo BASEURL . 'St_public_resources/index_videos/' . $_SESSION['gid'] . '/' . $row->id . '/' .$row->name  ?>"><label>View</label></a>
+                                    <a href="<?php echo BASEURL . 'St_public_resources/index/' . $_SESSION['gid'] . '/' . $row->id . '/' .$row->name  ?>"><label>View</label></a>
                                 </div>
                             <?php } ?>
                         </div>
