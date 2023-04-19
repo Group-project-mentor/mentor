@@ -4,3 +4,4 @@ public_resources
 private_resources
 *.txt
 .idea
+.devcontainer
