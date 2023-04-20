@@ -197,6 +197,8 @@ class RcResources extends Controller
 
     public function organized($grade_id, $subject_id)
     {
+        // $getOrganized = $this->model("resourceModel")->getOrganizedResources($grade_id, $subject_id);
+        // $topicIDs = $this->model("resourceModel")->getTopicIDs($grade_id, $subject_id);
         $this->view('resourceCtr/resources/organized');
     }
 

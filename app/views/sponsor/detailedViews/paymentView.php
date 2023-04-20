@@ -28,9 +28,7 @@
                 <a href="#">
                     <a class="back-btn" href="<?php echo BASEURL ?>sponsor/transactionHistory">Back</a>
                 </a>
-                <a href="#">
-                    <img src="<?php echo BASEURL?>public/assets/Teacher/icons/icon_notify.png" alt="notify">
-                </a>
+                <?php include_once "components/notificationIcon.php" ?>
                 <a href="<?php echo  BASEURL ?>sponsor/profile">
                     <img src="<?php echo BASEURL?>public/assets/Teacher/icons/icon_profile_black.png" alt="profile">
                 </a>

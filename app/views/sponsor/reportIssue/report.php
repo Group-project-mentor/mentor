@@ -107,9 +107,7 @@
             <div class="search-bar">
             </div>
             <div class="top-bar-btns">
-                <a href="#">
-                    <img src="<?php echo BASEURL ?>assets/icons/icon_notify.png" alt="notify">
-                </a>
+                <?php include_once "components/notificationIcon.php" ?>
                 <a href="<?php echo BASEURL . 'sponsor/profile' ?>">
                     <img src="<?php echo BASEURL ?>assets/icons/icon_profile_black.png" alt="profile">
                 </a>

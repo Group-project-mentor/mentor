@@ -5,13 +5,14 @@ class St_private_resources_model extends Model{
         parent::__construct();
     }
 
-    public function findVideos($gid, $sid)
+    public function findVideos($class_name, $grade)
     {
-        $q ="select video.id, video.name, video.lecturer from video, public_resource
-        WHERE video.id = public_resource.id and public_resource.id
-        IN (SELECT rsrc_id FROM `rs_subject_grade` WHERE subject_id=? and grade_id=?) and public_resource.type = 'video';";
+        $q ="SELECT private_class.class_name , private_class.grade , teacher_videos.name , teacher_videos.lecturer ,teacher_videos.description 
+        FROM (( teacher_videos INNER JOIN teacher_class_resources ON teacher_videos.id = teacher_class_resources.rs_id ) 
+        INNER JOIN private_class ON teacher_class_resources.class_id = private_class.class_id ) 
+        WHERE private_class.class_name = ? AND private_class.grade = ?;";
         $stmt = $this->prepare($q);
-        $stmt->bind_param('ii',$sid,$gid);
+        $stmt->bind_param('si',$class_name,$grade);
 
         $result = $this->fetchObjs($stmt);
         return $result;

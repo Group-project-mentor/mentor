@@ -28,7 +28,7 @@
                     </a>
                 </div>
                 <div class="top-bar-btns">
-                <a href="<?php echo BASEURL . 'st_private_resources/index/'  ?>">
+                    <a href="<?php echo BASEURL . 'st_private_resources/index/' . $_SESSION['class_name'] . '/' . $_SESSION['grade']  ?>">
                         <div class="back-btn">Back</div>
                     </a>
                     <a href="#">
@@ -46,35 +46,35 @@
                 <!-- Title and sub title of middle part -->
                 <div class="mid-title">
                     <?php
-                    $ggid = $_SESSION['gid'] + 5;
- ?>
-                    <h1><?php echo "Grade " . $ggid . " - " . ucfirst($_SESSION['sname']) ?></h1>
-                    <h6>My Subjects / <?php echo ucfirst($_SESSION['sname']) ?> / Videos</h6>
+                    $ggid = $_SESSION['grade'] + 5;
+                    ?>
+                    <h2><?php echo "Class Name : " . ucfirst($_SESSION['class_name']) . "<br>" . "Grade " . $ggid ?></h2>
                 </div>
 
 
                 <!-- subject cards -->
                 <div class="container-box">
-                    
+
                     <div class="subject-card-set">
-                            <?php
-                            // var_dump($data[0]);
-                            if (!empty($data[0])) {
-                                $count = 1;
-                                foreach ($data[0] as $row) { ?>
-                                    <div class='subject-card' style="align-items: center;">
-                                        <img src='<?php echo BASEURL . "assets/patterns/" . $count++ .'.png'?>' alt='' />
-                                        <label><?php echo $row->name ?></label>
-                                        <a href='<?php echo BASEURL."st_public_resources/preview/video/".$row->id ?>'  >
-                                            <label>Play</label>
-                                            <!-- <img style="width: 25px" src='<?php echo BASEURL?>assets/icons/icon_eye_white.png' alt='' /> -->
-                                        </a>
-                                    </div>
-                             <?php   }
-                            } else {
-                                echo "No data";
-                            }
-                            ?>
+                        <?php
+                        // var_dump($data[0]);
+                        if (!empty($data[0])) {
+                            $count = 1;
+                            foreach ($data[0] as $row) { ?>
+                                <div class='subject-card' style="align-items: center;">
+                                    <img src='<?php echo BASEURL . "assets/patterns/" . $count++ . '.png' ?>' alt='' />
+                                    <label><?php echo $row->name ?></label>
+                                    <label><?php echo $row->lecture ?></label>
+                                    <a href='<?php echo BASEURL . "st_public_resources/preview/video/" . $row->id ?>'>
+                                        <label>Play</label>
+                                        <!-- <img style="width: 25px" src='<?php echo BASEURL ?>assets/icons/icon_eye_white.png' alt='' /> -->
+                                    </a>
+                                </div>
+                        <?php   }
+                        } else {
+                            echo "No data";
+                        }
+                        ?>
                     </div>
                 </div>
         </div>

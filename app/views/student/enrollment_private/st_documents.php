@@ -29,7 +29,7 @@
                     </a>
                 </div>
                 <div class="top-bar-btns">
-                    <a href="<?php echo BASEURL . 'st_private_resources/index/'  ?>">
+                    <a href="<?php echo BASEURL . 'st_private_resources/index/' . $_SESSION['class_name'] . '/' . $_SESSION['grade']  ?>">
                         <div class="back-btn">Back</div>
                     </a>
                     <a href="#">
@@ -47,62 +47,61 @@
                 <!-- Title and sub title of middle part -->
                 <div class="mid-title">
                     <?php
-                    $ggid = $_SESSION['gid'] + 5;
- ?>
-                    <h1><?php echo "Grade " . $ggid . " - " . ucfirst($_SESSION['sname']) ?></h1>
-                    <h6>My Subjects / <?php echo ucfirst($_SESSION['sname']) ?> / Documents</h6>
+                    $ggid = $_SESSION['grade'] + 5;
+                    ?>
+                    <h2><?php echo "Class Name : " . ucfirst($_SESSION['class_name']) . "<br>" . "Grade " . $ggid ?></h2>
                 </div>
 
-                    <!-- Grade choosing interface -->
-                    <div class="container-box">
+                <!-- Grade choosing interface -->
+                <div class="container-box">
 
-                        <?php
-                        if (!empty($data[0])) { ?>
-                            <div class="rc-resource-table">
-                                <div class="rc-pp-row rc-pp-row-head">
-                                    <div class="rc-resource-col">PDF Name</div>
-                                    <div class="rc-resource-col"> </div>
-                                    <div class="rc-resource-col"> </div>
-                                    <div></div>
-                                </div>
-                                <?php foreach ($data[0] as $row) { ?>
-                                    <div class='rc-pp-row'>
-                                        <!-- <?php var_dump($row); ?> -->
-                                        <div class='rc-resource-col' style="display: flex;align-items: center;justify-content: flex-start;">
-
-                                            <div>
-                                                <?php echo $row->name ?>
-                                            </div>
-                                        </div>
-                                        <div class="rc-resource-col"></div>
-                                        <div class="rc-resource-col"></div>
-                                        <div class="rc-quiz-row-btns">
-                                            <a href="<?php echo BASEURL . 'st_public_resources/preview/document/' . $row->id ?>">
-                                                <img src="<?php echo BASEURL ?>assets/icons/icon_eye.png" alt="">
-                                            </a>
-                                        </div>
-                                    </div>
-                                <?php   }
-                            } else { ?>
-                                <h2 class="rc-no-data-msg" style="text-align: center;">No Data to Display</h2>
-                            <?php } ?>
+                    <?php
+                    if (!empty($data[0])) { ?>
+                        <div class="rc-resource-table">
+                            <div class="rc-pp-row rc-pp-row-head">
+                                <div class="rc-resource-col">PDF Name</div>
+                                <div class="rc-resource-col"> </div>
+                                <div class="rc-resource-col"> </div>
+                                <div></div>
                             </div>
-                            <?php if (count($data) > 25) { ?>
-                                <div class="pagination-set">
-                                    <div class="pagination-set-left">
-                                        <b>25</b> Results
+                            <?php foreach ($data[0] as $row) { ?>
+                                <div class='rc-pp-row'>
+                                    <!-- <?php var_dump($row); ?> -->
+                                    <div class='rc-resource-col' style="display: flex;align-items: center;justify-content: flex-start;">
+
+                                        <div>
+                                            <?php echo $row->name ?>
+                                        </div>
                                     </div>
-                                    <div class="pagination-set-right">
-                                        <button>
-                                            < </button>
-                                                <div class="pagination-numbers">
-                                                    1 of 10
-                                                </div>
-                                                <button> > </button>
+                                    <div class="rc-resource-col"></div>
+                                    <div class="rc-resource-col"></div>
+                                    <div class="rc-quiz-row-btns">
+                                        <a href="<?php echo BASEURL . 'st_public_resources/preview/document/' . $row->id ?>">
+                                            <img src="<?php echo BASEURL ?>assets/icons/icon_eye.png" alt="">
+                                        </a>
                                     </div>
                                 </div>
-                            <?php } ?>
-                    </div>
+                            <?php   }
+                        } else { ?>
+                            <h2 class="rc-no-data-msg" style="text-align: center;">No Data to Display</h2>
+                        <?php } ?>
+                        </div>
+                        <?php if (count($data) > 25) { ?>
+                            <div class="pagination-set">
+                                <div class="pagination-set-left">
+                                    <b>25</b> Results
+                                </div>
+                                <div class="pagination-set-right">
+                                    <button>
+                                        < </button>
+                                            <div class="pagination-numbers">
+                                                1 of 10
+                                            </div>
+                                            <button> > </button>
+                                </div>
+                            </div>
+                        <?php } ?>
+                </div>
             </section>
 </body>
 
