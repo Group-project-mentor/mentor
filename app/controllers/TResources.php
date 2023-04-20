@@ -42,6 +42,14 @@ public function __construct()
         $this->view('Teacher/resources/video', array($result, $pageData));
     }
 
+    public function quizzes($cid)
+    {
+        $this->getClass($cid);
+        $_SESSION["cid"] = $cid;
+        $result = $this->model("TchResourceModel")->findQuizzes($cid);
+        $this->view('Teacher/resources/quizzes', array($result));
+    }
+
     public function documents($cid, $page = 1)
     {
         $limit = paginationRowLimit;
@@ -72,6 +80,22 @@ public function __construct()
             header("location:" . BASEURL . "TResources/others/" . $cid );
         }
         $this->view('Teacher/resources/others', array($result, $pageData));
+    }
+
+    public function pastpapers($cid,$page = 1)
+    {
+        $limit = paginationRowLimit;
+        $offset = ($page != 1) ? ($page - 1) * $limit : 0;
+        $this->getClass($cid);
+        $_SESSION["cid"] = $cid;
+        $rowCount = $this->model("TchResourceModel")->getResourceCount("pastpaper", $cid)->count;
+        $result = $this->model("TchResourceModel")->findPastpapers($cid, $offset, $limit);
+        $pageData = array($page, ceil($rowCount / $limit));
+        if ($page < 1 || ($page > $pageData[1] and $pageData[1] != 0)) {
+
+            header("location:" . BASEURL . "TResources/pastpapers/" . $cid);
+        }
+        $this->view('Teacher/resources/pastpapers', array($result, $pageData));
     }
 
     private function getClass($class_id)

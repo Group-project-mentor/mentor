@@ -1,4 +1,4 @@
-<//?php
+<?php
 if (!isset($_SESSION['navtog'])) {
     $_SESSION['navtog'] = true;
 }
@@ -40,15 +40,15 @@ if (!isset($_SESSION['navtog'])) {
                     <div class="nav-link-text">Resources</div>
                 </a>
                 <a class="nav-link"></a>
-                <a href="<?php echo BASEURL?>rcResources/videos/<?php echo "$cid"; ?>" class="nav-link">
+                <a href="<?php echo BASEURL?>TResources/videos/<?php echo "$cid"; ?>" class="nav-link">
                     <img class="" src="<?php echo BASEURL?>assets/icons/icon_video.png" alt="video">
                     <div class="nav-link-text">Video</div>
                 </a>
-                <a href="<?php echo BASEURL ?>rcResources/quizzes" class="nav-link">
+                <a href="<?php echo BASEURL ?>TResources/quizzes/<?php echo "$cid"; ?>" class="nav-link">
                     <img src="<?php echo BASEURL?>assets/icons/icon_quizzes.png" alt="quiz">
                     <div class="nav-link-text">Quizzes</div>
                 </a>
-                <a href="<?php echo BASEURL ?>rcResources/pastpapers" class="nav-link">
+                <a href="<?php echo BASEURL ?>TResources/pastpapers<?php echo "$cid"; ?>" class="nav-link">
                     <img src="<?php echo BASEURL?>assets/icons/icon_past_papers.png" alt="pp">
                     <div class="nav-link-text">Past papers</div>
                 </a>

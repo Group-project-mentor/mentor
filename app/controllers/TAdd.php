@@ -52,6 +52,11 @@ class TAdd extends Controller
         $this->view("Teacher/Tupload/Tupload_other", $data);
     }
 
+    public function pastpaper($message = null){
+        $data = array("$message", "pastpaper");
+        $this->view("Teacher/Tupload/Tupload_pastpaper");
+    }
+
     // these are for get upload data
 
     public function addVideo()
@@ -171,24 +176,69 @@ class TAdd extends Controller
                         header("location:" . BASEURL . "TResources/others/" .$_SESSION['cid']);
                     }else {
                         flashMessage("error");
-                        header("location:" . BASEURL . "rcAdd/other");
+                        header("location:" . BASEURL . "TAdd/other");
                      
                 } 
                 // }
             } else {
                     echo "Upload unsuccessful !";
                     flashMessage("error");
-                    header("location:" . BASEURL . "rcAdd/other");
+                    header("location:" . BASEURL . "TAdd/other");
                 }
             }else {
                 flashMessage("error");
-                header("location:" . BASEURL . "rcAdd/other");
+                header("location:" . BASEURL . "TAdd/other");
         } 
     } else {
             flashMessage("error");
-            header("location:" . BASEURL . "rcAdd/other");
+            header("location:" . BASEURL . "TAdd/other");
         }
 
     
 }
+
+public function addPastPaper(){ //!done
+        $maxFileSize = 50 * 1024 * 1024;
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            if (isset($_FILES["resource"]) && $_FILES["resource"]["error"] == 0) {
+                // $typeArray = array("pdf"=>"application/pdf");
+                $fileData = array(
+                    "name" => $_FILES["resource"]["name"],
+                    "type" => $_FILES["resource"]["type"],
+                    "size" => $_FILES["resource"]["size"]
+                );
+                $extention = pathinfo($fileData["name"], PATHINFO_EXTENSION);
+                // echo $extention=="pdf";
+                // if(!array_key_exists($extention, $typeArray)) header("location:" . BASEURL . "add/document/error");
+                if ($fileData["size"] > $maxFileSize) {
+                    flashMessage("error");
+                    header("location:" . BASEURL . "TAdd/pastpaper");
+                }
+                
+                $nameId = $this->getId();
+                // if(in_array($fileData['type'],$typeArray)){
+                $newFileName = uniqid() . $_POST["name"] . "." . $extention;
+                if (TsaveFile($_FILES["resource"]["tmp_name"],$newFileName,"pastpapers",$_SESSION['cid'])) {
+                    if ($this->model("TchResourceModel")->addPastPaper($nameId,$_SESSION['cid'], $_POST["name"], $_POST["year"], $_POST["part"], $_POST["question"], $newFileName, $extention,$_SESSION['id'])) {
+                        flashMessage("success");
+                        header("location:" . BASEURL . "TResources/pastpapers/" . "/".$_SESSION['cid']);
+                    } else {
+                        flashMessage("error");
+                        header("location:" . BASEURL . "TAdd/pastpaper");
+                    }
+                } else {
+                    echo "Upload unsuccessful !";
+                    flashMessage("error");
+                    header("location:" . BASEURL . "TAdd/pastpaper");
+                }
+                // }
+            } else {
+                flashMessage("error");
+                header("location:" . BASEURL . "TAdd/pastpaper");
+            }
+        } else {
+            flashMessage("error");
+            header("location:" . BASEURL . "TAdd/pastpaper");
+        }
+    }
 }

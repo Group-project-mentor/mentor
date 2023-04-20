@@ -17,6 +17,15 @@ class TchResourceModel extends Model
         return $this->fetchObjs($stmt);
     }
 
+    public function findQuizzes($cid)
+    {
+        $stmt = $this->prepare("SELECT teacher_quiz.id, teacher_quiz.name, teacher_quiz.marks ,teacher_class_resources.upload_teacher_id 
+                                        FROM teacher_quiz, private_resource,teacher_class_resources WHERE teacher_quiz.id = private_resource.id AND
+                                         private_resource.id=teacher_class_resources.rs_id AND teacher_class_resources.class_id=?");
+        $stmt->bind_param('i',$cid);
+        return $this->fetchObjs($stmt);
+    }
+
     public function findDocuments($cid, $offset, $limit)
     {
         $stmt = $this->prepare("SELECT teacher_document.id,teacher_document.name,teacher_class_resources.upload_teacher_id 
@@ -31,6 +40,15 @@ class TchResourceModel extends Model
         $stmt = $this->prepare("SELECT teacher_other.id, teacher_other.name, teacher_other.type,teacher_class_resources.upload_teacher_id 
                                         FROM teacher_other, private_resource,teacher_class_resources WHERE teacher_other.id = private_resource.id AND
                                          private_resource.id=teacher_class_resources.rs_id AND teacher_class_resources.class_id=? LIMIT ?,?");
+        $stmt->bind_param('iii',$cid,$offset,$limit);
+        return $this->fetchObjs($stmt);
+    }
+
+    public function findPastpapers($cid, $offset, $limit)
+    {
+        $stmt = $this->prepare("SELECT teacher_pastpaper.id,teacher_pastpaper.name, teacher_pastpaper.year, teacher_pastpaper.part,teacher_class_resources.upload_teacher_id 
+        FROM teacher_pastpaper, private_resource,teacher_class_resources WHERE teacher_pastpaper.id = private_resource.id AND
+         private_resource.id=teacher_class_resources.rs_id AND teacher_class_resources.class_id=? LIMIT ?,?");
         $stmt->bind_param('iii',$cid,$offset,$limit);
         return $this->fetchObjs($stmt);
     }
@@ -66,6 +84,19 @@ class TchResourceModel extends Model
         return ($this->executeQuery($sql1) && $this->executeQuery($sql2));
     }
     
+    public function addPastPaper($id, $cid, $name, $year, $part, $qid, $file, $ext,$tid){ //!done
+        if($qid != 0){
+            $stmt = $this->prepare("INSERT INTO teacher_pastpaper VALUES (?,?,?,?,?)");
+            $stmt->bind_param('iiisi' ,$id, $year, $part, $name, $qid);
+        }else{
+            $stmt = $this->prepare("INSERT INTO teacher_pastpaper VALUES (?,?,?,?,NULL)");
+            $stmt->bind_param('iiis',$id, $year, $part, $name);
+        }
+        return ( $this->addResource($id,  $cid, $file, 'paper',$tid)
+            and $this->executePrepared($stmt));
+
+    }
+    
     //? get the last resource id from table
     public function getLastId()
     {
@@ -92,12 +123,12 @@ class TchResourceModel extends Model
                                          private_resource.id=teacher_class_resources.rs_id AND teacher_class_resources.class_id=?");
                 break;
             case "quiz":
-                $stmt = $this->prepare("SELECT COUNT(quiz.id) AS count FROM quiz, public_resource,rs_subject_grade WHERE quiz.id = public_resource.id AND
-                                         public_resource.id=rs_subject_grade.rsrc_id AND rs_subject_grade.subject_id=? AND rs_subject_grade.grade_id=?");
+                $stmt = $this->prepare("SELECT COUNT(teacher_quiz.id) AS count FROM teacher_quiz, private_resource,teacher_class_resources WHERE teacher_quiz.id = private_resource.id AND
+                                         private_resource.id=teacher_class_resources.rs_id AND teacher_class_resources.class_id=?");
                 break;  
             case "pastpaper":
-                $stmt = $this->prepare("SELECT COUNT(pastpaper.id) AS count FROM pastpaper, public_resource,rs_subject_grade WHERE pastpaper.id = public_resource.id AND
-                                         public_resource.id=rs_subject_grade.rsrc_id AND rs_subject_grade.subject_id=? AND rs_subject_grade.grade_id=?");
+                $stmt = $this->prepare("SELECT COUNT(teacher_pastpaper.id) AS count FROM teacher_pastpaper, private_resource,teacher_class_resources WHERE teacher_pastpaper.id = private_resource.id AND
+                                         private_resource.id=teacher_class_resources.rs_id AND teacher_class_resources.class_id=?");
                 break;
             case "other":
                 $stmt = $this->prepare("SELECT COUNT(teacher_other.id) AS count FROM teacher_other, private_resource,teacher_class_resources WHERE teacher_other.id = private_resource.id AND
@@ -208,6 +239,15 @@ class TchResourceModel extends Model
         return ($res1 && $res2 && $res3);
     }
 
+    private function deleteQuiz($id){
+        $stmt1 = $this->prepare('DELETE FROM teacher_question WHERE quiz_id = ? ');
+        $stmt2 = $this->prepare('DELETE FROM teacher_answer WHERE teacher_answer.question_id IN 
+                    (SELECT id FROM teacher_question WHERE teacher_question.quiz_id = ?)');
+        $stmt1->bind_param('i',$id);
+        $stmt2->bind_param('i', $id);
+        return ($stmt1->execute() and $stmt2->execute());
+    }
+
     //? get the saved filename of a specific resource
     public function getLocation($id){
         $sql = "select private_resource.location from private_resource where id = $id";
@@ -218,6 +258,35 @@ class TchResourceModel extends Model
         }
         return null;
     }
+
+    public function getAllQuizIds($cid){ //!done
+        $stmt = $this->prepare("SELECT rs_id,teacher_quiz.name,teacher_class_resources.upload_teacher_id FROM teacher_class_resources, private_resource, teacher_quiz 
+                                     WHERE teacher_class_resources.class_id = ?  AND 
+                                           private_resource.type = 'quiz' AND teacher_class_resources.rs_id = private_resource.id AND 
+                                           private_resource.id = teacher_quiz.id");
+        $stmt->bind_param('ii',$gid, $sid);
+        return $this->fetchAll($stmt);
+    }
+
+    public function changeQuizId($ppid, $qid){
+        $stmt = $this->prepare("UPDATE teacher_pastpaper SET teacher_pastpaper.qid = ? WHERE teacher_pastpaper.id = ?;");
+        $stmt->bind_param('ii',$qid,$ppid);
+        return $this->executePrepared($stmt);
+    }
+
+    public function getSpecificQuiz($qid){
+        $stmt = $this->prepare("SELECT * FROM teacher_quiz WHERE id = ? ");
+        $stmt->bind_param('i',$qid);
+        return $this->fetchOneObj($stmt);
+    }
+
+    public function unlinkQuiz($ppid){
+        $stmt = $this->prepare("UPDATE teacher_pastpaper SET teacher_pastpaper.qid=NULL WHERE id = ? ");
+        $stmt->bind_param("i",$ppid);
+        return $this->executePrepared($stmt);
+    }
+
+
 
 
 }    
