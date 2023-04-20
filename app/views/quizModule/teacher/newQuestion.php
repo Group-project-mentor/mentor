@@ -46,7 +46,7 @@
             </div>
 
             <!-- Grade choosing interface -->
-            <form class="container-box" method="POST" action="<?php echo BASEURL."quiz/saveQuestion/".$data[0]?>" enctype="multipart/form-data">
+            <form class="container-box" method="POST" action="<?php echo BASEURL."TQuiz/saveQuestion/".$data[0]?>" enctype="multipart/form-data">
                 <div class="rc-resource-header">
                     <h1>TEST 1</h1>
                     <div class="rc-quiz-top-btns">

@@ -96,7 +96,7 @@ class TQuiz extends Controller
 
     public function addAnswers($quizId, $question, $msg = null)
     {
-        if ($this->model('TquizModel')->isQuizExists($quizId, $question) and  $this->model('quizModel')->validateQuiz($quizId, $_SESSION['cid'])) {
+        if ($this->model('TquizModel')->isQuizExists($quizId, $question) and  $this->model('TquizModel')->validateQuiz($quizId, $_SESSION['cid'])) {
             $questionData = $this->model('TquizModel')->getQuestionData($quizId, $question);
             $answersData = $this->model('TquizModel')->getAnswers($quizId, $questionData[0]);
 
