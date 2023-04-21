@@ -7,15 +7,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/x-icon" href="<?php echo BASEURL ?>assets/mentor.ico">
     <title>change image</title>
-    <link rel="stylesheet" href="<?php echo BASEURL; ?>public/stylesheets/rc_main.css">
-    <link rel="stylesheet" href="<?php echo BASEURL; ?>public/stylesheets/rc_profile.css">
+    <link rel="stylesheet" href="<?php echo BASEURL; ?>public/stylesheets/resourceCreator/rc_main.css">
+    <link rel="stylesheet" href="<?php echo BASEURL; ?>public/stylesheets/resourceCreator/rc_profile.css">
 </head>
 
 <body>
     <section class="page">
 
         <!-- Navigation panel -->
-        <nav class="nav-bar" id="nav-bar">
+        <?php include_once "components/navbars/t_nav_1.php"?>
 
         <!-- Right side container -->
         <div class="content-area">
@@ -25,13 +25,11 @@
                 <div class="search-bar">
                 </div>
                 <div class="top-bar-btns">
-                    <a href="<?php echo BASEURL ?>home">
+                    <a href="<?php echo BASEURL ?>Tprofile">
                         <div class="back-btn">Back</div>
                     </a>
-                    <a href="#">
-                        <img src="<?php echo BASEURL ?>assets/icons/icon_notify.png" alt="notify">
-                    </a>
-                    <a href="<?php echo BASEURL . 'rcProfile' ?>">
+                    <//?php include_once "components/notificationIcon.php" ?>
+                    <a href="<?php echo BASEURL . 'TProfile' ?>">
                         <img src="<?php echo BASEURL ?>assets/icons/icon_profile_black.png" alt="profile">
                     </a>
                 </div>
@@ -60,8 +58,6 @@
             </section>
 
         </div>
-    </section>
-    </div>
     </section>
 </body>
 
