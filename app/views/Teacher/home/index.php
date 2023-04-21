@@ -41,7 +41,7 @@
                     <img src="<?php echo BASEURL ?>public/assets/Teacher/icons/icon_premium.png" alt="cource">
                     <div class="nav-link-text">Buy Premium</div>
                 </a>
-                <a href="<?php echo BASEURL ?>TReportIssue/reportIssues" class="nav-link">
+                <a href="<?php echo BASEURL ?>TProfile/reportIssue" class="nav-link">
                     <img src="<?php echo BASEURL ?>public/assets/Teacher/icons/icon_report.png" alt="profile">
                     <div class="nav-link-text">Report Issue</div>
                 </a>
@@ -49,7 +49,7 @@
                     <img src="<?php echo BASEURL ?>public/assets/Teacher/icons/icon_billing.png" alt="report">
                     <div class="nav-link-text">Billing</div>
                 </a>
-                <a href="<?php echo BASEURL ?>TBmc/bmc1" class="nav-link">
+                <a href="<?php echo BASEURL ?>home/bmc" class="nav-link">
                     <img src="<?php echo BASEURL ?>public/assets/Teacher/icons/icon_bmc.png" alt="bmc">
                     <div class="nav-link-text">Buy me a coffee</div>
                 </a>
