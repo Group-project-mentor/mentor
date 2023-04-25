@@ -44,16 +44,12 @@
 
                 <!-- Title and sub title of middle part -->
                 <div class="mid-title">
-                    <h1>Subjects</h1>
-                    <h6>Hello </h6>
+                    <h2>Subjects to Enrolled</h2>
                 </div>
 
                 
                 <!-- subject cards -->
                 <div class="container-box">
-                    <div>
-                        <h2>Subjects Enrolled</h2>
-                    </div>
                     
                     </div>
                     <?php if(!empty($data[0])){?>
@@ -63,9 +59,10 @@
                             <?php foreach($data[0] as $row) {?>
                             <div class="subject-card">
                                 <img src="<?php echo BASEURL  ?>assets/patterns/2.png" alt="" />
-                                <a href="#"><label><?php echo $row->name ?></label></a>
+                                <label><?php echo $row->name ?></label>
                                 <label>Grade <?php echo $_SESSION['gid']+'5' ?></label>
-                                <button class="Enter-btn">Enroll</button>
+                                <!-- <button class="Enter-btn">Enroll</button> -->
+                                <a href="<?php echo BASEURL."st_courses/Enroll_records/".$_SESSION['gid']."/".$row->id ?>">Enroll</a>
                             </div>
                             <?php } ?>
                         </div>

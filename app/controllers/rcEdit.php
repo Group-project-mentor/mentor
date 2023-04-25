@@ -79,7 +79,7 @@ class RcEdit extends Controller
                 // if($fileData["size"] > $maxFileSize) die("Error: File size is larger than the allowed limit.");
                 if (in_array($fileData['type'], $typeArray)) {
                     // if(($fileData["name"]))
-                    $newFileName = uniqid() . $_POST['title'] . "." . $extention;
+                    $newFileName = uniqid() . sanitizeText($_POST['title']) . "." . $extention;
 //                    $fileDest = "public_resources/documents/" . $newFileName;
                     $oldFileName = $this->model("resourceModel")->getLocation($id);
 
@@ -88,7 +88,7 @@ class RcEdit extends Controller
 //                        move_uploaded_file($_FILES["resource"]["tmp_name"], $fileDest);
 //                        unlink("public_resources/documents/" . $oldFileName);
 
-                        if ($this->model("resourceModel")->updateDocument($id, $_POST["title"], $newFileName)) {
+                        if ($this->model("resourceModel")->updateDocument($id, sanitizeText($_POST["title"]), $newFileName)) {
                             flashMessage("success");
                         } else {
                             flashMessage("failed");
@@ -101,7 +101,7 @@ class RcEdit extends Controller
                 }
             } else {
                 $oldFileName = $this->model("resourceModel")->getLocation($id);
-                if ($this->model("resourceModel")->updateDocument($id, $_POST["title"], $oldFileName)) {
+                if ($this->model("resourceModel")->updateDocument($id, sanitizeText($_POST["title"]), $oldFileName)) {
                     flashMessage("success");
                 } else {
                     flashMessage("failed");
@@ -117,7 +117,7 @@ class RcEdit extends Controller
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             if($_POST['title'] != "" and $_POST['lec'] != "" and $_POST['link'] != ""){
                 if(!filter_var($_POST['link'],FILTER_VALIDATE_URL) === false){
-                    if($this->model("resourceModel")->updateVideo($id, $_POST['title'], $_POST['lec'], $_POST['link'], $_POST['descr'])){
+                    if($this->model("resourceModel")->updateVideo($id, sanitizeText($_POST['title']), sanitizeText($_POST['lec']), $_POST['link'], sanitizeText($_POST['descr']))){
                         flashMessage("success");
 //                        header("location:". BASEURL . "rcResources/videos/".$_SESSION['gid']."/".$_SESSION['sid']);
                     }else{
@@ -140,7 +140,7 @@ class RcEdit extends Controller
             if(!empty($_SESSION['temporary_file'])){
                 $oldFileName = $this->model("resourceModel")->getVideo($Id)[4];
 //                unlink("public_resources/videos/$fileName");
-                if ($this->model("resourceModel")->updateVideoUploaded($Id ,$_POST['title'], $_POST['lec'], $_POST['descr'],$_SESSION['temporary_file'])) {
+                if ($this->model("resourceModel")->updateVideoUploaded($Id ,sanitizeText($_POST['title']), sanitizeText($_POST['lec']), sanitizeText($_POST['descr']),$_SESSION['temporary_file'])) {
 //                    $new_path = "public_resources/videos/".$_SESSION['temporary_file'];
                     $temp_path = "public_resources/temp/".$_SESSION['temporary_file'];
                     if (updateFile($temp_path,$_SESSION['temporary_file'],$oldFileName,"videos",$_SESSION['gid'],$_SESSION['sid'])){
@@ -154,7 +154,7 @@ class RcEdit extends Controller
                     flashMessage( "DatabaseError");
                 }
             }else{
-                if ($this->model("resourceModel")->updateVideoUploaded($Id ,$_POST['title'], $_POST['lec'], $_POST['descr'])) {
+                if ($this->model("resourceModel")->updateVideoUploaded($Id ,sanitizeText($_POST['title']), sanitizeText($_POST['lec']), sanitizeText($_POST['descr']))) {
                     flashMessage( "success");
                 }else{
                     flashMessage( "SavingError");
@@ -204,7 +204,7 @@ class RcEdit extends Controller
                     header("location:" . BASEURL . "rcAdd/document/error");
                 }
                 // if(in_array($fileData['type'],$typeArray)){
-                $newFileName = uniqid() . $_POST['title'] . "." . $extension;
+                $newFileName = uniqid() . sanitizeText($_POST['title']) . "." . $extension;
 //                $fileDest = "public_resources/others/" . $newFileName;
                 $oldFileName = $this->model("resourceModel")->getLocation($id);
 
@@ -213,28 +213,23 @@ class RcEdit extends Controller
 //                    move_uploaded_file($_FILES["resource"]["tmp_name"], $fileDest);
 //                    unlink("public_resources/others/" . $oldFileName);
 
-                    if ($this->model("resourceModel")->updateOther($id, $_POST["title"], $newFileName, $extension)) {
+                    if ($this->model("resourceModel")->updateOther($id, sanitizeText($_POST["title"]), $newFileName, $extension)) {
                         flashMessage("success");
-//                        header("location:" . BASEURL . "rcEdit/other/$id/success");
                     } else {
                         flashMessage("failed");
-//                        header("location:" . BASEURL . "rcEdit/other/$id/failed");
                     }
                 } else {
                     echo "Upload unsuccessful !";
                     flashMessage("failed");
-//                    header("location:" . BASEURL . "rcEdit/other/$id/failed");
                 }
                 // }else{}
             } else {
                 $oldFileName = $this->model("resourceModel")->getLocation($id);
                 $extension = pathinfo($oldFileName, PATHINFO_EXTENSION);
-                if ($this->model("resourceModel")->updateOther($id, $_POST["title"], $oldFileName, $extension)) {
+                if ($this->model("resourceModel")->updateOther($id, sanitizeText($_POST["title"]), $oldFileName, $extension)) {
                     flashMessage("success");
-//                    header("location:" . BASEURL . "rcEdit/other/$id/success");
                 } else {
                     flashMessage("failed");
-//                    header("location:" . BASEURL . "rcEdit/other/$id/failed");
                 }
             }
         }

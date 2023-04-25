@@ -54,7 +54,7 @@ class RcAdd extends Controller
     {
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $Id = $this->getId();
-            if ($this->model("resourceModel")->addVideo($Id, $_SESSION['gid'], $_SESSION['sid'], $_POST['title'], $_POST['lec'], $_POST['link'], $_POST['descr'],$_SESSION['id'])) {
+            if ($this->model("resourceModel")->addVideo($Id, $_SESSION['gid'], $_SESSION['sid'], sanitizeText($_POST['title']), sanitizeText($_POST['lec']), $_POST['link'], sanitizeText($_POST['descr']), $_SESSION['id'])) {
                 flashMessage("success");
             } else {
                 flashMessage("error");
@@ -94,7 +94,7 @@ class RcAdd extends Controller
         if ($_SERVER['REQUEST_METHOD'] === 'POST'){
             if(!empty($_SESSION['temporary_file'])){
                 $Id = $this->getId();
-                if ($this->model("resourceModel")->addVideo($Id, $_SESSION['gid'], $_SESSION['sid'], $_POST['title'], $_POST['lec'], $_SESSION['temporary_file'], $_POST['descr'],$_SESSION['id'],'U')) {
+                if ($this->model("resourceModel")->addVideo($Id, $_SESSION['gid'], $_SESSION['sid'], sanitizeText($_POST['title']), sanitizeText($_POST['lec']), $_SESSION['temporary_file'], sanitizeText($_POST['descr']),$_SESSION['id'],'U')) {
                     $temp_path = "public_resources/temp/".$_SESSION['temporary_file'];
                     if (file_exists($temp_path)){
                         saveFile($temp_path,$_SESSION['temporary_file'],"videos",$_SESSION['gid'],$_SESSION['sid']);
@@ -132,7 +132,7 @@ class RcAdd extends Controller
                 if (in_array($fileData['type'], $typeArray)) {
                     $newFileName = uniqid() . $_POST["title"] . "." . $extention;
                     if (saveFile($_FILES["resource"]["tmp_name"],$newFileName,"documents",$_SESSION['gid'],$_SESSION['sid'])) {
-                        if ($this->model("resourceModel")->addDocument($nameId, $grade, $subject, $_POST["title"], $newFileName,$_SESSION['id'])) {
+                        if ($this->model("resourceModel")->addDocument($nameId, $grade, $subject, sanitizeText($_POST["title"]), $newFileName,$_SESSION['id'])) {
                             flashMessage("success");
                             header("location:" . BASEURL . "rcResources/documents/" . $_SESSION['gid'] . "/".$_SESSION['sid']);
                         } else {
@@ -175,7 +175,7 @@ class RcAdd extends Controller
                 // if(in_array($fileData['type'],$typeArray)){
                 $newFileName = uniqid() . $_POST["title"] . "." . $extention;
                 if (saveFile($_FILES["resource"]["tmp_name"],$newFileName,"others",$_SESSION['gid'],$_SESSION['sid'])) {
-                    if ($this->model("resourceModel")->addOther($nameId, $grade, $subject, $_POST["title"], $newFileName, $extention,$_SESSION['id'])) {
+                    if ($this->model("resourceModel")->addOther($nameId, $grade, $subject, sanitizeText($_POST["title"]), $newFileName, $extention,$_SESSION['id'])) {
                         flashMessage("success");
                         header("location:" . BASEURL . "rcResources/others/" . $_SESSION['gid'] . "/".$_SESSION['sid']);
                     } else {
@@ -216,17 +216,48 @@ class RcAdd extends Controller
                     header("location:" . BASEURL . "rcAdd/pastpaper");
                 }
 
+                $ansStatus = false;
+                $newAnsName = '';
+                //? answer data
+                if(isset($_FILES["answer"]) && $_FILES["answer"]["error"] == 0){
+                    $answerData = array(
+                        "name" => $_FILES["resource"]["name"],
+                        "type" => $_FILES["resource"]["type"],
+                        "size" => $_FILES["resource"]["size"]
+                    );
+                    $extentionAns = pathinfo($answerData["name"], PATHINFO_EXTENSION);
+                    if ($answerData["size"] > $maxFileSize) {
+                        flashMessage("error");
+                        header("location:" . BASEURL . "rcAdd/pastpaper");
+                    }
+                    $newAnsName = uniqid().$_POST['name']."." . $extention;
+                    if(saveFile($_FILES["answer"]["tmp_name"], $newAnsName, "answers", $_SESSION['gid'], $_SESSION['sid'])){
+                        $ansStatus = true;
+                    }
+                }
+
                 $nameId = $this->getId();
                 // if(in_array($fileData['type'],$typeArray)){
                 $newFileName = uniqid() . $_POST["name"] . "." . $extention;
                 if (saveFile($_FILES["resource"]["tmp_name"],$newFileName,"pastpapers",$_SESSION['gid'],$_SESSION['sid'])) {
-                    if ($this->model("resourceModel")->addPastPaper($nameId, $_SESSION['gid'], $_SESSION['sid'], $_POST["name"], $_POST["year"], $_POST["part"], $_POST["question"], $newFileName, $extention,$_SESSION['id'])) {
-                        flashMessage("success");
-                        header("location:" . BASEURL . "rcResources/pastpapers/" . $_SESSION['gid'] . "/".$_SESSION['sid']);
-                    } else {
-                        flashMessage("error");
-                        header("location:" . BASEURL . "rcAdd/pastpaper");
+                    if($ansStatus){
+                        if ($this->model("resourceModel")->addPastPaperWithAns($nameId, $_SESSION['gid'], $_SESSION['sid'],sanitizeText($_POST["name"]), sanitizeText($_POST["year"]), sanitizeText($_POST["part"]), sanitizeText($_POST["question"]), $newFileName ,$_SESSION['id'], $newAnsName)) {
+                            flashMessage("success");
+                            header("location:" . BASEURL . "rcResources/pastpapers/" . $_SESSION['gid'] . "/".$_SESSION['sid']);
+                        } else {
+                            flashMessage("error");
+                            header("location:" . BASEURL . "rcAdd/pastpaper");
+                        }
+                    }else{
+                        if ($this->model("resourceModel")->addPastPaper($nameId, $_SESSION['gid'], $_SESSION['sid'], sanitizeText($_POST["name"]), sanitizeText($_POST["year"]), sanitizeText($_POST["part"]), sanitizeText($_POST["question"]), $newFileName,$_SESSION['id'])) {
+                            flashMessage("success");
+                            header("location:" . BASEURL . "rcResources/pastpapers/" . $_SESSION['gid'] . "/".$_SESSION['sid']);
+                        } else {
+                            flashMessage("error");
+                            header("location:" . BASEURL . "rcAdd/pastpaper");
+                        }
                     }
+
                 } else {
                     echo "Upload unsuccessful !";
                     flashMessage("error");

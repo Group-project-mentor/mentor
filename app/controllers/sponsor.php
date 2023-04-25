@@ -26,7 +26,7 @@ class Sponsor extends Controller
         if($page < 1 || $page > $pageData[1]){
             header("location:".BASEURL."sponsor/allsStudents");
         }
-        $this->view('sponsor/student_progress/student_report',array($res,$pageData)); 
+        $this->view('sponsor/student_progress/student_report',array($res,$pageData));
     }
 
     public function getStudents($search){
@@ -61,22 +61,25 @@ class Sponsor extends Controller
 //    ? Used transaction in this
     public function connectSponsorStudent($st_id){
         $this->model($this->table1)->transaction();
-        try{
+         try{
             if ($this->model($this->table1)->isStudentStatus($st_id,"AP")){
                 if($this->model($this->table1)->connectSponsor($st_id,$_SESSION['id'])){
                     flashMessage("Student Added!");
+                    $displayName = $this->model($this->table1)->getMyData($_SESSION['id'])->dispName;
+                    $notifyMsg = "Congratulations! Sponsor $displayName added you for funding !";
+                    $this->notify($st_id,$notifyMsg,"SP");
                 }else{
                     flashMessage("unsuccessful");
                 }
-                header("location:".BASEURL."sponsor/new_student");
             }else{
                 flashMessage("unsuccessful");
-                header("location:".BASEURL."sponsor/new_student");
             }
             $this->model($this->table1)->commit();
-        }catch (Exception $e){
-            $this->model($this->table1)->rollback();
-        }
+
+            header("location:".BASEURL."sponsor/new_student");
+         }catch (Exception $e){
+             $this->model($this->table1)->rollback();
+         }
 
     }
 
@@ -222,6 +225,7 @@ class Sponsor extends Controller
         }
         // header('Content-Type:application/json');
         echo json_encode($response);
+        $this->notify($_SESSION['id'], "Your issue has been reported successfully. We will fix the issue soon.","report");
     }
 
     public function transactionHistory($page = 1){

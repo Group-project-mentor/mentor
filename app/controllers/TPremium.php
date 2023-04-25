@@ -12,10 +12,6 @@ class TPremium extends Controller{
        
     }
 
-
-    public function premiumCheck(){
-        $this->view('Teacher/Premium/premiumCheckout');
-    } 
     
     public function premiumPlan(){
         $this->view('Teacher/Premium/premiumPlan');

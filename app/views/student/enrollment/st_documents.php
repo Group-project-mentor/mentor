@@ -29,7 +29,7 @@
                     </a>
                 </div>
                 <div class="top-bar-btns">
-                    <a href="<?php echo BASEURL . 'st_video/index/' . $_SESSION['gid'] . '/' . $_SESSION['sid'] ?>">
+                    <a href="<?php echo BASEURL . 'st_public_resources/index/' . $_SESSION['gid'] . '/' . $_SESSION['sid'] ?>">
                         <div class="back-btn">Back</div>
                     </a>
                     <a href="#">
@@ -46,9 +46,12 @@
 
                 <!-- Title and sub title of middle part -->
                 <div class="mid-title">
-                    <h1><?php echo "Grade " . $_SESSION['gname'] . " - " . ucfirst($_SESSION['sname']) ?></h1>
-                    <h6>My Subjects / <?php echo ucfirst($_SESSION['sname']) ?> / past papers</h6>
-
+                    <?php
+                    $ggid = $_SESSION['gid'] + 5;
+ ?>
+                    <h1><?php echo "Grade " . $ggid . " - " . ucfirst($_SESSION['sname']) ?></h1>
+                    <h6>My Subjects / <?php echo ucfirst($_SESSION['sname']) ?> / Documents</h6>
+                </div>
 
                     <!-- Grade choosing interface -->
                     <div class="container-box">
@@ -74,11 +77,8 @@
                                         <div class="rc-resource-col"></div>
                                         <div class="rc-resource-col"></div>
                                         <div class="rc-quiz-row-btns">
-                                            <a href="<?php echo BASEURL . 'st_documents/preview/document/' . $row->id ?>">
-                                                <img src="<?php echo BASEURL ?>assets/icons/Interface Arrows Button Down Double by Streamlinehq.png" alt="">
-                                            </a>
-                                            <a href="<?php echo BASEURL . 'st_documents/st_documents_down/' . $row->id ?>">
-                                                <img src="<?php echo BASEURL ?>assets/icons/External_Download_by_Streamlinehq.png" alt="">
+                                            <a href="<?php echo BASEURL . 'st_public_resources/preview/document/' . $row->id ?>">
+                                                <img src="<?php echo BASEURL ?>assets/icons/icon_eye.png" alt="">
                                             </a>
                                         </div>
                                     </div>

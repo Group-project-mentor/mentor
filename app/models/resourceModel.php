@@ -116,22 +116,33 @@ class ResourceModel extends Model
         return ($this->addResource($id, $grade, $subject, $file,'other',$creator) && $this->executeQuery($sql));
     }
 
-    public function addPastPaper($id, $gid, $sid, $name, $year, $part, $qid, $file, $ext,$creator){ //!done
+    public function addPastPaper($id, $gid, $sid, $name, $year, $part, $qid, $file,$creator){ //!done
         if($qid != 0){
-            $stmt = $this->prepare("INSERT INTO pastpaper VALUES (?,?,?,?,?)");
+            $stmt = $this->prepare("INSERT INTO pastpaper(id, year, part, name, qid)  VALUES (?,?,?,?,?)");
             $stmt->bind_param('iiisi' ,$id, $year, $part, $name, $qid);
         }else{
-            $stmt = $this->prepare("INSERT INTO pastpaper VALUES (?,?,?,?,NULL)");
+            $stmt = $this->prepare("INSERT INTO pastpaper(id, year, part, name, qid)  VALUES (?,?,?,?,NULL)");
             $stmt->bind_param('iiis',$id, $year, $part, $name);
         }
         return ( $this->addResource($id, $gid, $sid, $file, 'paper',$creator)
             and $this->executePrepared($stmt));
+    }
 
+    public function addPastPaperWithAns($id, $gid, $sid, $name, $year, $part, $qid, $file, $creator, $ans){
+        if($qid != 0){
+            $stmt = $this->prepare("INSERT INTO pastpaper(id, year, part, name, qid, answer) VALUES (?,?,?,?,?,?)");
+            $stmt->bind_param('iiisis' ,$id, $year, $part, $name, $qid, $ans);
+        }else{
+            $stmt = $this->prepare("INSERT INTO pastpaper(id, year, part, name, qid, answer) VALUES (?,?,?,?,NULL,?)");
+            $stmt->bind_param('iiiss',$id, $year, $part, $name,$ans);
+        }
+        return ( $this->addResource($id, $gid, $sid, $file, 'paper',$creator)
+            and $this->executePrepared($stmt));
     }
 
     private function addResource($id, $grade, $subject, $file, $type, $creator) //!done
     {
-        $sql1 = "insert into public_resource values ($id ,'$type', '$file',NULL,NULL)";
+        $sql1 = "insert into public_resource(id, type, location, approved, approved_by) values ($id ,'$type', '$file',NULL,NULL)";
         if(empty($file)){
             $sql1 = "insert into public_resource(id, type,approved) values ($id ,'$type',NULL)";
         }
@@ -238,7 +249,7 @@ class ResourceModel extends Model
     }
 
     public function getPastPaper($id, $gid, $sid){ //!done
-        $sql = "select pastpaper.id, pastpaper.name, pastpaper.year, pastpaper.part, pastpaper.qid, public_resource.type, public_resource.location,rs_subject_grade.creator_id 
+        $sql = "select pastpaper.id, pastpaper.name, pastpaper.year, pastpaper.part, pastpaper.qid, pastpaper.answer, public_resource.type, public_resource.location,rs_subject_grade.creator_id 
                     from pastpaper inner join rs_subject_grade on pastpaper.id = rs_subject_grade.rsrc_id 
                     inner join public_resource on public_resource.id = rs_subject_grade.rsrc_id 
                     where pastpaper.id = ? and rs_subject_grade.subject_id = ?
@@ -400,6 +411,39 @@ class ResourceModel extends Model
                                          AND (other.name LIKE ? OR other.type LIKE ?)");
         $searchText = "%$searchText%";
         $stmt->bind_param('iiss',$subject,$grade,$searchText,$searchText);
+        return $this->fetchObjs($stmt);
+    }
+
+    // The ordered resources
+
+    public function getNotOrganizedResources($gid, $sid){
+        $stmt = $this->prepare("SELECT public_resource.id, public_resource.type FROM public_resource,rs_subject_grade 
+                                        WHERE public_resource.id=rs_subject_grade.rsrc_id AND rs_subject_grade.grade_id=? 
+                                        AND rs_subject_grade.subject_id=? AND public_resource.topic_id IS NULL 
+                                        AND public_resource.approved='Y'");
+        $stmt->bind_param('ii',$gid,$sid);
+        return $this->fetchObjs($stmt);
+    }
+
+    public function getOrganizedResources($gid, $sid){
+        $stmt = $this->prepare("SELECT public_resource.id, public_resource.type, public_resource.topic_id, topic.name, topic.decription, topic.ord 
+                                        FROM public_resource,rs_subject_grade,topic 
+                                        WHERE public_resource.id=rs_subject_grade.rsrc_id AND public_resource.topic_id = topic.id
+                                        AND rs_subject_grade.grade_id=? 
+                                        AND rs_subject_grade.subject_id=? 
+                                        AND public_resource.topic_id IS NOT NULL");
+        $stmt->bind_param('ii',$gid,$sid);
+        return $this->fetchObjs($stmt);
+    }
+
+    public function getTopicIDs($gid, $sid){
+        $stmt = $this->prepare("SELECT public_resource.topic_id, topic.name 
+                                        FROM public_resource,rs_subject_grade,topic 
+                                        WHERE public_resource.id=rs_subject_grade.rsrc_id AND public_resource.topic_id = topic.id
+                                        AND rs_subject_grade.grade_id=? 
+                                        AND rs_subject_grade.subject_id=? 
+                                        AND public_resource.topic_id IS NOT NULL GROUP BY public_resource.topic_id");
+        $stmt->bind_param('ii',$gid,$sid);
         return $this->fetchObjs($stmt);
     }
 

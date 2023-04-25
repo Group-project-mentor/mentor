@@ -29,7 +29,7 @@
                     </a>
                 </div>
                 <div class="top-bar-btns">
-                    <a href="<?php echo BASEURL . 'st_quizzes/st_quizzes_intro/85' ?>">
+                    <a href="<?php echo BASEURL . 'st_public_resources/st_quizzes_intro/'. $_SESSION['gid'] . '/' .$_SESSION['qname'] ?>">
                         <div class="back-btn">Back</div>
                     </a>
                     <a href="#">
@@ -46,7 +46,8 @@
 
                 <!-- Title and sub title of middle part -->
                 <div class="mid-title">
-                    <h2>C79 - Science</h2>
+                    <h2><?php echo ucfirst($_SESSION['sname']) ?>
+                    - <?php echo ucfirst($_SESSION['qname']) ?></h2>
                     <br>
                     <hr style=" height:5px ; background-color:green ;">
                     <br>
@@ -57,9 +58,12 @@
                         <hr />
                         <div class="quiz-preview-question">
                             <img src="" alt="" id="question-img">
-                            <p id="question-name"></p>
+                            <p id="question-name">jo</p>
+                            hello
                         </div>
-                        <div class="quiz-preview-answer-set" id="answer-set"></div>
+                        <div class="quiz-preview-answer-set" id="answer-set">
+                        helllllo
+                        </div>
                         <hr />
                         <div class="quiz-preview-bottom-set">
                             <button class="quiz-preview-bottom-button" id="back-btn">

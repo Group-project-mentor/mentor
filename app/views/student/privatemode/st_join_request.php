@@ -8,9 +8,8 @@
     <link rel="icon" type="image/x-icon" href="<?php echo BASEURL ?>assets/mentor.ico">
     <title>Student private mode</title>
     <link rel="icon" type="image/x-icon" href="<?php echo BASEURL ?>assets/mentor.ico">
-    <link rel="stylesheet" href="<?php echo BASEURL; ?>public/stylesheets/Teacher/style.css">
-    <link rel="stylesheet" href="<?php echo BASEURL; ?>public/stylesheets/Teacher/card_set.css">
-    <link rel="stylesheet" href="<?php echo BASEURL; ?>public/stylesheets/Teacher/t_resources.css">
+    <link rel="stylesheet" href="<?php echo BASEURL ?>stylesheets/Student/style.css">
+    <link rel="stylesheet" href="<?php echo BASEURL ?>stylesheets/Student/st_resources.css">
     <style>
         body {
             background-image: url('../public/assets/clips/HyperspaceMaintenanceDay');
@@ -68,27 +67,31 @@
             </section>
             <section>
                 <?php if (!empty($data[0])) { ?>
-                    <div class="rc-pp-row">
+                    <div class="rc-resource-table">
+
                         <?php foreach ($data[0] as $row) { ?>
-                            <div class="subject-card-set">
+                            <div class="rc-pp-row">
+
                                 <img src="<?php echo BASEURL; ?>assets/icons/pdf_resources.png" alt="delete">
                                 <div class="rc-resource-col">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?php echo $row->class_name ?></div>
-                                <div class="rc-resource-col"><?php echo $row->grade ?></div>
+                                <div class="rc-resource-col">Grade <?php echo $row->grade+5 ?></div>
                                 <div class="rc-resource-col"></div>
                                 <div class="rc-quiz-row-btns">
                                     <button>
                                         <img src="<?php echo BASEURL; ?>assets/icons/icon_edit.png" alt="edit">
                                     </button>
                                 </div>
-                            <?php } ?>
                             </div>
-
-                        <?php } else {
-                        echo "no data!";
-                    } ?>
+                        <?php } ?>
                     </div>
-            </section>
+
+                <?php } else {
+                    echo "no data!";
+                } ?>
+
         </div>
+    </section>
+    </div>
     </section>
 </body>
 <script src="<?php echo BASEURL ?>public/javascripts/st_auth_script.js"></script>

@@ -7,8 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/x-icon" href="<?php echo BASEURL ?>assets/mentor.ico">
     <title>Enrolled Subjects</title>
-    <link rel="stylesheet" href="<?php echo BASEURL?>stylesheets/Student/style.css">
-    <link rel="stylesheet" href="<?php echo BASEURL?>stylesheets/Student/st_card_set.css">
+    <link rel="stylesheet" href="<?php echo BASEURL ?>stylesheets/Student/style.css">
+    <link rel="stylesheet" href="<?php echo BASEURL ?>stylesheets/Student/st_card_set.css">
 </head>
 
 <body>
@@ -24,18 +24,18 @@
                 <div class="search-bar">
                     <input type="text" name="" id="" placeholder="Search...">
                     <a href="">
-                        <img src="<?php echo BASEURL?>assets/icons/icon_search.png" alt="">
+                        <img src="<?php echo BASEURL ?>assets/icons/icon_search.png" alt="">
                     </a>
                 </div>
                 <div class="top-bar-btns">
                     <a href="#">
-                        <a class="back-btn" href="<?php echo BASEURL.'st_courses/index/'.$_SESSION['gid'] ?>">Back</a>
+                        <a class="back-btn" href="<?php echo BASEURL . 'st_courses/index/' . $_SESSION['gid'] ?>">Back</a>
                     </a>
                     <a href="#">
-                        <img src="<?php echo BASEURL?>assets/icons/icon_notify.png" alt="notify">
+                        <img src="<?php echo BASEURL ?>assets/icons/icon_notify.png" alt="notify">
                     </a>
-                    <a href="<?php echo BASEURL?>st_profile">
-                        <img src="<?php echo BASEURL?>assets/icons/icon_profile_black.png" alt="profile">
+                    <a href="<?php echo BASEURL ?>st_profile">
+                        <img src="<?php echo BASEURL ?>assets/icons/icon_profile_black.png" alt="profile">
                     </a>
                 </div>
             </section>
@@ -45,30 +45,28 @@
 
                 <!-- Title and sub title of middle part -->
                 <div class="mid-title">
-                    <h1>Subjects</h1>
-                    <h6>Hello </h6>
+                    <h2>Enrolled Subjects</h2>
                 </div>
 
-                
+
                 <!-- subject cards -->
                 <div class="container-box">
-                    <div>
-                        <h2>Enrolled Subjects</h2>
-                    </div>
-                    <?php if(!empty($data[0])){?>
+                    <?php if (!empty($data[0])) { ?>
                         <div class="subject-card-set">
-                            <?php foreach($data[0] as $row) {?>
-                            <div class="subject-card">
-                                <img src="<?php echo BASEURL  ?>assets/patterns/1.png" alt="" />
-                                <a href="#"><label><?php echo $row->name ?></label></a>
-                            </div>
+                            <?php foreach ($data[0] as $row) { ?>
+                                <div class="subject-card">
+                                    <img src="<?php echo BASEURL  ?>assets/patterns/1.png" alt="" />
+                                    <a href="#"><label><?php echo $row->name ?></label></a>
+                                    <label>Grade <?php echo $_SESSION['gid'] + 5 ?></label>
+                                    <a href="<?php echo BASEURL . 'St_public_resources/index/' . $_SESSION['gid'] . '/' . $row->id . '/' .$row->name  ?>"><label>View</label></a>
+                                </div>
                             <?php } ?>
                         </div>
-                        <?php }
-                        else { ?>
+                    <?php } else { ?>
                         <br><br>
                         <h2 style="color:green ; text-align:center ;padding: 5px 10px;">
-                            <?php echo "No Courses Enrolled yet !";} ?>
+                        <?php echo "No Courses Enrolled yet !";
+                    } ?>
                         </h2>
                         <br><br>
 
@@ -77,6 +75,6 @@
         </div>
     </section>
 </body>
-    <script src="<?php echo BASEURL ?>javascripts/st_navbar_1.js"></script>
+<script src="<?php echo BASEURL ?>javascripts/st_navbar_1.js"></script>
 
 </html>

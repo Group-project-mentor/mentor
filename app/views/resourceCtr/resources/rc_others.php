@@ -42,9 +42,7 @@
                     <a href="<?php echo BASEURL . 'rcSubjects' ?>">
                         <div class="back-btn">Back</div>
                     </a>
-                    <a href="#">
-                        <img src="<?php echo BASEURL ?>assets/icons/icon_notify.png" alt="notify">
-                    </a>
+                    <?php include_once "components/notificationIcon.php" ?>
                     <a href="<?php echo BASEURL . 'rcProfile' ?>">
                         <img src="<?php echo BASEURL ?>assets/icons/icon_profile_black.png" alt="profile">
                     </a>
