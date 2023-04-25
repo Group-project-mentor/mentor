@@ -71,6 +71,7 @@
                                         <div>
                                             <?php echo $row->name ?>
                                         </div>
+                                
                                     </div>
                                     <div class="rc-resource-col"></div>
                                     <div class="rc-resource-col"></div>

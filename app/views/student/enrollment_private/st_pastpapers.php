@@ -70,10 +70,14 @@
                                         <div>
                                             <?php echo $row->name ?>
                                         </div>
+                                        <div>
+                                            <?php echo $row->year ?>
+                                        </div>
+                                        <div>
+                                            <?php echo $row->part ?>
+                                        </div>
                                     </div>
-                                    <div class="rc-resource-col"><?php echo $row->year ?></div>
-                                    <div class="rc-resource-col"><?php echo $row->part ?></div>
-                                    <div class="rc-quiz-row-btns">
+                                    
 
                                         <a href="<?php echo BASEURL . 'st_public_resources/preview/paper/' . $row->id ?>">
                                             <img src="<?php echo BASEURL ?>assets/icons/icon_eye.png" alt="">
