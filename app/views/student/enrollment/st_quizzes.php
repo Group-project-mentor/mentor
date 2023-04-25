@@ -80,7 +80,7 @@
                                             </div>
                                         </div>
                                         <div class="quiz-card-button-set">
-                                            <a class="quiz-card-btn" href="<?php echo BASEURL . 'st_public_resources/st_quizzes_intro/' . $row->id ?>" style="text-decoration: none;">
+                                            <a class="quiz-card-btn" href="<?php echo BASEURL . 'st_public_resources/st_quizzes_intro/' . $row->id . '/' .$row->name ?>" style="text-decoration: none;">
                                             <div class="back-btn">
                                                     View
                                                 </div>
