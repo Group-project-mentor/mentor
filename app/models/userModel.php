@@ -12,22 +12,23 @@ class UserModel extends Model
 
     public function userLogin($email)
     {
-        $result = $this->getData($this->table, "email = '$email'");
-        return $result;
+        $stmt = $this->prepare("SELECT * FROM user WHERE email = ?");
+        $stmt->bind_param("s",$email);
+        return $this->fetchOneObj($stmt);
     }
 
-    public function registrationStudent($email, $name, $hash, $age = null, $grade = null)
+    public function registrationStudent($email, $name, $hash, $salt, $age = null, $grade = null)
     {
-        $query = "INSERT INTO user(email,name,password,type) VALUES (?,?,?,'st')";
+        $query = "INSERT INTO user(email,name,password,type,salt) VALUES (?,?,?,'st',?)";
         $stmt = $this->prepare($query);
-        $stmt -> bind_param('sss',$email,$name,$hash);
+        $stmt -> bind_param('ssss',$email,$name,$hash,$salt);
         return $stmt->execute();
     }
 
-    public function registrationTeacher($email, $name, $hash)
+    public function registrationTeacher($email, $name, $hash, $salt)
     {
-        $stmt = $this->prepare("INSERT INTO user(email,name,password,type) VALUES (?,?,?,'tch')");
-        $stmt -> bind_param('sss',$email, $name, $hash);
+        $stmt = $this->prepare("INSERT INTO user(email,name,password,type,salt) VALUES (?,?,?,'tch',?)");
+        $stmt -> bind_param('ssss',$email, $name, $hash, $salt);
         return $stmt->execute();
     }
 

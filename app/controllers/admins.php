@@ -321,7 +321,7 @@ class admins extends Controller {
 
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
-            $id = $this
+            // $id = $this
            
         }
 

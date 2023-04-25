@@ -65,25 +65,11 @@
                 <!--                </div>-->
             </div>
 
-            <div class="resource-tab-main">
-                <div class="resource-tab-pane">
-                    <div class="tp-tab active">
-                        Paper
-                    </div>
-                    <div class="tp-tab active">
-                        Answers
-                    </div>
-                </div>
-            </div>
-            <hr style="border: 1px solid rgba(128,128,128,0.06);width: 50%;margin: auto;"/>
-
-
             <!-- ? This is the upload file changing section of past paper-->
-            <section class="tab-container" style="display: flex;justify-content: center;">
                     <div class="rc-upload-box">
                         <form action="<?php echo BASEURL.'rcAdd/addPastPaper/'?>" method="POST" enctype="multipart/form-data" class="rc-upload-form">
                             <div class="rc-upload-home-title">
-                                Edit Past Paper
+                                Upload Past Paper
                             </div>
                             <div class="rc-form-group">
                                 <label>Name </label>
@@ -114,18 +100,21 @@
                                 <p id="fileName" style="text-align:right;"></p>
                                 <h5 id="fileSize" style="text-align:right;"></h5>
                             </div>
+                            <div class="rc-form-group">
+                                <label>Answers</label>
+                                <div>
+                                    <input id="inputBtnAns" type="file" name="answer">
+                                    <h3>Choose answer sheet</h3>
+                                </div>
+                                <p id="fileNameAns" style="text-align:right;"></p>
+                                <h5 id="fileSizeAns" style="text-align:right;"></h5>
+                            </div>
                             <div class="rc-upload-button">
                                 <button type="submit" name="submit">Update</button>
                             </div>
 
                         </form>
                     </div>
-            </section>
-
-            <section class="tab-container" style="display: flex;justify-content: center;">
-            </section>
-
-
     </div>
     <div class="warning-pop-up">
 
@@ -142,35 +131,23 @@
 
 
     let inputBtn = document.getElementById('inputBtn');
-    let tab = document.getElementsByClassName('tp-tab');
-    let tabCont = document.getElementsByClassName('tab-container');
+    let inputBtnAns = document.getElementById('inputBtnAns');
 
     document.getElementById('fileName').textContent = (document.getElementById('fileName').textContent) ? refactorFileName(document.getElementById('fileName').textContent) : 'no files selected';
     document.getElementById('fileSize').textContent = (document.getElementById('fileName').textContent) ? converter(document.getElementById('fileName').textContent) : ' ';
+
+    document.getElementById('fileNameAns').textContent = (document.getElementById('fileNameAns').textContent) ? refactorFileName(document.getElementById('fileNameAns').textContent) : 'no files selected';
+    document.getElementById('fileSizeAns').textContent = (document.getElementById('fileNameAns').textContent) ? converter(document.getElementById('fileNameAns').textContent) : ' ';
 
     inputBtn.addEventListener('change',()=>{
         document.getElementById('fileName').textContent = (inputBtn.files[0].name) ? refactorFileName(inputBtn.files[0].name) : 'no files selected';
         document.getElementById('fileSize').textContent = (inputBtn.files[0].size) ? converter(inputBtn.files[0].size) : ' ';
     });
 
-    // ? Tab - containers handler
-    for (let j = 1; j < tabCont.length; j++) {
-        tabCont[j].style.display = 'none';
-        tab[j].classList.remove('active');
-    }
-
-    for (let i = 0; i < tab.length; i++){
-        tab[i].onclick = () => {
-            for (let j = 0; j < tabCont.length; j++) {
-                if (i!==j) {
-                    tabCont[j].style.display = 'none';
-                    tab[j].classList.remove('active');
-                }
-            }
-            tabCont[i].style.display = 'flex';
-            tab[i].classList.add('active');
-        }
-    }
+    inputBtnAns.addEventListener('change',()=>{
+        document.getElementById('fileNameAns').textContent = (inputBtnAns.files[0].name) ? refactorFileName(inputBtnAns.files[0].name) : 'no files selected';
+        document.getElementById('fileSizeAns').textContent = (inputBtnAns.files[0].size) ? converter(inputBtnAns.files[0].size) : ' ';
+    });
 
     // ? display the quiz data in linked part
     const getQuizData = (qid) => {

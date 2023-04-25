@@ -100,9 +100,11 @@ class RcProfile extends Controller
                 $this->model("userModel")->updateMobile($_POST['mobile'], $_SESSION['id']);
                 header("location:" . BASEURL . 'rcProfile/index/success');
             } else {
+                flashMessage("failed");
                 header("location:" . BASEURL . 'rcProfile/change/mobile/failed');
             }
         } else {
+            flashMessage("failed");
             header("location:" . BASEURL . 'rcProfile/change/mobile/failed');
         }
     }
@@ -115,20 +117,23 @@ class RcProfile extends Controller
                 if (!empty($result) && password_verify($_POST['cpasswd'], $result[2])) {
                     $hash = password_hash($_POST['npasswd'], PASSWORD_BCRYPT, ["cost" => 10]);
                     if ($this->model("userModel")->changePassword($hash, $_SESSION['user'])) {
+                        flashMessage("success");
                         header("location:" . BASEURL . 'rcProfile/index/success');
                     } else {
+                        flashMessage("failed");
                         header("location:" . BASEURL . 'rcProfile/change/password/failed');
                     }
                 } else {
+                    flashMessage("wrongPass");
                     header("location:" . BASEURL . 'rcProfile/change/password/wrongPass');
                 }
             } else {
+                flashMessage("failed");
                 header("location:" . BASEURL . 'rcProfile/change/password/failed');
-                //! todo
             }
         } else {
+            flashMessage("failed");
             header("location:" . BASEURL . 'rcProfile/change/password/failed');
-            //! todo
         }
     }
 

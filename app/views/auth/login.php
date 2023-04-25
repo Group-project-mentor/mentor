@@ -33,7 +33,7 @@
               <input type="password" placeholder="Password" id="passwd" name="passwd" />
             </div>
             <?php if ($data == 1) {?>
-            <small style="color: red;text-align:right;">Password is wrong !</small>
+              <small style="color: red;text-align:right;">Password is wrong !</small>
             <?php }?>
 
             <!-- <input type="submit" value="Login" class="btn solid" /> -->
