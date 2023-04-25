@@ -289,6 +289,29 @@
                     </div>
                 </div>
             </div>
+
+            <div class="ad_section5">
+                <div class="bgbox">
+                    <div class="addgradesub">
+                        <div class="title">
+                            <h1>Add New Grade or Subject</h1>
+                        </div>
+                        <div class="btn-sec5">
+                            <div class="btn-5">
+                                <a href="<?php echo BASEURL ?>admins/addgrades">
+                                        <p style="font-size: larger;">Add Grade</p>
+                                </a>
+                            </div>
+                            <div class="btn-5">
+                                <a href="<?php echo BASEURL ?>admins/addsubject">
+                                        <p style="font-size: larger;">Add Subject</p>
+                                </a>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
     </div>
