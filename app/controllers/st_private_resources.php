@@ -53,8 +53,8 @@ class St_private_resources extends Controller
         // $this->getNames($grade, $subject);
         $_SESSION["class_name"] = $class_name;
         $_SESSION["grade"] = $grade;
-        // $result = $this->model("St_private_resources_model")->findQuizzes($grade, $subject);
-        $this->view('student/enrollment_private/st_quizzes', array($class_name, $grade));
+        $result = $this->model("St_private_resources_model")->findQuizzes($class_name,$grade);
+        $this->view('student/enrollment_private/st_quizzes', array($result,$class_name, $grade));
     }
 
     public function st_quizzes_do($id)

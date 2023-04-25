@@ -22,8 +22,8 @@ class St_private_resources_model extends Model{
     public function findQuizzes($class_name, $grade)
     {
         // echo $class_name;
-        $q ="SELECT private_class.class_name , private_class.grade , teacher_videos.name , teacher_videos.lecturer ,teacher_videos.description 
-        FROM (( teacher_videos INNER JOIN teacher_class_resources ON teacher_videos.id = teacher_class_resources.rs_id ) 
+        $q ="SELECT private_class.class_name , private_class.grade , teacher_quizzes.name , teacher_quizzes.total_marks ,teacher_quizzes.no_of_questions 
+        FROM (( teacher_quizzes INNER JOIN teacher_class_resources ON teacher_quizzes.id = teacher_class_resources.rs_id ) 
         INNER JOIN private_class ON teacher_class_resources.class_id = private_class.class_id ) 
         WHERE private_class.class_name = ? AND private_class.grade = ? ";
         $stmt = $this->prepare($q);
