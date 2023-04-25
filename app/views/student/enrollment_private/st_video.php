@@ -64,7 +64,7 @@
                                 <div class='subject-card' style="align-items: center;">
                                     <img src='<?php echo BASEURL . "assets/patterns/" . $count++ . '.png' ?>' alt='' />
                                     <label><?php echo $row->name ?></label>
-                                    <label><?php echo $row->lecture ?></label>
+                                    <label><?php echo $row->lecturer ?></label>
                                     <a href='<?php echo BASEURL . "st_public_resources/preview/video/" . $row->id ?>'>
                                         <label>Play</label>
                                         <!-- <img style="width: 25px" src='<?php echo BASEURL ?>assets/icons/icon_eye_white.png' alt='' /> -->
