@@ -66,12 +66,12 @@
                             </div>
                             <?php foreach ($data[0] as $row) { ?>
                                 <div class='rc-pp-row'>
-                                    <!-- <?php var_dump($row); ?> -->
                                     <div class='rc-resource-col' style="display: flex;align-items: center;justify-content: flex-start;">
 
                                         <div>
                                             <?php echo $row->name ?>
                                         </div>
+                                
                                     </div>
                                     <div class="rc-resource-col"></div>
                                     <div class="rc-resource-col"></div>

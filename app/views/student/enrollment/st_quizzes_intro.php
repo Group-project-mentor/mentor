@@ -73,7 +73,6 @@
                                 To do that, you will need to learn about networking in React Native.
                                 echo $id;
                             </p>
-                            <!-- <?php echo $data[0] ?> -->
                             <div class="quiz-preview-bottom-set" style="justify-content: flex-end;">
                                 <a class="quiz-preview-bottom-button" href="<?php echo BASEURL . 'st_public_resources/st_quizzes_do/'.$data[0] ?>">
                                     Start

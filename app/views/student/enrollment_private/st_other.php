@@ -56,7 +56,7 @@
                 <div class="container-box">
                     <?php
                     $types = ['pdf', 'png', 'jpg', 'bmp', 'js', 'txt'];
-                    if (!empty($data)) { ?>
+                    if (!empty($data[0])) { ?>
                         <div class="rc-resource-table">
                             <div class="rc-pp-row rc-pp-row-head">
                                 <div class="rc-resource-col">Resource Name</div>
@@ -65,14 +65,16 @@
                             </div>
                             <?php foreach ($data[0] as $row) { ?>
                                 <div class='rc-pp-row'>
-                                    <!-- <?php var_dump($row); ?> -->
                                     <div class='rc-resource-col' style="display: flex;align-items: center;justify-content: flex-start;">
-
                                         <div>
                                             <?php echo $row->name ?>
                                         </div>
                                     </div>
-                                    <div class="rc-resource-col"></div>
+                                    <div class="rc-resource-col">
+                                        <div>
+                                            <?php echo $row->type ?>
+                                        </div>
+                                    </div>
                                     <div class="rc-resource-col"></div>
                                     <div class="rc-quiz-row-btns">
                                         <a href="<?php echo BASEURL . 'st_public_resources/preview/others/' . $row->id ?>">

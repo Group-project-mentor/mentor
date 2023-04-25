@@ -26,7 +26,7 @@
                 </div>
                 <div class="top-bar-btns">
                     <?php include_once "components/notificationIcon.php" ?>
-                    <a href="<?php echo BASEURL . 'rcProfile' ?>">
+                    <a href="<?php echo BASEURL . 'TProfile' ?>">
                         <img src="assets/icons/icon_profile_black.png" alt="profile">
                     </a>
                 </div>

@@ -20,7 +20,7 @@ class Notification extends Controller{
                 $this->view('sponsor/notifications/main',array($data));
                 break;
             case "tch":
-                $this->view('Teacher/notifications/main',array($data));
+                $this->view('Teacher/notification/main',array($data));
                 break;
             case "st":
                 break;
