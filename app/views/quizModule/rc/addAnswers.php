@@ -33,9 +33,7 @@ if($data[3]=="success"){
                 <a href="<?php echo BASEURL."quiz/questions/".$data[0]?>">
                     <div class="back-btn">Back</div>
                 </a>
-                <a href="#">
-                    <img src="<?php echo BASEURL?>public/assets/icons/icon_notify.png" alt="notify">
-                </a>
+                <?php include_once "components/notificationIcon.php" ?>
                 <a href="#">
                     <img src="<?php echo BASEURL?>public/assets/icons/icon_profile_black.png" alt="profile">
                 </a>
