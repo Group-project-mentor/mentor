@@ -209,6 +209,20 @@ function TtempFileRemover(){
     }
 }
 
+function sanitizeText($text){
+    $text = trim($text);
+    $text = stripslashes($text);
+    return htmlspecialchars($text);
+}
+
+function isNumber($v, $replace = 0){
+    if(is_int($v)){
+        return $v;
+    }else{
+        return $replace;
+    }
+}
+
 
 tempFileRemover();
 TtempFileRemover();

@@ -91,7 +91,7 @@ class St_private_resources extends Controller
         if (!isset($_SESSION['user'])) {
             header("location:" . BASEURL . "login");
         }
-        // $this->getNames($grade, $subject);
+        //$this->getNames($grade, $subject);
         $_SESSION["class_name"] = $class_name;
         $_SESSION["grade"] = $grade;
         $result = $this->model("St_private_resources_model")->findVideos($class_name, $grade);
@@ -100,7 +100,7 @@ class St_private_resources extends Controller
 
     public function index_video_play()
     {
-        $this->view('student/enrollment/st_video_play');
+        $this->view('student/enrollment_private/st_video_play');
     }
 
     private function getNames($gid, $sid)

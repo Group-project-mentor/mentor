@@ -53,16 +53,20 @@ class St_public_resources extends Controller
         $_SESSION["gid"] = $grade;
         $_SESSION["sid"] = $subject;
         $result = $this->model("st_public_resources_model")->findQuizzes($grade, $subject);
+        $_SESSION["quiz"] = $result;
         $this->view('student/enrollment/st_quizzes', array($result));
     }
 
     public function st_quizzes_do($id)
     {
-        $this->view("student/enrollment/st_quizzes_do", array($id));
+        $sid = $_SESSION["sid"];
+        $result = $this->model("st_public_resources_model")->findQuizzes($id,$sid);
+        $this->view("student/enrollment/st_quizzes_do", array($result,$id));
     }
 
-    public function st_quizzes_intro($id)
+    public function st_quizzes_intro($id,$qname)
     {
+        $_SESSION['qname'] = $qname;
         $this->view("student/enrollment/st_quizzes_intro", array($id));
     }
 

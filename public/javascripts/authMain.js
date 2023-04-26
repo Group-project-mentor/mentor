@@ -60,7 +60,6 @@ signUpTeacher.addEventListener('submit',(e)=>{
             document.getElementById("tRegAlert").textContent = "Fill All Data";
             makeError("Please Fill All Data !");
         }
-        // console.log(data.message);
     }).catch(error => {
         console.log(error);
     });
