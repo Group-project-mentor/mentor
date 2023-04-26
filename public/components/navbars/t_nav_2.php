@@ -25,8 +25,8 @@
 </div> -->
 
 <?php 
-    $gid = $_SESSION["gid"];
-    $sid = $_SESSION["sid"]; 
+    $gid = $_SESSION["cid"];
+   
 ?>
             <!-- Navigation buttons -->
             <div class="nav-links">
@@ -50,9 +50,9 @@
                     <img class="active" src="<?php echo BASEURL?>public/assets/Teacher/icons/generate_report.png" alt="home">
                     <div class="nav-link-text">Generate Reports</div>
                 </a>
-                <a href="<?php echo BASEURL ?>TResources/forum" class="nav-link">
+                <a href="<?php echo BASEURL ?>joinRequests/getRequests/<?php echo "$cid"; ?>" class="nav-link">
                     <img class="active" src="<?php echo BASEURL?>public/assets/Teacher/icons/forum.png" alt="home">
-                    <div class="nav-link-text">Create Forum</div>
+                    <div class="nav-link-text">Join Requests</div>
                 </a>
             </div>
 
