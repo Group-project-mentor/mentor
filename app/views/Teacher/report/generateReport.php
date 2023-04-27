@@ -95,12 +95,20 @@
                 </div>
 
                 <div class="class section">
-                    <form>
+                    <form action="<?php echo BASEURL; ?>TReport/ReportRequest/<?php echo "$cid"; ?>" method="POST">
                       <label for="class_name"></label>
                       <input type="text" id="student_id" name="student_id" placeholder="Student ID..">
-                    
+                      <br>
+                        <h3>Report Category</h3>
+                        <label for="report_category"></label>
+                        <select id="report_category" name="report_category">
+                            <option value="1">Analyse last 5 quizzes</option>
+                            <option value="2">Analyse last 10 quizzes</option>
+                            <option value="3">Analyse last 15 quizzes</option>
+                            <option value="4">Analyse last 20 quizzes</option>
+                        </select>
+                        <input type="submit" value="Add">
                       <!--<input type="submit" value="Next">-->
-                      <a href="<?php echo BASEURL?>TReport/generateReportOne" style="text-decoration:none"><div class="mid-back-btn">Next</div></a>
                     </form>
                   </div>
 
