@@ -100,7 +100,7 @@
                       <input type="text" id="student_id" name="student_id" placeholder="Student ID..">
                     
                       <!--<input type="submit" value="Next">-->
-                      <a href="<?php echo BASEURL?>TReport/generateReportOne" style="text-decoration:none"><div class="mid-back-btn">Next</div></a>
+                      <a href="<?php echo BASEURL . 'TReport/generate/' .$_SESSION["cid"]?>" style="text-decoration:none"><div class="mid-back-btn">Next</div></a>
                     </form>
                   </div>
 

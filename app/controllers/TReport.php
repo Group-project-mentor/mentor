@@ -15,9 +15,20 @@ class TReport extends Controller{
         $this->view('Teacher/report/generateReport');
     }   
 
-    public function generateReportOne(){
-        $this->view('Teacher/report/generateReportOne');
+    public function generate($class_id){
+        $this->getClass($class_id);
+        $_SESSION["cid"]=$class_id;
+        $res3 = $this->model('teacher_data')->getHostTeacher($class_id);
+        $this->view('Teacher/report/report',array($res3));
     } 
+
+    private function getClass($class_id)
+    {
+        if (!isset($_SESSION["cid"])) {
+            $result1 = $this->model("classModel")->getClassId($class_id)[1];
+            $_SESSION["cid"] = $result1;
+        }
+    }
 }
 
 ?>
