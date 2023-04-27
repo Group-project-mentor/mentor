@@ -40,6 +40,7 @@ function flashMessage($message=null){
     }
 }
 
+
 // ? Create a folder and save the file
 function saveFile($tempLocation ,$fileName, $type, $folder1=null, $folder2=null): bool
 {
