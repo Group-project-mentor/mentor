@@ -112,6 +112,7 @@ body{
     font-size: larger;
     font-weight: bolder;
     font-size: 20px;
+    margin: 20px;
 }
 
 button{
@@ -179,5 +180,41 @@ button{
     
 }
 
+.ad_section5{
+    padding: 20px;;
+    width: 100%; 
+}
+.addgradesub{
+    display: flex;
+    justify-content: space-between;
+    padding: 20px ;
+}
+
+.btn-5{
+    width:300px;
+    height: 70px;
+    padding: 15px 10px;
+    margin: 50px;
+    text-align: center;
+    border-radius: 40px;
+    border-color: #000000;
+    background-color: #186537;
+    text-decoration: none;
+    justify-content: center;
+    
 
 
+}
+
+.btn-sec5{
+    display: flex;
+    justify-content: space-between;
+}
+
+.btn-5:hover {
+    background-color: #265529;
+  }
+  
+.btn-5:active {
+    background-color: #004101;
+  }

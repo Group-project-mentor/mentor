@@ -11,9 +11,6 @@ public function __construct()
 }
 
 
-    public function forum(){
-        $this->view('Teacher/resources/forum');
-    }   
 
     public function resource(){
         $this->view('Teacher/resources/resource');

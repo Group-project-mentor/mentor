@@ -35,12 +35,19 @@
                         </a>
                     </div>
                     <div class="videos">
-                        <img class="others" src="<?php echo BASEURL ?>assets/admin/others.jpg">
-                        <img class="others" src="<?php echo BASEURL ?>assets/admin/others.jpg">
-                        <img class="others" src="<?php echo BASEURL ?>assets/admin/others.jpg">
-                        <img class="others" src="<?php echo BASEURL ?>assets/admin/others.jpg">
-                        <img class="others" src="<?php echo BASEURL ?>assets/admin/others.jpg">
-                        <img class="others" src="<?php echo BASEURL ?>assets/admin/others.jpg">
+                    <?php
+                        foreach ($data['other'] as $value) {
+                            echo '
+                            <div class ="q-name">
+                                <img class="videoslist" src="'. BASEURL .'assets/admin/others.jpg">
+                                <p>'. $value['name'] .'</p>
+                                <div class="btns">
+                                    <button class="comp-btns" onclick="addToTaskManager('.$value['id'].','.$_SESSION['id'] .')" type="button">Add To Task Manager</button>
+                                </div>
+                            </div>';
+
+                        }
+                        ?>
                     </div>
                 </div>
                 
@@ -49,7 +56,7 @@
     </section>
     <?php require_once("C:/xampp/htdocs/mentor/app/views/admin/popup.php"); ?>
 </body>
-
+<script src="<?php echo BASEURL ?>javascripts/admin/cors.js"></script>
 <script>
     let toggle = true;
 

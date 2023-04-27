@@ -20,6 +20,42 @@ function addAdmin() {
     xhttp.send("admin-name="+adminName+"&admin-mail="+adminMail);
 }
 
-function addComplaintToTask(){
-    
+function addGrade() {
+    let gradePhoto = document.getElementById('grade-photo').value;
+    let gradeName = document.getElementById('grade-name').value;
+
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+
+        if (this.readyState == 4 && this.status == 200) {
+            var response = this.responseText;
+
+            console.log(response);
+            location.reload();
+
+        }
+    };
+
+    xhttp.open("POST", "http://localhost/mentor/admins/addNewGrade", true);
+    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xhttp.send("grade-photo="+gradePhoto+"&grade-name="+gradeName);
 }
+
+function addToTaskManager(rID,uID){
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+
+        if (this.readyState == 4 && this.status == 200) {
+            var response = this.responseText;
+
+            console.log(response);
+            location.reload();
+
+        }
+    };
+
+    xhttp.open("POST", "http://localhost/mentor/admins/verify", true);
+    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xhttp.send("rID="+rID+"&uID="+uID);
+}
+

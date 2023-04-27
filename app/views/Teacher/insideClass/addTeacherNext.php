@@ -38,11 +38,11 @@
                 <a href="<?php echo BASEURL ?>TClassMembers/memDetails/<?php echo "$cid"; ?>"" class=" nav-link">
                     <img class="active" src="<?php echo BASEURL ?>public/assets/Teacher/icons/participants.png" alt="home">
                     <div class="nav-link-text">Participants</div>
-                    <a href="<?php echo BASEURL ?>TResources/resource" class="nav-link">
+                    <a href="<?php echo BASEURL .'TResources/videos/'.$_SESSION['cid']?>" class="nav-link">
                         <img class="active" src="<?php echo BASEURL ?>public/assets/Teacher/icons/icon_resources.png" alt="home">
                         <div class="nav-link-text">Resources</div>
                     </a>
-                    <a href="<?php echo BASEURL ?>TInsideClass/addTr" class="nav-link">
+                    <a href="<?php echo BASEURL ?>TInsideClass/addTr/<?php echo "$cid"; ?>" class="nav-link">
                         <img class="active" src="<?php echo BASEURL ?>public/assets/Teacher/icons/add_teacher.png" alt="home">
                         <div class="nav-link-text">Add Teacher</div>
                     </a>
@@ -54,9 +54,9 @@
                         <img class="active" src="<?php echo BASEURL ?>public/assets/Teacher/icons/generate_report.png" alt="home">
                         <div class="nav-link-text">Generate Reports</div>
                     </a>
-                    <a href="<?php echo BASEURL ?>TResources/forum" class="nav-link">
+                    <a href="<?php echo BASEURL ?>joinRequests/getRequests/<?php echo "$cid"; ?>" class="nav-link">
                         <img class="active" src="<?php echo BASEURL ?>public/assets/Teacher/icons/forum.png" alt="home">
-                        <div class="nav-link-text">Create Forum</div>
+                        <div class="nav-link-text">Join Requests</div>
                     </a>
             </div>
 

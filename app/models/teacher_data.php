@@ -57,6 +57,15 @@ class Teacher_data extends Model
         return $result;
     }
 
+    public function addStudentsbyRequest($sid,$cid)
+    {
+        $stmt = $this->prepare("INSERT INTO classes_has_students(class_id,student_id) VALUES (?,?)");
+        $stmt->bind_param("ii", $cid,$sid);
+        $result = $stmt->execute();
+        $stmt->close();
+        return $result;
+    }
+
     public function deleteSt($student_id, $class_id)
     {
 

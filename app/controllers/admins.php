@@ -168,7 +168,16 @@ class admins extends Controller {
         if ($element == "") {
 
             if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-            
+                $rID = $_POST['rID'];
+                $uID = $_POST['uID'];
+
+                 //print_r($this->adminModel->addtoTaskManger($rID,$uID));die;
+                if ($this->adminModel->addtoTaskManger($rID,$uID)) {
+                    echo 'Successful';
+                } else {
+                    echo 'Error';
+                }
+
             }
 
             if ($_SERVER['REQUEST_METHOD'] == 'GET') {
@@ -186,7 +195,11 @@ class admins extends Controller {
 
             if ($_SERVER['REQUEST_METHOD'] == 'GET') {
                 
-                $this->view('admin/resourceVerificationVideos');
+
+                $data = [];
+                $data['video'] = $this->adminModel->videos();
+                
+                $this->view('admin/resourceVerificationVideos',$data);
 
             }
         }
@@ -199,7 +212,11 @@ class admins extends Controller {
 
             if ($_SERVER['REQUEST_METHOD'] == 'GET') {
                 
-                $this->view('admin/resourceVerificationQuizzes');
+
+                $data = [];
+                $data['quiz'] = $this->adminModel->quiz();
+
+                $this->view('admin/resourceVerificationQuizzes',$data);
 
             }
         }
@@ -212,7 +229,10 @@ class admins extends Controller {
 
             if ($_SERVER['REQUEST_METHOD'] == 'GET') {
                 
-                $this->view('admin/resourceVerificationPstppr');
+                $data = [];
+                $data['pastpaper'] = $this->adminModel->pastpapers();
+
+                $this->view('admin/resourceVerificationPstppr',$data);
 
             }
         }
@@ -224,8 +244,12 @@ class admins extends Controller {
             }
 
             if ($_SERVER['REQUEST_METHOD'] == 'GET') {
+
+                $data = [];
+                $data['pdf'] = $this->adminModel->pdfs();
+
                 
-                $this->view('admin/resourceVerificationPdf');
+                $this->view('admin/resourceVerificationPdf',$data);
 
             }
         }
@@ -237,8 +261,11 @@ class admins extends Controller {
             }
 
             if ($_SERVER['REQUEST_METHOD'] == 'GET') {
+
+                $data = [];
+                $data['other'] = $this->adminModel->others();
                 
-                $this->view('admin/resourceVerificationOther');
+                $this->view('admin/resourceVerificationOther',$data);
 
             }
         }
@@ -255,8 +282,51 @@ class admins extends Controller {
         }
 
         if ($_SERVER['REQUEST_METHOD'] == 'GET') {
+
+            $data = [];
+            $data['scholarship'] = $this->adminModel->scholorship();
             
-            $this->view('admin/scholpro');
+            $this->view('admin/scholpro',$data);
+
+        }
+
+    }
+
+    public function scholorshipviews() {
+
+        sessionValidator();
+        $this->hasLogged();
+
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+           
+        }
+
+        if ($_SERVER['REQUEST_METHOD'] == 'GET') {
+
+            $data = [];
+            $data['scholarship'] = $this->adminModel->scholorship();
+            
+            $this->view('admin/scholoviewall',$data);
+
+        }
+
+    }
+
+    public function scholorshipview($id) {
+
+        sessionValidator();
+        $this->hasLogged();
+
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+           
+        }
+
+        if ($_SERVER['REQUEST_METHOD'] == 'GET') {
+
+            $data = [];
+            $data['scholarship'] = $this->adminModel->scholorship();
+            
+            $this->view('admin/scholoview',$data);
 
         }
 
@@ -426,7 +496,70 @@ class admins extends Controller {
 
     }
 
+    public function addgrades() {
 
+        sessionValidator();
+        $this->hasLogged();
+
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            // $photo =$_POST['grade-photo'];
+            // $name = $_POST['grade-name'];
+
+            // $res =$this->model('admins')->addGrade($name,$photo);
+           
+        }
+
+        if ($_SERVER['REQUEST_METHOD'] == 'GET') {
+            
+            $this->view('admin/addNewGrade');
+
+        }
+
+    }
+
+    public function addsubject() {
+
+        sessionValidator();
+        $this->hasLogged();
+
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            // $photo =$_POST['grade-photo'];
+            // $name = $_POST['grade-name'];
+
+            // $res =$this->model('admins')->addGrade($name,$photo);
+           
+        }
+
+        if ($_SERVER['REQUEST_METHOD'] == 'GET') {
+            
+            $this->view('admin/addNewSubject');
+
+        }
+
+    }
+
+
+    public function add()
+    {
+        $password = $this->randompassword();
+        $name = $_POST['admin-name'];
+        $email = $_POST['admin-mail'];
+
+        $res = $this->model('ad_admin')->addAdmin($name,$email,$password);
+
+        if ($res) {
+            header("location:" . BASEURL . "adhumanResource#/1");
+
+        }
+        else{
+            header("location:" . BASEURL . "adAddnewadmin");
+
+        }
+
+
+
+
+    }
 
     
 }

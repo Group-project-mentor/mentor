@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>login</title>
-    <link rel="stylesheet" href="<?php echo BASEURL ?>stylesheets/admin/ad_humanresource.css">
+    <link rel="stylesheet" href="<?php echo BASEURL ?>stylesheets/admin/ad_complaintHandle.css">
     <link rel="stylesheet" href="<?php echo BASEURL ?>stylesheets/admin/style.css">
 </head>
 <nav>
@@ -22,67 +22,47 @@
 
         <!-- Title and sub title of middle part -->
         <div class="mid-title">
-            <h1>Scholoship Programe</h1>
-            <h6>Welcome to Mentor Scholoship Programe page</h6>
+            <h1>Scholorship Applied Students</h1>
         </div>
 
-        <div class="hr" id="team">
-            <div class="bgbox">
-                <div class="team">
-                    <div class="title">
-                        <h1>Students Applied for Sponsorship Programe</h1>
-                    </div>
-                    <div class="btn">
-                        <a class="btns" href="<?php echo BASEURL ?>admins/scholorshipviews" style="text-decoration:none">
-                            View All
-                        </a>
-
-                    </div>
-
-                </div>
-                <div class="users">
-
-                    <?php
-                    foreach ($data['scholarship'] as $value) {
-                        echo
-                        '<div class="content" id="comp-content">
-                            
-                            <div class="subject-card">
+        <div class="content">
+            <?php
+            foreach ($data['scholarship'] as $value) {
+                echo '<div class="content">
+                            <div class="complaints">
                                 <div class="pp">
-                                    <img class="profile" src="' . BASEURL . 'assets/admin/user.png">
+                                    <img class="profile" src="' . BASEURL . 'assets/admin/pp.png">
                                 </div>
-                                <div class="name">
+                                <div class="name" id="user-name">
                                     <p>' . $value['first_name'] . '</p>
                                 </div>
+                                <div class="userid" id="user-id">
+                                    <p>' . $value['id'] . '</p>
+                                </div>
+                                <div class="description" id="user-description">
+                                    <p>' . $value['description'] . '</p>
+                        </div>
+                        <div class="icons">
+                            <div class="view">
+                                <a href="'. BASEURL .'admins/scholorshipview/' . $value['id'] . '?id=' . $value['id'] .'"><img src="'. BASEURL .'assets/admin/view.png"></a>
                             </div>
-                            
-                            <div class="btns">
-                                <form action="' . BASEURL . 'admins/scholpro/'. $value['id'].'" method="POST">
-                                    <button class="comp-btns">Review</button>
-                                </form><br>
+                            <div class="addtm">
+                                <button class="comp-btns" type="button"><img src="'. BASEURL .'assets/admin/addtm.png"></button>
                             </div>
-                            <div class="btns">
-                                <button class="comp-btns">Delete</button>
+                            <div class="delete">
+                                <a href="'. BASEURL .'#"><img src="'. BASEURL .'assets/admin/Delete.png"></a>
                             </div>
-                            
-
-                            
-                            
+                        </div>
+                            </div>
                         </div>';
-                    }
-
-                    ?>
-                </div>
-            </div>
-
+            }
+            ?>
+            
         </div>
-
-
-
+    </section>
+    </div>
     </section>
     <?php require_once("C:/xampp/htdocs/mentor/app/views/admin/popup.php"); ?>
-
-
 </body>
 
 <script>
