@@ -25,16 +25,16 @@
 </div> -->
 
 <?php 
-    $gid = $_SESSION["cid"];
+    $cid = $_SESSION["cid"];
    
 ?>
             <!-- Navigation buttons -->
             <div class="nav-links">
-                <a href="<?php echo BASEURL ?>TClassMembers/memDetails" class="nav-link">
+                <a href="<?php echo BASEURL ?>TClassMembers/memDetails/<?php echo "$cid"; ?>" class="nav-link">
                     <img class="active" src="<?php echo BASEURL?>public/assets/Teacher/icons/participants.png" alt="home">
                     <div class="nav-link-text">Participants</div>
                 </a>
-                <a href="<?php echo BASEURL ?>TResources/resource" class="nav-link">
+                <a href="<?php echo BASEURL .'TResources/videos/'.$_SESSION['cid']?>" class="nav-link">
                     <img class="active" src="<?php echo BASEURL?>public/assets/Teacher/icons/icon_resources.png" alt="home">
                     <div class="nav-link-text">Resources</div>
                 </a>
