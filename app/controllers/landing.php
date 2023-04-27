@@ -7,9 +7,15 @@ class Landing extends Controller
         $this->view('landing');
     }
 
-    public function registerCreator(){
-        $this->view('resourceCtr/registration/applyForm');
+    public function registerCreator($part=null){
+        if($part=="instructions"){
+            $this->view('resourceCtr/registration/instructions');
+        }
+        else{
+            $this->view('resourceCtr/registration/applyForm');
+        }
     }
+
 
     public function applyCreatorForm(){
         if($_SERVER['REQUEST_METHOD'] == "POST"){
