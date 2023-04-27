@@ -346,6 +346,14 @@
     border-radius: 10px;
 }
 
+.rc-form-group  .text-input{
+    padding: 8px 10px;
+    border: 1px solid rgba(128, 128, 128, 0.06);
+    outline: none;
+    font-size: medium;
+    border-radius: 10px;
+}
+
 
 .rc-form-group [type="file"] {
     font-size: small;
@@ -354,7 +362,6 @@
     width: 100%;
     height: 100%;
     opacity: 0;
-
 }
 
 .progress-container{
@@ -608,6 +615,52 @@ video.rc-uploaded-video{
     flex: 1;
 }
 
+.rc-form-group > .form-group-textarea{
+    width: 100%;
+    border-radius: 5px;
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    color: #333;
+    line-height: 1.25;
+    padding: 8px;
+}
+
+.rc-form-hr{
+    border-color: rgba(187, 187, 187, 0.14);
+}
+
+.rc-form-group-hz > .checkbox-set{
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    padding: 0 10px;
+}
+
+.checkbox-set input[type="checkbox"]{
+    accent-color: #0b9040 !important;
+}
+
+.rc-form-group .normal-file-input{
+    opacity: 100%;
+    position: initial;
+    color: #333;
+    cursor: pointer;
+
+}.rc-form-group .normal-file-input::-webkit-file-upload-button{
+     background-color: #0b9040;
+     color: #fff;
+     padding: 8px;
+    margin-left: 20px;
+     border: none;
+     border-radius: 4px;
+     cursor: pointer;
+}
+
+.rc-form-group small{
+    text-align: center;
+    color: gray;
+    font-size: smaller;
+}
 /** media queries  */
 
 @media screen and (max-width:720px) {
