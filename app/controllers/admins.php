@@ -2,12 +2,16 @@
 
 class admins extends Controller {
 
+    //private string $user = "ad";
+
     private $adminModel;
     private $hrModel;
+    private $userModel;
 
     public function __construct() {
         $this->adminModel =  $this->model('admin');
         $this->hrModel = $this->model('adHumanResource_model');
+        $this->userModel = $this->model('userModel');
     }
     
     // Other Functions
@@ -455,12 +459,148 @@ class admins extends Controller {
         }
 
         if ($_SERVER['REQUEST_METHOD'] == 'GET') {
-            
-            $this->view('admin/profile');
+            $data[] = $this->adminModel->getUserDetails($_SESSION['id']);
+            $this->view('admin/ad_profile/profile',$data);
 
         }
 
     }
+
+    public function change($type, $msg = null) {
+        switch ($type) {
+            case 'image':
+                $this->image();
+                break;
+            case 'name':
+                $this->name();
+                break;
+            case 'mobile':
+                $this->mobile();
+                break;
+            case 'password':
+                $this->password($msg);
+                break;
+            case 'email':
+                $this->email();
+                break;
+            default:
+                header("location:" . BASEURL . "Profile");
+                break;
+        }
+    }
+
+    private function image() {
+        sessionValidator();
+        $this->hasLogged();
+
+        $data[] = $this->adminModel->getImage($_SESSION['id']);
+        $this->view("admin/ad_profile/profile_changeimg", $data);
+    }
+
+    private function password($msg)
+    {
+        $this->view("admin/ad_profile/profile_changepw", $msg);
+    }
+
+    private function email()
+    {
+
+    }
+
+    private function mobile($msg = null)
+    {
+        $result = $this->model("userModel")->getMobile($_SESSION['id']);
+        $this->view("admin/ad_profile/profile_changephone", array($result,$msg));
+    }
+
+    private function name($msg = null)
+    {
+        $result = $this->model("admin")->getName($_SESSION['id']);
+        $this->view("admin/ad_profile/profile_changename", array($result,$msg));
+    }
+
+    public function changeName()
+    {
+        sessionValidator();
+        $this->hasLogged();
+
+        if (isset($_POST['name'])) {
+            if ((preg_match('/[a-zA-Z][a-zA-Z ]+/',$_POST['name'])) && ($_POST['name'] != '')) {
+                $this->model("userModel")->updateName($_POST['name'], $_SESSION['id']);
+                $_SESSION['name'] = $_POST['name'];
+                header("location:" . BASEURL . 'adProfile/index/success');
+            } else {
+                header("location:" . BASEURL . 'adProfile/change/name/failed');
+            }
+        } else {
+            header("location:" . BASEURL . 'adProfile/change/name/failed');
+        }
+    }
+
+    public function changeImage()
+    {
+        sessionValidator();
+        $this->hasLogged();
+
+        if (isset($_POST['image'])) {
+            if($this->adminModel->updateImage($_SESSION['id'],$_POST['image'])){
+                echo "success";
+            }else{
+                echo "unsuccess";
+            }
+        }
+    }
+
+    public function changeMobile()
+    {
+        sessionValidator();
+        $this->hasLogged();
+
+        if (isset($_POST['mobile'])) {
+            if ((preg_match('/[0-9]{10}/',$_POST['name'])) && ($_POST['mobile'] != '')) {
+                $this->model("userModel")->updateMobile($_POST['mobile'], $_SESSION['id']);
+                header("location:" . BASEURL . 'rcProfile/index/success');
+            } else {
+                flashMessage("failed");
+                header("location:" . BASEURL . 'adProfile/change/mobile/failed');
+            }
+        } else {
+            flashMessage("failed");
+            header("location:" . BASEURL . 'adProfile/change/mobile/failed');
+        }
+    }
+
+    public function changePassword()
+    {
+        sessionValidator();
+        $this->hasLogged();
+
+        if (isset($_POST['cpasswd']) && isset($_POST['npasswd']) && isset($_POST['cnfpasswd'])) {
+            if ($_POST['npasswd'] == $_POST['cnfpasswd']) {
+                $result = $this->model("userModel")->changeProfilePasswd($_SESSION['id']);
+                if (!empty($result) && password_verify($_POST['cpasswd'], $result[2])) {
+                    $hash = password_hash($_POST['npasswd'], PASSWORD_BCRYPT, ["cost" => 10]);
+                    if ($this->model("userModel")->changePassword($hash, $_SESSION['user'])) {
+                        flashMessage("success");
+                        header("location:" . BASEURL . 'adProfile/index/success');
+                    } else {
+                        flashMessage("failed");
+                        header("location:" . BASEURL . 'adProfile/change/password/failed');
+                    }
+                } else {
+                    flashMessage("wrongPass");
+                    header("location:" . BASEURL . 'adProfile/change/password/wrongPass');
+                }
+            } else {
+                flashMessage("failed");
+                header("location:" . BASEURL . 'adProfile/change/password/failed');
+            }
+        } else {
+            flashMessage("failed");
+            header("location:" . BASEURL . 'adProfile/change/password/failed');
+        }
+    }
+
 
     public function settings() {
 

@@ -77,7 +77,7 @@
 
                 <div class="top-bar-btns">
                     <a href="#">
-                        <a class="back-btn" href="<?php echo BASEURL ?>TInsideClass/InClass">Back</a>
+                        <a class="back-btn" href="<?php echo BASEURL ?>TReport/generateReport">Back</a>
                     </a>
                     <a href="#">
                         <img src="<?php echo BASEURL ?>public/assets/Teacher/icons/icon_notify.png" alt="notify">

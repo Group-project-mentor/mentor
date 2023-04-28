@@ -25,9 +25,7 @@
                     <a href="<?php echo BASEURL; ?>st_billing">
                         <div class="back-btn">Back</div>
                     </a>
-                    <a href="#">
-                        <img src="<?php echo BASEURL; ?>assets/icons/icon_notify.png" alt="notify">
-                    </a>
+                    <?php include_once "components/notificationIcon.php" ?>
                     <a href="#">
                         <img src="<?php echo BASEURL; ?>assets/icons/icon_profile_black.png" alt="profile">
                     </a>

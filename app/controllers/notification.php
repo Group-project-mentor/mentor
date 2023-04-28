@@ -23,6 +23,10 @@ class Notification extends Controller{
                 $this->view('Teacher/notification/main',array($data));
                 break;
             case "st":
+                $this->view('Student/notifications/main',array($data));
+                break;
+            case "ad":
+                $this->view('admin/notifications/main',array($data));
                 break;
         }
 

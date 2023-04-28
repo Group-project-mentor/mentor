@@ -32,10 +32,6 @@
                     <img src="<?php echo BASEURL ?>assets/admin/bi_mortarboard-fill.png" alt="sp">
                     <div class="nav-link-text">Scholorship Programe</div>
                 </a>
-                <a href="<?php echo BASEURL ?>admins/wallet" class="nav-link">
-                    <img src="<?php echo BASEURL ?>assets/admin/Vector.png" alt="wallet">
-                    <div class="nav-link-text">Wallet</div>
-                </a>
                 <a href="#" class="nav-link">
                     <img src="<?php echo BASEURL ?>assets/admin/Vector (1).png" alt="an">
                     <div class="nav-link-text">Analitics</div>
@@ -61,9 +57,7 @@
                     </a>
                 </div>
                 <div class="top-bar-btns">
-                    <a href="#">
-                        <img src="<?php echo BASEURL ?>assets/admin/Vector (3).png" alt="notify">
-                    </a>
+                    <?php include_once "components/notificationIcon.php" ?>
                     <a id="profile-btn">
                         <img src="<?php echo BASEURL ?>assets/admin/Ellipse 2.png" alt="profile">
                     </a>

@@ -29,12 +29,10 @@
                     </a>
                 </div>
                 <div class="top-bar-btns">
-                    <a href="<?php echo BASEURL . 'st_public_resources/st_quizzes_intro/'. $_SESSION['gid'] . '/' .$_SESSION['qname'] ?>">
+                    <a href="<?php echo BASEURL . 'st_public_resources/st_quizzes_intro/' . $_SESSION['gid'] . '/' . $_SESSION['qname'] ?>">
                         <div class="back-btn">Back</div>
                     </a>
-                    <a href="#">
-                        <img src="<?php echo BASEURL ?>assets/icons/icon_notify.png" alt="notify">
-                    </a>
+                    <?php include_once "components/notificationIcon.php" ?>
                     <a href="<?php echo BASEURL ?>st_profile">
                         <img src="<?php echo BASEURL ?>assets/icons/icon_profile_black.png" alt="profile">
                     </a>
@@ -47,7 +45,7 @@
                 <!-- Title and sub title of middle part -->
                 <div class="mid-title">
                     <h2><?php echo ucfirst($_SESSION['sname']) ?>
-                    - <?php echo ucfirst($_SESSION['qname']) ?></h2>
+                        - <?php echo ucfirst($_SESSION['qname']) ?></h2>
                     <br>
                     <hr style=" height:5px ; background-color:green ;">
                     <br>
@@ -58,11 +56,20 @@
                         <hr />
                         <div class="quiz-preview-question">
                             <img src="" alt="" id="question-img">
-                            <p id="question-name">jo</p>
-                            hello
+                            <p id="question-name">
+                                <?php
+                                if (!empty($data[1])) {
+                                    foreach ($data[1] as $row) {
+
+                                ?>
+                                    <?php echo $row->number . '. ' . $row->description; ?> <br>
+
+                                <?php        }
+                                } ?>
+                            </p>
                         </div>
                         <div class="quiz-preview-answer-set" id="answer-set">
-                        helllllo
+                            helllllo
                         </div>
                         <hr />
                         <div class="quiz-preview-bottom-set">
@@ -84,10 +91,8 @@
     </section>
 </body>
 <script>
-
-    const baseURL = '<?php echo BASEURL?>';
-    let quizId = <?php echo $data[0]?>;
-
+    const baseURL = '<?php echo BASEURL ?>';
+    let quizId = <?php echo $data[0] ?>;
 </script>
 <script src="<?php echo BASEURL . '/public/javascripts/rc_quiz_preview.js' ?>"></script>
 

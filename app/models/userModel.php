@@ -83,6 +83,8 @@ class UserModel extends Model
         }
     }
 
+    
+
     public function updateName($name, $id, $dispName = null)
     {
         $query1 = "update user set name = '$name' where id=$id";
