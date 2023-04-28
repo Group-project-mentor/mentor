@@ -24,6 +24,9 @@ class Notification extends Controller{
                 break;
             case "st":
                 break;
+            case "ad":
+                $this->view('admin/notifications/main',array($data));
+                break;
         }
 
     }

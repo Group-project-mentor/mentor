@@ -41,10 +41,10 @@
                         </div>
                     </div>
                     <div>
-                        <p>
+                        <!-- <p>
                             Public :1467 Students<br>
                             Private :438 Students
-                        </p>
+                        </p> -->
                     </div>
                     <div>
 
@@ -63,10 +63,10 @@
                         </div>
                     </div>
                     <div>
-                        <p>
+                        <!-- <p>
                             Public :1467 Teacher<br>
                             Private :438 Teacher
-                        </p>
+                        </p> -->
                     </div>
                     <div>
                         <hr>
@@ -86,10 +86,10 @@
                         </div>
                     </div>
                     <div>
-                        <p>
+                        <!-- <p>
                             Paid :1467 Classes<br>
                             Free :438 Classes
-                        </p>
+                        </p> -->
                     </div>
                     <div>
                         <hr>
@@ -108,17 +108,17 @@
                         </div>
                     </div>
                     <div>
-                        <p>
+                        <!-- <p>
                             Monthly :1467 <br>
                             Anual :438
-                        </p>
+                        </p> -->
                     </div>
                     <div>
                         <hr>
                     </div>
                     <!--<img src="assets/sponsors.png" alt="sponsor">-->
                 </div>
-                <div class="box" id="ad">
+                <!-- <div class="box" id="ad">
                     <div class="imgrow">
                         <div background="<?php echo BASEURL ?>assets/admin/Ellipse 1.png">
                             <img class="mini" src="<?php echo BASEURL ?>assets/admin/3-Friends.png">
@@ -133,8 +133,8 @@
                     <div>
                         <hr>
                     </div>
-                    <!--<img src="assets/ad.png" alt="ad">-->
-                </div>
+                    <img src="assets/ad.png" alt="ad">
+                </div> -->
             </div>
             <div class="ad_section2">
                 <div class="earnings">

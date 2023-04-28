@@ -83,6 +83,8 @@ class UserModel extends Model
         }
     }
 
+    
+
     public function updateName($name, $id, $dispName = null)
     {
         $query1 = "update user set name = '$name' where id=$id";
@@ -128,5 +130,7 @@ class UserModel extends Model
         $query = "update user set image = '$img' where id = '$id'";
         return $this->executeQuery($query);
     }
+
+    
 
 }

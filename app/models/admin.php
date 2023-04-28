@@ -48,9 +48,6 @@ class admin extends Model{
             return false;
         } 
     }
-    
-    
-    
 
     public function addGrade($name,$photo){
         
@@ -153,6 +150,41 @@ class admin extends Model{
     //     $result[] = $this->getData("complaint")
     // }
 
+    public function getUserDetails($id)
+    {
+        $query = "select id,name,email,image from user where id=?;";
+        $stmt = $this->prepare($query);
+        $stmt->bind_param("i",$id);
+        return $this->fetchOneObj($stmt);
+    }
+
+    public function getImage($id)
+    {
+        $query = "SELECT image from user where id=?;";
+        $stmt = $this->prepare($query);
+        $stmt->bind_param("i",$id);
+        return $this->fetchOneObj($stmt);
+    }
+
+    public function updateImage($id,$image){
+        $query = "UPDATE `user` SET `image` = $image WHERE `id` = $id ";
+        
+        $result = $this->executeQuery($query);
+
+        if ($result) {
+            return true;
+        } else {
+            return false;
+        } 
+    }
+
+    public function getName($id)
+    {
+        $query = "SELECT `name` from user where id=?;";
+        $stmt = $this->prepare($query);
+        $stmt->bind_param("i",$id);
+        return $this->fetchOneObj($stmt);
+    }
     
 
 }

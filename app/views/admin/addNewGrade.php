@@ -49,6 +49,7 @@
 
                 <div class="dataentry">
                     <form class="gradeadd">
+                        
                         <div class="addgradephoto">
                             <label for="photo">Upload Photo:</label>
                             <input type="file" name="grade-photo" id="grade-photo">
