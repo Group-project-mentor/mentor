@@ -37,6 +37,9 @@
             <!-- Grade choosing interface -->
             <div class="rc-upload-box">
                     <form method="POST" id="rc-form">
+                        <div class="rc-upload-home-title">
+                            Fill this with correct data
+                        </div>
                         <div class="rc-form-group-hz">
                             <div class="rc-form-group">
                                 <label> First Name* : </label>

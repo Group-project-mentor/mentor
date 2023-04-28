@@ -460,6 +460,16 @@ footer {
 
 }
 
+.landing-resource-ctr{
+    background: url("http://localhost/mentor/assets/landing/resource_creator.png");
+    background-color: #f0f0f0;
+    display: flex;
+    background-size: 30%;
+    justify-content: flex-end;
+    background-repeat: no-repeat;
+    background-position: left center;
+}
+
 .landing-sponsor-area {
     width: 50%;
     display: flex;
