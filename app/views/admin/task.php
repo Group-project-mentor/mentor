@@ -16,76 +16,7 @@
 </nav>
 
 <body>
-    <section class="page">
-        <!-- Navigation panel -->
-        <nav class="nav-bar" id="nav-bar">
-
-            <!-- Navigation bar logos -->
-            <div class="nav-upper">
-                <div class="nav-logo-short">
-                    <img src="<?php echo BASEURL?>assets/admin/minilogo 1.png" alt="logo" />
-                </div>
-                <div class="nav-logo-long" id="nav-logo-long">
-                    <img src="<?php echo BASEURL?>assets/admin/logo-w.png" alt="logo" />
-                </div>
-            </div>
-
-
-            <!-- Navigation buttons -->
-            <div class="nav-links">
-                <a href="<?php echo BASEURL ?>" class="nav-link">
-                    <img class="active" src="<?php echo BASEURL ?>assets/admin/bi_grid-fill.png" alt="dsh">
-                    <div class="nav-link-text">Dashboard</div>
-                </a>
-                <a href="<?php echo BASEURL ?>adhumanResource" class="nav-link">
-                    <img src="<?php echo BASEURL ?>assets/admin/bi_people-fill.png" alt="hr">
-                    <div class="nav-link-text">Human Resource</div>
-                </a>
-                <a href="<?php echo BASEURL ?>adVerification" class="nav-link">
-                    <img src="<?php echo BASEURL ?>assets/admin/bi_patch-check-fill.png" alt="vc">
-                    <div class="nav-link-text">Verification Center</div>
-                </a>
-                <a href="<?php echo BASEURL ?>adScholPro" class="nav-link">
-                    <img src="<?php echo BASEURL ?>assets/admin/bi_mortarboard-fill.png" alt="sp">
-                    <div class="nav-link-text">Scholorship Programe</div>
-                </a>
-                <a href="<?php echo BASEURL ?>adWallet" class="nav-link">
-                    <img src="<?php echo BASEURL ?>assets/admin/Vector.png" alt="wallet">
-                    <div class="nav-link-text">Wallet</div>
-                </a>
-                <a href="#" class="nav-link">
-                    <img src="<?php echo BASEURL ?>assets/admin/Vector (1).png" alt="an">
-                    <div class="nav-link-text">Analitics</div>
-                </a>
-            </div>
-
-
-            <!-- Navigation bar toggler -->
-            <div class="nav-toggler" id="nav-toggler">
-                <img src="<?php echo BASEURL?>assets/admin/toogle.png" alt="toggler">
-            </div>
-        </nav>
-
-        <!-- Right side container -->
-        <div class="content-area">
-
-            <!-- Top bar -->
-            <section class="top-bar">
-                <div class="search-bar">
-                    <input type="text" name="" id="" placeholder="Search...">
-                    <a href="">
-                        <img src="<?php echo BASEURL?>assets/admin/Vector (2).png" alt="">
-                    </a>
-                </div>
-                <div class="top-bar-btns">
-                    <a href="#">
-                        <img src="<?php echo BASEURL?>assets/admin/Vector (3).png" alt="notify">
-                    </a>
-                    <a href="#">
-                        <img src="<?php echo BASEURL?>assets/admin/Ellipse 2.png" alt="profile">
-                    </a>
-                </div>
-            </section>
+    <?php require_once("C:/xampp/htdocs/mentor/app/views/admin/navbar.php"); ?>
             <!-- Middle part for whole content -->
             <section class="mid-content ad_mid-content">
 
@@ -95,27 +26,65 @@
                 </div>
 
                 <div class="content">
-                    <div class="complaints">
-                        <div class="pp">
-                            <img  class="profile" src="<?php echo BASEURL?>assets/admin/comphand.png">
-                        </div>
-                        <div class="name">
-                            <p>Complaint Handling</p>
-                        </div>
-                        <div class="description">
-                            <p>jahsgfbdssauygefiBCJHBVCGDUDSSDFCSJH FUSHDFUJHFH</p>
-                        </div>
-                        <div class="icons">
-                            <div class="view">
-                                <button type="button" id="btn">In Pogress</button>
+                    <a href="<?php echo BASEURL?>admins/task/t001" style="text-decoration: none; color:black;">
+                        <div class="complaints">
+                            <div class="pp">
+                                <img  class="profile" src="<?php echo BASEURL?>assets/admin/comphand.png">
+                            </div>
+                            <div class="name">
+                                <p>Complaint Handling</p>
+                            </div>
+                            <div class="description">
+                                <p>jahsgfbdssauygefiBCJHBVCGDUDSSDFCSJH FUSHDFUJHFH</p>
+                            </div>
+                            <div class="icons">
+                                <div class="view">
+                                    <button type="button" id="btn">In Pogress</button>
+                                </div>
                             </div>
                         </div>
-
-                    </div>
+                    </a>
+                    <a href="<?php echo BASEURL?>admins/complaintaction" style="text-decoration: none; color:black;">
+                        <div class="complaints">
+                            <div class="pp">
+                                <img  class="profile" src="<?php echo BASEURL?>assets/admin/comphand.png">
+                            </div>
+                            <div class="name">
+                                <p>Complaint Handling</p>
+                            </div>
+                            <div class="description">
+                                <p>jahsgfbdssauygefiBCJHBVCGDUDSSDFCSJH FUSHDFUJHFH</p>
+                            </div>
+                            <div class="icons">
+                                <div class="view">
+                                    <button type="button" id="btn">In Pogress</button>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="<?php echo BASEURL?>adComplaintaction" style="text-decoration: none; color:black;">
+                        <div class="complaints">
+                            <div class="pp">
+                                <img  class="profile" src="<?php echo BASEURL?>assets/admin/comphand.png">
+                            </div>
+                            <div class="name">
+                                <p>Complaint Handling</p>
+                            </div>
+                            <div class="description">
+                                <p>jahsgfbdssauygefiBCJHBVCGDUDSSDFCSJH FUSHDFUJHFH</p>
+                            </div>
+                            <div class="icons">
+                                <div class="view">
+                                    <button type="button" id="btn">In Pogress</button>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
                 </div>
             </section>
         </div>
     </section>
+    <?php require_once("C:/xampp/htdocs/mentor/app/views/admin/popup.php"); ?>
 </body>
 
 <script>

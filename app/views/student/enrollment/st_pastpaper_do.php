@@ -7,8 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/x-icon" href="<?php echo BASEURL ?>assets/mentor.ico">
     <title>Past Papers</title>
-    <link rel="stylesheet" href="<?php echo BASEURL?>stylesheets/Student/style.css">
-    <link rel="stylesheet" href="<?php echo BASEURL?>stylesheets/Student/st_resources.css">
+    <link rel="stylesheet" href="<?php echo BASEURL ?>stylesheets/Student/style.css">
+    <link rel="stylesheet" href="<?php echo BASEURL ?>stylesheets/Student/st_resources.css">
 </head>
 
 <body>
@@ -24,75 +24,48 @@
                 <div class="search-bar">
                     <input type="text" name="" id="" placeholder="Search...">
                     <a href="">
-                        <img src="<?php echo BASEURL?>assets/icons/icon_search.png" alt="">
+                        <img src="<?php echo BASEURL ?>assets/icons/icon_search.png" alt="">
                     </a>
                 </div>
                 <div class="top-bar-btns">
-                    <a href="<?php echo BASEURL?>st_pastpapers">
+                    <a href="<?php echo BASEURL . 'st_public_resources/index_past_papers/' . $_SESSION['gid'] . '/' . $_SESSION['sid'] ?>">
                         <div class="back-btn">Back</div>
                     </a>
-                    <a href="#">
-                        <img src="<?php echo BASEURL?>assets/icons/icon_notify.png" alt="notify">
-                    </a>
-                    <a href="<?php echo BASEURL?>st_profile">
-                        <img src="<?php echo BASEURL?>assets/icons/icon_profile_black.png" alt="profile">
+                    <?php include_once "components/notificationIcon.php" ?>
+                    <a href="<?php echo BASEURL ?>st_profile">
+                        <img src="<?php echo BASEURL ?>assets/icons/icon_profile_black.png" alt="profile">
                     </a>
                 </div>
             </section>
 
-            <!-- Middle part for whole content -->
             <section class="mid-content">
+                <?php
+                if (empty($data)) {
+                    echo "<center style='color:red;font-size:x-large;'>No file ! </center>";
+                    // header("location:".BASEURL."rcResources/documents/".$_SESSION['gid']."/".$_SESSION['sid']);
+                } else {
+                ?>
+                    <!-- Title and sub title of middle part -->
 
-                <!-- Title and sub title of middle part -->
-                <div class="mid-title">
-                    <h2>C79 - Science</h2>
+                    <div class="mid-title">
+                        <h1><?php echo "Grade " . $_SESSION['gname'] . " - " . ucfirst($_SESSION['sname']) ?></h1>
+                        <h6>My Subjects / <?php echo ucfirst($_SESSION['sname']) ?> / past papers</h6>
+                    </div>
                     <br>
                     <hr style=" height:5px ; background-color:green ;">
                     <br>
-                    <embed type="text/html" src="st_courses.html"  width="1000" height="500" style="padding-left: 100px;">
-                <div>
+                    <!-- <embed type="text/html" src="st_courses.html"  width="1000" height="500" style="padding-left: 100px;"> -->
+                    <!-- Grade choosing interface -->
+                    <div class="container-box">
+                        <embed src="<?php echo BASEURL ?>public_resources/pastpapers/<?php echo $_SESSION['gid'] . "/" . $_SESSION['sid'] . "/" . $data->location ?>" style="width:50%;height:70vh;margin:auto;">
+                    </div>
+                <?php } ?>
             </section>
         </div>
     </section>
 </body>
 
-<script>
-    let toggle = true;
+<script src="<?php echo BASEURL ?>public/javascripts/st_auth_script.js"></script>
 
-    const getElement = (id) => document.getElementById(id);
-
-    let togglerBtn = getElement("nav-toggler");
-    let nav = getElement("nav-bar");
-    let logoLong = getElement("nav-logo-long");
-    let navMiddle = getElement("nav-middle");
-    let navLinkTexts = document.getElementsByClassName("nav-link-text");
-
-    togglerBtn.addEventListener('click', () => {
-        nav.classList.toggle("nav-bar-small");
-
-        if (toggle) {
-            logoLong.classList.add("hidden");
-            navMiddle.classList.add("hidden");
-            togglerBtn.classList.add("toggler-rotate");
-            for (i = 0; i < navLinkTexts.length; i++) {
-                navLinkTexts[i].classList.add("hidden");
-            }
-            toggle = false;
-        }
-
-        else {
-            logoLong.classList.remove("hidden");
-            navMiddle.classList.remove("hidden");
-            togglerBtn.classList.remove("toggler-rotate");
-            for (i = 0; i < navLinkTexts.length; i++) {
-                navLinkTexts[i].classList.remove("hidden");
-            }
-            toggle = true;
-        }
-    })
-
-
-
-</script>
 
 </html>

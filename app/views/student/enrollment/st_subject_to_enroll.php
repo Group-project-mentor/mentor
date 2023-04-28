@@ -28,11 +28,9 @@
                 </div>
                 <div class="top-bar-btns">
                     <a href="#">
-                        <a class="back-btn" href="<?php echo BASEURL  ?>st_courses">Back</a>
+                        <a class="back-btn" href="<?php echo BASEURL.'st_courses/index/'.$_SESSION['gid'] ?>">Back</a>
                     </a>
-                    <a href="#">
-                        <img src="<?php echo BASEURL  ?>assets/icons/icon_notify.png" alt="notify">
-                    </a>
+                    <?php include_once "components/notificationIcon.php" ?>
                     <a href="<?php echo BASEURL?>st_profile">
                         <img src="<?php echo BASEURL  ?>assets/icons/icon_profile_black.png" alt="profile">
                     </a>
@@ -44,30 +42,30 @@
 
                 <!-- Title and sub title of middle part -->
                 <div class="mid-title">
-                    <h1>Subjects</h1>
-                    <h6>Hello </h6>
+                    <h2>Subjects to Enrolled</h2>
                 </div>
 
                 
                 <!-- subject cards -->
                 <div class="container-box">
-                    <div>
-                        <h2>Subjects Enrolled</h2>
-                    </div>
                     
                     </div>
-                    <?php if(!empty($data)){?>
+                    <?php if(!empty($data[0])){?>
+                        
                         <div class="subject-card-set">
-                            <?php foreach($data as $row) {?>
+
+                            <?php foreach($data[0] as $row) {?>
                             <div class="subject-card">
-                                <img src="<?php echo BASEURL  ?>assets/patterns/1.png" alt="" />
-                                <a href="#"><label><?php echo $row['name'] ?></label></a>
-                                <label>Grade 8</label>
-                                <a href="<?php echo BASEURL."st_courses/enroll_records/3/".$row['id']?>" class="Enter-btn" style="background-color: #0A2917 ; color:white ; border : 3px">Enroll</a>
+                                <img src="<?php echo BASEURL  ?>assets/patterns/2.png" alt="" />
+                                <label><?php echo $row->name ?></label>
+                                <label>Grade <?php echo $_SESSION['gid']+'5' ?></label>
+                                <!-- <button class="Enter-btn">Enroll</button> -->
+                                <a href="<?php echo BASEURL."st_courses/Enroll_records/".$_SESSION['gid']."/".$row->id ?>">Enroll</a>
                             </div>
                             <?php } ?>
                         </div>
                         <?php } else {echo "no data!";} ?>
+                    
                     </div>
 
                 </div>

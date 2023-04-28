@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>New Question</title>
-    <link rel="stylesheet" href="<?php echo BASEURL?>public/stylesheets/style.css">
+    <link rel="stylesheet" href="<?php echo BASEURL?>public/stylesheets/Student/style.css">
     <link rel="stylesheet" href="<?php echo BASEURL?>public/stylesheets/quiz/quiz_styles.css">
 </head>
 
@@ -27,9 +27,7 @@
                 <a href="<?php echo BASEURL."quiz/questions/".$data[0]?>">
                     <div class="back-btn">Back</div>
                 </a>
-                <a href="#">
-                    <img src="<?php echo BASEURL?>public/assets/icons/icon_notify.png" alt="notify">
-                </a>
+                <?php include_once "components/notificationIcon.php" ?>
                 <a href="#">
                     <img src="<?php echo BASEURL?>public/assets/icons/icon_profile_black.png" alt="profile">
                 </a>
@@ -79,7 +77,7 @@
                         <img src="" alt="" id="image_tag" >
                     </div>
 
-                    <input type="hidden" name="ques_img" value="" id="image_data">
+<!--                    <input type="hidden" name="ques_img" value="" id="image_data">-->
 
                 </div>
             </form>

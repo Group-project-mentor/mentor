@@ -1,11 +1,20 @@
 *{
     font-family: Roboto;
+    
+}
+body{
+    background:#D9D9D9;
+
 }
 .ad_mid-content{
     background:#D9D9D9;
     padding: 0px;
     margin: 0px;
 
+}
+
+.earnings{
+    /* margin: 10px; */
 }
 
 .content-area{
@@ -51,23 +60,23 @@
 }
 
 #st{
-    background: #00C7E2;
+    background: #c4edf3;
 }
 
 #tc{
-    background: #E2B100;
+    background: #ebddae;
 }
 
 #pc{
-    background: #b25477;
+    background: #dc9bb3;
 }
 
 #sp{
-    background: #7100E2;
+    background: #ba9bd8;
 }
 
 #ad{
-    background: #07D78C;
+    background: #a2e8cf;
 }
 
 .eanings{
@@ -103,6 +112,7 @@
     font-size: larger;
     font-weight: bolder;
     font-size: 20px;
+    margin: 20px;
 }
 
 button{
@@ -132,28 +142,79 @@ button{
 
 .task{
     display: flex;
-    justify-content: space-between;
-    width: fit-content;
+    flex-direction: column;
+    width: 710px;
     padding: 20px; 
+}
+.task-top{
+    display: flex;
+    justify-content: space-between;
+}
+
+.complaints{
+    display: flex;
+    justify-content:space-between;
+    padding: 10px;
 }
 
 .user{
     display: flex;
+    flex-direction: column;
     justify-content:flex-end;
     width: fit-content;
     padding: 20px;  
+}
+.user-top{
+    display: flex;
+    justify-content: space-between;
 }
 .ad_section4{
     padding: 20px;;
     width: 100%; 
 }
+
 .team{
     display: flex;
-    justify-content:space-evenly;
-    width: fit-content;
+    justify-content:space-between;
     padding: 20px;
+    
 }
 
+.ad_section5{
+    padding: 20px;;
+    width: 100%; 
+}
+.addgradesub{
+    display: flex;
+    justify-content: space-between;
+    padding: 20px ;
+}
+
+.btn-5{
+    width:300px;
+    height: 70px;
+    padding: 15px 10px;
+    margin: 50px;
+    text-align: center;
+    border-radius: 40px;
+    border-color: #000000;
+    background-color: #186537;
+    text-decoration: none;
+    justify-content: center;
+    
 
 
+}
 
+.btn-sec5{
+    display: flex;
+    justify-content: space-between;
+}
+
+.btn-5:hover {
+    background-color: #265529;
+  }
+  
+.btn-5:active {
+    background-color: #004101;
+  }

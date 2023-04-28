@@ -1,0 +1,36 @@
+.videos{
+    flex-wrap: wrap;
+    display: flex;
+    justify-content: space-evenly;
+    
+}
+
+.videoslist{
+    width: 180px;
+    padding: 10px;
+    margin: 10px;
+}
+
+.quizz{
+    width: 180px;
+    padding: 10px;
+    margin: 10px;
+}
+
+.pdfs{
+    width: 180px;
+    padding: 10px;
+    margin: 10px;
+}
+
+.pstpprs{
+    width: 180px;
+    padding: 10px;
+    margin: 10px;
+}
+
+.others{
+    width: 180px;
+    padding: 10px;
+    margin: 10px; 
+}

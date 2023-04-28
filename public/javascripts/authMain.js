@@ -60,7 +60,6 @@ signUpTeacher.addEventListener('submit',(e)=>{
             document.getElementById("tRegAlert").textContent = "Fill All Data";
             makeError("Please Fill All Data !");
         }
-        // console.log(data.message);
     }).catch(error => {
         console.log(error);
     });
@@ -78,8 +77,21 @@ signUpStudent.addEventListener('submit',(e)=>{
     }).then(response => {
         return response.json();
     }).then(data => {
-        document.getElementById("sRegAlert").textContent = data.message;
-        console.log(data.message);
+        if(data.message === "successful"){
+            document.getElementById("tRegAlert").textContent = "";
+            container.classList.remove("sign-up-mode");
+            makeSuccess("Successfully Registered !");
+            document.getElementById("stName").value = "";
+            document.getElementById("stEmail").value = "";
+            document.getElementById("spasswd").value = "";
+            document.getElementById("spasswd_conf").value = "";
+        }else if(data.message === "unsuccessful"){
+            document.getElementById("tRegAlert").textContent = data.message.toUpperCase();
+            makeError("Registration Failed !");
+        }else {
+            document.getElementById("tRegAlert").textContent = "Fill All Data";
+            makeError("Please Fill All Data !");
+        }
     }).catch(error => {
         console.log(error);
     });

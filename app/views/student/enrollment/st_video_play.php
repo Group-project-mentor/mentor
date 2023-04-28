@@ -7,8 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Watch Videos</title>
     <link rel="icon" type="image/x-icon" href="<?php echo BASEURL ?>assets/mentor.ico">
-    <link rel="stylesheet" href="<?php echo BASEURL?>stylesheets/Student/style.css">
-    <link rel="stylesheet" href="<?php echo BASEURL?>stylesheets/Student/st_card_set.css">
+    <link rel="stylesheet" href="<?php echo BASEURL ?>stylesheets/Student/style.css">
+    <link rel="stylesheet" href="<?php echo BASEURL ?>stylesheets/Student/st_card_set.css">
 </head>
 
 <body>
@@ -24,128 +24,100 @@
                 <div class="search-bar">
                     <input type="text" name="" id="" placeholder="Search...">
                     <a href="">
-                        <img src="<?php echo BASEURL?>assets/icons/icon_search.png" alt="">
+                        <img src="<?php echo BASEURL ?>assets/icons/icon_search.png" alt="">
                     </a>
                 </div>
                 <div class="top-bar-btns">
-                    <a href="<?php echo BASEURL?>st_video">
+                    <a href="<?php echo BASEURL.'st_public_resources/index_videos/'.$_SESSION['gid'].'/'.$_SESSION['sid'] ?>">
                         <div class="back-btn">Back</div>
                     </a>
-                    <a href="#">
-                        <img src="<?php echo BASEURL?>assets/icons/icon_notify.png" alt="notify">
-                    </a>
-                    <a href="<?php echo BASEURL?>st_profile">
-                        <img src="<?php echo BASEURL?>assets/icons/icon_profile_black.png" alt="profile">
+                    <?php include_once "components/notificationIcon.php" ?>
+                    <a href="<?php echo BASEURL ?>st_profile">
+                        <img src="<?php echo BASEURL ?>assets/icons/icon_profile_black.png" alt="profile">
                     </a>
                 </div>
             </section>
 
             <!-- Middle part for whole content -->
-            <section class="mid-content">
+            <section class="mid-content" style="margin: 10px 0 10px;">
 
                 <!-- Title and sub title of middle part -->
                 <div class="mid-title">
-                    <h1>Subjects</h1>
-                    <h6>Hello </h6>
+                <h1>V I D E O</h1>
                 </div>
 
-                
+
                 <!-- subject cards -->
                 <div class="container-box">
-                    <h2>C79 - lesson 1</h2>
+                    <!-- <h2>C79 - lesson 1</h2> -->
+
+                    <!-- <div class="subject-card-watching">
+                        <img src="<?php echo BASEURL ?>assets/patterns/1.png" alt="" />
+                    </div> -->
+
+                    <!-- kavi -->
+
+                </div>
+                    <h2 style="margin: 0 20px;"><?php echo $data[1]->name ?></h2>
+                    <!-- <?php print_r($data) ?> -->
 
                     <div class="subject-card-watching">
-                        <img src="<?php echo BASEURL?>assets/patterns/1.png" alt="" />
+                        <?php if($data[1]->type === "L"){ ?>
+                            <iframe style="width: 720px;height:480px;" src="<?php echo $data[1]->link ?>"
+                                    title="YouTube video player" frameborder="0"
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                    allowfullscreen>
+                            </iframe>
+                        <?php }elseif($data[1]->type === "U"){ ?>
+                            <video class="rc-uploaded-video" controls>
+                                <source src="<?php echo BASEURL.'public/public_resources/videos/'.$data[1]->link ?>" >
+                                Your browser does not support the video tag.
+                            </video>
+                        <?php } ?>
                     </div>
 
+                    <!-- kavi -->
                     <h2>Description</h2>
                     <p class="Description">
-                        We take learning very seriously at Success Tutorial School. <br>
-                        We have a special recipe for success and we owe everything to careful preparation. 
-                        Just like any good ol’ recipe, it takes the best ingredients, and careful preparation to ensure the best results. 
-                        To get our students ready for their lessons at school, we understand who they are, needs and goals. 
-                        From there, we carefully craft a program that works for them, not us. 
-                        After all, every student is different in their own way and have different goals they want to achieve, and we respect that! 
-                        When students see that others’ care about their needs and goals, they automatically become more engaged 
-                        and want to learn – when students want to learn, academic results can naturally be seen <br><br>
-                        From there, we carefully craft a program that works for them, not us. 
-                        After all, every student is different in their own way and have different goals they want to achieve, and we respect that! 
-                        When students see that others’ care about their needs and goals, they automatically become more engaged 
-                        and want to learn – when students want to learn, academic results can naturally be seen </p>
-
+                    <?php echo $data[1]->description?>
+                    </p>
                     <div>
-                        <h3>Related Videos</h3>
-                    </div>
-                    <div class="subject-card-set">
-                        <div class="subject-card">
-                            <img src="<?php echo BASEURL?>assets/patterns/2.png" alt="" />
-                            <a href="#"><label>C79 - lesson 2</label></a>
-                            <label>Grade 8</label>
-                            <button class="Enter-btn">Enter</button>
-                        </div>
-                        <div class="subject-card">
-                            <img src="<?php echo BASEURL?>assets/patterns/3.png" alt="" />
-                            <a href="#"><label>C79 - lesson 3</label></a>
-                            <label>Grade 8</label>
-                            <button class="Enter-btn">Enter</button>
-                        </div>
-                        <div class="subject-card">
-                            <img src="<?php echo BASEURL?>assets/patterns/3.png" alt="" />
-                            <a href="#"><label>C79 - lesson 4</label></a>
-                            <label>Grade 8</label>
-                            <button class="Enter-btn">Enter</button>
-                        </div>
-                        <div class="subject-card">
-                            <img src="<?php echo BASEURL?>assets/patterns/3.png" alt="" />
-                            <a href="#"><label>C79 - lesson 5</label></a>
-                            <label>Grade 8</label>
-                            <button class="Enter-btn">Enter</button>
-                        </div>
-                        
-                        </div>
-                    </div>
+                    <h3>Related Videos</h3>
                 </div>
-            </section>
+                <div class="subject-card-set">
+                    <div class="subject-card">
+                        <img src="<?php echo BASEURL ?>assets/patterns/2.png" alt="" />
+                        <a href="#"><label>C79 - lesson 2</label></a>
+                        <label>Grade 8</label>
+                        <button class="Enter-btn">Enter</button>
+                    </div>
+                    <div class="subject-card">
+                        <img src="<?php echo BASEURL ?>assets/patterns/3.png" alt="" />
+                        <a href="#"><label>C79 - lesson 3</label></a>
+                        <label>Grade 8</label>
+                        <button class="Enter-btn">Enter</button>
+                    </div>
+                    <div class="subject-card">
+                        <img src="<?php echo BASEURL ?>assets/patterns/3.png" alt="" />
+                        <a href="#"><label>C79 - lesson 4</label></a>
+                        <label>Grade 8</label>
+                        <button class="Enter-btn">Enter</button>
+                    </div>
+                    <div class="subject-card">
+                        <img src="<?php echo BASEURL ?>assets/patterns/3.png" alt="" />
+                        <a href="#"><label>C79 - lesson 5</label></a>
+                        <label>Grade 8</label>
+                        <button class="Enter-btn">Enter</button>
+                    </div>
+
+                </div>
+        </div>
         </div>
     </section>
+    </div>
+    </section>
 </body>
-<script>
-    let toggle = true;
+<script src="<?php echo BASEURL ?>public/javascripts/st_auth_script.js"></script>
 
-    const getElement = (id) => document.getElementById(id);
-
-    let togglerBtn = getElement("nav-toggler");
-    let nav = getElement("nav-bar");
-    let logoLong = getElement("nav-logo-long");
-    let navMiddle = getElement("nav-middle");
-    let navLinkTexts = document.getElementsByClassName("nav-link-text");
-
-    togglerBtn.addEventListener('click', () => {
-        nav.classList.toggle("nav-bar-small");
-
-        if (toggle) {
-            logoLong.classList.add("hidden");
-            navMiddle.classList.add("hidden");
-            togglerBtn.classList.add("toggler-rotate");
-            for (i = 0; i < navLinkTexts.length; i++) {
-                navLinkTexts[i].classList.add("hidden");
-            }
-            toggle = false;
-        }
-
-        else {
-            logoLong.classList.remove("hidden");
-            navMiddle.classList.remove("hidden");
-            togglerBtn.classList.remove("toggler-rotate");
-            for (i = 0; i < navLinkTexts.length; i++) {
-                navLinkTexts[i].classList.remove("hidden");
-            }
-            toggle = true;
-        }
-    })
-
-
-
-</script>
 
 </html>

@@ -12,25 +12,18 @@
         </div>
     </div>
 
+
     <!-- Navigation bar private - public switch -->
     <div class="nav-middle" id="nav-middle">
-        
-        <div class="nav-switch">
-        <p>Public</p>
-            <label class="switch">
-                <input type="checkbox" checked>
-                <span class="slider round"></span>
-            </label>
-        </div>
-        
-        <div class="nav-switch">
-        <p >Private</p>
-            <label class="switch">
-                <input type="checkbox" checked>
-                <span class="slider round"></span>
-            </label>
-        </div>
-        
+
+        <a href="<?php echo BASEURL ?>home" class="nav-link">
+            <img src="<?php echo BASEURL ?>assets/icons/on-button.png" alt="report">
+            <div class="nav-link-text">Public</div>
+        </a>
+        <a href="<?php echo BASEURL ?>st_private_mode" class="nav-link">
+            <img src="<?php echo BASEURL ?>assets/icons/off-button.png" alt="report">
+            <div class="nav-link-text">Private</div>
+        </a>
     </div>
 
     <!-- Navigation buttons -->
@@ -39,7 +32,7 @@
             <img class="active" src="<?php echo BASEURL ?>public/assets/icons/icon_class.png" alt="home">
             <div class="nav-link-text">Classes</div>
         </a>
-        <a href="<?php BASEURL ?>privateclass/report" class="nav-link">
+        <a href="<?php BASEURL ?>st_report_main" class="nav-link">
             <img src="<?php echo BASEURL ?>public/assets/icons/icon_report.png" alt="profile">
             <div class="nav-link-text">Report Issue</div>
         </a>
@@ -47,7 +40,7 @@
             <img src="<?php echo BASEURL ?>public/assets/icons/icon_billing.png" alt="report">
             <div class="nav-link-text">Billing</div>
         </a>
-        <a href="<?php BASEURL ?>st_buy" class="nav-link">
+        <a href="<?php BASEURL ?>home/bmc" class="nav-link">
             <img src="<?php echo BASEURL ?>public/assets/icons/icon_bmc.png" alt="bmc">
             <div class="nav-link-text">Buy me a coffee</div>
         </a>

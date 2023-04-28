@@ -4,15 +4,15 @@ class DB{
 
     public function __construct(){
 
-            $connection = new mysqli(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
-            if (isset($this->connection) and $this->connection->connect_error) {
-                die("Connection failed: " . $this->connection->connect_error);
-            }else{
-                $this->connection = $connection;
-                return $this->connection;
+        $connection = new mysqli(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
+        if (isset($this->connection) and $this->connection->connect_error) {
+            die("Connection failed: " . $this->connection->connect_error);
+        }else{
+            $this->connection = $connection;
+            return $this->connection;
         }
 
-        }
+    }
 
 //  To get results from executing queries
         public function executeQuery($query){
@@ -43,5 +43,30 @@ class DB{
             }
             return $row_set;
         }
+
+        public function fetchOneObj($stmt){
+            $stmt->execute();
+            return $stmt->get_result()->fetch_object();
+        }
+
+        public function fetchObjs($stmt){
+            $stmt->execute();
+            $result =  $stmt->get_result();
+            $row_set = array();
+            while ($row = $result->fetch_object()) {
+                $row_set[] = $row;
+            }
+            return $row_set;
+        }
+
+//        Transactions
+        public function transaction($info = null){
+            $this->connection->begin_transaction();
+        }
+        public function commit(){
+            $this->connection->commit();
+        }
+        public function rollBack(){
+            $this->connection->rollback();
+        }
     }
-?>

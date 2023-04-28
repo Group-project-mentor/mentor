@@ -14,10 +14,7 @@
 
 <body>
     <?php 
-        if(isset($data[1]) && $data[0] == "success"){
-            include_once "components/alerts/uploadSuccess.php"; 
-        }
-        elseif(isset($data[1]) && $data[0] == "error"){
+        if(isset($_SESSION['message']) && $_SESSION['message']== "error"){
             include_once "components/alerts/uploadFailed.php";
         }
     ?>
@@ -40,9 +37,7 @@
                     <a href="<?php echo BASEURL .'rcResources/documents/'.$_SESSION['gid']."/".$_SESSION["sid"] ?>">
                         <div class="back-btn">Back</div>
                     </a>
-                    <a href="#">
-                        <img src="<?php echo BASEURL ?>assets/icons/icon_notify.png" alt="notify">
-                    </a>
+                    <?php include_once "components/notificationIcon.php" ?>
                     <a href="<?php echo BASEURL . 'rcProfile' ?>">
                         <img src="<?php echo BASEURL ?>assets/icons/icon_profile_black.png" alt="profile">
                     </a>

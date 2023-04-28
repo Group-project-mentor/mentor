@@ -2,9 +2,12 @@
 
 class Quiz extends Controller
 {
+    private $user1 = "rc";
     public function __construct()
     {
-        session_start();
+        sessionValidator();
+        $this->userValidate($this->user1);
+        flashMessage();
     }
 
     public function index()
@@ -21,10 +24,29 @@ class Quiz extends Controller
     {
         $id = $this->model('resourceModel')->getLastId() + 1;
 //        echo $id." ".$_POST['quiz_name']." ".$_POST['tot_mark'] ;
-        if ($this->model('quizModel')->createQuiz($_POST['quiz_name'], $_POST['tot_mark'], $id, $_SESSION['gid'], $_SESSION['sid'])) {
+        if ($this->model('quizModel')->createQuiz($_POST['quiz_name'], isNumber($_POST['tot_mark'],100), $id, $_SESSION['gid'], $_SESSION['sid'],$_SESSION['id'])) {
             header("location:" . BASEURL . "quiz/questions/$id");
         } else {
             header("location:" . BASEURL . "quiz/create/error");
+        }
+    }
+
+    public function editQuiz($quizId){
+        $res = $this->model('quizModel')->getQuiz($quizId, $_SESSION['gid'], $_SESSION['sid']);
+        $this->view("quizModule/rc/editQuizInfo", array($quizId,$res));
+    }
+
+    public function editAction($quizId){
+        if($this->model('quizModel')->validateQuiz($quizId,$_SESSION['gid'],$_SESSION['sid'])){
+            if($this->model('quizModel')->editQuiz($quizId, $_POST['quiz_name'], isNumber($_POST['tot_mark'],100))){
+                flashMessage("done");
+            }else{
+                flashMessage("failed");
+            }
+            header("location:".BASEURL."quiz/editQuiz/$quizId");
+        }else{
+            flashMessage("unauthorized");
+            header("location:".BASEURL."quiz/editQuiz/$quizId");
         }
     }
 
@@ -53,7 +75,7 @@ class Quiz extends Controller
                 $image_data = $_POST['ques_img'];
                 $result = $this->model('quizModel')->getLastQuestionNo($quizId);
                 $result++;
-                $result2 = $this->model('quizModel')->insertQuestion($quizId, $result, $_POST['question'], $image_data);
+                $result2 = $this->model('quizModel')->insertQuestion($quizId, $result, sanitizeText($_POST['question']), $image_data);
                     header("location:" . BASEURL . "quiz/addAnswers/$quizId/$result/success");
             } else {
                 header("location:" . BASEURL . "quiz/addQuestion/$quizId/invalid_operation");
@@ -94,7 +116,7 @@ class Quiz extends Controller
             $ansNumber = $this->model('quizModel')->getLastAnswerNo($qid);
             $ansNumber++;
             $correctness = ($_POST['correct'] == 'correct') ? 1 : 0;
-            if ($this->model('quizModel')->saveAnswer($ansNumber, $qid, $_POST['answer'], $correctness, $_POST['ansImg'])) {
+            if ($this->model('quizModel')->saveAnswer($ansNumber, $qid, sanitizeText($_POST['answer']), $correctness, $_POST['ansImg'])) {
                 header('location:' . BASEURL . "quiz/addAnswers/$quizId/$question/AnsAdded");
             } else {
                 header('location:' . BASEURL . "quiz/answer/$quizId/$question/error");
@@ -135,7 +157,7 @@ class Quiz extends Controller
         $qid = $this->model('quizModel')->getQuestionId($quizId, $question);
         if ($qid != 0 and $this->model('quizModel')->validateQuiz($quizId, $_SESSION['gid'], $_SESSION['sid'])) {
             $correctness = ($_POST['correct'] == 'correct') ? 1 : 0;
-            if ($this->model('quizModel')->updateAnswer($_POST['answer'], $correctness, $_POST['ansImg'], $answer)) {
+            if ($this->model('quizModel')->updateAnswer(sanitizeText($_POST['answer']), $correctness, $_POST['ansImg'], $answer)) {
                 header('location:' . BASEURL . "quiz/addAnswers/$quizId/$question/AnsUpdated");
             } else {
                 header('location:' . BASEURL . "quiz/editAnswer/$quizId/$question/$answer/err");

@@ -77,6 +77,8 @@
 }
 
 .sponsor-button{
+    border: none;
+    outline: none;
     background-color: var(--main-color);
     color: white;
     padding: 8px 20px;
@@ -181,7 +183,7 @@
     flex: 1;
     margin: 0 25px;
     align-items: center;
-    max-height: 300px;
+    /*max-height: 300px;*/
     overflow: scroll;
     overflow-x: hidden;
     backdrop-filter: blur(5px);
@@ -216,3 +218,158 @@
 .sponsor-grade-cell{
     padding: 0;
 }
+
+/* * styles of detail views */
+
+.report-title{
+    margin-top: 20px;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color: #444444;
+    font-size: x-large;
+    text-align: center;
+}
+.width-400-center{
+    margin: 20px auto;
+    background: rgba(255, 255, 255, 0.7);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+}
+
+.width-400-center>div:nth-child(1){
+    min-width: 400px;
+    flex: 3;
+    margin: 10px;
+}
+.width-400-center>div:nth-child(2){
+    min-width: 300px;
+    flex: 2;
+    margin: 10px;
+}
+
+.dark-cell{
+    background: rgba(217, 217, 217, 0.52);
+    padding: 5px;
+    text-align: center;
+    width: min-content;
+    border-radius: 7px;
+}
+
+.wrap-on{
+    flex-wrap: wrap;
+}
+
+.txt-wrap-off{
+    white-space: nowrap;
+}
+
+.sp-button-set{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+}
+
+.sp-button-set button{
+    margin: 5px 10px;
+}
+
+/*Testing styles*/
+.filter-drop {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #fff;
+    color: #000;
+    font-size: medium;
+    padding: 5px;
+}
+
+.filter-drop option {
+    background-color: #fff;
+    color: #000;
+}
+
+.filter-drop option:hover {
+    background-color: rgb(3, 66, 30);
+    color: #fff;
+}
+
+.filter-drop option:checked {
+    background-color: rgba(11, 144, 64, 0.69);
+    color: #fff;
+}
+
+.filter-container-hr{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.filter-container-hr h3{
+    margin-right: 10px;
+    margin-left: 10px;
+}
+
+.filter-date {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #fff;
+    color: #000;
+    font-size: medium;
+    padding: 8px;
+}
+
+.filter-number {
+    width: 100px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #fff;
+    color: #000;
+    font-size: medium;
+    padding: 5px;
+    text-align: center;
+}
+
+.filter-number:focus {
+    outline: none;
+    border: 1px solid rgba(11, 144, 64, 0.69);
+}
+
+.filter-number::-webkit-inner-spin-button,
+.filter-number::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.filter-number[type=number] {
+    -moz-appearance: textfield;
+}
+.filter-btn{
+    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+    font-size: medium;
+    display: flex;
+    align-items: center;
+}
+
+.filter-details summary {
+    cursor: pointer;
+    outline: none;
+    color: #03421e;
+    font-size: large;
+    user-select: none;
+}
+
+.filter-details[open] summary {
+    background-color: rgba(42, 42, 42, 0.92);
+    border-radius: 4px;
+    color: white;
+}
+
+.filter-details > * {
+    margin: 0;
+    padding: 8px;
+    background-color: #f9f9f9;
+}
+

@@ -1,5 +1,5 @@
 #popup-menu{
-    width:170px;
+    width:200px;
     display:none;
     position:absolute;
     flex-direction:column;
@@ -12,10 +12,26 @@
 }
 .tabcont{
     display: flex;
+    align-items: center;
+    color: black;
 }  
 
 .icon{
     width: 50px;
     padding: 10px;
     margin-right: 5px;
+}
+
+.popup-link{
+    font-weight: bold;
+    text-decoration: none;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.tab{
+    background-color: white !important;
+}
+
+.tab:hover{
+    background-color: rgba(3, 253, 3, 0.155) !important;
 }

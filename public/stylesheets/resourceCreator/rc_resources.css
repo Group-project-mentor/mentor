@@ -2,10 +2,19 @@
 
 /* ----- resource header ----- */
 .rc-resource-header {
+    position: relative;
     display: flex;
     padding: 10px 20px;
     justify-content: space-between;
     align-items: center;
+}
+
+.rc-resource-button-icon-s{
+    width: 15px;
+    margin: 0 0 0 10px;
+}
+.rc-resource-button-icon-m{
+    width: 30px;
 }
 
 .rc-resource-header h1 {
@@ -19,15 +28,68 @@
 }
 
 .rc-add-btn {
+    user-select: none;
+    -moz-user-select: none;
     padding: 10px;
     background-color: green;
     border-radius: 10px;
     font-weight: 500;
     color: white;
     text-align: center;
+    cursor: pointer;
+    display: flex;
+}
+
+/* ?-- Resource Creator Small Popup Menu--- */
+.popup-toggle{
+    display: none !important;
+}
+
+.hidden-toggle{
+    display: none !important;
+}
+
+.rc-popup-menu{
+    position: absolute;
+    right: 20px;
+    bottom: -90px;
+    backdrop-filter: blur(5px);
+    display: flex;
+    flex-direction: column;
+    border-radius: 10px;
+    z-index: 20;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
 }
 
 
+.rc-popup-item{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    cursor: pointer;
+    border-radius: 10px;
+    padding: 8px;
+}
+
+.rc-popup-item:nth-last-of-type(1){
+    border-radius: 0 0 10px 10px;
+}
+.rc-popup-item:first-of-type{
+    border-radius: 10px 10px 0 0;
+}
+
+.rc-popup-item:hover{
+    background-color: rgba(217, 217, 217, 0.5);
+}
+
+.rc-popup-item>img{
+    margin: 0 10px;
+}
+
+.rc-popup-item>div{
+    color: green;
+    margin-right: 10px;
+}
 
 /* ----- Card set for video list ------*/
 
@@ -145,6 +207,7 @@
 }
 
 .rc-table-title {
+    display: flex;
     font-size: larger;
     padding: 10px 15px;
     border-radius: 5px 5px 0 0;
@@ -197,7 +260,9 @@
     transform: scale(1.02);
     transition: all 0.5s;
 }
-
+.rc-pp-title{
+    box-shadow: none;
+}
 .rc-pp-title:hover {
     transform: scale(1);
 }
@@ -281,6 +346,14 @@
     border-radius: 10px;
 }
 
+.rc-form-group  .text-input{
+    padding: 8px 10px;
+    border: 1px solid rgba(128, 128, 128, 0.06);
+    outline: none;
+    font-size: medium;
+    border-radius: 10px;
+}
+
 
 .rc-form-group [type="file"] {
     font-size: small;
@@ -289,8 +362,32 @@
     width: 100%;
     height: 100%;
     opacity: 0;
-
 }
+
+.progress-container{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    /*padding:10px;*/
+    align-items: center;
+}
+
+.progress-container>p{
+   font-size: small;
+    color: #0b9040;
+    min-width: 30px;
+    text-align: right;
+}
+
+.progress-container>progress{
+    width: 80%;
+    accent-color: rgba(11, 144, 64, 0.69);
+}
+.progress-container>img{
+    width: 30px;
+    cursor: pointer;
+}
+
 
 .rc-form-group>div {
     padding: 40px;
@@ -303,6 +400,15 @@
     border-radius: 5px;
     position: relative;
 
+}
+
+.rc-form-group .special-label{
+    background-color: white;
+    color: #424040;
+    text-align: center;
+    padding: 5px;
+    margin: 5px 0;
+    width: 300px;
 }
 
 .rc-form-group textarea {
@@ -323,9 +429,15 @@
     width: 350px !important;
     height: 150px !important;
 }
+.rc-upload-button{
+    display: flex;
+    justify-content: center;
+    width: 80%;
+    margin: auto;
+}
 
 .rc-upload-button button {
-    padding: 7px 15px;
+    /*padding: 7px 15px;*/
     margin: auto;
     border-radius: 5px;
     border: none;
@@ -335,8 +447,59 @@
     font-family: "Poppins", sans-serif;
 }
 
+.rc-button-vertical{
+    display: flex;
+    flex-direction: column;
+}
+
+.rc-button-vertical button{
+    margin: 10px auto;
+}
+
+.pp-vertical-btn{
+    padding: 8px 10px;
+    margin: 10px 0 0;
+    text-align: center;
+    background-color: rgb(6, 115, 51);
+    color: white;
+    border: 2px solid rgba(215, 215, 215, 0);
+    border-radius: 5px;
+    transition: 0.5s all;
+    cursor: pointer;
+    font-size: small;
+    text-decoration: none;
+}
+.pp-vertical-btn:hover{
+    color: green;
+    background-color: rgba(11, 144, 64, 0.09);
+    border: 2px solid #d7d7d7;
+    transition: 0.5s all;
+}
+
+
 .rc-form-group label {
     margin: 5px;
+}
+
+.pp-quiz-chooser{
+    width: 100%;
+    padding: 7px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    border: none;
+    border-bottom: 2px solid rgba(11, 144, 64, 0.69);
+    font-size: 16px;
+    background-color: white;
+    transition: border-bottom-color 0.25s ease-in-out;
+}
+
+.pp-quiz-chooser>option{
+    background-color: white;
+    color: black;
+    font-size: 16px;
+    padding: 12px 20px;
+    border: none;
+    transition: background-color 0.25s ease-in-out;
 }
 
 .quiz-card-list{
@@ -345,6 +508,7 @@
     justify-content: space-evenly;
 }
 .quiz-card-main{
+    position: relative;
     padding: 15px;
     display: flex;
     flex-direction: column;
@@ -389,6 +553,114 @@
     color: #7a7a7a;
     margin-top: 50px;
 }
+
+/* Tab pane*/
+.resource-tab-main{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+.resource-tab-pane{
+    display: flex;
+    width: 300px;
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;
+    border-radius: 20px 20px 0 0;
+
+    /*margin: auto;*/
+}
+
+.tp-tab{
+    padding: 8px;
+    margin: 0 1px;
+    /*background: lightgray;*/
+    color: #056d36;
+    text-align: center;
+    flex: 1;
+    cursor: pointer;
+}
+
+.tp-tab:first-of-type{
+    border:  solid transparent;
+    border-radius: 20px 5px 0 0 ;
+}
+.tp-tab:last-of-type{
+    border:  solid transparent;
+    border-radius: 5px 20px 0 0;
+}
+.resource-tab-pane .active{
+    background: rgb(5, 109, 54);
+    color: white;
+    box-shadow: rgba(42, 42, 42, 0.4) 3px 3px 6px 0px inset, rgb(5, 109, 54) -3px -3px 6px 1px inset;
+}
+
+video.rc-uploaded-video{
+    width: 600px;
+    height: 300px;
+}
+
+.resource-approved-sign{
+    width: 20px !important;
+    margin-right: 15px !important;
+}
+
+.rc-form-group-hz{
+    display: flex;
+    margin: 0;
+    padding: 0;
+    flex-wrap: wrap;
+}
+
+.rc-form-group-hz > .rc-form-group{
+    margin: 5px;
+    flex: 1;
+}
+
+.rc-form-group > .form-group-textarea{
+    width: 100%;
+    border-radius: 5px;
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    color: #333;
+    line-height: 1.25;
+    padding: 8px;
+}
+
+.rc-form-hr{
+    border-color: rgba(187, 187, 187, 0.14);
+}
+
+.rc-form-group-hz > .checkbox-set{
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    padding: 0 10px;
+}
+
+.checkbox-set input[type="checkbox"]{
+    accent-color: #0b9040 !important;
+}
+
+.rc-form-group .normal-file-input{
+    opacity: 100%;
+    position: initial;
+    color: #333;
+    cursor: pointer;
+
+}.rc-form-group .normal-file-input::-webkit-file-upload-button{
+     background-color: #0b9040;
+     color: #fff;
+     padding: 8px;
+    margin-left: 20px;
+     border: none;
+     border-radius: 4px;
+     cursor: pointer;
+}
+
+.rc-form-group small{
+    text-align: center;
+    color: gray;
+    font-size: smaller;
+}
 /** media queries  */
 
 @media screen and (max-width:720px) {
@@ -403,6 +675,11 @@
     .rc-add-btn {
         padding: 8px;
         font-size: small;
+    }
+
+    video.rc-uploaded-video{
+        width: 400px;
+        height: 200px;
     }
 }
 
@@ -478,6 +755,11 @@
         outline: none;
     }
 
+    .rc-form-group [type="email"] {
+        padding: 5px 10px;
+        border: 1px solid rgba(128, 128, 128, 0.345);
+        outline: none;
+    }
 
     .rc-form-group [type="file"] {
         font-size: small;
@@ -491,14 +773,23 @@
 
     .rc-upload-button {
         display: flex;
+        justify-content: center;
+        width: 90%;
     }
 
     .rc-upload-button button {
         padding: 7px 25px;
         margin: 10px auto;
+        margin: auto;
+        margin: 20px;
+
     }
 
     .rc-form-group label {
         margin: 5px;
+    }
+    video.rc-uploaded-video{
+        width: 250px;
+        height: 125px;
     }
 }

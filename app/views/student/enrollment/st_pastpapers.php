@@ -28,12 +28,10 @@
                     </a>
                 </div>
                 <div class="top-bar-btns">
-                    <a href="<?php echo BASEURL ?>st_Inside_subject">
+                    <a href="<?php echo BASEURL . 'st_public_resources/index/' . $_SESSION['gid'] . '/' . $_SESSION['sid'] ?>">
                         <div class="back-btn">Back</div>
                     </a>
-                    <a href="#">
-                        <img src="<?php echo BASEURL ?>assets/icons/icon_notify.png" alt="notify">
-                    </a>
+                    <?php include_once "components/notificationIcon.php" ?>
                     <a href="<?php echo BASEURL ?>st_profile">
                         <img src="<?php echo BASEURL ?>assets/icons/icon_profile_black.png" alt="profile">
                     </a>
@@ -45,101 +43,72 @@
 
                 <!-- Title and sub title of middle part -->
                 <div class="mid-title">
-                    <h1>Past Papers</h1>
-                    <h6>Hello</h6>
-                    <br>
-                    <h2>C79 - Science</h2>
+                    <?php
+                    $ggid = $_SESSION['gid'] + 5;
+ ?>
+                    <h1><?php echo "Grade " . $ggid . " - " . ucfirst($_SESSION['sname']) ?></h1>
+                    <h6>My Subjects / <?php echo ucfirst($_SESSION['sname']) ?> / Past Papers</h6>
                 </div>
+                    <!-- Grade choosing interface -->
+                    <div class="container-box">
 
-                <!-- Grade choosing interface -->
-                <div class="container-box">
+                        <?php
+                        if (!empty($data[0])) { ?>
+                            <div class="rc-resource-table">
+                                <div class="rc-pp-row rc-pp-row-head">
+                                    <div class="rc-resource-col">Past Papers </div>
+                                    <div class="rc-resource-col">year</div>
+                                    <div class="rc-resource-col">Part</div>
+                                    <div></div>
+                                </div>
+                                <?php foreach ($data[0] as $row) { ?>
+                                    <div class='rc-pp-row'>
 
-                    <div class="rc-resource-table">
-                        <div class="rc-pp-row rc-pp-row-head">
-                            <div class="rc-resource-col">Past Papers Name</div>
-                            <div class="rc-resource-col">year</div>
-                            <div class="rc-resource-col">Part</div>
-                            <div></div>
-                        </div>
+                                        <div class='rc-resource-col' style="display: flex;align-items: center;justify-content: flex-start;">
 
-                        <div class="rc-pp-row">
-                            <div class="rc-resource-col">Genaral </div>
-                            <div class="rc-resource-col">2019</div>
-                            <div class="rc-resource-col">1</div>
-                            <div class="rc-quiz-row-btns">
-                                <a href="<?php echo BASEURL ?>st_pastpapers/st_pastpaper_do">
-                                    <img src="<?php echo BASEURL ?>assets/icons/Interface Arrows Button Down Double by Streamlinehq.png" alt="">
-                                </a>
-                                <a href="<?php echo BASEURL ?>st_pastpapers/st_pastpaper_down">
-                                    <img src="<?php echo BASEURL ?>assets/icons/External_Download_by_Streamlinehq.png" alt="">
-                                </a>
+                                            <div>
+                                                <?php echo $row->name ?>
+                                            </div>
+                                        </div>
+                                        <div class="rc-resource-col"><?php echo $row->year ?></div>
+                                        <div class="rc-resource-col"><?php echo $row->part ?></div>
+                                        <div class="rc-quiz-row-btns">
+                                            
+                                            <a href="<?php echo BASEURL . 'st_public_resources/preview/paper/' . $row->id ?>">
+                                                <img src="<?php echo BASEURL ?>assets/icons/icon_eye.png" alt="">
+                                            </a>
+
+                                            <!-- <?php $loc = 'paper' ;?>  -->
+                                            <a href="<?php echo BASEURL. 'st_public_resources/st_pastpaper_link_Quiz/' . $row->id ?>">
+                                                <img src="<?php echo BASEURL ?>assets/icons/icon_quiz_black.png" alt="">
+                                            </a>
+                                        </div>
+                                    </div>
+                                <?php   }
+                            } else { ?>
+                                <h2 class="rc-no-data-msg" style="text-align: center;">No Data to Display</h2>
+                            <?php } ?>
                             </div>
-                        </div>
-                        <div class="rc-pp-row">
-                            <div class="rc-resource-col">Tutorial 1</div>
-                            <div class="rc-resource-col">2018</div>
-                            <div class="rc-resource-col">2</div>
-                            <div class="rc-quiz-row-btns">
-                                <a href="<?php echo BASEURL ?>st_pastpapers/st_pastpaper_do">
-                                    <img src="<?php echo BASEURL ?>assets/icons/Interface Arrows Button Down Double by Streamlinehq.png" alt="">
-                                </a>
-                                <a href="<?php echo BASEURL ?>st_pastpapers/st_pastpaper_down">
-                                    <img src="<?php echo BASEURL ?>assets/icons/External_Download_by_Streamlinehq.png" alt="">
-                                </a>
-                            </div>
-                        </div>
-                        <div class="rc-pp-row">
-                            <div class="rc-resource-col">Tutorial 2</div>
-                            <div class="rc-resource-col">2017</div>
-                            <div class="rc-resource-col">2</div>
-                            <div class="rc-quiz-row-btns">
-                                <a href="<?php echo BASEURL ?>st_pastpapers/st_pastpaper_do">
-                                    <img src="<?php echo BASEURL ?>assets/icons/Interface Arrows Button Down Double by Streamlinehq.png" alt="">
-                                </a>
-                                <a href="<?php echo BASEURL ?>st_pastpapers/st_pastpaper_down">
-                                    <img src="<?php echo BASEURL ?>assets/icons/External_Download_by_Streamlinehq.png" alt="">
-                                </a>
-                            </div>
-                        </div>
-
+                            <?php if (count($data) > 25) { ?>
+                                <div class="pagination-set">
+                                    <div class="pagination-set-left">
+                                        <b>25</b> Results
+                                    </div>
+                                    <div class="pagination-set-right">
+                                        <button>
+                                            < </button>
+                                                <div class="pagination-numbers">
+                                                    1 of 10
+                                                </div>
+                                                <button> > </button>
+                                    </div>
+                                </div>
+                            <?php } ?>
                     </div>
-
                 </div>
-        </div>
-    </section>
+            </section>
 </body>
-<script>
-    let toggle = true;
+<script src="<?php echo BASEURL ?>public/javascripts/st_auth_script.js"></script>
 
-    const getElement = (id) => document.getElementById(id);
-
-    let togglerBtn = getElement("nav-toggler");
-    let nav = getElement("nav-bar");
-    let logoLong = getElement("nav-logo-long");
-    let navMiddle = getElement("nav-middle");
-    let navLinkTexts = document.getElementsByClassName("nav-link-text");
-
-    togglerBtn.addEventListener('click', () => {
-        nav.classList.toggle("nav-bar-small");
-
-        if (toggle) {
-            logoLong.classList.add("hidden");
-            navMiddle.classList.add("hidden");
-            togglerBtn.classList.add("toggler-rotate");
-            for (i = 0; i < navLinkTexts.length; i++) {
-                navLinkTexts[i].classList.add("hidden");
-            }
-            toggle = false;
-        } else {
-            logoLong.classList.remove("hidden");
-            navMiddle.classList.remove("hidden");
-            togglerBtn.classList.remove("toggler-rotate");
-            for (i = 0; i < navLinkTexts.length; i++) {
-                navLinkTexts[i].classList.remove("hidden");
-            }
-            toggle = true;
-        }
-    })
-</script>
 
 </html>

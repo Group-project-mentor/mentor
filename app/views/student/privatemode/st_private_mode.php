@@ -32,9 +32,7 @@
                     <a href="<?php echo BASEURL; ?>home">
                         <div class="back-btn">Back</div>
                     </a>
-                    <a href="#">
-                        <img src="<?php echo BASEURL; ?>assets/icons/icon_notify.png" alt="notify">
-                    </a>
+                    <?php include_once "components/notificationIcon.php" ?>
                     <a href="<?php echo BASEURL ?>st_profile">
                         <img src="<?php echo BASEURL; ?>assets/icons/icon_profile_black.png" alt="profile">
                     </a>
@@ -51,15 +49,36 @@
                 </div>
 
                 <!-- subject cards -->
-                <div class="container-box" >
+                <div class="container-box">
                     <div>
                         <!-- tempary movement 1-->
-                        <div class="subject-card" style="text-align:center ;">
+                        <!-- <div class="subject-card" style="text-align:center ;">
                             <img src="<?php echo BASEURL  ?>assets/patterns/1.png" alt="" style="width : 250px ; height:150px;"/>
                             <a href="<?php echo BASEURL  ?>st_private_mode/st_classroom_inside" ><label>Mathematics</label></a>
                             <label>Grade 8</label>
                             <label>Mr.Thimira Galahitiyawa</label>
-                        </div>
+                        </div> -->
+                        <h3> Some Private classes You Enrolled</h3>
+                        <br><br>
+                        <!-- new data from DB -->
+                        <?php if (!empty($data[0])) { ?>
+                            <div class="subject-card-set">
+
+                                <?php foreach (array_slice($data[0], 0, 3) as $row) { ?>
+                                    <div class="subject-card">
+                                        <img src="<?php echo BASEURL  ?>assets/patterns/2.png" alt="" />
+                                        <a href="#"><label><?php echo $row->class_name ?></label></a>
+                                        <label>Grade <?php echo $row->grade + 5 ?></label>
+                                        </div>
+                                <?php } ?>
+                            </div>
+                        <?php } else {
+                            echo "no data!";
+                        } ?>
+                    </div>
+
+                    <div>
+                        <br><br><br><br><br>
                         <a class="see-all-btn" href="<?php echo BASEURL  ?>st_private_mode/st_myclasses" style="text-decoration: none; ">My classes</a>
                     </div>
 
@@ -68,38 +87,7 @@
             </section>
     </section>
 </body>
-<script>
-    let toggle = true;
+<script src="<?php echo BASEURL ?>public/javascripts/st_auth_script.js"></script>
 
-    const getElement = (id) => document.getElementById(id);
-
-    let togglerBtn = getElement("nav-toggler");
-    let nav = getElement("nav-bar");
-    let logoLong = getElement("nav-logo-long");
-    let navMiddle = getElement("nav-middle");
-    let navLinkTexts = document.getElementsByClassName("nav-link-text");
-
-    togglerBtn.addEventListener('click', () => {
-        nav.classList.toggle("nav-bar-small");
-
-        if (toggle) {
-            logoLong.classList.add("hidden");
-            navMiddle.classList.add("hidden");
-            togglerBtn.classList.add("toggler-rotate");
-            for (i = 0; i < navLinkTexts.length; i++) {
-                navLinkTexts[i].classList.add("hidden");
-            }
-            toggle = false;
-        } else {
-            logoLong.classList.remove("hidden");
-            navMiddle.classList.remove("hidden");
-            togglerBtn.classList.remove("toggler-rotate");
-            for (i = 0; i < navLinkTexts.length; i++) {
-                navLinkTexts[i].classList.remove("hidden");
-            }
-            toggle = true;
-        }
-    })
-</script>
 
 </html>

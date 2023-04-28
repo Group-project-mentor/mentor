@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>See Student</title>
 
-    <link rel="stylesheet" href="<?php echo BASEURL . '/public/stylesheets/rc_main.css' ?> ">
+    <link rel="stylesheet" href="<?php echo BASEURL . '/public/stylesheets/resourceCreator/rc_main.css' ?> ">
     <link rel="stylesheet" href="<?php echo BASEURL . '/public/stylesheets/sponsor/sp_styles.css' ?> ">
 </head>
 
@@ -26,13 +26,11 @@
 
             </div>
             <div class="top-bar-btns">
-                <a href="">
+                <a href="<?php echo BASEURL ?>sponsor/allStudents">
                     <div class="back-btn">Back</div>
                 </a>
-                <a href="#">
-                    <img src="<?php echo BASEURL ?>assets/icons/icon_notify.png" alt="notify">
-                </a>
-                <a href="<?php echo BASEURL . 'rcProfile' ?>">
+                <?php include_once "components/notificationIcon.php" ?>
+                <a href="<?php echo BASEURL . 'sponsor/profile' ?>">
                     <img src="<?php echo BASEURL ?>assets/icons/icon_profile_black.png" alt="profile">
                 </a>
             </div>

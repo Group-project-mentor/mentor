@@ -82,6 +82,21 @@ button{
     color: rgb(255, 255, 255);
 }
 
+.bckclose{
+    display: flex;
+    justify-content: space-between;
+    /* width: 100%; */
+    margin: 20px;
+    width: 10px;
+    height: 10px;
+}
+
+.back{
+    margin: 10px;
+    width: 10px;
+    height: 10px;
+}
+
 button :hover{
     
 }

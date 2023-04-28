@@ -381,7 +381,7 @@ footer {
 /*BMC section*/
 
 .landing-BMC {
-    background-image: url("http://localhost/mentor-interim/assets/landing/bmcimage.png"), url("http://localhost/mentor-interim/assets/landing/vector3.png");
+    background-image: url("http://localhost/mentor/assets/landing/bmcimage.png"), url("http://localhost/mentor/assets/landing/vector3.png");
     /*height: 100vh;*/
     background-attachment: fixed;
     background-position: right;
@@ -450,7 +450,7 @@ footer {
 }
 
 .landing-sponsor {
-    background: url("http://localhost/mentor-interim/assets/landing/sponsor_section.jpg");
+    background: url("http://localhost/mentor/assets/landing/sponsor_section.jpg");
     background-color: #f0f0f0;
     display: flex;
     background-size: 50%;
@@ -458,6 +458,16 @@ footer {
     background-repeat: no-repeat;
     background-position: left center;
 
+}
+
+.landing-resource-ctr{
+    background: url("http://localhost/mentor/assets/landing/resource_creator.png");
+    background-color: #f0f0f0;
+    display: flex;
+    background-size: 30%;
+    justify-content: flex-end;
+    background-repeat: no-repeat;
+    background-position: left center;
 }
 
 .landing-sponsor-area {

@@ -9,7 +9,6 @@ class Register extends Controller
     //! Not completed
     public function verify_register_student()
     {
-//        if (isset($_POST["register"])) {
             $email_pattern = "/[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]/";
             $name_pattern = "/[A-Za-z0-9]+/";
 
@@ -19,33 +18,26 @@ class Register extends Controller
             $age = $_POST["stAge"];
 
             $response = array("message"=>"");
-
-        // $result = null;
-
-            if (preg_match($email_pattern, $email) and preg_match($name_pattern, $name and $password == $_POST["stPassConf"])) {
+            $salt = base64_encode(random_bytes(5));
+            
+            if (preg_match($email_pattern, $email) and preg_match($name_pattern, $name) and ($password == $_POST["stPassConf"])) {
+                // $password = $password.$salt;
                 $hash = password_hash($password, PASSWORD_BCRYPT, ["cost" => 10]);
 
-                if ($this->model("userModel")->registrationStudent($email, $name, $hash, $age)) {
+                if ($this->model("userModel")->registrationStudent($email, $name, $hash, $salt, $age)) {
                     $response['message'] = "successful";
                 } else {
-                    echo "Registration unsuccessful !";
-                    // header("location:register.php?error=Can't add the user");
-                    // header("location:" . BASEURL . "register/index/1");
+                    $response['message'] = "unsuccessful";
                 }
             } else {
-                echo "Invalid Data !";
-                // header("location:" . BASEURL . "register/index/2");
-                // header("location:register.php?error=Invalid Data");
+                $response['message'] = "INVALID";
             }
-//        } else {
-//            header("location:" . BASEURL . "login");
-//        }
+        echo json_encode($response);
     }
 
     // ?Done
     public function verify_register_teacher()
     {
-        // if (isset($_POST["register"])) {
             $email_pattern = "/[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]/";
             $name_pattern = "/[A-Za-z0-9]+/";
 
@@ -54,33 +46,21 @@ class Register extends Controller
             $name = $_POST["tname"];
 
             $response = array("message"=>"");
-
+            $salt = base64_encode(random_bytes(5));
+            
             if (preg_match($email_pattern, $email) and preg_match($name_pattern, $name) and ($password == $_POST["tcpasswd"])) {
+                // $password = $password . $salt;
                 $hash = password_hash($password, PASSWORD_BCRYPT, ["cost" => 10]);
 
-                if ($this->model("userModel")->registrationTeacher($email, $name, $hash)) {
+                if ($this->model("userModel")->registrationTeacher($email, $name, $hash, $salt)) {
                     $response['message'] = "successful";
-                    // header("location:" . BASEURL . "login");
                 } else {
                     $response['message'] = "unsuccessful";
-                    // header("location:" . BASEURL . "register/index/1");
                 }
             } else {
                 $response['message'] = "invalid";
-                // header("location:" . BASEURL . "register/index/2");
             }
-        // } else {
-        //     $response['message'] = "Invalid !";
-        // }
         header('Content-Type: application/json');
         echo json_encode($response);
     }
-
-    // public function test(){
-    //     $response = array("message" => $_POST['temail']);
-    //     $response['message'] = "Invalid Data !";
-
-    //     header('Content-Type: application/json');
-    //     echo json_encode($response);
-    // }
 }

@@ -2,7 +2,7 @@
 
 class RcProfile extends Controller
 {
-    private $user = "rc";
+    private string $user = "rc";
     
     public function __construct()
     {
@@ -100,9 +100,11 @@ class RcProfile extends Controller
                 $this->model("userModel")->updateMobile($_POST['mobile'], $_SESSION['id']);
                 header("location:" . BASEURL . 'rcProfile/index/success');
             } else {
+                flashMessage("failed");
                 header("location:" . BASEURL . 'rcProfile/change/mobile/failed');
             }
         } else {
+            flashMessage("failed");
             header("location:" . BASEURL . 'rcProfile/change/mobile/failed');
         }
     }
@@ -115,20 +117,46 @@ class RcProfile extends Controller
                 if (!empty($result) && password_verify($_POST['cpasswd'], $result[2])) {
                     $hash = password_hash($_POST['npasswd'], PASSWORD_BCRYPT, ["cost" => 10]);
                     if ($this->model("userModel")->changePassword($hash, $_SESSION['user'])) {
+                        flashMessage("success");
                         header("location:" . BASEURL . 'rcProfile/index/success');
                     } else {
+                        flashMessage("failed");
                         header("location:" . BASEURL . 'rcProfile/change/password/failed');
                     }
                 } else {
+                    flashMessage("wrongPass");
                     header("location:" . BASEURL . 'rcProfile/change/password/wrongPass');
                 }
             } else {
+                flashMessage("failed");
                 header("location:" . BASEURL . 'rcProfile/change/password/failed');
-                //! todo
             }
         } else {
+            flashMessage("failed");
             header("location:" . BASEURL . 'rcProfile/change/password/failed');
-            //! todo
         }
+    }
+
+    public function reportIssue()
+    {
+        $result = $this->model("reportIssue")->getReportTypes($_SESSION['usertype']);
+        $this->view('resourceCtr/reportIssue/reportIssue',array($result));
+    }
+    public function saveReport(){
+        $response = array("alert"=>"","message"=>"");
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            if($_POST['reportOptions'] == "0" or empty($_POST['reportDesc'])){
+                $response['alert'] = "fill all";
+            }else{
+                if($this->model('reportIssue')->saveIssue($_SESSION['id'], $_POST['reportOptions'], $_POST['reportDesc'])){
+                    $response['message'] = "success";
+                }else{
+                    $response['message'] = "failed";
+                }
+            }
+        }
+
+        // header('Content-Type:application/json');
+        echo json_encode($response);
     }
 }

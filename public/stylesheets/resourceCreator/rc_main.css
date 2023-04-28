@@ -5,10 +5,11 @@
 }
 
 .page {
+    position: relative;
     display: flex;
     height: 100vh;
     overflow-y: hidden;
-
+    overflow-x: hidden;
 }
 
 /** ----------------------------------------------------------------------------- */
@@ -441,7 +442,7 @@ button[type="submit"] {
     display: flex;
     align-items: center;
 }
-.pagination-set-right>button{
+.pagination-set-right>a{
     padding: 5px 10px;
     border-radius: 5px;
     outline: none;
@@ -450,12 +451,56 @@ button[type="submit"] {
     background: #0f6805;
     cursor: pointer;
     font-weight: 600;
+    text-decoration: none;
 
 }
 .pagination-numbers{
     padding: 3px 10px;
 }
 
+/* ! heading last made after subject grade chooser added */
+.subject-heading-container{
+    display: flex;
+    align-items: center;
+}
+.subject-heading-divider{
+    display: flex;
+    justify-content: space-between;
+}
+
+/*dashboard rc*/
+.rc-dash-info-card-set{
+    display: flex;
+    flex: 1;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.rc-dash-info-card{
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 150px;
+    height: 150px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    margin: 10px;
+    border-radius: 5px;
+}
+
+.rc-dash-info-card>h1{
+    font-size: xxx-large;
+    text-align: center;
+}
+
+.rc-dash-info-card>h2{
+    font-size: large;
+    padding: 10px 0;
+    text-align: center;
+}
 
 /* Todo : Media Queries */
 
@@ -554,6 +599,20 @@ button[type="submit"] {
 
     .decorator img {
         padding: 0;
+    }
+
+    .subject-heading-container{
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        align-self: center;
+        justify-self: center;
+    }
+
+    .subject-heading-divider{
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
     }
 }
 
@@ -710,6 +769,8 @@ button[type="submit"] {
         width: 100%;
     }
 
+
+
 }
 
 @media screen and (max-width:350px) {
@@ -801,5 +862,18 @@ button[type="submit"] {
         margin: auto;
         max-width: 200px;
         padding: 15px;
+    }
+
+    .subject-heading-container{
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+    }
+
+    .subject-heading-divider{
+        flex-direction: column;
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
     }
 }

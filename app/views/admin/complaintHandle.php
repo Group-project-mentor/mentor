@@ -6,8 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>login</title>
-    <link rel="stylesheet" href="<?php echo BASEURL?>stylesheets/admin/ad_complaintHandle.css">
-    <link rel="stylesheet" href="<?php echo BASEURL?>stylesheets/admin/style.css">
+    <link rel="stylesheet" href="<?php echo BASEURL ?>stylesheets/admin/ad_complaintHandle.css">
+    <link rel="stylesheet" href="<?php echo BASEURL ?>stylesheets/admin/style.css">
 </head>
 <nav>
     <div class="ad_nav">
@@ -16,115 +16,53 @@
 </nav>
 
 <body>
-    <section class="page">
-        <!-- Navigation panel -->
-        <nav class="nav-bar" id="nav-bar">
+    <?php require_once("C:/xampp/htdocs/mentor/app/views/admin/navbar.php"); ?>
+    <!-- Middle part for whole content -->
+    <section class="mid-content ad_mid-content">
 
-            <!-- Navigation bar logos -->
-            <div class="nav-upper">
-                <div class="nav-logo-short">
-                    <img src="<?php echo BASEURL?>assets/admin/minilogo 1.png" alt="logo" />
-                </div>
-                <div class="nav-logo-long" id="nav-logo-long">
-                    <img src="<?php echo BASEURL?>assets/admin/logo-w.png" alt="logo" />
-                </div>
-            </div>
+        <!-- Title and sub title of middle part -->
+        <div class="mid-title">
+            <h1>Complaints</h1>
+        </div>
 
-
-            <!-- Navigation buttons -->
-            <div class="nav-links">
-                <a href="<?php echo BASEURL ?>" class="nav-link">
-                    <img class="active" src="<?php echo BASEURL ?>assets/admin/bi_grid-fill.png" alt="dsh">
-                    <div class="nav-link-text">Dashboard</div>
-                </a>
-                <a href="<?php echo BASEURL ?>adhumanResource" class="nav-link">
-                    <img src="<?php echo BASEURL ?>assets/admin/bi_people-fill.png" alt="hr">
-                    <div class="nav-link-text">Human Resource</div>
-                </a>
-                <a href="<?php echo BASEURL ?>adVerification" class="nav-link">
-                    <img src="<?php echo BASEURL ?>assets/admin/bi_patch-check-fill.png" alt="vc">
-                    <div class="nav-link-text">Verification Center</div>
-                </a>
-                <a href="<?php echo BASEURL ?>adScholPro" class="nav-link">
-                    <img src="<?php echo BASEURL ?>assets/admin/bi_mortarboard-fill.png" alt="sp">
-                    <div class="nav-link-text">Scholorship Programe</div>
-                </a>
-                <a href="<?php echo BASEURL ?>adWallet" class="nav-link">
-                    <img src="<?php echo BASEURL ?>assets/admin/Vector.png" alt="wallet">
-                    <div class="nav-link-text">Wallet</div>
-                </a>
-                <a href="#" class="nav-link">
-                    <img src="<?php echo BASEURL ?>assets/admin/Vector (1).png" alt="an">
-                    <div class="nav-link-text">Analitics</div>
-                </a>
-            </div>
-
-
-            <!-- Navigation bar toggler -->
-            <div class="nav-toggler" id="nav-toggler">
-                <img src="<?php echo BASEURL?>assets/admin/toogle.png" alt="toggler">
-            </div>
-        </nav>
-
-        <!-- Right side container -->
-        <div class="content-area">
-
-            <!-- Top bar -->
-            <section class="top-bar">
-                <div class="search-bar">
-                    <input type="text" name="" id="" placeholder="Search...">
-                    <a href="">
-                        <img src="<?php echo BASEURL?>assets/admin/Vector (2).png" alt="">
-                    </a>
-                </div>
-                <div class="top-bar-btns">
-                    <a href="#">
-                        <img src="<?php echo BASEURL?>assets/admin/Vector (3).png" alt="notify">
-                    </a>
-                    <a href="#">
-                        <img src="<?php echo BASEURL?>assets/admin/Ellipse 2.png" alt="profile">
-                    </a>
-                </div>
-            </section>
-            <!-- Middle part for whole content -->
-            <section class="mid-content ad_mid-content">
-
-                <!-- Title and sub title of middle part -->
-                <div class="mid-title">
-                    <h1>Complaints</h1>
-                </div>
-
-                <div class="content">
-                    <div class="complaints">
-                        <div class="pp">
-                            <img  class="profile" src="<?php echo BASEURL?>assets/admin/pp.png">
-                        </div>
-                        <div class="name">
-                            <p>Jaydon Aminoff</p>
-                        </div>
-                        <div class="userid">
-                            <p>USER011</p>
-                        </div>
-                        <div class="description">
-                            <p>jahsgfbdssauygefiBCJHBVCGDUDSSDFCSJH FUSHDFUJHFH</p>
+        <div class="content">
+            <?php
+            foreach ($data['complaints'] as $value) {
+                echo '<div class="content">
+                            <div class="complaints">
+                                <div class="pp">
+                                    <img class="profile" src="' . BASEURL . 'assets/admin/pp.png">
+                                </div>
+                                <div class="name" id="user-name">
+                                    <p>' . $value['name'] . '</p>
+                                </div>
+                                <div class="userid" id="user-id">
+                                    <p>' . $value['id'] . '</p>
+                                </div>
+                                <div class="description" id="user-description">
+                                    <p>' . $value['description'] . '</p>
                         </div>
                         <div class="icons">
                             <div class="view">
-                                <a href="<?php echo BASEURL?>adComplaintView"><img src="<?php echo BASEURL?>assets/admin/view.png"></a>
+                                <a href="'. BASEURL .'admins/complaint/' . $value['work_id'] . '?id=' . $value['work_id'] .'"><img src="'. BASEURL .'assets/admin/view.png"></a>
                             </div>
                             <div class="addtm">
-                                <button type="button"><img src="<?php echo BASEURL?>assets/admin/addtm.png"></button>
+                                <button class="comp-btns" onclick="addComplaintToTask()" type="button"><img src="'. BASEURL .'assets/admin/addtm.png"></button>
                             </div>
                             <div class="delete">
-                                <button type="button"><img src="<?php echo BASEURL?>assets/admin/Delete.png"></button>
+                                <a href="'. BASEURL .'#"><img src="'. BASEURL .'assets/admin/Delete.png"></a>
                             </div>
                         </div>
-
-                    </div>
-                </div>
-            </section>
+                            </div>
+                        </div>';
+            }
+            ?>
+            
         </div>
     </section>
+    </div>
+    </section>
+    <?php require_once("C:/xampp/htdocs/mentor/app/views/admin/popup.php"); ?>
 </body>
 
 <script>
@@ -149,9 +87,7 @@
                 navLinkTexts[i].classList.add("hidden");
             }
             toggle = false;
-        }
-
-        else {
+        } else {
             logoLong.classList.remove("hidden");
             // navMiddle.classList.remove("hidden");
             togglerBtn.classList.remove("toggler-rotate");
@@ -162,8 +98,18 @@
         }
     })
 
+    const profileBtn = document.getElementById("profile-btn");
+    const popupMenu = document.getElementById("popup-menu")
+    let toggler = false;
 
+    profileBtn.addEventListener('click', () => {
+        if (toggler) {
+            popupMenu.style.display = "none";
+            toggler = false
 
+        } else {
+            popupMenu.style.display = "flex";
+            toggler = true
+        }
+    });
 </script>
-
-            

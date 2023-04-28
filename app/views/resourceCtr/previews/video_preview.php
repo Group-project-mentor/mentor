@@ -7,11 +7,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Watch Videos</title>
     <link rel="icon" type="image/x-icon" href="<?php echo BASEURL ?>assets/mentor.ico">
-    <link rel="stylesheet" href="<?php echo BASEURL ?>stylesheets/style.css">
+    <link rel="stylesheet" href="<?php echo BASEURL ?>stylesheets/Student/style.css">
     <link rel="stylesheet" href="<?php echo BASEURL ?>stylesheets/Student/st_card_set.css">
     <link rel="stylesheet" href="<?php echo BASEURL . '/public/stylesheets/resourceCreator/rc_resources.css' ?> ">
 </head>
-
 <body>
     <?php include_once "components/alerts/rc_delete_alert.php"?>
 
@@ -19,7 +18,7 @@
     <!-- Navigation panel -->
     <?php include_once "components/navbars/rc_nav_2.php"?>
 
-    <div class="content-area">
+    <section class="content-area">
 
         <!-- Top bar -->
         <section class="top-bar">
@@ -29,9 +28,7 @@
                 <a href="javascript:history.go(-1)">
                     <div class="back-btn">Back</div>
                 </a>
-                <a href="#">
-                    <img src="<?php echo BASEURL ?>assets/icons/icon_notify.png" alt="notify">
-                </a>
+                <?php include_once "components/notificationIcon.php" ?>
                 <a href="<?php echo BASEURL . 'rcProfile' ?>">
                     <img src="<?php echo BASEURL ?>assets/icons/icon_profile_black.png" alt="profile">
                 </a>
@@ -56,11 +53,22 @@
                                 </div>
                             </a>
                         </div>
-                    </div>
+                </div>
                 <h2 style="margin: 0 20px;"><?php echo $data[1][1] ?></h2>
 
                 <div class="subject-card-watching">
-                    <iframe style="width: 720px;height:480px;" src="<?php echo $data[1][4] ?>" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                    <?php if($data[1][6] === "L"){ ?>
+                        <iframe style="width: 720px;height:480px;" src="<?php echo $data[1][4] ?>"
+                                title="YouTube video player" frameborder="0"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                allowfullscreen>
+                        </iframe>
+                    <?php }elseif($data[1][6] === "U"){ ?>
+                        <video class="rc-uploaded-video" controls>
+                            <source src="<?php echo BASEURL.'public/public_resources/videos/'.$_SESSION['gid']."/".$_SESSION['sid']."/".$data[1][4] ?>" >
+                            Your browser does not support the video tag.
+                        </video>
+                    <?php } ?>
                 </div>
 
                 <h2>Description</h2>
@@ -80,10 +88,10 @@
                     </div>
                 </div>
             </div>
-    </div>
+        </section>
+    </section>
 </section>
-</div>
-</section>
+
 </body>
 <script src="<?php echo BASEURL . '/public/javascripts/rc_alert_control.js' ?>"></script>
 </html>

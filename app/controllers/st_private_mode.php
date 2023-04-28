@@ -10,17 +10,23 @@ class St_private_mode extends Controller
 
     public function index()
     {
-        $this->view('student/privatemode/st_private_mode');
+        $gid = $_SESSION['id'] ;
+        $res=$this->model('st_private_mode_model')->getClasses($gid);
+        // $res2=$this->model('st_private_mode_model')->getClasses2($gid, $_SESSION['id']);
+        $this->view('student/privatemode/st_private_mode',array($res));
     }
 
     public function st_classroom_inside()
     {
-        $this->view('student/privatemode/st_classroom_inside');
+        $this->view('student/enrollment_private/st_classroom_inside');
     }
 
     public function st_myclasses()
     {
-        $this->view('student/privatemode/st_myclasses');
+        $gid = $_SESSION['id'] ;
+        $res=$this->model('st_private_mode_model')->getClasses($gid);
+        // $res2=$this->model('st_private_mode_model')->getClasses2($gid, $_SESSION['id']);
+        $this->view('student/privatemode/st_myclasses',array($res));
     }
 
     public function st_join_classes()
@@ -35,7 +41,10 @@ class St_private_mode extends Controller
 
     public function st_join_request()
     {
-        $this->view('student/privatemode/st_join_request');
+        $gid = $_SESSION['id'] ;
+        $res=$this->model('st_private_mode_model')->getClasses1($gid);
+        // $res2=$this->model('st_private_mode_model')->getClasses2($gid, $_SESSION['id']);
+        $this->view('student/privatemode/st_join_request',array($res));
     }
 
 

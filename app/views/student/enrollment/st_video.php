@@ -28,12 +28,10 @@
                     </a>
                 </div>
                 <div class="top-bar-btns">
-                    <a href="<?php echo BASEURL ?>st_courses">
+                <a href="<?php echo BASEURL . 'st_public_resources/index/' . $_SESSION['gid'] . '/' . $_SESSION['sid'] ?>">
                         <div class="back-btn">Back</div>
                     </a>
-                    <a href="#">
-                        <img src="<?php echo BASEURL ?>assets/icons/icon_notify.png" alt="notify">
-                    </a>
+                    <?php include_once "components/notificationIcon.php" ?>
                     <a href="<?php echo BASEURL ?>st_profile">
                         <img src="<?php echo BASEURL ?>assets/icons/icon_profile_black.png" alt="profile">
                     </a>
@@ -45,66 +43,36 @@
 
                 <!-- Title and sub title of middle part -->
                 <div class="mid-title">
-                    <h1>Subjects</h1>
-                    <h6>Hello </h6>
+                    <?php
+                    $ggid = $_SESSION['gid'] + 5;
+ ?>
+                    <h1><?php echo "Grade " . $ggid . " - " . ucfirst($_SESSION['sname']) ?></h1>
+                    <h6>My Subjects / <?php echo ucfirst($_SESSION['sname']) ?> / Videos</h6>
                 </div>
 
 
                 <!-- subject cards -->
                 <div class="container-box">
-                    <div>
-                        <h2>Grade 9 - C79 - Science</h2>
-                    </div>
+                    
                     <div class="subject-card-set">
-                        <div class="rc-video-card-set">
                             <?php
                             // var_dump($data[0]);
                             if (!empty($data[0])) {
                                 $count = 1;
-                                foreach ($data[0] as $row) {
-                                    echo "<div class='rc-video-card'>
-                                            <img src='" . BASEURL . "assets/patterns/" . $count++ . ".png' alt='' />
-                                            <a href='" . BASEURL . "rcResources/preview/video/" . $row['id'] . "'>
-                                                <label>" . $row['name'] . "</label>
-                                            </a>
-                                            <!-- <div class='rc-video-card-btns'>
-                                                <button class='rc-video-delete-btn' onclick='delConfirm(" . $row['id'] . ",1)'>
-                                                    <img src='" . BASEURL . "assets/icons/icon_delete.png' alt=''>
-                                                </button>
-                                                <a class='rc-video-delete-btn' href='" . BASEURL . "rcEdit/video/" . $row['id'] . "'>
-                                                    <img src='" . BASEURL . "assets/icons/icon_edit.png' alt=''>
-                                                </a>
-                                            </div> -->
-                                        </div>";
-                                }
+                                foreach ($data[0] as $row) { ?>
+                                    <div class='subject-card' style="align-items: center;">
+                                        <img src='<?php echo BASEURL . "assets/patterns/" . $count++ .'.png'?>' alt='' />
+                                        <label><?php echo $row->name ?></label>
+                                        <a href='<?php echo BASEURL."st_public_resources/preview/video/".$row->id ?>'  >
+                                            <label>Play</label>
+                                            <!-- <img style="width: 25px" src='<?php echo BASEURL?>assets/icons/icon_eye_white.png' alt='' /> -->
+                                        </a>
+                                    </div>
+                             <?php   }
                             } else {
                                 echo "No data";
                             }
                             ?>
-
-                        </div>
-
-                        <!-- default -->
-                        <div class="subject-card">
-                            <img src="<?php echo BASEURL ?>assets/patterns/1.png" alt="" />
-                            <a href="#"><label>C79 - lesson 1</label></a>
-                            <label>Grade 8</label>
-                            <button class="Enter-btn"><a href="<?php echo BASEURL ?>st_video_play" style="color:white ;">Play</a></button>
-                        </div>
-                        <div class="subject-card">
-                            <img src="<?php echo BASEURL ?>assets/patterns/3.png" alt="" />
-                            <a href="#"><label>C79 - lesson 2</label></a>
-                            <label>Grade 8</label>
-                            <button class="Enter-btn"><a href="<?php echo BASEURL ?>st_video_play" style="color:white ;">Play</a></button>
-                        </div>
-                        <div class="subject-card">
-                            <img src="<?php echo BASEURL ?>assets/patterns/4.png" alt="" />
-                            <a href="#"><label>C79 - lesson 3</label></a>
-                            <label>Grade 8</label>
-                            <button class="Enter-btn"><a href="<?php echo BASEURL ?>st_video_play" style="color:white ;">Play</a></button>
-                        </div>
-
-
                     </div>
                 </div>
         </div>

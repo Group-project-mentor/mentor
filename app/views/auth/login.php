@@ -33,7 +33,7 @@
               <input type="password" placeholder="Password" id="passwd" name="passwd" />
             </div>
             <?php if ($data == 1) {?>
-            <small style="color: red;text-align:right;">Password is wrong !</small>
+              <small style="color: red;text-align:right;">Password is wrong !</small>
             <?php }?>
 
             <!-- <input type="submit" value="Login" class="btn solid" /> -->
@@ -54,15 +54,15 @@
             <small id="sRegAlert" style="color: red;text-align:center;"></small>
             <div class="input-field">
               <i class="fas fa-user"></i>
-              <input type="text" placeholder="Enter your name"  id="stName" name="name"/>
+              <input type="text" placeholder="Enter your name"  id="stName" name="stName"/>
             </div>
             <div class="input-field">
               <i class="fas fa-envelope"></i>
-              <input type="email" placeholder="Enter your email"  id="stEmail" name="email"/>
+              <input type="email" placeholder="Enter your email"  id="stEmail" name="stEmail"/>
             </div>
             <div class="input-field">
               <i class="fas fa-user"></i>
-              <input type="text" placeholder="Enter your age" name="stAge" id="sage"/>
+              <input type="text" placeholder="Enter your age" name="stAge" id="stAge"/>
 
             </div>
             <div class="input-field">
@@ -120,7 +120,6 @@
                     Sign up
                   </button>
                 </div>
-
                 <img src="<?php echo BASEURL ?>public/assets/Teacher/clips/login.png" alt="home" class="image">
               </div>
               <div class="panel right-panel">

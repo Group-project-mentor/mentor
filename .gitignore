@@ -1,3 +1,8 @@
 public_resources
 *.txt
 .idea
+private_resources
+*.txt
+.idea
+.devcontainer
+data

@@ -34,7 +34,7 @@ if (isset($_SESSION['user'])) {
             <div class="landing-nav-links nav-hidden" id="nav-links">
                 <a class="landing-nav-link" href="#Home">Home</a>
                 <a class="landing-nav-link">About</a>
-                <a class="landing-nav-link" href="#BMC">Buy me a coffee</a>
+                <a class="landing-nav-link" href="#BMC">Buy us a coffee</a>
                 <a class="landing-nav-link" href="#footer">Contact us</a>
                 <a class="landing-nav-link landing-special-btn" href="<?php echo BASEURL ?>login">Login</a>
             </div>
@@ -76,7 +76,6 @@ if (isset($_SESSION['user'])) {
                     <img src="<?php echo BASEURL ?>assets/landing/image2.png" alt="">
                 </div>
             </div>
-            <a name="BMC"></a>
         </section>
 
         <section class="landing-mid-container">
@@ -93,19 +92,40 @@ if (isset($_SESSION['user'])) {
             </div>
         </section>
 
+        <section class="landing-resource-ctr">
+            <div class="landing-sponsor-area">
+                <h1 class="landing-sp-heading">
+                    Join with Us as a Content Creator
+                </h1>
+
+                <div class="landing-sp-description">
+                    Our website is on the lookout for talented resource creators to help us continue delivering
+                    high-quality content to our users. As a resource creator, you will have the opportunity to showcase
+                    your skills and expertise, while working alongside a team of dedicated professionals. Whether you're
+                    an experienced creator or just starting out, we welcome all levels of talent and are committed to providing
+                    a supportive and collaborative work environment. Join us today and help shape the future of our website!
+                </div>
+
+                <div class="landing-sp-btn">
+                    <a class="landing-BMC-btn" href="<?php echo BASEURL."landing/registerCreator/instructions"?> ">
+                        <i class="fa-solid fa-person-chalkboard fa-beat-fade"></i>
+                        BECOME A CREATOR
+                    </a>
+                </div>
+            </div>
+            <a name="BMC"></a>
+        </section>
+
         <section class="landing-BMC">
             <div>
                 <h1>BUY US A COFFEE . . .</h1>
                 <div class="landing-BMC-description">
-                    &nbsp;&nbsp;Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci aliquam aperiam
-                    cupiditate delectus, doloribus eius illum impedit ipsa molestiae nobis optio possimus quaerat quis
-                    quod rem reprehenderit sed vero voluptates?
-                    Lo<b>consectetur adipisicing</b>sit amet, consectetur adipisicing elit. Adipisci aliquam aperiam
-                    cupiditate delectus, doloribus eius illum impedit ipsa molestiae nobis optio possimus quaerat quis
-                    quod rem reprehenderit sed vero voluptates?
-                    Lorem ipsum dolor sit amet, <b>consectetur adipisicing</b> elit. Adipisci aliquam aperiam cupiditate
+                    Our website offers a way for users to support our mission of providing free public services for students.
+                    By buying us a coffee, users can contribute to the maintenance and development of our public Learning
+                    Management System (LMS). The LMS provides access to educational resources, study materials, and online
+                    courses for students around the world. Your support helps us continue to offer these services for free.
                 </div>
-                <a class="landing-BMC-btn">
+                <a class="landing-BMC-btn" href="<?php echo BASEURL."home/bmc" ?>">
                     <i class="fa-solid fa-hand-holding-dollar fa-beat-fade"></i>
                     BUY US A COFFEE
                 </a>
@@ -117,16 +137,16 @@ if (isset($_SESSION['user'])) {
         <section class="landing-sponsor">
             <div class="landing-sponsor-area">
                 <h1 class="landing-sp-heading">
-                    Help Child to See the Light
+                    The greatest gift you can give someone is education
                 </h1>
 
                 <div class="landing-sp-description">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quam quod quasi temporibus cumque
-                    accusamus repellendus omnis odit, quas quae culpa esse cum, excepturi molestias. Doloribus magnam
-                    impeditaccusamus repellendus omnis odit, quas quae culpa esse cum, excepturi molestias. Doloribus
-                    magnam
-                    impedit
-                    fugiat corporis ratione?
+                    Our website provides a platform for students to get funding from registered sponsors.
+                    By registering as a sponsor, individuals and organizations can make donations to support
+                    students' education. Students can create profiles and apply for funding, while sponsors
+                    can browse profiles and select the students they wish to support. Our website streamlines
+                    the process of connecting students with sponsors, making it easier for both parties to benefit
+                    from this arrangement.
                 </div>
 
                 <div class="landing-sp-btn">

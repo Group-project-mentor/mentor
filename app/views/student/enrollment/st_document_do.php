@@ -28,12 +28,10 @@
                     </a>
                 </div>
                 <div class="top-bar-btns">
-                    <a href="<?php echo BASEURL?>st_documents">
+                    <a href="<?php echo BASEURL.'st_public_resources/index_documents/'.$_SESSION['gid'].'/'.$_SESSION['sid']?>">
                         <div class="back-btn">Back</div>
                     </a>
-                    <a href="#">
-                        <img src="<?php echo BASEURL?>assets/icons/icon_notify.png" alt="notify">
-                    </a>
+                    <?php include_once "components/notificationIcon.php" ?>
                     <a href="<?php echo BASEURL?>st_profile">
                         <img src="<?php echo BASEURL?>assets/icons/icon_profile_black.png" alt="profile">
                     </a>
@@ -42,57 +40,35 @@
 
             <!-- Middle part for whole content -->
             <section class="mid-content">
-
+            <?php
+            if(empty($data)){
+                echo "<center style='color:red;font-size:x-large;'>No file ! </center>";
+                // header("location:".BASEURL."rcResources/documents/".$_SESSION['gid']."/".$_SESSION['sid']);
+            }
+            else{
+            ?>
                 <!-- Title and sub title of middle part -->
+                
                 <div class="mid-title">
-                    <h2>C79 - Science</h2>
+                    <?php 
+                    $ssid = 'sinhala'; ?>
+                    <h6>My Subjects / <?php echo ucfirst($ssid) ?> / documents / <?php echo $_SESSION['gid'] ?></h6>
+                </div>
                     <br>
                     <hr style=" height:5px ; background-color:green ;">
                     <br>
-                    <embed type="text/html" src="st_courses.html"  width="1000" height="500" style="padding-left: 100px;">
-                <div>
+                    <!-- <embed type="text/html" src="st_courses.html"  width="1000" height="500" style="padding-left: 100px;"> -->
+                    <!-- Grade choosing interface -->
+                <div class="container-box" >
+                    <embed src="<?php echo BASEURL?>public_resources/documents/<?php echo $_SESSION['gid']."/".$_SESSION['sid']."/".$data->location ?>" style="width:50%;height:70vh;margin:auto;">
+                </div>
+            <?php } ?>
             </section>
         </div>
     </section>
 </body>
 
-<script>
-    let toggle = true;
+<script src="<?php echo BASEURL ?>public/javascripts/st_auth_script.js"></script>
 
-    const getElement = (id) => document.getElementById(id);
-
-    let togglerBtn = getElement("nav-toggler");
-    let nav = getElement("nav-bar");
-    let logoLong = getElement("nav-logo-long");
-    let navMiddle = getElement("nav-middle");
-    let navLinkTexts = document.getElementsByClassName("nav-link-text");
-
-    togglerBtn.addEventListener('click', () => {
-        nav.classList.toggle("nav-bar-small");
-
-        if (toggle) {
-            logoLong.classList.add("hidden");
-            navMiddle.classList.add("hidden");
-            togglerBtn.classList.add("toggler-rotate");
-            for (i = 0; i < navLinkTexts.length; i++) {
-                navLinkTexts[i].classList.add("hidden");
-            }
-            toggle = false;
-        }
-
-        else {
-            logoLong.classList.remove("hidden");
-            navMiddle.classList.remove("hidden");
-            togglerBtn.classList.remove("toggler-rotate");
-            for (i = 0; i < navLinkTexts.length; i++) {
-                navLinkTexts[i].classList.remove("hidden");
-            }
-            toggle = true;
-        }
-    })
-
-
-
-</script>
 
 </html>

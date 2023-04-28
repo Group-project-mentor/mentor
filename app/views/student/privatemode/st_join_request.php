@@ -8,15 +8,26 @@
     <link rel="icon" type="image/x-icon" href="<?php echo BASEURL ?>assets/mentor.ico">
     <title>Student private mode</title>
     <link rel="icon" type="image/x-icon" href="<?php echo BASEURL ?>assets/mentor.ico">
-    <link rel="stylesheet" href="<?php echo BASEURL; ?>public/stylesheets/style.css">
-    <link rel="stylesheet" href="<?php echo BASEURL; ?>public/stylesheets/st_card_set.css">
-    <link rel="stylesheet" href="<?php echo BASEURL; ?>public/stylesheets/t_resources.css">
+    <link rel="stylesheet" href="<?php echo BASEURL ?>stylesheets/Student/style.css">
+    <link rel="stylesheet" href="<?php echo BASEURL ?>stylesheets/Student/st_resources.css">
     <style>
         body {
             background-image: url('../public/assets/clips/HyperspaceMaintenanceDay');
             background-position: center;
             background-size: cover;
         }
+
+        .rc-pp-row {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .subject-card {
+            width: 50%;
+            float: left;
+        }
+    </style>
+
     </style>
 </head>
 
@@ -39,9 +50,7 @@
                     <a href="<?php echo BASEURL; ?>st_private_mode/st_join_classes">
                         <div class="back-btn">Back</div>
                     </a>
-                    <a href="#">
-                        <img src="<?php echo BASEURL; ?>assets/icons/icon_notify.png" alt="notify">
-                    </a>
+                    <?php include_once "components/notificationIcon.php" ?>
                     <a href="<?php echo BASEURL ?>st_profile">
                         <img src="<?php echo BASEURL; ?>assets/icons/icon_profile_black.png" alt="profile">
                     </a>
@@ -55,99 +64,34 @@
                 </div>
             </section>
             <section>
-                <div class="rc-pp-row">
+                <?php if (!empty($data[0])) { ?>
+                    <div class="rc-resource-table">
 
-                    <img src="<?php echo BASEURL; ?>assets/icons/pdf_resources.png" alt="delete">
-                    <div class="rc-resource-col">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Thimira Galahitiyawa</div>
-                    <div class="rc-resource-col">Mathematics</div>
-                    <div class="rc-resource-col"></div>
-                    <div class="rc-quiz-row-btns">
-                        <button>
-                            <img src="<?php echo BASEURL; ?>assets/icons/icon_delete.png" alt="delete">
-                        </button>
-                        <button>
-                            <img src="<?php echo BASEURL; ?>assets/icons/icon_edit.png" alt="edit">
-                        </button>
-                    </div>
-                </div>
-                <div class="rc-pp-row">
+                        <?php foreach ($data[0] as $row) { ?>
+                            <div class="rc-pp-row">
 
-                    <img src="<?php echo BASEURL; ?>assets/icons/pdf_resources.png" alt="delete">
-                    <div class="rc-resource-col">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Kavishka Sulakshana</div>
-                    <div class="rc-resource-col">Science</div>
-                    <div class="rc-resource-col"></div>
-                    <div class="rc-quiz-row-btns">
-                        <button>
-                            <img src="<?php echo BASEURL; ?>assets/icons/icon_delete.png" alt="delete">
-                        </button>
-                        <button>
-                            <img src="<?php echo BASEURL; ?>assets/icons/icon_edit.png" alt="edit">
-                        </button>
+                                <img src="<?php echo BASEURL; ?>assets/icons/pdf_resources.png" alt="delete">
+                                <div class="rc-resource-col">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?php echo $row->class_name ?></div>
+                                <div class="rc-resource-col">Grade <?php echo $row->grade+5 ?></div>
+                                <div class="rc-resource-col"></div>
+                                <div class="rc-quiz-row-btns">
+                                    <button>
+                                        <img src="<?php echo BASEURL; ?>assets/icons/icon_edit.png" alt="edit">
+                                    </button>
+                                </div>
+                            </div>
+                        <?php } ?>
                     </div>
-                </div>
-                <div class="rc-pp-row">
 
-                    <img src="<?php echo BASEURL; ?>assets/icons/pdf_resources.png" alt="delete">
-                    <div class="rc-resource-col">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Sanduni gunawardhana</div>
-                    <div class="rc-resource-col">Dancing</div>
-                    <div class="rc-resource-col"></div>
-                    <div class="rc-quiz-row-btns">
-                        <button>
-                            <img src="<?php echo BASEURL; ?>assets/icons/icon_delete.png" alt="delete">
-                        </button>
-                        <button>
-                            <img src="<?php echo BASEURL; ?>assets/icons/icon_edit.png" alt="edit">
-                        </button>
-                    </div>
-                </div>
-                <div class="rc-pp-row">
+                <?php } else {
+                    echo "no data!";
+                } ?>
 
-                    <img src="<?php echo BASEURL; ?>assets/icons/pdf_resources.png" alt="delete">
-                    <div class="rc-resource-col">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Kanishka Sewwandi</div>
-                    <div class="rc-resource-col">IT</div>
-                    <div class="rc-resource-col"></div>
-                    <div class="rc-quiz-row-btns">
-                        <button>
-                            <img src="<?php echo BASEURL; ?>assets/icons/icon_delete.png" alt="delete">
-                        </button>
-                        <button>
-                            <img src="<?php echo BASEURL; ?>assets/icons/icon_edit.png" alt="edit">
-                        </button>
-                    </div>
-                </div>
-                <div class="rc-pp-row">
-
-                    <img src="<?php echo BASEURL; ?>assets/icons/pdf_resources.png" alt="delete">
-                    <div class="rc-resource-col">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Anushka Perera</div>
-                    <div class="rc-resource-col">Sinhala</div>
-                    <div class="rc-resource-col"></div>
-                    <div class="rc-quiz-row-btns">
-                        <button>
-                            <img src="<?php echo BASEURL; ?>assets/icons/icon_delete.png" alt="delete">
-                        </button>
-                        <button>
-                            <img src="<?php echo BASEURL; ?>assets/icons/icon_edit.png" alt="edit">
-                        </button>
-                    </div>
-                </div>
-                <div class="rc-pp-row">
-
-                    <img src="<?php echo BASEURL; ?>assets/icons/pdf_resources.png" alt="delete">
-                    <div class="rc-resource-col">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Shithara Kumari</div>
-                    <div class="rc-resource-col">Science</div>
-                    <div class="rc-resource-col"></div>
-                    <div class="rc-quiz-row-btns">
-                        <button>
-                            <img src="<?php echo BASEURL; ?>assets/icons/icon_delete.png" alt="delete">
-                        </button>
-                        <button>
-                            <img src="<?php echo BASEURL; ?>assets/icons/icon_edit.png" alt="edit">
-                        </button>
-                    </div>
-                </div>
-            </section>
         </div>
     </section>
+    </div>
+    </section>
 </body>
+<script src="<?php echo BASEURL ?>public/javascripts/st_auth_script.js"></script>
 
 </html>

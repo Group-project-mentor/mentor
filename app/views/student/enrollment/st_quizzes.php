@@ -7,8 +7,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/x-icon" href="<?php echo BASEURL ?>assets/mentor.ico">
     <title>Quizzes</title>
-    <link rel="stylesheet" href="<?php echo BASEURL?>stylesheets/Student/style.css">
-    <link rel="stylesheet" href="<?php echo BASEURL?>stylesheets/Student/st_resources.css">
+    <link rel="stylesheet" href="<?php echo BASEURL ?>stylesheets/Student/style.css">
+    <link rel="stylesheet" href="<?php echo BASEURL ?>stylesheets/Student/st_resources.css">
+    <link rel="stylesheet" href="<?php echo BASEURL . '/public/stylesheets/resourceCreator/rc_main.css' ?> ">
+    <link rel="stylesheet" href="<?php echo BASEURL . '/public/stylesheets/resourceCreator/rc_resources.css' ?> ">
 </head>
 
 <body>
@@ -24,18 +26,16 @@
                 <div class="search-bar">
                     <input type="text" name="" id="" placeholder="Search...">
                     <a href="">
-                        <img src="<?php echo BASEURL?>assets/icons/icon_search.png" alt="">
+                        <img src="<?php echo BASEURL ?>assets/icons/icon_search.png" alt="">
                     </a>
                 </div>
                 <div class="top-bar-btns">
-                <a href="<?php echo BASEURL?>st_Inside_subject">
+                    <a href="<?php echo BASEURL . 'st_public_resources/index/' . $_SESSION['gid'] . '/' . $_SESSION['sid'] ?>">
                         <div class="back-btn">Back</div>
                     </a>
-                    <a href="#">
-                        <img src="<?php echo BASEURL?>assets/icons/icon_notify.png" alt="notify">
-                    </a>
-                    <a href="<?php echo BASEURL?>st_profile">
-                        <img src="<?php echo BASEURL?>assets/icons/icon_profile_black.png" alt="profile">
+                    <?php include_once "components/notificationIcon.php" ?>
+                    <a href="<?php echo BASEURL ?>st_profile">
+                        <img src="<?php echo BASEURL ?>assets/icons/icon_profile_black.png" alt="profile">
                     </a>
                 </div>
             </section>
@@ -45,110 +45,78 @@
 
                 <!-- Title and sub title of middle part -->
                 <div class="mid-title">
-                    <h1>Quizzes</h1>
-                    <h6>Hello</h6>
-                    <br>
-                    <h2>C79 - Science</h2>
+                    <?php
+                    $ggid = $_SESSION['gid'] + 5;
+ ?>
+                    <h1><?php echo "Grade " . $ggid . " - " . ucfirst($_SESSION['sname']) ?></h1>
+                    <h6>My Subjects / <?php echo ucfirst($_SESSION['sname']) ?> / quizzes</h6>
                 </div>
 
                 <!-- Grade choosing interface -->
                 <div class="container-box">
 
                     <div class="rc-resource-table">
-                        <div class="rc-resource-row rc-resource-row-head" >   
-                            <div class="rc-resource-col">Quiz Name</div>
-                            <div class="rc-resource-col">Part</div>
-                            
-                            <div></div>
-                        </div>
 
-                        <div class="rc-resource-row">
-                            <div class="rc-resource-col">Genaral </div>
-                            <div class="rc-resource-col">1</div>
-                            <div class="rc-quiz-row-btns">
-                                
-                                <a href="<?php echo BASEURL?>st_quizzes/st_quizzes_do">
-                                    <img src="<?php echo BASEURL?>assets/icons/Interface Arrows Button Down Double by Streamlinehq.png" alt="">
-                                </a>
-                                <button>
-                                    <img src="<?php echo BASEURL?>assets/icons/icon_edit.png" alt="">
-                                </button>
-                            </div>
-                        </div>
-                        <div class="rc-resource-row">
-                            <div class="rc-resource-col">Tutorial 1</div>
-                            <div class="rc-resource-col">2</div>
-                            <div class="rc-quiz-row-btns">
-                                
-                                <button>
-                                <a href="<?php echo BASEURL?>st_quizzes/st_quizzes_do">
-                                    <img src="<?php echo BASEURL?>assets/icons/Interface Arrows Button Down Double by Streamlinehq.png" alt="">
-                                </a>
-                                <button>
-                                    <img src="<?php echo BASEURL?>assets/icons/icon_edit.png" alt="">
-                                </button>
-                                </button>
-                            </div>
-                        </div>
-                        <div class="rc-resource-row">
-                            <div class="rc-resource-col">Tutorial 2</div>
-                            <div class="rc-resource-col">1</div>
-                            <div class="rc-quiz-row-btns">
-                                
-                                <button>
-                                    <a href="<?php echo BASEURL?>st_quizzes/st_quizzes_do">    
-                                        <img src="<?php echo BASEURL?>assets/icons/Interface Arrows Button Down Double by Streamlinehq.png" alt="">
-                                    </a>
-                                    <button>
-                                    <img src="<?php echo BASEURL?>assets/icons/icon_edit.png" alt="">
-                                </button>
-                                </button>
-                            </div>
-                        </div>
+
+                        <section class="quiz-card-list">
+                            <?php
+                            if (!empty($data[0])) {
+                                foreach ($data[0] as $row) {
+
+                            ?>
+                                    <div class="quiz-card-main">
+
+                                        <div class="quiz-card-title">
+                                            <?php echo $row->name ?>
+                                        </div>
+                                        <div class="quiz-card-content">
+                                            <div class="quiz-card-item">
+                                                <?php echo $row->marks ?> Marks
+                                            </div>
+                                            <div class="quiz-card-item">
+                                                10 Questions
+                                            </div>
+                                        </div>
+                                        <div class="quiz-card-button-set">
+                                            <a class="quiz-card-btn" href="<?php echo BASEURL . 'st_public_resources/st_quizzes_intro/' . $row->id . '/' .$row->name ?>" style="text-decoration: none;">
+                                            <div class="back-btn">
+                                                    View
+                                                </div>
+                                            </a>
+                                        </div>
+                                    </div>
+                                <?php        }
+                            } else { ?>
+                                <h2 class="rc-no-data-msg" style="text-align: center;">No Data to Display</h2>
+                            <?php } ?>
+                        </section>
+
+
 
                     </div>
 
                 </div>
-            </div>
+
+
+                <?php if (count($data[0]) > 25) { ?>
+                    <div class="pagination-set">
+                        <div class="pagination-set-left">
+                            <b>25</b> Results
+                        </div>
+                        <div class="pagination-set-right">
+                            <button>
+                                < </button>
+                                    <div class="pagination-numbers">
+                                        1 of 10
+                                    </div>
+                                    <button> > </button>
+                        </div>
+                    </div>
+                <?php } ?>
+        </div>
     </section>
 </body>
-<script>
-    let toggle = true;
+<script src="<?php echo BASEURL ?>public/javascripts/st_auth_script.js"></script>
 
-    const getElement = (id) => document.getElementById(id);
-
-    let togglerBtn = getElement("nav-toggler");
-    let nav = getElement("nav-bar");
-    let logoLong = getElement("nav-logo-long");
-    let navMiddle = getElement("nav-middle");
-    let navLinkTexts = document.getElementsByClassName("nav-link-text");
-
-    togglerBtn.addEventListener('click', () => {
-        nav.classList.toggle("nav-bar-small");
-
-        if (toggle) {
-            logoLong.classList.add("hidden");
-            navMiddle.classList.add("hidden");
-            togglerBtn.classList.add("toggler-rotate");
-            for (i = 0; i < navLinkTexts.length; i++) {
-                navLinkTexts[i].classList.add("hidden");
-            }
-            toggle = false;
-        }
-
-        else {
-            logoLong.classList.remove("hidden");
-            navMiddle.classList.remove("hidden");
-            togglerBtn.classList.remove("toggler-rotate");
-            for (i = 0; i < navLinkTexts.length; i++) {
-                navLinkTexts[i].classList.remove("hidden");
-            }
-            toggle = true;
-        }
-    })
-
-
-
-</script>
 
 </html>

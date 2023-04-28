@@ -17,21 +17,21 @@
             margin-left: 200px;
         }
 
-        .join1:hover {
-            opacity: 0.5;
+        .join1:hover,.join2:hover,.joina:hover {
+            opacity: 0.9;
+            background-color: #186537;
+            text-decoration-color: white;
+            color: white;
         }
 
-        .join2:hover {
-            opacity: 0.5;
-        }
 
         .content-area {
-            background-image: url('../public/assets/clips/Humaaans2Characters.png');
+            /* background-image: url('../public/assets/clips/Humaaans2Characters.png'); */
             background-position: center;
         }
 
         .join1, .join2 {
-            background-color: #186537;;
+            background-color: white;
             border-style: solid;
             border-color: #17ac06;
             border-radius: 15px;
@@ -46,7 +46,7 @@
 
         .joina {
             text-decoration: none;
-            color: white;
+            color: #186537;
         }
     </style>
 </head>
@@ -70,9 +70,7 @@
                     <a href="<?php echo BASEURL; ?>st_private_mode">
                         <div class="back-btn">Back</div>
                     </a>
-                    <a href="#">
-                        <img src="<?php echo BASEURL; ?>assets/icons/icon_notify.png" alt="notify">
-                    </a>
+                    <?php include_once "components/notificationIcon.php" ?>
                     <a href="<?php echo BASEURL ?>st_profile">
                         <img src="<?php echo BASEURL; ?>assets/icons/icon_profile_black.png" alt="profile">
                     </a>
@@ -107,5 +105,6 @@
         </div>
     </section>
 </body>
+<script src="<?php echo BASEURL ?>public/javascripts/st_auth_script.js"></script>
 
 </html>

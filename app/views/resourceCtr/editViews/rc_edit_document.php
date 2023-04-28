@@ -41,9 +41,7 @@
                     <a href="<?php echo BASEURL .'rcResources/documents/'.$_SESSION['gid']."/".$_SESSION["sid"] ?>">
                         <div class="back-btn">Back</div>
                     </a>
-                    <a href="#">
-                        <img src="<?php echo BASEURL ?>assets/icons/icon_notify.png" alt="notify">
-                    </a>
+                    <?php include_once "components/notificationIcon.php" ?>
                     <a href="<?php echo BASEURL . 'rcProfile' ?>">
                         <img src="<?php echo BASEURL ?>assets/icons/icon_profile_black.png" alt="profile">
                     </a>
@@ -65,9 +63,13 @@
                         <h1>EDIT DOCUMENT</h1>
                     </div>
                 </div>
-                <?php 
-                if(empty($data[0])){ 
-                    echo "<center style='color:red;font-size:x-large;'>You are not authorized to do this action !</center>";
+                <?php
+                if(empty($data[0])){
+                    echo
+                    '<div style="text-align: center;font-size: x-large;color: darkred;">
+                        <br>
+                        You are not authorized to do this action !
+                    </div>';
                 }
                 else{
                 ?>

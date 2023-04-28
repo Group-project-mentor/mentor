@@ -7,8 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/x-icon" href="<?php echo BASEURL ?>assets/mentor.ico">
     <title>Student Report issue</title>
-    <link rel="stylesheet" href="<?php echo BASEURL?>public/stylesheets/t_style.css">
-    <link rel="stylesheet" href="<?php echo BASEURL?>public/stylesheets/t_card_set.css"> 
+    <link rel="stylesheet" href="<?php echo BASEURL?>public/stylesheets/Teacher/style.css">
+    <link rel="stylesheet" href="<?php echo BASEURL?>public/stylesheets/Teacher/card_set.css">
 </head>
 
 <body>
@@ -27,9 +27,7 @@
                     <a href="<?php echo BASEURL?>home">
                         <div class="back-btn">Back</div>
                     </a>
-                    <a href="#">
-                        <img src="<?php echo BASEURL?>public/assets/icons/icon_notify.png" alt="notify">
-                    </a>
+                    <?php include_once "components/notificationIcon.php" ?>
                     <a href="<?php echo BASEURL?>st_profile">
                         <img src="<?php echo BASEURL?>public/assets/icons/icon_profile_black.png" alt="profile">
                     </a>
@@ -80,44 +78,7 @@
         </div>  
     </section>      
 </body>
-<!-- <script>
-    let toggle = true;
 
-    const getElement = (id) => document.getElementById(id);
-
-    let togglerBtn = getElement("nav-toggler");
-    let nav = getElement("nav-bar");
-    let logoLong = getElement("nav-logo-long");
-    let navMiddle = getElement("nav-middle");
-    let navLinkTexts = document.getElementsByClassName("nav-link-text");
-
-    togglerBtn.addEventListener('click', () => {
-        nav.classList.toggle("nav-bar-small");
-
-        if (toggle) {
-            logoLong.classList.add("hidden");
-            navMiddle.classList.add("hidden");
-            togglerBtn.classList.add("toggler-rotate");
-            for (i = 0; i < navLinkTexts.length; i++) {
-                navLinkTexts[i].classList.add("hidden");
-            }
-            toggle = false;
-        }
-
-        else {
-            logoLong.classList.remove("hidden");
-            navMiddle.classList.remove("hidden");
-            togglerBtn.classList.remove("toggler-rotate");
-            for (i = 0; i < navLinkTexts.length; i++) {
-                navLinkTexts[i].classList.remove("hidden");
-            }
-            toggle = true;
-        }
-    })
-
-
-
-</script> -->
 <script src="<?php echo BASEURL ?>public/javascripts/st_auth_script.js"></script>
 
 </html>

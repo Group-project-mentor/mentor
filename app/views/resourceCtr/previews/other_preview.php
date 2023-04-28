@@ -27,9 +27,7 @@
                     <a href="<?php echo BASEURL . 'rcResources/others/'.$_SESSION['gid']."/".$_SESSION['sid'] ?>">
                         <div class="back-btn">Back</div>
                     </a>
-                    <a href="#">
-                        <img src="<?php echo BASEURL ?>assets/icons/icon_notify.png" alt="notify">
-                    </a>
+                    <?php include_once "components/notificationIcon.php" ?>
                     <a href="<?php echo BASEURL . 'rcProfile' ?>">
                         <img src="<?php echo BASEURL ?>assets/icons/icon_profile_black.png" alt="profile">
                     </a>
@@ -46,12 +44,12 @@
                 ?>
                 <!-- Title and sub title of middle part -->
                 <div class="mid-title">
-                    <h6>My Subjects / <?php echo ucfirst($_SESSION['sname']) ?> / others / <?php echo $data[2]?></h6>
+                    <h6>My Subjects / <?php echo ucfirst($_SESSION['sname']) ?> / others / <?php echo $data->id ?></h6>
                 </div>
 
                 <!-- Grade choosing interface -->
                 <div class="container-box" >
-                    <embed src="<?php echo BASEURL?>public_resources/others/<?php echo $data[2] ?>" style="width:50%;height:70vh;margin:auto;">
+                    <embed src="<?php echo BASEURL?>public_resources/others/<?php echo $_SESSION['gid']."/".$_SESSION['sid']."/".$data->location ?>" style="width:50%;height:70vh;margin:auto;">
                 </div>
                 <?php } ?>
             </section>

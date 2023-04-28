@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Preview Questions</title>
     <link rel="icon" type="image/x-icon" href="<?php echo BASEURL ?>assets/mentor.ico">
-    <link rel="stylesheet" href="<?php echo BASEURL?>public/stylesheets/style.css">
+    <link rel="stylesheet" href="<?php echo BASEURL?>public/stylesheets/Student/style.css">
     <link rel="stylesheet" href="<?php echo BASEURL?>public/stylesheets/quiz/quiz_styles.css">
 </head>
 
@@ -30,9 +30,7 @@
                 <a href="<?php echo BASEURL."quizPreview/instructions/".$data[0] ?> ?>">
                     <div class="back-btn">Back</div>
                 </a>
-                <a href="#">
-                    <img src="<?php echo BASEURL?>public/assets/icons/icon_notify.png" alt="notify">
-                </a>
+                <?php include_once "components/notificationIcon.php" ?>
                 <a href="<?php echo BASEURL . 'rcProfile' ?>">
                     <img src="<?php echo BASEURL?>public/assets/icons/icon_profile_black.png" alt="profile">
                 </a>
@@ -71,13 +69,13 @@
                     <hr />
                     <div class="quiz-preview-bottom-set">
                         <button class="quiz-preview-bottom-button" id="back-btn">
-                            <img src="<?php echo BASEURL ?>assets/icons/icon_prev_white" alt="">
+                            <img src="<?php echo BASEURL ?>public/assets/icons/icon_prev_white.png" alt="">
                             Back
                         </button>
                         <progress value="0.3" id="quiz-progress"></progress>
                         <button class="quiz-preview-bottom-button" id="next-btn">
                             Next
-                            <img src="<?php echo BASEURL ?>assets/icons/icon_next_white" alt="">
+                            <img src="<?php echo BASEURL ?>public/assets/icons/icon_next_white.png" alt="">
                         </button>
                     </div>
 

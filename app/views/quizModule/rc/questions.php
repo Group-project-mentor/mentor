@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Questions</title>
-    <link rel="stylesheet" href="<?php echo BASEURL ?>public/stylesheets/style.css">
+    <link rel="stylesheet" href="<?php echo BASEURL ?>public/stylesheets/Student/style.css">
     <link rel="stylesheet" href="<?php echo BASEURL ?>public/stylesheets/quiz/resources.css">
     <link rel="stylesheet" href="<?php echo BASEURL ?>public/stylesheets/quiz/quiz_styles.css">
 </head>
@@ -30,12 +30,12 @@
 
             </div>
             <div class="top-bar-btns">
-                <a href="<?php echo BASEURL . 'rcResources/quizzes/' . $_SESSION['gid'] . "/" . $_SESSION["sid"] ?>">
-                    <div class="back-btn">Back</div>
-                </a>
-                <a href="#">
-                    <img src="<?php echo BASEURL ?>public/assets/icons/icon_notify.png" alt="notify">
-                </a>
+<!--                <a href="--><?php //echo BASEURL . 'rcResources/quizzes/' . $_SESSION['gid'] . "/" . $_SESSION["sid"] ?><!--">-->
+                    <button onclick="history.back()" class="back-btn">
+                        Back
+                    </button>
+<!--                </a>-->
+                <?php include_once "components/notificationIcon.php" ?>
                 <a href="<?php echo BASEURL . 'rcProfile' ?>">
                     <img src="<?php echo BASEURL ?>public/assets/icons/icon_profile_black.png" alt="profile">
                 </a>
@@ -55,22 +55,27 @@
             <div class="container-box">
                 <div class="rc-resource-header">
                     <h1><?php echo ucfirst($data[1][1]) ?></h1>
-                    <div class="rc-quiz-top-btns">
 
+                    <div class="rc-quiz-top-btns">
+                        <a href="<?php echo BASEURL . "quiz/editQuiz/" . $data[1][0] ?>">
+                            <div class="rc-add-btn">
+                                Edit Quiz
+                            </div>
+                        </a>
                         <a href="<?php echo BASEURL.'quizPreview/instructions/'.$data[4] ?>">
                             <div class="rc-add-btn">
                                 Preview
                             </div>
                         </a>
-                            <a href="<?php echo BASEURL . "quiz/addQuestion/" . $data[1][0] ?>">
-                                <div class="rc-add-btn">
-                                    + Add Question
-                                </div>
-                            </a>
+                        <a href="<?php echo BASEURL . "quiz/addQuestion/" . $data[1][0] ?>">
+                            <div class="rc-add-btn">
+                                + Add Question
+                            </div>
+                        </a>
                     </div>
                 </div>
 
-                <div style="display:inline;margin: auto;">
+                <div style="display:inline;margin: 20px auto 0;">
                     <div class="quiz-mark-box">Marks : <?php echo $data[1][3] ?> </div>
 <!--                    <div class="quiz-mark-box">Questions : --><?php //echo empty($data[1][2]) ? 0 : $data[1][2] ?><!-- </div>-->
                     <div class="quiz-mark-box">Questions : <?php echo $data[2] ?> </div>
