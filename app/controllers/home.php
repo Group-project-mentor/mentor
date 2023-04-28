@@ -25,6 +25,7 @@ class Home extends Controller
                 $chartData = $this->model("resourceModel")->getChartCounts($_SESSION['id']);
                 $this->view('resourceCtr/home/index', array($subjects, $chartData, $mySubjectCount, $typeCountList));
                 break;
+
             case 'ad':
                 header("location:" . BASEURL . "admins/dashboard");
                 break;
@@ -64,7 +65,7 @@ class Home extends Controller
                         "stCount" => count($totalFundingChart),
                         "totalFunded" => $totalFunded,
                         "remainingAmount" => ($totalFunding - $totalFunded),
-                        "monthlyAverage" => $totalFunding / count($totalFundingChart),
+                        "monthlyAverage" => $totalFunding / (count($totalFundingChart)?count($totalFundingChart):1),
                         "monthlyChartData" => $monthlyChartData,
                         "monthlyBillArray" => $monthlyBillArray,
                     )

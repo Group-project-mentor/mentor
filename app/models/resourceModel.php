@@ -140,11 +140,11 @@ class ResourceModel extends Model
             and $this->executePrepared($stmt));
     }
 
-    private function addResource($id, $grade, $subject, $file, $type, $creator) //!done
+    private function addResource($id, $grade, $subject, $file, $type, $creator) //! Check the pending 'P' or null
     {
-        $sql1 = "insert into public_resource(id, type, location, approved, approved_by) values ($id ,'$type', '$file',NULL,NULL)";
+        $sql1 = "insert into public_resource(id, type, location, approved, approved_by) values ($id ,'$type', '$file','P',NULL)";
         if(empty($file)){
-            $sql1 = "insert into public_resource(id, type,approved) values ($id ,'$type',NULL)";
+            $sql1 = "insert into public_resource(id, type,approved) values ($id ,'$type','P')";
         }
         $sql2 = "insert into rs_subject_grade values ($id ,$subject ,$grade,$creator)";
         return ($this->executeQuery($sql1) && $this->executeQuery($sql2));
