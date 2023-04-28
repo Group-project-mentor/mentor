@@ -45,6 +45,11 @@
                     <br><br>
                 </div>
 
+                <div class="text-center" style="padding:20px; display: flex; justify-content: center;">
+                    <button onclick="generatePDF()" style="background-color: #186537; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer;">Generate</button>
+                </div>
+
+                <div class="container_content" id="container_content">
                     <div style="margin-top: 30px;">
                         <div class="sponsor-list-main row-decoration">
                             <div class="sponsor-list-row">
@@ -66,7 +71,7 @@
                                             <?php echo $row->quiz_id ?>
                                         </div>
                                         <div class="sponsor-list-item flex-1">
-                                        <?php echo $row->marks ?>
+                                            <?php echo $row->marks ?>
                                         </div>
                                     </div>
                                 <?php } ?>
@@ -74,17 +79,95 @@
 
                             <?php }  ?>
                         </div>
-                    </div>
+                        <br><br>
+                        <div class="sponsor-student-prof">
+                            <div class="bottom-details" style="margin: 10px 10px;height: 50vh;">
+                                <div>
+                                    <div class="sp-subject-report resource-chart">
+                                        <h4>Quizz Marks Analyse</h4>
+                                        <canvas id="myChart1" class="resource-chart">
 
-                    <br><br>
-                    
+                                        </canvas>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
                 </div>
 
-                
+
+        </div>
+
+        <br><br>
+
+        </div>
+
+
 
         </div>
 
 </body>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+<script>
+    let chartData = <?php echo json_encode($data[0]) ?>;
+    let Data = [];
+    let Labels = [];
+    chartData.forEach(resource => {
+        Data.push(resource.marks);
+        Labels.push(`Quizz-${resource.quiz_id}`);
+    });
 
+    // console.log(Data,Labels);
+    const chart = document.getElementById('myChart1');
+
+    new Chart(chart, {
+        type: 'line',
+        data: {
+            labels: Labels,
+            datasets: [{
+                label: 'Marks',
+                data: Data,
+                borderWidth: 1,
+                backgroundColor: [
+                    'rgb(255, 99, 12)',
+                    'rgb(54, 162, 235)',
+                    'rgb(255, 205, 86)',
+                    'rgb(255, 5, 86)',
+                    'rgb(102,197,81)',
+                ]
+            }]
+        },
+        options: {
+            responsive: true,
+            scales: {
+
+            }
+        }
+    });
+
+    function generatePDF() {
+        const element = document.getElementById('container_content');
+        var opt = {
+            margin: 0.5,
+            filename: 'Report.pdf',
+            image: {
+                type: 'jpeg',
+                quality: 0.98
+            },
+            html2canvas: {
+                scale: 2
+            },
+            jsPDF: {
+                unit: 'in',
+                format: 'letter',
+                orientation: 'portrait'
+            }
+        };
+        // Choose the element that our invoice is rendered in.
+        html2pdf().set(opt).from(element).save();
+    }
+</script>
 
 </html>

@@ -1,6 +1,7 @@
 <?php
 
-class TReport extends Controller{
+class TReport extends Controller
+{
     private $user = "tch";
 
     public function __construct()
@@ -11,16 +12,18 @@ class TReport extends Controller{
     }
 
 
-    public function generateReport(){
+    public function generateReport()
+    {
         $this->view('Teacher/report/generateReport');
-    }   
+    }
 
-    public function generate($class_id){
+    public function generate($class_id)
+    {
         $this->getClass($class_id);
-        $_SESSION["cid"]=$class_id;
+        $_SESSION["cid"] = $class_id;
         $res3 = $this->model('teacher_data')->getHostTeacher($class_id);
-        $this->view('Teacher/report/report',array($res3));
-    } 
+        $this->view('Teacher/report/report', array($res3));
+    }
 
     private function getClass($class_id)
     {
@@ -30,33 +33,36 @@ class TReport extends Controller{
         }
     }
 
-    public function ReportRequest($cid){
+    public function ReportRequest($cid)
+    {
         $this->getClass($cid);
         $_SESSION["cid"] = $cid;
         $id2 = $_POST['report_category'];
         $id1 = $_POST['student_id'];
-        switch ($id2){
+    
+        switch ($id2) {
             case 1:
-                $res=$this->model('TReportModel')->getAnalyse1($id1);
+                $res = $this->model('TReportModel')->getAnalyse1($id1);
+                $marks = [];
+                foreach ($res as $row) {
+                    $marks[$row->quiz_id] = $row->marks;
+                }
                 $this->view('Teacher/report/report', array($res));
                 break;
             case 2:
-                $res=$this->model('TReportModel')->getAnalyse2($id1);
+                $res = $this->model('TReportModel')->getAnalyse2($id1);
                 $this->view('Teacher/report/report', array($res));
                 break;
             case 3:
-                $res=$this->model('TReportModel')->getAnalyse3($id1);
+                $res = $this->model('TReportModel')->getAnalyse3($id1);
                 $this->view('Teacher/report/report', array($res));
                 break;
             case 4:
-                $res=$this->model('TReportModel')->getAnalyse4($id1);
+                $res = $this->model('TReportModel')->getAnalyse4($id1);
                 $this->view('Teacher/report/report', array($res));
                 break;
             default:
                 header("location:" . BASEURL . "TReport/generateReport");
-
         }
-    } 
+    }
 }
-
-?>
