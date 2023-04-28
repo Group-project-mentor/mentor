@@ -60,10 +60,7 @@ if (!isset($_SESSION['navtog'])) {
                     <img src="<?php echo BASEURL?>assets/icons/icon_other.png" alt="other">
                     <div class="nav-link-text">Other resource</div>
                 </a>
-                <a href="<?php echo BASEURL ?>rcResources/settings" class="nav-link">
-                    <img src="<?php echo BASEURL?>assets/icons/icon_settings.png" alt="settings">
-                    <div class="nav-link-text">Settings</div>
-                </a>
+                
 <!--                <a href="--><?php //echo BASEURL ?><!--report" class="nav-link">-->
 <!--                    <img src="--><?php //echo BASEURL?><!--assets/icons/icon_report.png" alt="bmc">-->
 <!--                    <div class="nav-link-text">Report issue</div>-->

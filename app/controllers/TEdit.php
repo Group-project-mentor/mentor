@@ -68,7 +68,7 @@ class TEdit extends Controller
                 if ($this->model("TchResourceModel")->updateVideoUploaded($Id, $_POST['title'], $_POST['lec'], $_POST['descr'], $_SESSION['temporary_file'])) {
                     //                    $new_path = "public_resources/videos/".$_SESSION['temporary_file'];
                     $temp_path = "public_resources/temp/" . $_SESSION['temporary_file'];
-                    if (updateFile($temp_path, $_SESSION['temporary_file'], $oldFileName, "videos", $_SESSION['gid'], $_SESSION['sid'])) {
+                    if (updateFile($temp_path, $_SESSION['temporary_file'], $oldFileName, "videos", $_SESSION['cid'])) {
                         //                        rename($temp_path,$new_path);
                         unset($_SESSION['temporary_file']);
                         flashMessage("success");

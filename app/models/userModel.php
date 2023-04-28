@@ -131,6 +131,11 @@ class UserModel extends Model
         return $this->executeQuery($query);
     }
 
-    
+    public function saveAppliedCreator($firstname,$lastname,$initialsName,$email,$tel1,$tel2,$address,$gender,$description,$subjects,$resources,$other, $cvTarget, $exampleTarget){
+        $stmt = $this->prepare("INSERT INTO applied_creator(firstName,lastName,initialsName,email,telephone1,telephone2,gender,description,subjects,example,cv,resourceTypes)
+                                 VALUES (?,?,?,?,?,?,?,?,?,?,?,?)");
+        $stmt->bind_param("ssssssssssss",$firstname,$lastname,$initialsName,$email,$tel1,$tel2,$gender,$description,$subjects,$exampleTarget,$cvTarget,$resources);       
+        return $stmt->execute();
+    }
 
 }

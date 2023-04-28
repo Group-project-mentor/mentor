@@ -26,9 +26,7 @@
                     <a href="<?php echo BASEURL; ?>st_private_mode">
                         <div class="back-btn">Back</div>
                     </a>
-                    <a href="#">
-                        <img src="assets/icons/icon_notify.png" alt="notify">
-                    </a>
+                    <?php include_once "components/notificationIcon.php" ?>
                     <a href="#">
                         <img src="assets/icons/icon_profile_black.png" alt="profile">
                     </a>

@@ -90,6 +90,29 @@ if (isset($_SESSION['user'])) {
                     </ul>
                 </div>
             </div>
+        </section>
+
+        <section class="landing-resource-ctr">
+            <div class="landing-sponsor-area">
+                <h1 class="landing-sp-heading">
+                    Join with Us as a Content Creator
+                </h1>
+
+                <div class="landing-sp-description">
+                    Our website is on the lookout for talented resource creators to help us continue delivering
+                    high-quality content to our users. As a resource creator, you will have the opportunity to showcase
+                    your skills and expertise, while working alongside a team of dedicated professionals. Whether you're
+                    an experienced creator or just starting out, we welcome all levels of talent and are committed to providing
+                    a supportive and collaborative work environment. Join us today and help shape the future of our website!
+                </div>
+
+                <div class="landing-sp-btn">
+                    <a class="landing-BMC-btn" href="<?php echo BASEURL."landing/registerCreator/instructions"?> ">
+                        <i class="fa-solid fa-person-chalkboard fa-beat-fade"></i>
+                        BECOME A CREATOR
+                    </a>
+                </div>
+            </div>
             <a name="BMC"></a>
         </section>
 

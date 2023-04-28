@@ -5,3 +5,4 @@ private_resources
 *.txt
 .idea
 .devcontainer
+data
