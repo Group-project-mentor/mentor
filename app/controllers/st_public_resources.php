@@ -60,8 +60,10 @@ class St_public_resources extends Controller
     public function st_quizzes_do($id)
     {
         $sid = $_SESSION["sid"];
+        //echo $id;
         $result = $this->model("st_public_resources_model")->findQuizzes($id,$sid);
-        $this->view("student/enrollment/st_quizzes_do", array($result,$id));
+        $quiz = $this->model("st_quiz_model")->getQuiz($id);
+        $this->view("student/enrollment/st_quizzes_do", array($result,$quiz,$id));
     }
 
     public function st_quizzes_intro($id,$qname)

@@ -13,12 +13,13 @@ class St_quiz_model extends Model
         }
     }
 
-    public function getQuiz( $id, $grade, $subject)
+    public function getQuiz( $id)   // get questions from the DB 
     {
-        $stmt = $this->prepare("SELECT quiz.id, quiz.name, quiz.marks, quiz.questions FROM quiz,public_resource WHERE quiz.id = public_resource.id AND quiz.id = ? and 
-                public_resource.id IN (SELECT rsrc_id FROM `rs_subject_grade` WHERE subject_id= ? AND grade_id= ?)");
-        $stmt->bind_param('iii',$id,$subject, $grade);
-        return $this->fetchOneObj($stmt);
+        $q = "SELECT quiz.id , quiz.name , question.number , question.description , question.image FROM 
+        ( question INNER JOIN quiz on question.quiz_id = quiz.id ) WHERE quiz.id = ? ; ";
+        $stmt = $this->prepare($q);
+        $stmt->bind_param('i',$id);
+        return $this->fetchObjs($stmt);
     }
 
     public function getQuestionData($quiz, $qno)
