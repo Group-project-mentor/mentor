@@ -61,6 +61,6 @@
     </section>
 </body>
 
-<script src="<?php echo BASEURL . '/public/javascripts/rc_change_profile.js' ?>"></script>
+<script src="<?php echo BASEURL . '/public/javascripts/t_change_profile.js' ?>"></script>
 
 </html>
