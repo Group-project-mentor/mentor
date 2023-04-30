@@ -84,7 +84,7 @@
                                     <?php echo $row->marks ?> Marks
                                 </div>
                                 <div class="quiz-card-item">
-                                    10 Questions
+                                    <?php echo $data[1][$row->id] ?> Questions
                                 </div>
                             </div>
                             <div class="quiz-card-button-set">

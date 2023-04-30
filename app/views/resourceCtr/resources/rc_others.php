@@ -75,7 +75,8 @@
                         <div class="rc-resource-row rc-table-title">
                             <div class="rc-resource-col">Resource name</div>
                             <div class="rc-resource-col">Type</div>
-                            <div></div>
+                            <div class="rc-resource-col">Actions</div>
+                            <div class="rc-resource-col"></div>
                         </div>
                         <?php
                                 foreach ($data[0] as $row) {
@@ -83,7 +84,6 @@
                                     ?>
                                     <div class='rc-resource-row'>
                                         <div class='rc-resource-col' style="display: flex;align-items: center;justify-content: flex-start;">
-                                            <img src='<?php echo BASEURL."assets/icons/".$approval ?>' alt='' class="resource-approved-sign">
                                             <div>
                                                 <?php echo $row->name ?>
                                             </div>
@@ -100,12 +100,32 @@
                                 <?php } echo (in_array($row->type,$types)) ?"
                                                 <a href='".BASEURL."rcResources/preview/other/".$row->id."'>
                                                 <img src='".BASEURL."assets/icons/icon_eye.png' alt=''>
-                                                </a>" : "<a></a>";
-                                echo "
+                                                </a>" : "<a></a>"; ?>
+                                            </div>
+                                            <div style="display:flex;flex-direction:column;justify-content:center;align-items:center;">
+                                                    <img src='<?php echo BASEURL."assets/icons/".$approval ?>' alt='' class="resource-approved-sign">
+                                                    <div style="font-size:x-small;">
+                                                        <?php 
+                                                        switch($row->approved){
+                                                            case "P":
+                                                                echo "Pending";
+                                                                break;
+                                                            case "Y":
+                                                                echo "Approved";
+                                                                break;
+                                                            case "N":
+                                                                echo "Rejected";
+                                                                break;
+                                                            case null :
+                                                                echo "Pending";
+                                                                break;
+                                                        }
+                                                        ?>
+                                                </div>
                                             </div>
                                     </div>
-                                    ";
-                                    }
+
+                                    <?php }
                                     }else{ ?>
                             <h2 class="rc-no-data-msg" style="text-align: center;">No Data to Display</h2>
                             <?php } ?>

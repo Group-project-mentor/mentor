@@ -600,7 +600,7 @@ video.rc-uploaded-video{
 
 .resource-approved-sign{
     width: 20px !important;
-    margin-right: 15px !important;
+    /* margin-right: 15px !important; */
 }
 
 .rc-form-group-hz{

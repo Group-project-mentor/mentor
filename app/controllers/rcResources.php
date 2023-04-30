@@ -39,7 +39,11 @@ class RcResources extends Controller
         $_SESSION["gid"] = $grade;
         $_SESSION["sid"] = $subject;
         $result = $this->model("resourceModel")->findQuizzes($grade, $subject);
-        $this->view('resourceCtr/resources/rc_quizzes', array($result));
+        $res2 = $this->model("resourceModel")->findQuestionCounts($grade, $subject);
+        $questionCount = array();
+        foreach ($res2 as $item) $questionCount[$item->rsrc_id] = $item->count;
+
+        $this->view('resourceCtr/resources/rc_quizzes', array($result,$questionCount));
     }
 
     public function pastpapers($grade, $subject, $page = 1)

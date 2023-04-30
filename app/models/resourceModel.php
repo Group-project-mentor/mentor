@@ -54,6 +54,14 @@ class ResourceModel extends Model
         return $this->fetchObjs($stmt);
     }
 
+    public function findQuestionCounts($grade, $subject){
+        $stmt = $this->prepare("SELECT rs_subject_grade.rsrc_id, COUNT(question.id) as count 
+                                        FROM rs_subject_grade,question WHERE rs_subject_grade.rsrc_id = question.quiz_id AND rs_subject_grade.grade_id = ? 
+                                        AND rs_subject_grade.subject_id = ? GROUP BY rs_subject_grade.rsrc_id;");
+        $stmt->bind_param('ii',$grade,$subject);
+        return $this->fetchObjs($stmt);
+    }
+
     public function getResourceCount($type, $grade, $subject)
     {
         switch($type){

@@ -50,7 +50,11 @@
                 <div class="sponsor-student-prof">
                     <div class="prof">
                         <div class="image">
-                            <img src="<?php echo BASEURL ?>assets/clips/lap_man.png">
+                            <?php if(empty($data[0]->image)){ ?>
+                                <img src="<?php echo BASEURL ?>assets/clips/lap_man.png">
+                            <?php }else{ ?>
+                                <img src="<?php echo $data[0]->image ?>">
+                            <?php } ?>
                         </div>
                         <div class="details">
                             <h3>Student Details</h3>
@@ -60,7 +64,7 @@
                                         ID :
                                     </div>
                                     <div class="sponsor-list-item flex-3 sponsor-detail-cell">
-                                        20067
+                                        <?php echo $data[0]->id ?>
                                     </div>
                                 </div>
                                 <div class="sponsor-list-row">
@@ -68,7 +72,7 @@
                                         Name :
                                     </div>
                                     <div class="sponsor-list-item flex-3 sponsor-detail-cell">
-                                        Kavish Kavi
+                                        <?php echo $data[0]->name ?>
                                     </div>
                                 </div>
                                 <div class="sponsor-list-row">
@@ -76,7 +80,13 @@
                                         Grade :
                                     </div>
                                     <div class="sponsor-list-item flex-3 sponsor-detail-cell">
-                                        11
+                                    <?php if(!empty($data[1])){
+                                        foreach ($data[1] as $row){ 
+                                            echo "Grade ".$row->grd;
+                                        }
+                                        }else{ 
+                                            echo "No Grade";
+                                        } ?>
                                     </div>
                                 </div>
                                 <div class="sponsor-list-row">
@@ -84,7 +94,7 @@
                                         Age :
                                     </div>
                                     <div class="sponsor-list-item flex-3 sponsor-detail-cell">
-                                        15
+                                        <?php echo $data[0]->id ?>
                                     </div>
                                 </div>
                             </div>
@@ -96,46 +106,25 @@
                             <div class="sp-subject-details">
                                 <h4>Subjects</h4>
                                 <div class="sponsor-list-main border-no">
-                                    <div class="sponsor-list-row">
-                                        <div class="sponsor-list-item flex-1 sponsor-grade-cell" >
-                                            Mathematics
-                                        </div>
-                                    </div>
-                                    <div class="sponsor-list-row">
-                                        <div class="sponsor-list-item flex-1 sponsor-grade-cell" >
-                                            Sinhala
-                                        </div>
-                                    </div>
-                                    <div class="sponsor-list-row">
-                                        <div class="sponsor-list-item flex-1 sponsor-grade-cell" >
-                                            Sinhala
-                                        </div>
-                                    </div>
-                                    <div class="sponsor-list-row">
-                                        <div class="sponsor-list-item flex-1 sponsor-grade-cell" >
-                                            Sinhala
-                                        </div>
-                                    </div>
-                                    <div class="sponsor-list-row">
-                                        <div class="sponsor-list-item flex-1 sponsor-grade-cell" >
-                                            Sinhala
-                                        </div>
-                                    </div>
-                                    <div class="sponsor-list-row">
-                                        <div class="sponsor-list-item flex-1 sponsor-grade-cell" >
-                                            Sinhala
-                                        </div>
-                                    </div>
-                                    <div class="sponsor-list-row">
-                                        <div class="sponsor-list-item flex-1 sponsor-grade-cell" >
-                                            Sinhala
-                                        </div>
-                                    </div>
-                                    <div class="sponsor-list-row">
-                                        <div class="sponsor-list-item flex-1 sponsor-grade-cell" >
-                                            Sinhala
-                                        </div>
-                                    </div>
+                                
+                                    <?php
+                                    if(!empty($data[1])){
+                                        foreach ($data[1] as $row){ ?>
+
+                                            <div class="sponsor-list-row">
+                                                <div class="sponsor-list-item flex-1 sponsor-grade-cell" >
+                                                    <?php echo $row->sub ?>
+                                                </div>
+                                            </div>
+
+                                        <?php }
+                                    }else{ ?>
+                                        <div class="sponsor-list-row">
+                                                <div class="sponsor-list-item flex-1 sponsor-grade-cell" >
+                                                    No Subjects
+                                                </div>
+                                            </div>
+                                   <?php  } ?>
                                 </div>
                             </div>
                             <div class="sp-subject-report">
