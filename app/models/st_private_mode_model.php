@@ -6,7 +6,8 @@ class St_private_mode_model extends Model{
     }
 
     public function getClasses($id) {
-        $q ="SELECT student_private.student_id , student_private.class_id , private_class.class_name ,private_class.grade FROM student_private INNER JOIN private_class ON student_private.class_id = private_class.class_id WHERE student_private.student_id = ?;";
+        $q ="SELECT classes_has_students.student_id , classes_has_students.class_id , private_class.class_name FROM classes_has_students 
+        INNER JOIN private_class ON classes_has_students.class_id = private_class.class_id WHERE classes_has_students.student_id = ? ;";
         $stmt = $this->prepare($q);
         $stmt->bind_param('i',$id);
 

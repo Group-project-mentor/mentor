@@ -57,12 +57,21 @@ class St_public_resources extends Controller
         $this->view('student/enrollment/st_quizzes', array($result));
     }
 
-    public function st_quizzes_do($id)
+    public function st_quizzes_do($id, $question = 1)
     {
+        $limit = paginationRowLimit;
+        $offset = ($question != 1) ? ($question - 1) * $limit : 0;
         $sid = $_SESSION["sid"];
+        $gid = $_SESSION["gid"];
         //echo $id;
-        $result = $this->model("st_public_resources_model")->findQuizzes($id,$sid);
-        $quiz = $this->model("st_quiz_model")->getQuiz($id);
+        $rowCount = $this->model("st_public_resources_model")->getResourceCount("quiz", $gid, $sid)->count;
+        $result = $this->model("st_public_resources_model")->findQuizzes($gid,$sid,$offset, $limit);
+        $quiz = $this->model("st_quiz_model")->getQuiz($gid,$offset, $limit);
+        $pageData = array($question, ceil($rowCount / $limit));
+        if ($question < 1 || ($question > $pageData[1] and $pageData[1] != 0)) {
+
+            header("location:" . BASEURL . "st_public_resources/st_quizzes_do/" . $id . "/" . $question);
+        }
         $this->view("student/enrollment/st_quizzes_do", array($result,$quiz,$id));
     }
 
@@ -161,4 +170,5 @@ class St_public_resources extends Controller
         }
         // var_dump($splitted_link);
     }
+
 }

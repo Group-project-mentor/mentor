@@ -45,9 +45,8 @@
                 <!-- Title and sub title of middle part -->
                 <div class="mid-title">
                     <?php
-                    $ggid = $_SESSION['grade'] + 5;
  ?>
-                    <h2><?php echo "Class Name : " . ucfirst($_SESSION['class_name']) . "<br>" . "Grade " . $ggid ?></h2>
+                    <h2><?php echo "Class Name : " . ucfirst($_SESSION['class_name'])  ?></h2>
                 </div>
 
                 <!-- Grade choosing interface -->
@@ -60,11 +59,11 @@
                     <div class="container-box" style="padding-left: 160px; width:auto; height: 100px;">
                         <table>
                             <tr>
-                                <td><button><a href="<?php echo BASEURL  . 'st_private_resources/index_videos/' . $_SESSION['class_name'] . '/' . $_SESSION['grade'] ?> ">Videos</a></button></td>
-                                <td><button><a href="<?php echo BASEURL  . 'st_private_resources/index_documents/' . $_SESSION['class_name'] . '/' . $_SESSION['grade'] ?>">Documents</a></button></td>
-                                <td><button><a href="<?php echo BASEURL  . 'st_private_resources/index_past_papers/' . $_SESSION['class_name'] . '/' . $_SESSION['grade']  ?>">Past Papers</a></button></td>
-                                <td><button><a href="<?php echo BASEURL  . 'st_private_resources/index_quizzes/' . $_SESSION['class_name'] . '/' . $_SESSION['grade']  ?>">Quizzes</a></button></td>
-                                <td><button><a href="<?php echo BASEURL  . 'st_private_resources/index_others/' . $_SESSION['class_name'] . '/' . $_SESSION['grade']   ?>">Other Resources</a></button></td>
+                                <td><button><a href="<?php echo BASEURL  . 'st_private_resources/index_videos/' . $_SESSION['class_name']  ?> ">Videos</a></button></td>
+                                <td><button><a href="<?php echo BASEURL  . 'st_private_resources/index_documents/' . $_SESSION['class_name']  ?>">Documents</a></button></td>
+                                <td><button><a href="<?php echo BASEURL  . 'st_private_resources/index_past_papers/' . $_SESSION['class_name']   ?>">Past Papers</a></button></td>
+                                <td><button><a href="<?php echo BASEURL  . 'st_private_resources/index_quizzes/' . $_SESSION['class_name']  ?>">Quizzes</a></button></td>
+                                <td><button><a href="<?php echo BASEURL  . 'st_private_resources/index_others/' . $_SESSION['class_name']    ?>">Other Resources</a></button></td>
                             </tr>
                         </table>
                     </div>
