@@ -68,7 +68,7 @@
                                     <div class="subject-card">
                                         <img src="<?php echo BASEURL  ?>assets/patterns/2.png" alt="" />
                                         <a href="#"><label><?php echo $row->class_name ?></label></a>
-                                        <label>Grade <?php echo $row->grade + 5 ?></label>
+                                        <!-- <label>Grade <?php echo $row->grade + 5 ?></label> -->
                                         </div>
                                 <?php } ?>
                             </div>
