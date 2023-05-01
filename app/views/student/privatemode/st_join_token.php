@@ -64,7 +64,7 @@
                         <b>Enter the token here : </b>
                         <div class="search-bar">
                             <input type="text" name="" id="token" placeholder=" Search...">
-                            <a href="<?php echo BASEURL ?>st_private_mode/st_join_token_send" id="token_link">
+                            <a href="<?php echo BASEURL ?>st_private_mode/st_join_token_send/abcd" id="token_link">
                                 <img src="<?php echo BASEURL; ?>assets/icons/icon_search.png" alt="">
                             </a>
                         </div>
@@ -82,7 +82,7 @@
 </body>
 <script src="<?php echo BASEURL ?>public/javascripts/st_auth_script.js"></script>
 
-<script>
+<!-- <script>
     let token = document.getElementById("token");
     let token_link = document.getElementById("token_link");
     let token_name = "";
@@ -92,6 +92,6 @@
         console.log(token_name);
     })
 
-</script>
+</script> -->
 
 </html>

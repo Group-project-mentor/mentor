@@ -43,7 +43,7 @@
                     </a>
                 </div>
                 <div class="top-bar-btns">
-                <?php include_once "components/notificationIcon.php" ?>
+                    <?php include_once "components/notificationIcon.php" ?>
                     <a href="<?php echo BASEURL  ?>st_profile">
                         <img src="<?php echo BASEURL  ?>assets/icons/icon_profile_black.png" alt="profile">
                     </a>
@@ -53,6 +53,9 @@
             <!-- Middle part for whole content -->
             <section class="mid-content">
 
+                <h2><?php //echo "Hello " . (string)$_SESSION['name'] . "!" ?></h2>
+
+                <h3> Welcome To Mentor Learning Management System Your Profile.</h3>
                 <!-- Grade choosing interface -->
                 <div class="container-box" style="padding-left: 160px; width:auto; height:300px;">
                     <table>

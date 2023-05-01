@@ -61,7 +61,7 @@
                     <h2>Join with class token</h2>
                     <h4>Get the class token from your teacher and join to the class by entering here. <br><br><br></h4>
                     <h3 class="token">
-                        
+                        Successfully join. You can Access After permission of the teacher.
                         <hr>
                     </h3>
                 </div>

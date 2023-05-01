@@ -71,21 +71,26 @@
                             <div class="rc-pp-row">
 
                                 <img src="<?php echo BASEURL; ?>assets/icons/pdf_resources.png" alt="delete">
-                                <div class="rc-resource-col">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?php echo $row->class_name ?></div>
-                                <div class="rc-resource-col">Grade <?php echo $row->grade+5 ?></div>
+                                <div class="rc-resource-col"><?php echo $row->class_name ?></div>
                                 <div class="rc-resource-col"></div>
                                 <div class="rc-quiz-row-btns">
-                                    <button>
-                                        <img src="<?php echo BASEURL; ?>assets/icons/icon_edit.png" alt="edit">
-                                    </button>
+                                    <div class="sponsor-list-item flex-1" style="display:flex;align-items:center;justify-content:space-evenly;">
+                                        <a href="<?php echo BASEURL . 'st_private_mode/st_join_request_update/1/' . $row->class_id   ?>">
+                                            <img src="<?php echo BASEURL ?>assets/icons/icon-correct-green.png" alt="" style="width: 20px;margin:0 5px;">
+                                        </a>
+                                        <a href="<?php echo BASEURL . 'st_private_mode/st_join_request_update/0'  ?>">
+                                            <img src="<?php echo BASEURL ?>assets/icons/icon-incorrect-red.png" alt="" style="width: 25px;margin:0 5px;">
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
                         <?php } ?>
                     </div>
 
-                <?php } else {
-                    echo "no data!";
-                } ?>
+                <?php } else { ?>
+                    <h2 style="color:green;">No Class Requests yet !</h2>
+                <?php } ?>
+
 
         </div>
     </section>
