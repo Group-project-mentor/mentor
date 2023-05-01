@@ -277,5 +277,44 @@ class RcEdit extends Controller
         }
     }
 
+    // ? topic edit functions
+
+    public function topic($id){
+        if ($this->isVerifiedTopic($id)){
+            $result = $this->model("resourceModel")->getTopicDetails($id);
+            $this->view("resourceCtr/organized/editTopic",array($result));
+        }else{
+            flashMessage("invalid operation");
+            header("location:".BASEURL."rcResources/organized/".$_SESSION['gid']."/".$_SESSION['sid']);
+        }
+    }
+
+    public function updateTopic($topic_id){
+        if ($_SERVER['REQUEST_METHOD'] === 'POST'){
+            if (isset($_POST['name']) && !empty($_POST['name'])){
+                if ($this->model("resourceModel")->editTopic($topic_id,sanitizeText($_POST['name']),sanitizeText($_POST['description']))){
+                    flashMessage("success");
+                    header("location:".BASEURL."rcResources/organized/".$_SESSION['gid']."/".$_SESSION['sid']);
+                }else{
+                    flashMessage("failed");
+                    header("location:".BASEURL."rcEdit/updateTopic/$topic_id");
+                }
+            }else{
+                flashMessage("empty_err");
+                header("location:".BASEURL."rcEdit/updateTopic/$topic_id");
+            }
+        }
+    }
+
+    private function isVerifiedTopic($topic_id){
+        $result = $this->model("resourceModel")->isVerifiedTopic($topic_id,$_SESSION['gid'],$_SESSION['sid']);
+        if(empty($result)){
+            return false;
+        }
+        else{
+            return true;
+        }
+    }
+
 
 }

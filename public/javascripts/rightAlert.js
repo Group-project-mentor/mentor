@@ -3,11 +3,14 @@ let messageContent = document.getElementById("message-content");
 let closeBtn = document.getElementById("close-btn");
 let AlertTxt = document.getElementById("right-alert-text");
 let a;
+
+// ? close button event listener
 closeBtn.addEventListener("click", () => {
     messageContent.classList.add("message-hide");
     clearInterval(a);
 });
 
+// ? message visible for 5 seconds
 const activeMsg = () => {
     messageContent. classList . remove('message-hide');
     if(a)  clearInterval(a);
@@ -16,6 +19,7 @@ const activeMsg = () => {
     },5000)
 }
 
+// ? showing msg is a success
 const makeSuccess = (text) => {
     messageContent.classList.remove('message-error');
     messageContent.classList.add('message-ok');
@@ -26,6 +30,7 @@ const makeSuccess = (text) => {
     activeMsg();
 }
 
+// ? showing msg is an error
 const makeError = (text) => {
     messageContent.classList.remove('message-ok');
     messageContent.classList.add('message-error');

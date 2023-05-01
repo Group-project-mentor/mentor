@@ -322,6 +322,114 @@
     font-family: "Poppins", sans-serif;
 }
 
+
+/* ----- organized resources style area ----- */
+
+.rc-org-row {
+    display: flex;
+    background-color: #ffffff44;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    align-items: center;
+    padding: 8px 15px;
+    margin-bottom: 8px;
+    font-size: large;
+    transition: all 0.5s;
+}
+
+.rc-org-info-row{
+    display: flex;
+    align-items: center;
+    font-size: large;
+    justify-content: space-between;
+    text-align: center;
+    justify-content: center;
+}
+
+.rc-org-topic-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.rc-org-row img{
+    width: 20px;
+    margin-right: 10px;
+}
+
+.rc-org-row:hover {
+    transform: scale(1.02);
+    transition: all 0.5s;
+}
+
+.rc-org-title {
+    box-shadow: none;
+}
+
+.rc-org-title:hover {
+    transform: scale(1);
+}
+
+.rc-org-row div:nth-of-type(1) {
+    flex: 2;
+}
+
+.rc-org-row div:nth-of-type(2) {
+    flex: 2;
+}
+
+.rc-org-row div:nth-of-type(3) {
+    flex: 2;
+}
+
+.rc-org-row div:nth-of-type(4) {
+    flex: 1;
+}
+
+.rc-org-topic{
+    flex: 1;
+    font-size: larger;
+    letter-spacing: 5px;
+    color: rgb(85, 85, 85);
+}
+
+.rc-topic-line{
+    margin: 2px 0 15px 0;
+}
+
+/* .rc-org-col{
+} */
+
+
+.rc-org-padding{
+    margin: 15px 0;
+}
+.rc-org-row-btns {
+    width: 100%;
+    justify-content: flex-end;
+    display: flex;
+    flex: 1;
+
+}
+
+.rc-org-row-btns button,a {
+    cursor: pointer;
+    border: none;
+    background-color: transparent;
+    margin: 0 5px;
+}
+
+.rc-org-row-btns img {
+    cursor: pointer;
+    width: 20px;
+    /* width: 30px; */
+}
+
+.rc-org-row-btns .add-rsrc {
+    cursor: pointer;
+    width: 30px;
+    margin: 0 5px;
+}
+
 /* .rc-upload-form {} */
 
 .rc-upload-home-title {
@@ -373,7 +481,7 @@
 }
 
 .progress-container>p{
-   font-size: small;
+    font-size: small;
     color: #0b9040;
     min-width: 30px;
     text-align: right;
@@ -650,11 +758,11 @@ video.rc-uploaded-video{
      background-color: #0b9040;
      color: #fff;
      padding: 8px;
-    margin-left: 20px;
+     margin-left: 20px;
      border: none;
      border-radius: 4px;
      cursor: pointer;
-}
+ }
 
 .rc-form-group small{
     text-align: center;

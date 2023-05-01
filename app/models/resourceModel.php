@@ -422,37 +422,136 @@ class ResourceModel extends Model
         return $this->fetchObjs($stmt);
     }
 
-    // The ordered resources
+    // * Topic related functions
 
-    public function getNotOrganizedResources($gid, $sid){
-        $stmt = $this->prepare("SELECT public_resource.id, public_resource.type FROM public_resource,rs_subject_grade 
-                                        WHERE public_resource.id=rs_subject_grade.rsrc_id AND rs_subject_grade.grade_id=? 
-                                        AND rs_subject_grade.subject_id=? AND public_resource.topic_id IS NULL 
-                                        AND public_resource.approved='Y'");
-        $stmt->bind_param('ii',$gid,$sid);
+    public function addTopic($name, $description, $grade, $subject){
+        $stmt = $this->prepare("INSERT INTO topic(name, description, gradeID, subjectID) VALUES(?,?,?,?)");
+        $stmt->bind_param('ssii',$name,$description,$grade,$subject);
+        if($this->executePrepared($stmt)){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    public function getLastTopicID(){
+        $stmt = $this->prepare("SELECT id FROM topic ORDER BY id DESC LIMIT 1");
+        return $this->fetchOneObj($stmt);
+    }
+
+    public function getTopics($grade, $subject){
+        $stmt = $this->prepare("SELECT t.id, t.name, t.description FROM topic t WHERE gradeID=? AND subjectID=?");
+        $stmt->bind_param('ii',$grade,$subject);
         return $this->fetchObjs($stmt);
     }
 
-    public function getOrganizedResources($gid, $sid){
-        $stmt = $this->prepare("SELECT public_resource.id, public_resource.type, public_resource.topic_id, topic.name, topic.decription, topic.ord 
-                                        FROM public_resource,rs_subject_grade,topic 
-                                        WHERE public_resource.id=rs_subject_grade.rsrc_id AND public_resource.topic_id = topic.id
-                                        AND rs_subject_grade.grade_id=? 
-                                        AND rs_subject_grade.subject_id=? 
-                                        AND public_resource.topic_id IS NOT NULL");
-        $stmt->bind_param('ii',$gid,$sid);
+    public function editTopic($id, $name, $description){
+        $stmt = $this->prepare("UPDATE topic SET name=?, description=? WHERE id=?");
+        $stmt->bind_param('ssi',$name,$description,$id);
+        return $this->executePrepared($stmt);
+    }
+
+    public function getTopicDetails($id){
+        $stmt = $this->prepare("SELECT * FROM topic WHERE id=?");
+        $stmt->bind_param('i',$id);
+        return $this->fetchOneObj($stmt);
+    }
+
+    public function deleteTopic($id){
+        $stmt1 = $this->prepare("DELETE FROM topic WHERE id=?");
+        $stmt1->bind_param('i',$id);
+        $stmt2 = $this->prepare("UPDATE public_resource SET topicID=NULL WHERE topicID=?");
+        $stmt2->bind_param('i',$id);
+        return ($this->executePrepared($stmt1) && $this->executePrepared($stmt2));
+    }
+
+    public function getTopicOrder($grade, $subject){
+        $stmt = $this->prepare("SELECT * FROM topic_order WHERE subjectID=? AND gradeID=?");
+        $stmt->bind_param('ii',$subject,$grade);
+        return $this->fetchOneObj($stmt);
+    }
+
+    public function addTopicOrder( $grade,$subject, $order){
+        $stmt = $this->prepare("INSERT INTO topic_order(subjectID, gradeID, tpcOrder) VALUES (?,?,?)");
+        $stmt->bind_param('iis',$subject,$grade,$order);
+        return $this->executePrepared($stmt);
+    }
+
+    public function editTopicOrder($grade, $subject, $order){
+        $stmt = $this->prepare("UPDATE topic_order SET tpcOrder=? WHERE subjectID=? AND gradeID=?");
+        $stmt->bind_param('sii',$order,$subject,$grade);
+        return $this->executePrepared($stmt);
+    }
+
+    public function getResourcesTopicWise($topic){
+        $stmt = $this->prepare("SELECT p.id, p.type, p.approved, r.creator_id FROM public_resource p, rs_subject_grade r, topic t 
+                                WHERE t.id = p.topicID AND p.id = r.rsrc_id AND t.id = ?");
+        $stmt->bind_param('i',$topic);
         return $this->fetchObjs($stmt);
     }
 
-    public function getTopicIDs($gid, $sid){
-        $stmt = $this->prepare("SELECT public_resource.topic_id, topic.name 
-                                        FROM public_resource,rs_subject_grade,topic 
-                                        WHERE public_resource.id=rs_subject_grade.rsrc_id AND public_resource.topic_id = topic.id
-                                        AND rs_subject_grade.grade_id=? 
-                                        AND rs_subject_grade.subject_id=? 
-                                        AND public_resource.topic_id IS NOT NULL GROUP BY public_resource.topic_id");
-        $stmt->bind_param('ii',$gid,$sid);
+    public function getResourceByType($grade, $subject, $type){
+        switch($type){
+            case 'video':
+                $stmt = $this->prepare("SELECT p.id, rsrc.name, rsrc.thumbnail, rsrc.type AS vtype, p.type, p.approved, r.creator_id 
+                                        FROM public_resource p, rs_subject_grade r, video rsrc 
+                                        WHERE p.id = r.rsrc_id AND rsrc.id = p.id AND r.subject_id = ? AND r.grade_id = ? AND p.topicID IS NULL");
+                break;
+            case 'pdf':
+                $stmt = $this->prepare("SELECT p.id, rsrc.name, p.type, p.approved, r.creator_id 
+                                        FROM public_resource p, rs_subject_grade r, document rsrc 
+                                        WHERE p.id = r.rsrc_id AND rsrc.id = p.id AND r.subject_id = ? AND r.grade_id = ? AND p.topicID IS NULL");
+
+                break;
+            case 'other':
+                $stmt = $this->prepare("SELECT p.id, rsrc.name, rsrc.type AS otype, p.type, p.approved, r.creator_id 
+                                        FROM public_resource p, rs_subject_grade r, other rsrc 
+                                        WHERE p.id = r.rsrc_id AND rsrc.id = p.id AND r.subject_id = ? AND r.grade_id = ? AND p.topicID IS NULL");
+                break;
+            case "paper":
+                $stmt = $this->prepare("SELECT p.id, rsrc.name, rsrc.part, rsrc.year , p.type, p.approved, r.creator_id 
+                                        FROM public_resource p, rs_subject_grade r, pastpaper rsrc 
+                                        WHERE p.id = r.rsrc_id AND rsrc.id = p.id AND r.subject_id = ? AND r.grade_id = ? AND p.topicID IS NULL");
+                break;
+            case "quiz":
+                $stmt = $this->prepare("SELECT p.id, rsrc.name, rsrc.marks, p.type, p.approved, r.creator_id 
+                                        FROM public_resource p, rs_subject_grade r, quiz rsrc 
+                                        WHERE p.id = r.rsrc_id AND rsrc.id = p.id AND r.subject_id = ? AND r.grade_id = ? AND p.topicID IS NULL");
+                break;
+            default:
+                $stmt = $this->prepare("SELECT p.id, p.type, p.approved, r.creator_id 
+                                        FROM public_resource p, rs_subject_grade r 
+                                        WHERE p.id = r.rsrc_id AND r.subject_id = ? AND r.grade_id = ? AND p.topicID IS NULL");
+                break;
+        }
+        $stmt->bind_param('ii',$subject,$grade);
         return $this->fetchObjs($stmt);
+    }
+
+    public function getResourcesWithTopics($subject, $grade){
+        $stmt = $this->prepare("SELECT p.id as rsrc_id, p.type, p.approved, r.creator_id, t.id as t_id, t.name, t.description FROM public_resource p, rs_subject_grade r, topic t 
+                                WHERE t.id = p.topicID AND p.id = r.rsrc_id AND t.subjectID = ? AND t.gradeID = ?");
+        $stmt->bind_param('ii',$subject,$grade);
+        return $this->fetchObjs($stmt);
+    }
+
+    public function connectToTopic($topic, $resource){
+        $stmt = $this->prepare("UPDATE public_resource SET topicID=? WHERE id=?");
+        $stmt->bind_param('ii',$topic,$resource);
+        return $this->executePrepared($stmt);
+    }
+
+
+    public function removeFromTopic($id){
+        $stmt = $this->prepare("UPDATE public_resource SET topicID=NULL WHERE id=?");
+        $stmt->bind_param('i',$id);
+        return $this->executePrepared($stmt);
+    }
+
+    public function isVerifiedTopic($id, $grade, $subject){
+        $stmt = $this->prepare("SELECT topic.id FROM topic  WHERE topic.id = ? AND topic.gradeID=? AND topic.subjectID=?");
+        $stmt->bind_param('iii',$id,$grade,$subject);
+        return $this->fetchOneObj($stmt);
     }
 
 }
