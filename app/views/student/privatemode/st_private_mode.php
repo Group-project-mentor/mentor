@@ -51,13 +51,8 @@
                 <!-- subject cards -->
                 <div class="container-box">
                     <div>
-                        <!-- tempary movement 1-->
-                        <!-- <div class="subject-card" style="text-align:center ;">
-                            <img src="<?php echo BASEURL  ?>assets/patterns/1.png" alt="" style="width : 250px ; height:150px;"/>
-                            <a href="<?php echo BASEURL  ?>st_private_mode/st_classroom_inside" ><label>Mathematics</label></a>
-                            <label>Grade 8</label>
-                            <label>Mr.Thimira Galahitiyawa</label>
-                        </div> -->
+                        <h2><?php
+                            echo  "Hello " .$_SESSION['name'] . "!" ?></h2>
                         <h3> Some Private classes You Enrolled</h3>
                         <br><br>
                         <!-- new data from DB -->
@@ -69,7 +64,7 @@
                                         <img src="<?php echo BASEURL  ?>assets/patterns/2.png" alt="" />
                                         <a href="#"><label><?php echo $row->class_name ?></label></a>
                                         <!-- <label>Grade <?php echo $row->grade + 5 ?></label> -->
-                                        </div>
+                                    </div>
                                 <?php } ?>
                             </div>
                         <?php } else {

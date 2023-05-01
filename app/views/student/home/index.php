@@ -15,8 +15,8 @@
 
     <style>
         body {
-            background-image: url('public/assets/grades/logo1.png');
-            background-size: cover;
+            background-image: url('public/assets/grades/logo1_dark.png');
+            background-size:contain;
             background-repeat: no-repeat;
             background-position: center center;
             justify-content: center;
@@ -53,12 +53,12 @@
             <!-- Middle part for whole content -->
             <section class="mid-content">
 
-                <h2><?php //echo "Hello " . (string)$_SESSION['name'] . "!" 
-                    ?></h2>
+                <h2><?php
+                    echo "Hello " . $_SESSION['name'] . "!" ?></h2>
 
-                <h3> Welcome To Mentor Learning Management System Your Profile.</h3>
+                <h3> Welcome To Mentor Learning Management System.</h3>
                 <!-- Grade choosing interface -->
-                <div class="container-box" >
+                <div style="margin:50px auto ;">
                     <table>
                         <tr>
                             <td>
@@ -93,45 +93,45 @@
                                     </a>
                                 </button>
                             </td>
-                            </tr>
+                        </tr>
                     </table>
                     <table>
-                            <td>
-                                <button>
-                                    <a href=" <?php echo BASEURL  ?>st_courses/index/5">
-                                        <img src="<?php echo BASEURL  ?>assets/icons/icon_settings.png" alt="">
-                                        Grade 10
-                                    </a>
-                                </button>
-                            </td>
-                            <td>
-                                <button>
-                                    <a href=" <?php echo BASEURL  ?>st_courses/index/6">
-                                        <img src="<?php echo BASEURL  ?>assets/icons/icon_settings.png" alt="">
-                                        Grade 11
-                                    </a>
-                                </button>
-                            </td>
-                            <td>
-                                <button>
-                                    <a href="<?php echo BASEURL  ?>st_courses/index/7">
-                                        <img src="<?php echo BASEURL  ?>assets/icons/icon_settings.png" alt="">
-                                        Grade o/L
-                                    </a>
-                                </button>
-                            </td>
-                            <td>
-                                <button>
-                                    <a href=" <?php echo BASEURL  ?>st_courses/index/8">
-                                        <img src="<?php echo BASEURL  ?>assets/icons/icon_settings.png" alt="">
-                                        Grade A/L
-                                    </a>
-                                </button>
-                            </td>
+                        <td>
+                            <button>
+                                <a href=" <?php echo BASEURL  ?>st_courses/index/5">
+                                    <img src="<?php echo BASEURL  ?>assets/icons/icon_settings.png" alt="">
+                                    Grade 10
+                                </a>
+                            </button>
+                        </td>
+                        <td>
+                            <button>
+                                <a href=" <?php echo BASEURL  ?>st_courses/index/6">
+                                    <img src="<?php echo BASEURL  ?>assets/icons/icon_settings.png" alt="">
+                                    Grade 11
+                                </a>
+                            </button>
+                        </td>
+                        <td>
+                            <button>
+                                <a href="<?php echo BASEURL  ?>st_courses/index/7">
+                                    <img src="<?php echo BASEURL  ?>assets/icons/icon_settings.png" alt="">
+                                    Grade o/L
+                                </a>
+                            </button>
+                        </td>
+                        <td>
+                            <button>
+                                <a href=" <?php echo BASEURL  ?>st_courses/index/8">
+                                    <img src="<?php echo BASEURL  ?>assets/icons/icon_settings.png" alt="">
+                                    Grade A/L
+                                </a>
+                            </button>
+                        </td>
                         </tr>
                     </table>
                 </div>
-                <br><br><br><br><br><br><br>
+                <br><br><br>
                 <a class="see-all-btn" href="<?php echo BASEURL  ?>" style="text-decoration: none; width:100%;"></a>
             </section>
 

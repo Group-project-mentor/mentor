@@ -68,10 +68,10 @@
                                         </div>
                                         <div class="quiz-card-content">
                                             <div class="quiz-card-item">
-                                                <?php echo $row->total_marks ?> Marks
+                                                <?php echo $row->marks ?> Marks
                                             </div>
                                             <div class="quiz-card-item">
-                                                <?php echo $row->no_of_questions ?> Questions
+                                                <?php echo $row->questions ?> Questions
                                             </div>
                                         </div>
                                         <div class="quiz-card-button-set">

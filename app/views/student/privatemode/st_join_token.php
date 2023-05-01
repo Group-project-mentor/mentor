@@ -80,18 +80,22 @@
         </div>
     </section>
 </body>
-<script src="<?php echo BASEURL ?>public/javascripts/st_auth_script.js"></script>
+<script>
+    let BASEURL = '<?php echo BASEURL ?>';
 
-<!-- <script>
     let token = document.getElementById("token");
     let token_link = document.getElementById("token_link");
     let token_name = "";
+    
     token.addEventListener("change", function(e) {
         token_name = e.target.value;
-
-        console.log(token_name);
-    })
-
-</script> -->
+        if(token_name == ""){
+            location.reload();
+        }else{
+            token_link.href = `${BASEURL}st_private_mode/st_join_token_send/${token_name}`;
+        }
+    });
+    
+</script>
 
 </html>
