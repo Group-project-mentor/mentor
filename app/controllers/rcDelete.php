@@ -90,7 +90,7 @@ class RcDelete extends Controller
 
     public function removeReference($id){
         if($this->model("resourceModel")->removeFromTopic($id)){
-            flashMessage("done");
+            flashMessage("success");
         }else{
             flashMessage("failed");
         }
@@ -109,7 +109,7 @@ class RcDelete extends Controller
             $topicOrder = implode(',', $array);
 
             $this->model("resourceModel")->editTopicOrder($_SESSION['gid'],$_SESSION['sid'],$topicOrder);
-            flashMessage("done");
+            flashMessage("success");
         }else{
             flashMessage("failed");
         }

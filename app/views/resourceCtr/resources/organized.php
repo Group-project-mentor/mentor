@@ -14,10 +14,14 @@
 <body>
 <?php include_once "components/alerts/rc_delete_alert.php"?>
 <?php
-$category = "documents";
 if(!empty($_SESSION['message'])) {
     if ($_SESSION['message'] == "success") {
-        include_once "components/alerts/categoryUploadSuccess.php";
+        $message = "Operation Successful !";
+        include_once "components/alerts/operationSuccess.php";
+    }
+    if ($_SESSION['message'] == "failed") {
+        $message = "Operation Failed !";
+        include_once "components/alerts/operationFailed.php";
     }
 }
 ?>

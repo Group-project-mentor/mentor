@@ -284,7 +284,7 @@ class RcEdit extends Controller
             $result = $this->model("resourceModel")->getTopicDetails($id);
             $this->view("resourceCtr/organized/editTopic",array($result));
         }else{
-            flashMessage("invalid operation");
+            flashMessage("failed");
             header("location:".BASEURL."rcResources/organized/".$_SESSION['gid']."/".$_SESSION['sid']);
         }
     }
@@ -300,7 +300,7 @@ class RcEdit extends Controller
                     header("location:".BASEURL."rcEdit/updateTopic/$topic_id");
                 }
             }else{
-                flashMessage("empty_err");
+                flashMessage("failed");
                 header("location:".BASEURL."rcEdit/updateTopic/$topic_id");
             }
         }

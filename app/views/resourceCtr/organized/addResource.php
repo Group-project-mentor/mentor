@@ -19,7 +19,6 @@
 <section class="page">
     <?php include_once "components/alerts/rightAlert.php"?>
     <?php include_once "components/navbars/rc_nav_2.php"?>
-
     <div class="content-area">
         <!-- Top bar -->
         <section class="top-bar">

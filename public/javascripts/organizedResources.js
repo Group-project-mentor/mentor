@@ -28,7 +28,7 @@ editToggle.addEventListener('click', () => {
         for (let i = 0; i < downShiftBtns.length; i++) {
             downShiftBtns[i].style.display = 'block';
         }
-        document.getElementById('editToggleImg').src = '<?php echo BASEURL ?>public/assets/icons/icon_move.png';
+        document.getElementById('editToggleImg').src = `${BASEURL}public/assets/icons/icon_move.png`;
     } else {
         for (let i = 0; i < upShiftBtns.length; i++) {
             upShiftBtns[i].style.display = 'none';
@@ -36,7 +36,7 @@ editToggle.addEventListener('click', () => {
         for (let i = 0; i < downShiftBtns.length; i++) {
             downShiftBtns[i].style.display = 'none';
         }
-        document.getElementById('editToggleImg').src = '<?php echo BASEURL ?>public/assets/icons/icon_not_move.png';
+        document.getElementById('editToggleImg').src = `${BASEURL}public/assets/icons/icon_not_move.png`;
 
     }
 });

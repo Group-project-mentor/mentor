@@ -320,16 +320,16 @@ class RcAdd extends Controller
                     header("location:".BASEURL."rcResources/organized/".$_SESSION['gid']."/".$_SESSION['sid']);
                 }else{
                     $this->model("resourceModel")->rollBack();
-                    flashMessage("invalid");
+                    flashMessage("failed");
                     header("location:".BASEURL."rcAdd/newTopic/".$_SESSION['gid']."/".$_SESSION['sid']);
                 }
             }else{
                 $this->model("resourceModel")->rollBack();
-                flashMessage("error");
+                flashMessage("failed");
                 header("location:".BASEURL."rcAdd/newTopic/".$_SESSION['gid']."/".$_SESSION['sid']);
             }
         }else{
-            flashMessage("error");
+            flashMessage("failed");
             header("location:".BASEURL."rcAdd/newTopic/".$_SESSION['gid']."/".$_SESSION['sid']);
         }
     }
@@ -348,7 +348,7 @@ class RcAdd extends Controller
             $resouceByType = array("videos" => $videos, "pdfs" => $pdfs, "others"=> $others, "quizzes"=> $quizzes, "papers" => $papers);
             $this->view("resourceCtr/organized/addResource",array($topic, $resources, $resouceByType));
         }else{
-            flashMessage("invalid");
+            flashMessage("failed");
             header("location:".BASEURL."rcResources/organized/".$_SESSION['gid']."/".$_SESSION['sid']);
         }
     }
@@ -358,8 +358,7 @@ class RcAdd extends Controller
         if($this->model("resourceModel")->connectToTopic($_POST["topic"], $_POST["resource"])){
             $message["status"] = "success";
         }else{
-            flashMessage("error");
-            $message["message"] = "Can't add resource to topic";
+            $message["message"] = "failed";
         }
         echo json_encode($message);
     }
