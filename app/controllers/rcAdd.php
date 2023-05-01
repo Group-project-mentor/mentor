@@ -307,9 +307,11 @@ class RcAdd extends Controller
                 $res = $this->model("resourceModel")->addTopic(sanitizeText($_POST["name"]), sanitizeText($_POST["description"]),$_SESSION["gid"], $_SESSION['sid']);
                 if($res){
                     $lastID = $this->model("resourceModel")->getLastTopicID()->id;
-                    $topicOrder = $this->model("resourceModel")->getTopicOrder($_SESSION['gid'], $_SESSION['sid'])->tpcOrder;
-                    if(!empty($topicOrder)){
-                        $topicOrder = $topicOrder.",".$lastID;
+                    $topicOrderRow = $this->model("resourceModel")->getTopicOrder($_SESSION['gid'], $_SESSION['sid']);
+                    $topicOrder = $topicOrderRow->tpcOrder;
+                    if(!empty($topicOrderRow)){
+                        if($topicOrder == "") $topicOrder = "$lastID";
+                        else $topicOrder = $topicOrder.",".$lastID;
                         $this->model("resourceModel")->editTopicOrder($_SESSION['gid'], $_SESSION['sid'], $topicOrder);
                     }else{
                         $topicOrder = "$lastID";

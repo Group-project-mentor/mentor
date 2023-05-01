@@ -202,8 +202,9 @@ class RcResources extends Controller
     public function organized($grade_id, $subject_id)
     {
         $topics = $this->model("resourceModel")->getTopics($grade_id, $subject_id);
-        $topicOrder = $this->model("resourceModel")->getTopicOrder($grade_id, $subject_id)->tpcOrder;
-        if(empty($topicOrder)){
+        $topicOrderRow = $this->model("resourceModel")->getTopicOrder($grade_id, $subject_id);
+        $topicOrder = $topicOrderRow->tpcOrder;
+        if(empty($topicOrderRow)){
             if(!empty($topics)){
                 foreach ($topics as $topic) {
                     $topicIds = array();
@@ -216,6 +217,8 @@ class RcResources extends Controller
                 $topicOrder = "";
             }
             $this->model("resourceModel")->addTopicOrder($grade_id, $subject_id, $topicOrder);
+        }elseif(empty($topicOrder) || $topicOrder == ""){
+            $topicOrder = "";
         }
         $topicData = array();
         foreach ($topics as $topic) {
