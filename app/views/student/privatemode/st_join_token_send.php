@@ -46,7 +46,7 @@
                     </a>
                 </div>
                 <div class="top-bar-btns">
-                    <a href="<?php echo BASEURL; ?>st_private_mode/st_join_classes">
+                    <a href="<?php echo BASEURL; ?>st_private_mode/st_join_token">
                         <div class="back-btn">Back</div>
                     </a>
                     <?php include_once "components/notificationIcon.php" ?>
@@ -61,13 +61,7 @@
                     <h2>Join with class token</h2>
                     <h4>Get the class token from your teacher and join to the class by entering here. <br><br><br></h4>
                     <h3 class="token">
-                        <b>Enter the token here : </b>
-                        <div class="search-bar">
-                            <input type="text" name="" id="token" placeholder=" Search...">
-                            <a href="<?php echo BASEURL ?>st_private_mode/st_join_token_send" id="token_link">
-                                <img src="<?php echo BASEURL; ?>assets/icons/icon_search.png" alt="">
-                            </a>
-                        </div>
+                        
                         <hr>
                     </h3>
                 </div>
@@ -76,22 +70,12 @@
                     <br><br>
 
                 </div>
+
+                ...........
             </section>
         </div>
     </section>
 </body>
 <script src="<?php echo BASEURL ?>public/javascripts/st_auth_script.js"></script>
-
-<script>
-    let token = document.getElementById("token");
-    let token_link = document.getElementById("token_link");
-    let token_name = "";
-    token.addEventListener("change", function(e) {
-        token_name = e.target.value;
-
-        console.log(token_name);
-    })
-
-</script>
 
 </html>

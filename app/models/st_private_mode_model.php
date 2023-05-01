@@ -16,9 +16,8 @@ class St_private_mode_model extends Model{
     }
 
     public function getClasses1($id) {
-        $q ="SELECT class_name , grade FROM private_class WHERE grade != ? OR grade = ?;";
+        $q ="SELECT class_name , grade FROM private_class";
         $stmt = $this->prepare($q);
-        $stmt->bind_param('ii',$id,$id);
 
         $result = $this->fetchObjs($stmt);
         return $result;

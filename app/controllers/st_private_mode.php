@@ -39,10 +39,15 @@ class St_private_mode extends Controller
         $this->view('student/privatemode/st_join_token');
     }
 
+    public function st_join_token_send()
+    {
+        $this->view('student/privatemode/st_join_token_send');
+    }
+
     public function st_join_request()
     {
-        $gid = $_SESSION['id'] ;
-        $res=$this->model('st_private_mode_model')->getClasses1($gid);
+        $id = $_SESSION['id'] ;
+        $res=$this->model('st_private_mode_model')->getClasses1($id);
         // $res2=$this->model('st_private_mode_model')->getClasses2($gid, $_SESSION['id']);
         $this->view('student/privatemode/st_join_request',array($res));
     }
