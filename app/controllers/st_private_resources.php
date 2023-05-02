@@ -114,8 +114,8 @@ class St_private_resources extends Controller
     {
         switch ($type) {
             case 'document':
-                $file = $this->model("St_private_resources_model")->getResource($id, $_SESSION['gid'], $_SESSION['sid'], 'pdf');
-                $this->view("student/enrollment/st_document_do", $file);
+                $file = $this->model("St_private_resources_model")->getResource($id, 'pdf');
+                $this->view("student/enrollment_private/st_document_do", array($file));
                 break;
             case 'others':
                 $file = $this->model("St_private_resources_model")->getResource($id, $_SESSION['gid'], $_SESSION['sid'], 'other');

@@ -47,7 +47,7 @@ class St_private_resources_model extends Model{
 
     public function findDocuments($class_name) 
     {
-        $q ="SELECT private_class.class_name  , teacher_document.name  
+        $q ="SELECT private_class.class_name ,private_class.class_id  , teacher_document.name  
         FROM (( teacher_document INNER JOIN teacher_class_resources ON teacher_document.id = teacher_class_resources.rs_id ) 
         INNER JOIN private_class ON teacher_class_resources.class_id = private_class.class_id ) 
         WHERE private_class.class_name = ? ";
@@ -71,13 +71,12 @@ class St_private_resources_model extends Model{
         return $result;
     }
 
-    public function getResource($id, $gid=null, $sid=null, $type=null){
-        $q = "select public_resource.id, public_resource.type, public_resource.location from public_resource 
-        inner join rs_subject_grade on public_resource.id = rs_subject_grade.rsrc_id 
-        where public_resource.id = ? and rs_subject_grade.subject_id =? and rs_subject_grade.grade_id =? and type =? ";
+    public function getResource($id, $type){
+        $q = "SELECT private_resource.id, private_resource.type, private_resource.location FROM private_resource INNER JOIN teacher_class_resources 
+        ON private_resource.id = teacher_class_resources.rs_id WHERE teacher_class_resources.class_id =? AND private_resource.type =?; ";
 
         $stmt = $this->prepare($q);
-        $stmt->bind_param('iiis',$id,$sid,$gid,$type);
+        $stmt->bind_param('is',$id,$type);
 
         $result = $this->fetchObjs($stmt);
         return $result;

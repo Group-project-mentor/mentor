@@ -49,12 +49,11 @@
                     </a>
                 </div>
             </section>
-            <a class="see-all-btn" href="<?php echo BASEURL  ?>" style="text-decoration: none; width:100%;"></a>
+            <hr style="color: green; height:7px; background-color:green;">
             <!-- Middle part for whole content -->
             <section class="mid-content">
 
-                <h2><?php
-                    echo "Hello " . $_SESSION['name'] . "!" ?></h2>
+                <h2><?php echo "Hello " . $_SESSION['name'] . "!" ?></h2>
 
                 <h3> Welcome To Mentor Learning Management System.</h3>
                 <!-- Grade choosing interface -->
@@ -132,7 +131,7 @@
                     </table>
                 </div>
                 <br><br><br>
-                <a class="see-all-btn" href="<?php echo BASEURL  ?>" style="text-decoration: none; width:100%;"></a>
+                <hr style="color: green; height:7px; background-color:green;">
             </section>
 
         </div>
