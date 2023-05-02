@@ -38,7 +38,7 @@
                     </a>
                 </div>
             </section>
-
+            <hr style="color: green; height:7px; background-color:green;">
             <!-- Middle part for whole content -->
             <section class="mid-content">
 
@@ -69,7 +69,7 @@
                         </table>
                     </div>
                     <br><br><br><br><br><br><br><br><br><br><br><br><br>
-                    <a class="see-all-btn" href="<?php echo BASEURL  ?>" style="text-decoration: none; width:100%;"></a>
+                    <hr style="color: green; height:7px; background-color:green;">
             </section>
         </div>
     </section>

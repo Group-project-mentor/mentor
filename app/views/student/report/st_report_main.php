@@ -118,15 +118,17 @@
                 </div>
             </section>
 
-
+            <hr style="color: green; height:7px; background-color:green;">
             <form class="mid-content" id="form-1">
 
                 <!-- Title and sub title of middle part -->
                 <div class="mid-title">
-                    <h1>Report Issue</h1>
+                <h2><?php echo "Hello " . $_SESSION['name'] . "!" ?></h2>
+                    <h3>Report Your Issue Here</h3>
+                    <br><br><br>
                 </div>
                 <!-- bottom part -->
-                <h1 class="report-title">Select Report Type</h1>
+                <h3 >Select Report Type And Click Next</h3>
 
                 <div class="container">
                     <select name="reportOptions" id="selection">
@@ -148,10 +150,10 @@
 
                 <!-- Title and sub title of middle part -->
                 <div class="mid-title">
-                    <h1>Report Issue</h1>
+                    <h2> Report Your Issue Here</h2><br><br>
                 </div>
                 <!-- bottom part -->
-                <h1 class="report-title">Enter Report Description</h1>
+                <h3>Enter Report Description</h3>
 
                 <div class="container">
                     <textarea name="reportDesc" id="" cols="30" rows="10"></textarea>

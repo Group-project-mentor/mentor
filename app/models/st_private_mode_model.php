@@ -56,15 +56,26 @@ class St_private_mode_model extends Model
         $stmt = $this->prepare($q);
         $stmt->bind_param('s', $token);
 
-        $result = $this->fetchObjs($stmt);
+        $result = $this->fetchOneObj($stmt);
         return $result;
     }
 
     public function jointokenaddtoDB($sid, $cid, $token)
     {
-        $q = "INSERT INTO `join_requests` (`student_id`, `class_id`, `accept`, `timestamp`, `validity`, `token`) 
-        VALUES ($sid, $cid, '0', current_timestamp(), NULL, '$token');";
+        $q = "INSERT INTO `join_requests` (`student_id`, `class_id`, `accept`, `validity`, `token`) 
+        VALUES ($sid, $cid, 0 , NULL, '$token');";
         $result = $this->executeQuery($q);
+        return $result;
+    }
+
+    public function jointokenview($sid,$cid,$token)
+    {
+        $q = "SELECT private_class.class_name FROM private_class 
+        INNER JOIN join_requests ON private_class.class_id = join_requests.class_id WHERE private_class.token = ? LIMIT 1;";
+        $stmt = $this->prepare($q);
+        $stmt->bind_param('s', $token);
+
+        $result = $this->fetchOneObj($stmt);
         return $result;
     }
 }
