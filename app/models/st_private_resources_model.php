@@ -21,10 +21,10 @@ class St_private_resources_model extends Model{
 
     public function findQuizzes($class_name)
     {
-        $q ="SELECT private_class.class_name , teacher_quizzes.name , teacher_quizzes.total_marks ,teacher_quizzes.no_of_questions 
-        FROM (( teacher_quizzes INNER JOIN teacher_class_resources ON teacher_quizzes.id = teacher_class_resources.rs_id ) 
+        $q ="SELECT private_class.class_name , teacher_quiz.name , teacher_quiz.marks ,teacher_quiz.questions 
+        FROM (( teacher_quiz INNER JOIN teacher_class_resources ON teacher_quiz.id = teacher_class_resources.rs_id ) 
         INNER JOIN private_class ON teacher_class_resources.class_id = private_class.class_id ) 
-        WHERE private_class.class_name = ?  ";
+        WHERE private_class.class_name = ?";
         $stmt = $this->prepare($q);
         $stmt->bind_param('s', $class_name);
 
@@ -34,8 +34,8 @@ class St_private_resources_model extends Model{
 
     public function findPastpapers($class_name)
     {
-        $q ="SELECT private_class.class_name  , teacher_pastpapers.name ,teacher_pastpapers.year, teacher_pastpapers.part 
-        FROM (( teacher_pastpapers INNER JOIN teacher_class_resources ON teacher_pastpapers.id = teacher_class_resources.rs_id ) 
+        $q ="SELECT private_class.class_name  , teacher_pastpaper.name ,teacher_pastpaper.year, teacher_pastpaper.part 
+        FROM (( teacher_pastpaper INNER JOIN teacher_class_resources ON teacher_pastpaper.id = teacher_class_resources.rs_id ) 
         INNER JOIN private_class ON teacher_class_resources.class_id = private_class.class_id ) 
         WHERE private_class.class_name = ? ";
         $stmt = $this->prepare($q);
@@ -47,7 +47,7 @@ class St_private_resources_model extends Model{
 
     public function findDocuments($class_name) 
     {
-        $q ="SELECT private_class.class_name  , teacher_document.name  
+        $q ="SELECT private_class.class_name ,private_class.class_id  , teacher_document.name  
         FROM (( teacher_document INNER JOIN teacher_class_resources ON teacher_document.id = teacher_class_resources.rs_id ) 
         INNER JOIN private_class ON teacher_class_resources.class_id = private_class.class_id ) 
         WHERE private_class.class_name = ? ";
@@ -71,13 +71,12 @@ class St_private_resources_model extends Model{
         return $result;
     }
 
-    public function getResource($id, $gid=null, $sid=null, $type=null){
-        $q = "select public_resource.id, public_resource.type, public_resource.location from public_resource 
-        inner join rs_subject_grade on public_resource.id = rs_subject_grade.rsrc_id 
-        where public_resource.id = ? and rs_subject_grade.subject_id =? and rs_subject_grade.grade_id =? and type =? ";
+    public function getResource($id, $type){
+        $q = "SELECT private_resource.id, private_resource.type, private_resource.location FROM private_resource INNER JOIN teacher_class_resources 
+        ON private_resource.id = teacher_class_resources.rs_id WHERE teacher_class_resources.class_id =? AND private_resource.type =?; ";
 
         $stmt = $this->prepare($q);
-        $stmt->bind_param('iiis',$id,$sid,$gid,$type);
+        $stmt->bind_param('is',$id,$type);
 
         $result = $this->fetchObjs($stmt);
         return $result;

@@ -24,13 +24,13 @@
 
         <!-- Title and sub title of middle part -->
         <div class="mid-title">
-            <h1>Scholorship Applied Students</h1>
+            <h1>Sponsors Application</h1>
         </div>
 
 
         <div class="content">
             <?php
-            foreach ($data['scholarship'] as $value) {
+            foreach ($data['sponsors'] as $value) {
                 if($value['id']== $_GET['id']){
                     echo '<div class="content" id="comp-content">
                 <div class="bckclose">
@@ -42,7 +42,7 @@
                         <img class="profile" src="'. BASEURL .'assets/admin/pp.png">
                     </div>
                     <div class="name">
-                        <p>'. $value['first_name'] .'</p>
+                        <p>'. $value['dispName'] .'</p>
                     </div>
                 </div>
                 <div id="com-title">

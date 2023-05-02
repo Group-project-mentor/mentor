@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>login</title>
     <link rel="stylesheet" href="<?php echo BASEURL ?>stylesheets/admin/ad_dashboard.css">
-    
+
 
 
 </head>
@@ -32,110 +32,85 @@
                 <div class="box" id="st">
                     <div class="imgrow">
                         <div background-img src="<?php echo BASEURL ?>assets/admin/Ellipse.png">
-                            <img class="mini" src="<?php echo BASEURL ?>assets/admin/3-Friends.png">
+                            <img class="mini" src="<?php echo BASEURL ?>assets/admin/students.png">
                         </div>
-                        <div>
-                            <h1>Total Student <br>
-                                <?php echo $data['studentCount']; ?><br>
-                            </h1>
+                        <div class="typeNcount">
+                            <div class="boxtitle">
+                                <h1>Total<br>Students </h1><br>
+                            </div>
+                            <div class="count">
+                                <h1>
+                                    <?php echo $data['studentCount']; ?><br>
+                                </h1>
+                            </div>
                         </div>
-                    </div>
-                    <div>
-                        <!-- <p>
-                            Public :1467 Students<br>
-                            Private :438 Students
-                        </p> -->
-                    </div>
-                    <div>
 
                     </div>
-                    <!--<img src="assets/students.png" alt="students">-->
+
+
                 </div>
                 <div class="box" id="tc">
                     <div class="imgrow">
                         <div background="<?php echo BASEURL ?>assets/admin/Ellipse 1.png">
-                            <img class="mini" src="<?php echo BASEURL ?>assets/admin/3-Friends.png">
+                            <img class="mini" src="<?php echo BASEURL ?>assets/admin/teacher.png">
                         </div>
-                        <div>
-                            <h1>Total Teacher<br>
-                                <?php echo $data['teacherCount']; ?><br>
-                            </h1>
+                        <div class="typeNcount">
+                            <div class="boxtitle">
+                                <h1>Total<br>Teachers</h1><br>
+                            </div>
+                            <div class="count">
+                                <h1>
+                                    <?php echo $data['teacherCount']; ?><br>
+                                </h1>
+                            </div>
                         </div>
-                    </div>
-                    <div>
-                        <!-- <p>
-                            Public :1467 Teacher<br>
-                            Private :438 Teacher
-                        </p> -->
-                    </div>
-                    <div>
-                        <hr>
+
                     </div>
 
-                    <!--<img src="assets/teachers.png" alt="teacher">-->
+
                 </div>
                 <div class="box" id="pc">
                     <div class="imgrow">
                         <div background="<?php echo BASEURL ?>assets/admin/Ellipse 1.png">
-                            <img class="mini" src="<?php echo BASEURL ?>assets/admin/3-Friends.png">
+                            <img class="mini" src="<?php echo BASEURL ?>assets/admin/teaching.png">
                         </div>
-                        <div>
-                            <h1>Total Private Classes<br>
-                                5430<br>
-                            </h1>
+                        <div class="typeNcount">
+                            <div class="boxtitle">
+                                <h1>Total Private Classes</h1><br>
+                            </div>
+                            <div class="count">
+                                <h1>
+                                    <?php echo $data['classCount']; ?><br>
+                                </h1>
+                            </div>
                         </div>
                     </div>
-                    <div>
-                        <!-- <p>
-                            Paid :1467 Classes<br>
-                            Free :438 Classes
-                        </p> -->
-                    </div>
-                    <div>
-                        <hr>
-                    </div>
-                    <!--<img src="assets/privateclz.png" alt="students">-->
+
                 </div>
                 <div class="box" id="sp">
                     <div class="imgrow">
                         <div background="<?php echo BASEURL ?>assets/admin/Ellipse 1.png">
-                            <img class="mini" src="<?php echo BASEURL ?>assets/admin/3-Friends.png">
+                            <img class="mini" src="<?php echo BASEURL ?>assets/admin/sponsor.png">
                         </div>
-                        <div>
-                            <h1>Total Sponsors<br>
-                                5430<br>
-                            </h1>
-                        </div>
-                    </div>
-                    <div>
-                        <!-- <p>
-                            Monthly :1467 <br>
-                            Anual :438
-                        </p> -->
-                    </div>
-                    <div>
-                        <hr>
-                    </div>
-                    <!--<img src="assets/sponsors.png" alt="sponsor">-->
-                </div>
-                <!-- <div class="box" id="ad">
-                    <div class="imgrow">
-                        <div background="<?php echo BASEURL ?>assets/admin/Ellipse 1.png">
-                            <img class="mini" src="<?php echo BASEURL ?>assets/admin/3-Friends.png">
-                        </div>
-                        <div>
-                            <h1>Total Advertisement<br>
-                                5430
-                            </h1>
+                        <div class="typeNcount">
+                            <div class="boxtitle">
+                                <h1>Total<br>Sponsors</h1><br> 
+                            </div>
+                            <div class="count">
+                                <h1>
+                                    <?php echo $data['sponsorCount']; ?><br>
+                                </h1>
+                            </div>
                         </div>
                     </div>
 
-                    <div>
-                        <hr>
-                    </div>
-                    <img src="assets/ad.png" alt="ad">
-                </div> -->
+                    
+                    
+                </div>
             </div>
+
+
+
             <div class="ad_section2">
                 <div class="earnings">
                     <img class="ern" src="<?php echo BASEURL ?>assets/admin/earnings.png">
@@ -153,21 +128,21 @@
 
                     </div>
                     <?php
-                        foreach ($data['complaints'] as $value) {
-                            echo '<div class="content">
+                    foreach ($data['complaints'] as $value) {
+                        echo '<div class="content">
                             <div class="complaints">
                                 <div class="pp">
-                                    <img class="profile" src="'.BASEURL.'assets/admin/pp.png">
+                                    <img class="profile" src="' . BASEURL . 'assets/admin/pp.png">
                                 </div>
                                 <div class="name" id="user-name">
-                                    <p>'.$value['name'].'</p>
+                                    <p>' . $value['name'] . '</p>
                                 </div>
                                 <div class="userid" id="user-id">
-                                    <p>'.$value['id'].'</p>
+                                    <p>' . $value['id'] . '</p>
                                 </div>
                             </div>
                         </div>';
-                        }
+                    }
                     ?>
                     <!--  -->
                 </div>
@@ -257,18 +232,18 @@
                             echo '<div class="content">
                             <div class="complaints">
                                 <div class="pp">
-                                    <img class="profile" src="'.BASEURL.'assets/admin/pp.png">
+                                    <img class="profile" src="' . BASEURL . 'assets/admin/pp.png">
                                 </div>
                                 <div class="name" id="user-name">
-                                    <p>'.$value['name'].'</p>
+                                    <p>' . $value['name'] . '</p>
                                 </div>
                                 <div class="userid" id="user-id">
-                                    <p>'.$value['id'].'</p>
+                                    <p>' . $value['id'] . '</p>
                                 </div>
                             </div>
                         </div>';
                         }
-                    ?>
+                        ?>
 
                     </div>
                 </div>
@@ -299,15 +274,15 @@
                         <div class="btn-sec5">
                             <div class="btn-5">
                                 <a href="<?php echo BASEURL ?>admins/addgrades">
-                                        <p style="font-size: larger;">Add Grade</p>
+                                    <p style="font-size: larger;">Add Grade</p>
                                 </a>
                             </div>
                             <div class="btn-5">
                                 <a href="<?php echo BASEURL ?>admins/addsubject">
-                                        <p style="font-size: larger;">Add Subject</p>
+                                    <p style="font-size: larger;">Add Subject</p>
                                 </a>
                             </div>
-                            
+
                         </div>
                     </div>
                 </div>

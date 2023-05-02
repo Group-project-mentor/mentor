@@ -12,6 +12,7 @@ class admins extends Controller {
         $this->adminModel =  $this->model('admin');
         $this->hrModel = $this->model('adHumanResource_model');
         $this->userModel = $this->model('userModel');
+        
     }
     
     // Other Functions
@@ -48,6 +49,8 @@ class admins extends Controller {
             $data = [];
             $data['studentCount'] = $this->adminModel->studentCount();
             $data['teacherCount'] = $this->adminModel->teacherCount();
+            $data['classCount'] = $this->adminModel->classCount();
+            $data['sponsorCount'] = $this->adminModel->sponsorCount();
             $data['complaints'] = $this->adminModel->complaints();
 
             // print_r($data);
@@ -275,6 +278,7 @@ class admins extends Controller {
         }
 
     }
+    
 
     public function scholorships() {
 
@@ -289,7 +293,7 @@ class admins extends Controller {
 
             $data = [];
             $data['scholarship'] = $this->adminModel->scholorship();
-            
+            $data['sponsors'] = $this->adminModel->sponsors();
             $this->view('admin/scholpro',$data);
 
         }
@@ -316,6 +320,26 @@ class admins extends Controller {
 
     }
 
+    public function sponsorviews() {
+
+        sessionValidator();
+        $this->hasLogged();
+
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+           
+        }
+
+        if ($_SERVER['REQUEST_METHOD'] == 'GET') {
+
+            $data = [];
+            $data['sponsors'] = $this->adminModel->sponsors();
+            
+            $this->view('admin/sponsorviewall',$data);
+
+        }
+
+    }
+
     public function scholorshipview($id) {
 
         sessionValidator();
@@ -331,6 +355,26 @@ class admins extends Controller {
             $data['scholarship'] = $this->adminModel->scholorship();
             
             $this->view('admin/scholoview',$data);
+
+        }
+
+    }
+
+    public function sponsorview($id) {
+
+        sessionValidator();
+        $this->hasLogged();
+
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+           
+        }
+
+        if ($_SERVER['REQUEST_METHOD'] == 'GET') {
+
+            $data = [];
+            $data['sponsors'] = $this->adminModel->sponsors();
+            
+            $this->view('admin/sponsorview',$data);
 
         }
 
@@ -499,7 +543,9 @@ class admins extends Controller {
 
     private function password($msg)
     {
-        $this->view("admin/ad_profile/profile_changepw", $msg);
+        sessionValidator();
+        $this->hasLogged();
+        $this->view("admin/setting", $msg);
     }
 
     private function email()
@@ -515,8 +561,11 @@ class admins extends Controller {
 
     private function name($msg = null)
     {
-        $result = $this->model("admin")->getName($_SESSION['id']);
-        $this->view("admin/ad_profile/profile_changename", array($result,$msg));
+        sessionValidator();
+        $this->hasLogged();
+
+        $data[] = $this->adminModel->getName($_SESSION['id']);
+        $this->view("admin/ad_profile/profile_changename", $data);
     }
 
     public function changeName()
@@ -526,14 +575,14 @@ class admins extends Controller {
 
         if (isset($_POST['name'])) {
             if ((preg_match('/[a-zA-Z][a-zA-Z ]+/',$_POST['name'])) && ($_POST['name'] != '')) {
-                $this->model("userModel")->updateName($_POST['name'], $_SESSION['id']);
+                $this->adminModel->updateName($_POST['name'], $_SESSION['id']);
                 $_SESSION['name'] = $_POST['name'];
-                header("location:" . BASEURL . 'adProfile/index/success');
+                header("location:" . BASEURL . 'admins/profile/success');
             } else {
-                header("location:" . BASEURL . 'adProfile/change/name/failed');
+                header("location:" . BASEURL . 'admins/change/name/failed');
             }
         } else {
-            header("location:" . BASEURL . 'adProfile/change/name/failed');
+            header("location:" . BASEURL . 'admins/change/name/failed');
         }
     }
 
@@ -541,6 +590,8 @@ class admins extends Controller {
     {
         sessionValidator();
         $this->hasLogged();
+
+        // print_r($_POST['image']);
 
         if (isset($_POST['image'])) {
             if($this->adminModel->updateImage($_SESSION['id'],$_POST['image'])){
@@ -558,15 +609,15 @@ class admins extends Controller {
 
         if (isset($_POST['mobile'])) {
             if ((preg_match('/[0-9]{10}/',$_POST['name'])) && ($_POST['mobile'] != '')) {
-                $this->model("userModel")->updateMobile($_POST['mobile'], $_SESSION['id']);
-                header("location:" . BASEURL . 'rcProfile/index/success');
+                $this->adminModel->updateMobile($_POST['mobile'], $_SESSION['id']);
+                header("location:" . BASEURL . 'admins/profile/success');
             } else {
                 flashMessage("failed");
-                header("location:" . BASEURL . 'adProfile/change/mobile/failed');
+                header("location:" . BASEURL . 'admins/change/mobile/failed');
             }
         } else {
             flashMessage("failed");
-            header("location:" . BASEURL . 'adProfile/change/mobile/failed');
+            header("location:" . BASEURL . 'admins/change/mobile/failed');
         }
     }
 
@@ -577,23 +628,24 @@ class admins extends Controller {
 
         if (isset($_POST['cpasswd']) && isset($_POST['npasswd']) && isset($_POST['cnfpasswd'])) {
             if ($_POST['npasswd'] == $_POST['cnfpasswd']) {
-                $result = $this->model("userModel")->changeProfilePasswd($_SESSION['id']);
-                if (!empty($result) && password_verify($_POST['cpasswd'], $result[2])) {
+                // $this->adminModel->verifyPassword($_POST['cpasswd'], $_SESSION['user']);
+                if($this->adminModel->verifyPassword($_POST['cpasswd'], $_SESSION['user'])) {
                     $hash = password_hash($_POST['npasswd'], PASSWORD_BCRYPT, ["cost" => 10]);
-                    if ($this->model("userModel")->changePassword($hash, $_SESSION['user'])) {
+                    if ($this->adminModel->changePassword($hash, $_SESSION['user'])) {
                         flashMessage("success");
-                        header("location:" . BASEURL . 'adProfile/index/success');
+                        header("location:" . BASEURL . 'admins/change/password/success');
                     } else {
                         flashMessage("failed");
-                        header("location:" . BASEURL . 'adProfile/change/password/failed');
+                        header("location:" . BASEURL . 'admins/change/password/failed');
                     }
                 } else {
                     flashMessage("wrongPass");
-                    header("location:" . BASEURL . 'adProfile/change/password/wrongPass');
+                    header("location:" . BASEURL . 'admins/change/password/wrongPass');
                 }
+
             } else {
                 flashMessage("failed");
-                header("location:" . BASEURL . 'adProfile/change/password/failed');
+                header("location:" . BASEURL . 'admins/change/password/failed');
             }
         } else {
             flashMessage("failed");
@@ -700,7 +752,7 @@ class admins extends Controller {
 
 
     }
-
+    
     
 }
 
