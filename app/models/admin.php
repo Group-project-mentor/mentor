@@ -26,9 +26,40 @@ class admin extends Model{
         } 
     }
 
+    public function classCount(){
+        $result = $this->getData("private_class"); //Retrieve Data
+
+        if ($result->num_rows > 0) {
+            return $result->num_rows;
+        } else {
+            return false;
+        }
+    }
+
+    public function sponsorCount(){
+        $result = $this->getData("sponsor"); //Retrieve Data
+
+        if ($result->num_rows > 0) {
+            return $result->num_rows;
+        } else {
+            return false;
+        }
+    }
+
 
     public function complaints(){
         $query = "SELECT user.name, user.id, complaint.description, complaint.work_id FROM user INNER JOIN complaint ON user.id = complaint.user_id";
+        $result = $this->executeQuery($query);
+    
+        if ($result->num_rows > 0) {
+            return $result->fetch_all(MYSQLI_ASSOC);
+        } else {
+            return false;
+        } 
+    }
+
+    public function sponsors(){
+        $query = "SELECT *FROM sponsor;";
         $result = $this->executeQuery($query);
     
         if ($result->num_rows > 0) {
@@ -167,7 +198,7 @@ class admin extends Model{
     }
 
     public function updateImage($id,$image){
-        $query = "UPDATE `user` SET `image` = $image WHERE `id` = $id ";
+        $query = "UPDATE `user` SET `image` = '$image' WHERE id = $id ";
         
         $result = $this->executeQuery($query);
 
@@ -178,6 +209,8 @@ class admin extends Model{
         } 
     }
 
+    
+
     public function getName($id)
     {
         $query = "SELECT `name` from user where id=?;";
@@ -186,6 +219,32 @@ class admin extends Model{
         return $this->fetchOneObj($stmt);
     }
     
+    public function updateName($name, $id, $dispName = null)
+    {
+        $query1 = "UPDATE user set name = '$name' where id=$id";
+        $res = 1;
+        if(!empty($dispName)){
+            $query2 = "UPDATE `admin` set dispName = '$dispName' where id=$id";
+            $res = $this->executeQuery($query2);
+        }
+        return $this->executeQuery($query1) && $res;
+    }
+
+    public function verifyPassword($passwd, $email)
+    {
+        $stmt = $this->prepare("SELECT * FROM user WHERE email = ?");
+        $stmt->bind_param("s",$email);
+        $result = $this->fetchOneObj($stmt);
+
+        // print_r($result->password);
+
+        return password_verify($passwd,$result->password);
+    }
+    public function changePassword($passwd, $email)
+    {
+        $query = "UPDATE `user` SET password='$passwd' where email='$email'";
+        return $this->executeQuery($query);
+    }
 
 }
 

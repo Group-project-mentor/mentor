@@ -6,6 +6,20 @@
     align-self:center;
     
 }
+.txt-input{
+    width: 300px;
+    background-color: lightgray;
+    /* height: 175px; */ 
+    padding:10px;
+    border-radius: 30px;
+    border: 0px;
+    color: #010101;
+    justify-content:center;
+    flex-wrap: wrap;
+    margin: 15px;
+    font-size: larger;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
 
 .reset{
    

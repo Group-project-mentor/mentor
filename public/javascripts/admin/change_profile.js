@@ -11,7 +11,6 @@ fileChooser.addEventListener("change", () => {
         fileReader.addEventListener("load", () => {
             image = fileReader.result;
             document.getElementById("profImg").src = image;
-            console.log(image);
         });
     }
 });
@@ -20,22 +19,22 @@ submit.addEventListener("click", () => {
     if (image != "") {
         const formData = new FormData();
         formData.append("image", image);
-
-        var xhttp = new XMLHttpRequest();
-        xhttp.onreadystatechange = function() {
-            if (this.readyState == 4 && this.status == 200) {
-                var response = this.responseText;
-
-                if (response == "Successful") {
-                    alertMsg.textContent = "Successfully updated !";
-                } else {
-                    alertMsg.textContent = "Not updated !";
-                }
+        $.ajax({
+            type: 'POST',
+            url: 'http://localhost/mentor/admins/changeImage',
+            data: formData,
+            processData: false,
+            contentType: false,
+            success: (response) => {
+                window.location.replace("http://localhost/mentor/admins/profile");
+                // console.log(response);
+                // if (response == "success") {
+                //     // alertMsg.textContent = response;
+                    
+                // } else {
+                //     alertMsg.textContent = response;
+                // }
             }
-
-        };
-        xhttp.open("POST", "http://localhost/mentor/admins/changeImage",true);
-        // xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-        xhttp.send(formData);
+        });
     }
 });

@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="<?php echo BASEURL; ?>public/stylesheets/resourceCreator/rc_main.css">
     <link rel="stylesheet" href="<?php echo BASEURL; ?>public/stylesheets/resourceCreator/rc_profile.css">
     <link rel="stylesheet" href="<?php echo BASEURL ?>stylesheets/admin/style.css">
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
 </head>
 
 <body>
@@ -30,7 +31,9 @@
 
                     <!-- todo: want to do the functionality and style -->
                     <div class="rc-profile-change-input">
-                        <input type="file" name="image" id="fileChooser">
+                        <form enctype="multipart/form-data">
+                            <input type="file" name="image" id="fileChooser">
+                        </form>
                         <a id="sub-btn">SAVE</a>
                         <h3 style="color: purple;font-family:Arial" id="msg"></h3>
                     </div>

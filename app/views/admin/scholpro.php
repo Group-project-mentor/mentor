@@ -77,6 +77,57 @@
 
         </div>
 
+        <div class="hr" id="team">
+            <div class="bgbox">
+                <div class="team">
+                    <div class="title">
+                        <h1>Sponsors Application</h1>
+                    </div>
+                    <div class="btn">
+                        <a class="btns" href="<?php echo BASEURL ?>admins/sponsorviewall" style="text-decoration:none">
+                            View All
+                        </a>
+
+                    </div>
+
+                </div>
+                <div class="users">
+
+                    <?php
+                    foreach ($data['sponsors'] as $value) {
+                        echo
+                        '<div class="content" id="comp-content">
+                            
+                            <div class="subject-card">
+                                <div class="pp">
+                                    <img class="profile" src="' . BASEURL . 'assets/admin/user.png">
+                                </div>
+                                <div class="name">
+                                    <p>' . $value['dispName'] . '</p>
+                                </div>
+                            </div>
+                            
+                            <div class="btns">
+                                <form action="' . BASEURL . 'admins/scholpro/'. $value['id'].'" method="POST">
+                                    <button class="comp-btns">Review</button>
+                                </form><br>
+                            </div>
+                            <div class="btns">
+                                <button class="comp-btns">Delete</button>
+                            </div>
+                            
+
+                            
+                            
+                        </div>';
+                    }
+
+                    ?>
+                </div>
+            </div>
+
+        </div>
+
 
 
     </section>
