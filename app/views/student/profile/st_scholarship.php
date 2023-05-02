@@ -32,20 +32,18 @@
                     <a href="<?php echo BASEURL  ?>st_profile">
                         <img src="<?php echo BASEURL ?>public/assets/icons/icon_profile_black.png" alt="profile">
                     </a>
-                    <a href="<?php echo BASEURL ?>logout">
-                        <div class="back-btn">Log Out</div>
-                    </a>
                 </div>
             </section>
-
+            
             <!-- Middle part for whole content -->
             <section class="mid-content">
-
+            <hr style="color: green; height:7px; background-color:green;">
+            <br>
                 <!-- Title and sub title of middle part -->
                 <div class="mid-title">
                     <h2>Request Scholarship</h2>
-                    <h4>Hello, Mr. kamal</h4>
-                    <br><br><br>
+                    <h3><?php echo "Hello " . $_SESSION['name'] . "!" ?></h3>
+                    <br><br>
 
                     <div class="quiz-preview-container">
                         <h2 id="question-number">INSTRUCTIONS</h2>

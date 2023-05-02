@@ -8,7 +8,7 @@ class St_private_resources_model extends Model{
     public function findVideos($class_name)
     {
         // echo $class_name;
-        $q ="SELECT private_class.class_name , teacher_videos.name , teacher_videos.lecturer ,teacher_videos.description 
+        $q ="SELECT private_class.class_name ,private_class.class_id , teacher_videos.name , teacher_videos.lecturer ,teacher_videos.description 
         FROM (( teacher_videos INNER JOIN teacher_class_resources ON teacher_videos.id = teacher_class_resources.rs_id ) 
         INNER JOIN private_class ON teacher_class_resources.class_id = private_class.class_id ) 
         WHERE private_class.class_name = ?  ";
@@ -34,7 +34,7 @@ class St_private_resources_model extends Model{
 
     public function findPastpapers($class_name)
     {
-        $q ="SELECT private_class.class_name  , teacher_pastpaper.name ,teacher_pastpaper.year, teacher_pastpaper.part 
+        $q ="SELECT private_class.class_name  , teacher_pastpaper.name ,teacher_pastpaper.year, teacher_pastpaper.part ,private_class.class_id
         FROM (( teacher_pastpaper INNER JOIN teacher_class_resources ON teacher_pastpaper.id = teacher_class_resources.rs_id ) 
         INNER JOIN private_class ON teacher_class_resources.class_id = private_class.class_id ) 
         WHERE private_class.class_name = ? ";
@@ -60,7 +60,7 @@ class St_private_resources_model extends Model{
 
     public function findOthers($class_name)
     {
-        $q ="SELECT private_class.class_name , teacher_other.name ,teacher_other.type 
+        $q ="SELECT private_class.class_name ,private_class.class_id, teacher_other.name ,teacher_other.type 
         FROM (( teacher_other INNER JOIN teacher_class_resources ON teacher_other.id = teacher_class_resources.rs_id ) 
         INNER JOIN private_class ON teacher_class_resources.class_id = private_class.class_id ) 
         WHERE private_class.class_name = ?  ";
@@ -83,15 +83,13 @@ class St_private_resources_model extends Model{
     }
 
     public function getVideo($id,$sid=null,$gid=null){
-        $q = "select video.id, video.name, video.lecturer, video.description, video.link, 
-                    video.thumbnail, video.type, public_resource.location ,public_resource.type AS Rtype
-                    from video inner join rs_subject_grade on video.id = rs_subject_grade.rsrc_id 
-                    inner join public_resource on public_resource.id = rs_subject_grade.rsrc_id 
-                    where video.id = ? and rs_subject_grade.subject_id =?  
-                    and rs_subject_grade.grade_id =?" ;
+        $q = "SELECT private_class.class_name ,private_class.class_id , teacher_videos.name , teacher_videos.lecturer ,teacher_videos.description 
+        FROM (( teacher_videos INNER JOIN teacher_class_resources ON teacher_videos.id = teacher_class_resources.rs_id ) 
+        INNER JOIN private_class ON teacher_class_resources.class_id = private_class.class_id ) 
+        WHERE private_class.class_name = ?  ";
 
         $stmt = $this->prepare($q);
-        $stmt->bind_param('iii',$id,$sid,$gid);
+        $stmt->bind_param('i',$id);
 
         $result = $this->fetchOneObj($stmt);
         return $result;

@@ -32,6 +32,10 @@
     <!-- Navigation buttons -->
     <div class="nav-links">
 
+        <a href="<?php echo BASEURL ?>home" class="nav-link">
+            <img src="<?php echo BASEURL ?>assets/icons/icon_home.png" alt="report">
+            <div class="nav-link-text"> Home</div>
+        </a>
         <a href="<?php echo BASEURL ?>st_report_main" class="nav-link">
             <img src="<?php echo BASEURL ?>assets/icons/icon_report.png" alt="report">
             <div class="nav-link-text"> Report</div>

@@ -45,14 +45,12 @@
 
             <!-- Middle part for whole content -->
             <section class="mid-content">
-
+                <hr style="color: green; height:7px; background-color:green;"><br>
 
 
                 <div class="rc-resource-header">
-                    <!-- Title and sub title of middle part -->
-                    <div class="mid-title">
+                <div class="rc-resource-header">
                         <h1>Student Profile</h1>
-                        <h6><?php //echo $_SESSION['name'] ?></h6>
                     </div>
                     <a href="<?php echo BASEURL . 'logout' ?>">
                         <div class="rc-add-btn">
@@ -63,6 +61,7 @@
                 </div>
 
                 <div class="rc-profile">
+
                     <div class="rc-profile-main">
                         <a class="rc-profile-image" href="<?php echo BASEURL ?>st_profile/change/image">
                             <img src="<?php echo (!empty($data[0]->image)) ? $data[0]->image : BASEURL . "assets/clips/profile_img.webp" ?>" alt="profile" id="profileImg" style="object-fit: cover;" />

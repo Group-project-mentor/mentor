@@ -14,7 +14,7 @@
 <body>
     <section class="page">
         <!-- Navigation panel -->
-        <?php include_once "components/navbars/st_navbar_2.php" ?> <!-- used to include_once to add file -->
+        <?php include_once "components/navbars/st_navbar_6.php" ?> <!-- used to include_once to add file -->
 
 
         <div class="content-area">
@@ -28,7 +28,7 @@
                     </a>
                 </div>
                 <div class="top-bar-btns">
-                    <a href="<?php echo BASEURL.'st_public_resources/index_videos/'.$_SESSION['gid'].'/'.$_SESSION['sid'] ?>">
+                    <a href="<?php echo BASEURL.'st_private_resources/index_videos/'.$_SESSION['class_name'] ?>">
                         <div class="back-btn">Back</div>
                     </a>
                     <?php include_once "components/notificationIcon.php" ?>
@@ -70,7 +70,7 @@
                             </iframe>
                         <?php }elseif($data[1]->type === "U"){ ?>
                             <video class="rc-uploaded-video" controls>
-                                <source src="<?php echo BASEURL.'public/public_resources/videos/'.$data[1]->link ?>" >
+                                <source src="<?php echo BASEURL.'public/private_resources/videos/'.$data[1]->link ?>" >
                                 Your browser does not support the video tag.
                             </video>
                         <?php } ?>

@@ -14,7 +14,7 @@
 <body>
     <section class="page">
         <!-- Navigation panel -->
-        <?php include_once "components/navbars/st_navbar_2.php" ?> <!-- used to include_once to add file -->
+        <?php include_once "components/navbars/st_navbar_6.php" ?> <!-- used to include_once to add file -->
 
 
         <div class="content-area">
@@ -28,7 +28,7 @@
                     </a>
                 </div>
                 <div class="top-bar-btns">
-                    <a href="<?php echo BASEURL . 'st_public_resources/index_others/' . $_SESSION['gid'] . '/' . $_SESSION['sid'] ?>">
+                    <a href="<?php echo BASEURL . 'st_public_resources/index_others/' . $_SESSION['class_name']  ?>">
                         <div class="back-btn">Back</div>
                     </a>
                     <?php include_once "components/notificationIcon.php" ?>
@@ -49,8 +49,7 @@
                     <!-- Title and sub title of middle part -->
 
                     <div class="mid-title">
-                        <h1><?php echo "Grade " . $_SESSION['gname'] . " - " . ucfirst($_SESSION['sname']) ?></h1>
-                        <h6>My Subjects / <?php echo ucfirst($_SESSION['sname']) ?> / Other documents</h6>
+                        <h6>My Subjects / <?php echo $_SESSION['class_name'] ?> / Other documents /  <?php echo $_SESSION['rname'] ?></h6>
                     </div>
                     <br>
                     <hr style=" height:5px ; background-color:green ;">

@@ -43,7 +43,7 @@
 
                 <!-- Title and sub title of middle part -->
                 <div class="mid-title">
-                    
+
                     <h2><?php echo "Class Name : " . ucfirst($_SESSION['class_name'])  ?></h2>
                 </div>
                 <!-- Grade choosing interface -->
@@ -64,25 +64,24 @@
                                     <div class='rc-resource-col' style="display: flex;align-items: center;justify-content: flex-start;">
 
                                         <div>
-                                            <?php echo $row->name ?>
+                                            <?php echo $row->name ;
+                                            $_SESSION['rname'] = $row->name ; ?>
                                         </div>
+                                        
                                         <div>
                                             <?php echo $row->year ?>
                                         </div>
                                         <div>
                                             <?php echo $row->part ?>
                                         </div>
-                                    </div>
-                                    
-
-                                        <a href="<?php echo BASEURL . 'st_public_resources/preview/paper/' . $row->id ?>">
-                                            <img src="<?php echo BASEURL ?>assets/icons/icon_eye.png" alt="">
-                                        </a>
-
-                                        <!-- <?php $loc = 'paper'; ?>  -->
-                                        <a href="<?php echo BASEURL . 'st_public_resources/st_pastpaper_link_Quiz/' . $row->id ?>">
-                                            <img src="<?php echo BASEURL ?>assets/icons/icon_quiz_black.png" alt="">
-                                        </a>
+                                        <div>
+                                            <a href="<?php echo BASEURL . 'st_private_resources/preview/paper/' . $row->class_id  ?>">
+                                                <img src="<?php echo BASEURL ?>assets/icons/icon_eye.png" alt="">
+                                            </a>
+                                            <a href="<?php echo BASEURL . 'st_private_resources/st_pastpaper_link_Quiz/' . $row->class_id ?>">
+                                                <img src="<?php echo BASEURL ?>assets/icons/icon_quiz_black.png" alt="">
+                                            </a>
+                                        </div>
                                     </div>
                                 </div>
                             <?php   }
