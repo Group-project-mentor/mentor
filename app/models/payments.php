@@ -151,4 +151,10 @@ class payments extends Model
         $stmt->bind_param("ssid",$name,$email,$count,$amount);
         return $this->executePrepared($stmt);
     }
+
+    public function savePremium($name,$email,$amount){
+        $stmt = $this->prepare("INSERT INTO premium (name, email, amount) VALUES (?,?,?)");
+        $stmt->bind_param("ssd",$name,$email,$amount);
+        return $this->executePrepared($stmt);
+    }
 }

@@ -39,7 +39,11 @@ class RcResources extends Controller
         $_SESSION["gid"] = $grade;
         $_SESSION["sid"] = $subject;
         $result = $this->model("resourceModel")->findQuizzes($grade, $subject);
-        $this->view('resourceCtr/resources/rc_quizzes', array($result));
+        $res2 = $this->model("resourceModel")->findQuestionCounts($grade, $subject);
+        $questionCount = array();
+        foreach ($res2 as $item) $questionCount[$item->rsrc_id] = $item->count;
+
+        $this->view('resourceCtr/resources/rc_quizzes', array($result,$questionCount));
     }
 
     public function pastpapers($grade, $subject, $page = 1)
@@ -197,9 +201,55 @@ class RcResources extends Controller
 
     public function organized($grade_id, $subject_id)
     {
-        // $getOrganized = $this->model("resourceModel")->getOrganizedResources($grade_id, $subject_id);
-        // $topicIDs = $this->model("resourceModel")->getTopicIDs($grade_id, $subject_id);
-        $this->view('resourceCtr/resources/organized');
+        $topics = $this->model("resourceModel")->getTopics($grade_id, $subject_id);
+        $topicOrderRow = $this->model("resourceModel")->getTopicOrder($grade_id, $subject_id);
+        $topicOrder = $topicOrderRow->tpcOrder;
+        if(empty($topicOrderRow)){
+            if(!empty($topics)){
+                foreach ($topics as $topic) {
+                    $topicIds = array();
+                    foreach ($topics as $topic) {
+                        $topicIds[] = $topic->id;
+                    }
+                    $topicOrder = implode(',', $topicIds);
+                }
+            }else{
+                $topicOrder = "";
+            }
+            $this->model("resourceModel")->addTopicOrder($grade_id, $subject_id, $topicOrder);
+        }elseif(empty($topicOrder) || $topicOrder == ""){
+            $topicOrder = "";
+        }
+        $topicData = array();
+        foreach ($topics as $topic) {
+            $topicData[$topic->id] = $topic;
+        }
+        $this->view('resourceCtr/resources/organized',array($topicData,$topicOrder));
     }
+
+    public function getResourcesTopics(){
+        $resourcesTopicWise = $this->model("resourceModel")->getResourcesWithTopics($_SESSION['gid'], $_SESSION['sid']);
+        $organizedList = array();
+        if(!empty($resourcesTopicWise)){
+            foreach ($resourcesTopicWise as $topic) {
+                $organizedList[$topic->t_id][] = $topic;
+            }
+        }
+        header("Content-Type:Application/json");
+        echo json_encode($organizedList);
+    }
+
+    public function saveTopicOrder(){
+        $topicOrder = $_POST['order'];
+        $message = array("status"=>"");
+        if($this->model("resourceModel")->editTopicOrder($_SESSION['gid'], $_SESSION['sid'], $topicOrder)){
+            $message['status'] = "success";
+        }else{
+            $message['status'] = "failed";
+        }
+        echo json_encode($message);
+    }
+
+
 
 }

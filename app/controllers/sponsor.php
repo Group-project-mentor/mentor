@@ -54,8 +54,11 @@ class Sponsor extends Controller
         }
     }
 
-    public function see_student(){
-        $this->view('sponsor/student_progress/see_student');
+    public function see_student($id){
+        $data = $this->model("sponsorStModel")->getStudentDetails($id);
+        $subjects = $this->model("sponsorStModel")->getSubjectDetails($id);
+        $grades = $this->model("sponsorStModel")->getGradeDetails($id);
+        $this->view('sponsor/student_progress/see_student',array($data,$subjects,$grades));
     }
 
 //    ? Used transaction in this

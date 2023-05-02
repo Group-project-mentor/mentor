@@ -103,7 +103,7 @@
                            <?php echo number_format($row->monthlyAmount, 2, '.', '') ?>
                         </div>
                         <div class="sponsor-list-item flex-1">
-                            <a href="<?php echo BASEURL ?>sponsor/see_student">
+                            <a href="<?php echo BASEURL."sponsor/see_student/".$row->id ?>" >
                                 <img src="<?php echo BASEURL ?>assets/icons/icon_eye.png" alt="" style="width: 20px;">
                             </a>
                         </div>

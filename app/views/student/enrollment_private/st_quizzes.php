@@ -30,7 +30,7 @@
                     </a>
                 </div>
                 <div class="top-bar-btns">
-                    <a href="<?php echo BASEURL . 'st_private_resources/index/' . $_SESSION['class_name'] . '/' . $_SESSION['grade'] ?>">
+                    <a href="<?php echo BASEURL . 'st_private_resources/index/' . $_SESSION['class_name']  ?>">
                         <div class="back-btn">Back</div>
                     </a>
                     <?php include_once "components/notificationIcon.php" ?>
@@ -45,10 +45,8 @@
 
                 <!-- Title and sub title of middle part -->
                 <div class="mid-title">
-                    <?php
-                    $ggid = $_SESSION['grade'] + 5;
-                    ?>
-                    <h2><?php echo "Class Name : " . ucfirst($_SESSION['class_name']) . "<br>" . "Grade " . $ggid ?></h2>
+                    
+                    <h2><?php echo "Class Name : " . ucfirst($_SESSION['class_name']) ?></h2>
                 </div>
 
                 <!-- Grade choosing interface -->
@@ -70,10 +68,10 @@
                                         </div>
                                         <div class="quiz-card-content">
                                             <div class="quiz-card-item">
-                                                <?php echo $row->total_marks ?> Marks
+                                                <?php echo $row->marks ?> Marks
                                             </div>
                                             <div class="quiz-card-item">
-                                                <?php echo $row->no_of_questions ?> Questions
+                                                <?php echo $row->questions ?> Questions
                                             </div>
                                         </div>
                                         <div class="quiz-card-button-set">

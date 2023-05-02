@@ -10,9 +10,8 @@ class St_private_mode extends Controller
 
     public function index()
     {
-        $gid = $_SESSION['id'] ;
-        $res=$this->model('st_private_mode_model')->getClasses($gid);
-        // $res2=$this->model('st_private_mode_model')->getClasses2($gid, $_SESSION['id']);
+        $sid = $_SESSION['id'] ;
+        $res=$this->model('st_private_mode_model')->getClasses($sid);
         $this->view('student/privatemode/st_private_mode',array($res));
     }
 
@@ -23,9 +22,8 @@ class St_private_mode extends Controller
 
     public function st_myclasses()
     {
-        $gid = $_SESSION['id'] ;
-        $res=$this->model('st_private_mode_model')->getClasses($gid);
-        // $res2=$this->model('st_private_mode_model')->getClasses2($gid, $_SESSION['id']);
+        $sid = $_SESSION['id'] ;
+        $res=$this->model('st_private_mode_model')->getClasses($sid);
         $this->view('student/privatemode/st_myclasses',array($res));
     }
 
@@ -39,15 +37,27 @@ class St_private_mode extends Controller
         $this->view('student/privatemode/st_join_token');
     }
 
-    public function st_join_request()
+    public function st_join_token_send($token)
     {
-        $gid = $_SESSION['id'] ;
-        $res=$this->model('st_private_mode_model')->getClasses1($gid);
-        // $res2=$this->model('st_private_mode_model')->getClasses2($gid, $_SESSION['id']);
-        $this->view('student/privatemode/st_join_request',array($res));
+        $sid = $_SESSION['id'] ;
+        $res=$this->model('st_private_mode_model')->jointoken($token);
+        $res2=$this->model('st_private_mode_model')->jointokenaddtoDB($sid,$res,$token);
+        $this->view('student/privatemode/st_join_token_send',array($res2));
     }
 
+    public function st_join_request_update($access,$class_id)
+    {
+        $sid = $_SESSION['id'] ;
+        $res=$this->model('st_private_mode_model')->getClasses3($sid,$access,$class_id);
+        $this->view('student/privatemode/st_join_classes',array($res));
+    }
 
+    public function st_join_request()
+    {
+        $sid = $_SESSION['id'] ;
+        $res=$this->model('st_private_mode_model')->getClasses1($sid);
+        $this->view('student/privatemode/st_join_request',array($res));
+    }
 
 
     private function hasLogged()

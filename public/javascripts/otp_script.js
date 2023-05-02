@@ -22,26 +22,6 @@ otp.addEventListener("keyup", () => {
     }
 });
 
-
-// // OTP validation
-// send_btn.addEventListener("click", () => {
-//     const OTP = generateOTP();
-//     let message = "This is OTP : " + OTP;
-//     Email.send({
-//         SecureToken: "9bb64158-5ce1-40c1-9eb2-1a4e6f20206d",
-//         To: email.value.trim(),
-//         From: "kavisulakshana2000@gmail.com",
-//         Subject: "otp",
-//         Body: message,
-//     })
-//         .then((message) => {
-//             alert(message);
-//         })
-//         .catch(() => {
-//             alert("wada na");
-//         });
-// });
-
 const generateOTP = () => {
     return Math.floor(Math.random() * 900000) + 999999;
 };

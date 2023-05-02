@@ -6,10 +6,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/x-icon" href="<?php echo BASEURL ?>assets/mentor.ico">
-    <title>Student change Password</title>
-    <link rel="stylesheet" href="<?php echo BASEURL; ?>public/stylesheets/Student/rc_main.css">
-    <link rel="stylesheet" href="<?php echo BASEURL; ?>public/stylesheets/Student/rc_profile.css">
-    <link rel="stylesheet" href="<?php echo BASEURL; ?>public/stylesheets/Student/rc_resources.css">
+    <title>change Password</title>
+    <link rel="stylesheet" href="<?php echo BASEURL; ?>public/stylesheets/resourceCreator/rc_main.css">
+    <link rel="stylesheet" href="<?php echo BASEURL; ?>public/stylesheets/resourceCreator/rc_profile.css">
+    <link rel="stylesheet" href="<?php echo BASEURL; ?>public/stylesheets/resourceCreator/rc_resources.css">
     <style>
         .rc-profile-change-name{
             max-width: 800px;
@@ -49,7 +49,7 @@
     <section class="page">
 
         <!-- Navigation panel -->
-        <?php include_once "components/navbars/rc_nav_1.php"?>
+        <?php include_once "components/navbars/st_navbar_4.php"?>
 
         <!-- Right side container -->
         <div class="content-area">
@@ -59,13 +59,11 @@
                 <div class="search-bar">
                 </div>
                 <div class="top-bar-btns">
-                    <a href="<?php echo BASEURL ?>rcprofile">
+                    <a href="<?php echo BASEURL ?>st_profile">
                         <div class="back-btn">Back</div>
                     </a>
-                    <a href="#">
-                        <img src="<?php echo BASEURL ?>assets/icons/icon_notify.png" alt="notify">
-                    </a>
-                    <a href="<?php echo BASEURL . 'rcProfile' ?>">
+                    <?php include_once "components/notificationIcon.php" ?>
+                    <a href="<?php echo BASEURL . 'st_profile' ?>">
                         <img src="<?php echo BASEURL ?>assets/icons/icon_profile_black.png" alt="profile">
                     </a>
                 </div>
@@ -79,7 +77,7 @@
                     <h6><?php echo $_SESSION['name'] ?></h6>
                 </div>
 
-                <form class="rc-profile rc-profile-change-name" method="POST" action="<?php echo BASEURL ?>rcProfile/changePassword">
+                <form class="rc-profile rc-profile-change-name" method="POST" action="<?php echo BASEURL ?>st_profile/changePassword">
                     <div class="rc-text-inp-grp">
                         <label for="password" class="lbl-input">Current Password : </label>
                         <input type="password" class="txt-input" placeholder="Current password"  name="cpasswd" />
@@ -87,14 +85,14 @@
                     <div class="rc-text-inp-grp">
                         <label for="password" class="lbl-input">New Password : </label>
                         <input type="password" class="txt-input" placeholder="New Password"  name="npasswd" 
-                                pattern="[0-9a-zA-Z]{8}"
-                                title="password should not be empty" />
+                                pattern="[0-9a-zA-Z!@#$%^&*.?~]{8}"
+                                title="password should be exact or more than 8 characters, numbers or symbols." />
                     </div>
                     <div class="rc-text-inp-grp"> 
                         <label for="password" class="lbl-input">Confirm New Password : </label>
                         <input type="password" class="txt-input" placeholder="New Password"  name="cnfpasswd" 
-                                pattern="[0-9a-zA-Z]{8}"
-                                title="password should not be empty"/>
+                                pattern="[0-9a-zA-Z!@#$%^&*.?~]{8}"
+                                title="password should be exact or more than 8 characters, numbers or symbols."/>
                     </div>
                     <button type="submit" class="rc-add-btn">Change</button>
                 </form>
@@ -106,7 +104,8 @@
     </section>
 </body>
 
-<script src="<?php echo BASEURL ?>public/javascripts/st_auth_script.js"></script>
+<script>
 
+</script>
 
 </html>
