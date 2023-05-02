@@ -12,16 +12,18 @@ class TBilling extends Controller{
 
 
     public function Billing1(){
-        $this->view('Teacher/Billing/Billing1');
+        $res1 = $this->model('BillingModel')->getClassPayments();
+        $this->view('Teacher/Billing/Billing1',array($res1));
     }   
 
-    public function Billing2(){
+    public function BillForm(){
         $this->view('Teacher/Billing/Billing2');
     } 
 
     public function transHistory(){
         $this->view('Teacher/Billing/transactionHistory');
     } 
+
 }
 
 ?>

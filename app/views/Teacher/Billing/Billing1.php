@@ -17,7 +17,7 @@
             width: 300px;
             height: 150px;
             border: 1px solid #ccc;
-            margin: 10px;
+            margin: 20px;
             padding: 20px;
             border-radius: 10px;
             box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
@@ -32,8 +32,17 @@
 
         .balance-box {
             float: left;
-            margin-left: 7cm;
+            margin-left: 5cm;
 
+
+        }
+
+        .amount-box {
+            margin: 70px;
+            float: left;
+            margin-left: 5cm;
+            width: 800px;
+            height: 150px;
 
         }
 
@@ -46,12 +55,27 @@
 
         .amount span {
             margin-right: 5px;
-            font-size: 4.5rem;
+            font-size: 3rem;
         }
 
         .withdraw-amount {
             margin: 0 auto;
             text-align: center;
+        }
+
+        .withdraw-btn {
+            background-color: #186537;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 10px;
+        }
+
+        .withdraw-amount-input {
+            width: 300px;
+            height: 40px;
+            font-size: 1.1rem;
         }
     </style>
 </head>
@@ -85,22 +109,46 @@
 
                 <!-- Title and sub title of middle part -->
                 <div class="mid-title">
+
                     <h1>Billing</h1>
                     <h6>Teacher Home/ Members details/change host</h6>
                     <br>
 
 
-                    <div class="box withdraw-box">
-                        <h4>Total Balance</h4>
-                        <h1 class="amount"><span id="current-withdraw">$00</span></h1>
+                    <div class="box balance-box">
+                        <h4>Total Withdraw</h4>
+                        <?php
+                        $totalAmount = 0; // initialize total amount variable to 0
+                        foreach ($data[0] as $row) {
+                            $totalAmount += $row->amount; // add current row's amount to the total
+                        }
+                        ?>
+                        <h1 class="amount"><span id="current-balance">Rs <?php echo $totalAmount ?></span></h1>
                     </div>
 
                     <div class="box balance-box">
                         <h4>Total Withdraw</h4>
-                        <h1 class="amount"><span id="current-balance">$00</span></h1>
+                        <?php
+                        $totalAmount = 0; // initialize total amount variable to 0
+                        foreach ($data[0] as $row) {
+                            $totalAmount += $row->amount; // add current row's amount to the total
+                        }
+                        ?>
+                        <h1 class="amount"><span id="current-balance">Rs <?php echo $totalAmount ?></span></h1>
                     </div>
-                    
-                   
+
+                    <div class="box amount-box">
+                        <h4>Enter amount to withdraw</h4><br>
+                        <div class="withdraw-amount">
+                        <form action="<?php echo BASEURL; ?>TBilling/BillForm" method="POST">
+                                <input type="number" id="withdraw-amount-input" class="withdraw-amount-input" min="0" step="1">
+                                <button id="withdraw-btn" class="withdraw-btn">Withdraw</button>
+                            </form>
+                        </div>
+                    </div>
+
+
+
 
                 </div>
 
@@ -109,5 +157,8 @@
     </div>
     </section>
 </body>
+<script>
+
+</script>
 
 </html>
