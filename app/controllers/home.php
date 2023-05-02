@@ -12,6 +12,8 @@ class Home extends Controller
         $this->hasLogged();
         switch ($_SESSION['usertype']) {
             case 'st':
+                $result = $this->model('st_home_model')->getstudent($_SESSION['id']);
+                $_SESSION['name'] = $result;
                 $this->view('student/home/index');
                 break;
             case 'rc':

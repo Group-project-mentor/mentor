@@ -181,4 +181,25 @@ class sponsorStModel extends Model
         return $this->fetchOneObj($stmt);
     }
 
+    public function getStudentDetails($id)
+    {
+        $stmt = $this->prepare("SELECT user.id, user.email, user.name, user.image, student.fundMonths, student.monthlyAmount, student.approved_date FROM user,student WHERE user.id = student.id AND user.id = ?");
+        $stmt->bind_param("i", $id);
+        return $this->fetchOneObj($stmt);
+    }
+
+    public function getSubjectDetails($id)
+    {
+        $stmt = $this->prepare("SELECT DISTINCT(subject.name) AS sub FROM subject, st_enroll_subject WHERE subject.id = st_enroll_subject.subject_id AND st_enroll_subject.student_id = ?");
+        $stmt->bind_param("i", $id);
+        return $this->fetchObjs($stmt);
+    }
+
+    public function getGradeDetails($id)
+    {
+        $stmt = $this->prepare("SELECT DISTINCT(grade.name) AS grd FROM grade, st_enroll_subject WHERE grade.id = st_enroll_subject.grade_id AND st_enroll_subject.student_id = ?");
+        $stmt->bind_param("i", $id);
+        return $this->fetchObjs($stmt);
+    }
+
 }

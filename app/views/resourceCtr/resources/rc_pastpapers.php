@@ -64,6 +64,7 @@
                             <div class="rc-resource-col">Pastpaper</div>
                             <div class="rc-resource-col">year</div>
                             <div class="rc-resource-col">Part</div>
+                            <div class="rc-resource-col">Actions</div>
                             <div></div>
                         </div>
                         <?php foreach ($data[0] as $row) {
@@ -71,7 +72,6 @@
                             ?>
                                     <div class='rc-pp-row'>
                                         <div class='rc-resource-col' style="display: flex;align-items: center;justify-content: flex-start;">
-                                            <img src='<?php echo BASEURL."assets/icons/".$approval ?>' alt='' class="resource-approved-sign">
                                             <div>
                                                 <?php echo $row->name ?>
                                             </div>
@@ -91,6 +91,27 @@
                                                 <img src='<?php echo BASEURL ?>assets/icons/icon_eye.png' alt=''>
                                             </a>
                                         </div>
+                                        <div style="display:flex;flex-direction:column;justify-content:center;align-items:center;">
+                                                    <img src='<?php echo BASEURL."assets/icons/".$approval ?>' alt='' class="resource-approved-sign">
+                                                    <div style="font-size:x-small;">
+                                                        <?php 
+                                                        switch($row->approved){
+                                                            case "P":
+                                                                echo "Pending";
+                                                                break;
+                                                            case "Y":
+                                                                echo "Approved";
+                                                                break;
+                                                            case "N":
+                                                                echo "Rejected";
+                                                                break;
+                                                            case null :
+                                                                echo "Pending";
+                                                                break;
+                                                        }
+                                                        ?>
+                                                </div>
+                                            </div>
                                     </div>
                              <?php   }
                             }else{ ?>

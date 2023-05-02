@@ -293,4 +293,85 @@ class RcAdd extends Controller
             $_SESSION["sname"] = $result2;
         }
     }
+
+// * resource topic related functions
+
+    public function newTopic($gid, $sid){
+        $this->view("resourceCtr/organized/createTopic",array($gid,$sid));
+    }
+
+    public function createTopic(){
+        if($_SERVER["REQUEST_METHOD"]=="POST"){
+            $this->model("resourceModel")->transaction();
+            if($_POST["name"] != null and 0 < strlen($_POST["name"]) and strlen($_POST["name"])< 50 ){
+                $res = $this->model("resourceModel")->addTopic(sanitizeText($_POST["name"]), sanitizeText($_POST["description"]),$_SESSION["gid"], $_SESSION['sid']);
+                if($res){
+                    $lastID = $this->model("resourceModel")->getLastTopicID()->id;
+                    $topicOrderRow = $this->model("resourceModel")->getTopicOrder($_SESSION['gid'], $_SESSION['sid']);
+                    $topicOrder = $topicOrderRow->tpcOrder;
+                    if(!empty($topicOrderRow)){
+                        if($topicOrder == "") $topicOrder = "$lastID";
+                        else $topicOrder = $topicOrder.",".$lastID;
+                        $this->model("resourceModel")->editTopicOrder($_SESSION['gid'], $_SESSION['sid'], $topicOrder);
+                    }else{
+                        $topicOrder = "$lastID";
+                        $this->model("resourceModel")->addTopicOrder($_SESSION['gid'], $_SESSION['sid'], $topicOrder);
+                    }
+                    flashMessage("success");
+                    $this->model("resourceModel")->commit();
+                    header("location:".BASEURL."rcResources/organized/".$_SESSION['gid']."/".$_SESSION['sid']);
+                }else{
+                    $this->model("resourceModel")->rollBack();
+                    flashMessage("failed");
+                    header("location:".BASEURL."rcAdd/newTopic/".$_SESSION['gid']."/".$_SESSION['sid']);
+                }
+            }else{
+                $this->model("resourceModel")->rollBack();
+                flashMessage("failed");
+                header("location:".BASEURL."rcAdd/newTopic/".$_SESSION['gid']."/".$_SESSION['sid']);
+            }
+        }else{
+            flashMessage("failed");
+            header("location:".BASEURL."rcAdd/newTopic/".$_SESSION['gid']."/".$_SESSION['sid']);
+        }
+    }
+
+    public function toTopic($topic_id){
+        if($this->isVerifiedTopic($topic_id)){
+            $topic = $this->model("resourceModel")->getTopicDetails($topic_id);
+            $resources = $this->model("resourceModel")->getResourcesTopicWise($topic_id);
+
+            $videos = $this->model("resourceModel")->getResourceByType($_SESSION['gid'], $_SESSION['sid'],'video');
+            $pdfs = $this->model("resourceModel")->getResourceByType($_SESSION['gid'], $_SESSION['sid'],'pdf');
+            $others = $this->model("resourceModel")->getResourceByType($_SESSION['gid'], $_SESSION['sid'], 'other');
+            $quizzes = $this->model("resourceModel")->getResourceByType($_SESSION['gid'], $_SESSION['sid'], 'quiz');
+            $papers = $this->model("resourceModel")->getResourceByType($_SESSION['gid'], $_SESSION['sid'], 'paper');
+
+            $resouceByType = array("videos" => $videos, "pdfs" => $pdfs, "others"=> $others, "quizzes"=> $quizzes, "papers" => $papers);
+            $this->view("resourceCtr/organized/addResource",array($topic, $resources, $resouceByType));
+        }else{
+            flashMessage("failed");
+            header("location:".BASEURL."rcResources/organized/".$_SESSION['gid']."/".$_SESSION['sid']);
+        }
+    }
+
+    public function connectToTopic(){
+        $message = array("status"=>"","message"=>"");
+        if($this->model("resourceModel")->connectToTopic($_POST["topic"], $_POST["resource"])){
+            $message["status"] = "success";
+        }else{
+            $message["message"] = "failed";
+        }
+        echo json_encode($message);
+    }
+
+    private function isVerifiedTopic($topic_id){
+        $result = $this->model("resourceModel")->isVerifiedTopic($topic_id,$_SESSION['gid'],$_SESSION['sid']);
+        if(empty($result)){
+            return false;
+        }
+        else{
+            return true;
+        }
+    }
 }

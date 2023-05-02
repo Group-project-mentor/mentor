@@ -29,7 +29,6 @@
 
     <?php 
         $class_name = $_SESSION['class_name'];
-        $grade = $_SESSION['grade'];
     ?>
 
 

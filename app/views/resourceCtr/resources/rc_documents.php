@@ -73,7 +73,8 @@
                     <div class="rc-resource-table" id="rc-resource-table">
                         <div class="rc-table-title">
                             <div class="rc-resource-col">Name</div>
-                            <div></div>
+                            <div class="rc-resource-col">Actions</div>
+                            <div class="rc-resource-col"></div>
                         </div>
                                 <?php
                                 foreach ($data[0] as $row) {
@@ -81,11 +82,11 @@
                                     ?>
                                     <div class='rc-pdf-row'>
                                                 <div class='rc-resource-col' style="display: flex;align-items: center;justify-content: flex-start;">
-                                                    <img src='<?php echo BASEURL."assets/icons/".$approval ?>' alt='' class="resource-approved-sign">
                                                     <div>
                                                         <?php echo $row->name ?>
                                                     </div>
                                                 </div>
+                                                
                                                 <div class='rc-quiz-row-btns'>
                                                     <?php if($this->isCreatedBy($row->creator_id)){ ?>
 
@@ -101,6 +102,27 @@
                                                         <img src='<?php echo BASEURL ?>assets/icons/icon_eye.png' alt=''>
                                                     </a>
                                                 </div>
+                                                <div style="display:flex;flex-direction:column;justify-content:center;align-items:center;">
+                                                    <img src='<?php echo BASEURL."assets/icons/".$approval ?>' alt='' class="resource-approved-sign">
+                                                    <div style="font-size:x-small;">
+                                                        <?php 
+                                                        switch($row->approved){
+                                                            case "P":
+                                                                echo "Pending";
+                                                                break;
+                                                                case "Y":
+                                                                    echo "Approved";
+                                                                    break;
+                                                                    case "N":
+                                                                        echo "Rejected";
+                                                                        break;
+                                                                        case null :
+                                                                            echo "Pending";
+                                                                            break;
+                                                                        }
+                                                                        ?>
+                                                </div>
+                                            </div>
                                             </div>
                                 <?php }
                                 }

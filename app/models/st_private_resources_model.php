@@ -5,68 +5,67 @@ class St_private_resources_model extends Model{
         parent::__construct();
     }
 
-    public function findVideos($class_name, $grade)
+    public function findVideos($class_name)
     {
         // echo $class_name;
-        $q ="SELECT private_class.class_name , private_class.grade , teacher_videos.name , teacher_videos.lecturer ,teacher_videos.description 
+        $q ="SELECT private_class.class_name , teacher_videos.name , teacher_videos.lecturer ,teacher_videos.description 
         FROM (( teacher_videos INNER JOIN teacher_class_resources ON teacher_videos.id = teacher_class_resources.rs_id ) 
         INNER JOIN private_class ON teacher_class_resources.class_id = private_class.class_id ) 
-        WHERE private_class.class_name = ? AND private_class.grade = ? ";
+        WHERE private_class.class_name = ?  ";
         $stmt = $this->prepare($q);
-        $stmt->bind_param('si', $class_name , $grade);
+        $stmt->bind_param('s', $class_name );
 
         $result = $this->fetchObjs($stmt);
         return $result;
     }
 
-    public function findQuizzes($class_name, $grade)
+    public function findQuizzes($class_name)
     {
-        // echo $class_name;
-        $q ="SELECT private_class.class_name , private_class.grade , teacher_quizzes.name , teacher_quizzes.total_marks ,teacher_quizzes.no_of_questions 
+        $q ="SELECT private_class.class_name , teacher_quizzes.name , teacher_quizzes.total_marks ,teacher_quizzes.no_of_questions 
         FROM (( teacher_quizzes INNER JOIN teacher_class_resources ON teacher_quizzes.id = teacher_class_resources.rs_id ) 
         INNER JOIN private_class ON teacher_class_resources.class_id = private_class.class_id ) 
-        WHERE private_class.class_name = ? AND private_class.grade = ? ";
+        WHERE private_class.class_name = ?  ";
         $stmt = $this->prepare($q);
-        $stmt->bind_param('si', $class_name , $grade);
+        $stmt->bind_param('s', $class_name);
 
         $result = $this->fetchObjs($stmt);
         return $result;
     }
 
-    public function findPastpapers($class_name, $grade)
+    public function findPastpapers($class_name)
     {
-        $q ="SELECT private_class.class_name , private_class.grade , teacher_pastpapers.name ,teacher_pastpapers.year, teacher_pastpapers.part 
+        $q ="SELECT private_class.class_name  , teacher_pastpapers.name ,teacher_pastpapers.year, teacher_pastpapers.part 
         FROM (( teacher_pastpapers INNER JOIN teacher_class_resources ON teacher_pastpapers.id = teacher_class_resources.rs_id ) 
         INNER JOIN private_class ON teacher_class_resources.class_id = private_class.class_id ) 
-        WHERE private_class.class_name = ? AND private_class.grade = ? ";
+        WHERE private_class.class_name = ? ";
         $stmt = $this->prepare($q);
-        $stmt->bind_param('si', $class_name , $grade);
+        $stmt->bind_param('s', $class_name );
         
         $result = $this->fetchObjs($stmt);
         return $result;
     }
 
-    public function findDocuments($class_name, $grade) 
+    public function findDocuments($class_name) 
     {
-        $q ="SELECT private_class.class_name , private_class.grade , teacher_document.name  
+        $q ="SELECT private_class.class_name  , teacher_document.name  
         FROM (( teacher_document INNER JOIN teacher_class_resources ON teacher_document.id = teacher_class_resources.rs_id ) 
         INNER JOIN private_class ON teacher_class_resources.class_id = private_class.class_id ) 
-        WHERE private_class.class_name = ? AND private_class.grade = ? ";
+        WHERE private_class.class_name = ? ";
         $stmt = $this->prepare($q);
-        $stmt->bind_param('si', $class_name , $grade);
+        $stmt->bind_param('s', $class_name );
 
         $result = $this->fetchObjs($stmt);
         return $result;
     }
 
-    public function findOthers($class_name, $grade)
+    public function findOthers($class_name)
     {
-        $q ="SELECT private_class.class_name , private_class.grade , teacher_other.name ,teacher_other.type 
+        $q ="SELECT private_class.class_name , teacher_other.name ,teacher_other.type 
         FROM (( teacher_other INNER JOIN teacher_class_resources ON teacher_other.id = teacher_class_resources.rs_id ) 
         INNER JOIN private_class ON teacher_class_resources.class_id = private_class.class_id ) 
-        WHERE private_class.class_name = ? AND private_class.grade = ? ";
+        WHERE private_class.class_name = ?  ";
         $stmt = $this->prepare($q);
-        $stmt->bind_param('si',$class_name, $grade);
+        $stmt->bind_param('s',$class_name);
         
         $result = $this->fetchObjs($stmt);
         return $result;
