@@ -60,6 +60,9 @@
 
                 </div>
                 <div class="top-bar-btns">
+                <a href="#">
+                        <a class="back-btn" href="<?php echo BASEURL ?>TBilling/Billing1">Back</a>
+                    </a>
                     <?php include_once "components/notificationIcon.php" ?>
                     <a href="<?php echo BASEURL ?>sponsor/profile">
                         <img src="<?php echo BASEURL ?>public/assets/icons/icon_profile_black.png" alt="profile">
@@ -94,45 +97,39 @@
 
                         <form action="" method="POST" class="rc-upload-form" id="paymentForm">
                             <div class="rc-form-group-hz">
-                                <div class="rc-form-group">
-                                    <label>Bank Name* :</label>
-                                    <select name="bankName" id="bankName">
+                                <div class="rc-form-group" style="flex: 1;">
+                                    <label>Bank Name :</label>
+                                    <select class="pp-quiz-chooser" name="bankName">
                                         <option value="" disabled selected>Select a bank</option>
-                                        <option value="bank1" data-image="<?php echo BASEURL ?>public/assets/images/bank1_logo.png">Bank 1</option>
-                                        <option value="bank2">
-                                        <img src="<?php echo BASEURL ?>public/assets/icons/icon_profile_black.png" alt="Bank 1 logo" class="bank-logo">
-                                            Bank 2
-                                        </option>
-                                        <!-- add more bank options here -->
+                                        <option value="SBank of Ceylon">Bank of Ceylon</option>
+                                        <option value="Commercial Bank PLC">Commercial Bank PLC</option>
+                                        <option value="DFCC Bank PLC">DFCC Bank PLC</option>
+                                        <option value="Hatton National Bank PLC">Hatton National Bank PLC</option>
+                                        <option value="HNB Bank PLC">HNB Bank PLC</option>
+                                        <option value="LB Finance PLC">LB Finance PLC</option>
+                                        <option value="National Savings Bank">National Savings Bank</option>
+                                        <option value="Peoples Bank">Peoples Bank</option>
+                                        <option value="Regional development Bank">Regional development Bank</option>
+                                        <option value="Sampath Bank">Sampath Bank</option>
+                                        <option value="Selan Bank">Selan Bank</option>
                                     </select>
                                 </div>
-
-
                             </div>
 
                             <div class="rc-form-group">
-                                <label> Payment Email* : </label>
-                                <input type="text" name="email" placeholder="Email" value="<?php echo empty($data[0]) ? "" : $data[0]->payEmail ?>" />
+                                <label> Account Number : </label>
+                                <input type="text" name="number" placeholder="Account Number" >
                             </div>
                             <div class="rc-form-group">
-                                <label> Telephone* : </label>
-                                <input type="text" name="telNo" placeholder="Telephone" value="<?php echo empty($data[0]) ? "" : $data[0]->payPhone ?>" />
-                            </div>
-                            <div class="rc-form-group">
-                                <label> Address* : </label>
-                                <input type="text" name="address" placeholder="Address" value="<?php echo empty($data[0]) ? "" : $data[0]->address ?>" />
-                            </div>
-                            <div class="rc-form-group">
-                                <label> City* : </label>
-                                <input type="text" name="city" placeholder="City" value="<?php echo empty($data[0]) ? "" : $data[0]->city ?>" />
+                                <label> Account Name : </label>
+                                <input type="text" name="name" placeholder="Account Name"  />
                             </div>
                             <div class="rc-form-group-hz">
                                 <div class="rc-form-group" style="flex: 1;">
-                                    <label> Country* : </label>
+                                    <label> Country : </label>
                                     <label>
                                         <select class="pp-quiz-chooser" name="country">
                                             <option value="Sri Lanka" selected>Sri Lanka</option>
-                                            <option value="India">India</option>
                                         </select>
                                     </label>
                                 </div>
@@ -146,12 +143,9 @@
                                 <!--                                </label>-->
                                 <!--                            </div>-->
                             </div>
-                            <div class="answer-correctness-btn" style="justify-self:flex-end;">
-                                <input type="checkbox" id="save-info-check" value="correct" />
-                                <label for="quiz-answer-radio">&nbsp;Save these details for future payments.</label>
-                            </div>
+                           
                             <div class="rc-upload-button">
-                                <button type="submit" name="submit" col="200" id="payhere-payment" style="margin:10px auto;width: 100%;">Pay</button>
+                                <button type="submit" name="submit" col="200" id="payhere-payment" style="margin:10px auto;width: 100%;">Withdraw</button>
                             </div>
 
                         </form>
@@ -160,7 +154,7 @@
         </div>
     </section>
 </body>
-<script type="text/javascript" src="<?php echo BASEURL ?>javascripts/middleFunctions.js"></script>
+
 
 </script>
 

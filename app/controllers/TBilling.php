@@ -13,7 +13,9 @@ class TBilling extends Controller{
 
     public function Billing1(){
         $res1 = $this->model('BillingModel')->getClassPayments();
-        $this->view('Teacher/Billing/Billing1',array($res1));
+        $res2 = $this->model('BillingModel')->getClassWithdraw();
+        $res3 = $this->model("teacher_data")->getClasses($_SESSION['id']);
+        $this->view('Teacher/Billing/Billing1',array($res1,$res2,$res3));
     }   
 
     public function BillForm(){

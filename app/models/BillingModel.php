@@ -14,4 +14,12 @@ class BillingModel extends Model
         $result->bind_param('i', $_SESSION['id']);
         return $this->fetchObjs($result);
     }
+
+    public function getClassWithdraw()
+    {
+        $q = "select withdraw.amount FROM withdraw inner join user on user.id= withdraw.user_id and user.type='tch' where withdraw.user_id=?; ";
+        $result = $this->prepare($q);
+        $result->bind_param('i', $_SESSION['id']);
+        return $this->fetchObjs($result);
+    }
 }
