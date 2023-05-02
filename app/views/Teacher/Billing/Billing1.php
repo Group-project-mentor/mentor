@@ -6,30 +6,76 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Teacher - Billing</title>
-    <link rel="stylesheet" href="<?php echo BASEURL?>public/stylesheets/Teacher/style.css">
-    <link rel="stylesheet" href="<?php echo BASEURL?>public/stylesheets/Teacher/card_set.css">
+    <link rel="stylesheet" href="<?php echo BASEURL ?>public/stylesheets/Teacher/style.css">
+    <link rel="stylesheet" href="<?php echo BASEURL ?>public/stylesheets/Teacher/card_set.css">
+    <style>
+        .box {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 300px;
+            height: 150px;
+            border: 1px solid #ccc;
+            margin: 10px;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+        }
+
+        .withdraw-box {
+            float: left;
+            margin-left: 5cm;
+
+
+        }
+
+        .balance-box {
+            float: left;
+            margin-left: 7cm;
+
+
+        }
+
+
+        .amount {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .amount span {
+            margin-right: 5px;
+            font-size: 4.5rem;
+        }
+
+        .withdraw-amount {
+            margin: 0 auto;
+            text-align: center;
+        }
+    </style>
 </head>
 
 <body>
     <section class="page">
-        
+
         <!-- Navigation panel -->
-        <?php include_once "components/navbars/t_nav_1.php"?>
+        <?php include_once "components/navbars/t_nav_1.php" ?>
 
         <div class="content-area">
 
             <!-- Top bar -->
             <section class="top-bar">
-                
+
                 <div class="top-bar-btns">
-                <a href="#">
+                    <a href="#">
                         <a class="back-btn" href="<?php echo BASEURL ?>">Back</a>
                     </a>
                     <a href="#">
-                        <img src="<?php echo BASEURL?>public/assets/Teacher/icons/icon_notify.png" alt="notify">
+                        <img src="<?php echo BASEURL ?>public/assets/Teacher/icons/icon_notify.png" alt="notify">
                     </a>
                     <a href="<?php echo  BASEURL ?>TProfile/profile">
-                        <img src="<?php echo BASEURL?>public/assets/Teacher/icons/icon_profile_black.png" alt="profile">
+                        <img src="<?php echo BASEURL ?>public/assets/Teacher/icons/icon_profile_black.png" alt="profile">
                     </a>
                 </div>
             </section>
@@ -37,51 +83,31 @@
             <!-- Middle part for whole content -->
             <section class="mid-content">
 
-                 <!-- Title and sub title of middle part -->
+                <!-- Title and sub title of middle part -->
                 <div class="mid-title">
                     <h1>Billing</h1>
                     <h6>Teacher Home/ Members details/change host</h6>
-                    <br><br><br>
-                    <h3>Available Balance in your wallet</h3>
-                    <br><br>
+                    <br>
+
+
+                    <div class="box withdraw-box">
+                        <h4>Total Balance</h4>
+                        <h1 class="amount"><span id="current-withdraw">$00</span></h1>
+                    </div>
+
+                    <div class="box balance-box">
+                        <h4>Total Withdraw</h4>
+                        <h1 class="amount"><span id="current-balance">$00</span></h1>
+                    </div>
                     
+                   
+
                 </div>
 
-                <div style="display: flex;justify-content: center;font-size:30px">
-                    <h1>Rs.*******</h1>
-                  </div>
-                  
-
-
-                <br><br>
-
-                
-                      
-                <div style="display: flex; justify-content:space-around; align-items: center;">
-                <a href="<?php echo BASEURL?>TBilling/transHistory" style="text-decoration:none"><div class="mid-back-btn">See transaction history</div></a>
-                <a href="<?php echo BASEURL?>TBilling/Billing2" style="text-decoration:none"><div class="mid-back-btn">Withdraw money</div></a>
-                  </div>
-                  
-
-                      
-                          
-                          
-                 
-                 
-
-            </section>
-
-            <!-- bottom part -->
-            <section class="Teacher-class-bottom">
-                <div class="Teacher-decorator">
-                    <img src="<?php echo BASEURL?>public/assets/Teacher/clips/billing.png" alt="lap man">
-                </div>
-            </section>
-
-
-            
-        </div>  
-    </section>      
+        </div>
+    </section>
+    </div>
+    </section>
 </body>
 
 </html>

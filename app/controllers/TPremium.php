@@ -19,11 +19,10 @@ class TPremium extends Controller{
 
     public function savePremium()
     {
-        $count = $_POST['custom_1'];
         $name = $_POST['card_holder_name'];
         $amount = $_POST['payhere_amount'];
         $email = $_POST['custom_2'];
-        $this->model("payments")->saveBMC($name, $email, $amount, $count);
+        $this->model("payments")->savePremium($name, $email, $amount);
     }
 }
 
