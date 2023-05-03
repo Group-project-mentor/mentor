@@ -55,7 +55,7 @@
                             <?php foreach ($data[0] as $row) { ?>
                                 <div class="subject-card">
                                     <img src="<?php echo BASEURL  ?>assets/patterns/1.png" alt="" />
-                                    <a href="#"><label><?php echo $row->name ?></label></a>
+                                    <label><?php echo $row->name ?></label>
                                     <label>Grade <?php echo $_SESSION['gid'] + 5 ?></label>
                                     <a href="<?php echo BASEURL . 'St_public_resources/index/' . $_SESSION['gid'] . '/' . $row->id . '/' .$row->name  ?>"><label>View</label></a>
                                 </div>

@@ -37,6 +37,7 @@ class St_courses extends Controller
         $result = $this->model('st_subject_to_enroll_model')->enroll_rec(2, $gid, $sid);
         if ($result) {
             header("location:" . BASEURL . "st_courses/index/$gid");
+            $this->notify($_SESSION['id'],"you enroll to new subject ","enroll");
         } else { ?>
             <div style="padding: 15px 20px;">
 
@@ -48,8 +49,8 @@ class St_courses extends Controller
                     <br>
                     <img src="<?php echo BASEURL  ?>assets/clips/issue.png" alt="">
                 </h2>
-
             </div>
+            
 
 <?php
         }
@@ -62,6 +63,4 @@ class St_courses extends Controller
         }
     }
 }
-
-
 ?>

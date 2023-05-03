@@ -38,7 +38,7 @@
         </a>
         <a href="<?php echo BASEURL ?>st_report_main" class="nav-link">
             <img src="<?php echo BASEURL ?>assets/icons/icon_report.png" alt="report">
-            <div class="nav-link-text"> Report</div>
+            <div class="nav-link-text"> Report Issue</div>
         </a>
         <a href="<?php echo BASEURL ?>home/bmc" class="nav-link">
             <img src="<?php echo BASEURL ?>assets/icons/icon_bmc.png" alt="bmc">
