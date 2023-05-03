@@ -60,7 +60,7 @@
 
                 </div>
                 <div class="top-bar-btns">
-                <a href="#">
+                    <a href="#">
                         <a class="back-btn" href="<?php echo BASEURL ?>TBilling/Billing1">Back</a>
                     </a>
                     <?php include_once "components/notificationIcon.php" ?>
@@ -93,9 +93,14 @@
                     <!--                    </a>-->
                     <!--                </div>-->
                     <div class="rc-upload-box">
+                        
+                <?php $withdrawAmount = $_POST["withdraw-amount-hidden"];
+;
+?>
 
+                    <form action="<?php echo BASEURL; ?>TBilling/addWithdraws/<?php echo $withdrawAmount; ?>" method="POST" class="rc-upload-form" id="paymentForm">
 
-                        <form action="" method="POST" class="rc-upload-form" id="paymentForm">
+                            
                             <div class="rc-form-group-hz">
                                 <div class="rc-form-group" style="flex: 1;">
                                     <label>Bank Name :</label>
@@ -115,14 +120,15 @@
                                     </select>
                                 </div>
                             </div>
+                            <input type="hidden" name="hidden_field_name" value="some_value">
 
                             <div class="rc-form-group">
                                 <label> Account Number : </label>
-                                <input type="text" name="number" placeholder="Account Number" >
+                                <input type="text" name="number" placeholder="Account Number">
                             </div>
                             <div class="rc-form-group">
                                 <label> Account Name : </label>
-                                <input type="text" name="name" placeholder="Account Name"  />
+                                <input type="text" name="name" placeholder="Account Name" />
                             </div>
                             <div class="rc-form-group-hz">
                                 <div class="rc-form-group" style="flex: 1;">
@@ -143,7 +149,7 @@
                                 <!--                                </label>-->
                                 <!--                            </div>-->
                             </div>
-                           
+
                             <div class="rc-upload-button">
                                 <button type="submit" name="submit" col="200" id="payhere-payment" style="margin:10px auto;width: 100%;">Withdraw</button>
                             </div>

@@ -104,7 +104,6 @@
                     </a>
                 </div>
             </section>
-
             <!-- Middle part for whole content -->
             <section class="mid-content">
 
@@ -112,13 +111,13 @@
                 <div class="mid-title">
 
                     <h1>Billing</h1>
-                    <h6>Teacher Home/ Members details/change host</h6>
+                    <h6>Teacher Home/ Billing</h6>
                     <br>
 
                     <div class="subject-heading-container" style="border-radius: 2px; display: flex; width:450px;">
                         <div style="margin: 0 5px;  flex: 1;">
                             <label>
-                                <select class="grade-chooser" id="gradeChooser" name="question">
+                                <select class="grade-chooser" id="classChooser" name="question">
                                     <option value="0">Class</option>
                                     <?php
                                     if (!empty($data[2])) {
@@ -131,19 +130,16 @@
                         </div>
                         <div style="margin: 0 5px; flex: 1;">
                             <label>
-                                <select class="grade-chooser" id="subjectChooser" name="question">
+                                <select class="grade-chooser" id="yearChooser" name="question">
                                     <option value="0">Year</option>
-                                    <option value="1">2023</option>
-                                    <option value="2">2024</option>
-                                    <option value="3">2025</option>
-                                    <option value="4">2026</option>
-                                    <option value="5">2027</option>
+                                    <option value="2023">2023</option>
+                                    <option value="2024">2024</option>
                                 </select>
                             </label>
                         </div>
                         <div style="margin: 0 5px; flex: 1;">
                             <label>
-                                <select class="grade-chooser" id="subjectChooser" name="question">
+                                <select class="grade-chooser" id="monthChooser" name="question">
                                     <option value="0">Month</option>
                                     <option value="1">January</option>
                                     <option value="2">February</option>
@@ -164,24 +160,30 @@
 
 
 
-                    <div class="box balance-box">
+                    <div class="box balance-box" id="icome">
                         <h4>Total Icome</h4>
                         <?php
-                        $totalAmount = 0; // initialize total amount variable to 0
-                        foreach ($data[0] as $row) {
-                            $totalAmount += $row->amount; // add current row's amount to the total
+                        $totalAmount = 0;
+                        $totalWithdraw = 0;
+                        $remain = 0; // initialize total amount variable to 0
+                        foreach ($data[0] as $row) { ?>
+                        <?php $totalAmount += $row->amount; // add current row's amount to the total
                         }
-                        ?>
-                        <h1 class="amount"><span id="current-balance">Rs <?php echo $totalAmount ?></span></h1>
+                        foreach ($data[1] as $row) { ?>
+                        <?php $totalWithdraw += $row->amount; // add current row's amount to the total
+                        }
+                        $remain = $totalAmount - $totalWithdraw ?>
+                        <h1 class="amount"><span id="current-balance">Rs <?php echo $remain ?></span></h1>
                     </div>
 
-                    <div class="box balance-box">
+                    <div class="box balance-box" id="withdraw">
                         <h4>Total Withdraw</h4>
                         <?php
                         $totalAmount = 0; // initialize total amount variable to 0
                         foreach ($data[1] as $row) {
                             $totalAmount += $row->amount; // add current row's amount to the total
                         }
+
                         ?>
                         <h1 class="amount"><span id="current-balance">Rs <?php echo $totalAmount ?></span></h1>
                     </div>
@@ -190,24 +192,95 @@
                         <h4>Enter amount to withdraw</h4><br>
                         <div class="withdraw-amount">
                             <form action="<?php echo BASEURL; ?>TBilling/BillForm" method="POST">
-                                <input type="number" id="withdraw-amount-input" class="withdraw-amount-input" min="0" step="1">
-                                <button id="withdraw-btn" class="withdraw-btn">Withdraw</button>
+                                <input type="number" id="withdraw-amount-input" name="withdraw-amount-input" class="withdraw-amount-input" min="0" step="1">
+                                <input type="hidden" id="withdraw-amount-hidden" name="withdraw-amount-hidden">
+                                <button id="withdraw-btn" class="withdraw-btn" onclick="return validateWithdrawAmount();">Withdraw</button>
                             </form>
                         </div>
                     </div>
 
 
 
-
                 </div>
-
+            </section>
         </div>
-    </section>
-    </div>
     </section>
 </body>
 <script>
+    function validateWithdrawAmount() {
+        var amountInput = document.getElementById("withdraw-amount-input");
+        var amountHidden = document.getElementById("withdraw-amount-hidden");
 
+        if (amountInput.value === "") {
+            alert("Please enter an amount to withdraw.");
+            return false;
+        } else if (amountInput.value <= 0) {
+            alert("Please enter a valid amount to withdraw.");
+            return false;
+        } else {
+            amountHidden.value = amountInput.value;
+            return true;
+        }
+    }
+    let withdrawBtn = document.getElementById("withdraw-btn");
+    let withdrawAmountInput = document.getElementById("withdraw-amount-input");
+    let currentBalance = document.getElementById("current-balance");
+
+    withdrawBtn.addEventListener("click", (event) => {
+        let withdrawAmount = withdrawAmountInput.value;
+        let totalIncome = parseInt(currentBalance.innerText.split(" ")[1]);
+
+        if (withdrawAmount > totalIncome & withdrawAmount != 0) {
+            event.preventDefault(); // prevent form submission
+            alert("Withdraw amount cannot be greater than total income.");
+
+        }
+    });
+
+    const BASEURL = '<?php echo BASEURL ?>';
+    let classChooser = document.getElementById("classChooser");
+    let yearChooser = document.getElementById("yearChooser");
+    let monthChooser = document.getElementById("monthChooser");
+    let income = document.getElementById("income");
+    let withdraw = document.getElementById("withdraw");
+
+    let cid = 0;
+    let year = 0;
+    let month = 0;
+
+    const renderCards = () => {
+        income.innerHTML = "";
+        fetch(`${BASEURL}TBilling/filterIncome/${cid}/${year}/${month}`)
+            .then(response => response.json())
+            .then(data => {
+                if (data.length !== 0) {
+                    let count = 1;
+                    data.forEach(item => {
+                        income.innerHTML += `
+                        ${totalAmount} += ${item.amount};
+                    `
+                    })
+                } else {
+                    subCardSet.innerHTML = '<div style="margin: 10px;font-size: large;">No Results</div>';
+                }
+            })
+            .catch(err => console.log(err));
+    }
+
+    classChooser.onchange = event => {
+        cid = event.target.value;
+        renderCards();
+    }
+
+    yearChooser.onchange = event => {
+        year = event.target.value;
+        renderCards();
+    }
+
+    monthChooser.onchange = event => {
+        month = event.target.value;
+        renderCards();
+    }
 </script>
 
 </html>
