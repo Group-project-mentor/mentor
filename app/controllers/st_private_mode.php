@@ -40,8 +40,11 @@ class St_private_mode extends Controller
     public function st_join_token_send($token)
     {
         $sid = $_SESSION['id'] ;
-        $res=$this->model('st_private_mode_model')->jointoken($token);
+        $res=$this->model('st_private_mode_model')->jointoken($token)->class_id;
         $res2=$this->model('st_private_mode_model')->jointokenaddtoDB($sid,$res,$token);
+        $res3 = $this->model('st_private_mode_model')->jointokenview($sid,$res,$token)->class_name;
+        $_SESSION['class_name'] = $res3 ;
+        $this->notify(2,"you have request from the class","request");
         $this->view('student/privatemode/st_join_token_send',array($res2));
     }
 

@@ -21,12 +21,6 @@
             width: 600px;
             margin-left: 20%;
         }
-
-        body {
-            background-image: url('../public/assets/clips/HumaaansWireframe');
-            background-position: center;
-            background-size: cover;
-        }
     </style>
 </head>
 
@@ -40,10 +34,7 @@
             <!-- Top bar -->
             <section class="top-bar">
                 <div class="search-bar">
-                    <input type="text" name="" id="" placeholder="Search...">
-                    <a href="">
-                        <img src="<?php echo BASEURL; ?>assets/icons/icon_search.png" alt="">
-                    </a>
+
                 </div>
                 <div class="top-bar-btns">
                     <a href="<?php echo BASEURL; ?>st_private_mode/st_join_classes">
@@ -55,26 +46,24 @@
                     </a>
                 </div>
             </section>
+            <hr style="color: green; height:7px; background-color:green;">
             <section>
                 <div>
-                    <br>
+                    <br><br>
                     <h2>Join with class token</h2>
                     <h4>Get the class token from your teacher and join to the class by entering here. <br><br><br></h4>
-                    <h3 class="token">
-                        <b>Enter the token here : </b>
-                        <div class="search-bar">
-                            <input type="text" name="" id="token" placeholder=" Search...">
-                            <a href="<?php echo BASEURL ?>st_private_mode/st_join_token_send/abcd" id="token_link">
-                                <img src="<?php echo BASEURL; ?>assets/icons/icon_search.png" alt="">
-                            </a>
-                        </div>
-                        <hr>
-                    </h3>
-                </div>
-                <div class="subject-card-set">
-                    <br><br>
-                    <br><br>
-
+                    <div style="padding-top: 80px; margin:auto;">
+                        <h3 class="token" style="padding: 20px 20px 40px 20px;">
+                            <b>Enter the token here : </b>
+                            <div class="search-bar">
+                                <input type="text" name="" id="token" placeholder=" Search..." style="width: 650px;">
+                                <a id="token_link">
+                                    <img src="<?php echo BASEURL; ?>assets/icons/icon_approved.png" alt="">
+                                </a>
+                            </div>
+                            <hr>
+                        </h3>
+                    </div>
                 </div>
             </section>
         </div>
@@ -86,16 +75,15 @@
     let token = document.getElementById("token");
     let token_link = document.getElementById("token_link");
     let token_name = "";
-    
+
     token.addEventListener("change", function(e) {
         token_name = e.target.value;
-        if(token_name == ""){
+        if (token_name == "") {
             location.reload();
-        }else{
+        } else {
             token_link.href = `${BASEURL}st_private_mode/st_join_token_send/${token_name}`;
         }
     });
-    
 </script>
 
 </html>

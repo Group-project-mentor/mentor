@@ -23,10 +23,7 @@
             <!-- Top bar -->
             <section class="top-bar">
                 <div class="search-bar">
-                    <input type="text" name="" id="" placeholder="Search...">
-                    <a href="">
-                        <img src="<?php echo BASEURL; ?>assets/icons/icon_search.png" alt="">
-                    </a>
+                    
                 </div>
                 <div class="top-bar-btns">
                     <a href="<?php echo BASEURL; ?>home">
@@ -38,23 +35,14 @@
                     </a>
                 </div>
             </section>
-
+            <hr style="color: green; height:7px; background-color:green;">
             <!-- Middle part for whole content -->
             <section class="mid-content">
-                <!-- join to new class -->
-                <div class="top-bar-btns ">
-                    <a href="<?php echo BASEURL; ?>st_private_mode/st_join_classes">
-                        <div class="see-all-btn">Join to new class</div>
-                    </a>
-                </div>
-
+                <h2><?php echo  "Hello " . $_SESSION['name'] . "!" ?></h2>
+                <h3> Some Private classes You Enrolled</h3>
                 <!-- subject cards -->
                 <div class="container-box">
                     <div>
-                        <h2><?php
-                            echo  "Hello " .$_SESSION['name'] . "!" ?></h2>
-                        <h3> Some Private classes You Enrolled</h3>
-                        <br><br>
                         <!-- new data from DB -->
                         <?php if (!empty($data[0])) { ?>
                             <div class="subject-card-set">
@@ -71,17 +59,23 @@
                             echo "no data!";
                         } ?>
                     </div>
-
-                    <div>
-                        <br><br><br><br><br>
-                        <a class="see-all-btn" href="<?php echo BASEURL  ?>st_private_mode/st_myclasses" style="text-decoration: none; ">My classes</a>
-                    </div>
-
                 </div>
+            </section>
+            <section style="margin:auto;">
+                <!-- join to new class -->
+                <div class="top-bar-btns " >
+                    <a style="padding-right: 300px;" href="<?php echo BASEURL; ?>st_private_mode/st_join_classes">
+                        <div class="see-all-btn">Join to new class</div>
+                    </a>
 
+                    <a style="padding-left: 300px;" href="<?php echo BASEURL  ?>st_private_mode/st_myclasses">
+                        <div class="see-all-btn">View My classes</div>
+                    </a>
+                </div>
             </section>
     </section>
 </body>
+
 <script src="<?php echo BASEURL ?>public/javascripts/st_auth_script.js"></script>
 
 

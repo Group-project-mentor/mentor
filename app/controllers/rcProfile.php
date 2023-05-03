@@ -8,6 +8,7 @@ class RcProfile extends Controller
     {
         sessionValidator();
         $this->userValidate($this->user);
+        flashMessage();
     }
 
     public function index($msg = null)
@@ -70,18 +71,22 @@ class RcProfile extends Controller
     public function changeName()
     {
         if (isset($_POST['name'])) {
-            if ((preg_match('/[a-zA-Z][a-zA-Z ]+/',$_POST['name'])) && ($_POST['name'] != '')) {
+            if ((validateName($_POST['name'])) && ($_POST['name'] != '')) {
                 $this->model("userModel")->updateName($_POST['name'], $_SESSION['id']);
                 $_SESSION['name'] = $_POST['name'];
-                header("location:" . BASEURL . 'rcProfile/index/success');
+                flashMessage("success");
+                header("location:" . BASEURL . 'rcProfile/index');
             } else {
-                header("location:" . BASEURL . 'rcProfile/change/name/failed');
+                flashMessage("failed");
+                header("location:" . BASEURL . 'rcProfile/change/name');
             }
         } else {
-            header("location:" . BASEURL . 'rcProfile/change/name/failed');
+            flashMessage("failed");
+            header("location:" . BASEURL . 'rcProfile/change/name');
         }
     }
 
+    // ! Not using now
     public function changeImage()
     {
         if (isset($_POST['image'])) {
@@ -93,19 +98,70 @@ class RcProfile extends Controller
         }
     }
 
+    public function updateImage()
+    {
+        if (isset($_FILES["image"])) {
+            $typeArray = array("png" => "image/png", "jpg" => "image/jpg", "jpeg" => "image/jpeg");
+            $fileData = array("name" => $_FILES["image"]["name"],
+                    "type" => $_FILES["image"]["type"],
+                    "size" => $_FILES["image"]["size"]);
+            $extention = pathinfo($fileData["name"], PATHINFO_EXTENSION);
+            if (in_array($fileData['type'], $typeArray)) {
+                $newFileName = uniqid() . $_SESSION["id"] . "." . $extention;
+                $image = $this->model("userModel")->getUserData($_SESSION['id'])->image;
+                if(empty($image) or $image == ""){
+                    if (move_uploaded_file($_FILES["image"]["tmp_name"], "data/profiles/" . $newFileName)) {
+                        if($this->model("userModel")->changeImg($_SESSION['id'],$newFileName)){
+                            $_SESSION['profilePic'] = $newFileName; 
+                            echo "success";
+                        }else{
+                            echo "failed";
+                        }
+                    } else {
+                        echo "failed";
+                    }
+                }else{
+                    if (move_uploaded_file($_FILES["image"]["tmp_name"], "data/profiles/" . $newFileName) and file_exists("data/profiles/".$image) and unlink("data/profiles/".$image)) {
+                        if($this->model("userModel")->changeImg($_SESSION['id'],$newFileName)){
+                            $_SESSION['profilePic'] = $newFileName; 
+                            echo "success";
+                        }else{
+                            echo "failed";
+                        }
+                    }elseif(!file_exists("data/profiles/".$image)){
+                        if($this->model("userModel")->changeImg($_SESSION['id'],$newFileName)){
+                            $_SESSION['profilePic'] = $newFileName; 
+                            echo "success";
+                        }else{
+                            echo "failed";
+                        }
+                    }
+                     else {
+                        echo "failed";
+                    }
+                }
+            }else{
+                echo "type_error";
+            }     
+        }else{
+            echo "failed";
+        }
+    }
+
     public function changeMobile()
     {
         if (isset($_POST['mobile'])) {
-            if ((preg_match('/[0-9]{10}/',$_POST['name'])) && ($_POST['mobile'] != '')) {
+            if ((preg_match('/[0-9]{10}/',$_POST['mobile'])) && ($_POST['mobile'] != '')) {
                 $this->model("userModel")->updateMobile($_POST['mobile'], $_SESSION['id']);
-                header("location:" . BASEURL . 'rcProfile/index/success');
+                flashMessage("success");
+                header("location:" . BASEURL . 'rcProfile');
             } else {
                 flashMessage("failed");
-                header("location:" . BASEURL . 'rcProfile/change/mobile/failed');
+                header("location:" . BASEURL . 'rcProfile/change/mobile');
             }
         } else {
             flashMessage("failed");
-            header("location:" . BASEURL . 'rcProfile/change/mobile/failed');
+            header("location:" . BASEURL . 'rcProfile/change/mobile');
         }
     }
 
@@ -118,22 +174,22 @@ class RcProfile extends Controller
                     $hash = password_hash($_POST['npasswd'], PASSWORD_BCRYPT, ["cost" => 10]);
                     if ($this->model("userModel")->changePassword($hash, $_SESSION['user'])) {
                         flashMessage("success");
-                        header("location:" . BASEURL . 'rcProfile/index/success');
+                        header("location:" . BASEURL . 'rcProfile');
                     } else {
                         flashMessage("failed");
-                        header("location:" . BASEURL . 'rcProfile/change/password/failed');
+                        header("location:" . BASEURL . 'rcProfile/change/password');
                     }
                 } else {
-                    flashMessage("wrongPass");
-                    header("location:" . BASEURL . 'rcProfile/change/password/wrongPass');
+                    flashMessage("wrong_pass");
+                    header("location:" . BASEURL . 'rcProfile/change/password');
                 }
             } else {
-                flashMessage("failed");
-                header("location:" . BASEURL . 'rcProfile/change/password/failed');
+                flashMessage("not_match");
+                header("location:" . BASEURL . 'rcProfile/change/password');
             }
         } else {
             flashMessage("failed");
-            header("location:" . BASEURL . 'rcProfile/change/password/failed');
+            header("location:" . BASEURL . 'rcProfile/change/password');
         }
     }
 

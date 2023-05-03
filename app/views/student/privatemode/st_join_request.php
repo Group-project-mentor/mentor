@@ -56,6 +56,7 @@
                     </a>
                 </div>
             </section>
+            <hr style="color: green; height:7px; background-color:green;">
             <section>
                 <div>
                     <br>

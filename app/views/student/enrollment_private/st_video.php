@@ -59,9 +59,11 @@
                             foreach ($data[0] as $row) { ?>
                                 <div class='subject-card' style="align-items: center;">
                                     <img src='<?php echo BASEURL . "assets/patterns/" . $count++ . '.png' ?>' alt='' />
-                                    <label><?php echo $row->name ?></label>
+                                    <label><?php echo $row->name; 
+                                    $_SESSION['rname'] = $row->name;
+                                    ?></label>
                                     <label><?php echo $row->lecturer ?></label>
-                                    <a href='<?php echo BASEURL . "st_public_resources/preview/video/" . $row->id ?>'>
+                                    <a href='<?php echo BASEURL . "st_private_resources/preview/video/" . $row->class_id ?>'>
                                         <label>Play</label>
                                         <!-- <img style="width: 25px" src='<?php echo BASEURL ?>assets/icons/icon_eye_white.png' alt='' /> -->
                                     </a>

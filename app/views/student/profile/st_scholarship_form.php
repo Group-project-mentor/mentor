@@ -32,19 +32,17 @@
                     <a href="<?php echo BASEURL  ?>st_profile">
                         <img src="<?php echo BASEURL ?>public/assets/icons/icon_profile_black.png" alt="profile">
                     </a>
-                    <a href="<?php echo BASEURL ?>logout">
-                        <div class="back-btn">Log Out</div>
-                    </a>
                 </div>
             </section>
 
             <!-- Middle part for whole content -->
             <section class="mid-content">
-
+            <hr style="color: green; height:7px; background-color:green;">
+            <br>
                 <!-- Title and sub title of middle part -->
                 <div class="mid-title">
                     <h2>Scholarship Application Form</h2>
-                    <h3>Hello, Mr. kamal</h3>
+                    <h3><?php echo "Hello " . $_SESSION['name'] . "!" ?></h3>
                     
                 </div>
                 <!-- Grade choosing interface -->
@@ -68,7 +66,7 @@
                         <div class="rc-form-group-hz">
                             <div class="rc-form-group">
                                 <label> Name with Initials* : </label>
-                                <input type="text" name="fullName" placeholder="Full Name" value="<?php echo empty($data[0]) ? "" : $data[0]->firstName ?>" pattern="^[A-Za-z]+((\s)?((\.)|(?:\b[A-Za-z])[A-Za-z]*\.?)){0,2}$" maxlength="50" required />
+                                <input type="text" name="fullName" placeholder="Full Name" value="<?php echo empty($data[0]) ? "" : $data[0]->fullName ?>" pattern="^[A-Za-z]+((\s)?((\.)|(?:\b[A-Za-z])[A-Za-z]*\.?)){0,2}$" maxlength="50" required />
                             </div>
                         </div>
 
@@ -81,7 +79,7 @@
                         <div class="rc-form-group-hz">
                             <div class="rc-form-group">
                                 <label> Gradient Name * : </label>
-                                <input type="text" name="gradientname" placeholder="Full Name" value="<?php echo empty($data[0]) ? "" : $data[0]->firstName ?>" pattern="^[A-Za-z]+((\s)?((\.)|(?:\b[A-Za-z])[A-Za-z]*\.?)){0,2}$" maxlength="50" required />
+                                <input type="text" name="gradientname" placeholder="Full Name" value="<?php echo empty($data[0]) ? "" : $data[0]->gradientname ?>" pattern="^[A-Za-z]+((\s)?((\.)|(?:\b[A-Za-z])[A-Za-z]*\.?)){0,2}$" maxlength="50" required />
                             </div>
                         </div>
 
@@ -103,12 +101,12 @@
 
                         <div class="rc-form-group">
                             <label> School* : </label>
-                            <input type="text" name="school" placeholder="School" value="<?php echo empty($data[0]) ? "" : $data[0]->address ?>" required maxlength="100" />
+                            <input type="text" name="school" placeholder="School" value="<?php echo empty($data[0]) ? "" : $data[0]->school ?>" required maxlength="100" />
                         </div>
 
                         <div class="rc-form-group">
                             <label> Date of Birth* : </label>
-                            <input type="date" name="dob" placeholder="Date" value="<?php echo empty($data[0]) ? "" : $data[0]->address ?>" required maxlength="100" />
+                            <input type="date" name="dob" placeholder="Date" value="<?php echo empty($data[0]) ? "" : $data[0]->dob ?>" required maxlength="100" />
                         </div>
 
                         <div class="rc-form-group" style="flex: 1;">
@@ -177,7 +175,5 @@
     </div>
     </section>
 </body>
-<script src="<?php echo BASEURL ?>public/javascripts/st_auth_script.js"></script>
-
 
 </html>

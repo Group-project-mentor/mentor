@@ -17,7 +17,9 @@
             margin-left: 200px;
         }
 
-        .join1:hover,.join2:hover,.joina:hover {
+        .join1:hover,
+        .join2:hover,
+        .joina:hover {
             opacity: 0.9;
             background-color: #186537;
             text-decoration-color: white;
@@ -30,7 +32,8 @@
             background-position: center;
         }
 
-        .join1, .join2 {
+        .join1,
+        .join2 {
             background-color: white;
             border-style: solid;
             border-color: #17ac06;
@@ -61,10 +64,7 @@
             <!-- Top bar -->
             <section class="top-bar">
                 <div class="search-bar">
-                    <input type="text" name="" id="" placeholder="Search...">
-                    <a href="">
-                        <img src="<?php echo BASEURL; ?>assets/icons/icon_search.png" alt="">
-                    </a>
+
                 </div>
                 <div class="top-bar-btns">
                     <a href="<?php echo BASEURL; ?>st_private_mode">
@@ -76,12 +76,12 @@
                     </a>
                 </div>
             </section>
-
+            <hr style="color: green; height:7px; background-color:green;">
             <section class="mid-content">
                 <!-- join to new class -->
-                <div class="top-bar-btns ">
-                    <h2>Join to new class</h2>
-                </div>
+                <h2><?php echo  "Hello " . $_SESSION['name'] . "!" ?></h2>
+                <h2>Join to new class</h2>
+
 
                 <div class="join">
                     <br>

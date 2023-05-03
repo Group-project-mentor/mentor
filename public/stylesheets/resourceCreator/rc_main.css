@@ -294,6 +294,9 @@ input:checked+.slider:before {
 
 .top-bar-btns>a>img {
     width: 25px;
+    height: 25px;
+    object-fit: cover;
+    border-radius: 50%;
 }
 
 
@@ -543,6 +546,7 @@ button[type="submit"] {
 
     .top-bar-btns>a>img {
         width: 20px;
+        height: 20px;
     }
 
     .back-btn {

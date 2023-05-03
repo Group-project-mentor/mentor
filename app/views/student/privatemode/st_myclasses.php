@@ -37,10 +37,11 @@
                     </a>
                 </div>
             </section>
-
+            <hr style="color: green; height:7px; background-color:green;">
             <!-- Middle part for whole content -->
             <section class="mid-content">
-                <h2>My Classes</h2>
+                <h2><?php echo  "Hello " . $_SESSION['name'] . "!" ?></h2>
+                <h3>These Are The All Classes You Enrolled. By Clicking The <b style="color:green">VIEW</b> Button, You Can Go To Relevant Class.</h3>
                 <!-- subject cards -->
                 <div class="container-box">
                     <div>
@@ -52,9 +53,9 @@
                                 <?php foreach ($data[0] as $row) { ?>
                                     <div class="subject-card">
                                         <img src="<?php echo BASEURL  ?>assets/patterns/2.png" alt="" />
-                                        <a href="#"><label><?php echo $row->class_name ?></label></a>
-                                        
-                                        <a href="<?php echo BASEURL . 'st_private_resources/index/'. $row->class_name  ?>"><label>View</label></a>
+                                        <label><?php echo $row->class_name ?></label>
+
+                                        <a href="<?php echo BASEURL . 'st_private_resources/index/' . $row->class_name  ?>"><label>View</label></a>
 
                                     </div>
                                 <?php } ?>

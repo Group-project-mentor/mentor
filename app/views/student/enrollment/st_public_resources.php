@@ -23,10 +23,7 @@
             <!-- Top bar -->
             <section class="top-bar">
                 <div class="search-bar">
-                    <input type="text" name="" id="" placeholder="Search...">
-                    <a href="">
-                        <img src="<?php echo BASEURL; ?>assets/icons/icon_search.png" alt="">
-                    </a>
+                    
                 </div>
                 <div class="top-bar-btns">
                     <a href="<?php echo BASEURL . 'st_courses/Enroll_subject_all/' . $_SESSION['gid']  ?>">
@@ -38,7 +35,7 @@
                     </a>
                 </div>
             </section>
-
+            <hr style="color: green; height:7px; background-color:green;">
             <!-- Middle part for whole content -->
             <section class="mid-content">
 
@@ -69,7 +66,7 @@
                         </table>
                     </div>
                     <br><br><br><br><br><br><br><br><br><br><br><br><br>
-                    <a class="see-all-btn" href="<?php echo BASEURL  ?>" style="text-decoration: none; width:100%;"></a>
+                    <hr style="color: green; height:7px; background-color:green;">
             </section>
         </div>
     </section>

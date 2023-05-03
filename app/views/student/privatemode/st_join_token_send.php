@@ -55,23 +55,24 @@
                     </a>
                 </div>
             </section>
+            <hr style="color: green; height:7px; background-color:green;">
             <section>
                 <div>
                     <br>
                     <h2>Join with class token</h2>
-                    <h4>Get the class token from your teacher and join to the class by entering here. <br><br><br></h4>
-                    <h3 class="token">
+                    <h3>Hello <?php echo $_SESSION['name'] ?> !</h3>
+                </div>
+
+                <div style="padding-top: 120px;">
+                    <h3 class="token" style="margin: auto;">
+                        <div class="subject-card">
+                            <img src="<?php echo BASEURL ?>assets/patterns/4.png" alt="" />
+                            <label><?php echo $_SESSION['class_name'] ?></label>
+                        </div>
                         Successfully join. You can Access After permission of the teacher.
                         <hr>
                     </h3>
                 </div>
-                <div class="subject-card-set">
-                    <br><br>
-                    <br><br>
-
-                </div>
-
-                ...........
             </section>
         </div>
     </section>

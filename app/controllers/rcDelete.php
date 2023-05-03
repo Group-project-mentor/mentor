@@ -21,7 +21,7 @@ class RcDelete extends Controller
     {
         $row = $this->model("resourceModel")->getResource($id, $_SESSION['gid'], $_SESSION['sid'], 'pdf');
         if (!empty($row)) {
-            $location = $row->location;
+            $location = trim($row->location);
             if ($this->model("resourceModel")->deleteResource($id, 'document') == true) {
                 deleteFile($location,"documents",$_SESSION['gid'],$_SESSION['sid']);
                 header("location:" . BASEURL . "rcResources/documents/" . $_SESSION["gid"] . "/" . $_SESSION["sid"]);
@@ -35,7 +35,7 @@ class RcDelete extends Controller
     {
         $row = $this->model("resourceModel")->getResource($id, $_SESSION['gid'], $_SESSION['sid'], 'other');
         if (!empty($row)) {
-            $location = $row->location;
+            $location = trim($row->location);
             if ($this->model("resourceModel")->deleteResource($id, 'other') == true) {
                 deleteFile($location,"others",$_SESSION['gid'],$_SESSION['sid']);
                 header("location:" . BASEURL . "rcResources/others/" . $_SESSION["gid"] . "/" . $_SESSION["sid"]);
