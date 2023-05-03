@@ -43,7 +43,7 @@
               <div class="card">
                 <div class="content">
                   <div class="imgBx">
-                    <img src="<?php echo BASEURL ?>public/assets/Teacher/clips/customer.gif" alt="notify">
+                    <img src="<?php echo BASEURL ?>public/assets/Teacher/clips/globe.gif" alt="notify">
                   </div>
                   <div class="contentBx">
                     <h3>No limit for adding Students<br></h3>
@@ -60,7 +60,7 @@
               <div class="card">
                 <div class="content">
                   <div class="imgBx">
-                    <img src="<?php echo BASEURL ?>public/assets/Teacher/clips/connection.gif" alt="notify">
+                    <img src="<?php echo BASEURL ?>public/assets/Teacher/clips/infinity.gif" alt="notify">
                   </div>
                   <div class="contentBx">
                     <h3>No limit for creating classes<br></h3>
@@ -77,7 +77,7 @@
               <div class="card">
                 <div class="content">
                   <div class="imgBx">
-                    <img src="<?php echo BASEURL ?>public/assets/Teacher/clips/tconnect.gif" alt="notify">
+                    <img src="<?php echo BASEURL ?>public/assets/Teacher/clips/prem1.gif" alt="notify">
                   </div>
                   <div class="contentBx">
                     <h3>No limit for adding Teachers <br></h3>
@@ -93,7 +93,7 @@
               </div>
             </div>
             <div class="amount">
-              You only have to pay ***$ for Month.
+              <h1><br>You only have to pay RS.10 000 for a Year.</h1>
             </div><br><br>
             <div class="button-container" id="payhere-payment">
               <button id=buy class="buy-button">Buy</button>
