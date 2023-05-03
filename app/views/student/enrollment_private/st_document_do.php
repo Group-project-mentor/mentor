@@ -55,18 +55,14 @@
                     <br>
                     <hr style=" height:5px ; background-color:green ;">
                     <br>
-                    <!-- <embed type="text/html" src="st_courses.html"  width="1000" height="500" style="padding-left: 100px;"> -->
-                    <!-- Grade choosing interface -->
                 <div class="container-box" >
-                    <embed src="<?php echo BASEURL?>public_resources/documents/<?php echo $_SESSION['gid']."/".$_SESSION['sid']."/".$data->location ?>" style="width:50%;height:70vh;margin:auto;">
+                    <embed src="<?php echo BASEURL?>private_resources/documents/<?php echo $_SESSION['class_name']."/".$data->location ?>" style="width:50%;height:70vh;margin:auto;">
                 </div>
             <?php } ?>
             </section>
         </div>
     </section>
 </body>
-
-<script src="<?php echo BASEURL ?>public/javascripts/st_auth_script.js"></script>
 
 
 </html>

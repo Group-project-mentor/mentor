@@ -51,8 +51,7 @@ class St_private_mode_model extends Model
     public function jointoken($token)
     {
 
-        $q = "SELECT private_class.class_id FROM private_class INNER JOIN join_requests 
-        ON private_class.token = join_requests.token WHERE join_requests.token = ? ;";
+        $q = "SELECT private_class.class_id FROM private_class WHERE private_class.token = ? ;";
         $stmt = $this->prepare($q);
         $stmt->bind_param('s', $token);
 
