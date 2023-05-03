@@ -12,6 +12,19 @@
     <link rel="stylesheet" href="<?php echo BASEURL . '/public/stylesheets/resourceCreator/rc_resources.css' ?> ">
 </head>
 
+<style>
+    .form-sub-info{
+        color: green;
+        padding:3px 10px;
+        background-color:#ddd;
+        border-radius:5px;
+        margin: 5px 10px;
+    }
+    .rc-form-group label{
+        margin: 10px 0px;
+    }
+</style>
+
 <body>
 <?php
 if(!empty($_SESSION['message'])) {
@@ -35,9 +48,11 @@ if(!empty($_SESSION['message'])) {
 
         <!-- Top bar -->
         <section class="top-bar">
-            <div class="search-bar">
-                
-            </div>
+                <!-- Title and sub title of middle part -->
+                <div class="mid-title">
+                    <h1><?php echo "Grade ".$_SESSION['gname']." - ".ucfirst($_SESSION['sname']) ?></h1>
+                    <h6>My Subjects / <?php echo ucfirst($_SESSION['sname']) ?> / document / edit </h6>
+                </div>
             <div class="top-bar-btns">
                 <a href="<?php echo BASEURL .'rcResources/pastpapers/'.$_SESSION['gid']."/".$_SESSION["sid"] ?>">
                     <div class="back-btn">Back</div>
@@ -51,20 +66,6 @@ if(!empty($_SESSION['message'])) {
 
         <!-- Middle part for whole content -->
         <section class="mid-content">
-
-            <!-- Title and sub title of middle part -->
-            <div class="mid-title">
-                <h1><?php echo "Grade ".$_SESSION['gname']." - ".ucfirst($_SESSION['sname']) ?></h1>
-                <h6>My Subjects / <?php echo ucfirst($_SESSION['sname']) ?> / document / edit </h6>
-            </div>
-
-            <!-- Grade choosing interface -->
-            <div class="container-box">
-<!--                <div class="rc-resource-header">-->
-<!--                    <h1>EDIT PAPER</h1>-->
-<!--                </div>-->
-            </div>
-
             <div class="resource-tab-main">
                 <div class="resource-tab-pane">
                     <div class="tp-tab active">
@@ -94,12 +95,28 @@ if(!empty($_SESSION['message'])) {
                 else{
                     ?>
                     <div class="rc-upload-box">
-                            <div class="rc-upload-home-title">
+                            <div class="rc-upload-home-title" style="width:250px;">
                                 Edit Past Paper
                             </div>
                             <div class="rc-form-group">
-                                <label>Name </label>
-                                <label>Name </label>
+                                <label>Name : 
+                                    <span class="form-sub-info" ><?php echo $data[1]->name ?></span>
+                                </label>
+                                <label>Part : 
+                                    <span class="form-sub-info" ><?php echo $data[1]->part ?></span>
+                                </label>
+                                <label>Year : 
+                                    <span class="form-sub-info" ><?php echo $data[1]->year ?></span>
+                                </label>
+                                <label>Linked Quiz :  
+                                    <span class="form-sub-info" >
+                                        <?php if(empty($data[1]->qid)){?>
+                                            No Quiz
+                                        <?php }else{?>
+                                            <a href="<?php echo BASEURL."quizPreview/instructions/".$data[1]->qid ?>"> Go to quiz </a>
+                                        <?php } ?>
+                                    </span>
+                                </label>
                             </div>
                         </div>
                 <?php }?>
@@ -107,7 +124,7 @@ if(!empty($_SESSION['message'])) {
 
             <section class="tab-container" style="display: flex;justify-content: center;">
                 <?php
-                if(empty($data[0]->answer)){
+                if(empty($data[1]->location)){
                     echo
                     '<div style="text-align: center;font-size: x-large;color: darkred;">
                         <br>
@@ -116,86 +133,27 @@ if(!empty($_SESSION['message'])) {
                 }
                 else{
                     ?>
-                    <div class="rc-upload-box">
-                        <form action="<?php echo BASEURL.'rcEdit/editPastpaperAnswer/'.$data[0]->id ?>" method="POST" enctype="multipart/form-data" class="rc-upload-form">
-                            <div class="rc-form-group">
-                                <label>Answers PDF</label>
-                                <div>
-                                    <input id="answerInput" type="file" name="answer">
-                                    <h3>Choose document*</h3>
-                                </div>
-                                <p id="fileNameA" style="text-align:right;"><?php echo $data[0]->answer ?></p>
-                                <h5 id="fileSizeA" style="text-align:right;"></h5>
-                            </div>
-                            <div class="rc-upload-button" >
-                                <button type="submit" name="submit">Update</button>
-                            </div>
-
-                        </form>
+                    <div class="container-box" style="width:100%;">
+                        <embed src="<?php echo BASEURL?>public_resources/pastpapers/<?php echo $_SESSION['gid']."/".$_SESSION['sid']."/".$data[1]->location ?>" style="width:50%;height:70vh;margin:auto;">
                     </div>
                 <?php }?>
             </section>
-<!-- ? This is the linked quiz changing section of past paper-->
+
             <section class="tab-container" style="display: flex;justify-content: center;">
-
-                    <div style='color:gray;font-size:larger;text-align: center;margin-top: 20px;<?php echo (empty($data[0]->qid))?  "display:block;": "display:none;"?>'>
-                        No Quiz Linked to this Paper
-                        <div class="rc-upload-button rc-button-vertical" style="margin-top: 20px;">
-                            <button type="button" id="newQuizLink">Link A Quiz</button>
-<!--                            <button type="button" class="createQuiz">Go to Quizzes</button>-->
-                        </div>
-                        <form id="quiz-change-form-2"
-                              action="<?php echo BASEURL.'rcEdit/changePPQuiz/'.$data[0]->id ?>"
-                              method="POST"
-                              enctype="multipart/form-data"
-                              class="rc-upload-form"
-                              style="border: 1px solid rgba(128,128,128,0.28);padding: 10px;border-radius: 10px;display: none;"
-                        >
-
-                            <div class="rc-form-group">
-                                <label>
-                                    <select class="pp-quiz-chooser" id="quizChooser2" name="quiz_id"></select>
-                                </label>
-                                <button id="linkingBtn" type="submit" class="pp-vertical-btn" style="width: 100%;">Link the quiz</button>
-                                <button  type="button" id="quizChangeCloseBtn2"  class="pp-vertical-btn" style="width: 100%;background:rgba(144,11,11,0.09);color: darkred;">
-                                    Cancel
-                                </button>
-                            </div>
-                            <small> <u>NOTE</u> : If you want to link a new quiz.<br> <b>Go to Quizzes</b> and make a new one.<br> After that you can select it from this list</small>
-                        </form>
+                <?php
+                if(empty($data[1]->answer)){
+                    echo
+                    '<div style="text-align: center;font-size: x-large;color: darkred;">
+                        <br>
+                        You are not authorized to do this action !
+                    </div>';
+                }
+                else{
+                    ?>
+                    <div class="container-box" style="width:100%;height:max-content;">
+                        <embed src="<?php echo BASEURL?>public_resources/answers/<?php echo $_SESSION['gid']."/".$_SESSION['sid']."/".$data[1]->answer ?>" style="width:50%;height:70vh;margin:auto;">
                     </div>
-
-                <div class="rc-upload-box" style='<?php echo (!empty($data[0]->qid))?  "display:block;": "display:none;"?>'>
-                        <div class="rc-form-group">
-                            <label class="special-label">Quiz Id : <?php echo $data[0]->qid ?></label>
-                            <label class="special-label">Name : Hello</label>
-                            <label class="special-label">Marks : 100</label>
-<!--                            <a href="--><?php //echo BASEURL.'rcResources/quizzes/' ?><!--" class="pp-vertical-btn createQuiz">Go to Quizzes</a>-->
-                            <button class="pp-vertical-btn" id="quizChangeBtn">Change Linked Quiz</button>
-                            <a class="pp-vertical-btn" id="quizEditBtn" href="<?php echo BASEURL.'quiz/questions/'.$data[0]->qid ?>">Edit Quiz</a>
-                            <a class="pp-vertical-btn" id="quizUnlinkBtn" style="background:rgba(144,11,11,0.09);color: darkred;" href="<?php echo BASEURL.'rcEdit/pastPaperUnlinkQuiz/'.$data[0]->id ?>">
-                                Unlink Quiz
-                            </a>
-<!--                            <input type="text" name="title" value="--><?php //echo $data[0]->qid ?><!--"/>-->
-                        </div>
-                    <form id="quiz-change-form"
-                          action="<?php echo BASEURL.'rcEdit/changePPQuiz/'.$data[0]->id ?>"
-                          method="POST"
-                          enctype="multipart/form-data"
-                          class="rc-upload-form"
-                          style="border: 1px solid rgba(128,128,128,0.28);padding: 10px;border-radius: 10px;display: none;"
-                    >
-                        <div class="rc-form-group">
-                            <label>
-                                <select class="pp-quiz-chooser" id="quizChooser" name="quiz_id"></select>
-                            </label>
-                            <button id="linkingBtn" type="submit" class="pp-vertical-btn" style="width: 100%;">Link the quiz</button>
-                            <button  type="button" id="quizChangeCloseBtn"  class="pp-vertical-btn" style="width: 100%;background:rgba(144,11,11,0.09);color: darkred;">
-                                Cancel
-                            </button>
-                        </div>
-                    </form>
-                </div>
+                <?php }?>
             </section>
 
     </div>
@@ -207,9 +165,9 @@ if(!empty($_SESSION['message'])) {
 
 <script>
     const BASEURL = "<?php echo BASEURL ?>";
-    const paperId = <?php echo $data[0]->id ?>;
-    let quizId = <?php echo (isset($data[0]->qid))?$data[0]->qid:0 ?> ;
+    // const paperId = <?php // echo $data[0]->id ?>;
+    // let quizId = <?php // echo (isset($data[0]->qid))?$data[0]->qid:0 ?> ;
 </script>
-<script src="<?php echo BASEURL.'javascripts/rc_editPastpaper.js' ?>"></script>
+<script src="<?php echo BASEURL.'javascripts/rc_viewPastpaper.js' ?>"></script>
 
 </html>

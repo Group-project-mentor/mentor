@@ -290,6 +290,14 @@ class ResourceModel extends Model
         return ($this->executeQuery($sql));
     }
 
+    public function updatePaper($id, $title, $year, $part, $location){
+        $stmt1 = $this->prepare("UPDATE pastpaper p SET p.name = ?, p.year = ?, p.part = ? WHERE p.id = ?");
+        $stmt1->bind_param('siii',$title,$year,$part,$id);
+        $stmt2 = $this->prepare("UPDATE public_resource p SET p.location = ? WHERE p.id = ?");
+        $stmt2->bind_param('si',$location,$id);
+        return ($this->executePrepared($stmt1) && $this->executePrepared($stmt2));
+    }
+
 
 //? get the saved filename of a specific resource
     public function getLocation($id){

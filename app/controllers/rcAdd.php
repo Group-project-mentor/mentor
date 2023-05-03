@@ -70,7 +70,7 @@ class RcAdd extends Controller
             $fileName = $_FILES['resource']['name'];
             $tmp_name = $_FILES['resource']['tmp_name'];
 //            $extension = pathinfo($fileName, PATHINFO_EXTENSION);
-            $newFileName = uniqid().$fileName;
+            $newFileName = uniqid().sanitizeFileName($fileName);
             $fileDest = "public_resources/temp/" . $newFileName;
             if (move_uploaded_file($tmp_name, $fileDest)) {
                 if(!empty($_SESSION['temporary_file'])){
@@ -130,7 +130,7 @@ class RcAdd extends Controller
                 // if($fileData["size"] > $maxFileSize) die("Error: File size is larger than the allowed limit.");
                 $nameId = $this->getId();
                 if (in_array($fileData['type'], $typeArray)) {
-                    $newFileName = uniqid() . $_POST["title"] . "." . $extention;
+                    $newFileName = uniqid() . sanitizeFileName($_POST["title"]) . "." . $extention;
                     if (saveFile($_FILES["resource"]["tmp_name"],$newFileName,"documents",$_SESSION['gid'],$_SESSION['sid'])) {
                         if ($this->model("resourceModel")->addDocument($nameId, $grade, $subject, sanitizeText($_POST["title"]), $newFileName,$_SESSION['id'])) {
                             flashMessage("success");
@@ -173,7 +173,7 @@ class RcAdd extends Controller
 
                 $nameId = $this->getId();
                 // if(in_array($fileData['type'],$typeArray)){
-                $newFileName = uniqid() . $_POST["title"] . "." . $extention;
+                $newFileName = uniqid() . sanitizeFileName($_POST["title"]) . "." . $extention;
                 if (saveFile($_FILES["resource"]["tmp_name"],$newFileName,"others",$_SESSION['gid'],$_SESSION['sid'])) {
                     if ($this->model("resourceModel")->addOther($nameId, $grade, $subject, sanitizeText($_POST["title"]), $newFileName, $extention,$_SESSION['id'])) {
                         flashMessage("success");
@@ -230,7 +230,7 @@ class RcAdd extends Controller
                         flashMessage("error");
                         header("location:" . BASEURL . "rcAdd/pastpaper");
                     }
-                    $newAnsName = uniqid().$_POST['name']."." . $extention;
+                    $newAnsName = uniqid().sanitizeFileName($_POST['name'])."." . $extention;
                     if(saveFile($_FILES["answer"]["tmp_name"], $newAnsName, "answers", $_SESSION['gid'], $_SESSION['sid'])){
                         $ansStatus = true;
                     }

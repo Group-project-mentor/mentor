@@ -65,3 +65,10 @@ function nFirstChars($text, $length)
         return $text;
     }
 }
+
+function sanitizeFileName($name){
+    $skip_array = array('/', '\\', ':','*','\"','<','>','|');
+    $text = str_replace($skip_array, '', $name);
+    $text = str_replace(' ', '_', $name);
+    return $text;
+}

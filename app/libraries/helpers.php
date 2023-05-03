@@ -132,21 +132,21 @@ function deleteFile($fileName, $type, $folder1=null, $folder2=null):bool
     if($folder1!=null){
         if ($folder2 != null){
             $fileDest = $fileDest.$folder1."/".$folder2."/".$fileName;
-            if(!file_exists($fileDest)){
+            if(file_exists($fileDest)){
                 return unlink($fileDest);
             }else{
                 return false;
             }
         }
         $fileDest = $fileDest.$folder1."/".$fileName;
-        if(!file_exists($fileDest)){
+        if(file_exists($fileDest)){
             return unlink($fileDest);
         }else{
             return false;
         }
     }
     $fileDest = $fileDest.$fileName;
-    if(!file_exists($fileDest)){
+    if(file_exists($fileDest)){
         return unlink($fileDest);
     }else{
         return false;

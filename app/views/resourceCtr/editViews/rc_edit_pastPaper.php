@@ -94,7 +94,7 @@ if(!empty($_SESSION['message'])) {
                 else{
                     ?>
                     <div class="rc-upload-box">
-                        <form action="<?php echo BASEURL.'rcEdit/editDocument/'.$data[0]->id ?>" method="POST" enctype="multipart/form-data" class="rc-upload-form">
+                        <form action="<?php echo BASEURL.'rcEdit/editPastpaper/'.$data[0]->id ?>" method="POST" enctype="multipart/form-data" class="rc-upload-form">
                             <div class="rc-upload-home-title">
                                 Edit Past Paper
                             </div>
@@ -104,16 +104,16 @@ if(!empty($_SESSION['message'])) {
                             </div>
                             <div class="rc-form-group">
                                 <label>Year </label>
-                                <input type="text" name="title" value="<?php echo $data[0]->year ?>"/>
+                                <input type="text" name="year" value="<?php echo $data[0]->year ?>"/>
                             </div>
                             <div class="rc-form-group">
                                 <label>Part </label>
-                                <input type="text" name="title" value="<?php echo $data[0]->part ?>"/>
+                                <input type="text" name="part" value="<?php echo $data[0]->part ?>"/>
                             </div>
                             <div class="rc-form-group">
                                 <label>Paper</label>
                                 <div>
-                                    <input id="inputBtn" type="file" name="resource">
+                                    <input id="inputBtn" type="file" name="paper">
                                     <h3>Choose document</h3>
                                 </div>
                                 <p id="fileName" style="text-align:right;"><?php echo $data[0]->location ?></p>
