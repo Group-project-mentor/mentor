@@ -7,11 +7,6 @@ class St_report_main extends Controller
         sessionValidator();
     }
 
-    public function st_report_text()
-    {
-        $this->view('student/report/st_report_text');
-    }
-
     public function index()
     {
         $result = $this->model("st_reportIssue")->getReportTypes($_SESSION['usertype']);

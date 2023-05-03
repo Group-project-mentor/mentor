@@ -43,7 +43,7 @@
               <div class="card">
                 <div class="content">
                   <div class="imgBx">
-                    <img src="<?php echo BASEURL ?>public/assets/Teacher/clips/customer.gif" alt="notify">
+                    <img src="<?php echo BASEURL ?>public/assets/Teacher/clips/globe.gif" alt="notify">
                   </div>
                   <div class="contentBx">
                     <h3>No limit for adding Students<br></h3>
@@ -60,7 +60,7 @@
               <div class="card">
                 <div class="content">
                   <div class="imgBx">
-                    <img src="<?php echo BASEURL ?>public/assets/Teacher/clips/connection.gif" alt="notify">
+                    <img src="<?php echo BASEURL ?>public/assets/Teacher/clips/infinity.gif" alt="notify">
                   </div>
                   <div class="contentBx">
                     <h3>No limit for creating classes<br></h3>
@@ -77,7 +77,7 @@
               <div class="card">
                 <div class="content">
                   <div class="imgBx">
-                    <img src="<?php echo BASEURL ?>public/assets/Teacher/clips/tconnect.gif" alt="notify">
+                    <img src="<?php echo BASEURL ?>public/assets/Teacher/clips/prem1.gif" alt="notify">
                   </div>
                   <div class="contentBx">
                     <h3>No limit for adding Teachers <br></h3>
@@ -93,10 +93,10 @@
               </div>
             </div>
             <div class="amount">
-              You only have to pay ***$ for Month.
+              <h1><br>You only have to pay RS.10 000 for a Year.</h1>
             </div><br><br>
-            <div class="button-container" id="payhere-payment">
-              <button id=buy class="buy-button">Buy</button>
+            <div class="button-container" >
+              <button id=payhere-payment class="buy-button">Buy</button>
             </div>
 
           </section>
@@ -107,7 +107,7 @@
           const TEMP_URL = '<?php echo $_ENV['TEMP_URL'] ?>';
           const MERCHID = '<?php echo $_ENV['MERCHANT_ID'] ?>';
 
-          const amount = 4000;
+          const amount = 10000;
           let total = amount;
           let buyBtn = document.getElementById("buy");
 
@@ -133,6 +133,7 @@
           // Put the payment variables here
           let payment = {
             "sandbox": true,
+            "custom_1": `unknown`,
             "merchant_id": MERCHID,
             "return_url": undefined,
             "cancel_url": undefined,
@@ -150,8 +151,6 @@
             "city": "unknown",
             "country": "",
             "custom_2":"",
-            "recurrence": "6 Months",
-            "duration":"1 Year",
           };
 
           const getHash = (ordId, amount, currency) => {
@@ -165,19 +164,6 @@
             }
           }
 
-          const setPaymetDetails = () => {
-            let formData = new FormData(document.getElementById('paymentForm'));
-
-            payment.items = "Buy Premium";
-            payment.email = formData.get('email');
-            payment.country = formData.get('country');
-            payment.amount = amount ;
-            payment.custom_2 = formData.get('email');
-
-            payment.hash = getHash(payment.order_id, payment.amount, payment.currency);
-
-            // console.log(payment);
-          }
           // console.log(getHash('o12345',1000,'LKR'))
 
 

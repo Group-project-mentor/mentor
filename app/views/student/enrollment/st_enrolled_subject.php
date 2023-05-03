@@ -37,13 +37,14 @@
                     </a>
                 </div>
             </section>
-
+            <hr style="color: green; height:7px; background-color:green;">
             <!-- Middle part for whole content -->
             <section class="mid-content">
 
                 <!-- Title and sub title of middle part -->
                 <div class="mid-title">
-                    <h2>Enrolled Subjects</h2>
+                    <h2>Hello <?php echo $_SESSION['name'] ?> !</h2>
+                    <h3>Enrolled Subjects</h3>
                 </div>
 
 
@@ -54,7 +55,7 @@
                             <?php foreach ($data[0] as $row) { ?>
                                 <div class="subject-card">
                                     <img src="<?php echo BASEURL  ?>assets/patterns/1.png" alt="" />
-                                    <a href="#"><label><?php echo $row->name ?></label></a>
+                                    <label><?php echo $row->name ?></label>
                                     <label>Grade <?php echo $_SESSION['gid'] + 5 ?></label>
                                     <a href="<?php echo BASEURL . 'St_public_resources/index/' . $_SESSION['gid'] . '/' . $row->id . '/' .$row->name  ?>"><label>View</label></a>
                                 </div>

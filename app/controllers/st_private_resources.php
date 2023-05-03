@@ -114,25 +114,25 @@ class St_private_resources extends Controller
     {
         switch ($type) {
             case 'document':
-                $file = $this->model("St_private_resources_model")->getResource($id, $_SESSION['gid'], $_SESSION['sid'], 'pdf');
-                $this->view("student/enrollment/st_document_do", $file);
+                $file = $this->model("St_private_resources_model")->getResource($id, 'pdf');
+                $this->view("student/enrollment_private/st_document_do", array($file));
                 break;
             case 'others':
-                $file = $this->model("St_private_resources_model")->getResource($id, $_SESSION['gid'], $_SESSION['sid'], 'other');
-                $this->view("student/enrollment/st_other_do", $file);
+                $file = $this->model("St_private_resources_model")->getResource($id, 'other');
+                $this->view("student/enrollment_private/st_other_do", array($file));
                 break;
             case 'paper':
-                $file = $this->model("St_private_resources_model")->getResource($id, $_SESSION['gid'], $_SESSION['sid'], 'paper');
-                $this->view("student/enrollment/st_pastpaper_do", $file);
+                $file = $this->model("St_private_resources_model")->getResource($id, 'paper');
+                $this->view("student/enrollment_private/st_pastpaper_do", array($file));
                 break;
             case 'video':
-                $file = $this->model("St_private_resources_model")->getResource($id, $_SESSION['gid'], $_SESSION['sid'], 'video');
+                $file = $this->model("St_private_resources_model")->getResource($id, 'video');
 
-                $resourceData = $this->model("St_private_resources_model")->getVideo($id, $_SESSION['sid'], $_SESSION['gid']);
+                $resourceData = $this->model("St_private_resources_model")->getVideo($id);
                 //var_dump($resourceData);
                 if ($resourceData->type === "L")
                     $resourceData->link = $this->filterVideoId($resourceData->link);
-                $this->view("student/enrollment/st_video_play", array($file, $resourceData));
+                $this->view("student/enrollment_private/st_video_play", array($file, $resourceData));
                 break;
         }
     }

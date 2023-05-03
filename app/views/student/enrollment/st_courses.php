@@ -22,10 +22,7 @@
             <!-- Top bar -->
             <section class="top-bar">
                 <div class="search-bar">
-                    <input type="text" name="" id="" placeholder="Search...">
-                    <a href="">
-                        <img src="<?php echo BASEURL  ?>assets/icons/icon_search.png" alt="">
-                    </a>
+
                 </div>
                 <div class="top-bar-btns">
                     <a href="#">
@@ -37,22 +34,20 @@
                     </a>
                 </div>
             </section>
-
             <!-- Middle part for whole content -->
             <section class="mid-content">
-
                 <!-- Title and sub title of middle part -->
                 <div class="mid-title">
-                    <h1>Subjects</h1>
-                    <h2>Grade <?php echo $_SESSION['gid']+5 ?></h2>
-                    <h6>Hello ! Welcome To Your Page</h6>
+                    <h2>Hello <?php echo $_SESSION['name'] ?> !</h2>
+                    <h6>Welcome To Your Page</h6>
                 </div>
 
 
                 <!-- subject cards -->
                 <div class="container-box">
                     <div>
-                        <h2>Enrolled Subjects</h2>
+
+                        <h2>Grade <?php echo $_SESSION['gid'] + 5 ?> - Enrolled Subjects</h2>
                         <a class="see-all-btn" href="<?php echo BASEURL . 'st_courses/Enroll_subject_all/' . $_SESSION['gid']  ?>" style="text-decoration: none; ">See All</a>
                     </div>
 
@@ -64,7 +59,7 @@
                                 <div class="subject-card">
                                     <img src="<?php echo BASEURL  ?>assets/patterns/1.png" alt="" />
                                     <label><?php echo $row->name ?></label>
-                                    <label>Grade <?php echo $_SESSION['gid']+5 ?></label>
+                                    <label>Grade <?php echo $_SESSION['gid'] + 5 ?></label>
                                 </div>
                             <?php } ?>
                         </div>
@@ -78,7 +73,7 @@
                         <br><br>
                 </div>
                 <div>
-                    <h2>Subject to Enrolled</h2>
+                    <h2>Grade <?php echo $_SESSION['gid'] + 5 ?> - Subject to Enrolled</h2>
                     <a class="see-all-btn" href="<?php echo BASEURL . 'st_courses/Subject_to_Enroll_all/' . $_SESSION['gid']  ?>" style="text-decoration: none;">See All</a>
                 </div>
                 <?php if (!empty($data[0])) { ?>

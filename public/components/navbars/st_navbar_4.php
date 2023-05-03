@@ -28,25 +28,29 @@
 
     <!-- Navigation buttons -->
     <div class="nav-links">
-        <a href="<?php BASEURL ?>st_profile" class="nav-link">
-            <img class="active" src="<?php echo BASEURL ?>public/assets/icons/icon_class.png" alt="home">
+        <a href="<?php BASEURL ?>st_private_mode" class="nav-link">
+            <img  src="<?php echo BASEURL ?>public/assets/icons/icon_resources.png" alt="home">
             <div class="nav-link-text">Classes</div>
         </a>
         <a href="<?php BASEURL ?>st_report_main" class="nav-link">
             <img src="<?php echo BASEURL ?>public/assets/icons/icon_report.png" alt="profile">
             <div class="nav-link-text">Report Issue</div>
         </a>
-        <a href="<?php BASEURL ?>st_billing" class="nav-link">
-            <img src="<?php echo BASEURL ?>public/assets/icons/icon_billing.png" alt="report">
-            <div class="nav-link-text">Billing</div>
-        </a>
         <a href="<?php BASEURL ?>home/bmc" class="nav-link">
             <img src="<?php echo BASEURL ?>public/assets/icons/icon_bmc.png" alt="bmc">
             <div class="nav-link-text">Buy me a coffee</div>
         </a>
+        <a href="<?php BASEURL ?>st_billing" class="nav-link">
+            <img src="<?php echo BASEURL ?>public/assets/icons/icon_billing.png" alt="report">
+            <div class="nav-link-text">Billing</div>
+        </a>
         <a href="<?php BASEURL ?>st_profile/Scholarship_page1" class="nav-link">
             <img src="<?php echo BASEURL ?>public/assets/icons/Scholarship.png" alt="bmc">
             <div class="nav-link-text">Get scholarship</div>
+        </a>
+        <a href="#" class="nav-link">
+            <img src="<?php echo BASEURL ?>public/assets/icons/generate_report.png" alt="bmc">
+            <div class="nav-link-text">Generate Report</div>
         </a>
     </div>
 

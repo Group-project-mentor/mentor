@@ -33,7 +33,17 @@ class TClassMembers extends Controller{
         $res1 = $this->model('teacher_data')->getStudents($class_id);
         $res2 = $this->model('teacher_data')->getTeachers($class_id);
         $res3 = $this->model('teacher_data')->getHostTeacher($class_id);
-        $this->view('Teacher/classMembers/membersDetails',array($res1,$res2,$res3));
+        
+        $premium=($this->model("premiumModel")->getPremium($_SESSION['id'])->active);
+        
+        if($premium==1)
+        {
+            $this->view('Teacher/classMembers/membersDetails',array($res1,$res2,$res3));
+        }
+        else
+        {
+            $this->view('Teacher/classMembers/memberDetailsFree',array($res1,$res2,$res3));
+        }
         
     }
 

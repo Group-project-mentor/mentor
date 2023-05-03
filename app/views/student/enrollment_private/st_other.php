@@ -73,7 +73,7 @@
                                     </div>
                                     <div class="rc-resource-col"></div>
                                     <div class="rc-quiz-row-btns">
-                                        <a href="<?php echo BASEURL . 'st_public_resources/preview/others/' . $row->id ?>">
+                                        <a href="<?php echo BASEURL . 'st_private_resources/preview/others/' . $row->class_id ?>">
                                             <img src="<?php echo BASEURL ?>assets/icons/icon_eye.png" alt="">
                                         </a>
                                     </div>
