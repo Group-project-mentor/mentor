@@ -53,6 +53,9 @@ submit.addEventListener("click", () => {
                 } else {
                     makeError("Error Occured !");
                 }
+                setTimeout(() => {
+                    location.reload();
+                }, 2000);
             }else{
                 makeError("Error Occured !");
             }

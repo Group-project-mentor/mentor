@@ -86,6 +86,7 @@ class RcProfile extends Controller
         }
     }
 
+    // ! Not using now
     public function changeImage()
     {
         if (isset($_POST['image'])) {
@@ -111,6 +112,7 @@ class RcProfile extends Controller
                 if(empty($image) or $image == ""){
                     if (move_uploaded_file($_FILES["image"]["tmp_name"], "data/profiles/" . $newFileName)) {
                         if($this->model("userModel")->changeImg($_SESSION['id'],$newFileName)){
+                            $_SESSION['profilePic'] = $newFileName; 
                             echo "success";
                         }else{
                             echo "failed";
@@ -119,13 +121,22 @@ class RcProfile extends Controller
                         echo "failed";
                     }
                 }else{
-                    if (move_uploaded_file($_FILES["image"]["tmp_name"], "data/profiles/" . $newFileName) and unlink("data/profiles/".$image)) {
+                    if (move_uploaded_file($_FILES["image"]["tmp_name"], "data/profiles/" . $newFileName) and file_exists("data/profiles/".$image) and unlink("data/profiles/".$image)) {
                         if($this->model("userModel")->changeImg($_SESSION['id'],$newFileName)){
+                            $_SESSION['profilePic'] = $newFileName; 
                             echo "success";
                         }else{
                             echo "failed";
                         }
-                    } else {
+                    }elseif(!file_exists("data/profiles/".$image)){
+                        if($this->model("userModel")->changeImg($_SESSION['id'],$newFileName)){
+                            $_SESSION['profilePic'] = $newFileName; 
+                            echo "success";
+                        }else{
+                            echo "failed";
+                        }
+                    }
+                     else {
                         echo "failed";
                     }
                 }

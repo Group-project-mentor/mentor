@@ -42,7 +42,7 @@ elseif (!empty($_SESSION['message'])) {
                 </a>
                 <?php include_once "components/notificationIcon.php" ?>
                 <a href="<?php echo BASEURL . 'sponsor/profile' ?>">
-                    <img src="<?php echo BASEURL ?>assets/icons/icon_profile_black.png" alt="profile">
+                        <?php include_once "components/profilePic.php"?>
                 </a>
             </div>
         </section>
@@ -69,7 +69,7 @@ elseif (!empty($_SESSION['message'])) {
             <div class="rc-profile">
                 <div class="rc-profile-main">
                     <a class="rc-profile-image" href="<?php echo BASEURL ?>sponsor/editProfile/image">
-                        <img src="<?php echo (!empty($data[0]->image)) ? $data[0]->image : BASEURL . "assets/clips/profile_img.webp" ?>"
+                        <img src="<?php echo (!empty($data[0]->image)) ? BASEURL . "data/profiles/".$data[0]->image : BASEURL . "assets/clips/profile_img.webp" ?>"
                              alt="profile"
                              id="profileImg"
                              style="object-fit: cover;"/>

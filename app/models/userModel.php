@@ -40,6 +40,7 @@ class UserModel extends Model
         return $this->fetchOneObj($stmt);
     }
 
+
     public function getSponsorData($id)
     {
         $query = "SELECT user.id,name,email,image,dispName,description,mobileNo FROM user LEFT JOIN sponsor ON sponsor.id =user.id WHERE user.id=?;";

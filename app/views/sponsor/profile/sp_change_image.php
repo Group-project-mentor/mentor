@@ -13,6 +13,7 @@
 
 <body>
     <section class="page">
+        <?php include_once "components/alerts/rightAlert.php"?>
 
         <!-- Navigation panel -->
         <?php include_once "components/navbars/rc_nav_1.php"?>
@@ -29,8 +30,8 @@
                         <div class="back-btn">Back</div>
                     </a>
                     <?php include_once "components/notificationIcon.php" ?>
-                    <a href="<?php echo BASEURL . 'rcProfile' ?>">
-                        <img src="<?php echo BASEURL ?>assets/icons/icon_profile_black.png" alt="profile">
+                    <a href="<?php echo BASEURL . 'sponsor/profile' ?>">
+                        <?php include_once "components/profilePic.php"?>
                     </a>
                 </div>
             </section>
@@ -45,7 +46,7 @@
 
                 <form class="rc-profile rc-profile-change">
                     <div class="rc-profile-change-img">
-                        <img id="profImg" src="<?php echo (!empty($data[0])) ? $data[0] : BASEURL."assets/clips/profile_img.webp" ?>" alt="profile image">
+                        <img id="profImg" src="<?php echo (!empty($data[0])) ? BASEURL."data/profiles/".$data[0] : BASEURL."assets/clips/profile_img.webp" ?>" alt="profile image">
                     </div>
 
                     <!-- todo: want to do the functionality and style -->
@@ -60,7 +61,9 @@
         </div>
     </section>
 </body>
-
+<script>
+    const BASEURL = "<?php echo BASEURL ?>";
+</script>
 <script src="<?php echo BASEURL . '/public/javascripts/sp_change_profile.js' ?>"></script>
 
 </html>
