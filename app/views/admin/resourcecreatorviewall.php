@@ -5,10 +5,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>complaints</title>
-    <link rel="stylesheet" href="<?php echo BASEURL ?>stylesheets/admin/ad_complaints.css">
+    <title>login</title>
+    <link rel="stylesheet" href="<?php echo BASEURL ?>stylesheets/admin/ad_complaintHandle.css">
     <link rel="stylesheet" href="<?php echo BASEURL ?>stylesheets/admin/style.css">
-
 </head>
 <nav>
     <div class="ad_nav">
@@ -18,39 +17,50 @@
 
 <body>
     <?php require_once("C:/xampp/htdocs/mentor/app/views/admin/navbar.php"); ?>
-            <!-- Middle part for whole content -->
-            <section class="mid-content ad_mid-content">
+    <!-- Middle part for whole content -->
+    <section class="mid-content ad_mid-content">
 
-                <!-- Title and sub title of middle part -->
-                <div class="mid-title">
-                    <h1>Add members to your Team</h1>
-                </div>
-
-                <div class="content" id="comp-content" >
-                    <div class="bckclose">
-                        <img class="back" src="<?php echo BASEURL ?>assets/admin/Arrow---Left.png">
-                        <img class="close" src="<?php echo BASEURL ?>assets/admin/Close-Square.png">
-                    </div>
-                    <div class="complaints" id="com-complaints">
-                        <div class="pp">
-                            <img class="profile" src="<?php echo BASEURL ?>assets/admin/pp.png">
-                        </div>
-                        <div class="name">
-                            <p>Jaydon Aminoff</p>
-                        </div>
-                    </div>
-                    <div id="com-title">
-                        <h1>Title goes here</h1>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente expedita fugit culpa optio accusantium mollitia eius deserunt architecto, sit minus maxime minima eos quidem quam nesciunt non veritatis, eum dolores!</p>
-                    </div>
-                    <div class="btns">
-                        <button class="comp-btns">Add to your Team</button>
-                           
-                    </div>
-                </div>
-                
-            </section>
+        <!-- Title and sub title of middle part -->
+        <div class="mid-title">
+            <h1>Resource Creators</h1> 
         </div>
+
+        <div class="content">
+            <?php
+            foreach ($data['rc'] as $value) {
+                echo '<div class="content">
+                            <div class="complaints">
+                                <div class="pp">
+                                    <img class="profile" src="' . BASEURL . 'assets/admin/pp.png">
+                                </div>
+                                <div class="name" id="user-name">
+                                    <p>' . $value['name'] . '</p>
+                                </div>
+                                <div class="userid" id="user-id">
+                                    <p>' . $value['id'] . '</p>
+                                </div>
+                                <div class="description" id="user-description">
+                                    <p>' . $value['discription'] . '</p>
+                        </div>
+                        <div class="icons">
+                            <div class="view">
+                                <a href="'. BASEURL .'admins/scholorshipview/' . $value['id'] . '?id=' . $value['id'] .'"><img src="'. BASEURL .'assets/admin/view.png"></a>
+                            </div>
+                            <div class="addtm">
+                                <button class="comp-btns" type="button"><img src="'. BASEURL .'assets/admin/addtm.png"></button>
+                            </div>
+                            <div class="delete">
+                                <a href="'. BASEURL .'#"><img src="'. BASEURL .'assets/admin/Delete.png"></a>
+                            </div>
+                        </div>
+                            </div>
+                        </div>';
+            }
+            ?>
+            
+        </div>
+    </section>
+    </div>
     </section>
     <?php require_once("C:/xampp/htdocs/mentor/app/views/admin/popup.php"); ?>
 </body>
@@ -87,7 +97,6 @@
             toggle = true;
         }
     })
-
 
     const profileBtn = document.getElementById("profile-btn");
     const popupMenu = document.getElementById("popup-menu")
