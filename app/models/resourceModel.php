@@ -164,9 +164,7 @@ class ResourceModel extends Model
         $stmt = $this->prepare('select public_resource.id, public_resource.type, public_resource.location from public_resource,rs_subject_grade 
         where public_resource.id = rs_subject_grade.rsrc_id AND public_resource.id = ? AND rs_subject_grade.subject_id =? 
           AND rs_subject_grade.grade_id =? AND type = ?');
-//        $stmt = $this->prepare('select public_resource.id, public_resource.type, public_resource.location from public_resource
-//        inner join rs_subject_grade on public_resource.id = rs_subject_grade.rsrc_id
-//        where public_resource.id = ? and rs_subject_grade.subject_id =? and rs_subject_grade.grade_id =? and type = ?');
+
         $stmt->bind_param('iiis',$id,$sid,$gid,$type);
         return $this->fetchOneObj($stmt);
     }
@@ -273,6 +271,12 @@ class ResourceModel extends Model
         $sql1 = "update public_resource set public_resource.location = '$file' where public_resource.id = $id";
         $sql2 = "update document set document.name = '$title' where document.id = $id";
         return ($this->executeQuery($sql1) && $this->executeQuery($sql2));
+    }
+
+    public function updatePastpaperAnswer($id, $file){
+        $stmt = $this->prepare("update pastpaper p set p.answer = ? where p.id = ?");
+        $stmt->bind_param('si',$file,$id);
+        return $this->executePrepared($stmt);
     }
 
     public function updateOther($id, $title, $file, $type){

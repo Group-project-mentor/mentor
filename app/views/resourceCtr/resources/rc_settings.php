@@ -22,16 +22,10 @@
 
         <!-- Top bar -->
         <section class="top-bar">
-            <div class="search-bar">
-                <input type="text" name="" id="" placeholder="Search...">
-                <a href="#">
-                    <img src="<?php echo BASEURL ?>assets/icons/icon_search.png" alt="">
-                </a>
-            </div>
-            <div class="top-bar-btns">
                 <a href="<?php echo BASEURL . 'rcSubjects' ?>">
                     <div class="back-btn">Back</div>
                 </a>
+            <div class="top-bar-btns">
                 <?php include_once "components/notificationIcon.php" ?>
                 <a href="<?php echo BASEURL . 'rcProfile' ?>">
                     <img src="<?php echo BASEURL?>assets/icons/icon_profile_black.png" alt="profile">

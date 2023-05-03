@@ -55,3 +55,13 @@ function validateCSText($txt)
         return false;
     }
 }
+
+function nFirstChars($text, $length)
+{
+    if(strlen($text) > $length){
+        return substr($text, 0, $length-1);
+    }
+    else{
+        return $text;
+    }
+}

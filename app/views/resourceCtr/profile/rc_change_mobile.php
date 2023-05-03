@@ -30,11 +30,12 @@
 
 <body>
 
-    <?php
-    if (!empty($data[1]) && $data[1] == "failed") {
-        include_once "components/alerts/data_change_failed.php";
-    } 
-    ?>
+<?php
+    if (!empty($_SESSION['message']) && $_SESSION['message'] == "failed") {
+        $message = "Data Update Failed";
+        include_once "components/alerts/operationFailed.php";
+    }
+?>
 
     <section class="page">
 
@@ -69,7 +70,7 @@
 
                 <form class="rc-profile rc-profile-change-name" method="POST" action="<?php echo BASEURL ?>rcProfile/changeMobile">
                     <div class="rc-text-inp-grp">
-                        <label for="password" class="lbl-input">Mobile no: </label><br>
+                        <label for="mobile" class="lbl-input">Mobile no: </label><br>
                         <input  type="text"
                                 class="txt-input"
                                 placeholder="New Mobile Number"

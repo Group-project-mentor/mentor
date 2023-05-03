@@ -14,10 +14,14 @@
 
 <body>
 
-    <?php
-if (!empty($data[1]) && $data[1] == "success") {
-    include_once "components/alerts/password_changed.php";
-}
+<?php
+    if (!empty($_SESSION['message']) && $_SESSION['message'] == "success") {
+        $message = "Data Updated Successfully";
+        include_once "components/alerts/operationSuccess.php";
+    }elseif (!empty($_SESSION['message']) && $_SESSION['message'] == "failed") {
+        $message = "Data Update Failed";
+        include_once "components/alerts/operationFailed.php";
+    }
 ?>
 
     <section class="page">
@@ -62,7 +66,7 @@ if (!empty($data[1]) && $data[1] == "success") {
                 <div class="rc-profile">
                     <div class="rc-profile-main">
                         <a class="rc-profile-image" href="<?php echo BASEURL ?>rcProfile/change/image">
-                            <img src="<?php echo (!empty($data[0]->image)) ? $data[0]->image : BASEURL . "assets/clips/profile_img.webp" ?>"
+                            <img src="<?php echo (!empty($data[0]->image)) ? BASEURL . "data/profiles/".$data[0]->image : BASEURL . "assets/clips/profile_img.webp" ?>"
                                  alt="profile"
                                  id="profileImg"
                                  style="object-fit: cover;"/>

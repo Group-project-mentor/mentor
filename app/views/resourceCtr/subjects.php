@@ -98,7 +98,7 @@ if (!isset($_SESSION['user'])) {
                                         <label class="subject-card-texts">Grade <?php echo $row->gname ?> </label>
                                     </div>
 
-                                    <a href='<?php echo BASEURL . "rcResources/videos/" . $row->gid . "/" . $row->sid ?>'>
+                                    <a href='<?php echo BASEURL . "rcResources/organized/" . $row->gid . "/" . $row->sid ?>'>
                                         <label>Enter</label>
                                         <img src='<?php echo BASEURL ?>assets/icons/icon-enter.png' alt='' />
                                     </a>

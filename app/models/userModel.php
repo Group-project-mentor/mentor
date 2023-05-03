@@ -98,9 +98,10 @@ class UserModel extends Model
 
     public function updateMobile($mobile, $id, $type = null)
     {
-        $query = "update resource_creator set mobile_no = '$mobile' where id=$id";
         if ($type == "sponsor"){
             $query = "update sponsor set mobileNo = '$mobile' where id=$id";
+        }else{
+            $query = "update resource_creator set mobile_no = '$mobile' where id=$id";
         }
         return $this->executeQuery($query);
     }
@@ -127,7 +128,7 @@ class UserModel extends Model
 
     public function changeImg($id, $img)
     {
-        $query = "update user set image = '$img' where id = '$id'";
+        $query = "update user set image = '$img' where id = $id";
         return $this->executeQuery($query);
     }
 

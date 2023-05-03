@@ -87,7 +87,7 @@
                                                 <img src='<?php echo BASEURL ?>assets/icons/icon_edit.png' alt=''>
                                             </a>
                                             <?php } ?>
-                                            <a>
+                                            <a href='<?php echo BASEURL."rcResources/preview/pastpaper/".$row->id ?>'>
                                                 <img src='<?php echo BASEURL ?>assets/icons/icon_eye.png' alt=''>
                                             </a>
                                         </div>

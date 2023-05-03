@@ -12,10 +12,19 @@
 </head>
 
 <body>
+
+<?php
+    if (!empty($_SESSION['message']) && $_SESSION['message'] == "failed") {
+        $message = "Data Update Failed";
+        include_once "components/alerts/operationFailed.php";
+    }
+?>
     <section class="page">
 
+        <?php include_once "components/alerts/rightAlert.php"?>
         <!-- Navigation panel -->
         <?php include_once "components/navbars/rc_nav_1.php"?>
+
 
         <!-- Right side container -->
         <div class="content-area">
@@ -45,7 +54,7 @@
 
                 <form class="rc-profile rc-profile-change">
                     <div class="rc-profile-change-img">
-                        <img id="profImg" src="<?php echo (!empty($data[0])) ? $data[0] : BASEURL."assets/clips/profile_img.webp" ?>" alt="profile image">
+                        <img id="profImg" src="<?php echo (!empty($data[0])) ? BASEURL."data/profiles/".$data[0] : BASEURL."assets/clips/profile_img.webp" ?>" alt="profile image">
                     </div>
 
                     <!-- todo: want to do the functionality and style -->
@@ -60,7 +69,9 @@
         </div>
     </section>
 </body>
-
+<script>
+    const BASEURL = "<?php echo BASEURL ?>";
+</script>
 <script src="<?php echo BASEURL . '/public/javascripts/rc_change_profile.js' ?>"></script>
 
 </html>

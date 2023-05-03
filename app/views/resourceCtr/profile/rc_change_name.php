@@ -30,11 +30,12 @@
 
 <body>
 
-    <?php
-    if (!empty($data) && $data == "failed") {
-        include_once "components/alerts/data_change_failed.php";
+<?php
+    if (!empty($_SESSION['message']) && $_SESSION['message'] == "failed") {
+        $message = "Data Update Failed";
+        include_once "components/alerts/operationFailed.php";
     }
-    ?>
+?>
     
     <section class="page">
 

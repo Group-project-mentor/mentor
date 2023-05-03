@@ -236,6 +236,41 @@ class RcEdit extends Controller
         header("location:" . BASEURL . "rcEdit/other/$id");
     }
 
+    public function editPastpaperAnswer($id){
+        // $maxFileSize = 50*1024*1024;
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            if (isset($_FILES["answer"]) && $_FILES["answer"]["error"] == 0) {
+                $typeArray = array("pdf" => "application/pdf");
+                $fileData = array("name" => $_FILES["answer"]["name"],
+                    "type" => $_FILES["answer"]["type"],
+                    "size" => $_FILES["answer"]["size"]);
+                $extention = pathinfo($fileData["name"], PATHINFO_EXTENSION);
+                if (!array_key_exists($extention, $typeArray)) {
+                    flashMessage("failed");
+                    header("location:" . BASEURL . "rcEdit/document/$id");
+                }
+
+                // if($fileData["size"] > $maxFileSize) die("Error: File size is larger than the allowed limit.");
+                if (in_array($fileData['type'], $typeArray)) {
+                    $newFileName = uniqid() . nFirstChars(explode('.',sanitizeText($fileData["name"]))[0],10) . "." . $extention;
+                    $oldFileName = $this->model("resourceModel")->getPastPaper($id, $_SESSION['gid'], $_SESSION['sid'])->answer;
+                    if (updateFile($_FILES["answer"]["tmp_name"],$newFileName,$oldFileName,"answers",$_SESSION['gid'],$_SESSION['sid'])) {
+                        if ($this->model("resourceModel")->updatePastpaperAnswer($id, $newFileName)) {
+                            flashMessage("success");
+                        } else {
+                            flashMessage("failed");
+                        }
+                    } else {
+                        flashMessage("failed");
+                    }
+                }
+            } else {
+                flashMessage("failed");
+            }
+            header("location:" . BASEURL . "rcEdit/pastpaper/$id");
+        }
+    }
+
     public function getQuizListInfo(){
         $result = $this->model("resourceModel")->getAllQuizIds($_SESSION['gid'],$_SESSION['sid']);
         header("Content-Type:Application/json");

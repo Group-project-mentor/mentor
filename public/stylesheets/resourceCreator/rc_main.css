@@ -293,7 +293,8 @@ input:checked+.slider:before {
 }
 
 .top-bar-btns>a>img {
-    width: 25px;
+    width: 30px;
+    border-radius: 50%;
 }
 
 

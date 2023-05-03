@@ -15,23 +15,47 @@ fileChooser.addEventListener("change", () => {
     }
 });
 
+// submit.addEventListener("click", () => {
+//     if (image != "") {
+//         const formData = new FormData();
+//         let http = new XMLHttpRequest();
+//         formData.append("image", image);
+//         http.open(
+//             "POST",
+//             `${BASEURL}rcProfile/changeImage`,
+//             true
+//         );
+//         http.send(formData);
+
+//         http.onload = () => {
+//             if (http.status === 200) {
+//                 alertMsg.textContent = "Successfully updated !";
+//             }
+//             alertMsg.textContent = http.response;
+//         };
+//     }
+// });
+
 submit.addEventListener("click", () => {
     if (image != "") {
         const formData = new FormData();
         let http = new XMLHttpRequest();
-        formData.append("image", image);
-        http.open(
-            "POST",
-            "http://localhost/mentor/rcProfile/changeImage",
-            true
-        );
+        formData.append("image", fileChooser.files[0]);
+        http.open("POST", `${BASEURL}rcProfile/updateImage`, true);
         http.send(formData);
 
         http.onload = () => {
             if (http.status === 200) {
-                alertMsg.textContent = "Successfully updated !";
+                if (http.response.trim() == "success") {
+                    makeSuccess("Successfully updated !");
+                } else if (http.response.trim() == "type_error") {
+                    makeError("Incorrect file type !");
+                } else {
+                    makeError("Error Occured !");
+                }
+            }else{
+                makeError("Error Occured !");
             }
-            alertMsg.textContent = http.response;
         };
     }
 });

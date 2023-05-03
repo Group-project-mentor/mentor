@@ -44,7 +44,7 @@ if(!empty($_SESSION['message'])) {
                 </a>
                 <?php include_once "components/notificationIcon.php" ?>
                 <a href="<?php echo BASEURL . 'rcProfile' ?>">
-                        <?php include_once "components/profilePic.php"?>
+                    <img src="<?php echo BASEURL ?>assets/icons/icon_profile_black.png" alt="profile">
                 </a>
             </div>
         </section>
@@ -68,13 +68,13 @@ if(!empty($_SESSION['message'])) {
             <div class="resource-tab-main">
                 <div class="resource-tab-pane">
                     <div class="tp-tab active">
+                         Info
+                    </div>
+                    <div class="tp-tab active">
                          Paper
                     </div>
                     <div class="tp-tab active">
                         Answers
-                    </div>
-                    <div class="tp-tab">
-                        Quiz
                     </div>
                 </div>
             </div>
@@ -94,37 +94,14 @@ if(!empty($_SESSION['message'])) {
                 else{
                     ?>
                     <div class="rc-upload-box">
-                        <form action="<?php echo BASEURL.'rcEdit/editDocument/'.$data[0]->id ?>" method="POST" enctype="multipart/form-data" class="rc-upload-form">
                             <div class="rc-upload-home-title">
                                 Edit Past Paper
                             </div>
                             <div class="rc-form-group">
                                 <label>Name </label>
-                                <input type="text" name="title" value="<?php echo $data[0]->name ?>"/>
+                                <label>Name </label>
                             </div>
-                            <div class="rc-form-group">
-                                <label>Year </label>
-                                <input type="text" name="title" value="<?php echo $data[0]->year ?>"/>
-                            </div>
-                            <div class="rc-form-group">
-                                <label>Part </label>
-                                <input type="text" name="title" value="<?php echo $data[0]->part ?>"/>
-                            </div>
-                            <div class="rc-form-group">
-                                <label>Paper</label>
-                                <div>
-                                    <input id="inputBtn" type="file" name="resource">
-                                    <h3>Choose document</h3>
-                                </div>
-                                <p id="fileName" style="text-align:right;"><?php echo $data[0]->location ?></p>
-                                <h5 id="fileSize" style="text-align:right;"></h5>
-                            </div>
-                            <div class="rc-upload-button" >
-                                <button type="submit" name="submit">Update</button>
-                            </div>
-
-                        </form>
-                    </div>
+                        </div>
                 <?php }?>
             </section>
 
