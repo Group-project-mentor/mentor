@@ -25,9 +25,21 @@ class TBilling extends Controller
         $this->view('Teacher/Billing/Billing2');
     }
 
-    public function transHistory()
+    public function tHistory($page=1)
     {
-        $this->view('Teacher/Billing/transactionHistory');
+        $filters = $_GET;
+            $limit = paginationRowLimit;
+            $offset = 0;
+            if($page != 1){
+                $offset = ($page - 1) * $limit;
+            }
+            $rowCount = $this->model('BillingModel')->getWithdrawHistoryCount($_SESSION['id'])->count;
+            $res = $this->model('BillingModel')->getTrasactionHistory($_SESSION['id']);
+            $pageData = array($page,ceil($rowCount/$limit));
+            if($page < 1 || ($page > $pageData[1] and $pageData[1] != 0)){
+                header("location:".BASEURL."TBilling/tHistory");
+            }
+        $this->view('Teacher/Billing/transactionHistory',array($res,$pageData,$rowCount));
     }
 
     public function filterIncome($cid, $year, $month)

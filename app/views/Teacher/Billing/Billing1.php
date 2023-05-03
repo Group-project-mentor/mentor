@@ -78,6 +78,20 @@
             height: 40px;
             font-size: 1.1rem;
         }
+
+        .history-btn {
+            background-color: #186537;
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            border-radius: 10px;
+            cursor: pointer;
+            margin-left: 600px;
+        }
     </style>
 </head>
 
@@ -114,7 +128,7 @@
                     <h6>Teacher Home/ Billing</h6>
                     <br>
 
-                    <div class="subject-heading-container" style="border-radius: 2px; display: flex; width:450px;">
+                    <div class="subject-heading-container" style="border-radius: 2px; display: flex; width:1100px;">
                         <div style="margin: 0 5px;  flex: 1;">
                             <label>
                                 <select class="grade-chooser" id="classChooser" name="question">
@@ -156,6 +170,10 @@
                                 </select>
                             </label>
                         </div>
+                        <div style="margin: 0 5px; margin-left:5px;">
+                        <button id="history-btn" class="history-btn" onclick="location.href='<?php echo BASEURL; ?>TBilling/tHistory'">Transaction History</button>
+
+                        </div>
                     </div>
 
 
@@ -173,9 +191,9 @@
                         <?php $totalWithdraw += $row->amount; // add current row's amount to the total
                         }
                         $remain = $totalAmount - $totalWithdraw ?>
-                        <h1 class="amount"><span id="current-balance">Rs <?php echo $remain ?></span></h1>
+                        <h1 class="amount"><span id="current-balance"><?php echo 'Rs. ' . number_format($remain, 2, '.', '') ?></span></h1>
                     </div>
-
+                    
                     <div class="box balance-box" id="withdraw">
                         <h4>Total Withdraw</h4>
                         <?php
@@ -185,7 +203,7 @@
                         }
 
                         ?>
-                        <h1 class="amount"><span id="current-balance">Rs <?php echo $totalAmount ?></span></h1>
+                        <h1 class="amount"><span id="current-balance"><?php echo 'Rs. ' . number_format($totalAmount, 2, '.', '') ?></span></h1>
                     </div>
 
                     <div class="box amount-box">

@@ -41,4 +41,19 @@ class BillingModel extends Model
         }
         return $this->fetchObjs($stmt);
     }
+
+    public function getWithdrawHistoryCount($id)
+    {
+        $stmt = $this->prepare("SELECT COUNT(withdraw.withdraw_id) as count FROM withdraw WHERE withdraw.user_id = ? ");
+        $stmt->bind_param('i',$id);
+        return $this->fetchOneObj($stmt);
+    }
+
+    public function getTrasactionHistory($id)
+    {
+        $q = "select * FROM withdraw where withdraw.user_id=?; ";
+        $result = $this->prepare($q);
+        $result->bind_param('i', $id);
+        return $this->fetchObjs($result);
+    }
 }
