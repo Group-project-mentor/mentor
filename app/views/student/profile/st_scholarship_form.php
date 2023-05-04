@@ -14,6 +14,7 @@
 <body>
     <section class="page">
         <!-- Navigation panel -->
+        <?php include_once "components/alerts/rightAlert.php"?>    <!--side alerts -->
         <?php include_once "components/navbars/st_navbar_4.php" ?> <!-- used to include_once to add file -->
 
 
@@ -66,7 +67,7 @@
                         <div class="rc-form-group-hz">
                             <div class="rc-form-group">
                                 <label> Name with Initials* : </label>
-                                <input type="text" name="fullName" placeholder="Full Name" value="<?php echo empty($data[0]) ? "" : $data[0]->fullName ?>" pattern="^[A-Za-z]+((\s)?((\.)|(?:\b[A-Za-z])[A-Za-z]*\.?)){0,2}$" maxlength="50" required />
+                                <input type="text" name="fullName" placeholder="Full Name" value="<?php echo empty($data[0]) ? "" : $data[0]->fullName ?>"  maxlength="50" required />
                             </div>
                         </div>
 
@@ -79,7 +80,7 @@
                         <div class="rc-form-group-hz">
                             <div class="rc-form-group">
                                 <label> Gradient Name * : </label>
-                                <input type="text" name="gradientname" placeholder="Full Name" value="<?php echo empty($data[0]) ? "" : $data[0]->gradientname ?>" pattern="^[A-Za-z]+((\s)?((\.)|(?:\b[A-Za-z])[A-Za-z]*\.?)){0,2}$" maxlength="50" required />
+                                <input type="text" name="gradientname" placeholder="Full Name" value="<?php echo empty($data[0]) ? "" : $data[0]->gradientname ?>"  maxlength="50" required />
                             </div>
                         </div>
 
@@ -131,11 +132,11 @@
                         <div class="rc-form-group-hz" style="margin-top: 10px;">
                             <div class="checkbox-set">
                                 <label>
-                                    <input type="checkbox" name="class[]" value="video" />
+                                    <input type="checkbox" name="class" value="video" />
                                     Yes
                                 </label>
                                 <label>
-                                    <input type="checkbox" name="class[]" value="pdf" />
+                                    <input type="checkbox" name="class" value="pdf" />
                                     No
                                 </label>
                             </div>
@@ -158,13 +159,17 @@
                         <hr class="rc-form-hr" />
 
                         <div class="rc-upload-home-title">
-                            <input type="checkbox" name="confirmCheck" id="conf-check" value="confirm" />
+                            <input type="checkbox" name="confirmCheck" id="confcheck" value="confirm" />
                             I confirm above details are true
                         </div>
                         <div class="rc-upload-button">
                             <button type="submit" name="submit" col="200" id="payhere-payment" style="margin:10px auto;width: 100%;">
                                 Apply Form
                             </button>
+                        </div>
+
+                        <div id="abc">
+
                         </div>
 
                     </form>
@@ -175,5 +180,9 @@
     </div>
     </section>
 </body>
+<script>
+    const BASEURL = '<?php echo BASEURL?>';
+</script>
+<script src="<?php echo BASEURL."javascripts/st_form.js" ?>"></script>
 
 </html>

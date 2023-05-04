@@ -138,4 +138,11 @@ class UserModel extends Model
         return $stmt->execute();
     }
 
+    public function ScholershipApply($firstname,$lastname,$initialsName,$gradientname,$email,$tel1,$tel2,$address,$school,$dob,$gender,$description,$class,$subjects, $cvTarget){
+        $stmt = $this->prepare("INSERT INTO scholarship(firstName,lastName,initialsName,email,gradientname,tel1,tel2,address,school,dob,gender,description,class,subjects,cv)
+                                 VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+        $stmt->bind_param("sssssssssssssss",$firstname,$lastname,$initialsName,$gradientname,$email,$tel1,$tel2,$address,$school,$dob,$gender,$description,$class,$subjects,$cvTarget);       
+        return $stmt->execute();
+    }
+
 }
