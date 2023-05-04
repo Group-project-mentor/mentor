@@ -79,7 +79,7 @@ class RcEdit extends Controller
                 // if($fileData["size"] > $maxFileSize) die("Error: File size is larger than the allowed limit.");
                 if (in_array($fileData['type'], $typeArray)) {
                     // if(($fileData["name"]))
-                    $newFileName = uniqid() . sanitizeText($_POST['title']) . "." . $extention;
+                    $newFileName = uniqid() . sanitizeFileName($_POST['title']) . "." . $extention;
 //                    $fileDest = "public_resources/documents/" . $newFileName;
                     $oldFileName = $this->model("resourceModel")->getLocation($id);
 
@@ -90,6 +90,8 @@ class RcEdit extends Controller
 
                         if ($this->model("resourceModel")->updateDocument($id, sanitizeText($_POST["title"]), $newFileName)) {
                             flashMessage("success");
+                            header("location:" . BASEURL . "rcResources/documents/".$_SESSION['gid']."/".$_SESSION['sid']);
+                            return true;
                         } else {
                             flashMessage("failed");
                         }
@@ -103,6 +105,8 @@ class RcEdit extends Controller
                 $oldFileName = $this->model("resourceModel")->getLocation($id);
                 if ($this->model("resourceModel")->updateDocument($id, sanitizeText($_POST["title"]), $oldFileName)) {
                     flashMessage("success");
+                    header("location:" . BASEURL . "rcResources/documents/".$_SESSION['gid']."/".$_SESSION['sid']);
+                    return true;
                 } else {
                     flashMessage("failed");
                 }
@@ -147,6 +151,8 @@ class RcEdit extends Controller
 //                        rename($temp_path,$new_path);
                         unset($_SESSION['temporary_file']);
                         flashMessage("success");
+                        header("location:" . BASEURL . "rcResources/videos/".$_SESSION['gid']."/".$_SESSION['sid']);
+                        return true;
                     }else{
                         flashMessage("SavingError");
                     }
@@ -156,6 +162,8 @@ class RcEdit extends Controller
             }else{
                 if ($this->model("resourceModel")->updateVideoUploaded($Id ,sanitizeText($_POST['title']), sanitizeText($_POST['lec']), sanitizeText($_POST['descr']))) {
                     flashMessage( "success");
+                    header("location:" . BASEURL . "rcResources/videos/".$_SESSION['gid']."/".$_SESSION['sid']);
+                    return true;
                 }else{
                     flashMessage( "SavingError");
                 }
@@ -170,7 +178,7 @@ class RcEdit extends Controller
             $fileName = $_FILES['resource']['name'];
             $tmp_name = $_FILES['resource']['tmp_name'];
 //            $extension = pathinfo($fileName, PATHINFO_EXTENSION);
-            $newFileName = uniqid().$fileName;
+            $newFileName = uniqid().sanitizeFileName($fileName);
             $fileDest = "public_resources/temp/" . $newFileName ;
             if (move_uploaded_file($tmp_name, $fileDest)) {
                 if(!empty($_SESSION['temporary_file'])){
@@ -204,7 +212,7 @@ class RcEdit extends Controller
                     header("location:" . BASEURL . "rcAdd/document/error");
                 }
                 // if(in_array($fileData['type'],$typeArray)){
-                $newFileName = uniqid() . sanitizeText($_POST['title']) . "." . $extension;
+                $newFileName = uniqid() . sanitizeFileName($_POST['title']) . "." . $extension;
 //                $fileDest = "public_resources/others/" . $newFileName;
                 $oldFileName = $this->model("resourceModel")->getLocation($id);
 
@@ -215,6 +223,8 @@ class RcEdit extends Controller
 
                     if ($this->model("resourceModel")->updateOther($id, sanitizeText($_POST["title"]), $newFileName, $extension)) {
                         flashMessage("success");
+                        header("location:" . BASEURL . "rcResources/others/".$_SESSION['gid']."/".$_SESSION['sid']);
+                        return true;
                     } else {
                         flashMessage("failed");
                     }
@@ -228,12 +238,96 @@ class RcEdit extends Controller
                 $extension = pathinfo($oldFileName, PATHINFO_EXTENSION);
                 if ($this->model("resourceModel")->updateOther($id, sanitizeText($_POST["title"]), $oldFileName, $extension)) {
                     flashMessage("success");
+                    header("location:" . BASEURL . "rcResources/others/".$_SESSION['gid']."/".$_SESSION['sid']);
+                    return true;
                 } else {
                     flashMessage("failed");
                 }
             }
         }
         header("location:" . BASEURL . "rcEdit/other/$id");
+    }
+
+    public function editPastpaper($id)
+    {
+        // $maxFileSize = 50*1024*1024;
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            if (isset($_FILES["paper"]) && $_FILES["paper"]["error"] == 0) {
+                $typeArray = array("pdf" => "application/pdf");
+                $fileData = array("name" => $_FILES["paper"]["name"],
+                    "type" => $_FILES["paper"]["type"],
+                    "size" => $_FILES["paper"]["size"]);
+                $extention = pathinfo($fileData["name"], PATHINFO_EXTENSION);
+                // if (!array_key_exists($extention, $typeArray)) {
+                //     die("Error: Please select a valid file format.");
+                // }
+                if (in_array($fileData['type'], $typeArray)) {
+                    $newFileName = uniqid() . sanitizeFileName($_POST['title']) . "." . $extention;
+                    $oldFileName = $this->model("resourceModel")->getLocation($id);
+
+                    if (updateFile($_FILES["paper"]["tmp_name"],$newFileName,$oldFileName,"pastpapers",$_SESSION['gid'],$_SESSION['sid'])) {
+
+                        if ($this->model("resourceModel")->updatePaper($id, sanitizeText($_POST["title"]), sanitizeText($_POST['year']), sanitizeText($_POST['part']), $newFileName)) {
+                            flashMessage("success");
+                            header("location:" . BASEURL . "rcResources/pastpapers/".$_SESSION['gid']."/".$_SESSION['sid']);
+                            return true;
+                        } else {
+                            flashMessage("failed");
+                        }
+
+                    } else {
+                        flashMessage("failed");
+                    }
+                }else{
+                    flashMessage("failed");
+                }
+            } else {
+                $oldFileName = $this->model("resourceModel")->getLocation($id);
+                if ($this->model("resourceModel")->updatePaper($id, sanitizeText($_POST["title"]), sanitizeText($_POST['year']), sanitizeText($_POST['part']), $oldFileName)) {
+                    flashMessage("success");
+                    header("location:" . BASEURL . "rcResources/pastpapers/".$_SESSION['gid']."/".$_SESSION['sid']);
+                    return true;
+                } else {
+                    flashMessage("failed");
+                }
+            }
+            header("location:" . BASEURL . "rcEdit/pastpaper/$id");
+        }
+    }
+
+    public function editPastpaperAnswer($id){
+        // $maxFileSize = 50*1024*1024;
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            if (isset($_FILES["answer"]) && $_FILES["answer"]["error"] == 0) {
+                $typeArray = array("pdf" => "application/pdf");
+                $fileData = array("name" => $_FILES["answer"]["name"],
+                    "type" => $_FILES["answer"]["type"],
+                    "size" => $_FILES["answer"]["size"]);
+                $extention = pathinfo($fileData["name"], PATHINFO_EXTENSION);
+                if (!array_key_exists($extention, $typeArray)) {
+                    flashMessage("failed");
+                    header("location:" . BASEURL . "rcEdit/document/$id");
+                }
+
+                // if($fileData["size"] > $maxFileSize) die("Error: File size is larger than the allowed limit.");
+                if (in_array($fileData['type'], $typeArray)) {
+                    $newFileName = uniqid() . nFirstChars(explode('.',sanitizeFileName($fileData["name"]))[0],10) . "." . $extention;
+                    $oldFileName = $this->model("resourceModel")->getPastPaper($id, $_SESSION['gid'], $_SESSION['sid'])->answer;
+                    if (updateFile($_FILES["answer"]["tmp_name"],$newFileName,$oldFileName,"answers",$_SESSION['gid'],$_SESSION['sid'])) {
+                        if ($this->model("resourceModel")->updatePastpaperAnswer($id, $newFileName)) {
+                            flashMessage("success");
+                        } else {
+                            flashMessage("failed");
+                        }
+                    } else {
+                        flashMessage("failed");
+                    }
+                }
+            } else {
+                flashMessage("failed");
+            }
+            header("location:" . BASEURL . "rcEdit/pastpaper/$id");
+        }
     }
 
     public function getQuizListInfo(){

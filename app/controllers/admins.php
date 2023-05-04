@@ -67,8 +67,6 @@ class admins extends Controller {
         $this->hasLogged();
 
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-           
-
 
         }
 
@@ -78,7 +76,7 @@ class admins extends Controller {
             $data = [];
             $data['complaints'] = $this->adminModel->complaints();
 
-
+            // print_r($data['complaints']);
 
             $this->view('admin/complaintHandle',$data);
 
@@ -92,14 +90,22 @@ class admins extends Controller {
         $this->hasLogged();
 
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-           echo("Added");
+
+            $cID = $_POST['cID'];
+            $uID = $_POST['uID'];
+            if($this->adminModel->addComplaintToTaskManager($cID,$uID)){
+                echo 'Successful';
+            
+            } else{
+                echo 'Error';
+            }
         }
 
         if ($_SERVER['REQUEST_METHOD'] == 'GET') {
             
 
             $data = [];
-            $data['complaints'] = $this->adminModel->complaints();
+            $data['complaints'] = $this->adminModel->complaints($id);
 
             
             $this->view('admin/complaintview',$data);
@@ -114,12 +120,23 @@ class admins extends Controller {
         $this->hasLogged();
 
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+            $uID = $_SESSION["id"];
+
+            if ($this->adminModel->ResourceTask($uID)) {
+                echo 'Successful';
+            } else {
+                echo 'Error';
+            }
            
         }
 
         if ($_SERVER['REQUEST_METHOD'] == 'GET') {
-            
-            $this->view('admin/task');
+            $uID = $_SESSION["id"];
+                
+            $data = [];
+            $data['task'] = $this->adminModel->ResourceTask($uID);
+            $this->view('admin/task',$data);
 
         }
 
@@ -131,7 +148,13 @@ class admins extends Controller {
         $this->hasLogged();
 
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-           
+            $uID = $_SESSION["id"];
+
+            if ($this->adminModel->ResourceTask($uID)) {
+                echo 'Successful';
+            } else {
+                echo 'Error';
+            }
         }
 
         if ($_SERVER['REQUEST_METHOD'] == 'GET') {
@@ -160,8 +183,11 @@ class admins extends Controller {
         }
 
         if ($_SERVER['REQUEST_METHOD'] == 'GET') {
+
+            $data = [];
+            $data['task'] = $this->adminModel->ResourceTask();
             
-            $this->view('admin/userhandle');
+            $this->view('admin/userhandle',$data);
 
         }
 
@@ -179,7 +205,7 @@ class admins extends Controller {
                 $uID = $_POST['uID'];
 
                  //print_r($this->adminModel->addtoTaskManger($rID,$uID));die;
-                if ($this->adminModel->addtoTaskManger($rID,$uID)) {
+                if ($this->adminModel->addResourcetoTaskManger($rID,$uID)) {
                     echo 'Successful';
                 } else {
                     echo 'Error';
@@ -380,22 +406,22 @@ class admins extends Controller {
 
     }
 
-    public function wallet() {
+    // public function wallet() {
 
-        sessionValidator();
-        $this->hasLogged();
+    //     sessionValidator();
+    //     $this->hasLogged();
 
-        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    //     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
            
-        }
+    //     }
 
-        if ($_SERVER['REQUEST_METHOD'] == 'GET') {
+    //     if ($_SERVER['REQUEST_METHOD'] == 'GET') {
             
-            $this->view('admin/wallet');
+    //         $this->view('admin/wallet');
 
-        }
+    //     }
 
-    }
+    // }
 
     public function analatics() {
 
@@ -424,9 +450,53 @@ class admins extends Controller {
         }
 
         if ($_SERVER['REQUEST_METHOD'] == 'GET') {
+
+            $data['admin'] = $this->adminModel->admin();
+            $data['rc'] = $this->adminModel->resourcecreator();
             
-            $data['classes'] = $this->hrModel->getClasses();
+            // $data['classes'] = $this->hrModel->getClasses();
+            
             $this->view('admin/humanResource',$data);
+
+        }
+
+    }
+
+    public function adminviewall() {
+
+        sessionValidator();
+        $this->hasLogged();
+
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+           
+        }
+
+        if ($_SERVER['REQUEST_METHOD'] == 'GET') {
+
+            $data = [];
+            $data['admin'] = $this->adminModel->admin();
+            
+            $this->view('admin/addMemberViewall',$data);
+
+        }
+
+    }
+
+    public function resourceCreatorViewall() {
+
+        sessionValidator();
+        $this->hasLogged();
+
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+           
+        }
+
+        if ($_SERVER['REQUEST_METHOD'] == 'GET') {
+
+            $data = [];
+            $data['rc'] = $this->adminModel->resourcecreator();
+            
+            $this->view('admin/resourcecreatorviewall',$data);
 
         }
 
@@ -445,7 +515,9 @@ class admins extends Controller {
 
         if ($_SERVER['REQUEST_METHOD'] == 'GET') {
             
-            $this->view('admin/addMemberTeam');
+            $data = [];
+            $data['admin'] = $this->adminModel->admin();
+            $this->view('admin/addMemberView',$data);
 
         }
 
@@ -476,22 +548,6 @@ class admins extends Controller {
 
     }
 
-    public function addmemberview($id) {
-
-        sessionValidator();
-        $this->hasLogged();
-
-        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-           
-        }
-
-        if ($_SERVER['REQUEST_METHOD'] == 'GET') {
-            
-            $this->view('admin/addMemberView');
-
-        }
-
-    }
     
     public function profile() {
 

@@ -164,9 +164,7 @@ class ResourceModel extends Model
         $stmt = $this->prepare('select public_resource.id, public_resource.type, public_resource.location from public_resource,rs_subject_grade 
         where public_resource.id = rs_subject_grade.rsrc_id AND public_resource.id = ? AND rs_subject_grade.subject_id =? 
           AND rs_subject_grade.grade_id =? AND type = ?');
-//        $stmt = $this->prepare('select public_resource.id, public_resource.type, public_resource.location from public_resource
-//        inner join rs_subject_grade on public_resource.id = rs_subject_grade.rsrc_id
-//        where public_resource.id = ? and rs_subject_grade.subject_id =? and rs_subject_grade.grade_id =? and type = ?');
+
         $stmt->bind_param('iiis',$id,$sid,$gid,$type);
         return $this->fetchOneObj($stmt);
     }
@@ -275,6 +273,12 @@ class ResourceModel extends Model
         return ($this->executeQuery($sql1) && $this->executeQuery($sql2));
     }
 
+    public function updatePastpaperAnswer($id, $file){
+        $stmt = $this->prepare("update pastpaper p set p.answer = ? where p.id = ?");
+        $stmt->bind_param('si',$file,$id);
+        return $this->executePrepared($stmt);
+    }
+
     public function updateOther($id, $title, $file, $type){
         $sql1 = "update public_resource set public_resource.location = '$file' where public_resource.id = $id";
         $sql2 = "update other set other.name = '$title', other.type = '$type' where other.id = $id";
@@ -284,6 +288,14 @@ class ResourceModel extends Model
     public function updateVideo($id, $title, $lec, $link, $description){
         $sql = "update video set video.name = '$title', video.lecturer = '$lec', video.description = '$description', video.link='$link' where video.id = $id";
         return ($this->executeQuery($sql));
+    }
+
+    public function updatePaper($id, $title, $year, $part, $location){
+        $stmt1 = $this->prepare("UPDATE pastpaper p SET p.name = ?, p.year = ?, p.part = ? WHERE p.id = ?");
+        $stmt1->bind_param('siii',$title,$year,$part,$id);
+        $stmt2 = $this->prepare("UPDATE public_resource p SET p.location = ? WHERE p.id = ?");
+        $stmt2->bind_param('si',$location,$id);
+        return ($this->executePrepared($stmt1) && $this->executePrepared($stmt2));
     }
 
 

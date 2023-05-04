@@ -163,7 +163,7 @@ if (!empty($_SESSION['message']) && $_SESSION['message'] == "Success") {
         payment.items = "Buy Us a Coffee";
         payment.email = formData.get('email');
         payment.country = formData.get('country');
-        payment.amount = amount * count;
+        payment.amount = (amount * count);
         payment.custom_1 = count;
         payment.custom_2 = formData.get('email');
 

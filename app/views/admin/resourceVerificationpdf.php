@@ -30,7 +30,7 @@
 
                 <div class="content" id="comp-content" >
                     <div class="bckclose">
-                        <a href="<?php echo BASEURL ?>adVerification" class="back">
+                        <a href="<?php echo BASEURL ?>admins/verify" class="back">
                             <img class="back" src="<?php echo BASEURL ?>assets/admin/Arrow---Left.png">
                         </a>
                     </div>
@@ -42,7 +42,7 @@
                                 <img class="videoslist" src="'. BASEURL .'assets/admin/pdfs.png">
                                 <p>'. $value['name'] .'</p>
                                 <div class="btns">
-                                    <button class="comp-btns" onclick="addToTaskManager('.$value['id'].','.$_SESSION['id'] .')" type="button">Add To Task Manager</button>
+                                    <button class="comp-btns" onclick="addResourceToTaskManager('.$value['id'].','.$_SESSION['id'] .')" type="button">Add To Task Manager</button>
                                 </div>
                             </div>';
 

@@ -30,37 +30,31 @@
 
         <div class="content">
             <?php
-            foreach ($data['complaints'] as $value) {
-                if($value['work_id']== $_GET['id']){
-                    echo '<div class="content" id="comp-content">
-                <div class="bckclose">
-                    <img class="back" src="'. BASEURL .'assets/admin/Arrow---Left.png">
-                    <img class="close" src="'. BASEURL .'assets/admin/Close-Square.png">
+            echo '<div class="content" id="comp-content">
+            <div class="bckclose">
+                <img class="back" src="'. BASEURL .'assets/admin/Arrow---Left.png">
+                <img class="close" src="'. BASEURL .'assets/admin/Close-Square.png">
+            </div>
+            <div class="complaints" id="com-complaints">
+                <div class="pp">
+                    <img class="profile" src="'. BASEURL .'assets/admin/pp.png">
                 </div>
-                <div class="complaints" id="com-complaints">
-                    <div class="pp">
-                        <img class="profile" src="'. BASEURL .'assets/admin/pp.png">
-                    </div>
-                    <div class="name">
-                        <p>'. $value['name'] .'</p>
-                    </div>
+                <div class="name">
+                    <p>'. $data['complaints'][0]['name'] .'</p>
                 </div>
-                <div id="com-title">
-                    <h1>Title goes here</h1>
-                    <p>' . $value['description'] . '</p>
-                </div>
-                <div class="btns">
-                    <form action="'. BASEURL .'admins/complaint/USER011" method="POST">
-                        <button class="comp-btns">Add to task manager</button>
-                    </form>
-                    <button class="comp-btns">Delete</button>
-                </div>
+            </div>
+            <div id="com-title">
+                <h1>'. $data['complaints'][0]['category'] .'</h1>
+                <p>' . $data['complaints'][0]['description'] . '</p>
+            </div>
+            <div class="btns">
+                <button class="comp-btns" onclick="addComplaintToTaskManager(' . $data['complaints'][0]['work_id'] . ',' . $_SESSION['id'] . ')" type="button">Add To Task Manager</button>
+                <button class="comp-btns">Delete</button>
+            </div>
 
-                
-                
-                </div>';
-            }
-        }
+            
+            
+            </div>';
             
             ?>
             
@@ -73,6 +67,7 @@
     </section>
     <?php require_once("C:/xampp/htdocs/mentor/app/views/admin/popup.php"); ?>
 </body>
+<script src="<?php echo BASEURL ?>javascripts/admin/cors.js"></script>
 
 <script>
     let toggle = true;

@@ -126,11 +126,12 @@ class RcResources extends Controller
                 if ($resourceData[6] === "L") {
                     $resourceData[4] = $this->filterVideoId($resourceData[4]);
                 }
-
                 $this->view("resourceCtr/previews/video_preview", array($file, $resourceData));
                 break;
             case 'pastpaper':
-                // todo : under development
+                $file = $this->model("resourceModel")->getResource($id, $_SESSION['gid'], $_SESSION['sid'], 'paper');
+                $resourceData = $this->model("resourceModel")->getPastpaper($id, $_SESSION['gid'], $_SESSION['sid']);
+                $this->view("resourceCtr/previews/paper_preview", array($file, $resourceData));
                 break;
         }
     }
@@ -203,7 +204,10 @@ class RcResources extends Controller
     {
         $topics = $this->model("resourceModel")->getTopics($grade_id, $subject_id);
         $topicOrderRow = $this->model("resourceModel")->getTopicOrder($grade_id, $subject_id);
-        $topicOrder = $topicOrderRow->tpcOrder;
+        $topicOrder = (!empty($topicOrderRow))?$topicOrderRow->tpcOrder:null;
+        $this->getNames($grade_id, $subject_id);
+        $_SESSION["gid"] = $grade_id;
+        $_SESSION["sid"] = $subject_id;
         if(empty($topicOrderRow)){
             if(!empty($topics)){
                 foreach ($topics as $topic) {

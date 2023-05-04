@@ -39,7 +39,8 @@ p{
 }
 
 .profile{
-    width: 50px;
+    width: 20px;
+    height: 55px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -63,9 +64,11 @@ p{
 }
 
 .view{
+    
     padding: 10px;
 
 }
+
 
 .addtm{
     padding: 10px;

@@ -1,10 +1,10 @@
-const converter = (val) => {
+const converter = (val, btn) => {
     if(val < 1000)
-        return Math.round(inputBtn.files[0].size)+" B";
+        return Math.round(btn.files[0].size)+" B";
     else if(val/1024 < 1000)
-        return Math.round((inputBtn.files[0].size)/1024)+" KB";
+        return Math.round((btn.files[0].size)/1024)+" KB";
     else if(val/(1024*1024) < 1000)
-        return Math.round((inputBtn.files[0].size)/(1024*1024))+" MB";
+        return Math.round((btn.files[0].size)/(1024*1024))+" MB";
 }
 
 
@@ -12,13 +12,19 @@ const converter = (val) => {
 let inputBtn = document.getElementById('inputBtn');
 let tab = document.getElementsByClassName('tp-tab');
 let tabCont = document.getElementsByClassName('tab-container');
+let answerInput = document.getElementById('answerInput');
 
 document.getElementById('fileName').textContent = (document.getElementById('fileName').textContent) ? document.getElementById('fileName').textContent.slice(0,20)+"..." : 'no files selected';
 document.getElementById('fileSize').textContent = (document.getElementById('fileName').textContent) ? converter(document.getElementById('fileName').textContent) : ' ';
 
 inputBtn.addEventListener('change',()=>{
     document.getElementById('fileName').textContent = (inputBtn.files[0].name) ? inputBtn.files[0].name.slice(0,20)+"..." : 'no files selected';
-    document.getElementById('fileSize').textContent = (inputBtn.files[0].size) ? converter(inputBtn.files[0].size) : ' ';
+    document.getElementById('fileSize').textContent = (inputBtn.files[0].size) ? converter(inputBtn.files[0].size,inputBtn) : ' ';
+});
+
+answerInput.addEventListener('change',()=>{
+    document.getElementById('fileNameA').textContent = (answerInput.files[0].name) ? answerInput.files[0].name.slice(0,20)+"..." : 'no files selected';
+    document.getElementById('fileSizeA').textContent = (answerInput.files[0].size) ? converter(answerInput.files[0].size,answerInput) : ' ';
 });
 
 // ? Tab - containers handler
