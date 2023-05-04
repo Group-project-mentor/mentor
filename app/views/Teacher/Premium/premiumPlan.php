@@ -95,8 +95,8 @@
             <div class="amount">
               <h1><br>You only have to pay RS.10 000 for a Year.</h1>
             </div><br><br>
-            <div class="button-container" id="payhere-payment">
-              <button id=buy class="buy-button">Buy</button>
+            <div class="button-container" >
+              <button id=payhere-payment class="buy-button">Buy</button>
             </div>
 
           </section>
@@ -107,7 +107,7 @@
           const TEMP_URL = '<?php echo $_ENV['TEMP_URL'] ?>';
           const MERCHID = '<?php echo $_ENV['MERCHANT_ID'] ?>';
 
-          const amount = 4000;
+          const amount = 10000;
           let total = amount;
           let buyBtn = document.getElementById("buy");
 
@@ -133,6 +133,7 @@
           // Put the payment variables here
           let payment = {
             "sandbox": true,
+            "custom_1": `unknown`,
             "merchant_id": MERCHID,
             "return_url": undefined,
             "cancel_url": undefined,
@@ -150,8 +151,6 @@
             "city": "unknown",
             "country": "",
             "custom_2":"",
-            "recurrence": "6 Months",
-            "duration":"1 Year",
           };
 
           const getHash = (ordId, amount, currency) => {
@@ -165,19 +164,6 @@
             }
           }
 
-          const setPaymetDetails = () => {
-            let formData = new FormData(document.getElementById('paymentForm'));
-
-            payment.items = "Buy Premium";
-            payment.email = formData.get('email');
-            payment.country = formData.get('country');
-            payment.amount = amount ;
-            payment.custom_2 = formData.get('email');
-
-            payment.hash = getHash(payment.order_id, payment.amount, payment.currency);
-
-            // console.log(payment);
-          }
           // console.log(getHash('o12345',1000,'LKR'))
 
 
