@@ -55,3 +55,20 @@ function validateCSText($txt)
         return false;
     }
 }
+
+function nFirstChars($text, $length)
+{
+    if(strlen($text) > $length){
+        return substr($text, 0, $length-1);
+    }
+    else{
+        return $text;
+    }
+}
+
+function sanitizeFileName($name){
+    $skip_array = array('/', '\\', ':','*','\"','<','>','|');
+    $text = str_replace($skip_array, '', $name);
+    $text = str_replace(' ', '_', $name);
+    return $text;
+}

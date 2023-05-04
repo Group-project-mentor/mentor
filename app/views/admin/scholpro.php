@@ -58,12 +58,10 @@
                             
                             <div class="btns">
                                 <form action="' . BASEURL . 'admins/scholpro/'. $value['id'].'" method="POST">
-                                    <button class="comp-btns">Review</button>
+                                    <button class="comp-btns">Add to task manager</button>
                                 </form><br>
                             </div>
-                            <div class="btns">
-                                <button class="comp-btns">Delete</button>
-                            </div>
+                            
                             
 
                             
@@ -84,7 +82,7 @@
                         <h1>Sponsors Application</h1>
                     </div>
                     <div class="btn">
-                        <a class="btns" href="<?php echo BASEURL ?>admins/sponsorviewall" style="text-decoration:none">
+                        <a class="btns" href="<?php echo BASEURL ?>admins/sponsorviews" style="text-decoration:none">
                             View All
                         </a>
 
@@ -109,12 +107,10 @@
                             
                             <div class="btns">
                                 <form action="' . BASEURL . 'admins/scholpro/'. $value['id'].'" method="POST">
-                                    <button class="comp-btns">Review</button>
+                                    <button class="comp-btns">Add to task manager</button>
                                 </form><br>
                             </div>
-                            <div class="btns">
-                                <button class="comp-btns">Delete</button>
-                            </div>
+                            
                             
 
                             

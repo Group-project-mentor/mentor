@@ -141,7 +141,8 @@ class Sponsor extends Controller
     private function password(){
         $this->view("sponsor/profile/sp_change_passwd");
     }
-
+    
+    // ! Not using now
     public function changeImage(){
         if (isset($_POST['image'])) {
             if($this->model("userModel")->changeImg($_SESSION['id'],$_POST['image'])){
@@ -149,6 +150,56 @@ class Sponsor extends Controller
             }else{
                 echo "unsuccess";
             }
+        }
+    }
+
+    public function updateImage()
+    {
+        if (isset($_FILES["image"])) {
+            $typeArray = array("png" => "image/png", "jpg" => "image/jpg", "jpeg" => "image/jpeg");
+            $fileData = array("name" => $_FILES["image"]["name"],
+                    "type" => $_FILES["image"]["type"],
+                    "size" => $_FILES["image"]["size"]);
+            $extention = pathinfo($fileData["name"], PATHINFO_EXTENSION);
+            if (in_array($fileData['type'], $typeArray)) {
+                $newFileName = uniqid() . $_SESSION["id"] . "." . $extention;
+                $image = $this->model("userModel")->getImage($_SESSION['id'])[0];
+                if(empty($image) or $image == ""){
+                    if (move_uploaded_file($_FILES["image"]["tmp_name"], "data/profiles/" . $newFileName)) {
+                        if($this->model("userModel")->changeImg($_SESSION['id'],$newFileName)){
+                            $_SESSION['profilePic'] = $newFileName; 
+                            echo "success";
+                        }else{
+                            echo "failed";
+                        }
+                    } else {
+                        echo "failed";
+                    }
+                }else{
+                    if (move_uploaded_file($_FILES["image"]["tmp_name"], "data/profiles/" . $newFileName) and file_exists("data/profiles/".$image) and unlink("data/profiles/".$image)) {
+                        if($this->model("userModel")->changeImg($_SESSION['id'],$newFileName)){
+                            $_SESSION['profilePic'] = $newFileName; 
+                            echo "success";
+                        }else{
+                            echo "failed";
+                        }
+                    }elseif(!file_exists("data/profiles/".$image)){
+                        if($this->model("userModel")->changeImg($_SESSION['id'],$newFileName)){
+                            $_SESSION['profilePic'] = $newFileName; 
+                            echo "success";
+                        }else{
+                            echo "failed";
+                        }
+                    }
+                     else {
+                        echo "failed";
+                    }
+                }
+            }else{
+                echo "type_error";
+            }     
+        }else{
+            echo "failed";
         }
     }
 

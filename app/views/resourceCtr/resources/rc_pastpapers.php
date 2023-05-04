@@ -33,7 +33,7 @@
                     </a>
                     <?php include_once "components/notificationIcon.php" ?>
                     <a href="<?php echo BASEURL . 'rcProfile' ?>">
-                        <img src="<?php echo BASEURL ?>assets/icons/icon_profile_black.png" alt="profile">
+                        <?php include_once "components/profilePic.php"?>
                     </a>
                 </div>
             </section>
@@ -87,7 +87,7 @@
                                                 <img src='<?php echo BASEURL ?>assets/icons/icon_edit.png' alt=''>
                                             </a>
                                             <?php } ?>
-                                            <a>
+                                            <a href='<?php echo BASEURL."rcResources/preview/pastpaper/".$row->id ?>'>
                                                 <img src='<?php echo BASEURL ?>assets/icons/icon_eye.png' alt=''>
                                             </a>
                                         </div>

@@ -34,7 +34,16 @@ class TClassRoom extends Controller
     {
         unset($_SESSION["cid"]);
         $classes = $this->model("teacher_data")->getClasses($_SESSION['id']);
-        $this->view('Teacher/classRoom/AllHostClass', array($classes));
+        $premium=($this->model("premiumModel")->getPremium($_SESSION['id'])->active);
+        
+        if($premium==1)
+        {
+            $this->view('Teacher/classRoom/AllHostClass', array($classes));
+        }
+        else
+        {
+            $this->view('Teacher/classRoom/AllHostClassesFree', array($classes));
+        }
     }
 
     public function allCoordinateClasses()

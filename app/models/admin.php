@@ -47,10 +47,34 @@ class admin extends Model{
     }
 
 
-    public function complaints(){
-        $query = "SELECT user.name, user.id, complaint.description, complaint.work_id FROM user INNER JOIN complaint ON user.id = complaint.user_id";
+    public function complaints($id='%'){
+        $query = "SELECT user.name, user.id, complaint.description, report_type.name as category, complaint.work_id 
+        FROM user 
+        INNER JOIN complaint 
+        ON user.id = complaint.user_id 
+        INNER JOIN report_type 
+        ON complaint.category=report_type.id 
+        WHERE `complaint`.`approved_by` IS NULL AND `complaint`.`work_id` LIKE '$id'";
         $result = $this->executeQuery($query);
     
+        if ($result->num_rows > 0) {
+            return $result->fetch_all(MYSQLI_ASSOC);
+        } else {
+            return false;
+        } 
+    }
+
+    public function addComplaintToTaskManager($cID, $uID) {
+        $query = "UPDATE `complaint` SET approved_by='$uID' where work_id='$cID'";
+        return $this->executeQuery($query);
+    }
+
+
+
+    public function ResourceTask($uID){
+        $query = "SELECT* FROM `public_resource` WHERE `approved_by`=`$uID`; ";
+        $result = $this->executeQuery($query);
+        
         if ($result->num_rows > 0) {
             return $result->fetch_all(MYSQLI_ASSOC);
         } else {
@@ -71,6 +95,29 @@ class admin extends Model{
 
     public function scholorship(){
         $query = "SELECT *FROM scholarship;";
+        $result = $this->executeQuery($query);
+    
+        if ($result->num_rows > 0) {
+            return $result->fetch_all(MYSQLI_ASSOC);
+        } else {
+            return false;
+        } 
+    }
+
+
+    public function admin(){
+        $query = "SELECT *FROM `admin`;";
+        $result = $this->executeQuery($query);
+    
+        if ($result->num_rows > 0) {
+            return $result->fetch_all(MYSQLI_ASSOC);
+        } else {
+            return false;
+        } 
+    }
+
+    public function resourcecreator(){
+        $query = "SELECT `resource_creator`.*, `user`.* FROM `resource_creator` INNER JOIN `user` ON `resource_creator`.id = `user`.id;";
         $result = $this->executeQuery($query);
     
         if ($result->num_rows > 0) {
@@ -162,7 +209,7 @@ class admin extends Model{
     //     } 
     // }
     
-    public function addtoTaskManger($rID,$uID){
+    public function addResourcetoTaskManger($rID,$uID){
         $query = "UPDATE `public_resource` SET `approved_by` = $uID WHERE `id` = $rID ";
         
         $result = $this->executeQuery($query);
@@ -245,6 +292,8 @@ class admin extends Model{
         $query = "UPDATE `user` SET password='$passwd' where email='$email'";
         return $this->executeQuery($query);
     }
+
+    
 
 }
 

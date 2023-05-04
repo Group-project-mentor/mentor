@@ -41,7 +41,7 @@ function addGrade() {
     xhttp.send("grade-photo="+gradePhoto+"&grade-name="+gradeName);
 }
 
-function addToTaskManager(rID,uID){
+function addResourceToTaskManager(rID,uID){
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
 
@@ -57,5 +57,22 @@ function addToTaskManager(rID,uID){
     xhttp.open("POST", "http://localhost/mentor/admins/verify", true);
     xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xhttp.send("rID="+rID+"&uID="+uID);
+}
+
+function addComplaintToTaskManager(cID,uID){
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+
+        if (this.readyState == 4 && this.status == 200) {
+            var response = this.responseText;
+
+            window.location.replace("http://localhost/mentor/admins/complaints")
+
+        }
+    };
+
+    xhttp.open("POST", "http://localhost/mentor/admins/complaint/"+cID, true);
+    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xhttp.send("cID="+cID+"&uID="+uID);
 }
 

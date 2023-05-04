@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/x-icon" href="<?php echo BASEURL ?>assets/mentor.ico">
-    <title>Edit Document</title>
+    <title>Update Pastpaper</title>
     <link rel="stylesheet" href="<?php echo BASEURL . '/public/stylesheets/resourceCreator/rc_main.css' ?> ">
     <link rel="stylesheet" href="<?php echo BASEURL . '/public/stylesheets/resourceCreator/rc_resources.css' ?> ">
 </head>
@@ -16,9 +16,11 @@
 <?php
 if(!empty($_SESSION['message'])) {
     if ($_SESSION['message'] == "success") {
-        include_once "components/alerts/res_update_success.php";
+        $message = "Resource Updated Successfully !";
+        include_once "components/alerts/operationSuccess.php";
+        $message = "Resource Update Failed !";
     } elseif ($_SESSION['message'] == "failed") {
-        include_once "components/alerts/res_update_failed.php";
+        include_once "components/alerts/operationFailed.php";
     } elseif ($_SESSION['message'] == "unlinked"){
         include_once "components/alerts/pastpaperUnlinked.php";
     }
@@ -34,10 +36,7 @@ if(!empty($_SESSION['message'])) {
         <!-- Top bar -->
         <section class="top-bar">
             <div class="search-bar">
-                <input type="text" name="" id="" placeholder="Search...">
-                <a href="">
-                    <img src="-icons/icon_search.png" alt="">
-                </a>
+                
             </div>
             <div class="top-bar-btns">
                 <a href="<?php echo BASEURL .'rcResources/pastpapers/'.$_SESSION['gid']."/".$_SESSION["sid"] ?>">
@@ -45,7 +44,7 @@ if(!empty($_SESSION['message'])) {
                 </a>
                 <?php include_once "components/notificationIcon.php" ?>
                 <a href="<?php echo BASEURL . 'rcProfile' ?>">
-                    <img src="<?php echo BASEURL ?>assets/icons/icon_profile_black.png" alt="profile">
+                        <?php include_once "components/profilePic.php"?>
                 </a>
             </div>
         </section>
@@ -95,7 +94,7 @@ if(!empty($_SESSION['message'])) {
                 else{
                     ?>
                     <div class="rc-upload-box">
-                        <form action="<?php echo BASEURL.'rcEdit/editDocument/'.$data[0]->id ?>" method="POST" enctype="multipart/form-data" class="rc-upload-form">
+                        <form action="<?php echo BASEURL.'rcEdit/editPastpaper/'.$data[0]->id ?>" method="POST" enctype="multipart/form-data" class="rc-upload-form">
                             <div class="rc-upload-home-title">
                                 Edit Past Paper
                             </div>
@@ -105,16 +104,16 @@ if(!empty($_SESSION['message'])) {
                             </div>
                             <div class="rc-form-group">
                                 <label>Year </label>
-                                <input type="text" name="title" value="<?php echo $data[0]->year ?>"/>
+                                <input type="text" name="year" value="<?php echo $data[0]->year ?>"/>
                             </div>
                             <div class="rc-form-group">
                                 <label>Part </label>
-                                <input type="text" name="title" value="<?php echo $data[0]->part ?>"/>
+                                <input type="text" name="part" value="<?php echo $data[0]->part ?>"/>
                             </div>
                             <div class="rc-form-group">
                                 <label>Paper</label>
                                 <div>
-                                    <input id="inputBtn" type="file" name="resource">
+                                    <input id="inputBtn" type="file" name="paper">
                                     <h3>Choose document</h3>
                                 </div>
                                 <p id="fileName" style="text-align:right;"><?php echo $data[0]->location ?></p>
@@ -130,6 +129,34 @@ if(!empty($_SESSION['message'])) {
             </section>
 
             <section class="tab-container" style="display: flex;justify-content: center;">
+                <?php
+                if(empty($data[0]->answer)){
+                    echo
+                    '<div style="text-align: center;font-size: x-large;color: darkred;">
+                        <br>
+                        You are not authorized to do this action !
+                    </div>';
+                }
+                else{
+                    ?>
+                    <div class="rc-upload-box">
+                        <form action="<?php echo BASEURL.'rcEdit/editPastpaperAnswer/'.$data[0]->id ?>" method="POST" enctype="multipart/form-data" class="rc-upload-form">
+                            <div class="rc-form-group">
+                                <label>Answers PDF</label>
+                                <div>
+                                    <input id="answerInput" type="file" name="answer">
+                                    <h3>Choose document*</h3>
+                                </div>
+                                <p id="fileNameA" style="text-align:right;"><?php echo $data[0]->answer ?></p>
+                                <h5 id="fileSizeA" style="text-align:right;"></h5>
+                            </div>
+                            <div class="rc-upload-button" >
+                                <button type="submit" name="submit">Update</button>
+                            </div>
+
+                        </form>
+                    </div>
+                <?php }?>
             </section>
 <!-- ? This is the linked quiz changing section of past paper-->
             <section class="tab-container" style="display: flex;justify-content: center;">

@@ -128,20 +128,24 @@
 
                     </div>
                     <?php
-                    foreach ($data['complaints'] as $value) {
-                        echo '<div class="content">
-                            <div class="complaints">
-                                <div class="pp">
-                                    <img class="profile" src="' . BASEURL . 'assets/admin/pp.png">
+                    if (!$data['complaints']) {
+                        echo 'No Complaints';
+                    } else {
+                        foreach ($data['complaints'] as $value) {
+                            echo '<div class="content">
+                                <div class="complaints">
+                                    <div class="pp">
+                                        <img class="profile" src="' . BASEURL . 'assets/admin/pp.png">
+                                    </div>
+                                    <div class="name" id="user-name">
+                                        <p>' . $value['name'] . '</p>
+                                    </div>
+                                    <div class="userid" id="user-id">
+                                        <p>' . $value['id'] . '</p>
+                                    </div>
                                 </div>
-                                <div class="name" id="user-name">
-                                    <p>' . $value['name'] . '</p>
-                                </div>
-                                <div class="userid" id="user-id">
-                                    <p>' . $value['id'] . '</p>
-                                </div>
-                            </div>
-                        </div>';
+                            </div>';
+                        }
                     }
                     ?>
                     <!--  -->
@@ -228,20 +232,25 @@
                             </div>
                         </div>
                         <?php
-                        foreach ($data['complaints'] as $value) {
-                            echo '<div class="content">
-                            <div class="complaints">
-                                <div class="pp">
-                                    <img class="profile" src="' . BASEURL . 'assets/admin/pp.png">
+                        //print_r( $data['complaints']);
+                        if (!$data['complaints']) {
+                            echo 'No Complaints';
+                        } else {
+                            foreach ($data['complaints'] as $value) {
+                                echo '<div class="content">
+                                <div class="complaints">
+                                    <div class="pp">
+                                        <img class="profile" src="' . BASEURL . 'assets/admin/pp.png">
+                                    </div>
+                                    <div class="name" id="user-name">
+                                        <p>' . $value['name'] . '</p>
+                                    </div>
+                                    <div class="userid" id="user-id">
+                                        <p>' . $value['id'] . '</p>
+                                    </div>
                                 </div>
-                                <div class="name" id="user-name">
-                                    <p>' . $value['name'] . '</p>
-                                </div>
-                                <div class="userid" id="user-id">
-                                    <p>' . $value['id'] . '</p>
-                                </div>
-                            </div>
-                        </div>';
+                            </div>';
+                            }
                         }
                         ?>
 

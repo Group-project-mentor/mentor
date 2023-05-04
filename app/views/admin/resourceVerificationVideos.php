@@ -43,7 +43,7 @@
                                 <img class="videoslist" src="'. BASEURL .'assets/admin/videoslist.png">
                                 <p>'. $value['name'] .'</p>
                                 <div class="btns">
-                                    <button class="comp-btns" onclick="addToTaskManager('.$value['id'].','.$_SESSION['id'] .')" type="button">Add To Task Manager</button>
+                                    <button class="comp-btns" onclick="addResourceToTaskManager('.$value['id'].','.$_SESSION['id'] .')" type="button">Add To Task Manager</button>
                                 </div>
                             </div>';
 

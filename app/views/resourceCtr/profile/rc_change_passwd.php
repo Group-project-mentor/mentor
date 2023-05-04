@@ -37,14 +37,18 @@
 
 <body>
     
-    <?php 
-        if(!empty($data) && $data == "failed"){
-            include_once "components/alerts/pwd_change_failed.php"; 
-        }
-        elseif(!empty($data) && $data == "wrongPass"){
-            include_once "components/alerts/pwd_wrong.php"; 
-        }
-    ?>
+<?php
+    if (!empty($_SESSION['message']) && $_SESSION['message'] == "failed") {
+        $message = "Password Update Failed !";
+        include_once "components/alerts/operationFailed.php";
+    }elseif(!empty($_SESSION['message']) && $_SESSION['message'] == "wrong_pass") {
+        $message = "Password You Provided is wrong !";
+        include_once "components/alerts/operationFailed.php";
+    }elseif(!empty($_SESSION['message']) && $_SESSION['message'] == "not_match") {
+        $message = "New passwords are doesn't match !";
+        include_once "components/alerts/operationFailed.php";
+    }
+?>
 
     <section class="page">
 
@@ -64,7 +68,7 @@
                     </a>
                     <?php include_once "components/notificationIcon.php" ?>
                     <a href="<?php echo BASEURL . 'rcProfile' ?>">
-                        <img src="<?php echo BASEURL ?>assets/icons/icon_profile_black.png" alt="profile">
+                        <?php include_once "components/profilePic.php"?>
                     </a>
                 </div>
             </section>
