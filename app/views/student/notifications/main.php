@@ -15,7 +15,7 @@
 <body>
     <section class="page">
         <!-- Navigation panel -->
-        <?php include_once "components/navbars/st_navbar_1.php"?>
+        <?php include_once "components/navbars/st_navbar_1.php" ?>
 
         <!-- Right side container -->
         <div class="content-area">
@@ -25,9 +25,12 @@
                 <div class="search-bar">
                 </div>
                 <div class="top-bar-btns">
+                    <a href="<?php echo BASEURL; ?>home">
+                        <div class="back-btn">Back</div>
+                    </a>
                     <?php include_once "components/notificationIcon.php" ?>
-                    <a href="<?php echo BASEURL . 'rcProfile' ?>">
-                        <img src="assets/icons/icon_profile_black.png" alt="profile">
+                    <a href="<?php echo BASEURL ?>st_profile">
+                        <img src="<?php echo BASEURL; ?>assets/icons/icon_profile_black.png" alt="profile">
                     </a>
                 </div>
             </section>
@@ -54,8 +57,8 @@
                     </div>
                 </div>
 
-                <hr style="border: 1px solid rgba(128,128,128,0.06);width: 50%;margin: auto;"/>
-                
+                <hr style="border: 1px solid rgba(128,128,128,0.06);width: 50%;margin: auto;" />
+
 
                 <section class="tab-container" style="display: flex;justify-content: center;">
                     <div class="sponsor-list-main row-decoration" id="info-table">
@@ -70,38 +73,41 @@
                                 Time
                             </div>
                             <div class="sponsor-list-item sponsor-list-item-title flex-1">
-                                
+
                             </div>
                         </div>
-                        <?php  if (empty($data[0])) {?>
+                        <?php if (empty($data[0])) { ?>
                             <div class="sponsor-list-row">
                                 <div class="sponsor-list-item flex-1">
                                     NO UNREAD NOTIFICATIONS
                                 </div>
                             </div>
-                        <?php } else { foreach ($data[0] as $row) {
-                            if($row->seen == 0){
-                        ?>
-                        <div class="sponsor-list-row">
-                            <div class="sponsor-list-item flex-5">
-                                <?php echo $row->message ?>
-                            </div>
-                            <div class="sponsor-list-item flex-1">
-                                <?php echo date('Y-m-d', strtotime($row->timestamp)); ?>
-                            </div>
-                            <div class="sponsor-list-item flex-1">
-                                <?php echo date('H:i', strtotime($row->timestamp)); ?>
-                            </div>
-                            <div class="sponsor-list-item flex-1" style="display:flex;align-items:center;justify-content:space-evenly;">
-                                <a href="<?php echo BASEURL.'notification/readNotification/'.$row->id ?>">
-                                    <img src="<?php echo BASEURL ?>assets/icons/icon-correct-green.png" alt="" style="width: 20px;margin:0 5px;">
-                                </a>
-                                <a href="<?php echo BASEURL.'notification/deleteNotification/'.$row->id ?>">
-                                    <img src="<?php echo BASEURL ?>assets/icons/icon-incorrect-red.png" alt="" style="width: 25px;margin:0 5px;">
-                                </a>
-                            </div>
-                        </div>
-                        <?php }}}?>
+                            <?php } else {
+                            foreach ($data[0] as $row) {
+                                if ($row->seen == 0) {
+                            ?>
+                                    <div class="sponsor-list-row">
+                                        <div class="sponsor-list-item flex-5">
+                                            <?php echo $row->message ?>
+                                        </div>
+                                        <div class="sponsor-list-item flex-1">
+                                            <?php echo date('Y-m-d', strtotime($row->timestamp)); ?>
+                                        </div>
+                                        <div class="sponsor-list-item flex-1">
+                                            <?php echo date('H:i', strtotime($row->timestamp)); ?>
+                                        </div>
+                                        <div class="sponsor-list-item flex-1" style="display:flex;align-items:center;justify-content:space-evenly;">
+                                            <a href="<?php echo BASEURL . 'notification/readNotification/' . $row->id ?>">
+                                                <img src="<?php echo BASEURL ?>assets/icons/icon-correct-green.png" alt="" style="width: 20px;margin:0 5px;">
+                                            </a>
+                                            <a href="<?php echo BASEURL . 'notification/deleteNotification/' . $row->id ?>">
+                                                <img src="<?php echo BASEURL ?>assets/icons/icon-incorrect-red.png" alt="" style="width: 25px;margin:0 5px;">
+                                            </a>
+                                        </div>
+                                    </div>
+                        <?php }
+                            }
+                        } ?>
                     </div>
                 </section>
 
@@ -118,44 +124,46 @@
                                 Time
                             </div>
                             <div class="sponsor-list-item sponsor-list-item-title flex-1">
-                                
+
                             </div>
                         </div>
-                        <?php  if (empty($data[0])) {?>
+                        <?php if (empty($data[0])) { ?>
                             <div class="sponsor-list-row">
                                 <div class="sponsor-list-item flex-1">
                                     NO NOTIFICATIONS
                                 </div>
                             </div>
-                        <?php } else { foreach ($data[0] as $row) {
-                        ?>
-                        <div class="sponsor-list-row">
-                            <div class="sponsor-list-item flex-5">
-                                <?php echo $row->message ?>
-                            </div>
-                            <div class="sponsor-list-item flex-1">
-                                <?php echo date('Y-m-d', strtotime($row->timestamp)); ?>
-                            </div>
-                            <div class="sponsor-list-item flex-1">
-                                <?php echo date('H:i', strtotime($row->timestamp)); ?>
-                            </div>
-                            <div class="sponsor-list-item flex-1" style="display:flex;align-items:center;justify-content:space-evenly;">
-                            <?php if($row->seen == 0){ ?>
-                                <a href="<?php echo BASEURL.'notification/readNotification/'.$row->id ?>">
-                                    <img src="<?php echo BASEURL ?>assets/icons/icon-correct-green.png" alt="" style="width: 20px;margin:0 5px;">
-                                </a>
-                            <?php } ?>
-                                <a href="<?php echo BASEURL.'notification/deleteNotification/'.$row->id ?>">
-                                    <img src="<?php echo BASEURL ?>assets/icons/icon-incorrect-red.png" alt="" style="width: 25px;margin:0 5px;">
-                                </a>
-                            </div>
-                        </div>
-                        <?php  }}?>
+                            <?php } else {
+                            foreach ($data[0] as $row) {
+                            ?>
+                                <div class="sponsor-list-row">
+                                    <div class="sponsor-list-item flex-5">
+                                        <?php echo $row->message ?>
+                                    </div>
+                                    <div class="sponsor-list-item flex-1">
+                                        <?php echo date('Y-m-d', strtotime($row->timestamp)); ?>
+                                    </div>
+                                    <div class="sponsor-list-item flex-1">
+                                        <?php echo date('H:i', strtotime($row->timestamp)); ?>
+                                    </div>
+                                    <div class="sponsor-list-item flex-1" style="display:flex;align-items:center;justify-content:space-evenly;">
+                                        <?php if ($row->seen == 0) { ?>
+                                            <a href="<?php echo BASEURL . 'notification/readNotification/' . $row->id ?>">
+                                                <img src="<?php echo BASEURL ?>assets/icons/icon-correct-green.png" alt="" style="width: 20px;margin:0 5px;">
+                                            </a>
+                                        <?php } ?>
+                                        <a href="<?php echo BASEURL . 'notification/deleteNotification/' . $row->id ?>">
+                                            <img src="<?php echo BASEURL ?>assets/icons/icon-incorrect-red.png" alt="" style="width: 25px;margin:0 5px;">
+                                        </a>
+                                    </div>
+                                </div>
+                        <?php  }
+                        } ?>
                     </div>
                 </section>
 
                 <section class="tab-container" style="display: flex;justify-content: center;">
-                <div class="sponsor-list-main row-decoration" id="info-table">
+                    <div class="sponsor-list-main row-decoration" id="info-table">
                         <div class="sponsor-list-row">
                             <div class="sponsor-list-item sponsor-list-item-title flex-5">
                                 Message
@@ -167,43 +175,46 @@
                                 Time
                             </div>
                             <div class="sponsor-list-item sponsor-list-item-title flex-1">
-                                <a href="<?php echo BASEURL.'notification/delAllReadNotifi' ?>">
+                                <a href="<?php echo BASEURL . 'notification/delAllReadNotifi' ?>">
                                     <img src="<?php echo BASEURL ?>assets/icons/icon_delete.png" alt="" style="width: 20px;margin:0 5px;">
                                 </a>
                             </div>
                         </div>
-                        <?php  if (empty($data[0])) {?>
+                        <?php if (empty($data[0])) { ?>
                             <div class="sponsor-list-row">
                                 <div class="sponsor-list-item flex-1">
                                     NO READ NOTIFICATIONS
                                 </div>
                             </div>
-                        <?php } else { foreach ($data[0] as $row) {
-                            if($row->seen == 1){
-                        ?>
-                        <div class="sponsor-list-row">
-                            <div class="sponsor-list-item flex-5">
-                                <?php echo $row->message ?>
-                            </div>
-                            <div class="sponsor-list-item flex-1">
-                                <?php echo date('Y-m-d', strtotime($row->timestamp)); ?>
-                            </div>
-                            <div class="sponsor-list-item flex-1">
-                                <?php echo date('H:i', strtotime($row->timestamp)); ?>
-                            </div>
-                            <div class="sponsor-list-item flex-1" style="display:flex;align-items:center;justify-content:space-evenly;">
-                                <a href="<?php echo BASEURL.'notification/deleteNotification/'.$row->id ?>">
-                                    <img src="<?php echo BASEURL ?>assets/icons/icon-incorrect-red.png" alt="" style="width: 25px;margin:0 5px;">
-                                </a>
-                            </div>
-                        </div>
-                        <?php }}}?>
+                            <?php } else {
+                            foreach ($data[0] as $row) {
+                                if ($row->seen == 1) {
+                            ?>
+                                    <div class="sponsor-list-row">
+                                        <div class="sponsor-list-item flex-5">
+                                            <?php echo $row->message ?>
+                                        </div>
+                                        <div class="sponsor-list-item flex-1">
+                                            <?php echo date('Y-m-d', strtotime($row->timestamp)); ?>
+                                        </div>
+                                        <div class="sponsor-list-item flex-1">
+                                            <?php echo date('H:i', strtotime($row->timestamp)); ?>
+                                        </div>
+                                        <div class="sponsor-list-item flex-1" style="display:flex;align-items:center;justify-content:space-evenly;">
+                                            <a href="<?php echo BASEURL . 'notification/deleteNotification/' . $row->id ?>">
+                                                <img src="<?php echo BASEURL ?>assets/icons/icon-incorrect-red.png" alt="" style="width: 25px;margin:0 5px;">
+                                            </a>
+                                        </div>
+                                    </div>
+                        <?php }
+                            }
+                        } ?>
                     </div>
                 </section>
 
                 <!-- bottom part -->
                 <section class="bottom-section-grades">
-                    
+
                 </section>
 
         </div>
@@ -219,10 +230,10 @@
         tab[j].classList.remove('active');
     }
 
-    for (let i = 0; i < tab.length; i++){
+    for (let i = 0; i < tab.length; i++) {
         tab[i].onclick = () => {
             for (let j = 0; j < tabCont.length; j++) {
-                if (i!==j) {
+                if (i !== j) {
                     tabCont[j].style.display = 'none';
                     tab[j].classList.remove('active');
                 }
@@ -232,4 +243,5 @@
         }
     }
 </script>
+
 </html>

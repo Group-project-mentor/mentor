@@ -37,6 +37,13 @@ class St_private_mode_model extends Model
         return $result;
     }
 
+    public function getClasses34($sid, $access, $cid)
+    {
+        $q = "DELETE FROM `classes_has_students` WHERE class_id=$cid AND student_id=$sid AND access = $access;";
+        $result = $this->executeQuery($q);
+        return $result;
+    }
+
 
     public function getClasses2($grade_id, $student_id)
     {
@@ -61,13 +68,25 @@ class St_private_mode_model extends Model
 
     public function jointokenaddtoDB($sid, $cid, $token)
     {
-        $q = "INSERT INTO `join_requests` (`student_id`, `class_id`, `accept`, `validity`, `token`) 
+        $qo = "SELECT COUNT(join_requests.accept) as numberOfRequests FROM join_requests 
+        WHERE join_requests.student_id = ? AND join_requests.class_id = ? AND join_requests.token= ? AND join_requests.accept = 0;";
+        $stmt = $this->prepare($qo);
+        $stmt->bind_param('iis', $sid, $cid, $token);
+        $check = $this->fetchOneObj($stmt);
+
+        // var_dump($check->numberOfRequests);
+        if ($check->numberOfRequests == 0) {
+            $q = "INSERT INTO `join_requests` (`student_id`, `class_id`, `accept`, `validity`, `token`) 
         VALUES ($sid, $cid, 0 , NULL, '$token');";
-        $result = $this->executeQuery($q);
-        return $result;
+            $result = $this->executeQuery($q);
+            return $result;
+        }
+        else {
+            return 0;
+        }
     }
 
-    public function jointokenview($sid,$cid,$token)
+    public function jointokenview($sid, $cid, $token)
     {
         $q = "SELECT private_class.class_name FROM private_class 
         INNER JOIN join_requests ON private_class.class_id = join_requests.class_id WHERE private_class.token = ? LIMIT 1;";

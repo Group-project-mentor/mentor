@@ -162,7 +162,7 @@ class St_profile extends Controller
             $dob = sanitizeText($_POST['dob']);
             $gender = sanitizeText($_POST['gender']);
             $description = sanitizeText($_POST['description']);
-            $class = $_POST['class'];
+            $class = sanitizeText($_POST['class']);
             $subjects = sanitizeText($_POST['subjects']);
             $cv = $_FILES['cv'];
 
@@ -181,24 +181,14 @@ class St_profile extends Controller
 
                 $cvName = uniqid($firstname);
                 $cvTarget = $cvName.".".pathinfo($cv['name'], PATHINFO_EXTENSION);
-                $cvDest = "data/creatorInfo/cvs/".$cvTarget;
+                $cvDest = "data/student/scholership_cv/".$cvTarget;
 
                 if(move_uploaded_file($cv['tmp_name'], $cvDest)){
-                    $status = $this->model("userModel")->saveAppliedCreator($firstname,$lastname,$initialsName,
+                    $status = $this->model("userModel")->ScholershipApply($firstname,$lastname,$initialsName,
                     $email,$gradientname,$tel1,$tel2,$address,$school,$dob,$gender,$description,$class,$subjects, $cvTarget);
                     if($status){
                         $message['status'] = "success";
                         $message['message'] = "Successfully applied to be a creator";
-                        $mail = "<center><div>
-                                <h1 style='color: green;'>M E N T O R</h1>
-                                <h3>Hello $initialsName ,</h3>
-                                <h1 style='letter-spacing: 4px;background-color:#EEE;padding:10px 15px;border-radius: 10px;border: 1px solid #CCC;'>
-                                Thank you for applying to be a creator in MENTOR. <br> We will contact you soon.
-                                </h1>
-                                <h5 style='color:red;'>message from MENTOR team</h5>
-                            </div></center>";
-;
-                        sendMail($email,$initialsName,"Applied to Sponsorship in MENTOR",$mail);
                     }else{
                         $message['status'] = "error";
                         $message['message'] = "Error in Sponsorship from";
@@ -213,7 +203,7 @@ class St_profile extends Controller
             }
             echo json_encode($message);
         }else{
-            header("location".BASEURL."");
+            header("location".BASEURL.'');
         }
     }
 }
