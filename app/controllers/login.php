@@ -32,7 +32,7 @@ class Login extends Controller{
                             $_SESSION["user"] = $email;
                             $_SESSION["name"] = $result->name;
                             $_SESSION["usertype"] = $result->type;
-                            $_SESSION["profilePic"] = $result->image;
+                            // $_SESSION["profilePic"] = $result->image;
                             header("location:" . BASEURL . "home");
                     } else {
                         echo $result->password;
