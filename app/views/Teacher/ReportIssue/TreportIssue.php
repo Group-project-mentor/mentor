@@ -11,25 +11,25 @@
     <style>
         @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800&display=swap");
 
-        .container{
+        .container {
             display: flex;
             flex-direction: column;
             width: 100%;
             margin-top: 20px;
         }
 
-        #selection{
+        #selection {
             background-color: white;
-            border-radius: 5px 5px 0 0 ;
+            border-radius: 5px 5px 0 0;
             padding: 10px 20px;
             color: #444444;
             width: 100%;
-            border-color:#00000026;
+            border-color: #00000026;
             font-size: medium;
             outline: none;
         }
 
-        #selection > option{
+        #selection>option {
             background-color: white;
             color: #444444;
             height: 20px;
@@ -38,11 +38,11 @@
             width: 100%;
         }
 
-        #selection > option:hover{
+        #selection>option:hover {
             background-color: black;
         }
 
-        button{
+        button {
             cursor: pointer;
             background-color: green;
             padding: 5px 15px;
@@ -54,50 +54,51 @@
             width: 100%;
         }
 
-        .report-title{
+        .report-title {
             margin-top: 20px;
-            font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
             color: #444444;
             font-size: x-large;
         }
 
-        select:hover, select:active, select:focus {
+        select:hover,
+        select:active,
+        select:focus {
             background-color: #e6e6e6;
-            border:1px solid #848484;
+            border: 1px solid #848484;
         }
 
-        .inbuilt-success-msg{
+        .inbuilt-success-msg {
             display: flex;
             justify-content: center;
             flex-direction: column;
             align-items: center;
         }
 
-        .inbuilt-success-msg img{
+        .inbuilt-success-msg img {
             width: 10%;
             margin: 50px;
         }
 
-        .inbuilt-success-msg h1{
+        .inbuilt-success-msg h1 {
             font-size: x-large;
             font-family: "poppins";
         }
 
-        .inbuilt-success-msg button{
+        .inbuilt-success-msg button {
             margin: 50px;
             width: 25%;
             font-size: larger;
         }
-
     </style>
 </head>
 
 <body style="overflow-x: hidden;">
     <section class="page">
-         <!-- Navigation panel -->
-        <?php include_once "components/navbars/t_nav_1.php"?>
+        <!-- Navigation panel -->
+        <?php include_once "components/navbars/t_nav_1.php" ?>
 
-        <?php include_once "components/alerts/rightAlert.php"?>
+        <?php include_once "components/alerts/rightAlert.php" ?>
 
 
         <!-- Right side container -->
@@ -107,10 +108,8 @@
                 <div class="search-bar">
                 </div>
                 <div class="top-bar-btns">
-                    
-                    <a href="<?php echo BASEURL . 'rcProfile' ?>">
-                        <img src="<?php echo BASEURL ?>assets/icons/icon_profile_black.png" alt="profile">
-                    </a>
+                    <?php include_once "components/notificationIcon.php" ?>
+                    <?php include_once "components/premiumIcon.php" ?>
                 </div>
             </section>
 
@@ -124,19 +123,19 @@
                 <!-- bottom part -->
                 <h1 class="report-title">Select Report Type</h1>
 
-                    <div class="container">
-                        <select name="reportOptions" id="selection">
-                            <option value="0" selected disabled>Choose a type</option>
-                            <?php foreach ($data[0] as $row){ ?>
-                                <option value="<?php echo $row->id ?>"><?php echo $row->name ?></option>
-                            <?php } ?>
-                        </select>
-                        <div style="display: flex;">
-                            <button type="button" id="form1-next">
-                                Next
-                            </button>
-                        </div>
+                <div class="container">
+                    <select name="reportOptions" id="selection">
+                        <option value="0" selected disabled>Choose a type</option>
+                        <?php foreach ($data[0] as $row) { ?>
+                            <option value="<?php echo $row->id ?>"><?php echo $row->name ?></option>
+                        <?php } ?>
+                    </select>
+                    <div style="display: flex;">
+                        <button type="button" id="form1-next">
+                            Next
+                        </button>
                     </div>
+                </div>
             </form>
 
             <!-- Middle part for whole content -->
@@ -149,17 +148,17 @@
                 <!-- bottom part -->
                 <h1 class="report-title">Enter Report Description</h1>
 
-                    <div class="container">
-                        <textarea name="reportDesc" id="" cols="30" rows="10"></textarea>
-                        <div style="display: flex;">
-                            <button type="button" id="form2-back">
-                                Back
-                            </button>
-                            <button type="submit">
-                                Report
-                            </button>
-                        </div>
+                <div class="container">
+                    <textarea name="reportDesc" id="" cols="30" rows="10"></textarea>
+                    <div style="display: flex;">
+                        <button type="button" id="form2-back">
+                            Back
+                        </button>
+                        <button type="submit">
+                            Report
+                        </button>
                     </div>
+                </div>
             </form>
 
             <!-- Middle part for whole content -->
@@ -180,7 +179,7 @@
 
     form2.style.display = "none";
 
-    document.getElementById('form1-next').addEventListener('click',()=>{
+    document.getElementById('form1-next').addEventListener('click', () => {
         let form1Data = new FormData(form1);
         for (let [key, value] of form1Data.entries()) {
             mainForm.append(key, value);
@@ -190,7 +189,7 @@
 
     });
 
-    form2.addEventListener('submit',(e)=>{
+    form2.addEventListener('submit', (e) => {
         e.preventDefault();
         let form2Data = new FormData(form2);
         for (let [key, value] of form2Data.entries()) {
@@ -199,45 +198,45 @@
         form1.style.display = "none";
         form2.style.display = "none";
 
-        fetch('<?php echo BASEURL?>TProfile/saveReport',{
-            method : 'post',
-            body : mainForm
-        })
-        .then(response => response.json())
-        .then(data => {
-            if(data.message === "success"){
-                document.getElementById('success-msg').style.display = "flex";
-            }else{
-                console.log(data)
-                document.getElementById("jjj").innerHTML = data;
+        fetch('<?php echo BASEURL ?>TProfile/saveReport', {
+                method: 'post',
+                body: mainForm
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.message === "success") {
+                    document.getElementById('success-msg').style.display = "flex";
+                } else {
+                    console.log(data)
+                    document.getElementById("jjj").innerHTML = data;
+                    form1.style.display = "flex";
+                    form2.style.display = "none";
+                    document.getElementById('right-alert-text').textContent = "Fill all data !";
+                    document.getElementById('message-content').classList.remove('message-hide');
+                    let a = setInterval(() => {
+                        document.getElementById('message-content').classList.add('message-hide');
+                        clearInterval(a);
+                    }, 5000)
+                }
+            })
+            .catch(e => {
                 form1.style.display = "flex";
                 form2.style.display = "none";
                 document.getElementById('right-alert-text').textContent = "Fill all data !";
                 document.getElementById('message-content').classList.remove('message-hide');
-                let a = setInterval(()=>{
-                    document . getElementById('message-content') . classList . add('message-hide');
+                let a = setInterval(() => {
+                    document.getElementById('message-content').classList.add('message-hide');
                     clearInterval(a);
-                },5000)
-            }
-        })
-        .catch(e => {
-            form1.style.display = "flex";
-            form2.style.display = "none";
-            document.getElementById('right-alert-text').textContent = "Fill all data !";
-            document.getElementById('message-content').classList.remove('message-hide');
-            let a = setInterval(()=>{
-                document . getElementById('message-content') . classList . add('message-hide');
-                clearInterval(a);
-            },5000)
-        });
+                }, 5000)
+            });
     });
 
-    document.getElementById("form2-back").addEventListener('click',()=>{
+    document.getElementById("form2-back").addEventListener('click', () => {
         form1.style.display = "flex";
         form2.style.display = "none";
         document.getElementById('failed-msg').style.display = "none";
         document.getElementById('success-msg').style.display = "none";
     });
-
 </script>
+
 </html>
