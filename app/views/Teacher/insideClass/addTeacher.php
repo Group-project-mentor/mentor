@@ -12,6 +12,18 @@
 
 <body>
     <section class="page">
+    <?php include_once "components/alerts/Teacher/teacher_added.php" ?>
+    <?php if(!empty($_SESSION['message'])){
+        switch ($_SESSION['message']){
+            case "Your have successfully added the teacher":
+                include_once "components/alerts/Teacher/teacher_addded.php";
+                break;
+            case "Your add teacher limit for free account is over":
+                include_once "components/alerts/Teacher/addTeacherLimit.php";
+                break;
+        }
+    } ?>
+
         <!-- Navigation panel -->
         <?php include_once "components/navbars/t_nav_2.php" ?>
 

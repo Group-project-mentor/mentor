@@ -236,7 +236,7 @@
                             <div class="sponsor-list-row">
                             </div>
                             <?php foreach ($data[0] as $row) {
-                                if ($count <= 20) {
+                                if ($count <= 10) {
                             ?>
                                     <div class="sponsor-list-row">
                                         <div class="sponsor-list-item flex-1">

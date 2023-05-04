@@ -12,6 +12,16 @@
 
 <body>
     <section class="page">
+    <?php if(!empty($_SESSION['message'])){
+        switch ($_SESSION['message']){
+            case "Your have successfully added the teacher":
+                include_once "components/alerts/Teacher/teacher_addded.php";
+                break;
+            case "Your add student limit for free account is over":
+                include_once "components/alerts/Teacher/addTeacherLimit.php";
+                break;
+        }
+    } ?>
         <!-- Navigation panel -->
         <nav class="nav-bar" id="nav-bar">
 
@@ -100,7 +110,7 @@
                     <form action="<?php echo BASEURL; ?>TInsideClass/createAction" method="POST">
                         <label for="student_id"></label>
                         <input type="text" id="student_id" name="student_id" placeholder="New student ID..">
-                        <input type="submit" value="Add">
+                        <input type="submit" value="Request to join">
                     </form>
                 </div>
 
