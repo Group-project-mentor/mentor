@@ -76,3 +76,27 @@ function addComplaintToTaskManager(cID,uID){
     xhttp.send("cID="+cID+"&uID="+uID);
 }
 
+
+
+function tookaction(cID){
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            var response = this.responseText.trim();
+
+            if(response === "Successful") {
+                window.location.replace("http://localhost/mentor/admins/taskmanager");
+            }             
+
+            console.log(response);
+            console.log(typeof('Successful'));
+            console.log(response === 'Successful');
+
+        }
+    };
+
+    xhttp.open("POST", "http://localhost/mentor/admins/task/"+cID, true);
+    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xhttp.send();
+}
+

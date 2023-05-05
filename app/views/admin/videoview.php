@@ -23,7 +23,7 @@
 
         <!-- Title and sub title of middle part -->
         <div class="mid-title">
-            <h1>Complaints</h1>
+            <h1>Resource</h1>
         </div>
         <div class="content">
             <?php
@@ -32,9 +32,9 @@
                 <img class="back" src="' . BASEURL . 'assets/admin/Arrow---Left.png">
                 <img class="close" src="' . BASEURL . 'assets/admin/Close-Square.png">
             </div>
-            <div class="complaints" id="com-complaints">
-                <div class="pp">
-                    <img class="profile" src="' . BASEURL . 'assets/admin/pp.png">
+            <div class="resource">
+                <div class="thumbnail">
+                    <img class="r-thumbnail" src="' . BASEURL . 'assets/admin/pp.png">
                 </div>
                 <div class="name">
                     <p>' . $data['complaints'][0]['name'] . '</p>
@@ -55,29 +55,6 @@
             ?>
 
         </div>
-
-        <!-- <div class="content" id="comp-content" >
-                    <div class="bckclose">
-                        <img class="back" src="<?php echo BASEURL ?>assets/admin/Arrow---Left.png">
-                        <img class="close" src="<?php echo BASEURL ?>assets/admin/Close-Square.png">
-                    </div>
-                    <div class="complaints" id="com-complaints">
-                        <div class="pp">
-                            <img class="profile" src="<?php echo BASEURL ?>assets/admin/pp.png">
-                        </div>
-                        <div class="name">
-                            <p>Jaydon Aminoff</p>
-                        </div>
-                    </div>
-                    <div id="com-title">
-                        <h1>Title goes here</h1>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente expedita fugit culpa optio accusantium mollitia eius deserunt architecto, sit minus maxime minima eos quidem quam nesciunt non veritatis, eum dolores!</p>
-                    </div>
-                    <div class="btns">
-                        <button class="comp-btns">Took Action</button>
-                         
-                    </div>
-                </div> -->
 
     </section>
     </div>
