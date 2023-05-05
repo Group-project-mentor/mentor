@@ -18,8 +18,8 @@ if(!empty($_SESSION['message'])) {
     if ($_SESSION['message'] == "success") {
         $message = "Resource Updated Successfully !";
         include_once "components/alerts/operationSuccess.php";
-        $message = "Resource Update Failed !";
     } elseif ($_SESSION['message'] == "failed") {
+        $message = "Resource Update Failed !";
         include_once "components/alerts/operationFailed.php";
     } elseif ($_SESSION['message'] == "unlinked"){
         include_once "components/alerts/pastpaperUnlinked.php";

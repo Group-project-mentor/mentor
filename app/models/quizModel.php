@@ -50,10 +50,16 @@ class quizModel extends Model
             return array(0);
         }
     }
+    public function getQuestionDataByID($qid)
+    {
+        $stmt = $this->prepare("select * from question where id = ?");
+        $stmt->bind_param('i', $qid);
+        return $this->fetchOneObj($stmt);
+    }
 
     public function getQuestions($id)
     {
-        $sql = "select question.id, question.number, question.description from question where quiz_id = $id order by question.number";
+        $sql = "select question.id, question.number, question.description, question.image from question where quiz_id = $id order by question.number";
         $res = $this->executeQuery($sql);
         if ($res->num_rows > 0) {
             return $res;
@@ -96,18 +102,21 @@ class quizModel extends Model
         }
     }
 
-    public function insertQuestion($quizNo, $quesNo, $question, $img)
+    public function insertQuestion($quizNo, $quesNo, $question, $img = null)
     {
-        $stmt = $this->prepare("INSERT INTO question(number, description, quiz_id, image) VALUES (?, ?, ?, ?)");
-        $stmt->bind_param('isis', $quesNo, $question, $quizNo, $img);
-        // print_r($img);
-        // $sql = "insert into question(number, description, quiz_id, image) values ($quesNo, '$question', $quizNo, '$img')";
+        if (empty($img)) {
+            $stmt = $this->prepare("INSERT INTO question(number, description, quiz_id) VALUES (?, ?, ?)");
+            $stmt->bind_param('isi', $quesNo, $question, $quizNo);
+        }else{
+            $stmt = $this->prepare("INSERT INTO question(number, description, quiz_id, image) VALUES (?, ?, ?, ?)");
+            $stmt->bind_param('isis', $quesNo, $question, $quizNo, $img);
+        }
         return $stmt->execute();
     }
 
     public function isQuizExists($quiz, $question = null)
     {
-        if ($question == null) {
+        if (empty($question)) {
             $stmt = $this->prepare("select id from quiz where id = ?");
             $stmt->bind_param('i', $quiz);
         } else {
@@ -135,10 +144,15 @@ class quizModel extends Model
         }
     }
 
-    public function saveAnswer($number, $qid, $desc, $correct, $img)
+    public function saveAnswer($number, $qid, $desc, $correct, $img = null)
     {
-        $stmt = $this->prepare("insert into answer(number, description, correctness, question_id, image) values (?,?,?,?,?)");
-        $stmt->bind_param('isiis', $number, $desc, $correct, $qid, $img);
+        if (empty($img)) {
+            $stmt = $this->prepare("insert into answer(number, description, correctness, question_id) values (?,?,?,?)");
+            $stmt->bind_param('isii', $number, $desc, $correct, $qid);
+        }else{
+            $stmt = $this->prepare("insert into answer(number, description, correctness, question_id, image) values (?,?,?,?,?)");
+            $stmt->bind_param('isiis', $number, $desc, $correct, $qid, $img);
+        }
         return $stmt->execute();
     }
 
@@ -158,16 +172,25 @@ class quizModel extends Model
         return ($stmt1 ->execute() and $stmt2->execute());
     }
 
+
     public function getAnswerData($question, $answer)
     {
         $stmt = $this->prepare("select * from answer where answer.question_id = ? and answer.id = ?");
         $stmt->bind_param('ii', $question, $answer);
         return $this->fetchOne($stmt);
     }
+
+    public function delAnswer($answer)
+    {
+        $stmt = $this->prepare("delete from answer where answer.id = ?");
+        $stmt->bind_param('i', $answer);
+        return $stmt->execute();
+    }
+
     public function updateAnswer($des, $corr, $img, $ans)
     {
         $stmt = $this->prepare("update answer set answer.description=?, answer.correctness=?, answer.image=?  where answer.id = ?");
-        $stmt->bind_param('sibi', $des, $corr, $img, $ans);
+        $stmt->bind_param('sisi', $des, $corr, $img, $ans);
         return $stmt->execute();
     }
 
@@ -211,10 +234,23 @@ class quizModel extends Model
         return $this->fetchOne($stmt);
     }
 
+    public function get_question($quizId,$question){
+        $stmt = $this->prepare("SELECT * FROM question where quiz_id = ? and id = ?");
+        $stmt->bind_param('ii',$quizId, $question);
+        return $this->fetchOne($stmt);
+    }
+
     public function countQuestions($quizId){
         $stmt = $this->prepare("SELECT count(id) FROM question WHERE quiz_id = ?");
         $stmt->bind_param('i', $quizId);
         return $this->fetchOne($stmt);
     }
+
+    public function updateQuestion($id, $desc, $img){
+        $stmt = $this->prepare("UPDATE question SET description = ?, image = ? WHERE id = ?");
+        $stmt->bind_param('ssi', $desc, $img, $id);
+        return $this->executePrepared($stmt);
+    }
+
 
 }

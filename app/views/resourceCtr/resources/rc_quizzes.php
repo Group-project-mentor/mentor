@@ -84,7 +84,7 @@
                                     <?php echo $row->marks ?> Marks
                                 </div>
                                 <div class="quiz-card-item">
-                                    <?php echo $data[1][$row->id] ?> Questions
+                                    <?php echo isset($data[1][$row->id])?$data[1][$row->id]:0 ?> Questions
                                 </div>
                             </div>
                             <div class="quiz-card-button-set">

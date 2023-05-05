@@ -75,10 +75,32 @@ class RcDelete extends Controller
         }
     }
 
-    public function quiz($id){
+    public function quiz($id){ // Todo : doing
         $row = $this->model("resourceModel")->getResource($id, $_SESSION['gid'], $_SESSION['sid'], 'quiz');
+        $answerList = array();
         if (!empty($row)) {
-            if ($this->model("resourceModel")->deleteResource($id, 'quiz') == true) {
+            $questionSet = $this->model('quizModel')->getQuestions($id);
+            if (!empty($questionSet)){
+                foreach($questionSet as $question){
+                    $ansSet = $this->model('quizModel')->getAnswers($id, $question[0]);
+                    if (!empty($ansSet)) {
+                        foreach ($ansSet as $answer){
+                            $answerList[$question[0]][] = $answer[4];
+                        }
+                    }
+                }
+            }
+            if ($this->model("resourceModel")->deleteResource($id, 'quiz')) {
+                if (!empty($questionSet)){
+                    foreach ($questionSet as $question){
+                        deleteFile($question[3], "quizzes/questions", $_SESSION['gid'], $_SESSION['sid']);
+                        if (!empty($answerList[$question[0]])){
+                            foreach($answerList[$question[0]] as $answer){
+                                deleteFile($answer, "quizzes/answers", $_SESSION['gid'], $_SESSION['sid']);
+                            }
+                        }
+                    }
+                }
                 header("location:" . BASEURL . "rcResources/quizzes/" . $_SESSION["gid"] . "/" . $_SESSION["sid"]);
             } else {
                 header("location:" . BASEURL . "rcResources/quizzes/" . $_SESSION["gid"] . "/" . $_SESSION["sid"] . "/error");
