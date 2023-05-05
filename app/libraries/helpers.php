@@ -173,6 +173,26 @@ function TdeleteFile($fileName, $type, $folder1=null):bool
     }
 }
 
+function st_deleteFile($fileName, $type, $folder1=null):bool
+{
+    $fileDest = "private_resources/$type/";
+    if($folder1!=null)
+    {
+        $fileDest = $fileDest.$folder1."/".$fileName;
+        if(!file_exists($fileDest)){
+            return unlink($fileDest);
+        }else{
+            return false;
+        }
+    }
+    $fileDest = $fileDest.$fileName;
+    if(!file_exists($fileDest)){
+        return unlink($fileDest);
+    }else{
+        return false;
+    }
+}
+
 
 function getMonthName($monthNumber) {
     return date("F", mktime(0, 0, 0, $monthNumber, 1));
