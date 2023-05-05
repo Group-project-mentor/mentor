@@ -64,9 +64,7 @@
                         <a class="back-btn" href="<?php echo BASEURL ?>TBilling/Billing1">Back</a>
                     </a>
                     <?php include_once "components/notificationIcon.php" ?>
-                    <a href="<?php echo BASEURL ?>sponsor/profile">
-                        <img src="<?php echo BASEURL ?>public/assets/icons/icon_profile_black.png" alt="profile">
-                    </a>
+                    <?php include_once "components/premiumIcon.php" ?>
                 </div>
             </section>
 

@@ -15,15 +15,15 @@
 <body>
 
     <?php
-if (!empty($data[1]) && $data[1] == "success") {
-    include_once "components/alerts/password_changed.php";
-}
-?>
+    if (!empty($data[1]) && $data[1] == "success") {
+        include_once "components/alerts/password_changed.php";
+    }
+    ?>
 
     <section class="page">
 
         <!-- Navigation panel -->
-        <?php include_once "components/navbars/t_nav_1.php"?>
+        <?php include_once "components/navbars/t_nav_1.php" ?>
 
         <!-- Right side container -->
         <div class="content-area">
@@ -33,38 +33,33 @@ if (!empty($data[1]) && $data[1] == "success") {
                 <div class="search-bar">
                 </div>
                 <div class="top-bar-btns">
-                    <//?php include_once "components/notificationIcon.php" ?>
-                    <a href="<?php echo BASEURL . 'TProfile' ?>">
-                        <img src="<?php echo BASEURL ?>assets/icons/icon_profile_black.png" alt="profile">
-                    </a>
+                    <?php include_once "components/notificationIcon.php" ?>
+                    <?php include_once "components/premiumIcon.php" ?>
                 </div>
             </section>
-      
+
             <!-- Middle part for whole content -->
             <section class="mid-content">
-            
-            <div class="rc-resource-header">
-                <!-- Title and sub title of middle part -->
-                <div class="mid-title">
-                    <h1>Teacher Profile</h1>
+
+                <div class="rc-resource-header">
+                    <!-- Title and sub title of middle part -->
+                    <div class="mid-title">
+                        <h1>Teacher Profile</h1>
+                    </div>
+
+                    <a href="<?php echo BASEURL . 'logout' ?>">
+                        <div class="rc-add-btn">
+                            <img src="<?php echo BASEURL ?>assets/icons/icon_logout.png" class="rc-profile-arrow-btn" style="width: 15px;height:15px;margin:auto; ">
+                            Logout
+                        </div>
+                    </a>
+
                 </div>
 
-                <a href="<?php echo BASEURL . 'logout' ?>" >
-                            <div class="rc-add-btn">
-                                <img src="<?php echo BASEURL ?>assets/icons/icon_logout.png"  class="rc-profile-arrow-btn" style="width: 15px;height:15px;margin:auto; ">
-                                Logout
-                            </div>
-                        </a>
-
-                        </div>        
-
-                        <div class="rc-profile">
+                <div class="rc-profile">
                     <div class="rc-profile-main">
                         <a class="rc-profile-image" href="<?php echo BASEURL ?>TProfile/change/image">
-                            <img src="<?php echo (!empty($data[0]->image)) ? $data[0]->image : BASEURL . "assets/clips/profile_img.webp" ?>"
-                                 alt="profile"
-                                 id="profileImg"
-                                 style="object-fit: cover;"/>
+                            <img src="<?php echo (!empty($data[0]->image)) ? $data[0]->image : BASEURL . "assets/clips/profile_img.webp" ?>" alt="profile" id="profileImg" style="object-fit: cover;" />
                             <span class="rc-profile-change-btn hidden" id="changeBtn">Change</span>
                         </a>
                         <div class="rc-profile-table">
@@ -122,7 +117,7 @@ if (!empty($data[1]) && $data[1] == "success") {
                                     Update Password
                                 </div>
                                 <div class="rc-profile-right">
-                                        <img src="<?php echo BASEURL ?>assets/icons/icon_next.png" alt="notify" class="rc-profile-arrow-btn">
+                                    <img src="<?php echo BASEURL ?>assets/icons/icon_next.png" alt="notify" class="rc-profile-arrow-btn">
                                 </div>
                             </a>
                             <a class="rc-profile-row txt-red">
@@ -146,16 +141,15 @@ if (!empty($data[1]) && $data[1] == "success") {
     let profileImg = document.getElementById('profileImg');
     let changeBtn = document.getElementById('changeBtn');
 
-    profileImg.addEventListener('mouseover',()=>{
+    profileImg.addEventListener('mouseover', () => {
         profileImg.classList.add('rc-profile-img-hidden');
         changeBtn.classList.remove('hidden');
     });
 
-    profileImg.addEventListener('mouseout',()=>{
+    profileImg.addEventListener('mouseout', () => {
         profileImg.classList.remove('rc-profile-img-hidden');
         changeBtn.classList.add('hidden');
     })
-
 </script>
 
 </html>

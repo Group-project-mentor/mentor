@@ -16,6 +16,7 @@
 <body>
 <?php require_once("C:/xampp/htdocs/mentor/app/views/admin/navbar.php"); ?>
 
+        <?php include_once "components/alerts/rightAlert.php"?>
             <!-- Middle part for whole content -->
             <section class="mid-content">
                 <!-- Title and sub title of middle part -->
@@ -26,7 +27,7 @@
 
                 <form class="rc-profile rc-profile-change">
                     <div class="rc-profile-change-img">
-                        <img id="profImg" src="<?php echo (!empty($data[0]->image)) ? $data[0]->image : BASEURL."assets/clips/profile_img.webp" ?>" alt="profile image">
+                        <img id="profImg" src="<?php echo (!empty($data[0])) ? BASEURL."data/profiles/".$data[0] : BASEURL."assets/clips/profile_img.webp" ?>" alt="profile image">
                     </div>
 
                     <!-- todo: want to do the functionality and style -->
@@ -43,7 +44,9 @@
         </div>
     </section>
 </body>
-
+<script>
+    const BASEURL = '<?php echo BASEURL ?>';
+</script>
 <script src="<?php echo BASEURL . '/public/javascripts/admin/change_profile.js' ?>"></script>
 
 </html>

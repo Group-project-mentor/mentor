@@ -46,12 +46,15 @@ class admins extends Controller {
 
         if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 
+            $uID = $_SESSION["id"];
             $data = [];
             $data['studentCount'] = $this->adminModel->studentCount();
             $data['teacherCount'] = $this->adminModel->teacherCount();
             $data['classCount'] = $this->adminModel->classCount();
             $data['sponsorCount'] = $this->adminModel->sponsorCount();
-            $data['complaints'] = $this->adminModel->complaints();
+            $data['complaints'] = $this->adminModel->complaint();
+            $data['rtask'] = $this->adminModel->ResourceTask($uID);
+            $data['ctask'] = $this->adminModel->ComplaintTask($uID);
 
             // print_r($data);
 
@@ -67,8 +70,6 @@ class admins extends Controller {
         $this->hasLogged();
 
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-           
-
 
         }
 
@@ -76,9 +77,9 @@ class admins extends Controller {
 
 
             $data = [];
-            $data['complaints'] = $this->adminModel->complaints();
+            $data['complaints'] = $this->adminModel->complaint();
 
-
+            // print_r($data['complaints']);
 
             $this->view('admin/complaintHandle',$data);
 
@@ -92,14 +93,21 @@ class admins extends Controller {
         $this->hasLogged();
 
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-           echo("Added");
+
+            $cID = $_POST['cID'];
+            $uID = $_POST['uID'];
+            if($this->adminModel->addComplaintToTaskManager($cID,$uID)){
+                echo 'Successful';
+            } else{
+                echo 'Error';
+            }
         }
 
         if ($_SERVER['REQUEST_METHOD'] == 'GET') {
             
 
             $data = [];
-            $data['complaints'] = $this->adminModel->complaints();
+            $data['complaints'] = $this->adminModel->complaint($id);
 
             
             $this->view('admin/complaintview',$data);
@@ -113,13 +121,13 @@ class admins extends Controller {
         sessionValidator();
         $this->hasLogged();
 
-        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-           
-        }
-
         if ($_SERVER['REQUEST_METHOD'] == 'GET') {
-            
-            $this->view('admin/task');
+            $uID = $_SESSION["id"];
+                
+            $data = [];
+            $data['rtask'] = $this->adminModel->ResourceTask($uID);
+            $data['ctask'] = $this->adminModel->ComplaintTask($uID);
+            $this->view('admin/task',$data);
 
         }
 
@@ -131,12 +139,19 @@ class admins extends Controller {
         $this->hasLogged();
 
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-           
+
+            if ($this->adminModel->ComplaintTookAction($id)) {
+                echo 'Successful';
+            } else {
+                echo 'Error';
+            }
         }
 
         if ($_SERVER['REQUEST_METHOD'] == 'GET') {
             
-            $this->view('admin/complaintaction');
+            
+            $data['complaints'] = $this->adminModel->usercomplaint($id);
+            $this->view('admin/complaintaction',$data);
 
         }
 
@@ -160,8 +175,11 @@ class admins extends Controller {
         }
 
         if ($_SERVER['REQUEST_METHOD'] == 'GET') {
+
+            $data = [];
+            $data['task'] = $this->adminModel->ResourceTask();
             
-            $this->view('admin/userhandle');
+            $this->view('admin/userhandle',$data);
 
         }
 
@@ -179,7 +197,7 @@ class admins extends Controller {
                 $uID = $_POST['uID'];
 
                  //print_r($this->adminModel->addtoTaskManger($rID,$uID));die;
-                if ($this->adminModel->addtoTaskManger($rID,$uID)) {
+                if ($this->adminModel->addResourcetoTaskManger($rID,$uID)) {
                     echo 'Successful';
                 } else {
                     echo 'Error';
@@ -279,6 +297,29 @@ class admins extends Controller {
 
     }
     
+    public function resource($id) {
+
+        sessionValidator();
+        $this->hasLogged();
+
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+            if ($this->adminModel->ComplaintTookAction($id)) {
+                echo 'Successful';
+            } else {
+                echo 'Error';
+            }
+        }
+
+        if ($_SERVER['REQUEST_METHOD'] == 'GET') {
+            
+            
+            $data['complaints'] = $this->adminModel->usercomplaint($id);
+            $this->view('admin/resourceview',$data);
+
+        }
+
+    }
 
     public function scholorships() {
 
@@ -380,22 +421,22 @@ class admins extends Controller {
 
     }
 
-    public function wallet() {
+    // public function wallet() {
 
-        sessionValidator();
-        $this->hasLogged();
+    //     sessionValidator();
+    //     $this->hasLogged();
 
-        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    //     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
            
-        }
+    //     }
 
-        if ($_SERVER['REQUEST_METHOD'] == 'GET') {
+    //     if ($_SERVER['REQUEST_METHOD'] == 'GET') {
             
-            $this->view('admin/wallet');
+    //         $this->view('admin/wallet');
 
-        }
+    //     }
 
-    }
+    // }
 
     public function analatics() {
 
@@ -424,9 +465,53 @@ class admins extends Controller {
         }
 
         if ($_SERVER['REQUEST_METHOD'] == 'GET') {
+
+            $data['admin'] = $this->adminModel->admin();
+            $data['rc'] = $this->adminModel->resourcecreator();
             
-            $data['classes'] = $this->hrModel->getClasses();
+            // $data['classes'] = $this->hrModel->getClasses();
+            
             $this->view('admin/humanResource',$data);
+
+        }
+
+    }
+
+    public function adminviewall() {
+
+        sessionValidator();
+        $this->hasLogged();
+
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+           
+        }
+
+        if ($_SERVER['REQUEST_METHOD'] == 'GET') {
+
+            $data = [];
+            $data['admin'] = $this->adminModel->admin();
+            
+            $this->view('admin/addMemberViewall',$data);
+
+        }
+
+    }
+
+    public function resourceCreatorViewall() {
+
+        sessionValidator();
+        $this->hasLogged();
+
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+           
+        }
+
+        if ($_SERVER['REQUEST_METHOD'] == 'GET') {
+
+            $data = [];
+            $data['rc'] = $this->adminModel->resourcecreator();
+            
+            $this->view('admin/resourcecreatorviewall',$data);
 
         }
 
@@ -445,7 +530,9 @@ class admins extends Controller {
 
         if ($_SERVER['REQUEST_METHOD'] == 'GET') {
             
-            $this->view('admin/addMemberTeam');
+            $data = [];
+            $data['admin'] = $this->adminModel->admin();
+            $this->view('admin/addMemberView',$data);
 
         }
 
@@ -476,22 +563,6 @@ class admins extends Controller {
 
     }
 
-    public function addmemberview($id) {
-
-        sessionValidator();
-        $this->hasLogged();
-
-        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-           
-        }
-
-        if ($_SERVER['REQUEST_METHOD'] == 'GET') {
-            
-            $this->view('admin/addMemberView');
-
-        }
-
-    }
     
     public function profile() {
 
@@ -537,7 +608,8 @@ class admins extends Controller {
         sessionValidator();
         $this->hasLogged();
 
-        $data[] = $this->adminModel->getImage($_SESSION['id']);
+        $data[] = $this->userModel->getImage($_SESSION['id'])[0];
+        var_dump($data);
         $this->view("admin/ad_profile/profile_changeimg", $data);
     }
 
@@ -599,6 +671,57 @@ class admins extends Controller {
             }else{
                 echo "unsuccess";
             }
+        }
+    }
+
+    public function updateImage()
+    {
+        session_start();
+        if (isset($_FILES["image"])) {
+            $typeArray = array("png" => "image/png", "jpg" => "image/jpg", "jpeg" => "image/jpeg");
+            $fileData = array("name" => $_FILES["image"]["name"],
+                    "type" => $_FILES["image"]["type"],
+                    "size" => $_FILES["image"]["size"]);
+            $extention = pathinfo($fileData["name"], PATHINFO_EXTENSION);
+            if (in_array($fileData['type'], $typeArray)) {
+                $newFileName = uniqid() . $_SESSION["id"] . "." . $extention;
+                $image = $this->model("userModel")->getImage($_SESSION['id'])[0];
+                if(empty($image) or $image == ""){
+                    if (move_uploaded_file($_FILES["image"]["tmp_name"], "data/profiles/" . $newFileName)) {
+                        if($this->model("userModel")->changeImg($_SESSION['id'],$newFileName)){
+                            $_SESSION['profilePic'] = $newFileName; 
+                            echo "success";
+                        }else{
+                            echo "failed";
+                        }
+                    } else {
+                        echo "failed";
+                    }
+                }else{
+                    if (move_uploaded_file($_FILES["image"]["tmp_name"], "data/profiles/" . $newFileName) and file_exists("data/profiles/".$image) and unlink("data/profiles/".$image)) {
+                        if($this->model("userModel")->changeImg($_SESSION['id'],$newFileName)){
+                            $_SESSION['profilePic'] = $newFileName; 
+                            echo "success";
+                        }else{
+                            echo "failed";
+                        }
+                    }elseif(!file_exists("data/profiles/".$image)){
+                        if($this->model("userModel")->changeImg($_SESSION['id'],$newFileName)){
+                            $_SESSION['profilePic'] = $newFileName; 
+                            echo "success";
+                        }else{
+                            echo "failed";
+                        }
+                    }
+                     else {
+                        echo "failed";
+                    }
+                }
+            }else{
+                echo "type_error";
+            }     
+        }else{
+            echo "failed";
         }
     }
 

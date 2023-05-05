@@ -34,17 +34,45 @@
                         <h1>Resource Creators</h1>
                     </div>
                     <div class="btn">
-                        <button class="btns" type="button">
-                            <p>View All</p>
-                        </button>
-                        <button class="btns" type="button">
-                            <p>Add New</p>
-                        </button>
+                        <a class="btns" href="<?php echo BASEURL ?>admins/resourceCreatorViewall" style="text-decoration:none">
+                            View All
+                        </a>
+
                     </div>
 
                 </div>
-            </div>
+                <div class="users">
 
+                    <?php
+                    if (!$data['rc']) {
+                        echo 'No Details';
+                    } else {
+                        foreach ($data['rc'] as $value) {
+                            echo
+                            '<div class="content" id="comp-content">
+                                
+                                <div class="subject-card">
+                                    <div class="pp">
+                                        <img class="profile" src="' . BASEURL . 'assets/admin/user.png">
+                                    </div>
+                                    <div class="name">
+                                        <p>' . $value['name'] . '</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="btns">
+                                
+                                    <form action="' . BASEURL . 'admins/scholpro/' . $value['id'] . '" method="POST">
+                                        <button class="comp-btns">Add to task manager</button>
+                                    </form><br>
+                                </div>
+                            </div>';
+                        }
+                    }
+
+                    ?>
+                </div>
+            </div>
         </div>
 
         <div class="hr" id="team">
@@ -54,7 +82,7 @@
                         <h1>co-Admins</h1>
                     </div>
                     <div class="btn">
-                        <a class="btns" href="<?php echo BASEURL ?>admins/addMember" style="text-decoration:none">
+                        <a class="btns" href="<?php echo BASEURL ?>admins/adminviewall" style="text-decoration:none">
                             View All
                         </a>
                         <a class="btns" href="<?php echo BASEURL  ?>admins/addAdmin" style="text-decoration:none">
@@ -65,23 +93,35 @@
 
                 </div>
                 <div class="users">
-                    <?php if (!empty($data['classes'])) { ?>
-                        <?php foreach ($data['classes'] as $row) { ?>
-                            <div class="subject-card">
-                                <img src="<?php echo BASEURL ?>assets/admin/user.png" width="5%" height="5%" />
-                                <a class="btns" href="<?php echo BASEURL ?>adResource" style="text-decoration:none"><label> <?php echo $row['name'] ?></label></a>
 
-                            </div>
-                        <?php } ?>
+                    <?php
+                    if (!$data['admin']) {
+                        echo 'No Details';
+                    } else {
+                        foreach ($data['admin'] as $value) {
+                            echo
+                            '<div class="content" id="comp-content">
+                                
+                                <div class="subject-card">
+                                    <div class="pp">
+                                        <img class="profile" src="' . BASEURL . 'assets/admin/user.png">
+                                    </div>
+                                    <div class="name">
+                                        <p>' . $value['name'] . '</p>
+                                    </div>
+                                </div>
+                            </div>';
+                        }
+                    }
+
+                    ?>
                 </div>
-            <?php } else {
-                        echo "no data";
-                    } ?>
-
-
             </div>
-        </div>
-
+            <!-- <div class="btns">
+                <form action="' . BASEURL . 'admins/addMember/'. $value['admin_id'].'" method="POST">
+                    <button class="comp-btns">Add to task manager</button>
+                </form><br>
+            </div> -->
 
         </div>
 

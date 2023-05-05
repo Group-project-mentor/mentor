@@ -7,6 +7,7 @@ class St_courses extends Controller
     {
         sessionValidator();
         $this->hasLogged();
+        flashMessage();
     }
 
     public function index($gid)
@@ -24,6 +25,14 @@ class St_courses extends Controller
         unset($_SESSION["sname"]);
         $res = $this->model('st_courses_model')->getClasses3($gid, $_SESSION['id']);
         $this->view('student/enrollment/st_enrolled_subject', array($res));
+    }
+
+    public function Enroll_subject_delete($grade, $subject)
+    {
+        $res = $this->model('st_courses_model')->getClasses5($grade,$subject);
+        $this->notify($_SESSION['id'],"you Leave from the subject ","leave");
+        flashMessage("Delete");
+        header("location:" . BASEURL . 'st_courses/Enroll_subject_all/' . $_SESSION['gid'] );
     }
 
     public function Subject_to_Enroll_all($gid)
