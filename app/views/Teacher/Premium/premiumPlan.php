@@ -39,7 +39,7 @@
               <div class="card">
                 <div class="content">
                   <div class="imgBx">
-                    <img src="<?php echo BASEURL ?>public/assets/Teacher/clips/globe.gif" alt="notify">
+                    <img src="<?php echo BASEURL ?>public/assets/Teacher/clips/demand.gif" alt="notify">
                   </div>
                   <div class="contentBx">
                     <h3>No limit for adding Students<br></h3>
@@ -56,7 +56,7 @@
               <div class="card">
                 <div class="content">
                   <div class="imgBx">
-                    <img src="<?php echo BASEURL ?>public/assets/Teacher/clips/infinity.gif" alt="notify">
+                    <img src="<?php echo BASEURL ?>public/assets/Teacher/clips/graph.gif" alt="notify">
                   </div>
                   <div class="contentBx">
                     <h3>No limit for creating classes<br></h3>
@@ -73,7 +73,7 @@
               <div class="card">
                 <div class="content">
                   <div class="imgBx">
-                    <img src="<?php echo BASEURL ?>public/assets/Teacher/clips/prem1.gif" alt="notify">
+                    <img src="<?php echo BASEURL ?>public/assets/Teacher/clips/customer.gif" alt="notify">
                   </div>
                   <div class="contentBx">
                     <h3>No limit for adding Teachers <br></h3>
