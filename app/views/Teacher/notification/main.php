@@ -25,10 +25,8 @@
                 <div class="search-bar">
                 </div>
                 <div class="top-bar-btns">
-                    <?php include_once "components/notificationIcon.php" ?>
-                    <a href="<?php echo BASEURL . 'TProfile' ?>">
-                        <img src="assets/icons/icon_profile_black.png" alt="profile">
-                    </a>
+                <?php include_once "components/notificationIcon.php" ?>
+                    <?php include_once "components/premiumIcon.php" ?>
                 </div>
             </section>
 

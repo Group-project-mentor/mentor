@@ -12,6 +12,18 @@
 
 <body>
     <section class="page">
+    <?php include_once "components/alerts/Teacher/teacher_added.php" ?>
+    <?php if(!empty($_SESSION['message'])){
+        switch ($_SESSION['message']){
+            case "Your have successfully added the teacher":
+                include_once "components/alerts/Teacher/teacher_addded.php";
+                break;
+            case "Your add teacher limit for free account is over":
+                include_once "components/alerts/Teacher/addTeacherLimit.php";
+                break;
+        }
+    } ?>
+
         <!-- Navigation panel -->
         <?php include_once "components/navbars/t_nav_2.php" ?>
 
@@ -24,12 +36,8 @@
                     <a href="#">
                         <a class="back-btn" href="<?php echo BASEURL ?>TInsideClass/InClass">Back</a>
                     </a>
-                    <a href="#">
-                        <img src="<?php echo BASEURL ?>public/assets/Teacher/icons/icon_notify.png" alt="notify">
-                    </a>
-                    <a href="<?php echo  BASEURL ?>TProfile/profile">
-                        <img src="<?php echo BASEURL ?>public/assets/Teacher/icons/icon_profile_black.png" alt="profile">
-                    </a>
+                    <?php include_once "components/notificationIcon.php" ?>
+                    <?php include_once "components/premiumIcon.php" ?>
                 </div>
             </section>
 

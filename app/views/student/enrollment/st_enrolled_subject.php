@@ -12,6 +12,16 @@
 </head>
 
 <body>
+        
+<!-- message pop up when click delete button -->
+<?php
+if(!empty($_SESSION['message'])) {
+    if ($_SESSION['message'] == "Delete") {
+        $message = "Leave from the Subject Successfully !";
+        include_once "components/alerts/operationSuccess.php";
+    }
+}
+?>
     <section class="page">
         <!-- Navigation panel -->
         <?php include_once "components/navbars/st_navbar_1.php" ?> <!-- used to include_once to add file -->
@@ -57,7 +67,11 @@
                                     <img src="<?php echo BASEURL  ?>assets/patterns/1.png" alt="" />
                                     <label><?php echo $row->name ?></label>
                                     <label>Grade <?php echo $_SESSION['gid'] + 5 ?></label>
-                                    <a href="<?php echo BASEURL . 'St_public_resources/index/' . $_SESSION['gid'] . '/' . $row->id . '/' .$row->name  ?>"><label>View</label></a>
+                                    <div>
+                                    <a href="<?php echo BASEURL . 'St_public_resources/index/' . $_SESSION['gid'] . '/' . $row->id . '/' .$row->name  ?>"><label >View</label></a>
+                                    <a href="<?php echo BASEURL . 'st_courses/Enroll_subject_delete/' . $_SESSION['gid'] . '/' . $row->id   ?>"><label>Remove</label></a>
+                                    
+                                    </div>
                                 </div>
                             <?php } ?>
                         </div>

@@ -52,10 +52,8 @@
                     <a href="<?php echo BASEURL ?>Tprofile">
                         <div class="back-btn">Back</div>
                     </a>
-                    <//?php include_once "components/notificationIcon.php" ?>
-                    <a href="<?php echo BASEURL . 'TProfile' ?>">
-                        <img src="<?php echo BASEURL ?>assets/icons/icon_profile_black.png" alt="profile">
-                    </a>
+                    <?php include_once "components/notificationIcon.php" ?>
+                    <?php include_once "components/premiumIcon.php" ?>
                 </div>
             </section>
 

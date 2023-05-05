@@ -34,9 +34,19 @@ class joinRequests extends Controller
 
     public function acceptRequest($id, $cid, $sid)
     {
-        if ($this->model('teacher_data')->addStudentsbyRequest($sid,$cid) and $this->model("joinRequestsModel")->markAccept($id))
-        {
-            header("Location: " . BASEURL . "joinRequests/getRequests/" . $cid);
+        $premium = ($this->model("premiumModel")->getPremium($_SESSION['id'])->active);
+        $student_count = ($this->model("premiumModel")->studentCount($_SESSION['cid'])->student_count);
+        if ($premium == 1) {
+            if ($this->model('teacher_data')->addStudentsbyRequest($sid, $cid) and $this->model("joinRequestsModel")->markAccept($id)) {
+                header("Location: " . BASEURL . "joinRequests/getRequests/" . $cid);
+            }
+        }else if ($premium != 1 and $student_count<10) {
+            if ($this->model('teacher_data')->addStudentsbyRequest($sid, $cid) and $this->model("joinRequestsModel")->markAccept($id)) {
+                header("Location: " . BASEURL . "joinRequests/getRequests/" . $cid);
+            }
+        }else if($premium != 1 and $student_count>=10){
+            flashMessage("Your add student limit for free account is over");
         }
+        header("Location: " . BASEURL . "joinRequests/getRequests/" . $cid);
     }
 }

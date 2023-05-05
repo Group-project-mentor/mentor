@@ -77,10 +77,10 @@
                                 <div class="rc-quiz-row-btns">
                                     <div class="sponsor-list-item flex-1" style="display:flex;align-items:center;justify-content:space-evenly;">
                                         <a href="<?php echo BASEURL . 'st_private_mode/st_join_request_update/1/' . $row->class_id   ?>">
-                                            <img src="<?php echo BASEURL ?>assets/icons/icon-correct-green.png" alt="" style="width: 20px;margin:0 5px;">
+                                            <div class="back-btn">Accept</div>
                                         </a>
-                                        <a href="<?php echo BASEURL . 'st_private_mode/st_join_request_update/0'  ?>">
-                                            <img src="<?php echo BASEURL ?>assets/icons/icon-incorrect-red.png" alt="" style="width: 25px;margin:0 5px;">
+                                        <a href="<?php echo BASEURL . 'st_private_mode/st_join_request_update/0/' . $row->class_id ?>">
+                                            <div class="back-btn">Delete</div>
                                         </a>
                                     </div>
                                 </div>

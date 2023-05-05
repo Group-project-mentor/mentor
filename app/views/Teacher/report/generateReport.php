@@ -74,12 +74,8 @@
                 <a href="#">
                         <a class="back-btn" href="<?php echo BASEURL ?>TInsideClass/InClass">Back</a>
                     </a>
-                    <a href="#">
-                    <img src="<?php echo BASEURL?>public/assets/Teacher/icons/icon_notify.png" alt="notify">
-                    </a>
-                    <a href="<?php echo  BASEURL ?>TProfile/profile">
-                    <img src="<?php echo BASEURL?>public/assets/Teacher/icons/icon_profile_black.png" alt="profile">
-                    </a>
+                    <?php include_once "components/notificationIcon.php" ?>
+                    <?php include_once "components/premiumIcon.php" ?>
                 </div>
             </section>
 

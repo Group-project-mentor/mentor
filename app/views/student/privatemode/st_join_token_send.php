@@ -40,10 +40,7 @@
             <!-- Top bar -->
             <section class="top-bar">
                 <div class="search-bar">
-                    <input type="text" name="" id="" placeholder="Search...">
-                    <a href="">
-                        <img src="<?php echo BASEURL; ?>assets/icons/icon_search.png" alt="">
-                    </a>
+
                 </div>
                 <div class="top-bar-btns">
                     <a href="<?php echo BASEURL; ?>st_private_mode/st_join_token">
@@ -63,15 +60,44 @@
                     <h3>Hello <?php echo $_SESSION['name'] ?> !</h3>
                 </div>
 
-                <div style="padding-top: 120px;">
+                <div style="padding-top: 20px;">
                     <h3 class="token" style="margin: auto;">
                         <div class="subject-card">
                             <img src="<?php echo BASEURL ?>assets/patterns/4.png" alt="" />
                             <label><?php echo $_SESSION['class_name'] ?></label>
+                            <label>Class Feez : 3000.00 LKR</label>
                         </div>
-                        Successfully join. You can Access After permission of the teacher.
                         <hr>
                     </h3>
+                </div>
+                <div style="padding-top: 40px;">
+
+                    <ul>
+                        <li>
+                            <h3>Successfully Send the Join Request Using Class Token.</h3>
+                        </li>
+                        <li>
+                            <h3>Next You have to Pay Monthly Amount Of the Class Show Above. You can Use Billing Method In Your Profile.</h3>
+                        </li>
+                        <li>
+                            <h3> Direction For That :</h3>
+                        </li>
+                        <ol>
+                            <li>
+                                <h3>Click Profile Icon On Right Top Corner</h3>
+                            </li>
+                            <li>
+                                <h3>Go To Billing Part In Navigation Menu</h3>
+                            </li>
+                            <li>
+                                <h3>Do Payment Through It</h3>
+                            </li>
+                        </ol>
+                        <li>
+                            <h3>After Validate Your Payment,Teacher will Accept Token Request.
+                                Till that The Process Will Hold And It Will not Take Long Time.</h3>
+                        </li>
+                    </ul>
                 </div>
             </section>
         </div>

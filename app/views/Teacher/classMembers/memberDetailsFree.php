@@ -90,12 +90,8 @@
                     <a href="#">
                         <a class="back-btn" href="<?php echo BASEURL ?>privateclass/InsideClass">Back</a>
                     </a>
-                    <a href="#">
-                        <img src="<?php echo BASEURL ?>public/assets/Teacher/icons/icon_notify.png" alt="notify">
-                    </a>
-                    <a href="<?php echo  BASEURL ?>TProfile/profile">
-                        <img src="<?php echo BASEURL ?>public/assets/Teacher/icons/icon_profile_black.png" alt="profile">
-                    </a>
+                    <?php include_once "components/notificationIcon.php" ?>
+                    <?php include_once "components/premiumIcon.php" ?>
                 </div>
             </section>
 
@@ -236,7 +232,7 @@
                             <div class="sponsor-list-row">
                             </div>
                             <?php foreach ($data[0] as $row) {
-                                if ($count <= 20) {
+                                if ($count <= 10) {
                             ?>
                                     <div class="sponsor-list-row">
                                         <div class="sponsor-list-item flex-1">

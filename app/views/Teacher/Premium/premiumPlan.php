@@ -25,12 +25,8 @@
           <a href="#">
             <a class="back-btn" href="<?php echo BASEURL ?>home">Back</a>
           </a>
-          <a href="#">
-            <img src="<?php echo BASEURL ?>public/assets/Teacher/icons/icon_notify.png" alt="notify">
-          </a>
-          <a href="<?php echo  BASEURL ?>TProfile/profile">
-            <img src="<?php echo BASEURL ?>public/assets/Teacher/icons/icon_profile_black.png" alt="profile">
-          </a>
+          <?php include_once "components/notificationIcon.php" ?>
+          <?php include_once "components/premiumIcon.php" ?>
         </div>
       </section>
 
@@ -95,7 +91,7 @@
             <div class="amount">
               <h1><br>You only have to pay RS.10 000 for a Year.</h1>
             </div><br><br>
-            <div class="button-container" >
+            <div class="button-container">
               <button id=payhere-payment class="buy-button">Buy</button>
             </div>
 
@@ -150,7 +146,7 @@
             "address": "unknown",
             "city": "unknown",
             "country": "",
-            "custom_2":"",
+            "custom_2": "",
           };
 
           const getHash = (ordId, amount, currency) => {
@@ -183,4 +179,5 @@
     </div>
   </section>
 </body>
+
 </html>
