@@ -20,4 +20,12 @@ function userTypeValidator($user)
     }
 }
 
+function premiumValidator()
+{
+    session_start();
+    if (!isset($_SESSION['user'])) {
+        header("location:" . BASEURL . "login");
+    }
+}
+
 
