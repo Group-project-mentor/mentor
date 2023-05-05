@@ -26,11 +26,11 @@
         </div>
         <div class="content">
             <?php
-            if (!$data['task']) {
+            if (!$data['rtask']) {
                 echo 'No Complaints';
                 echo ($_SESSION["id"]);
             } else {
-                foreach ($data['task'] as $value) {
+                foreach ($data['rtask'] as $value) {
                         echo '<div class="content">
                                     <div class="complaints">
                                         <div class="pp">
@@ -44,8 +44,39 @@
                                         </div>
                                         
                                 <div class="icons">
-                                    <div class="addtm">
-                                        <img src="' . BASEURL . 'assets/admin/addtm.png">
+                                    <div class="view">
+                                        <a href="'. BASEURL .'admins/complaint/' . $value['id'] . '"><img src="'. BASEURL .'assets/admin/view.png"></a>
+                                    </div>
+                                    <div class="delete">
+                                        <a href="' . BASEURL . '#"><img src="' . BASEURL . 'assets/admin/Delete.png"></a>
+                                    </div>
+                                </div>
+                                    </div>
+                                </div>';
+                    
+                }
+                
+            }
+
+            if (!$data['ctask']) {
+                
+            } else {
+                foreach ($data['ctask'] as $value) {
+                        echo '<div class="content">
+                                    <div class="complaints">
+                                        <div class="pp">
+                                            <img  class="profile" src="' . BASEURL . 'assets/admin/comphand.png">
+                                        </div>
+                                        <div class="name">
+                                            <p>Complaint Handling</p>
+                                        </div>
+                                        <div class="userid" id="user-id">
+                                            <p>' . $value['description'] . '</p>
+                                        </div>
+                                        
+                                <div class="icons">
+                                    <div class="view">
+                                        <a href="'. BASEURL .'admins/task/' . $value['work_id'] . '"><img src="'. BASEURL .'assets/admin/view.png"></a>
                                     </div>
                                     <div class="delete">
                                         <a href="' . BASEURL . '#"><img src="' . BASEURL . 'assets/admin/Delete.png"></a>
