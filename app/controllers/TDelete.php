@@ -38,4 +38,18 @@ class TDelete extends Controller
             }
         }
     }
+
+    public function other($id)
+    {
+        $row = $this->model("TchResourceModel")->getResource($id, $_SESSION['cid'],'other');
+        if (!empty($row)) {
+            $location = trim($row->location);
+            if ($this->model("TchResourceModel")->deleteResource($id, 'other') == true) {
+                deleteFile($location,"others",$_SESSION['cid']);
+                header("location:" . BASEURL . "TResources/others/" . $_SESSION["cid"]);
+            } else {
+                header("location:" . BASEURL . "TResources/others/" .  $_SESSION["cid"] . "/error");
+            }
+        }
+    }
 }
