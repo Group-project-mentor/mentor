@@ -73,8 +73,21 @@
                             $approval = $this->approvedGenerator($row->approved);
                             ?>
                         <div class="quiz-card-main">
-                            <div style="position: absolute;left: 3px;bottom: 3px;">
+                            <div class="quiz-card-status" style="">
                                 <img src='<?php echo BASEURL."assets/icons/".$approval ?>' alt='' class="resource-approved-sign">
+                                <?php
+                                    switch ($row->approved){
+                                        case 'Y':
+                                            echo "approved";
+                                            break;
+                                        case 'N':
+                                            echo "rejected";
+                                            break;
+                                        default :
+                                            echo "pending";
+                                            break;
+                                    }
+                                ?>
                             </div>
                             <div class="quiz-card-title">
                                 <?php echo $row->name ?>

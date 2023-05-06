@@ -234,6 +234,17 @@ class quizModel extends Model
         return $this->fetchOne($stmt);
     }
 
+    public function getQuestionByOrd($quizId,$ordNo){
+        if($this->countQuestions($quizId)[0] == 1){
+            $stmt = $this->prepare("SELECT * FROM question where quiz_id = ? LIMIT 1");
+            $stmt->bind_param('i',$quizId);
+        }else{
+            $stmt = $this->prepare("SELECT * FROM question where quiz_id = ? order by number limit 1 , ?");
+            $stmt->bind_param('ii',$quizId, $ordNo);
+        }
+        return $this->fetchOne($stmt);
+    }
+
     public function get_question($quizId,$question){
         $stmt = $this->prepare("SELECT * FROM question where quiz_id = ? and id = ?");
         $stmt->bind_param('ii',$quizId, $question);

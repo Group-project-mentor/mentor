@@ -86,7 +86,7 @@ if(!empty($_SESSION['message'])) {
                         <label for="quizName" class="rc-form-label">
                             Image :
                         </label>
-                        <img src="<?php echo $data[2][4] ?>" alt="question-image" class="quiz-question-image-preview">
+                        <img src="<?php echo BASEURL."public_resources/quizzes/questions/".$_SESSION['gid'].'/'.$_SESSION['sid'].'/'.$data[2][4] ?>" alt="question-image" class="quiz-question-image-preview">
                     </div>
                     <?php }?>
                     <hr class="quiz-line" />
@@ -114,7 +114,7 @@ if(!empty($_SESSION['message'])) {
                                     <?php echo $row[2]?>
                                 </p>
                                 <?php if(!empty($row[4])){ ?>
-                                <img src='<?php echo $row[4]?>' alt="fgdfg"/>
+                                <img src='<?php echo BASEURL."public_resources/quizzes/answers/".$_SESSION['gid'].'/'.$_SESSION['sid'].'/'.$row[4]?>' alt="fgdfg"/>
                                 <?php }?>
                             </div>
                             <a class="quiz-box-edit" onclick="delConfirm(<?php echo $data[0] ?>,<?php echo $data[1] ?>,2,<?php echo $row[0] ?>)">

@@ -90,6 +90,8 @@
 
     const baseURL = '<?php echo BASEURL?>';
     let quizId = <?php echo $data[0]?>;
+    const gid = "<?php echo $_SESSION['gid'] ?>"
+    const sid = "<?php echo $_SESSION['sid'] ?>"
 
 </script>
 <script src="<?php echo BASEURL . '/public/javascripts/rc_quiz_preview.js' ?>"></script>

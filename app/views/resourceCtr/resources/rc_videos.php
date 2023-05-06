@@ -17,7 +17,11 @@
     <?php
     if(!empty($_SESSION['message'])) {
         if ($_SESSION['message'] == "success") {
-            include_once "components/alerts/video_alerts/video_update_success.php";
+            $message = "Video updated successfully !";
+            include_once "components/alerts/operationSuccess.php";
+        }elseif ($_SESSION['message'] == "failed"){
+            $message = "Video updating failed !";
+            include_once "components/alerts/operationFailed.php";
         }
     }
     ?>
@@ -101,8 +105,21 @@
                                             <label style="color: white;">View</label>
                                             <img style="width: 15px" src='<?php echo BASEURL?>assets/icons/icon_eye_white.png' alt='' />
                                         </a>
-                                        <div style="position: absolute;left: 15px;top: 15px;">
+                                        <div style="color:black;position: absolute;left: 0;top: 0;display: flex;justify-content:center;justify-self:center;align-items:center;margin:auto;padding: 5px 10px;background:rgba(255,255,255,0.41);border-radius: 10px;backdrop-filter: blur(5px);">
                                             <img src='<?php echo BASEURL."assets/icons/".$approval ?>' alt='' class="resource-approved-sign">
+                                            <?php
+                                            switch ($row->approved){
+                                                case 'Y':
+                                                    echo "Approved";
+                                                    break;
+                                                case 'N':
+                                                    echo "Rejected";
+                                                    break;
+                                                default :
+                                                    echo "Pending";
+                                                    break;
+                                            }
+                                            ?>
                                         </div>
                                     </div>
                            <?php     }

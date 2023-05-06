@@ -42,7 +42,7 @@ class Quiz extends Controller
 
     public function editAction($quizId){
         if($this->model('quizModel')->validateQuiz($quizId,$_SESSION['gid'],$_SESSION['sid'])){
-            if($this->model('quizModel')->editQuiz($quizId, sanitizeText($_POST['quiz_name']), isNumber($_POST['tot_mark'],100))){
+            if($this->model('quizModel')->editQuiz($quizId, sanitizeText($_POST['quiz_name']), $_POST['tot_mark'])){
                 flashMessage("done");
             }else{
                 flashMessage("failed");
@@ -371,7 +371,7 @@ class Quiz extends Controller
     }
 
     public function editQuestion($quiz, $question){
-        $res = $this->model("quizModel")->getQuestion($quiz, $question);
+        $res = $this->model("quizModel")->getQuestionByOrd($quiz, $question);
         $this->view('quizModule/rc/editQuestion',array($quiz, $question, $res));
     }
 
