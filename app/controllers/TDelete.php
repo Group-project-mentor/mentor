@@ -29,10 +29,8 @@ class TDelete extends Controller
     {
         $row = $this->model("TchResourceModel")->getResource($id, $_SESSION['cid'], 'pdf');
         if (!empty($row)) {
-            $location = $row->location;
-//            $fileDest = "public_resources/documents/" . $location;
+            $location = trim($row->location);
             if ($this->model("TchResourceModel")->deleteResource($id, 'document') == true) {
-//                unlink($fileDest);
                 TdeleteFile($location,"documents",$_SESSION['cid']);
                 header("location:" . BASEURL . "TResources/documents/" .  $_SESSION["cid"]);
             } else {

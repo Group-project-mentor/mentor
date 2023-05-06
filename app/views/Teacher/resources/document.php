@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/x-icon" href="<?php echo BASEURL ?>assets/mentor.ico">
-    <title>RC-Cources</title>
+    <title>Teacher-documents</title>
         <link rel="stylesheet" href="<?php echo BASEURL . '/public/stylesheets/resourceCreator/rc_main.css' ?> ">
         <link rel="stylesheet" href="<?php echo BASEURL . '/public/stylesheets/resourceCreator/rc_resources.css' ?> ">
 </head>
@@ -158,40 +158,17 @@
         }
     }
 
-    function approvedGenerator(approval) {
-        if (approval === 'N') {
-            return 'icon_not_approved.png';
-        }
-        else if (approval === 'Y') {
-            return 'icon_approved.png';
-        }
-        else {
-            return 'icon_pending.png';
-        }
-    }
-
+ 
     function renderDocumentData (data,USER){
-        let approval = approvedGenerator(data.approval);
-        let rendered =
-            `<div class='rc-pdf-row'>
-                <div class='rc-resource-col' style="display: flex;align-items: center;justify-content: flex-start;">
-                  <img src='${BASEURL}assets/icons/${approval}' alt='' class="resource-approved-sign">
-                         <div>
-                            ${data.name}
-                                 </div>
-                         </div>
-                         <div class='rc-quiz-row-btns'>`;
 
-        if(data.creator_id === USER){
             rendered += ` <button onclick='delConfirm(${data.id},4)' >
                                                         <img src='${BASEURL}assets/icons/icon_delete.png' alt=''>
                                                     </button>
-                                                    <a href='${BASEURL}rcEdit/document/${data.id}'>
+                                                    <a href='${BASEURL}TEdit/document/${data.id}'>
                                                         <img src='${BASEURL}assets/icons/icon_edit.png' alt=''>
                                                     </a>`
-        }
 
-        rendered +=  `<a href='${data.id}rcResources/preview/document/${data.id}'>
+        rendered +=  `<a href='${data.id}TResources/preview/document/${data.id}'>
                             <img src='${data.id}assets/icons/icon_eye.png' alt=''>
                        </a>
                     </div>
@@ -200,5 +177,5 @@
         return rendered;
     }
 </script>
-<script src="<?php echo BASEURL . '/public/javascripts/rc_alert_control.js' ?>"></script>
+<script src="<?php echo BASEURL . '/public/javascripts/t_alert_control.js' ?>"></script>
 </html>
