@@ -302,4 +302,17 @@ class TchResourceModel extends Model
         $stmt->bind_param("i", $ppid);
         return $this->executePrepared($stmt);
     }
+
+    //search resources
+
+    public function searchDocuments($cid,$searchText) //!done
+    {
+        $stmt = $this->prepare("SELECT teacher_document.id,teacher_document.name,teacher_class_resources.upload_teacher_id 
+                                        FROM teacher_document,private_resource,teacher_class_resources WHERE teacher_document.id = private_resource.id AND
+                                         private_resource.id=teacher_class_resources.rs_id AND teacher_class_resources.class_id=? 
+                                         AND (teacher_document.name LIKE ?)");
+        $searchText = "%$searchText%";
+        $stmt->bind_param('is',$cid,$searchText);
+        return $this->fetchObjs($stmt);
+    }
 }

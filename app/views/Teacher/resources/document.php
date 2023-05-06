@@ -141,7 +141,7 @@
                                         <div class="rc-resource-col">Name</div>
                                          <div></div>
                                     </div>`;
-            fetch(`${BASEURL}rcResources/searchResource/documents/${searchTxt}`)
+            fetch(`${BASEURL}TResources/searchResource/documents/${searchTxt}`)
                 .then(response => response.json())
                 .then(data => {
                     if (data.length > 0){
