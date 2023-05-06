@@ -11,7 +11,7 @@ fileChooser.addEventListener("change", () => {
         fileReader.readAsDataURL(f);
         fileReader.addEventListener("load", () => {
             image = fileReader.result;
-            document.getElementById("image_data").value = image;
+            // document.getElementById("image_data").value = image;
             document.getElementById("image-preview").style.display = "flex";
             document.getElementById("image_tag").src = image;
         });

@@ -5,7 +5,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>New Question</title>
+    <link rel="icon" type="image/x-icon" href="<?php echo BASEURL ?>assets/mentor.ico">
+    <title>Edit Question</title>
     <link rel="stylesheet" href="<?php echo BASEURL?>public/stylesheets/Student/style.css">
     <link rel="stylesheet" href="<?php echo BASEURL?>public/stylesheets/quiz/quiz_styles.css">
 </head>
@@ -24,7 +25,7 @@
 
             </div>
             <div class="top-bar-btns">
-                <a href="<?php echo BASEURL."quiz/questions/".$data[0]?>">
+                <a href="<?php echo BASEURL."quiz/addAnswers/".$data[0]."/".$data[1]?>">
                     <div class="back-btn">Back</div>
                 </a>
                 <?php include_once "components/notificationIcon.php"?>
@@ -44,12 +45,13 @@
             </div>
 
             <!-- Grade choosing interface -->
-            <form class="container-box" method="POST" action="<?php echo BASEURL."quiz/saveQuestion/".$data[0]?>">
+            <?php print_r($data) ?>
+            <form class="container-box" method="POST" action="<?php echo BASEURL."quiz/editQuestionAction/".$data[0]."/".$data[1]?>" enctype="multipart/form-data">
                 <div class="rc-resource-header">
                     <h1>TEST 1</h1>
                     <div class="rc-quiz-top-btns">
                         <button type="submit" name="submit" class="rc-add-btn" id="quiz-save-btn">
-                            Save
+                            Update
                         </button>
                     </div>
                 </div>
@@ -60,14 +62,20 @@
                         <label for="quizName" class="rc-form-label">
                             Question :
                         </label>
-                        <textarea placeholder="Enter your question" name="question" id="questionTxt" rows="7"></textarea>
+                        <textarea placeholder="Enter your question" name="question" id="questionTxt" rows="7"><?php echo $data[2][2] ?></textarea>
+
                     </div>
 
                     <div class="rc-form-group">
-                        <label for="quizName" class="rc-form-label">
-                            Image :
-                        </label>
-                        <input type="file" name="ques_img" class="rc-quiz-image-input" id="questionImg">
+                        <div id="image_preview" style="<?php echo empty($data[2][4])?"display:none;":"" ?>">
+                            <small style="margin-left:20px;">Image : </small>
+                            <img
+                                    id="image_tag"
+                                    src="<?php echo BASEURL."public_resources/quizzes/answers/".$_SESSION['gid']."/".$_SESSION['sid']."/".$data[2][4] ?>"
+                                    alt=""
+                                    style="width:100%;">
+                        </div>
+                        <input type="file" name="questionImage" class="rc-quiz-image-input" id="questionImg" accept="image/png, image/jpeg, image/jpg">
                     </div>
 
                 </div>
@@ -75,42 +83,27 @@
     </div>
 </section>
 </body>
+
 <script>
-    let toggle = true;
+    let fileChooser = document.getElementById("questionImg");
 
-    const getElement = (id) => document.getElementById(id);
+    let image = "";
 
-    let togglerBtn = getElement("nav-toggler");
-    let nav = getElement("nav-bar");
-    let logoLong = getElement("nav-logo-long");
-    let navMiddle = getElement("nav-middle");
-    let navLinkTexts = document.getElementsByClassName("nav-link-text");
-
-    togglerBtn.addEventListener('click', () => {
-        nav.classList.toggle("nav-bar-small");
-
-        if (toggle) {
-            logoLong.classList.add("hidden");
-            navMiddle.classList.add("hidden");
-            togglerBtn.classList.add("toggler-rotate");
-            for (i = 0; i < navLinkTexts.length; i++) {
-                navLinkTexts[i].classList.add("hidden");
-            }
-            toggle = false;
+    fileChooser.addEventListener("change", () => {
+        f = fileChooser.files[0];
+        if (f) {
+            const fileReader = new FileReader();
+            fileReader.readAsDataURL(f);
+            fileReader.addEventListener("load", () => {
+                image = fileReader.result;
+                document.getElementById("image_preview").style.display = "flex";
+                document.getElementById("image_tag").src = image;
+            });
+        }else{
+            document.getElementById("image_preview").style.display = "none";
         }
-
-        else {
-            logoLong.classList.remove("hidden");
-            navMiddle.classList.remove("hidden");
-            togglerBtn.classList.remove("toggler-rotate");
-            for (i = 0; i < navLinkTexts.length; i++) {
-                navLinkTexts[i].classList.remove("hidden");
-            }
-            toggle = true;
-        }
-    })
+    });
 </script>
 
-<!--<script src="--><?php //echo BASEURL?><!--javascripts/addQuestion.js"></script>-->
 
 </html>

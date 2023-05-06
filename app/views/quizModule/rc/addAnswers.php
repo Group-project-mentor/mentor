@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="<?php echo BASEURL ?>assets/mentor.ico">
     <title>New Question</title>
     <link rel="stylesheet" href="<?php echo BASEURL?>public/stylesheets/Student/style.css">
     <link rel="stylesheet" href="<?php echo BASEURL?>public/stylesheets/quiz/quiz_styles.css">
@@ -12,13 +13,22 @@
 
 <body>
 <?php
-if($data[3]=="success"){
-    include_once "quiz_alerts/suc_creating_question.php";
+if(!empty($_SESSION['message'])) {
+    if ($_SESSION['message'] == "success") {
+        $message = "Answer Added Successfully !";
+        include_once "components/alerts/operationSuccess.php";
+    } elseif ($_SESSION['message'] == "failed") {
+        $message = "Answer Adding Failed !";
+        include_once "components/alerts/operationFailed.php";
+    }
 }
 ?>
+
 <section class="page">
 
     <!-- Navigation panel -->
+    <?php include_once "quiz_alerts/answerDelConf.php"?>
+
     <?php include_once "components/navbars/rc_nav_2.php"?>
 
 
@@ -54,7 +64,7 @@ if($data[3]=="success"){
                 <div class="rc-resource-header">
                     <h1>TEST 1 </h1>
                     <div class="rc-quiz-top-btns">
-                        <a class="rc-add-btn" id="quiz-save-btn">
+                        <a href="<?php echo BASEURL."quiz/editQuestion/".$data[0]."/".$data[1] ?>" class="rc-add-btn" id="quiz-save-btn">
                             Edit Question
                         </a>
                     </div>
@@ -107,6 +117,9 @@ if($data[3]=="success"){
                                 <img src='<?php echo $row[4]?>' alt="fgdfg"/>
                                 <?php }?>
                             </div>
+                            <a class="quiz-box-edit" onclick="delConfirm(<?php echo $data[0] ?>,<?php echo $data[1] ?>,2,<?php echo $row[0] ?>)">
+                                <img src="<?php echo BASEURL ?>public/assets/icons/icon_delete.png" alt="delete">
+                            </a>
                             <a class="quiz-box-edit" href="<?php echo BASEURL.'quiz/editAnswer/'.$data[0].'/'.$data[1].'/'.$row[0]?>">
                                 <!-- todo : To complete this -->
                                 <img src="<?php echo BASEURL.'assets/icons/icon_edit.png'?>" alt="">
@@ -122,6 +135,5 @@ if($data[3]=="success"){
     </div>
 </section>
 </body>
-
-
+<script src="<?php echo BASEURL . 'javascripts/quizDeleteConfirm.js' ?>"></script>
 </html>

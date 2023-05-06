@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="<?php echo BASEURL ?>assets/mentor.ico">
     <title>New Question</title>
     <link rel="stylesheet" href="<?php echo BASEURL?>public/stylesheets/Student/style.css">
     <link rel="stylesheet" href="<?php echo BASEURL?>public/stylesheets/quiz/quiz_styles.css">
@@ -47,14 +48,11 @@
                 <div class="rc-resource-header">
                     <h1>TEST 1</h1>
                     <div class="rc-quiz-top-btns">
-                        <a class="rc-add-btn" id="quiz-save-btn">
-                            Edit Question
-                        </a>
                     </div>
                 </div>
 
                     <div  style="margin-top:30px;" class="quiz-answer-main quiz-ans-popup" id="ansBox">
-                    <form class="quiz-answer-set" action="<?php echo BASEURL.'quiz/saveAnswer/'.$data[0].'/'.$data[1] ?>" method="POST">
+                    <form class="quiz-answer-set" action="<?php echo BASEURL.'quiz/saveAnswer/'.$data[0].'/'.$data[1] ?>" method="POST" enctype="multipart/form-data">
                         <div class="rc-form-group">
                             <div class="answer-option-set">
                                 <h2>Answer</h2>
@@ -67,7 +65,7 @@
                                 <label for="quiz-answer-radio">Correct</label>
                             </div>
                             <textarea placeholder="Enter your Answer" name="answer" id="ansTxt" rows="4"></textarea>
-                            <input type="file" accept="image/png, image/jpeg, image/jpg" class="rc-ans-image-input" id="questionImg"/>
+                            <input type="file" accept="image/png, image/jpeg, image/jpg" class="rc-ans-image-input" id="questionImg" name="ansImg"/>
                         </div>
                         <br>
                     <div id="image-preview" style="display: none;flex-direction:column;">
@@ -77,7 +75,7 @@
                         <img src="" alt="" id="image_tag" style="margin: 0 20px;">
                     </div>
 
-                    <input type="hidden" name="ansImg" value="" id="image_data">
+                    <!-- <input type="hidden" name="ansImg" value="" id="image_data"> -->
 
                             <div style="display: flex;justify-content: center;">
                                 <button type="submit" class="rc-quiz-button green" id="addAnsBtn">

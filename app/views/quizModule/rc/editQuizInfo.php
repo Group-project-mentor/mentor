@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Create Quiz</title>
+    <link rel="icon" type="image/x-icon" href="<?php echo BASEURL ?>assets/mentor.ico">
     <link rel="stylesheet" href="<?php echo BASEURL?>public/stylesheets/Student/style.css">
     <link rel="stylesheet" href="<?php echo BASEURL?>public/stylesheets/quiz/quiz_styles.css">
 </head>
@@ -85,6 +86,8 @@
                                class="rc-form-input"
                                placeholder="Ex : 100"
                                value="<?php echo $data[1]->marks ?>"
+                               pattern="^[0-9]{1,5}$"
+                               title="Please enter a valid mark"
                         />
                     </div>
 <!--                    <div class="rc-form-group">-->
@@ -94,8 +97,6 @@
 <!--                        <small>Add instructions one by one</small>-->
 <!--                        <div style="display: flex;">-->
 <!--                            <input type="text"-->
-<!--                                   name="tot_mark"-->
-<!--                                   id="tot_mark"-->
 <!--                                   class="rc-form-input"-->
 <!--                                   placeholder=""-->
 <!--                                   style="flex: 1;"-->

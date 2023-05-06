@@ -72,3 +72,8 @@ function sanitizeFileName($name){
     $text = str_replace(' ', '_', $name);
     return $text;
 }
+
+function validateMark($mark){
+    $pattern = "/^[0-9]{1,5}$/";
+    return preg_match($pattern, $mark);
+}
