@@ -92,7 +92,9 @@
               <h1><br>You only have to pay RS.10 000 for a Year.</h1>
             </div><br><br>
             <div class="button-container">
-              <button id=payhere-payment class="buy-button">Buy</button>
+              <button type="button" id="payhere-payment" class="buy-button">
+                Buy
+              </button>
             </div>
 
           </section>
@@ -130,7 +132,7 @@
           let payment = {
             "sandbox": true,
             "custom_1": `unknown`,
-            "merchant_id": MERCHID,
+            "merchant_id": 1223117,
             "return_url": undefined,
             "cancel_url": undefined,
             "notify_url": `${TEMP_URL}/mentor/TPremium/savePremium`,
@@ -141,12 +143,12 @@
             "hash": "",
             "first_name": "",
             "last_name": "",
-            "email": "",
+            "email": "unknown",
             "phone": "unknown",
             "address": "unknown",
             "city": "unknown",
-            "country": "",
-            "custom_2": "",
+            "country": "unknown",
+            "custom_2": "unknown",
           };
 
           const getHash = (ordId, amount, currency) => {
@@ -158,6 +160,15 @@
             } else {
               return "";
             }
+          }
+
+          const setPaymetDetails = () => {
+            let formData = new FormData(document.getElementById('paymentForm'));
+
+            payment.items = "Buy premium";
+            payment.hash = getHash(payment.order_id, payment.amount, payment.currency);
+
+            // console.log(payment);
           }
 
           // console.log(getHash('o12345',1000,'LKR'))
