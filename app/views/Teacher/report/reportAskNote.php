@@ -162,7 +162,7 @@
                     <div class="container">
                         <textarea name="feedback" id="feedback" cols="30" rows="10"></textarea>
                         <div style="display: flex;">
-                            <button type="submit" id="form2-next">Generate</button>
+                            <button type="submit" id="form2-next">Preview</button>
                         </div>
                     </div>
                 </form>

@@ -14,6 +14,8 @@ class TReport extends Controller
 
     public function generateReport()
     {
+        unset ($_SESSION['Rcategory']);
+        unset ($_SESSION['sid']);
         $this->view('Teacher/report/generateReport');
     }
 
