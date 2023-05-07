@@ -159,24 +159,27 @@
 </body>
 <script>
     const BASEURL = "<?php echo BASEURL ?>";
-    let filterButton = document.getElementById("filterButton");
-    let filterForm = document.getElementById("filterForm");
-    let clearBtn = document.getElementById("clearButton");
+   let filterButton = document.getElementById("filterButton");
+   let filterForm = document.getElementById("filterForm");
+   let clearBtn = document.getElementById("clearButton");
 
-    filterButton.onclick = (e) =>  {
-        e.preventDefault();
-        let formData = new FormData(filterForm);
-        let url = `${BASEURL}sponsor/transactionHistory/1/?`;
-        for (let [key, value] of formData.entries()) {
-            url += `${key}=${value}&`;
-        }
-        window . location . replace(url);
-    }
+   filterButton.onclick = (e) =>  {
+       e.preventDefault();
+       let formData = new FormData(filterForm);
+       let url = `${BASEURL}sponsor/transactionHistory/1/?`;
+       for (let [key, value] of formData.entries()) {
+           url += `${key}=${value}&`;
+       }
+       window . location . replace(url);
+   }
 
-    clearBtn.onclick = (e) =>  {
-        e.preventDefault();
-        let url = `${BASEURL}sponsor/transactionHistory`;
-        window . location . replace(url);
-    }
+   clearBtn.onclick = (e) =>  {
+       e.preventDefault();
+       let url = `${BASEURL}sponsor/transactionHistory`;
+       window . location . replace(url);
+   }
 </script>
+
+
+
 </html>

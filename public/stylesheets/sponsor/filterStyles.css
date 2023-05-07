@@ -1,0 +1,110 @@
+
+/*Testing styles*/
+.filter-drop {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #fff;
+    color: #000;
+    font-size: medium;
+    padding: 5px;
+}
+
+.filter-drop option {
+    background-color: #fff;
+    color: #000;
+}
+
+.filter-drop option:hover {
+    background-color: rgb(3, 66, 30);
+    color: #fff;
+}
+
+.filter-drop option:checked {
+    background-color: rgba(11, 144, 64, 0.69);
+    color: #fff;
+}
+
+.filter-container-hr{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.filter-container-hr h3{
+    margin-right: 10px;
+    margin-left: 10px;
+}
+
+.filter-date {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #fff;
+    color: #000;
+    font-size: medium;
+    padding: 8px;
+}
+
+.filter-number {
+    width: 100px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #fff;
+    color: #000;
+    font-size: medium;
+    padding: 5px;
+    text-align: center;
+}
+
+.filter-number:focus {
+    outline: none;
+    border: 1px solid rgba(11, 144, 64, 0.69);
+}
+
+.filter-number::-webkit-inner-spin-button,
+.filter-number::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.filter-number[type=number] {
+    -moz-appearance: textfield;
+}
+.filter-btn{
+    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+    font-size: medium;
+    display: flex;
+    align-items: center;
+}
+
+.filter-details summary {
+    cursor: pointer;
+    outline: none;
+    color: #03421e;
+    font-size: large;
+    user-select: none;
+}
+
+.filter-details[open] summary {
+    background-color: rgba(42, 42, 42, 0.92);
+    border-radius: 4px;
+    color: white;
+}
+
+.filter-details > * {
+    margin: 0;
+    padding: 8px;
+    background-color: #f9f9f9;
+}
+
+.filter-option-set{
+    font-size: 14px;
+    color: #333;
+    background-color: #fff;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 200px;
+    height: 30px;
+    outline: none;
+    cursor: pointer;
+}

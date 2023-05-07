@@ -51,7 +51,7 @@
                     <div class="prof">
                         <div class="image">
                             <?php if(empty($data[0]->image)){ ?>
-                                <img src="<?php echo BASEURL ?>assets/clips/lap_man.png">
+                                <img src="<?php echo BASEURL ?>assets/clips/no_profile.jpg">
                             <?php }else{ ?>
                                 <img src="<?php echo $data[0]->image ?>">
                             <?php } ?>

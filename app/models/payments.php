@@ -28,74 +28,25 @@ class payments extends Model
     }
 
     public function getTrasactionHistory($id,$offset,$limit,$filters){
-        $types = "i";
-        $q = "SELECT * FROM payment WHERE payment.userId = ? ";
+        $q = "SELECT * FROM payment WHERE payment.userId = ".$id." ";
         if(!empty($filters['amountStart']) && !empty($filters['amountEnd'])){
-            $q .= "AND (payment.amount >= ? AND payment.amount <= ?) ";
-            $types .= "dd";
+            $q .= "AND (payment.amount >= '".$filters['amountStart']."' AND payment.amount <= '".$filters['amountEnd']."') ";
+        }elseif(!empty($filters['amountStart'])){
+            $q .= "AND payment.amount >= '".$filters['amountStart']."' ";
+        }elseif(!empty($filters['amountEnd'])){
+            $q .= "AND payment.amount <= '".$filters['amountEnd']."' ";
         }
+
         if(!empty($filters['startDate']) && !empty($filters['endDate'])){
-            $q .= "AND (DATE(payment.timestamp) BETWEEN ? AND ?) ";
-            $types .= "ss";
+            $q .= "AND (DATE(payment.timestamp) BETWEEN '".$filters['startDate']."' AND '".$filters['endDate']."') ";
+        }elseif(!empty($filters['startDate'])){
+            $q .= "AND DATE(payment.timestamp) >= '".$filters['startDate']."' ";
+        }elseif(!empty($filters['endDate'])){
+            $q .= "AND DATE(payment.timestamp) <= '".$filters['endDate']."' ";
         }
-        switch($types){
-            case "i":
-                if($offset == 0){
-                    $q .= " ORDER BY payment.timestamp DESC LIMIT ?";
-                    $types .= "i";
-                    $stmt = $this->prepare($q);
-                    $stmt->bind_param($types ,$id,$limit);
-                }
-                else{
-                    $q .= " ORDER BY payment.timestamp DESC LIMIT ?, ?";
-                    $types .= "ii";
-                    $stmt = $this->prepare($q);
-                    $stmt->bind_param($types ,$id,$offset,$limit);
-                }
-                break;
-            case "idd":
-                if($offset == 0){
-                    $q .= " ORDER BY payment.timestamp DESC LIMIT ?";
-                    $types .= "i";
-                    $stmt = $this->prepare($q);
-                    $stmt->bind_param($types,$id,$filters['amountStart'],$filters['amountEnd'],$limit);
-                }
-                else{
-                    $q .= " ORDER BY payment.timestamp DESC LIMIT ?, ?";
-                    $types .= "ii";
-                    $stmt = $this->prepare($q);
-                    $stmt->bind_param($types,$id,$filters['amountStart'],$filters['amountEnd'],$offset,$limit);
-                }
-                break;
-            case "iss":
-                if($offset == 0){
-                    $q .= " ORDER BY payment.timestamp DESC LIMIT ?";
-                    $types .= "i";
-                    $stmt = $this->prepare($q);
-                    $stmt->bind_param($types,$id,$filters['startDate'],$filters['endDate'],$limit);
-                }
-                else{
-                    $q .= " ORDER BY payment.timestamp DESC LIMIT ?, ?";
-                    $types .= "ii";
-                    $stmt = $this->prepare($q);
-                    $stmt->bind_param($types,$id,$filters['startDate'],$filters['endDate'],$offset,$limit);
-                }
-                break;
-            case "iddss":
-                if($offset == 0){
-                    $q .= " ORDER BY payment.timestamp DESC LIMIT ?";
-                    $types .= "i";
-                    $stmt = $this->prepare($q);
-                    $stmt->bind_param($types,$id,$filters['amountStart'],$filters['amountEnd'],$filters['startDate'],$filters['endDate'],$limit);
-                }
-                else{
-                    $q .= " ORDER BY payment.timestamp DESC LIMIT ?, ?";
-                    $types .= "ii";
-                    $stmt = $this->prepare($q);
-                    $stmt->bind_param($types,$id,$filters['amountStart'],$filters['amountEnd'],$filters['startDate'],$filters['endDate'],$offset,$limit);
-                }
-                break;
-        }   
+
+        $q .= "ORDER BY payment.timestamp DESC LIMIT ".$offset.", ".$limit;
+        $stmt = $this->prepare($q);
         return $this->fetchObjs($stmt);
     }
 

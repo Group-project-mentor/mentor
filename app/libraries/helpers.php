@@ -253,6 +253,11 @@ function isNumber($v, $replace = 0){
     }
 }
 
+function removeMainURL($array){
+    unset($array['url']);
+    return $array;
+}
+
 
 tempFileRemover();
 TtempFileRemover();
