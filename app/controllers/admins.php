@@ -46,12 +46,15 @@ class admins extends Controller {
 
         if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 
+            $uID = $_SESSION["id"];
             $data = [];
             $data['studentCount'] = $this->adminModel->studentCount();
             $data['teacherCount'] = $this->adminModel->teacherCount();
             $data['classCount'] = $this->adminModel->classCount();
             $data['sponsorCount'] = $this->adminModel->sponsorCount();
-            $data['complaints'] = $this->adminModel->complaints();
+            $data['complaints'] = $this->adminModel->complaint();
+            $data['rtask'] = $this->adminModel->ResourceTask($uID);
+            $data['ctask'] = $this->adminModel->ComplaintTask($uID);
 
             // print_r($data);
 
@@ -74,7 +77,7 @@ class admins extends Controller {
 
 
             $data = [];
-            $data['complaints'] = $this->adminModel->complaints();
+            $data['complaints'] = $this->adminModel->complaint();
 
             // print_r($data['complaints']);
 
@@ -95,7 +98,6 @@ class admins extends Controller {
             $uID = $_POST['uID'];
             if($this->adminModel->addComplaintToTaskManager($cID,$uID)){
                 echo 'Successful';
-            
             } else{
                 echo 'Error';
             }
@@ -105,7 +107,7 @@ class admins extends Controller {
             
 
             $data = [];
-            $data['complaints'] = $this->adminModel->complaints($id);
+            $data['complaints'] = $this->adminModel->complaint($id);
 
             
             $this->view('admin/complaintview',$data);
@@ -119,23 +121,12 @@ class admins extends Controller {
         sessionValidator();
         $this->hasLogged();
 
-        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-
-            $uID = $_SESSION["id"];
-
-            if ($this->adminModel->ResourceTask($uID)) {
-                echo 'Successful';
-            } else {
-                echo 'Error';
-            }
-           
-        }
-
         if ($_SERVER['REQUEST_METHOD'] == 'GET') {
             $uID = $_SESSION["id"];
                 
             $data = [];
-            $data['task'] = $this->adminModel->ResourceTask($uID);
+            $data['rtask'] = $this->adminModel->ResourceTask($uID);
+            $data['ctask'] = $this->adminModel->ComplaintTask($uID);
             $this->view('admin/task',$data);
 
         }
@@ -148,9 +139,8 @@ class admins extends Controller {
         $this->hasLogged();
 
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-            $uID = $_SESSION["id"];
 
-            if ($this->adminModel->ResourceTask($uID)) {
+            if ($this->adminModel->ComplaintTookAction($id)) {
                 echo 'Successful';
             } else {
                 echo 'Error';
@@ -159,7 +149,9 @@ class admins extends Controller {
 
         if ($_SERVER['REQUEST_METHOD'] == 'GET') {
             
-            $this->view('admin/complaintaction');
+            
+            $data['complaints'] = $this->adminModel->usercomplaint($id);
+            $this->view('admin/complaintaction',$data);
 
         }
 
@@ -305,6 +297,29 @@ class admins extends Controller {
 
     }
     
+    public function resource($id) {
+
+        sessionValidator();
+        $this->hasLogged();
+
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+            if ($this->adminModel->ComplaintTookAction($id)) {
+                echo 'Successful';
+            } else {
+                echo 'Error';
+            }
+        }
+
+        if ($_SERVER['REQUEST_METHOD'] == 'GET') {
+            
+            
+            $data['complaints'] = $this->adminModel->usercomplaint($id);
+            $this->view('admin/resourceview',$data);
+
+        }
+
+    }
 
     public function scholorships() {
 
@@ -593,7 +608,8 @@ class admins extends Controller {
         sessionValidator();
         $this->hasLogged();
 
-        $data[] = $this->adminModel->getImage($_SESSION['id']);
+        $data[] = $this->userModel->getImage($_SESSION['id'])[0];
+        var_dump($data);
         $this->view("admin/ad_profile/profile_changeimg", $data);
     }
 
@@ -655,6 +671,57 @@ class admins extends Controller {
             }else{
                 echo "unsuccess";
             }
+        }
+    }
+
+    public function updateImage()
+    {
+        session_start();
+        if (isset($_FILES["image"])) {
+            $typeArray = array("png" => "image/png", "jpg" => "image/jpg", "jpeg" => "image/jpeg");
+            $fileData = array("name" => $_FILES["image"]["name"],
+                    "type" => $_FILES["image"]["type"],
+                    "size" => $_FILES["image"]["size"]);
+            $extention = pathinfo($fileData["name"], PATHINFO_EXTENSION);
+            if (in_array($fileData['type'], $typeArray)) {
+                $newFileName = uniqid() . $_SESSION["id"] . "." . $extention;
+                $image = $this->model("userModel")->getImage($_SESSION['id'])[0];
+                if(empty($image) or $image == ""){
+                    if (move_uploaded_file($_FILES["image"]["tmp_name"], "data/profiles/" . $newFileName)) {
+                        if($this->model("userModel")->changeImg($_SESSION['id'],$newFileName)){
+                            $_SESSION['profilePic'] = $newFileName; 
+                            echo "success";
+                        }else{
+                            echo "failed";
+                        }
+                    } else {
+                        echo "failed";
+                    }
+                }else{
+                    if (move_uploaded_file($_FILES["image"]["tmp_name"], "data/profiles/" . $newFileName) and file_exists("data/profiles/".$image) and unlink("data/profiles/".$image)) {
+                        if($this->model("userModel")->changeImg($_SESSION['id'],$newFileName)){
+                            $_SESSION['profilePic'] = $newFileName; 
+                            echo "success";
+                        }else{
+                            echo "failed";
+                        }
+                    }elseif(!file_exists("data/profiles/".$image)){
+                        if($this->model("userModel")->changeImg($_SESSION['id'],$newFileName)){
+                            $_SESSION['profilePic'] = $newFileName; 
+                            echo "success";
+                        }else{
+                            echo "failed";
+                        }
+                    }
+                     else {
+                        echo "failed";
+                    }
+                }
+            }else{
+                echo "type_error";
+            }     
+        }else{
+            echo "failed";
         }
     }
 

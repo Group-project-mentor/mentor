@@ -75,10 +75,14 @@ function updateFile($tempLocation, $newFileName, $oldFileName, $type, $folder1=n
 {
     $flag = saveFile($tempLocation, $newFileName, $type, $folder1, $folder2);
     $fileDest = findFileDest($type, $folder1, $folder2, $oldFileName);
-    if(file_exists($fileDest)){
-        return ($flag and unlink($fileDest));
+    if(!empty($oldFileName)){
+        if(file_exists($fileDest)){
+            return ($flag and unlink($fileDest));
+        }else{
+            return false;
+        }
     }else{
-        return false;
+        return true;
     }
 }
 
@@ -173,6 +177,11 @@ function TdeleteFile($fileName, $type, $folder1=null):bool
     }
 }
 
+function checkFileDest($mainDest, $gid, $sid, $fileName){
+    $fileDest = "private_resources/$mainDest/$gid/$sid/$fileName";
+    return file_exists($fileDest);
+}
+
 function st_deleteFile($fileName, $type, $folder1=null):bool
 {
     $fileDest = "private_resources/$type/";
@@ -242,6 +251,11 @@ function isNumber($v, $replace = 0){
     }else{
         return $replace;
     }
+}
+
+function removeMainURL($array){
+    unset($array['url']);
+    return $array;
 }
 
 

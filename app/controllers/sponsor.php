@@ -283,7 +283,7 @@ class Sponsor extends Controller
     }
 
     public function transactionHistory($page = 1){
-            $filters = $_GET;
+            $filters = removeMainURL($_GET);
             $limit = paginationRowLimit;
             $offset = 0;
             if($page != 1){

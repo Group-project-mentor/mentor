@@ -94,7 +94,7 @@
                         </div>
                         <div class="typeNcount">
                             <div class="boxtitle">
-                                <h1>Total<br>Sponsors</h1><br> 
+                                <h1>Total<br>Sponsors</h1><br>
                             </div>
                             <div class="count">
                                 <h1>
@@ -104,8 +104,8 @@
                         </div>
                     </div>
 
-                    
-                    
+
+
                 </div>
             </div>
 
@@ -164,59 +164,50 @@
                                 </a>
                             </div>
                         </div>
-                        <div class="task-bottom">
-                            <div class="content">
-                                <a href="<?php echo BASEURL ?>admins/task/t001" style="text-decoration: none; color:black;">
+                        <?php
+                        if (!$data['rtask']) {
+                            echo 'No Complaints';
+                            echo ($_SESSION["id"]);
+                        } else {
+                            foreach ($data['rtask'] as $value) {
+                                echo '<div class="content">
                                     <div class="complaints">
                                         <div class="pp">
-                                            <img class="profile" src="<?php echo BASEURL ?>assets/admin/comphand.png">
+                                            <img  class="profile" src="' . BASEURL . 'assets/admin/reviewresource.png">
                                         </div>
                                         <div class="name">
-                                            <p>Complaint Handling</p>
+                                            <p>Review Resource</p>
                                         </div>
-                                        <div class="icons">
-                                            <div class="view">
-                                                <button type="button" id="btn">In Pogress</button>
-                                            </div>
+                                        <div class="userid" id="user-id">
+                                            <p>' . $value['type'] . '</p>
                                         </div>
-
                                     </div>
-                                </a>
-                                <a href="<?php echo BASEURL ?>admins/complaintaction" style="text-decoration: none; color:black;">
-                                    <div class="complaints">
-                                        <div class="pp">
-                                            <img class="profile" src="<?php echo BASEURL ?>assets/admin/comphand.png">
-                                        </div>
-                                        <div class="name">
-                                            <p>Complaint Handling</p>
-                                        </div>
-                                        <div class="icons">
-                                            <div class="view">
-                                                <button type="button" id="btn">In Pogress</button>
-                                            </div>
-                                        </div>
+                                </div>';
+                            }
+                        }
 
+                        if (!$data['ctask']) {
+                        } else {
+                            foreach ($data['ctask'] as $value) {
+                                echo '<div class="content">
+                                 <div class="complaints">
+                                    <div class="pp">
+                                        <img  class="profile" src="' . BASEURL . 'assets/admin/comphand.png">
                                     </div>
-                                </a>
-                                <a href="<?php echo BASEURL ?>adComplaintaction" style="text-decoration: none; color:black;">
-                                    <div class="complaints">
-                                        <div class="pp">
-                                            <img class="profile" src="<?php echo BASEURL ?>assets/admin/comphand.png">
-                                        </div>
-                                        <div class="name">
-                                            <p>Complaint Handling</p>
-                                        </div>
-                                        <div class="icons">
-                                            <div class="view">
-                                                <button type="button" id="btn">In Pogress</button>
-                                            </div>
-                                        </div>
-
+                                    <div class="name">
+                                        <p>Complaint Handling</p>
                                     </div>
-                                </a>
-                            </div>
-
-                        </div>
+                                    <div class="userid" id="user-id">
+                                        <p>' . $value['description'] . '</p>
+                                    </div>
+                                     
+                                
+                                </div>
+                            </div>';
+                            }
+                        }
+                        ?>
+                        
                     </div>
                 </div>
                 <div class="bgbox">

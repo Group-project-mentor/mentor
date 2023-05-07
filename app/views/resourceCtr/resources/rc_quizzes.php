@@ -9,6 +9,7 @@
     <link rel="icon" type="image/x-icon" href="<?php echo BASEURL ?>assets/mentor.ico">
     <link rel="stylesheet" href="<?php echo BASEURL . '/public/stylesheets/resourceCreator/rc_main.css' ?> ">
     <link rel="stylesheet" href="<?php echo BASEURL . '/public/stylesheets/resourceCreator/rc_resources.css' ?> ">
+    <link rel="stylesheet" href="<?php echo BASEURL . '/public/stylesheets/sponsor/filterStyles.css' ?> ">
 </head>
 
 <body>
@@ -66,6 +67,49 @@
                         </a>
                     </div>
 
+                    <details class="filter-details">
+                        <summary>Filters (Click to apply filters)</summary>
+                        <form id="filterForm">
+                            <div class="rc-resource-header">
+                                <div class="filter-container-hr">
+                                    <h3>Approval : </h3>
+                                    <select class="filter-option-set" name="approvals" id="approvals">
+                                        <option value="ALL" <?php echo (!empty($_GET['approvals']) and $_GET['approvals'] == 'ALL')?"selected":"" ?> >All</option>
+                                        <option value="P" <?php echo (!empty($_GET['approvals']) and $_GET['approvals'] == 'P')?"selected":"" ?> >Pending</option>
+                                        <option value="Y" <?php echo (!empty($_GET['approvals']) and $_GET['approvals'] == 'Y')?"selected":"" ?> >Approved</option>
+                                        <option value="N" <?php echo (!empty($_GET['approvals']) and $_GET['approvals'] == 'N')?"selected":"" ?> >Rejected</option>
+                                    </select>
+                                </div>
+                                <div class="filter-container-hr">
+                                    <h3>Owned by : </h3>
+                                    <select class="filter-option-set" name="ownedBy" id="ownedBy">
+                                        <option value="ALL" <?php echo (!empty($_GET['ownedBy']) and $_GET['ownedBy'] == 'ALL')?"selected":"" ?> >Owned by Anyone</option>
+                                        <option value="ME" <?php echo (!empty($_GET['ownedBy']) and $_GET['ownedBy'] == 'ME')?"selected":"" ?> >Owned by Me</option>
+                                        <option value="THEM" <?php echo (!empty($_GET['ownedBy']) and $_GET['ownedBy'] == 'THEM')?"selected":"" ?>>Owned by Others</option>
+                                    </select>
+                                </div>
+                                <div class="filter-container-hr" >
+                                    <button class="filter-btn" type="button" id="clearButton" style="background-color: #AA0000;padding:5px;border-radius:5px;font-size:small;color:white;border-color:transparent;">
+                                        <img src="<?php echo BASEURL?>assets/icons/icon-filter-white.png" alt="" style="width: 20px;margin-right: 5px;">
+                                        Clear Filter
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="rc-resource-header">
+                                <div class="filter-container-hr" >
+                                </div>
+                                <div class="filter-container-hr" >
+                                    <button class="filter-btn" type="submit" id="filterButton">
+                                        <img src="<?php echo BASEURL?>assets/icons/icon-filter-white.png" alt="" style="width: 20px;margin-right: 5px;">
+                                        Filter
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </details>
+
+
+
                     <section class="quiz-card-list" id="quiz-card-list">
                         <?php
                         if(!empty($data[0])){
@@ -73,8 +117,21 @@
                             $approval = $this->approvedGenerator($row->approved);
                             ?>
                         <div class="quiz-card-main">
-                            <div style="position: absolute;left: 3px;bottom: 3px;">
+                            <div class="quiz-card-status" style="">
                                 <img src='<?php echo BASEURL."assets/icons/".$approval ?>' alt='' class="resource-approved-sign">
+                                <?php
+                                    switch ($row->approved){
+                                        case 'Y':
+                                            echo "approved";
+                                            break;
+                                        case 'N':
+                                            echo "rejected";
+                                            break;
+                                        default :
+                                            echo "pending";
+                                            break;
+                                    }
+                                ?>
                             </div>
                             <div class="quiz-card-title">
                                 <?php echo $row->name ?>
@@ -84,7 +141,7 @@
                                     <?php echo $row->marks ?> Marks
                                 </div>
                                 <div class="quiz-card-item">
-                                    <?php echo $data[1][$row->id] ?> Questions
+                                    <?php echo isset($data[1][$row->id])?$data[1][$row->id]:0 ?> Questions
                                 </div>
                             </div>
                             <div class="quiz-card-button-set">
@@ -132,6 +189,8 @@
 <script>
     const BASEURL = '<?php echo BASEURL ?>';
     const USER = <?php echo $_SESSION['id']?>;
+    const grade = '<?php echo $_SESSION['gid']?>';
+    const subject = '<?php echo $_SESSION['sid']?>';
 
     let searchInput = document.getElementById('search-inp');
     let searchButton = document.getElementById('search-btn');
@@ -206,6 +265,28 @@
                         </div>`
 
         return rendered;
+    }
+
+    // Filter data part
+
+    let filterButton = document.getElementById("filterButton");
+    let filterForm = document.getElementById("filterForm");
+    let clearBtn = document.getElementById("clearButton");
+
+    filterButton.onclick = (e) =>  {
+        e.preventDefault();
+        let formData = new FormData(filterForm);
+        let url = `${BASEURL}rcResources/quizzes/${grade}/${subject}/?`;
+        for (let [key, value] of formData.entries()) {
+            url += `${key}=${value}&`;
+        }
+        window . location . replace(url);
+    }
+
+    clearBtn.onclick = (e) =>  {
+        e.preventDefault();
+        let url = `${BASEURL}rcResources/quizzes/${grade}/${subject}`;
+        window . location . replace(url);
     }
 </script>
 <script src="<?php echo BASEURL . '/public/javascripts/rc_alert_control.js' ?>"></script>

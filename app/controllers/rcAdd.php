@@ -69,8 +69,8 @@ class RcAdd extends Controller
         if (isset($_FILES['resource']) && $_FILES['resource']['error'] === 0) {
             $fileName = $_FILES['resource']['name'];
             $tmp_name = $_FILES['resource']['tmp_name'];
-//            $extension = pathinfo($fileName, PATHINFO_EXTENSION);
-            $newFileName = uniqid().sanitizeFileName($fileName);
+            $extension = pathinfo($fileName, PATHINFO_EXTENSION);
+            $newFileName = uniqid()."v".rand(10000,99999).".".$extension;
             $fileDest = "public_resources/temp/" . $newFileName;
             if (move_uploaded_file($tmp_name, $fileDest)) {
                 if(!empty($_SESSION['temporary_file'])){

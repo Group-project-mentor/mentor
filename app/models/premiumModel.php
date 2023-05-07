@@ -37,4 +37,27 @@ class premiumModel extends Model
         $result->bind_param('i', $id);
         return $this->fetchOneObj($result, true);
     }
+
+    public function getExpireTime($id)
+    {
+        $query = "SELECT expire_timestamp FROM premium WHERE teacher_id = ? and active_state=1";
+        $stmt = $this->prepare($query);
+        $stmt->bind_param('i', $id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        if ($result->num_rows > 0) {
+            $row = $result->fetch_assoc();
+            return $row['expire_timestamp'];
+        } else {
+            return null;
+        }
+    }
+
+    public function backToFree($id)
+    {
+        $stmt = $this->prepare("UPDATE premium SET active_state= 0 WHERE teacher_id = ?");
+        $stmt->bind_param('i',$id);
+        $res = $this->executePrepared($stmt);
+        return $res;
+    }
 }

@@ -47,7 +47,7 @@ class admin extends Model{
     }
 
 
-    public function complaints($id='%'){
+    public function complaint($id='%'){
         $query = "SELECT user.name, user.id, complaint.description, report_type.name as category, complaint.work_id 
         FROM user 
         INNER JOIN complaint 
@@ -64,15 +64,30 @@ class admin extends Model{
         } 
     }
 
+    public function usercomplaint($id='%'){
+        $query = "SELECT user.name, user.id, complaint.description, report_type.name as category, complaint.work_id 
+        FROM user 
+        INNER JOIN complaint 
+        ON user.id = complaint.user_id 
+        INNER JOIN report_type 
+        ON complaint.category=report_type.id 
+        WHERE `complaint`.`work_id` LIKE '$id'";
+        $result = $this->executeQuery($query);
+    
+        if ($result->num_rows > 0) {
+            return $result->fetch_all(MYSQLI_ASSOC);
+        } else {
+            return false;
+        } 
+    }
+
     public function addComplaintToTaskManager($cID, $uID) {
-        $query = "UPDATE `complaint` SET approved_by='$uID' where work_id='$cID'";
+        $query = "UPDATE `complaint` SET `approved_by`='$uID' where `work_id`='$cID';";
         return $this->executeQuery($query);
     }
 
-
-
-    public function ResourceTask($uID){
-        $query = "SELECT* FROM `public_resource` WHERE `approved_by`=`$uID`; ";
+    public function ComplaintTask($uID){
+        $query = "SELECT * FROM `complaint` WHERE `approved_by`='$uID' AND `status`='in Progress'; ";
         $result = $this->executeQuery($query);
         
         if ($result->num_rows > 0) {
@@ -81,6 +96,40 @@ class admin extends Model{
             return false;
         } 
     }
+
+    public function ComplaintTookAction($cID){
+        $query = "UPDATE `complaint` SET `status` = 'complete' WHERE `work_id` = '$cID'; ";
+        
+        return $this->executeQuery($query);
+    }
+
+
+
+
+    public function ResourceTask($uID){
+        $query = "SELECT* FROM `public_resource` WHERE `approved_by`='$uID'; ";
+        $result = $this->executeQuery($query);
+        
+        if ($result->num_rows > 0) {
+            return $result->fetch_all(MYSQLI_ASSOC);
+        } else {
+            return false;
+        } 
+    }
+
+    public function ResourceView($rID,$element){
+        $query = "SELECT `public_resource`.*, '$ FROM `public_resource` WHERE `approved_by`='$uID'; ";
+        "SELECT `resource_creator`.*, `user`.* FROM `resource_creator` INNER JOIN `user` ON `resource_creator`.id = `user`.id;";
+        $result = $this->executeQuery($query);
+        
+        if ($result->num_rows > 0) {
+            return $result->fetch_all(MYSQLI_ASSOC);
+        } else {
+            return false;
+        } 
+    }
+
+
 
     public function sponsors(){
         $query = "SELECT *FROM sponsor;";

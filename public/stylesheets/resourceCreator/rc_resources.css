@@ -617,7 +617,7 @@
 }
 .quiz-card-main{
     position: relative;
-    padding: 15px;
+    padding: 15px 15px 25px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -630,6 +630,21 @@
     border-radius: 10px;
     margin: 20px;
 }
+
+.quiz-card-status{
+    background:rgba(168,168,168,0.27);
+    position: absolute;
+    font-size:small;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    width: 100%;
+    border-radius: 0 0 8px 8px;
+}
+
 .quiz-card-main:hover{
     transform: scale(1.05);
     box-shadow: rgba(99, 99, 99, 0.36) 0px 2px 8px 0px;
@@ -707,7 +722,7 @@ video.rc-uploaded-video{
 }
 
 .resource-approved-sign{
-    width: 20px !important;
+    width: 15px !important;
     /* margin-right: 15px !important; */
 }
 

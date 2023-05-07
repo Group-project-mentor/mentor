@@ -4,10 +4,15 @@ use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 use PHPMailer\PHPMailer\SMTP;
 
+//// Set the error reporting level to hide warnings and notices
+//error_reporting(E_ALL & ~E_NOTICE & ~E_WARNING);
+//// Disable error reporting
+//ini_set('display_errors', 0);
 
 require 'phpmailer/src/Exception.php';
 require 'phpmailer/src/PHPMailer.php';
 require 'phpmailer/src/SMTP.php';
+
 
 function sendMail($reciever, $name, $sub , $msg){
     $mail = new PHPMailer(true);

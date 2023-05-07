@@ -24,6 +24,8 @@ class TPremium extends Controller{
         $email = $_POST['custom_2'];
         $this->model("payments")->savePremium($name, $email, $amount);
     }
+
+    
 }
 
 ?>

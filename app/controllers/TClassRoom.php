@@ -45,7 +45,12 @@ class TClassRoom extends Controller
     {
         unset($_SESSION["cid"]);
         $classes = $this->model("teacher_data")->getClasses($_SESSION['id']);
-        $premium = ($this->model("premiumModel")->getPremium($_SESSION['id'])->active);
+        $premium = ($this->model("premiumModel")->getPremium($_SESSION['id']));
+        if ($premium !== null and $premium !== 0) {
+            $premium = $premium->active;
+        } else {
+            $premium = 0;
+        }
 
         if ($premium == 1) {
             $this->view('Teacher/classRoom/AllHostClass', array($classes));
@@ -60,5 +65,4 @@ class TClassRoom extends Controller
         $classes = $this->model("teacher_data")->getCoordinateClasses($_SESSION['id']);
         $this->view('Teacher/classRoom/AllCoordinateClass', array($classes));
     }
-
 }

@@ -31,10 +31,14 @@ class Home extends Controller
                 break;
             case 'tch':
                 unset($_SESSION["cid"]);
+                if (isset($_SESSION['premium_expired']) && $_SESSION['premium_expired'] == true) {
+                    $this->model('premiumModel')->backToFree($_SESSION['id']);
+                    unset($_SESSION["premium_expired"]);
+                }
                 $classes1 = $this->model("teacher_data")->getClasses($_SESSION['id']);
                 $classes = $this->model("teacher_data")->getCoordinateClasses($_SESSION['id']);
                 $this->view('Teacher/home/index', array($classes1, $classes));
-                
+
 
                 break;
             case 'sp':
@@ -65,7 +69,7 @@ class Home extends Controller
                         "stCount" => count($totalFundingChart),
                         "totalFunded" => $totalFunded,
                         "remainingAmount" => ($totalFunding - $totalFunded),
-                        "monthlyAverage" => $totalFunding / (count($totalFundingChart)?count($totalFundingChart):1),
+                        "monthlyAverage" => $totalFunding / (count($totalFundingChart) ? count($totalFundingChart) : 1),
                         "monthlyChartData" => $monthlyChartData,
                         "monthlyBillArray" => $monthlyBillArray,
                     )

@@ -1,6 +1,7 @@
 <?php
 
-class TClassMembers extends Controller{
+class TClassMembers extends Controller
+{
     private $user = "tch";
 
     public function __construct()
@@ -11,17 +12,20 @@ class TClassMembers extends Controller{
     }
 
 
-    public function changeHost(){
+    public function changeHost()
+    {
         $this->view('Teacher/classMembers/changeHost');
-    }   
+    }
 
-    public function changeHost2(){
+    public function changeHost2()
+    {
         $this->view('Teacher/classMembers/changeHost2');
-    }  
+    }
 
-    public function changeHost3(){
+    public function changeHost3()
+    {
         $this->view('Teacher/classMembers/changeHost3');
-    }   
+    }
 
     public function memDetails($class_id)
     {
@@ -29,22 +33,23 @@ class TClassMembers extends Controller{
             header("location:" . BASEURL . "login");
         }
         $this->getClass($class_id);
-        $_SESSION["cid"]=$class_id;
+        $_SESSION["cid"] = $class_id;
         $res1 = $this->model('teacher_data')->getStudents($class_id);
         $res2 = $this->model('teacher_data')->getTeachers($class_id);
         $res3 = $this->model('teacher_data')->getHostTeacher($class_id);
-        
-        $premium=($this->model("premiumModel")->getPremium($_SESSION['id'])->active);
-        
-        if($premium==1)
-        {
-            $this->view('Teacher/classMembers/membersDetails',array($res1,$res2,$res3));
+
+        $premium = $this->model("premiumModel")->getPremium($_SESSION['id']);
+        if ($premium !== null and $premium !== 0) {
+            $premium = $premium->active;
+        } else {
+            $premium = 0;
         }
-        else
-        {
-            $this->view('Teacher/classMembers/memberDetailsFree',array($res1,$res2,$res3));
+
+        if ($premium == 1) {
+            $this->view('Teacher/classMembers/membersDetails', array($res1, $res2, $res3));
+        } else {
+            $this->view('Teacher/classMembers/memberDetailsFree', array($res1, $res2, $res3));
         }
-        
     }
 
     private function getClass($class_id)
@@ -55,29 +60,23 @@ class TClassMembers extends Controller{
         }
     }
 
-    public function rmvSt($student_id,$class_id)
+    public function rmvSt($student_id, $class_id)
     {
-       
-            $this->model("teacher_data")->deleteSt($student_id,$class_id);
-                header("location:" . BASEURL . "TClassMembers/memDetails/" . $_SESSION["cid"]);
-            
-        
+
+        $this->model("teacher_data")->deleteSt($student_id, $class_id);
+        header("location:" . BASEURL . "TClassMembers/memDetails/" . $_SESSION["cid"]);
     }
 
-    public function rmvTch($teacher_id,$class_id)
+    public function rmvTch($teacher_id, $class_id)
     {
-       
-            $this->model("teacher_data")->deleteTch($teacher_id,$class_id);
-                header("location:" . BASEURL . "TClassMembers/memDetails/" . $_SESSION["cid"]);
-            
-        
+
+        $this->model("teacher_data")->deleteTch($teacher_id, $class_id);
+        header("location:" . BASEURL . "TClassMembers/memDetails/" . $_SESSION["cid"]);
     }
 
 
-    public function restrictSt(){
+    public function restrictSt()
+    {
         $this->view('Teacher/classMembers/restrictStudent');
     }
 }
-
-
-?>
