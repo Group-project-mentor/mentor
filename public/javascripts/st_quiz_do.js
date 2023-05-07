@@ -2,7 +2,7 @@ let questionNo = document.getElementById('question-number');
 let questionName = document.getElementById('question-name');
 let questionImg = document.getElementById('question-img');
 let answerSet = document.getElementById('answer-set');
-let backBtn = document.getElementById('back-btn');
+// let backBtn = document.getElementById('back-btn');
 let nextBtn = document.getElementById('next-btn');
 let quizProgress = document.getElementById('quiz-progress');
 
@@ -26,12 +26,17 @@ fetch(`${baseURL}st_quizPreview/getQuestion/${quizId}`)
         return response.json(); // Return response data if everything is fine
     })
     .then(data => {
-        render(data);
-        console.log(data);
-        user_score = data.total;
-        currentQuestion = data.current_q;
+        if(data.end === 1) {
+            console.log("end");
+            window.location.href = `${baseURL}st_courses`;
+        }else {
+            console.log(data);
+            user_score = data.total;
+            currentQuestion = data.current_q;
+            render(data);
+            console.log(user_score,currentQuestion);
+        }
 
-        console.log(user_score,currentQuestion);
         
         // currenQuestion & 
     })
@@ -115,12 +120,21 @@ window.optionSelected = function(answer){
 nextBtn.addEventListener('click',()=>{
     if(currentQuestion<questions){
         currentQuestion++;
-        fetch(`${baseURL}quizPreview/getNextQuestion/${quizId}/${currentQuestion-1}/${user_score}/${currentQuestion}`)
+        fetch(`${baseURL}st_quizPreview/getNextQuestion/${quizId}/${currentQuestion-1}/${user_score}`)
             .then(response => response.json())
             .then(data => {
-                render(data);
+                if(data.end === 1){
+                    console.log("end");
+                    window.location.href = `${baseURL}st_courses`;
+                }else{
+                    console.log(data)
+                    user_score = data.total;
+                    currentQuestion = data.current_q;
+                    render(data);
+                }
+
             })
-            .catch(err => console.log(err));
+            // .catch(err => console.log(err));
         btnActiveFunction();
     }
     else {
@@ -128,24 +142,24 @@ nextBtn.addEventListener('click',()=>{
     }
 })
 
-backBtn.addEventListener('click',()=>{
-    if(currentQuestion>1){
-        currentQuestion--;
-        fetch(`${baseURL}quizPreview/getQuestion/${quizId}/${currentQuestion-1}`)
-            .then(response => response.json())
-            .then(data => {
-                render(data);
-            })
-            .catch(err => console.log(err));
-        btnActiveFunction();
-    }
-    else {
-
-    }
-});
+// backBtn.addEventListener('click',()=>{
+//     if(currentQuestion>1){
+//         currentQuestion--;
+//         fetch(`${baseURL}quizPreview/getQuestion/${quizId}/${currentQuestion-1}`)
+//             .then(response => response.json())
+//             .then(data => {
+//                 render(data);
+//             })
+//             .catch(err => console.log(err));
+//         btnActiveFunction();
+//     }
+//     else {
+//
+//     }
+// });
 
 const btnActiveFunction = () => {
-    backBtn.disabled = currentQuestion === 1;
+    // backBtn.disabled = currentQuestion === 1;
     nextBtn.disabled = currentQuestion === questions;
 }
 
