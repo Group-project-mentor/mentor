@@ -5,7 +5,7 @@
             Pastpaper Quiz Unlinked !
         </div>
         <div class="message-image">
-            <img src="<?php echo BASEURL?>assets/clips/msg_1.png" alt="error image" />
+            <img src="<?php echo BASEURL?>assets/clips/unlink.jpg" alt="error image" />
         </div>
         <div class="message-btn">
             <a href="<?php echo BASEURL.'rcEdit/pastpaper/'.$data[0]->id ?>">

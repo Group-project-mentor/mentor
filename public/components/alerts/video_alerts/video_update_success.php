@@ -5,7 +5,7 @@
             Update successful ! <br>
         </div>
         <div class="message-image">
-            <img src="<?php echo BASEURL?>assets/clips/msg_1.png" alt="error image">
+            <img src="<?php echo BASEURL?>assets/clips/msg_success.png" alt="error image">
         </div>
         <div class="message-btn">
             <a  href="<?php echo BASEURL."rcResources/preview/video/".$data[0][0] ?>">OK</a>
