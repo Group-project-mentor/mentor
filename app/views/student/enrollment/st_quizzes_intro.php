@@ -43,6 +43,7 @@
                 <div class="quiz-preview-container-box">
                     <div class="rc-resource-header">
                         <h1>QUIZ INSTRUCTIONS</h1>
+                        <h2><?php $_SESSION["gid"] ?></h2>
                     </div>
 
                     <div class="quiz-preview-container">

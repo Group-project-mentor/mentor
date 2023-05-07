@@ -21,4 +21,22 @@ class St_reportIssue extends Model
         $stmt->bind_param('s',$user);
         return $this->fetchObjs($stmt);
     }
+
+    //    ? For st main page Chart -> Resources can Access
+    public function getChartCounts($st_id){ //!done
+        $privateClassCount = $this->prepare("SELECT COUNT(private_class.class_name) AS total FROM private_class INNER JOIN 
+        classes_has_students ON private_class.class_id = classes_has_students.class_id WHERE classes_has_students.student_id = ?;");
+        $privateClassCount->bind_param('i',$st_id);
+as
+        $privateClassPendingCount = $this->prepare("SELECT COUNT(join_requests.accept) AS pending  FROM join_requests WHERE join_requests.accept = 0 
+        AND join_requests.student_id = ?;");
+        $privateClassPendingCount->bind_param('i',$st_id);
+
+        $privateClassAcceptCount = $this->prepare("SELECT COUNT(join_requests.accept) AS accept FROM join_requests WHERE join_requests.accept = 1 
+        AND join_requests.student_id = ?;");
+        $privateClassAcceptCount->bind_param('i',$st_id);
+        
+
+        return $this->fetchObjs($privateClassCount);
+    }
 }

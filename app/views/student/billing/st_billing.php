@@ -71,9 +71,6 @@
                                     <label style="font-size: smaller;margin-bottom: 10px;">all</label>
                                     <input id="chkAll" type="checkbox" class="save-info-check-main">
                                 </div>
-                                <div class="sponsor-list-item sponsor-list-item-title flex-1">
-                                    Class ID
-                                </div>
                                 <div class="sponsor-list-item sponsor-list-item-title flex-3">
                                     Class Name
                                 </div>

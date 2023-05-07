@@ -12,6 +12,21 @@
 </head>
 
 <body>
+
+<!-- message pop up when click delete button -->
+<?php
+if(!empty($_SESSION['message'])) {
+    if ($_SESSION['message'] == "Enroll") {
+        $message = "You Enroll to Subject Successfully !";
+        include_once "components/alerts/operationSuccess.php";
+    }
+    else if ($_SESSION['message'] == "NOEnroll") {
+        $message = "You Already Enroll To this Subject !";
+        include_once "components/alerts/operationFailed.php";
+    }
+}
+?>
+
     <section class="page">
         <!-- Navigation panel -->
         <?php include_once "components/navbars/st_navbar_1.php" ?> <!-- used to include_once to add file -->

@@ -51,6 +51,20 @@ class quizModel extends Model
         }
     }
 
+    public function getQuizState($user_id,$quiz_id)
+    {
+        $q = "SELECT * FROM `quizresults` WHERE quiz_id = ? AND user_id = ? ;";
+        $stmt = $this->prepare($q);
+        $stmt->bind_param('ii',$quiz_id,$user_id);
+        $res = $this->fetchObjs($stmt);
+        return $res;
+        // if ( $res-> > 0) {
+        //     return $res;
+        // } else {
+        //     return array();
+        // }
+    }
+
     public function getQuestions($id)
     {
         $sql = "select question.id, question.number, question.description from question where quiz_id = $id order by question.number";

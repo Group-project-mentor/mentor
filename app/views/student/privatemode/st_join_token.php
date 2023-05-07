@@ -25,6 +25,14 @@
 </head>
 
 <body>
+<?php
+if(!empty($_SESSION['message'])) {
+     if ($_SESSION['message'] == "NOrequest") {
+        $message = "You Already Enroll To this Class OR Already Send Token Request To this Class !";
+        include_once "components/alerts/operationFailed.php";
+    }
+}
+?>
     <section class="page">
         <!-- Navigation panel -->
         <?php include_once "components/navbars/st_navbar_3.php" ?> <!-- used to include_once to add file -->

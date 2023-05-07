@@ -47,20 +47,14 @@ class St_courses extends Controller
         if ($result) {
             header("location:" . BASEURL . "st_courses/index/$gid");
             $this->notify($_SESSION['id'],"you enroll to new subject ","enroll");
-        } else { ?>
-            <div style="padding: 15px 20px;">
-
-                <a class="see-all-btn" href="<?php echo BASEURL . 'st_courses/Subject_to_Enroll_all/' . $_SESSION['gid']  ?>">
-                    <button style="padding: 5px 10px;color: white; float:right ;border-radius: 10px;background-color: #186537; text-decoration: none;">Back</button>
-                </a>
-                <h2 style="color:green ; text-align:center ;padding: 5px 10px;">
-                    <?php echo "You Already Enroll To This Subject"; ?>
-                    <br>
-                    <img src="<?php echo BASEURL  ?>assets/clips/issue.png" alt="">
-                </h2>
-            </div>
+            flashMessage("Enroll");
+            header("location:" . BASEURL . 'st_courses/index/' . $_SESSION['gid'] );
+        } else {
+            header("location:" . BASEURL . "st_courses/index/$gid");
+            flashMessage("NOEnroll");
+            header("location:" . BASEURL . 'st_courses/index/' . $_SESSION['gid'] ); 
+            ?>
             
-
 <?php
         }
     }

@@ -75,9 +75,7 @@ class St_public_resources extends Controller
         $this->view("student/enrollment/st_quizzes_do", array($result,$quiz,$id));
     }
 
-    public function st_quizzes_intro($id,$qname)
-    {
-        $_SESSION['qname'] = $qname;
+    public function st_quizzes_intro($id){
         $this->view("student/enrollment/st_quizzes_intro", array($id));
     }
 
