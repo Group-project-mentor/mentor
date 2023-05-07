@@ -135,7 +135,7 @@
         let searchTxt = searchInput.value.trim();
         if (searchTxt !== ""){
             cardHolder.innerHTML = "";
-            fetch(`${BASEURL}rcResources/searchResource/videos/${searchTxt}`)
+            fetch(`${BASEURL}TResources/searchResource/videos/${searchTxt}`)
                 .then(response => response.json())
                 .then(data => {
                     if (data.length > 0){

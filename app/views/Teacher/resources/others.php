@@ -18,7 +18,7 @@
     $category = "others";
     if (!empty($_SESSION['message'])) {
         if ($_SESSION['message'] == "success") {
-            include_once "components/alerts/Teacher/CategoryUploadSuccess.php";
+            include_once "components/alerts/Teacher/CategoryUploadSucess.php";
         }
     }
     ?>
@@ -162,39 +162,15 @@
         }
     }
 
-    function approvedGenerator(approval) {
-        if (approval === 'N') {
-            return 'icon_not_approved.png';
-        } else if (approval === 'Y') {
-            return 'icon_approved.png';
-        } else {
-            return 'icon_pending.png';
-        }
-    }
-
     function renderOthersData(data, USER) {
-        let approval = approvedGenerator(data.approval);
-        let rendered =
-            ` <div class='rc-resource-row'>
-                                        <div class='rc-resource-col' style="display: flex;align-items: center;justify-content: flex-start;">
-                                            <img src='${BASEURL}assets/icons/${approval}' alt='' class="resource-approved-sign">
-                                            <div>
-                                                ${data.name}
-                                            </div>
-                                        </div>
-                                            <div class='rc-resource-col'>${data.type}</div>
-                                            <div class='rc-quiz-row-btns'>`;
-
-        if (data.creator_id === USER) {
             rendered += `<a onclick='delConfirm(${data.id},5)'>
                                                     <img src='${BASEURL}assets/icons/icon_delete.png' alt=''>
                                                 </a>
-                                                <a href='${BASEURL}rcEdit/other/${data.id}'>
+                                                <a href='${BASEURL}TEdit/other/${data.id}'>
                                                     <img src='${BASEURL}assets/icons/icon_edit.png' alt=''>
                                                 </a>`
-        }
 
-        rendered += `<a href='${BASEURL}rcResources/preview/other/${data.id}'>
+        rendered += `<a href='${BASEURL}TResources/preview/other/${data.id}'>
                         <img src='${BASEURL}assets/icons/icon_eye.png' alt=''>
                       </a>
                      </div>
@@ -203,6 +179,6 @@
         return rendered;
     }
 </script>
-<script src="<?php echo BASEURL . '/public/javascripts/rc_alert_control.js' ?>"></script>
+<script src="<?php echo BASEURL . '/public/javascripts/t_alert_control.js' ?>"></script>
 
 </html>

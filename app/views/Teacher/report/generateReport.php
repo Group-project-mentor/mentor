@@ -91,7 +91,7 @@
                 </div>
 
                 <div class="class section">
-                    <form action="<?php echo BASEURL; ?>TReport/ReportRequest/<?php echo "$cid"; ?>" method="POST">
+                    <form action="<?php echo BASEURL; ?>TReport/AskFeedback/<?php echo "$cid"; ?>" method="POST">
                       <label for="class_name"></label>
                       <input type="text" id="student_id" name="student_id" placeholder="Student ID..">
                       <br>
