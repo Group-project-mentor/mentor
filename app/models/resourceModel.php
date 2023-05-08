@@ -9,12 +9,14 @@ class ResourceModel extends Model
     }
 
 //? get all resource data from combination of (subject & grade)
-    public function findVideos($grade, $subject, $offset, $limit)
+    public function findVideos($grade, $subject, $offset, $limit, $filter, $creatorID)
     {
-        $stmt = $this->prepare("SELECT video.id, video.name, video.lecturer ,public_resource.approved,rs_subject_grade.creator_id 
+        $q = "SELECT video.id, video.name, video.lecturer ,public_resource.approved,rs_subject_grade.creator_id 
                                         FROM video, public_resource,rs_subject_grade WHERE video.id = public_resource.id AND
-                                         public_resource.id=rs_subject_grade.rsrc_id AND rs_subject_grade.subject_id=? AND rs_subject_grade.grade_id=? LIMIT ?,?");
-        $stmt->bind_param('iiii',$subject,$grade,$offset,$limit);
+                                         public_resource.id=rs_subject_grade.rsrc_id AND rs_subject_grade.subject_id=$subject AND rs_subject_grade.grade_id=$grade";
+        $q = $this->getFilteringQuery($filter, $q, $creatorID);
+        $q .= " LIMIT $offset, $limit;";
+        $stmt = $this->prepare($q);
         return $this->fetchObjs($stmt);
     }
 
@@ -27,30 +29,69 @@ class ResourceModel extends Model
         return $this->fetchObjs($stmt);
     }
 
-    public function findPastpapers($grade, $subject, $offset, $limit)
+    public function filterFindQuizes($grade, $subject, $filter, $creatorID){
+        $q = "SELECT quiz.id, quiz.name, quiz.marks ,public_resource.approved,rs_subject_grade.creator_id 
+                                        FROM quiz, public_resource,rs_subject_grade WHERE quiz.id = public_resource.id AND
+                                         public_resource.id=rs_subject_grade.rsrc_id AND rs_subject_grade.subject_id= $subject AND rs_subject_grade.grade_id= $grade";
+        if(!empty($filter['approvals'])){
+            switch ($filter['approvals']){
+                case "P" :
+                    $q .= " AND public_resource.approved = 'P'";
+                    break;
+                case "Y":
+                    $q .= " AND public_resource.approved = 'Y'";
+                    break;
+                case "N":
+                    $q .= " AND public_resource.approved = 'N'";
+                    break;
+            }
+        }
+        if(!empty($filter['ownedBy'])){
+            switch ($filter['ownedBy']){
+                case "ME" :
+                    $q .= " AND rs_subject_grade.creator_id = $creatorID;";
+                    break;
+                case "THEM":
+                    $q .= " AND rs_subject_grade.creator_id <> $creatorID;";
+                    break;
+            }
+        }
+        $stmt = $this->prepare($q);
+        return $this->fetchObjs($stmt);
+    }
+
+    public function findPastpapers($grade, $subject, $offset, $limit, $filter, $creatorID)
     {
-        $stmt = $this->prepare("SELECT pastpaper.id,pastpaper.name, pastpaper.year, pastpaper.part ,public_resource.approved,rs_subject_grade.creator_id 
+        $q = "SELECT pastpaper.id,pastpaper.name, pastpaper.year, pastpaper.part ,public_resource.approved,rs_subject_grade.creator_id 
                                         FROM pastpaper, public_resource,rs_subject_grade WHERE pastpaper.id = public_resource.id AND
-                                         public_resource.id=rs_subject_grade.rsrc_id AND rs_subject_grade.subject_id=? AND rs_subject_grade.grade_id=? LIMIT ?,?");
-        $stmt->bind_param('iiii',$subject,$grade,$offset,$limit);
+                                         public_resource.id=rs_subject_grade.rsrc_id AND rs_subject_grade.subject_id=$subject AND rs_subject_grade.grade_id=$grade";
+        $q = $this->getFilteringQuery($filter, $q, $creatorID);
+        $q .= " LIMIT $offset, $limit;";
+        $stmt = $this->prepare($q);
         return $this->fetchObjs($stmt);
     }
 
-    public function findDocuments($grade, $subject, $offset, $limit)
+    public function findDocuments($grade, $subject, $offset, $limit, $filter, $creatorID)
     {
-        $stmt = $this->prepare("SELECT document.id,document.name,public_resource.approved,rs_subject_grade.creator_id 
+        $q = "SELECT document.id,document.name,public_resource.approved,rs_subject_grade.creator_id 
                                         FROM document, public_resource,rs_subject_grade WHERE document.id = public_resource.id AND
-                                         public_resource.id=rs_subject_grade.rsrc_id AND rs_subject_grade.subject_id=? AND rs_subject_grade.grade_id=? LIMIT ?,?");
-        $stmt->bind_param('iiii',$subject,$grade,$offset,$limit);
+                                         public_resource.id=rs_subject_grade.rsrc_id AND rs_subject_grade.subject_id=$subject AND rs_subject_grade.grade_id=$grade";
+
+        $q = $this->getFilteringQuery($filter, $q, $creatorID);
+        $q .= " LIMIT $offset, $limit;";
+        $stmt = $this->prepare($q);
         return $this->fetchObjs($stmt);
     }
 
-    public function findOthers($grade, $subject, $offset, $limit)
-    {
-        $stmt = $this->prepare("SELECT other.id, other.name, other.type,public_resource.approved,rs_subject_grade.creator_id 
-                                        FROM other, public_resource,rs_subject_grade WHERE other.id = public_resource.id AND
-                                         public_resource.id=rs_subject_grade.rsrc_id AND rs_subject_grade.subject_id=? AND rs_subject_grade.grade_id=? LIMIT ?,?");
-        $stmt->bind_param('iiii',$subject,$grade,$offset,$limit);
+
+    public function findOthers($grade, $subject, $offset, $limit, $filter, $creatorID){
+        $q = "SELECT other.id, other.name, other.type,public_resource.approved,rs_subject_grade.creator_id 
+               FROM other, public_resource,rs_subject_grade WHERE other.id = public_resource.id AND
+                 public_resource.id=rs_subject_grade.rsrc_id AND rs_subject_grade.subject_id=$subject AND rs_subject_grade.grade_id=$grade";
+
+        $q = $this->getFilteringQuery($filter, $q, $creatorID);
+        $q .= " LIMIT $offset, $limit;";
+        $stmt = $this->prepare($q);
         return $this->fetchObjs($stmt);
     }
 
@@ -62,31 +103,32 @@ class ResourceModel extends Model
         return $this->fetchObjs($stmt);
     }
 
-    public function getResourceCount($type, $grade, $subject)
+    public function getResourceCount($type, $grade, $subject, $filter, $creatorID)
     {
+        $q = "";
         switch($type){
             case "pdf":
-                $stmt = $this->prepare("SELECT COUNT(document.id) AS count FROM document, public_resource,rs_subject_grade WHERE document.id = public_resource.id AND
-                                         public_resource.id=rs_subject_grade.rsrc_id AND rs_subject_grade.subject_id=? AND rs_subject_grade.grade_id=?");
+                $q = "SELECT COUNT(document.id) AS count FROM document, public_resource,rs_subject_grade WHERE document.id = public_resource.id";
                 break;
             case "video":
-                $stmt = $this->prepare("SELECT COUNT(video.id) AS count FROM video, public_resource,rs_subject_grade WHERE video.id = public_resource.id AND
-                                         public_resource.id=rs_subject_grade.rsrc_id AND rs_subject_grade.subject_id=? AND rs_subject_grade.grade_id=?");
+                $q = "SELECT COUNT(video.id) AS count FROM video, public_resource,rs_subject_grade WHERE video.id = public_resource.id";
                 break;
             case "quiz":
-                $stmt = $this->prepare("SELECT COUNT(quiz.id) AS count FROM quiz, public_resource,rs_subject_grade WHERE quiz.id = public_resource.id AND
-                                         public_resource.id=rs_subject_grade.rsrc_id AND rs_subject_grade.subject_id=? AND rs_subject_grade.grade_id=?");
-                break;  
+                $q = "SELECT COUNT(quiz.id) AS count FROM quiz, public_resource,rs_subject_grade WHERE quiz.id = public_resource.id";
+                break;
             case "pastpaper":
-                $stmt = $this->prepare("SELECT COUNT(pastpaper.id) AS count FROM pastpaper, public_resource,rs_subject_grade WHERE pastpaper.id = public_resource.id AND
-                                         public_resource.id=rs_subject_grade.rsrc_id AND rs_subject_grade.subject_id=? AND rs_subject_grade.grade_id=?");
+                $q = "SELECT COUNT(pastpaper.id) AS count FROM pastpaper, public_resource,rs_subject_grade WHERE pastpaper.id = public_resource.id";
                 break;
             case "other":
-                $stmt = $this->prepare("SELECT COUNT(other.id) AS count FROM other, public_resource,rs_subject_grade WHERE other.id = public_resource.id AND
-                                         public_resource.id=rs_subject_grade.rsrc_id AND rs_subject_grade.subject_id=? AND rs_subject_grade.grade_id=?");
+                $q = "SELECT COUNT(other.id) AS count FROM other, public_resource,rs_subject_grade WHERE other.id = public_resource.id";
                 break;
-    }
-        $stmt->bind_param('ii',$subject,$grade);
+        }
+        $q .=  " AND public_resource.id=rs_subject_grade.rsrc_id AND rs_subject_grade.subject_id=$subject AND rs_subject_grade.grade_id=$grade";
+
+        $q = $this->getFilteringQuery($filter, $q, $creatorID);
+        $q .= ";";
+
+        $stmt = $this->prepare($q);
         return $this->fetchOneObj($stmt);
     }
 
@@ -564,6 +606,34 @@ class ResourceModel extends Model
         $stmt = $this->prepare("SELECT topic.id FROM topic  WHERE topic.id = ? AND topic.gradeID=? AND topic.subjectID=?");
         $stmt->bind_param('iii',$id,$grade,$subject);
         return $this->fetchOneObj($stmt);
+    }
+
+    private function getFilteringQuery($filter, $q, $creatorID)
+    {
+        if (!empty($filter['approvals'])) {
+            switch ($filter['approvals']) {
+                case "P" :
+                    $q .= " AND public_resource.approved = 'P'";
+                    break;
+                case "Y":
+                    $q .= " AND public_resource.approved = 'Y'";
+                    break;
+                case "N":
+                    $q .= " AND public_resource.approved = 'N'";
+                    break;
+            }
+        }
+        if (!empty($filter['ownedBy'])) {
+            switch ($filter['ownedBy']) {
+                case "ME" :
+                    $q .= " AND rs_subject_grade.creator_id = $creatorID";
+                    break;
+                case "THEM":
+                    $q .= " AND rs_subject_grade.creator_id <> $creatorID";
+                    break;
+            }
+        }
+        return $q;
     }
 
 }

@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="<?php echo BASEURL ?>assets/mentor.ico">
     <title>Preview Questions</title>
     <link rel="icon" type="image/x-icon" href="<?php echo BASEURL ?>assets/mentor.ico">
     <link rel="stylesheet" href="<?php echo BASEURL?>public/stylesheets/Student/style.css">
@@ -89,6 +90,8 @@
 
     const baseURL = '<?php echo BASEURL?>';
     let quizId = <?php echo $data[0]?>;
+    const gid = "<?php echo $_SESSION['gid'] ?>"
+    const sid = "<?php echo $_SESSION['sid'] ?>"
 
 </script>
 <script src="<?php echo BASEURL . '/public/javascripts/rc_quiz_preview.js' ?>"></script>

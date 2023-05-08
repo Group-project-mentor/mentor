@@ -6,6 +6,7 @@ class St_private_mode extends Controller
     {
         sessionValidator();
         $this->hasLogged();
+        flashMessage();
     }
 
     public function index()
@@ -50,7 +51,9 @@ class St_private_mode extends Controller
             $this->view('student/privatemode/st_join_token_send', array($res2));
         } else {
             $this->notify(2, "You have already Send Token Request Or Already Add to This Class. Check it Again", "Not_request");
-            $this->view('student/privatemode/st_join_token');
+            flashMessage("NOrequest");
+            header("location:" . BASEURL . 'st_private_mode/st_join_token' );
+            // $this->view('student/privatemode/st_join_token');
         }
     }
 

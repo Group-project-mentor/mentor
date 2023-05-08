@@ -39,7 +39,7 @@
               <div class="card">
                 <div class="content">
                   <div class="imgBx">
-                    <img src="<?php echo BASEURL ?>public/assets/Teacher/clips/globe.gif" alt="notify">
+                    <img src="<?php echo BASEURL ?>public/assets/Teacher/clips/demand.gif" alt="notify">
                   </div>
                   <div class="contentBx">
                     <h3>No limit for adding Students<br></h3>
@@ -56,7 +56,7 @@
               <div class="card">
                 <div class="content">
                   <div class="imgBx">
-                    <img src="<?php echo BASEURL ?>public/assets/Teacher/clips/infinity.gif" alt="notify">
+                    <img src="<?php echo BASEURL ?>public/assets/Teacher/clips/graph.gif" alt="notify">
                   </div>
                   <div class="contentBx">
                     <h3>No limit for creating classes<br></h3>
@@ -73,7 +73,7 @@
               <div class="card">
                 <div class="content">
                   <div class="imgBx">
-                    <img src="<?php echo BASEURL ?>public/assets/Teacher/clips/prem1.gif" alt="notify">
+                    <img src="<?php echo BASEURL ?>public/assets/Teacher/clips/customer.gif" alt="notify">
                   </div>
                   <div class="contentBx">
                     <h3>No limit for adding Teachers <br></h3>
@@ -92,7 +92,9 @@
               <h1><br>You only have to pay RS.10 000 for a Year.</h1>
             </div><br><br>
             <div class="button-container">
-              <button id=payhere-payment class="buy-button">Buy</button>
+              <button type="button" id="payhere-payment" class="buy-button">
+                Buy
+              </button>
             </div>
 
           </section>
@@ -130,7 +132,7 @@
           let payment = {
             "sandbox": true,
             "custom_1": `unknown`,
-            "merchant_id": MERCHID,
+            "merchant_id": 1223117,
             "return_url": undefined,
             "cancel_url": undefined,
             "notify_url": `${TEMP_URL}/mentor/TPremium/savePremium`,
@@ -141,12 +143,12 @@
             "hash": "",
             "first_name": "",
             "last_name": "",
-            "email": "",
+            "email": "unknown",
             "phone": "unknown",
             "address": "unknown",
             "city": "unknown",
-            "country": "",
-            "custom_2": "",
+            "country": "unknown",
+            "custom_2": "unknown",
           };
 
           const getHash = (ordId, amount, currency) => {
@@ -158,6 +160,15 @@
             } else {
               return "";
             }
+          }
+
+          const setPaymetDetails = () => {
+            let formData = new FormData(document.getElementById('paymentForm'));
+
+            payment.items = "Buy premium";
+            payment.hash = getHash(payment.order_id, payment.amount, payment.currency);
+
+            // console.log(payment);
           }
 
           // console.log(getHash('o12345',1000,'LKR'))

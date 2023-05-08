@@ -36,14 +36,14 @@ class TInsideClass extends Controller
         $premium = ($this->model("premiumModel")->getPremium($_SESSION['id'])->active);
         $student_count = ($this->model("premiumModel")->studentCount($_SESSION['cid'])->student_count);
         if ($premium == 1) {
-            if ($this->model('teacher_data')->addStudentsClass($l_id)) {
+            if ($this->model('teacher_data')->requestStudentsClass($l_id)) {
 
                 header("location:" . BASEURL . "TInsideClass/inClass");
             } else {
                 header("location:" . BASEURL . "TInsideClass/addSt");
             }
         } else if ($premium != 1 and $student_count < 10) {
-            if ($this->model('teacher_data')->addStudentsClass($l_id)) {
+            if ($this->model('teacher_data')->requestStudentsClass($l_id)) {
 
                 header("location:" . BASEURL . "TInsideClass/inClass");
             } else {

@@ -141,6 +141,31 @@ public function __construct()
         // var_dump($splitted_link);
     }
 
+    //    * Search Functions
+    public function searchResource($type, $searchText)
+    {
+        $result = array();
+        switch ($type) {
+            case "videos":
+                $result = $this->model("TchResourceModel")->searchVideos($_SESSION['cid'], $searchText);
+                break;
+            case "quizzes":
+                $result = $this->model("TchResourceModel")->searchQuizzes($_SESSION['cid'], $searchText);
+                break;
+            case "documents":
+                $result = $this->model("TchResourceModel")->searchDocuments($_SESSION['cid'],$searchText);
+                break;
+            case "others":
+                $result = $this->model("TchResourceModel")->searchOthers($_SESSION['cid'],  $searchText);
+                break;
+            case "pastpapers":
+                $result = $this->model("TchResourceModel")->searchPastpapers($_SESSION['cid'], $searchText);
+                break;
+        }
+        header("Content-Type:Application/json");
+        echo json_encode($result);
+    }
+
     
 
 }
