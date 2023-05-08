@@ -5,6 +5,7 @@ class St_public_resources extends Controller
     public function __construct()
     {
         sessionValidator();
+        flashMessage();
     }
 
     // this is use to set view of all public resources through this controller.
@@ -61,6 +62,7 @@ class St_public_resources extends Controller
     {
         $limit = paginationRowLimit;
         $offset = ($question != 1) ? ($question - 1) * $limit : 0;
+        $_SESSION['cid'] = $id;
         $sid = $_SESSION["sid"];
         $gid = $_SESSION["gid"];
         //echo $id;
@@ -77,6 +79,16 @@ class St_public_resources extends Controller
 
     public function st_quizzes_intro($id){
         $this->view("student/enrollment/st_quizzes_intro", array($id));
+    }
+
+    public function st_quizzes_do_end(){
+        $res = $this->model("st_quiz_model")->getQuizendData($_SESSION['id'],$_SESSION['cid']);
+        $this->view("student/enrollment/st_quizzes_do_end", array($res));
+    }
+
+    public function st_quizzes_do_end_preview(){
+        flashMessage("QuizEnd");
+        header("location:" . BASEURL . 'st_public_resources/index_quizzes/' . $_SESSION['gid'] . '/' .$_SESSION["sid"] );
     }
 
     public function index_past_papers($grade, $subject)

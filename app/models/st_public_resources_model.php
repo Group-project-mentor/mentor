@@ -21,7 +21,7 @@ class St_public_resources_model extends Model
 
     public function findQuizzes($gid, $sid)
     {
-        $q = "select quiz.id, quiz.name, quiz.marks from quiz, public_resource WHERE quiz.id = public_resource.id and
+        $q = "select quiz.id, quiz.name, quiz.marks, quiz.questions from quiz, public_resource WHERE quiz.id = public_resource.id and
                 public_resource.id IN (SELECT rsrc_id FROM `rs_subject_grade` WHERE subject_id=? and grade_id=?)
                 and public_resource.type = 'quiz'";
         $stmt = $this->prepare($q);
