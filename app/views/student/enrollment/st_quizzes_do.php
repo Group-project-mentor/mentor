@@ -5,95 +5,89 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Preview Questions</title>
     <link rel="icon" type="image/x-icon" href="<?php echo BASEURL ?>assets/mentor.ico">
-    <title>Quizzes</title>
-    <link rel="stylesheet" href="<?php echo BASEURL ?>stylesheets/Student/style.css">
-    <link rel="stylesheet" href="<?php echo BASEURL ?>stylesheets/quiz/quiz_styles.css">
-    <link rel="stylesheet" href="<?php echo BASEURL ?>stylesheets/Student/st_resources.css">
+    <link rel="stylesheet" href="<?php echo BASEURL?>public/stylesheets/Student/style.css">
+    <link rel="stylesheet" href="<?php echo BASEURL?>public/stylesheets/quiz/quiz_styles.css">
 </head>
 
 <body>
-    <section class="page">
-        <!-- Navigation panel -->
-        <?php include_once "components/navbars/st_navbar_2.php" ?> <!-- used to include_once to add file -->
+
+<section class="page">
+
+    <!-- Navigation panel -->
+    <?php include_once "components/navbars/st_navbar_2.php"?>
 
 
-        <div class="content-area">
+    <div class="content-area">
 
-            <!-- Top bar -->
-            <section class="top-bar">
-                <div class="search-bar">
-                    <input type="text" name="" id="" placeholder="Search...">
-                    <a href="">
-                        <img src="<?php echo BASEURL ?>assets/icons/icon_search.png" alt="">
-                    </a>
+        <!-- Top bar -->
+        <section class="top-bar">
+            <div class="search-bar">
+
+            </div>
+            <div class="top-bar-btns">
+                <?php include_once "components/notificationIcon.php"?>
+                <a href="<?php echo BASEURL . 'rcProfile' ?>">
+                        <?php include_once "components/profilePic.php"?>
+                </a>
+            </div>
+        </section>
+
+        <!-- Middle part for whole content -->
+        <section class="quiz-preview-content">
+
+            <!-- Title and subtitle of middle part -->
+<!--            <div class="mid-title">-->
+<!--                <h1></h1>-->
+<!--                <h6></h6>-->
+<!--            </div>-->
+
+            <!-- Grade choosing interface -->
+            <div class="quiz-preview-container-box">
+                <div class="rc-resource-header">
+                    <h1>TEST 1</h1>
+                    <h2><?php //echo $_SESSION['id'] ?></h2>
+<!--                    <div class="rc-quiz-top-btns">-->
+<!--                        <a class="rc-add-btn" id="quiz-save-btn">-->
+<!--                            Edit Question-->
+<!--                        </a>-->
+<!--                    </div>-->
+
                 </div>
-                <div class="top-bar-btns">
-                    <a href="<?php echo BASEURL . 'st_public_resources/st_quizzes_intro/' . $_SESSION['gid'] . '/' . $_SESSION['qname'] ?>">
-                        <div class="back-btn">Back</div>
-                    </a>
-                    <?php include_once "components/notificationIcon.php" ?>
-                    <a href="<?php echo BASEURL ?>st_profile">
-                        <img src="<?php echo BASEURL ?>assets/icons/icon_profile_black.png" alt="profile">
-                    </a>
-                </div>
-            </section>
 
-            <!-- Middle part for whole content -->
-            <section class="mid-content">
-
-                <!-- Title and sub title of middle part -->
-                <div class="mid-title">
-                    <h2><?php echo ucfirst($_SESSION['sname']) ?>
-                        - <?php echo ucfirst($_SESSION['qname']) ?></h2>
-                    <br>
-                    <hr style=" height:5px ; background-color:green ;">
-                    <br>
-
-                    <!-- quiz navigation bars -->
-                    <div class="quiz-preview-container">
-                        <h2 id="question-number"></h2>
-                        <hr />
-                        <div class="quiz-preview-question">
-                            <img src="" alt="" id="question-img">
-                            <p id="question-name">
-                                <?php
-                                if (!empty($data[1])) {
-                                    foreach ($data[1] as $row) {
-
-                                ?>
-                                    <?php echo $row->number . '. ' . $row->description; ?> <br>
-
-                                <?php        }
-                                } ?>
-                            </p>
-                        </div>
-                        <div class="quiz-preview-answer-set" id="answer-set">
-                            helllllo
-                        </div>
-                        <hr />
-                        <div class="quiz-preview-bottom-set">
-                            <button class="quiz-preview-bottom-button" id="back-btn">
-                                <img src="<?php echo BASEURL ?>public/assets/icons/icon_prev_white.png" alt="">
-                                Back
-                            </button>
-                            <progress value="0.3" id="quiz-progress"></progress>
-                            <button class="quiz-preview-bottom-button" id="next-btn">
-                                Next
-                                <img src="<?php echo BASEURL ?>public/assets/icons/icon_next_white.png" alt="">
-                            </button>
-                        </div>
-
+                <div  class="quiz-preview-container" >
+                    <h2 id="question-number"></h2>
+                    <hr />
+                    <div class="quiz-preview-question" >
+                        <img src="" alt="" id="question-img">
+                        <p id="question-name"></p>
                     </div>
-                </div>
-            </section>
-        </div>
-    </section>
-</body>
-<script>
-    const baseURL = '<?php echo BASEURL ?>';
-    let quizId = <?php echo $data[0] ?>;
-</script>
-<script src="<?php echo BASEURL . '/public/javascripts/rc_quiz_preview.js' ?>"></script>
+                    <div class="quiz-preview-answer-set" id="answer-set"></div>
+                    <hr />
+                    <div class="quiz-preview-bottom-set">
+                        <!-- <button class="quiz-preview-bottom-button" id="back-btn">
+                            <img src="<?php echo BASEURL ?>public/assets/icons/icon_prev_white.png" alt="">
+                            Back
+                        </button> -->
+                        <progress value="0.3" id="quiz-progress"></progress>
+                        <button class="quiz-preview-bottom-button" id="next-btn">
+                            Next
+                            <img src="<?php echo BASEURL ?>public/assets/icons/icon_next_white.png" alt="">
+                        </button>
+                    </div>
 
+                </div>
+            </div>
+    </div>
+</section>
+</body>
+
+<script>
+
+    const baseURL = '<?php echo BASEURL?>';
+    let quizId = <?php echo $data[2]?>;
+
+</script>
+<script src="<?php echo BASEURL . '/public/javascripts/st_quiz_do.js?v=1.3' ?>"></script>
 </html>

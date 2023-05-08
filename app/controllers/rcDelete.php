@@ -47,9 +47,13 @@ class RcDelete extends Controller
 
     public function video($id)
     {
-        $row = $this->model("resourceModel")->getResource($id, $_SESSION['gid'], $_SESSION['sid'], 'video');
-        if (!empty($row)) {
-            if ($this->model("resourceModel")->deleteResource($id, 'video') == true) {
+        $tag = $this->model("resourceModel")->isVerifiedAccess($id, $_SESSION['gid'], $_SESSION['sid'], $_SESSION['id']);
+        if (!empty($tag)) {
+            $row = $this->model("resourceModel")->getVideo($id);
+            if ($this->model("resourceModel")->deleteResource($id, 'video')) {
+                if($row[6] == 'U'){
+                    deleteFile($row[4],"videos",$_SESSION['gid'], $_SESSION['sid']);
+                }
                 header("location:" . BASEURL . "rcResources/videos/" . $_SESSION["gid"] . "/" . $_SESSION["sid"]);
             } else {
                 header("location:" . BASEURL . "rcResources/videos/" . $_SESSION["gid"] . "/" . $_SESSION["sid"] . "/error");

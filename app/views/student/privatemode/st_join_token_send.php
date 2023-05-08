@@ -16,10 +16,12 @@
             border-style: solid;
             border-color: #17ac06;
             border-width: 3px;
-            text-align: center;
-            padding: 10px 35px 10px 35px;
-            width: 600px;
-            margin-left: 20%;
+            text-align: left;
+            padding: 10px 35px 30px 35px;
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            margin-bottom: 50px;
         }
 
         body {
@@ -60,45 +62,47 @@
                     <h3>Hello <?php echo $_SESSION['name'] ?> !</h3>
                 </div>
 
-                <div style="padding-top: 20px;">
-                    <h3 class="token" style="margin: auto;">
-                        <div class="subject-card">
-                            <img src="<?php echo BASEURL ?>assets/patterns/4.png" alt="" />
-                            <label><?php echo $_SESSION['class_name'] ?></label>
-                            <label>Class Feez : 3000.00 LKR</label>
-                        </div>
-                        <hr>
-                    </h3>
-                </div>
-                <div style="padding-top: 40px;">
 
-                    <ul>
-                        <li>
-                            <h3>Successfully Send the Join Request Using Class Token.</h3>
-                        </li>
-                        <li>
-                            <h3>Next You have to Pay Monthly Amount Of the Class Show Above. You can Use Billing Method In Your Profile.</h3>
-                        </li>
-                        <li>
-                            <h3> Direction For That :</h3>
-                        </li>
-                        <ol>
-                            <li>
-                                <h3>Click Profile Icon On Right Top Corner</h3>
+                <div class="subject-card">
+                    <img src="<?php echo BASEURL ?>assets/patterns/4.png" alt="" />
+                    <label><?php echo $_SESSION['class_name'] ?></label>
+                    <label>Class Feez : 3000.00 LKR</label>
+                </div>
+                <div class="token" style="margin: auto; padding-top: 20px;">
+                    <div style=" font-family: Arial, sans-serif; color: black;">
+                        <h2>How to Join the Class</h2>
+                        <ol style="list-style-type: none; margin: 0; padding: 0;">
+                            <li style="background-color: #186537; color: white; padding: 10px; margin-bottom: 10px;">
+                                <h4>Step 1: Send a Join Request Using the Class Token</h4>
+                                <p>To join the class, you first need to obtain the class token and send a join request. Once you have the class token, follow the instructions provided by your teacher to send the request.</p>
                             </li>
-                            <li>
-                                <h3>Go To Billing Part In Navigation Menu</h3>
+                            <li style="background-color: #186537; color: white; padding: 10px; margin-bottom: 10px;">
+                                <h4>Step 2: Pay the Monthly Class Fee</h4>
                             </li>
-                            <li>
-                                <h3>Do Payment Through It</h3>
+                            <p>To attend the class, you need to pay the monthly class fee. You can use the billing method in your profile to pay the fee. Follow the steps below:</p>
+                            <ol style="margin-top: 0; padding-left: 20px;">
+                                <li>
+                                    <h5>Click the Profile Icon on the Top Right Corner</h5>
+                                </li>
+                                <li>
+                                    <h5>Go to the Billing Section in the Navigation Menu</h5>
+                                </li>
+                                <li>
+                                    <h5>Complete Your Payment</h5>
+                                </li>
+                            </ol>
+
+                            <li style="background-color: #186537; color: white; padding: 10px; margin-bottom: 10px;">
+                                <h4>Step 3: Wait for Teacher Approval</h4>
+                                <p>Your join request will be held until your payment is validated. Once your payment is validated, the teacher will accept your token request and you'll be able to attend the class.</p>
                             </li>
                         </ol>
-                        <li>
-                            <h3>After Validate Your Payment,Teacher will Accept Token Request.
-                                Till that The Process Will Hold And It Will not Take Long Time.</h3>
-                        </li>
-                    </ul>
+                    </div>
                 </div>
+                <div style="padding:10px;">
+                    <hr>
+                </div>
+
             </section>
         </div>
     </section>

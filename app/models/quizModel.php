@@ -57,6 +57,20 @@ class quizModel extends Model
         return $this->fetchOneObj($stmt);
     }
 
+    public function getQuizState($user_id,$quiz_id)
+    {
+        $q = "SELECT * FROM `quizresults` WHERE quiz_id = ? AND user_id = ? ;";
+        $stmt = $this->prepare($q);
+        $stmt->bind_param('ii',$quiz_id,$user_id);
+        $res = $this->fetchOneObj($stmt);
+        return $res;
+        // if ( $res-> > 0) {
+        //     return $res;
+        // } else {
+        //     return array();
+        // }
+    }
+
     public function getQuestions($id)
     {
         $sql = "select question.id, question.number, question.description, question.image from question where quiz_id = $id order by question.number";
@@ -234,6 +248,23 @@ class quizModel extends Model
         return $this->fetchOne($stmt);
     }
 
+    public function updateQuestionResult($quizId, $user_id, $user_score,$current_q, $status){
+        $stmt = $this->prepare("UPDATE quizresults SET quizresults.current_q = ? , quizresults.score = ?, quizresults.status = 1 WHERE quizresults.user_id = ? AND quizresults.quiz_id = ?;");
+        $stmt->bind_param('iiii',$current_q, $user_score, $user_id, $quizId);
+        return $this->executePrepared($stmt);
+    }
+
+    public function getQuestionByOrd($quizId,$ordNo){
+        if($this->countQuestions($quizId)[0] == 1){
+            $stmt = $this->prepare("SELECT * FROM question where quiz_id = ? LIMIT 1");
+            $stmt->bind_param('i',$quizId);
+        }else{
+            $stmt = $this->prepare("SELECT * FROM question where quiz_id = ? order by number limit 1 , ?");
+            $stmt->bind_param('ii',$quizId, $ordNo);
+        }
+        return $this->fetchOne($stmt);
+    }
+
     public function get_question($quizId,$question){
         $stmt = $this->prepare("SELECT * FROM question where quiz_id = ? and id = ?");
         $stmt->bind_param('ii',$quizId, $question);
@@ -251,6 +282,8 @@ class quizModel extends Model
         $stmt->bind_param('ssi', $desc, $img, $id);
         return $this->executePrepared($stmt);
     }
+
+
 
 
 }
