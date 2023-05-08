@@ -99,5 +99,14 @@ class Landing extends Controller
             header("location".BASEURL."landing/registerCreator");
         }
     }
+
+    public function registerSponsor($part=null){
+        if($part=="instructions"){
+            $this->view('sponsor/registration/instructions');
+        }
+        else{
+            $this->view('sponsor/registration/applyForm');
+        }
+    }
 }
 

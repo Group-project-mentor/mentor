@@ -25,7 +25,7 @@
                 <h1>Register as a Resource Creator</h1>
             </div>
             <div class="top-bar-btns">
-                <a onclick="history.back()">
+                <a href="<?php echo BASEURL."landing" ?>" >
                     <div class="back-btn">Back</div>
                 </a>
             </div>
