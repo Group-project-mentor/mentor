@@ -43,7 +43,7 @@ class St_courses extends Controller
 
     public function Enroll_records($gid, $sid)
     {
-        $result = $this->model('st_subject_to_enroll_model')->enroll_rec(2, $gid, $sid);
+        $result = $this->model('st_courses_model')->enroll_rec($_SESSION['id'], $gid, $sid);
         if ($result) {
             header("location:" . BASEURL . "st_courses/index/$gid");
             $this->notify($_SESSION['id'],"you enroll to new subject ","enroll");

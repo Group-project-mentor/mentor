@@ -83,15 +83,9 @@
                             </div>
 
                         </div>
-                        <div class="bottom-details" style="margin: 10px 10px;height: 50vh; padding-top: 175px;">
+                        <div class="bottom-details" style="margin: 10px 10px;height: 50vh; padding-top: 100px;">
                             <h2>Your Private Classes</h2>
                             <div>
-                                <!-- <div class="sp-subject-report resource-chart">
-                                    <h4>Your Private Quiz Results</h4>
-                                    <canvas id="myChart2" class="resource-chart">
-                                    </canvas>
-                                </div> -->
-
                                 <div style="display: flex;flex-direction: column;">
                                     <div class="rc-dash-info-card-set">
                                         <div class="rc-dash-info-card" style="background-color: green; color:white;">
@@ -149,29 +143,34 @@
     const chart2 = document.getElementById('myChart2');
 
     new Chart(chart, {
-        type: 'doughnut',
-        data: {
-            labels: Labels,
-            datasets: [{
-                label: 'Number of Resources',
-                data: Data,
-                borderWidth: 1,
-                backgroundColor: [
-                    'rgb(255, 99, 12)',
-                    'rgb(54, 162, 235)',
-                    'rgb(255, 205, 86)',
-                    'rgb(255, 5, 86)',
-                    'rgb(102,197,81)',
-                ]
+    type: 'bar', // changed to bar chart type
+    data: {
+        labels: Labels,
+        datasets: [{
+            label: 'Number of Resources',
+            data: Data,
+            borderWidth: 1,
+            backgroundColor: [
+                'rgb(255, 99, 12)',
+                'rgb(54, 162, 235)',
+                'rgb(255, 205, 86)',
+                'rgb(255, 5, 86)',
+                'rgb(102,197,81)',
+            ]
+        }]
+    },
+    options: {
+        responsive: true,
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                }
             }]
-        },
-        options: {
-            responsive: true,
-            scales: {
-
-            }
         }
-    });
+    }
+});
+
 
     new Chart(chart2, {
         type: 'doughnut',
