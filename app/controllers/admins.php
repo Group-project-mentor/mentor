@@ -297,26 +297,93 @@ class admins extends Controller {
 
     }
     
-    public function resource($id) {
+    public function resource($element = "",$id) {
 
         sessionValidator();
         $this->hasLogged();
 
-        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
-            if ($this->adminModel->ComplaintTookAction($id)) {
-                echo 'Successful';
-            } else {
-                echo 'Error';
+        if ($element == "video") {
+
+            if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            
+            }
+
+            if ($_SERVER['REQUEST_METHOD'] == 'GET') {
+                
+
+                $data = [];
+                $data['videov'] = $this->adminModel->videoview($id);
+                
+                $this->view('admin/videoview',$data);
+
             }
         }
 
-        if ($_SERVER['REQUEST_METHOD'] == 'GET') {
-            
-            
-            $data['complaints'] = $this->adminModel->usercomplaint($id);
-            $this->view('admin/resourceview',$data);
+        if ($element == "quiz") {
 
+            if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            
+            }
+
+            if ($_SERVER['REQUEST_METHOD'] == 'GET') {
+                
+
+                $data = [];
+                $data['quizv'] = $this->adminModel->quizview($id);
+
+                $this->view('admin/quizview',$data);
+
+            }
+        }
+
+        if ($element == "paper") {
+
+            if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            
+            }
+
+            if ($_SERVER['REQUEST_METHOD'] == 'GET') {
+                
+                $data = [];
+                $data['pastpaperv'] = $this->adminModel->pastpaperview();
+
+                $this->view('admin/pastpaperview',$data);
+
+            }
+        }
+
+        if ($element == "pdf") {
+
+            if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            
+            }
+
+            if ($_SERVER['REQUEST_METHOD'] == 'GET') {
+
+                $data = [];
+                $data['pdfv'] = $this->adminModel->pdfview();
+
+                
+                $this->view('admin/pdfview',$data);
+
+            }
+        }
+
+        if ($element == "other") {
+
+            if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            
+            }
+
+            if ($_SERVER['REQUEST_METHOD'] == 'GET') {
+
+                $data = [];
+                $data['otherv'] = $this->adminModel->otherview();
+                
+                $this->view('admin/otherview',$data);
+
+            }
         }
 
     }

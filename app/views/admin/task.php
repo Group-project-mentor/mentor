@@ -45,7 +45,7 @@
                                         
                                 <div class="icons">
                                     <div class="view">
-                                        <a href="'. BASEURL .'admins/complaint/' . $value['id'] . '"><img src="'. BASEURL .'assets/admin/view.png"></a>
+                                        <a href="'. BASEURL .'admins/resource/' . $value['type'] . '/'.$value['id'] .'"><img src="'. BASEURL .'assets/admin/view.png"></a>
                                     </div>
                                     <div class="delete">
                                         <a href="' . BASEURL . '#"><img src="' . BASEURL . 'assets/admin/Delete.png"></a>
@@ -59,7 +59,8 @@
             }
 
             if (!$data['ctask']) {
-                
+                echo 'No Complaints';
+                echo ($_SESSION["id"]);
             } else {
                 foreach ($data['ctask'] as $value) {
                         echo '<div class="content">
@@ -76,7 +77,7 @@
                                         
                                 <div class="icons">
                                     <div class="view">
-                                        <a href="'. BASEURL .'admins/task/' . $value['work_id'] . '"><img src="'. BASEURL .'assets/admin/view.png"></a>
+                                        <a href="'. BASEURL .'admins/complaintaction/' . $value['work_id'] . '"><img src="'. BASEURL .'assets/admin/view.png"></a>
                                     </div>
                                     <div class="delete">
                                         <a href="' . BASEURL . '#"><img src="' . BASEURL . 'assets/admin/Delete.png"></a>
