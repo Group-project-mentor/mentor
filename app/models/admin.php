@@ -117,11 +117,32 @@ class admin extends Model{
         } 
     }
 
-    public function ResourceView($rID,$element){
-        $query = "SELECT `public_resource`.*, '$ FROM `public_resource` WHERE `approved_by`='$uID'; ";
-        "SELECT `resource_creator`.*, `user`.* FROM `resource_creator` INNER JOIN `user` ON `resource_creator`.id = `user`.id;";
-        $result = $this->executeQuery($query);
+    // public function ResourceView($rID,$element){
+    //     $query = "SELECT `public_resource`.*, '$ FROM `public_resource` WHERE `approved_by`='$uID'; ";
+    //     "SELECT `resource_creator`.*, `user`.* FROM `resource_creator` INNER JOIN `user` ON `resource_creator`.id = `user`.id;";
+    //     $result = $this->executeQuery($query);
         
+    //     if ($result->num_rows > 0) {
+    //         return $result->fetch_all(MYSQLI_ASSOC);
+    //     } else {
+    //         return false;
+    //     } 
+    // }
+
+    public function videoview($id) {
+        $query = "SELECT `public_resource`.*, `video`.* FROM `public_resource` INNER JOIN `video` ON `public_resource`.id = `video`.id WHERE `public_resource`.`type`='video' AND `video`.`id`='$id';";
+        $result = $this->executeQuery($query);
+    
+        if ($result->num_rows > 0) {
+            return $result->fetch_all(MYSQLI_ASSOC);
+        } else {
+            return false;
+        } 
+    }
+    public function quizview($id) {
+        $query = "SELECT `public_resource`.*, `quiz`.* FROM `public_resource` INNER JOIN `quiz` ON `public_resource`.id = `quiz`.id WHERE `public_resource`.`type`='quiz' AND `quiz`.`id`='$id';";
+        $result = $this->executeQuery($query);
+    
         if ($result->num_rows > 0) {
             return $result->fetch_all(MYSQLI_ASSOC);
         } else {
@@ -129,6 +150,38 @@ class admin extends Model{
         } 
     }
 
+    public function pastpaperview($id) {
+        $query = "SELECT `public_resource`.*, `pastpaper`.* FROM `public_resource` INNER JOIN `pastpaper` ON `public_resource`.id = `pastpaper`.id WHERE `public_resource`.`type`='pastpaper' AND `pastpaper`.`id`='$id';";
+        $result = $this->executeQuery($query);
+    
+        if ($result->num_rows > 0) {
+            return $result->fetch_all(MYSQLI_ASSOC);
+        } else {
+            return false;
+        } 
+    }
+
+    public function pdfview($id) {
+        $query = "SELECT `public_resource`.*, `document`.* FROM `public_resource` INNER JOIN `document` ON `public_resource`.id = `document`.id WHERE `public_resource`.`type`='pdf' AND `document`.`id`='$id';";
+        $result = $this->executeQuery($query);
+    
+        if ($result->num_rows > 0) {
+            return $result->fetch_all(MYSQLI_ASSOC);
+        } else {
+            return false;
+        } 
+    }
+
+    public function otherview($id) {
+        $query = "SELECT `public_resource`.*, `other`.* FROM `public_resource` INNER JOIN `other` ON `public_resource`.id = `other`.id WHERE `public_resource`.`type`='other' AND `other`.`id`='$id';";
+        $result = $this->executeQuery($query);
+    
+        if ($result->num_rows > 0) {
+            return $result->fetch_all(MYSQLI_ASSOC);
+        } else {
+            return false;
+        } 
+    }
 
 
     public function sponsors(){

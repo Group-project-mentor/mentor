@@ -76,6 +76,23 @@ function addComplaintToTaskManager(cID,uID){
     xhttp.send("cID="+cID+"&uID="+uID);
 }
 
+function view(type,rID){
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+
+        if (this.readyState == 4 && this.status == 200) {
+            var response = this.responseText;
+
+            window.location.replace("http://localhost/mentor/admins/complaints")
+
+        }
+    };
+
+    xhttp.open("POST", "http://localhost/mentor/admins/resourceview/"+type+cID, true);
+    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xhttp.send("type="+type+"&rID="+rID);
+}
+
 
 
 function tookaction(cID){

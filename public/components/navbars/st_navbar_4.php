@@ -48,7 +48,7 @@
             <img src="<?php echo BASEURL ?>public/assets/icons/Scholarship.png" alt="bmc">
             <div class="nav-link-text">Get scholarship</div>
         </a>
-        <a href="#" class="nav-link">
+        <a href="<?php BASEURL ?>st_profile/generate_report" class="nav-link">
             <img src="<?php echo BASEURL ?>public/assets/icons/generate_report.png" alt="bmc">
             <div class="nav-link-text">Generate Report</div>
         </a>

@@ -206,6 +206,18 @@ class St_profile extends Controller
             header("location".BASEURL.'');
         }
     }
+
+
+    public function generate_report(){
+        $joined = $this->model("st_generate_reports_model")->JoinedClasses($_SESSION['id']);
+        $Pending = $this->model("st_generate_reports_model")->PendingClasses($_SESSION['id']);
+        $Request = $this->model("st_generate_reports_model")->RequestClasses($_SESSION['id']);
+        $S_Enroll = $this->model("st_generate_reports_model")->SEnrollClasses($_SESSION['id']);
+        $Q_Enroll = $this->model("st_generate_reports_model")->QEnrollClasses($_SESSION['id']);
+        $PublicAll = $this->model("st_generate_reports_model")->PublicResourceCount($_SESSION['id']);
+        
+        $this->view('student/profile/st_generate_report', array($joined , $Pending , $Request ,$S_Enroll , $Q_Enroll, $PublicAll));
+    }
 }
 
 ?>
