@@ -74,6 +74,10 @@
                     <br>
                 </div>
 
+                <div class="text-center" style="padding:20px; display: flex; justify-content: right;">
+                <button onclick="location.href='<?php echo BASEURL . 'TReport/studentReports/'.$_SESSION['cid'] ?>'" style="background-color: #186537; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer;">Send Report to Student</button>
+                </div>
+
                 <?php
                 $teacherFeedback = $_GET['feedback'] ?? ''; // get feedback if available
                 ?>
@@ -85,10 +89,18 @@
                 <div class="container_content" id="container_content">
 
                     <header class="letterhead">
-                        <h1>Class Id -<?php echo "$cid"; ?> - Report</h1>
-                        <h3><?php echo "Class Teacher - Ms. " . $_SESSION['name']  ?></h3>
+                        <h1>PROGRESS  REPORT</h1>
+                        <h1>Class Id -<?php echo "$cid"; ?> <br>
+                        <?php foreach ($data[3] as $row) : ?>
+                            Class Name - <?php echo $row->cname ?></h1>
+                        <?php endforeach; ?>
+                        <h3><?php echo "Teacher Name - Ms. " . $_SESSION['name']  ?></h3>
                     </header>
                     <br>
+                    <h3><?php echo "Student ID -  " . $data[1]; ?></h3>
+                        <?php foreach ($data[2] as $row) : ?>
+                            <h3><?php echo "Student Name - Ms. " . $row->sname ?></h3>
+                        <?php endforeach; ?><br>
                     <!-- add the teacher feedback here -->
                     <div class="teacher-feedback">
                         <h1>Teacher Feedback:</h1>
@@ -196,13 +208,13 @@
         const element = document.getElementById('container_content');
         var opt = {
             margin: 0.25,
-            filename: 'Report.pdf',
+            filename: 'Report' + <?php echo $data[1]; ?> + '.pdf',
             image: {
                 type: 'jpeg',
                 quality: 0.98
             },
             html2canvas: {
-                scale: 10
+                scale: 15
             },
             jsPDF: {
                 unit: 'in',

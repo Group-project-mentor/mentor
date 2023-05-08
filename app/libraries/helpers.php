@@ -61,7 +61,7 @@ function TsaveFile($tempLocation ,$fileName, $type, $folder1=null): bool
     $fileDest = TfindFileDest($type, $folder1, $fileName);
     if(!file_exists($fileDest)){
         if($type == "videos") {
-            
+
             return rename($tempLocation, $fileDest);
         }else{
             return move_uploaded_file($tempLocation, $fileDest);
@@ -71,7 +71,17 @@ function TsaveFile($tempLocation ,$fileName, $type, $folder1=null): bool
     }
 }
 
-function updateFile($tempLocation, $newFileName, $oldFileName, $type, $folder1=null, $folder2=null): bool
+function TsaveReport($tempLocation, $fileName, $type, $folder1 = null): bool
+{
+    $fileDest = TfindReportDest($folder1, $fileName);
+    if (!file_exists($fileDest)) {
+        return move_uploaded_file($tempLocation, $fileDest);
+    } else {
+        return false;
+    }
+}
+
+function updateFile($tempLocation, $newFileName, $oldFileName, $type, $folder1 = null, $folder2 = null): bool
 {
     $flag = saveFile($tempLocation, $newFileName, $type, $folder1, $folder2);
     $fileDest = findFileDest($type, $folder1, $folder2, $oldFileName);
@@ -93,6 +103,17 @@ function TupdateFile($tempLocation, $newFileName, $oldFileName, $type, $folder1=
     if(file_exists($fileDest)){
         return ($flag and unlink($fileDest));
     }else{
+        return false;
+    }
+}
+
+function TupdateReport($tempLocation, $newFileName, $oldFileName, $type, $folder1 = null): bool
+{
+    $flag = TsaveReport($tempLocation, $newFileName, $type, $folder1);
+    $fileDest = TfindReportDest($folder1,  $oldFileName);
+    if (file_exists($fileDest)) {
+        return ($flag and unlink($fileDest));
+    } else {
         return false;
     }
 }
@@ -130,7 +151,20 @@ function TfindFileDest($type, $folder1, $fileName): string
     return $fileDest . $fileName;
 }
 
-function deleteFile($fileName, $type, $folder1=null, $folder2=null):bool
+function TfindReportDest($folder1, $fileName): string
+{
+    $fileDest = "data/reports/";
+    if ($folder1 != null) {
+        $fileDest = $fileDest . $folder1;
+        if (!is_dir($fileDest)) {
+            mkdir($fileDest);
+        }
+        $fileDest = $fileDest . "/";
+    }
+    return $fileDest . $fileName;
+}
+
+function deleteFile($fileName, $type, $folder1 = null, $folder2 = null): bool
 {
     $fileDest = "public_resources/$type/";
     if($folder1!=null){
@@ -214,9 +248,9 @@ function getUnique($uid): string
 }
 
 function tempFileRemover(){
-//    if (session_status() == PHP_SESSION_NONE) {
-//        session_start();
-//    }
+    //    if (session_status() == PHP_SESSION_NONE) {
+    //        session_start();
+    //    }
     if(isset($_SESSION['temporary_file']) and $_SESSION['tempTag']){
         $_SESSION['tempTag'] = false;
     }
@@ -227,9 +261,9 @@ function tempFileRemover(){
 }
 
 function TtempFileRemover(){
-//    if (session_status() == PHP_SESSION_NONE) {
-//        session_start();
-//    }
+    //    if (session_status() == PHP_SESSION_NONE) {
+    //        session_start();
+    //    }
     if(isset($_SESSION['temporary_file']) and $_SESSION['tempTag']){
         $_SESSION['tempTag'] = false;
     }
