@@ -8,6 +8,7 @@
     <title>complaints</title>
     <link rel="stylesheet" href="<?php echo BASEURL ?>stylesheets/admin/ad_complaints.css">
     <link rel="stylesheet" href="<?php echo BASEURL ?>stylesheets/admin/style.css">
+    <link rel="stylesheet" href="<?php echo BASEURL ?>stylesheets/admin/massage.css">
 
 </head>
 <nav>
@@ -17,6 +18,7 @@
 </nav>
 
 <body>
+<?php require_once("C:/xampp/htdocs/mentor/public/components/alerts/admin/addToTM.php"); ?>
     
     <?php require_once("C:/xampp/htdocs/mentor/app/views/admin/navbar.php"); ?>
     <!-- Middle part for whole content -->
@@ -49,7 +51,7 @@
             </div>
             <div class="btns">
                 <button class="comp-btns" onclick="addComplaintToTaskManager(' . $data['complaints'][0]['work_id'] . ',' . $_SESSION['id'] . ')" type="button">Add To Task Manager</button>
-                <button class="comp-btns">Delete</button>
+               
             </div>
 
             

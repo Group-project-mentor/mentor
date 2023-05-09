@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="<?php echo BASEURL ?>stylesheets/admin/ad_verification.css">
     <link rel="stylesheet" href="<?php echo BASEURL ?>stylesheets/admin/style.css">
     <link rel="stylesheet" href="<?php echo BASEURL ?>stylesheets/admin/ad_verify.css">
+    <link rel="stylesheet" href="<?php echo BASEURL ?>stylesheets/admin/massage.css">
 
 </head>
 <nav>
@@ -19,6 +20,7 @@
 </nav>
 
 <body>
+<?php require_once("C:/xampp/htdocs/mentor/public/components/alerts/admin/addRToTM.php"); ?>
     <?php require_once("C:/xampp/htdocs/mentor/app/views/admin/navbar.php"); ?>
             <!-- Middle part for whole content -->
             <section class="mid-content ad_mid-content">
@@ -37,16 +39,20 @@
                     <div class="videos">
 
                     <?php
-                    foreach ($data['video'] as $value) {
-                        echo 
-                        '<div class ="v-name">
-                                <img class="videoslist" src="'. BASEURL .'assets/admin/videoslist.png">
-                                <p>'. $value['name'] .'</p>
-                                <div class="btns">
-                                    <button class="comp-btns" onclick="addResourceToTaskManager('.$value['id'].','.$_SESSION['id'] .')" type="button">Add To Task Manager</button>
-                                </div>
-                            </div>';
+                    if (!$data['video']) {
+                        echo '0';
+                    } else {
+                        foreach ($data['video'] as $value) {
+                            echo 
+                            '<div class ="v-name">
+                                    <img class="videoslist" src="'. BASEURL .'assets/admin/videoslist.png">
+                                    <p>'. $value['name'] .'</p>
+                                    <div class="btns">
+                                        <button class="comp-btns" onclick="addResourceToTaskManager('.$value['id'].','.$_SESSION['id'] .')" type="button">Add To Task Manager</button>
+                                    </div>
+                                </div>';
 
+                        }
                     }
                     ?>
                     </div>
