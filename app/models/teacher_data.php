@@ -16,9 +16,9 @@ class Teacher_data extends Model
         return $this->fetchObjs($result);
     }
 
-    public function addClass($id, $name)
+    public function addClass($id, $name,$currency,$fees)
     {
-        $q = "INSERT INTO private_class (class_id,class_name) VALUES (" . $id . ",'" . $name . "')";
+        $q = "INSERT INTO private_class (class_id,class_name,currency,fees) VALUES (" . $id . ",'" . $name . "','" . $currency. "','" . $fees . "')";
         $result = $this->executeQuery($q);
         return $result;
     }
@@ -32,6 +32,22 @@ class Teacher_data extends Model
         } else {
             return 1;
         }
+    }
+
+    public function getfee($id)
+    {
+        $q = "SELECT private_class.fees as fees from private_class WHERE private_class.class_id=?";
+        $result = $this->prepare($q);
+        $result->bind_param('i', $id);
+        return $this->fetchOneObj($result);
+    }
+
+    public function getCurrency($id)
+    {
+        $q = "SELECT private_class.currency as fees from private_class WHERE private_class.class_id=?";
+        $result = $this->prepare($q);
+        $result->bind_param('i', $id);
+        return $this->fetchOneObj($result);
     }
 
     public function teacherHasClass($id)

@@ -23,36 +23,39 @@ class TInsideClass extends Controller
         $this->view('Teacher/insideClass/addTeacher');
     }
 
-    public function InClass()
-    {
-        $this->view('Teacher/insideClass/InsideClass');
-    }
-
 
     public function createAction()
     {
         $l_id = $_POST['student_id'];
         var_dump($l_id);
-        $premium = ($this->model("premiumModel")->getPremium($_SESSION['id'])->active);
+        $premium = ($this->model("premiumModel")->getPremium($_SESSION['id']));
+        if ($premium !== null and $premium !== 0) {
+            $premium = $premium->active;
+        } else {
+            $premium = 0;
+        }
         $student_count = ($this->model("premiumModel")->studentCount($_SESSION['cid'])->student_count);
+        $fee = ($this->model("teacher_data")->getFee($_SESSION['cid'])->fees);
+        $currency = ($this->model("teacher_data")->getCurrency($_SESSION['cid'])->fees);
+        $message = "Teacher " . $_SESSION['name'] . " has request to join to class " . $_SESSION['cname'] . ". Class fee is " . $currency . " " . $fee;
         if ($premium == 1) {
-            if ($this->model('teacher_data')->requestStudentsClass($l_id)) {
+            if ($this->model('teacher_data')->requestStudentsClass($l_id) and $this->model('notificationModel')->notify($l_id, $message, 'tch')) {
 
-                header("location:" . BASEURL . "TInsideClass/inClass");
+                header("location:" . BASEURL . "TInsideClass/addSt");
             } else {
                 header("location:" . BASEURL . "TInsideClass/addSt");
             }
-        } else if ($premium != 1 and $student_count < 10) {
-            if ($this->model('teacher_data')->requestStudentsClass($l_id)) {
+        } else if ($premium ==0 and $student_count < 10) {
+            if ($this->model('teacher_data')->requestStudentsClass($l_id) and $this->model('notificationModel')->notify($l_id, $message, 'tch')) {
 
-                header("location:" . BASEURL . "TInsideClass/inClass");
+                header("location:" . BASEURL . "TInsideClass/addSt");
             } else {
                 header("location:" . BASEURL . "TInsideClass/addSt");
             }
-        } else if ($premium != 1 and $student_count >= 10) {
+        } else if ($premium ==0 and $student_count >= 10) {
             flashMessage("Your add student limit for free account is over");
         }
-        header("location:" . BASEURL . "TInsideClass/inClass");
+        header("location:" . BASEURL . "TInsideClass/addSt");
     }
 
     public function addTchAction($cid)

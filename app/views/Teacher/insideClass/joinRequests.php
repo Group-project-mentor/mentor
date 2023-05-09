@@ -35,6 +35,9 @@
                 <div class="search-bar">
                 </div>
                 <div class="top-bar-btns">
+                <a href="#">
+                        <a class="back-btn" href="<?php echo BASEURL ?>home">Back</a>
+                    </a>
                 <?php include_once "components/notificationIcon.php" ?>
                     <?php include_once "components/premiumIcon.php" ?>
                 </div>
@@ -46,6 +49,8 @@
                 <!-- Title and sub title of middle part -->
                 <div class="mid-title">
                     <h1>Student Requests</h1>
+                    <h3><?php echo "Class ID-".$_SESSION['cid']?><h3>
+                    <h3><?php echo " Class Name-".ucfirst($_SESSION['cname']) ?> </h3>
                 </div>
                 <br><br>
 
