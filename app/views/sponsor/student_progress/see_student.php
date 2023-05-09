@@ -47,6 +47,12 @@
 
             <!-- bottom part -->
             <section class="bottom-section-grades" style="flex-direction: column;align-items:center;">
+                <div class="bottom-section-title" style="justify-self: flex-end;">
+                    <a class="sponsor-button" href="<?php echo BASEURL."sponsor/payAllMoths/".$data[0]->id ?>" style="text-decoration: none;">
+                        Pay All Amount
+                        <img src="<?php echo BASEURL ?>assets/icons/icon_pay_all_white.png" alt="" style="width: 20px;">
+                    </a>
+                </div>
                 <div class="sponsor-student-prof">
                     <div class="prof">
                         <div class="image">

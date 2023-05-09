@@ -74,7 +74,7 @@
                             </p>
                             <div class="quiz-preview-bottom-set" style="justify-content: flex-end;">
                                 <a class="quiz-preview-bottom-button" href="<?php echo BASEURL . 'st_public_resources/st_quizzes_do/'.$data[0] ?>">
-                                    Start
+                                    Start OR View Marks
                                     <img src="<?php echo BASEURL ?>assets/icons/icon_next_white.png" alt="">
                                 </a>
                             </div>

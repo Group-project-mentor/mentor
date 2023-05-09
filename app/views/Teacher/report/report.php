@@ -69,8 +69,8 @@
 
                 <!-- Title and sub title of middle part -->
                 <div class="mid-title">
-                    <h1>Generate Reports</h1>
-                    <h6>Teacher Home/ C136-member details/Generate reports</h6>
+                    <h1>Student Report</h1>
+                    <h6><?php echo $_SESSION['cid']."-".ucfirst($_SESSION['cname'])."/Generate Feedback/Ask Feedback/Student Report"?><h6>
                     <br>
                 </div>
 

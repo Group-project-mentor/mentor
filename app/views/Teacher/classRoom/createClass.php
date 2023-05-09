@@ -13,49 +13,7 @@
 <body>
     <section class="page">
         <!-- Navigation panel -->
-        <nav class="nav-bar" id="nav-bar">
-
-            <!-- Navigation bar logos -->
-            <div class="nav-upper">
-                <div class="nav-logo-short">
-                    <img src="<?php echo BASEURL ?>public/assets/Teacher/logo2.png" alt="logo" />
-                </div>
-                <div class="nav-logo-long" id="nav-logo-long">
-                    <img src="<?php echo BASEURL ?>public/assets/Teacher/logo1.png" alt="logo" />
-                </div>
-            </div>
-
-
-
-            <!-- Navigation buttons -->
-            <div class="nav-links">
-                <a href="<?php echo BASEURL ?>" class="nav-link">
-                    <img class="active" src="<?php echo BASEURL ?>public/assets/Teacher/icons/icon_class.png" alt="home">
-                    <div class="nav-link-text">Classes</div>
-                </a>
-                <a href="<?php echo BASEURL ?>TPremium/premiumPlan" class="nav-link">
-                    <img src="<?php echo BASEURL ?>public/assets/Teacher/icons/icon_premium.png" alt="cource">
-                    <div class="nav-link-text">Buy Premium</div>
-                </a>
-                <a href="<?php echo BASEURL ?>TReportIssue/reportIssues" class="nav-link">
-                    <img src="<?php echo BASEURL ?>public/assets/Teacher/icons/icon_report.png" alt="profile">
-                    <div class="nav-link-text">Report Issue</div>
-                </a>
-                <a href="<?php echo BASEURL ?>TBilling/Billing1" class="nav-link">
-                    <img src="<?php echo BASEURL ?>public/assets/Teacher/icons/icon_billing.png" alt="report">
-                    <div class="nav-link-text">Billing</div>
-                </a>
-                <a href="<?php echo BASEURL ?>TBmc/bmc1" class="nav-link">
-                    <img src="<?php echo BASEURL ?>public/assets/Teacher/icons/icon_bmc.png" alt="bmc">
-                    <div class="nav-link-text">Buy me a coffee</div>
-                </a>
-            </div>
-
-            <!-- Navigation bar toggler -->
-            <div class="nav-toggler" id="nav-toggler">
-                <img src="<?php echo BASEURL ?>public/assets/Teacher/icons/toggler.png" alt="toggler">
-            </div>
-        </nav>
+        <?php include_once "components/navbars/t_nav_1.php" ?>
 
         <div class="content-area">
 
@@ -88,7 +46,16 @@
                     <form action="<?php echo BASEURL; ?>TClassRoom/createAction" method="POST">
                         <label for="class_name"></label>
                         <input type="text" id="class_name" name="class_name" placeholder="New class name..">
-                        <input type="submit" value="create">
+                        <h3>Currency Name</h3>
+                        <label for="currency_name"></label>
+                        <select id="currency_name" name="currency_name">
+                            <option value="" disabled selected>Select a Currency</option>
+                            <option value="LKR">LKR</option>
+                        </select>
+                        <h3>Monthly Class Fees</h3>
+                        <label for="class_fees"></label>
+                        <input type="text" id="class_fees" name="class_fees" placeholder="0.00">
+                        <input type="submit" value="create" id="create">
                     </form>
                 </div>
 
@@ -108,37 +75,29 @@
     </section>
 </body>
 <script>
-    let toggle = true;
-
-    const getElement = (id) => document.getElementById(id);
-
-    let togglerBtn = getElement("nav-toggler");
-    let nav = getElement("nav-bar");
-    let logoLong = getElement("nav-logo-long");
-    let navMiddle = getElement("nav-middle");
-    let navLinkTexts = document.getElementsByClassName("nav-link-text");
-
-    togglerBtn.addEventListener('click', () => {
-        nav.classList.toggle("nav-bar-small");
-
-        if (toggle) {
-            logoLong.classList.add("hidden");
-            navMiddle.classList.add("hidden");
-            togglerBtn.classList.add("toggler-rotate");
-            for (i = 0; i < navLinkTexts.length; i++) {
-                navLinkTexts[i].classList.add("hidden");
+    function checkClassName() {
+        document.getElementById("create").addEventListener("click", function(event) {
+            var feedback = document.getElementById("class_name").value;
+            if (feedback.trim() === '') {
+                alert("Please enter Class Name.");
+                event.preventDefault(); // stop form submission
             }
-            toggle = false;
-        } else {
-            logoLong.classList.remove("hidden");
-            navMiddle.classList.remove("hidden");
-            togglerBtn.classList.remove("toggler-rotate");
-            for (i = 0; i < navLinkTexts.length; i++) {
-                navLinkTexts[i].classList.remove("hidden");
+
+            var currency = document.getElementById("currency_name").value;
+            if (currency.trim() === '') {
+                alert("Please select a currency.");
+                event.preventDefault(); // stop form submission
             }
-            toggle = true;
-        }
-    })
+
+            var fees = document.getElementById("class_fees").value;
+            if (fees.trim() === '') {
+                alert("Please Enter fees.");
+                event.preventDefault(); // stop form submission
+            }
+        });
+    }
+
+    window.addEventListener("load", checkClassName);
 </script>
 
 </html>

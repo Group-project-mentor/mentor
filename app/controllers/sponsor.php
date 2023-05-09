@@ -536,7 +536,7 @@ class Sponsor extends Controller
             case "payments":
                 $bill = $this->model($this->table1)->getPayBill($id);
                 $result =$this->model($this->table1)->getPaymentDetails($id);
-                $this->view("sponsor/detailedViews/paymentView",array($result,$bill));
+                $this->view("sponsor/detailedViews/paymentView",array($result,$bill,$id));
                 break;
             case "bills":
                 $billDetails =$this->model($this->table1)->getBillDetails($id,$_SESSION['id']);
@@ -550,5 +550,89 @@ class Sponsor extends Controller
             default:
                 break;
         }
+    }
+
+    public function printBill($id){
+        $userData = $this->model("userModel")->getSponsorData($_SESSION['id']);
+        $bill = $this->model($this->table1)->getPayBill($id)->id;
+        $result =$this->model($this->table1)->getPaymentDetails($id);
+        $billDetails =$this->model($this->table1)->getBillDetails($bill ,$_SESSION['id']);
+        $billContent = $this->model($this->table1)->getBillData($bill);
+        $total = 0;
+        foreach ($billContent as $one){
+            $total += $one->monthlyAmount;
+        }
+
+        $this->view("sponsor/detailedViews/generateBill",array($result, $total, $billDetails, $billContent, $userData));
+    }
+
+    public function payAllMoths($student_id){
+        $studentDetails = $this->model('sponsorStModel')->getStudentDetails($student_id);
+        $payments = $this->model('sponsorStModel')->getPayments($student_id);
+
+        $fundMonths = $studentDetails->fundMonths;
+        $fund = $studentDetails->monthlyAmount;
+
+        $acceptedDate = explode("-",$studentDetails->approved_date);
+        $accMonth = intval($acceptedDate[1]);
+        $accYear = intval($acceptedDate[0]);
+        $newArry = array();
+        $total = 0;
+
+            if ($fundMonths > 0){
+                $timeArray = array();
+
+                foreach ($payments as $payment){
+                    $payDate = $payment->year."-".$payment->month;
+                    $timeArray[] = $payDate;
+                    // var_dump(in_array($payDate,$timeArray));
+                }
+
+                $month = $accMonth;
+                $year = $accYear;
+
+                for($i = 1; $i <= $fundMonths; $i++){
+                    $payDate = $year."-".$month;
+                    if (!in_array($payDate,$timeArray)){
+                        $newArry[] = $payDate;
+                        $total += $fund;
+                    }
+                    $month = $accMonth + $i;
+                    $year = $accYear;
+                    if ($month > 12){
+                        $month = $month - 12;
+                        $year = $year + 1;
+                    }
+                }
+
+                $billID = getUnique($_SESSION['id']);
+                $currency = "LKR";
+                
+                if($this->model('sponsorStModel')->addBill($billID, $currency, $total, $_SESSION['id'])){
+                    $flag = 1;
+                    foreach ($newArry as $item){
+                        $yearMonth = explode("-",$item);
+                        if($this->model('sponsorStModel')->insertBillRow($student_id, $yearMonth[0], $yearMonth[1], $billID)){
+                            $flag *= 1;
+                        }else{
+                            $flag *= 0;
+                        }
+                    }
+                    if($flag == 1){
+                        flashMessage("success");
+                        header("location:".BASEURL."sponsor/slips/bills/".$billID);
+                    }else{
+                        flashMessage("failed");
+                        header("location:".BASEURL."sponsor/allStudents");
+                    }
+                }else{
+                    flashMessage("failed");
+                    header("location:" . BASEURL . "sponsor/allStudents");
+                }              
+                            
+            }else{
+                flashMessage("no_pay");
+                header("location:" . BASEURL . "sponsor/allStudents");
+            }
     }
 }

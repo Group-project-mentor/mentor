@@ -15,10 +15,13 @@
 <?php
 if(!empty($_SESSION['message'])) {
     if ($_SESSION['message'] == "success") {
-        $message = "Answer Added Successfully !";
+        $message = "Operation Successful !";
         include_once "components/alerts/operationSuccess.php";
     } elseif ($_SESSION['message'] == "failed") {
-        $message = "Answer Adding Failed !";
+        $message = "Operation Failed !";
+        include_once "components/alerts/operationFailed.php";
+    } elseif($_SESSION['message'] == 'max_answers'){
+        $message = "Max answers reached !";
         include_once "components/alerts/operationFailed.php";
     }
 }
@@ -96,6 +99,22 @@ if(!empty($_SESSION['message'])) {
                             + Add Answer
                         </button>
                     </a>
+                    <?php if(!empty($data[4])){
+                    $count = 0;
+                    ?>
+                    <div>
+                        <label for="">Correct Answer : </label>
+                        <select id="correctChooser" style="padding:5px 10px;margin: 10px;">
+                            <?php foreach($data[4] as $row){
+                            $count++;
+                            ?>
+                            <option value="<?php echo $row[0] ?>" <?php echo ($row[3])?"selected":"" ?>>
+                                <?php echo $count ?>
+                            </option>
+                            <?php } ?>
+                        </select>
+                    </div>
+                    <?php } ?>
 
                     <?php if(!empty($data[4])){
                         $count = 0;
@@ -121,7 +140,6 @@ if(!empty($_SESSION['message'])) {
                                 <img src="<?php echo BASEURL ?>public/assets/icons/icon_delete.png" alt="delete">
                             </a>
                             <a class="quiz-box-edit" href="<?php echo BASEURL.'quiz/editAnswer/'.$data[0].'/'.$data[1].'/'.$row[0]?>">
-                                <!-- todo : To complete this -->
                                 <img src="<?php echo BASEURL.'assets/icons/icon_edit.png'?>" alt="">
                             </a>
                         </div>
@@ -135,5 +153,33 @@ if(!empty($_SESSION['message'])) {
     </div>
 </section>
 </body>
+<script>
+    const BASEURL = '<?php echo BASEURL?>';
+    const quizID = <?php echo $data[2][0] ?>;
+    const answerAvil = <?php echo !empty($data[4])?1:0 ?>;
+
+
+    if (answerAvil){
+        let correctChooser = document.getElementById('correctChooser');
+
+        correctChooser.onchange = (event) => {
+            let ansID = event.target.value;
+            fetch(`${BASEURL}quiz/markCorrectness/${quizID}/${ansID}`)
+                .then(res => res.json())
+                .then(data => {
+                    if (data.status.trim() === "success"){
+                        console.log(data);
+                        location.reload();
+                    }else {
+                        console.log(data);
+                    }
+                })
+                .catch(err => console.log(err));
+        }
+    }
+
+
+
+</script>
 <script src="<?php echo BASEURL . 'javascripts/quizDeleteConfirm.js' ?>"></script>
 </html>

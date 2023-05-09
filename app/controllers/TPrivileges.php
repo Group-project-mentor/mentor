@@ -18,13 +18,15 @@ class TPrivileges extends Controller{
     
 
 
-    public function pMemberDetails($class_id){
+    public function pMemberDetails($class_id,$class_name){
         
         if (!isset($_SESSION['user'])) {
             header("location:" . BASEURL . "login");
         }
-        $this->getClass($class_id);
+        $this->getClassID($class_id);
         $_SESSION["cid"]=$class_id;
+        $this->getClassName($class_id);
+        $_SESSION["cname"] = $class_name;
         $res1 = $this->model('teacher_data')->getStudents($class_id);
         $res2 = $this->model('teacher_data')->getTeachers($class_id);
         $res3 = $this->model('teacher_data')->getHostTeacher($class_id);
@@ -42,7 +44,15 @@ class TPrivileges extends Controller{
         }
     }
 
-    private function getClass($class_id)
+    private function getClassID($class_id)
+    {
+        if (!isset($_SESSION["cid"])) {
+            $result1 = $this->model("classModel")->getClassId($class_id)[0];
+            $_SESSION["cid"] = $result1;
+        }
+    }
+
+    private function getClassName($class_id)
     {
         if (!isset($_SESSION["cid"])) {
             $result1 = $this->model("classModel")->getClassId($class_id)[1];

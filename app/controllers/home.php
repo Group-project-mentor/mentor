@@ -31,6 +31,7 @@ class Home extends Controller
                 break;
             case 'tch':
                 unset($_SESSION["cid"]);
+                unset($_SESSION["cname"]);
                 if (isset($_SESSION['premium_expired']) && $_SESSION['premium_expired'] == true) {
                     $this->model('premiumModel')->backToFree($_SESSION['id']);
                     unset($_SESSION["premium_expired"]);

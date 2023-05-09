@@ -52,38 +52,31 @@
                 </div>
 
                     <div  style="margin-top:30px;" class="quiz-answer-main quiz-ans-popup" id="ansBox">
-                    <form class="quiz-answer-set" action="<?php echo BASEURL.'quiz/saveAnswer/'.$data[0].'/'.$data[1] ?>" method="POST" enctype="multipart/form-data">
-                        <div class="rc-form-group">
-                            <div class="answer-option-set">
-                                <h2>Answer</h2>
-<!--                                    <a href="--><?php //echo BASEURL.'quiz/addAnswers/'.$data[0] ?><!--">-->
-<!--                                        Go Back-->
-<!--                                    </a>-->
+                        <form class="quiz-answer-set" action="<?php echo BASEURL.'quiz/saveAnswer/'.$data[0].'/'.$data[1] ?>" method="POST" enctype="multipart/form-data">
+                            <div class="rc-form-group">
+                                <div class="answer-option-set">
+                                    <h2>Answer</h2>
+                                </div>
+<!--                            <div class="answer-correctness-btn">-->
+<!--                                <input type="checkbox" name="correct" id="quiz-answer-radio" value="correct" />-->
+<!--                                <label for="quiz-answer-radio">Correct</label>-->
+<!--                            </div>-->
+                                <textarea placeholder="Enter your Answer" name="answer" id="ansTxt" rows="4"></textarea>
+                                <input type="file" accept="image/png, image/jpeg, image/jpg" class="rc-ans-image-input" id="questionImg" name="ansImg"/>
                             </div>
-                            <div class="answer-correctness-btn">
-                                <input type="checkbox" name="correct" id="quiz-answer-radio" value="correct" />
-                                <label for="quiz-answer-radio">Correct</label>
+                            <br>
+                            <div id="image-preview" style="display: none;flex-direction:column;">
+                                <label for="quizName" class="rc-form-label">
+                                    Image preview:
+                                </label>
+                                <img src="" alt="" id="image_tag" style="margin: 0 20px;">
                             </div>
-                            <textarea placeholder="Enter your Answer" name="answer" id="ansTxt" rows="4"></textarea>
-                            <input type="file" accept="image/png, image/jpeg, image/jpg" class="rc-ans-image-input" id="questionImg" name="ansImg"/>
-                        </div>
-                        <br>
-                    <div id="image-preview" style="display: none;flex-direction:column;">
-                        <label for="quizName" class="rc-form-label">
-                            Image preview:
-                        </label>
-                        <img src="" alt="" id="image_tag" style="margin: 0 20px;">
-                    </div>
-
-                    <!-- <input type="hidden" name="ansImg" value="" id="image_data"> -->
-
                             <div style="display: flex;justify-content: center;">
                                 <button type="submit" class="rc-quiz-button green" id="addAnsBtn">
                                     Save
                                 </button>
                             </div>
                         </form>
-
                     </div>
                 </div>
             </div>

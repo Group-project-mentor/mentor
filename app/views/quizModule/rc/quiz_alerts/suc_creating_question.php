@@ -6,7 +6,7 @@
             Press OK to add answers for the question !
         </div>
         <div class="message-image">
-            <img src="<?php echo BASEURL?>assets/clips/success_msg.png" alt="error image">
+            <img src="<?php echo BASEURL?>assets/clips/msg_success.png" alt="error image">
         </div>
         <div class="message-btn">
             <a href="<?php echo BASEURL."quiz/addAnswers/$data[0]/$data[1]"?>">OK</a>

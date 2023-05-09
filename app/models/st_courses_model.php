@@ -48,5 +48,12 @@ class St_courses_model extends Model{
         return $result;
     }
 
+    public function enroll_rec($id,$gid,$sid){
+        $q="INSERT INTO st_enroll_subject(student_id, grade_id, subject_id) VALUES ($id,$gid,$sid )" ;
+        $result = $this->executeQuery($q);
+        return $result;
+
+    }
+
 }
 

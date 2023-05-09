@@ -37,7 +37,7 @@ class Login extends Controller
                         $_SESSION["user"] = $email;
                         $_SESSION["name"] = $result->name;
                         $_SESSION["usertype"] = $result->type;
-                        //$_SESSION["profilePic"] = $result->image;
+                        $_SESSION["profilePic"] = $result->image;
 
                         //checking premium availability for teachers
                         if ($result->type == 'tch') {
@@ -64,7 +64,7 @@ class Login extends Controller
     }
 
 
-    public function premiumExpireNotify($id)
+    private function premiumExpireNotify($id)
     {
          //echo "called";
         // Get the current timestamp

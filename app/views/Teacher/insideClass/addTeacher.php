@@ -12,17 +12,17 @@
 
 <body>
     <section class="page">
-    <?php include_once "components/alerts/Teacher/teacher_added.php" ?>
-    <?php if(!empty($_SESSION['message'])){
-        switch ($_SESSION['message']){
-            case "Your have successfully added the teacher":
-                include_once "components/alerts/Teacher/teacher_addded.php";
-                break;
-            case "Your add teacher limit for free account is over":
-                include_once "components/alerts/Teacher/addTeacherLimit.php";
-                break;
-        }
-    } ?>
+        <?php include_once "components/alerts/Teacher/teacher_added.php" ?>
+        <?php if (!empty($_SESSION['message'])) {
+            switch ($_SESSION['message']) {
+                case "Your have successfully added the teacher":
+                    include_once "components/alerts/Teacher/teacher_addded.php";
+                    break;
+                case "Your add teacher limit for free account is over":
+                    include_once "components/alerts/Teacher/addTeacherLimit.php";
+                    break;
+            }
+        } ?>
 
         <!-- Navigation panel -->
         <?php include_once "components/navbars/t_nav_2.php" ?>
@@ -34,7 +34,7 @@
 
                 <div class="top-bar-btns">
                     <a href="#">
-                        <a class="back-btn" href="<?php echo BASEURL ?>TInsideClass/InClass">Back</a>
+                        <a class="back-btn" href="<?php echo BASEURL ?>home">Back</a>
                     </a>
                     <?php include_once "components/notificationIcon.php" ?>
                     <?php include_once "components/premiumIcon.php" ?>
@@ -47,10 +47,11 @@
                 <!-- Title and sub title of middle part -->
                 <div class="mid-title">
                     <h1>Add Teacher</h1>
-                    <h6>Teacher Home/ C136-member details/Add teacher</h6>
-                    <br><br>
-                    <br>
-                    <h3>Teacher name</h3>
+                    <h3><?php echo "Class ID-" . $_SESSION['cid'] ?><h3>
+                            <h3><?php echo " Class Name-" . ucfirst($_SESSION['cname']) ?> </h3>
+                            <br><br>
+                            <br>
+                            <h3>Teacher name</h3>
                 </div>
 
                 <div class="class section">
@@ -64,6 +65,7 @@
                         <h3>Teacher Privilege</h3>
                         <label for="teacher_privilege"></label>
                         <select id="teacher_privilege" name="teacher_privilege">
+                            <option value="" disabled selected>Select a Privilege</option>
                             <option value="1">Only add students</option>
                             <option value="2">Only add, restrict and delete students</option>
                             <option value="3">Only add resources</option>
@@ -90,7 +92,7 @@
     </section>
 </body>
 <script>
-  
+
 </script>
 
 </html>
