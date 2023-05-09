@@ -106,7 +106,7 @@
                                             <h2>Teacher Class Requests</h2>
                                             <h1><?php echo $data[2]->c ?></h1>
                                         </div>
-                                        <a href="" style="text-decoration: none; color:black;">
+                                        <a href="<?php echo BASEURL ?>st_profile/generate_report_private" style="text-decoration: none; color:green;">
                                             <div class="rc-dash-info-card">
                                                 <h2>View Classwise Teacher Uploaded Reports</h2>
                                             </div>

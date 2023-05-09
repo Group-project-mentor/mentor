@@ -8,7 +8,7 @@ class St_private_resources_model extends Model{
     public function findVideos($class_name)
     {
         // echo $class_name;
-        $q ="SELECT private_class.class_name ,private_class.class_id , teacher_videos.name , teacher_videos.lecturer ,teacher_videos.description 
+        $q ="SELECT private_class.class_name ,private_class.class_id , teacher_videos.name , teacher_videos.lecturer ,teacher_videos.description , private_resource.location
         FROM (( teacher_videos INNER JOIN teacher_class_resources ON teacher_videos.id = teacher_class_resources.rs_id ) 
         INNER JOIN private_class ON teacher_class_resources.class_id = private_class.class_id ) 
         WHERE private_class.class_name = ?  ";
@@ -21,10 +21,10 @@ class St_private_resources_model extends Model{
 
     public function findQuizzes($class_name)
     {
-        $q ="SELECT private_class.class_name , teacher_quiz.name , teacher_quiz.marks ,teacher_quiz.questions 
+        $q ="SELECT private_class.class_name , teacher_quiz.name , teacher_quiz.marks ,teacher_quiz.questions , private_resource.location
         FROM (( teacher_quiz INNER JOIN teacher_class_resources ON teacher_quiz.id = teacher_class_resources.rs_id ) 
         INNER JOIN private_class ON teacher_class_resources.class_id = private_class.class_id ) 
-        WHERE private_class.class_name = ?";
+        WHERE private_class.class_name = ?"; 
         $stmt = $this->prepare($q);
         $stmt->bind_param('s', $class_name);
 
@@ -34,7 +34,7 @@ class St_private_resources_model extends Model{
 
     public function findPastpapers($class_name)
     {
-        $q ="SELECT private_class.class_name  , teacher_pastpaper.name ,teacher_pastpaper.year, teacher_pastpaper.part ,private_class.class_id
+        $q ="SELECT private_class.class_name  , teacher_pastpaper.name ,teacher_pastpaper.year, teacher_pastpaper.part ,private_class.class_id , private_resource.location
         FROM (( teacher_pastpaper INNER JOIN teacher_class_resources ON teacher_pastpaper.id = teacher_class_resources.rs_id ) 
         INNER JOIN private_class ON teacher_class_resources.class_id = private_class.class_id ) 
         WHERE private_class.class_name = ? ";
@@ -47,7 +47,7 @@ class St_private_resources_model extends Model{
 
     public function findDocuments($class_name) 
     {
-        $q ="SELECT private_class.class_name ,private_class.class_id  , teacher_document.name  
+        $q ="SELECT private_class.class_name ,private_class.class_id  , teacher_document.name , private_resource.location 
         FROM (( teacher_document INNER JOIN teacher_class_resources ON teacher_document.id = teacher_class_resources.rs_id ) 
         INNER JOIN private_class ON teacher_class_resources.class_id = private_class.class_id ) 
         WHERE private_class.class_name = ? ";
@@ -60,7 +60,7 @@ class St_private_resources_model extends Model{
 
     public function findOthers($class_name)
     {
-        $q ="SELECT private_class.class_name ,private_class.class_id, teacher_other.name ,teacher_other.type 
+        $q ="SELECT private_class.class_name ,private_class.class_id, teacher_other.name ,teacher_other.type , private_resource.location
         FROM (( teacher_other INNER JOIN teacher_class_resources ON teacher_other.id = teacher_class_resources.rs_id ) 
         INNER JOIN private_class ON teacher_class_resources.class_id = private_class.class_id ) 
         WHERE private_class.class_name = ?  ";

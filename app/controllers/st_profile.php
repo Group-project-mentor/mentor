@@ -218,6 +218,17 @@ class St_profile extends Controller
         
         $this->view('student/profile/st_generate_report', array($joined , $Pending , $Request ,$S_Enroll , $Q_Enroll, $PublicAll));
     }
+
+    public function generate_report_private(){
+        $res = $this->model('st_private_mode_model')->getClasses($_SESSION['id']);
+        $this->view('student/profile/st_generate_report_private', array($res));
+    }
+
+    public function generate_report_private_class($class_name){
+        $res = $this->model('st_private_mode_model')->getClassesReport($_SESSION['id'],$class_name);
+        $this->view('student/profile/st_generate_report_private_class',array($res));
+    }
+
 }
 
 ?>

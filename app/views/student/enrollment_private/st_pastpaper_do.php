@@ -53,10 +53,8 @@
                     <br>
                     <hr style=" height:5px ; background-color:green ;">
                     <br>
-                    <!-- <embed type="text/html" src="st_courses.html"  width="1000" height="500" style="padding-left: 100px;"> -->
-                    <!-- Grade choosing interface -->
                     <div class="container-box">
-                        <embed src="<?php echo BASEURL ?>public_resources/pastpapers/<?php echo $_SESSION['gid'] . "/" . $_SESSION['sid'] . "/" . $data->location ?>" style="width:50%;height:70vh;margin:auto;">
+                        <embed src="<?php echo BASEURL ?>private_resources/pastpapers/<?php echo $_SESSION['gid'] . "/" . $_SESSION['sid'] . "/" . $data[0]->location ?>" style="width:50%;height:70vh;margin:auto;">
                     </div>
                 <?php } ?>
             </section>
