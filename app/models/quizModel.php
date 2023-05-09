@@ -283,6 +283,18 @@ class quizModel extends Model
         return $this->executePrepared($stmt);
     }
 
+    public function markAllWrong($question){
+        $stmt = $this->prepare('UPDATE answer SET answer.correctness = 0 WHERE answer.question_id = ?');
+        $stmt->bind_param('i',$question);
+        return $this->executePrepared($stmt);
+    }
+
+    public function markCorrectness($answer){
+        $stmt = $this->prepare('UPDATE answer SET answer.correctness = 1 WHERE answer.id = ?');
+        $stmt->bind_param('i', $answer);
+        return $this->executePrepared($stmt);
+    }
+
 
 
 

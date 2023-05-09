@@ -22,10 +22,7 @@
         <!-- Top bar -->
         <section class="top-bar">
             <div class="search-bar">
-                <input type="text" name="" id="" placeholder="Search...">
-                <a href="">
-                    <img src="<?php echo BASEURL ?>public/assets/Teacher/icons/icon_search.png" alt="">
-                </a>
+
             </div>
             <div class="top-bar-btns">
                 <a href="#">
@@ -110,9 +107,9 @@
                                 </div>
                             </div>
                         <?php } else {
-    foreach ($data[0] as $row) {
-        $dateTime = explode(" ", $row->timestamp);
-        ?>
+                            foreach ($data[0] as $row) {
+                                $dateTime = explode(" ", $row->timestamp);
+                                ?>
                         <div class="sponsor-list-row">
                             <div class="sponsor-list-item flex-1">
                                 <?php echo $row->paymentId ?>
@@ -179,7 +176,5 @@
        window . location . replace(url);
    }
 </script>
-
-
 
 </html>

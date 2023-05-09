@@ -144,100 +144,85 @@ class Quiz extends Controller
 
     public function answer($quizId, $question, $msg = null)
     {
-        if ($this->model('quizModel')->validateQuiz($quizId, $_SESSION['gid'], $_SESSION['sid'])) {
-            $this->view('quizModule/rc/answer', array($quizId, $question, $msg));
-        } else {
-            header("location:" . BASEURL . "rcResources/quizzes/" . $_SESSION['gid'] . "/" . $_SESSION['sid'] . "/dper");
+        $qid = $this->model('quizModel')->getQuestionId($quizId, $question);
+        $answers = $this->model('quizModel')->getAnswers($quizId, $qid);
+        if (count($answers) < 5){
+            if ($this->model('quizModel')->validateQuiz($quizId, $_SESSION['gid'], $_SESSION['sid'])) {
+                $this->view('quizModule/rc/answer', array($quizId, $question, $msg));
+            } else {
+                header("location:" . BASEURL . "rcResources/quizzes/" . $_SESSION['gid'] . "/" . $_SESSION['sid'] . "/dper");
+            }
+        }else{
+            flashMessage('max_answers');
+            header("location:" . BASEURL . "quiz/addAnswers/$quizId/$question");
         }
-    }
 
-    // public function saveAnswer($quizId, $question)
-    // {
-    //     $qid = $this->model('quizModel')->getQuestionId($quizId, $question);
-    //     if ($qid != 0 and $this->model('quizModel')->validateQuiz($quizId, $_SESSION['gid'], $_SESSION['sid'])) {
-    //         $ansNumber = $this->model('quizModel')->getLastAnswerNo($qid);
-    //         $ansNumber++;
-    //         $correctness = ($_POST['correct'] == 'correct') ? 1 : 0;
-    //         if ($this->model('quizModel')->saveAnswer($ansNumber, $qid, sanitizeText($_POST['answer']), $correctness, $_POST['ansImg'])) {
-    //             flashMessage("success");
-    //             header('location:' . BASEURL . "quiz/addAnswers/$quizId/$question");
-    //         } else {
-    //             flashMessage("failed");
-    //             header('location:' . BASEURL . "quiz/answer/$quizId/$question");
-    //         }
-    //     } else {
-    //         flashMessage("invalid");
-    //         header("location:" . BASEURL . "rcResources/quizzes/" . $_SESSION['gid'] . "/" . $_SESSION['sid']);
-    //     }
-    // }
+    }
 
     public function saveAnswer($quizId, $question)
     {
         $qid = $this->model('quizModel')->getQuestionId($quizId, $question);
-        if ($qid != 0 and $this->model('quizModel')->validateQuiz($quizId, $_SESSION['gid'], $_SESSION['sid'])) {
-            $this->model('quizModel')->transaction();
-            $ansNumber = $this->model('quizModel')->getLastAnswerNo($qid);
-            $ansNumber++;
-            $correctness = ($_POST['correct'] == 'correct') ? 1 : 0;
-            if (isset($_FILES["ansImg"]) && $_FILES["ansImg"]["error"] == 0) {
-                $typeArray = array("png" => "image/png", "jpg" => "image/jpg", "jpeg" => "image/jpeg", "webp" => "image/webp");
-                $fileData = array("name" => $_FILES["ansImg"]["name"],
-                            "type" => $_FILES["ansImg"]["type"],
-                            "size" => $_FILES["ansImg"]["size"]);
-                $extention = pathinfo($fileData["name"], PATHINFO_EXTENSION);
+        $correctness = 0;
+        $answers = $this->model('quizModel')->getAnswers($quizId, $qid);
+        if (count($answers) < 5){
+            if(empty($answers)){
+                $correctness = 1;
+            }
+            if ($qid != 0 and $this->model('quizModel')->validateQuiz($quizId, $_SESSION['gid'], $_SESSION['sid'])) {
+                $this->model('quizModel')->transaction();
+                $ansNumber = $this->model('quizModel')->getLastAnswerNo($qid);
+                $ansNumber++;
+//            $correctness = ($_POST['correct'] == 'correct') ? 1 : 0;
+                if (isset($_FILES["ansImg"]) && $_FILES["ansImg"]["error"] == 0) {
+                    $typeArray = array("png" => "image/png", "jpg" => "image/jpg", "jpeg" => "image/jpeg", "webp" => "image/webp");
+                    $fileData = array("name" => $_FILES["ansImg"]["name"],
+                        "type" => $_FILES["ansImg"]["type"],
+                        "size" => $_FILES["ansImg"]["size"]);
+                    $extention = pathinfo($fileData["name"], PATHINFO_EXTENSION);
 
-                if (in_array($fileData['type'], $typeArray)) {
-                    $newFileName = uniqid() . $ansNumber . "." . $extention;
-                    if (saveFile($_FILES["ansImg"]["tmp_name"], $newFileName, "quizzes/answers", $_SESSION['gid'], $_SESSION['sid'])) {
-                        if ($this->model('quizModel')->saveAnswer($ansNumber, $qid, sanitizeText($_POST['answer']), $correctness ,$newFileName)) {
-                            $this->model('quizModel')->commit();
-                            flashMessage("success");
-                            header("location:" . BASEURL . "quiz/addAnswers/$quizId/$question");
+                    if (in_array($fileData['type'], $typeArray)) {
+                        $newFileName = uniqid() . $ansNumber . "." . $extention;
+                        if (saveFile($_FILES["ansImg"]["tmp_name"], $newFileName, "quizzes/answers", $_SESSION['gid'], $_SESSION['sid'])) {
+                            if ($this->model('quizModel')->saveAnswer($ansNumber, $qid, sanitizeText($_POST['answer']), $correctness ,$newFileName)) {
+                                $this->model('quizModel')->commit();
+                                flashMessage("success");
+                                header("location:" . BASEURL . "quiz/addAnswers/$quizId/$question");
+                            } else {
+                                flashMessage("failed");
+                                $this->model('quizModel')->rollBack();
+                                header('location:' . BASEURL . "quiz/answer/$quizId/$question");
+                            }
                         } else {
                             flashMessage("failed");
                             $this->model('quizModel')->rollBack();
                             header('location:' . BASEURL . "quiz/answer/$quizId/$question");
                         }
-                    } else {
+                    }else{
                         flashMessage("failed");
                         $this->model('quizModel')->rollBack();
                         header('location:' . BASEURL . "quiz/answer/$quizId/$question");
                     }
                 }else{
-                    flashMessage("failed");
-                    $this->model('quizModel')->rollBack();
-                    header('location:' . BASEURL . "quiz/answer/$quizId/$question");
+                    if ($this->model('quizModel')->saveAnswer($ansNumber, $qid, sanitizeText($_POST['answer']),$correctness)) {
+                        $this->model('quizModel')->commit();
+                        flashMessage("success");
+                        header("location:" . BASEURL . "quiz/addAnswers/$quizId/$question");
+                    } else {
+                        flashMessage("failed");
+                        $this->model('quizModel')->rollBack();
+                        header('location:' . BASEURL . "quiz/answer/$quizId/$question");
+                    }
                 }
-            }else{
-                if ($this->model('quizModel')->saveAnswer($ansNumber, $qid, sanitizeText($_POST['answer']),$correctness)) {
-                    $this->model('quizModel')->commit();
-                    flashMessage("success");
-                    header("location:" . BASEURL . "quiz/addAnswers/$quizId/$question");
-                } else {
-                    flashMessage("failed");
-                    $this->model('quizModel')->rollBack();
-                    header('location:' . BASEURL . "quiz/answer/$quizId/$question");
-                }
+            } else {
+                flashMessage("invalid");
+                header("location:" . BASEURL . "rcResources/quizzes/" . $_SESSION['gid'] . "/" . $_SESSION['sid']);
             }
-        } else {
-            flashMessage("invalid");
-            header("location:" . BASEURL . "rcResources/quizzes/" . $_SESSION['gid'] . "/" . $_SESSION['sid']);
+        }else{
+            flashMessage("max_answers");
+            header("location:" . BASEURL . "quiz/addAnswers/$quizId/$question");
         }
-    }
 
-    // public function delQuestion($quizId, $question_no, $msg = null)
-    // {
-    //     $qid = $this->model('quizModel')->getQuestionId($quizId, $question_no);
-    //     if ($qid != 0) {
-    //         if ($this->model('quizModel')->deleteQuestion($qid)) {
-    //             header('location:' . BASEURL . "quiz/questions/$quizId");
-    //         } else {
-    //             header('location:' . BASEURL . "quiz/question/$quizId/delErr");
-    //         }
-    //     } else {
-    //         header("location:" . BASEURL . "rcResources/quizzes/" . $_SESSION['gid'] . "/" . $_SESSION['sid'] . "/dper");
-    //     }
-    // }
+    }
 
     public function delQuestion($quizId, $question_no)
     {
@@ -297,32 +282,14 @@ class Quiz extends Controller
         }
     }
 
-    // public function editAnswerAction($quizId, $question, $answer)
-    // {
-    //     $this->model('quizModel')->transaction();
-    //     $qid = $this->model('quizModel')->getQuestionId($quizId, $question);
-    //     if ($qid != 0 and $this->model('quizModel')->validateQuiz($quizId, $_SESSION['gid'], $_SESSION['sid'])) {
-    //         $correctness = ($_POST['correct'] == 'correct') ? 1 : 0;
-    //         if ($this->model('quizModel')->updateAnswer(sanitizeText($_POST['answer']), $correctness, $_POST['ansImg'], $answer)) {
-    //             $this->model('quizModel')->commit();
-    //             header('location:' . BASEURL . "quiz/addAnswers/$quizId/$question/AnsUpdated");
-    //         } else {
-    //             $this->model('quizModel')->rollBack();
-    //             header('location:' . BASEURL . "quiz/editAnswer/$quizId/$question/$answer/err");
-    //         }
-    //     } else {
-    //         $this->model('quizModel')->rollBack();
-    //         header('location:' . BASEURL . "quiz/editAnswer/$quizId/$question/$answer/err");
-    //     }
-    // }
-
     public function editAnswerAction($quizId, $question, $answer)
     {
         $this->model('quizModel')->transaction();
         $qid = $this->model('quizModel')->getQuestionId($quizId, $question);
         if ($qid != 0 and $this->model('quizModel')->validateQuiz($quizId, $_SESSION['gid'], $_SESSION['sid'])) {
-            $answerImage = $this->model('quizModel')->getAnswerData($qid, $answer)[5];
-            $correctness = ($_POST['correct'] == 'correct') ? 1 : 0;
+            $answerData = $this->model('quizModel')->getAnswerData($qid, $answer);
+            $answerImage = $answerData[5];
+//            $correctness = ($_POST['correct'] == 'correct') ? 1 : 0;
             if (isset($_FILES["ansImg"]) && $_FILES["ansImg"]["error"] == 0) {
                 $typeArray = array("png" => "image/png", "jpg" => "image/jpg", "jpeg" => "image/jpeg", "webp" => "image/webp");
                 $fileData = array("name" => $_FILES["ansImg"]["name"],
@@ -333,7 +300,7 @@ class Quiz extends Controller
                 if (in_array($fileData['type'], $typeArray)) {
                     $newFileName = uniqid() . $answer . "." . $fileData['extension'];
                     if (updateFile($_FILES["ansImg"]["tmp_name"], $newFileName, $answerImage, "quizzes/answers", $_SESSION['gid'], $_SESSION['sid'])) {
-                        if ($this->model('quizModel')->updateAnswer(sanitizeText($_POST['answer']), $correctness, $newFileName, $answer)) {
+                        if ($this->model('quizModel')->updateAnswer(sanitizeText($_POST['answer']), $answerData[3], $newFileName, $answer)) {
                             $this->model('quizModel')->commit();
                             flashMessage("success");
                             header("location:" . BASEURL . "quiz/addAnswers/$quizId/$question");
@@ -353,7 +320,7 @@ class Quiz extends Controller
                     header('location:' . BASEURL . "quiz/editAnswer/$quizId/$question/$answer");
                 }
             } else {
-                if ($this->model('quizModel')->updateAnswer(sanitizeText($_POST['answer']), $correctness, $answerImage, $answer)) {
+                if ($this->model('quizModel')->updateAnswer(sanitizeText($_POST['answer']), $answerData[3] , $answerImage, $answer)) {
                     $this->model('quizModel')->commit();
                     flashMessage("success");
                     header("location:" . BASEURL . "quiz/addAnswers/$quizId/$question");
@@ -429,5 +396,15 @@ class Quiz extends Controller
             header("location:" . BASEURL . "rcResources/quizzes/" . $_SESSION['gid'] . "/" . $_SESSION['sid']);
         }
 
+    }
+
+    public function markCorrectness($quesID, $ansID){
+        $res1 = $this->model('quizModel')->markAllWrong($quesID);
+        $res2 = $this->model('quizModel')->markCorrectness($ansID);
+        if ($res1 and $res2){
+            echo json_encode(array("status"=>"success"));
+        }else{
+            echo json_encode(array("status"=>"failed"));
+        }
     }
 }

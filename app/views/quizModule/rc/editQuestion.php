@@ -45,7 +45,6 @@
             </div>
 
             <!-- Grade choosing interface -->
-            <?php print_r($data) ?>
             <form class="container-box" method="POST" action="<?php echo BASEURL."quiz/editQuestionAction/".$data[0]."/".$data[1]?>" enctype="multipart/form-data">
                 <div class="rc-resource-header">
                     <h1>TEST 1</h1>

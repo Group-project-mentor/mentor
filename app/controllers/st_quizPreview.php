@@ -36,9 +36,6 @@ class St_quizPreview extends Controller{
 
     public function getQuestion($quizId){
          $result_state = $this->model('quizModel')->getQuizState($_SESSION['id'],$quizId);
-//         var_dump($result_state);
-        // User Quiz eke karala nam record ekk thiyanwa--ethkota results table eke record list eka ganna --- >
-        //state eka check karanna one ----> state 0 nam total-->question ekai ganna one
         if($result_state->status == 0){
             $current_q = 0;
             $total = 0;
@@ -68,7 +65,6 @@ class St_quizPreview extends Controller{
     }
 
     public function getNextQuestion($quizId, $questionNo,$user_score){
-        // $current_q aragen result table eka update kala
         $qCount = $this->model('quizModel')->countQuestions($quizId);
         $res = $this->model("quizModel")->updateQuestionResult($quizId, $_SESSION['id'], $user_score, $questionNo+1, 1);
         if($qCount[0] == $questionNo+1){

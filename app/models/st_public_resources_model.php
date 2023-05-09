@@ -21,7 +21,7 @@ class St_public_resources_model extends Model
 
     public function findQuizzes($gid, $sid)
     {
-        $q = "select quiz.id, quiz.name, quiz.marks from quiz, public_resource WHERE quiz.id = public_resource.id and
+        $q = "select quiz.id, quiz.name, quiz.marks, quiz.questions from quiz, public_resource WHERE quiz.id = public_resource.id and
                 public_resource.id IN (SELECT rsrc_id FROM `rs_subject_grade` WHERE subject_id=? and grade_id=?)
                 and public_resource.type = 'quiz'";
         $stmt = $this->prepare($q);
@@ -33,7 +33,7 @@ class St_public_resources_model extends Model
 
     public function findPastpapers($gid, $sid)
     {
-        $q = "SELECT pastpaper.id,pastpaper.name, pastpaper.year, pastpaper.part 
+        $q = "SELECT pastpaper.id,pastpaper.name, pastpaper.year, pastpaper.part , public_resource.location
         FROM pastpaper, public_resource,rs_subject_grade WHERE pastpaper.id = public_resource.id AND
          public_resource.id=rs_subject_grade.rsrc_id AND rs_subject_grade.subject_id=? AND rs_subject_grade.grade_id=?";
         $stmt = $this->prepare($q);
@@ -45,7 +45,7 @@ class St_public_resources_model extends Model
 
     public function findDocuments($gid, $sid) //!done
     {
-        $q = "SELECT document.id,document.name,public_resource.approved,rs_subject_grade.creator_id 
+        $q = "SELECT document.id,document.name,public_resource.approved,rs_subject_grade.creator_id , public_resource.location
         FROM document, public_resource,rs_subject_grade WHERE document.id = public_resource.id AND
          public_resource.id=rs_subject_grade.rsrc_id AND rs_subject_grade.subject_id=? AND rs_subject_grade.grade_id=?";
         $stmt = $this->prepare($q);
@@ -57,7 +57,7 @@ class St_public_resources_model extends Model
 
     public function findOthers($gid, $sid)
     {
-        $q = "SELECT other.id, other.name, other.type,public_resource.approved,rs_subject_grade.creator_id 
+        $q = "SELECT other.id, other.name, other.type,public_resource.approved,rs_subject_grade.creator_id , public_resource.location
         FROM other, public_resource,rs_subject_grade WHERE other.id = public_resource.id AND
          public_resource.id=rs_subject_grade.rsrc_id AND rs_subject_grade.subject_id=? AND rs_subject_grade.grade_id=?";
         $stmt = $this->prepare($q);
@@ -123,5 +123,14 @@ class St_public_resources_model extends Model
         }
         $stmt->bind_param('ii', $subject, $grade);
         return $this->fetchOneObj($stmt);
+    }
+
+
+    public function UpdateQuizInDB($user_id,$quiz_id){
+        $q = "INSERT INTO quizresults(quiz_id, user_id, status, current_q, score) VALUES ($quiz_id,$user_id,0,0,0)
+         ON DUPLICATE KEY UPDATE quiz_id=$quiz_id, user_id=$user_id;";
+
+        $result = $this->executeQuery($q);
+        return $result;
     }
 }

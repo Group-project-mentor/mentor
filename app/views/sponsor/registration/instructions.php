@@ -61,7 +61,7 @@
                         <div class="quiz-preview-bottom-set" style="justify-content: flex-end;align-self: center;">
                             <a class="quiz-preview-bottom-button"
                                id="next-btn"
-                               href="<?php echo BASEURL.'landing/registerCreator' ?>">
+                               href="<?php echo BASEURL.'landing/registerSponsor' ?>">
                                 Go to Registration Form
                                 <img src="<?php echo BASEURL ?>assets/icons/icon_next_white.png" alt="">
                             </a>

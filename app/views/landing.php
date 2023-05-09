@@ -150,7 +150,7 @@ if (isset($_SESSION['user'])) {
                 </div>
 
                 <div class="landing-sp-btn">
-                    <a class="landing-BMC-btn">
+                    <a class="landing-BMC-btn" href="<?php echo BASEURL ?>landing/registerSponsor/instructions">
                         <i class="fa-solid fa-handshake-angle fa-beat-fade"></i>
                         BECOME A SPONSOR
                     </a>

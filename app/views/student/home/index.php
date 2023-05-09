@@ -111,7 +111,7 @@
                             <button>
                                 <a href="<?php echo BASEURL  ?>st_courses/index/7">
                                     <img src="<?php echo BASEURL  ?>assets/icons/icon_settings.png" alt="">
-                                    Grade o/L
+                                    Grade O/L
                                 </a>
                             </button>
                         </td>

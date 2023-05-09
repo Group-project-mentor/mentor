@@ -58,7 +58,7 @@
 
                     <!-- Grade choosing interface -->
                     <div class="container-box">
-                        <embed src="<?php echo BASEURL ?>public_resources/others/<?php echo $_SESSION['gid'] . "/" . $_SESSION['sid'] . "/" . $data->location ?>" style="width:50%;height:70vh;margin:auto;">
+                        <embed src="<?php echo BASEURL ?>public_resources/others/<?php echo $_SESSION['gid'] . "/" . $_SESSION['sid'] . "/" . $data[0]->location ?>" style="width:50%;height:70vh;margin:auto;">
                     </div>
 
                 <?php } ?>

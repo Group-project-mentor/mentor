@@ -37,14 +37,14 @@
                 <img class="r-thumbnail" src="' . BASEURL . 'assets/admin/thumbnail.jpeg ">
             </div>
             <div class="name">
-                <p>' . $data['videov'][0]['name'] . '</p>
+                <p>' . $data['pdfv'][0]['name'] . '</p>
             </div>
             
             <div id="com-title">
-                <p>' . $data['videov'][0]['description'] . '</p>
+                <p>' . $data['pdfv'][0]['description'] . '</p>
             </div>
             <div class="btns">
-                <button class="comp-btns" onclick="tookaction(' . $data['videov'][0]['id'] . ')" type="button">Took Action</button>
+                <button class="comp-btns" onclick="tookaction(' . $data['pdfv'][0]['id'] . ')" type="button">Took Action</button>
             </div>
 
             

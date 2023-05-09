@@ -61,10 +61,10 @@
                             <div class="answer-option-set">
                                 <h2>Answer</h2>
                             </div>
-                            <div class="answer-correctness-btn">
-                                <input type="checkbox" name="correct" id="quiz-answer-radio" value="correct" <?php echo ($data[1][3] == 1) ? "checked" : "" ?> />
-                                <label for="quiz-answer-radio">Correct</label>
-                            </div>
+<!--                            <div class="answer-correctness-btn">-->
+<!--                                <input type="checkbox" name="correct" id="quiz-answer-radio" value="correct" --><?php //echo ($data[1][3] == 1) ? "checked" : "" ?><!-- />-->
+<!--                                <label for="quiz-answer-radio">Correct</label>-->
+<!--                            </div>-->
                             <textarea placeholder="Enter your Answer" name="answer" id="ansTxt" rows="4"><?php echo $data[1][2] ?></textarea>
                             <div id="image_preview" style="<?php echo empty($data[1][5])?"display:none;":"" ?>">
                                 <small style="margin-left:20px;">Image : </small>
