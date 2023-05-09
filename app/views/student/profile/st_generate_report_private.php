@@ -47,7 +47,7 @@
                 <!-- Title and sub title of middle part -->
                 <div class="mid-title">
                     <h2>Hello <?php echo $_SESSION['name'] ?> !</h2>
-                    <h3>These are the Reports Of your Private Classes. You Can</h3>
+                    <h3>These are the Reports Of your Private Classes. You Can See those by choosing Suitable Class</h3>
                 </div>
 
                 <!-- bottom part -->

@@ -45,14 +45,14 @@ class St_private_resources_model extends Model{
         return $result;
     }
 
-    public function findDocuments($class_name) 
+    public function findDocuments() 
     {
         $q ="SELECT private_class.class_name ,private_class.class_id  , teacher_document.name , private_resource.location 
         FROM (( teacher_document INNER JOIN teacher_class_resources ON teacher_document.id = teacher_class_resources.rs_id ) 
         INNER JOIN private_class ON teacher_class_resources.class_id = private_class.class_id ) 
         WHERE private_class.class_name = ? ";
         $stmt = $this->prepare($q);
-        $stmt->bind_param('s', $class_name );
+        $stmt->bind_param('s', $_SESSION['class_name'] );
 
         $result = $this->fetchObjs($stmt);
         return $result;

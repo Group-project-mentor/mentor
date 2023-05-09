@@ -54,7 +54,7 @@
                     <hr style=" height:5px ; background-color:green ;">
                     <br>
                     <div class="container-box">
-                        <embed src="<?php echo BASEURL ?>private_resources/pastpapers/<?php echo $_SESSION['gid'] . "/" . $_SESSION['sid'] . "/" . $data[0]->location ?>" style="width:50%;height:70vh;margin:auto;">
+                        <embed src="<?php echo BASEURL ?>private_resources/pastpapers/<?php echo $_SESSION['id'] . "/" . $data[0]->location ?>" style="width:50%;height:70vh;margin:auto;">
                     </div>
                 <?php } ?>
             </section>

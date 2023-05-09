@@ -47,11 +47,11 @@
                 <!-- Title and sub title of middle part -->
                 <div class="mid-title">
                     <h2>Hello <?php echo $_SESSION['name'] ?> !</h2>
-                    <h3>These are the Reports Of your Private Classes. You Can</h3>
+                    <h3>This is Your Report.</h3>
                 </div>
                 <div class="container-box">
-                        <embed src="<?php echo BASEURL ?>private_resources/pastpapers/<?php echo $_SESSION['gid'] . "/" . $_SESSION['sid'] . "/" . $data[0]->location ?>" style="width:50%;height:70vh;margin:auto;">
-                    </div>
+                    <embed src="<?php echo BASEURL ?>data/reports/<?php  $data[0]->class_id . "/" . $data[0]->location ?>" style="width:50%;height:70vh;margin:auto;">
+                </div>
             </section>
         </div>
     </section>
