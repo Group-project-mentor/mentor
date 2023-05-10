@@ -57,8 +57,10 @@ class TBilling extends Controller
 
         $message = "You have successfully withdrawn Rs. " . $amount . " from your income";
         if ($this->model('BillingModel')->addWithdraw($id2, $id3, $id4, $amount) and $this->model('notificationModel')->notify($_SESSION['id'], $message, 'tch')) {
+            flashMessage("success");
             header("location:" . BASEURL . "TBilling/Billing1");
         } else {
+            flashMessage("failed");
             header("location:" . BASEURL . "TBilling/Billing1");
         }
     }

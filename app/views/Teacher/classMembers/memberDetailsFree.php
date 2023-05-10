@@ -48,10 +48,12 @@
                     <h1>Members Details</h1>
                     <h3><?php echo "Class ID-".$_SESSION['cid']?><h3>
                     <h3><?php echo " Class Name-".ucfirst($_SESSION['cname']) ?> </h3>
+                    <br>
                 </div>
 
                 <!-- Grade choosing interface -->
-
+                <?php
+                    include_once "components/filters/class_memberFilter.php"; ?>
 
 
                 <div style="margin-top: 30px;">
@@ -254,7 +256,27 @@
     </section>
 </body>
 <script>
-  
+    // Filter data part
+
+    let filterButton = document.getElementById("filterButton");
+    let filterForm = document.getElementById("filterForm");
+    let clearBtn = document.getElementById("clearButton");
+
+    filterButton.onclick = (e) =>  {
+        e.preventDefault();
+        let formData = new FormData(filterForm);
+        let url = `${BASEURL}rcResources/videos/${grade}/${subject}/${PAGE}/?`;
+        for (let [key, value] of formData.entries()) {
+            url += `${key}=${value}&`;
+        }
+        window . location . replace(url);
+    }
+
+    clearBtn.onclick = (e) =>  {
+        e.preventDefault();
+        let url = `${BASEURL}rcResources/videos/${grade}/${subject}/${PAGE}`;
+        window . location . replace(url);
+    }
 </script>
 
 </html>
