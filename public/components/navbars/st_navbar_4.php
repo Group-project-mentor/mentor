@@ -40,10 +40,6 @@
             <img src="<?php echo BASEURL ?>public/assets/icons/icon_bmc.png" alt="bmc">
             <div class="nav-link-text">Buy me a coffee</div>
         </a>
-        <a href="<?php echo BASEURL ?>st_billing" class="nav-link">
-            <img src="<?php echo BASEURL ?>public/assets/icons/icon_billing.png" alt="report">
-            <div class="nav-link-text">Billing</div>
-        </a>
         <a href="<?php echo BASEURL ?>st_profile/Scholarship_page1" class="nav-link">
             <img src="<?php echo BASEURL ?>public/assets/icons/Scholarship.png" alt="bmc">
             <div class="nav-link-text">Get scholarship</div>

@@ -16,7 +16,7 @@ class St_billing extends Controller
     {
         $result = $this->model("st_billing_model")->getstudentBillingDEtails(2,7);
         var_dump($result);
-        $this->view('student/billing/billView', array($result));
+        $this->view('student/billing/st_billing', array($result));
     }
 
     
