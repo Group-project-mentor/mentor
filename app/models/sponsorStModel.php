@@ -38,11 +38,23 @@ class sponsorStModel extends Model
         return $this->fetchOneObj($stmt);
     }
 
-    public function getPayments($id)
+    public function getPayments($id, $spID = null)
     {
-        $stmt = $this->prepare("SELECT student_id, month, year FROM sp_pay WHERE sp_pay.student_id = ?");
-        $stmt->bind_param('i', $id);
+        if(empty($spID)){
+            $stmt = $this->prepare("SELECT student_id, month, year FROM sp_pay WHERE sp_pay.student_id = ?");
+            $stmt->bind_param('i', $id);
+        }else{
+            $stmt = $this->prepare("SELECT student_id, month, year FROM sp_pay WHERE sp_pay.student_id = ? AND sp_pay.sponsor_id = ?");
+            $stmt->bind_param('ii', $id, $spID);
+        }
         return $this->fetchObjs($stmt);
+    }
+
+    public function getPaymentsPaid($id, $spID = null)
+    {
+        $stmt = $this->prepare("SELECT COUNT(sp_pay.student_id) as count FROM sp_pay,bill WHERE sp_pay.billNo = bill.id AND sp_pay.student_id = ? AND bill.status = 1");
+        $stmt->bind_param('i', $id);
+        return $this->fetchOneObj($stmt);
     }
 
     public function getSponsorship($sponsor_id)

@@ -13,49 +13,6 @@
 
 <body>
 <section class="login">
-    <!-- <div class="login-main"> -->
-        <!-- <div class="login-title"> -->
-            <!-- <h1>CHANGE <br>PASSWORD</h1> -->
-
-            <!--                --><?php // if (isset($_GET["error"])) { ?>
-            <!--                    <div class="error"><small>-->
-            <!--                            --><?php // echo $_GET["error"]; ?>
-            <!--                        </small>-->
-            <!--                    </div>-->
-            <!---->
-            <!--                --><?php //} ?>
-            <!---->
-            <!--                --><?php // if (isset($_GET["success"])) { ?>
-            <!--                    <div class="success">-->
-            <!--                        <small>-->
-            <!--                            --><?php //echo $_GET["success"]; ?>
-            <!--                        </small>-->
-            <!--                    </div>-->
-            <!---->
-            <!--                --><?php // } ?>
-
-            <!-- <hr /> -->
-        <!-- </div> -->
-
-        <!-- <form class="forgot-ctnt" id="otp_area" method="POST" action="<?php echo BASEURL ?>forgotPassword/verifyOTP">
-            <div class="login-inp-grp">
-                <label class="lbl-input otp-label" for="otp">Enter OTP</label><br>
-                <input maxlength="6"
-                       type="text"
-                       class="txt-input otp-box form-inp"
-                       placeholder="OTP NO"
-                       id="otp"
-                       name="otp"
-                       pattern="[0-9]{6}"
-                       title="OTP is exactly 6 digit number"
-                />
-                <img src="" id="icon2" />
-            </div>
-            <div class="login-inp-grp">
-                <button type="submit"  class="btn-login" name="otpForm">SUBMIT</button>
-            </div>
-        </form> -->
-
         <form action="<?php echo BASEURL ?>forgotPassword/verifyOTP" class="sign-in-form" method="POST">
                 <h2 class="title">Enter OTP</h2>
                 <div class="input-field">
@@ -68,21 +25,39 @@
                             maxlength="6"
                             />
                 </div>
-                <button id="otp-btn" 
+                <small style="color: red;text-align:right;display:none;" id="messageBox"></small>
+
+                <button id="otp_btn" 
                         class="btn solid" 
                         type="submit" 
                         name="otpForm"  
                         style="text-align:center ; text-decoration : none ;">Send Code</button>
-                <!-- <a class="text-decoration:none;" href="<?php echo BASEURL ?>login">
-                    <h5 style="color: blue;text-decoration:none;">Back to login</h5>
-                </a> -->
             <br>
 
           </form>
-    <!-- </div> -->
 </section>
 </body>
-<!-- <script src="https://smtpjs.com/v3/smtp.js"></script> -->
-<script src="<?php echo BASEURL ?>public/javascripts/otp_script.js"></script>
+<script>
+    const getElement = (id) => document.getElementById(id);
+
+    let otp_btn = getElement("otp_btn");
+    let messageBox = getElement("messageBox");
+    let otp = getElement("otp");
+
+    let otp_pattern = /[0-9]{6}/;
+
+    otp_btn.disabled = true;
+
+    otp.addEventListener("keyup", () => {
+        if (otp_pattern.test(otp.value)) {
+            messageBox.style.display = "none";
+            otp_btn.disabled = false;
+        } else {
+            messageBox.style.display = "block";
+            otp_btn.disabled = true;
+            messageBox.textContent = "Invalid OTP !";
+        }
+    });
+</script>
 
 </html>
