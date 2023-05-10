@@ -27,7 +27,7 @@ class St_reportIssue extends Model
         $privateClassCount = $this->prepare("SELECT COUNT(private_class.class_name) AS total FROM private_class INNER JOIN 
         classes_has_students ON private_class.class_id = classes_has_students.class_id WHERE classes_has_students.student_id = ?;");
         $privateClassCount->bind_param('i',$st_id);
-as
+        
         $privateClassPendingCount = $this->prepare("SELECT COUNT(join_requests.accept) AS pending  FROM join_requests WHERE join_requests.accept = 0 
         AND join_requests.student_id = ?;");
         $privateClassPendingCount->bind_param('i',$st_id);

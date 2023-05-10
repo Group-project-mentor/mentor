@@ -64,6 +64,8 @@
 
     <!-- Navigation bar toggler -->
     <div class="nav-toggler" id="nav-toggler">
-        <img src="<?php echo BASEURL?>assets/icons/toggler.png" alt="toggler">
+        <img src="<?php echo BASEURL ?>public/assets/icons/toggler.png" alt="toggler">
     </div>
 </nav>
+
+<script src="<?php echo BASEURL . '/public/javascripts/st_navbar_1.js' ?>"></script>
