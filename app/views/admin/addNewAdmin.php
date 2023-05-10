@@ -15,21 +15,7 @@
 </head>
 
 <body>
-    <section class="notification">
-        <div id="alert" class="hideme message-area">
-            <div class="message">
-                <div class="message-text">
-                    Admin added Successfully !
-                </div>
-                <div class="message-image">
-                    <img src="<?php echo BASEURL ?>assets/admin/com-notification.png" alt="error image">
-                </div>
-                <div class="message-btn">
-                    <a href="<?php echo BASEURL ?>admins/addMember">OK</a>
-                </div>
-            </div>
-        </div>
-    </section>
+<?php require_once("C:/xampp/htdocs/mentor/public/components/alerts/admin/addAdmin.php"); ?>
     <?php require_once("C:/xampp/htdocs/mentor/app/views/admin/navbar.php"); ?>
             <!-- Middle part for whole content -->
             <section class="mid-content ad_mid-content">

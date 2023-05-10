@@ -46,7 +46,9 @@ class St_private_mode extends Controller
 
         if ($res2 != 0) {
             $res3 = $this->model('st_private_mode_model')->jointokenview($sid, $res, $token)->class_name;
+            $res4 = $this->model('st_private_mode_model')->jointokenview($sid, $res, $token)->fees;
             $_SESSION['class_name'] = $res3;
+            $_SESSION['fees'] = $res4;
             $this->notify(2, "You have Token request from the Student", "request");  // 2 must change into teachers ID
             $this->view('student/privatemode/st_join_token_send', array($res2));
         } else {

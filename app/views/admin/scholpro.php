@@ -52,7 +52,7 @@
                                     <img class="profile" src="' . BASEURL . 'assets/admin/user.png">
                                 </div>
                                 <div class="name">
-                                    <p>' . $value['first_name'] . '</p>
+                                    <p>' . $value['firstName'] . '</p>
                                 </div>
                             </div>
                             

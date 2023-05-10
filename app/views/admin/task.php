@@ -8,6 +8,7 @@
     <title>login</title>
     <link rel="stylesheet" href="<?php echo BASEURL ?>stylesheets/admin/ad_task.css">
     <link rel="stylesheet" href="<?php echo BASEURL ?>stylesheets/admin/style.css">
+    <link rel="stylesheet" href="<?php echo BASEURL ?>stylesheets/admin/massage.css">
 </head>
 <nav>
     <div class="ad_nav">
@@ -16,6 +17,8 @@
 </nav>
 
 <body>
+<?php require_once("C:/xampp/htdocs/mentor/public/components/alerts/admin/deleteComptm.php"); ?>
+
     <?php require_once("C:/xampp/htdocs/mentor/app/views/admin/navbar.php"); ?>
     <!-- Middle part for whole content -->
     <section class="mid-content ad_mid-content">
@@ -31,28 +34,29 @@
                 echo ($_SESSION["id"]);
             } else {
                 foreach ($data['rtask'] as $value) {
-                        echo '<div class="content">
-                                    <div class="complaints">
-                                        <div class="pp">
-                                            <img  class="profile" src="' . BASEURL . 'assets/admin/reviewresource.png">
-                                        </div>
-                                        <div class="name">
-                                            <p>Review Resource</p>
-                                        </div>
-                                        <div class="userid" id="user-id">
-                                            <p>' . $value['type'] . '</p>
-                                        </div>
+                        echo
+                    '<div class="content">
+                        <div class="complaints">
+                            <div class="pp">
+                                <img  class="profile" src="' . BASEURL . 'assets/admin/reviewresource.png">
+                            </div>
+                            <div class="name">
+                                <p>Review Resource</p>
+                            </div>
+                            <div class="userid" id="user-id">
+                                <p>' . $value['type'] . '</p>
+                            </div>
                                         
-                                <div class="icons">
-                                    <div class="view">
-                                        <a href="'. BASEURL .'admins/resource/' . $value['type'] . '/'.$value['id'] .'"><img src="'. BASEURL .'assets/admin/view.png"></a>
-                                    </div>
-                                    <div class="delete">
-                                        <a href="' . BASEURL . '#"><img src="' . BASEURL . 'assets/admin/Delete.png"></a>
-                                    </div>
+                            <div class="icons">
+                                <div class="view">
+                                    <a href="' . BASEURL . 'admins/resource/' . $value['type'] . '/' . $value['id'] . '"><img src="' . BASEURL . 'assets/admin/view.png"></a>
                                 </div>
-                                    </div>
-                                </div>';
+                                <div class="delete">
+                                    <button class="comp-btns" onclick="deleteResourceFromTaskManager(' . $value['id'] . ')" type="button"><img src="' . BASEURL . 'assets/admin/Delete.png"></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>';
                     
                 }
                 
@@ -77,10 +81,10 @@
                                         
                                 <div class="icons">
                                     <div class="view">
-                                        <a href="'. BASEURL .'admins/complaintaction/' . $value['work_id'] . '"><img src="'. BASEURL .'assets/admin/view.png"></a>
+                                        <a href="'. BASEURL .'admins/task/' . $value['work_id'] . '"><img src="'. BASEURL .'assets/admin/view.png"></a>
                                     </div>
                                     <div class="delete">
-                                        <a href="' . BASEURL . '#"><img src="' . BASEURL . 'assets/admin/Delete.png"></a>
+                                        <button class="comp-btns" onclick="deleteComplaintFromTaskManager(' . $value['work_id'] . ')" type="button"><img src="' . BASEURL . 'assets/admin/Delete.png"></button>
                                     </div>
                                 </div>
                                     </div>
@@ -92,68 +96,12 @@
             ?>
 
         </div>
-
-        <!-- <div class="content">
-                    <a href="<?php echo BASEURL ?>admins/task/t001" style="text-decoration: none; color:black;">
-                        <div class="complaints">
-                            <div class="pp">
-                                <img  class="profile" src="<?php echo BASEURL ?>assets/admin/comphand.png">
-                            </div>
-                            <div class="name">
-                                <p>Complaint Handling</p>
-                            </div>
-                            <div class="description">
-                                <p>jahsgfbdssauygefiBCJHBVCGDUDSSDFCSJH FUSHDFUJHFH</p>
-                            </div>
-                            <div class="icons">
-                                <div class="view">
-                                    <button type="button" id="btn">In Pogress</button>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                    <a href="<?php echo BASEURL ?>admins/complaintaction" style="text-decoration: none; color:black;">
-                        <div class="complaints">
-                            <div class="pp">
-                                <img  class="profile" src="<?php echo BASEURL ?>assets/admin/comphand.png">
-                            </div>
-                            <div class="name">
-                                <p>Complaint Handling</p>
-                            </div>
-                            <div class="description">
-                                <p>jahsgfbdssauygefiBCJHBVCGDUDSSDFCSJH FUSHDFUJHFH</p>
-                            </div>
-                            <div class="icons">
-                                <div class="view">
-                                    <button type="button" id="btn">In Pogress</button>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                    <a href="<?php echo BASEURL ?>adComplaintaction" style="text-decoration: none; color:black;">
-                        <div class="complaints">
-                            <div class="pp">
-                                <img  class="profile" src="<?php echo BASEURL ?>assets/admin/comphand.png">
-                            </div>
-                            <div class="name">
-                                <p>Complaint Handling</p>
-                            </div>
-                            <div class="description">
-                                <p>jahsgfbdssauygefiBCJHBVCGDUDSSDFCSJH FUSHDFUJHFH</p>
-                            </div>
-                            <div class="icons">
-                                <div class="view">
-                                    <button type="button" id="btn">In Pogress</button>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                </div> -->
     </section>
     </div>
     </section>
     <?php require_once("C:/xampp/htdocs/mentor/app/views/admin/popup.php"); ?>
 </body>
+<script src="<?php echo BASEURL ?>javascripts/admin/cors.js"></script>
 
 <script>
     let toggle = true;

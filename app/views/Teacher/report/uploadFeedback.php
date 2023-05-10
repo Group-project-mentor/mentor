@@ -51,7 +51,7 @@
                 <!-- Grade choosing interface -->
                 <div class="container-box">
                     <div class="rc-resource-header">
-                        <h1>ADD Feedback Document(PDF)</h1>
+                        <h1>Upload Feedback For Students</h1>
                     </div>
                 </div>
                 <div class="rc-upload-box">

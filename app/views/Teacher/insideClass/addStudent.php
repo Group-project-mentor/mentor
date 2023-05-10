@@ -11,71 +11,25 @@
 </head>
 
 <body>
-    <section class="page">
-    <?php if(!empty($_SESSION['message'])){
-        switch ($_SESSION['message']){
-            case "Your have successfully added the teacher":
-                include_once "components/alerts/Teacher/teacher_addded.php";
-                break;
-            case "Your add student limit for free account is over":
-                include_once "components/alerts/Teacher/addTeacherLimit.php";
-                break;
+
+    <?php
+    if (!empty($_SESSION['message'])) {
+        if ($_SESSION['message'] == "success") {
+            include_once "components/alerts/Teacher/student_add.php";
+        } elseif ($_SESSION['message'] == "failed") {
+            include_once "components/alerts/Teacher/student_add_failed.php";
+        } elseif ($_SESSION['message'] == "already") {
+            include_once "components/alerts/Teacher/already.php";
+        } elseif ($_SESSION['message'] == "duplicate") {
+            include_once "components/alerts/Teacher/duplicateST.php";
         }
-    } ?>
+    }
+    ?>
+
+    <section class="page">
+
         <!-- Navigation panel -->
-        <nav class="nav-bar" id="nav-bar">
-
-            <!-- Navigation bar logos -->
-            <div class="nav-upper">
-                <div class="nav-logo-short">
-                    <img src="<?php echo BASEURL ?>public/assets/Teacher/logo2.png" alt="logo" />
-                </div>
-                <div class="nav-logo-long" id="nav-logo-long">
-                    <img src="<?php echo BASEURL ?>public/assets/Teacher/logo1.png" alt="logo" />
-                </div>
-            </div>
-
-
-
-
-            <?php
-            $cid = $_SESSION["cid"];
-            ?>
-
-
-
-            <!-- Navigation buttons -->
-            <div class="nav-links">
-                <a href="<?php echo BASEURL ?>TClassMembers/memDetails/<?php echo "$cid"; ?>" class=" nav-link">
-                    <img class="active" src="<?php echo BASEURL ?>public/assets/Teacher/icons/participants.png" alt="home">
-                    <div class="nav-link-text">Participants</div>
-                    <a href="<?php echo BASEURL .'TResources/videos/'.$_SESSION['cid']?>" class="nav-link">
-                        <img class="active" src="<?php echo BASEURL ?>public/assets/Teacher/icons/icon_resources.png" alt="home">
-                        <div class="nav-link-text">Resources</div>
-                    </a>
-                    <a href="<?php echo BASEURL ?>TInsideClass/addTr/<?php echo "$cid"; ?>" class="nav-link">
-                        <img class="active" src="<?php echo BASEURL ?>public/assets/Teacher/icons/add_teacher.png" alt="home">
-                        <div class="nav-link-text">Add Teacher</div>
-                    </a>
-                    <a href="<?php echo BASEURL ?>TInsideClass/addSt" class="nav-link" class="nav-link">
-                        <img class="active" src="<?php echo BASEURL ?>public/assets/Teacher/icons/add_student.png" alt="home">
-                        <div class="nav-link-text">Add Student</div>
-                    </a>
-                    <a href="<?php echo BASEURL ?>TReport/generateReport" class="nav-link">
-                        <img class="active" src="<?php echo BASEURL ?>public/assets/Teacher/icons/generate_report.png" alt="home">
-                        <div class="nav-link-text">Generate Reports</div>
-                    </a>
-                    <a href="<?php echo BASEURL ?>joinRequests/getRequests/<?php echo "$cid"; ?>" class="nav-link">
-                        <img class="active" src="<?php echo BASEURL ?>public/assets/Teacher/icons/forum.png" alt="home">
-                        <div class="nav-link-text">Join Requests</div>
-                    </a>
-            </div>
-
-            <!-- Navigation bar toggler -->
-            <div class="nav-toggler" id="nav-toggler">
-                <img src="<?php echo BASEURL ?>public/assets/Teacher/icons/toggler.png" alt="toggler">
-            </div>
-        </nav>
+        <?php include_once "components/navbars/t_nav_2.php" ?>
 
         <div class="content-area">
 
@@ -84,7 +38,7 @@
 
                 <div class="top-bar-btns">
                     <a href="#">
-                        <a class="back-btn" href="<?php echo BASEURL ?>TInsideClass/InClass">Back</a>
+                        <a class="back-btn" href="<?php echo BASEURL ?>home">Back</a>
                     </a>
                     <?php include_once "components/notificationIcon.php" ?>
                     <?php include_once "components/premiumIcon.php" ?>
@@ -97,16 +51,20 @@
                 <!-- Title and sub title of middle part -->
                 <div class="mid-title">
                     <h1>Add Student</h1>
-                    <h6>Teacher Home/ <?php echo $_SESSION['cid'] ?>-member details/Add student</h6>
-                    <br><br><br>
-                    <h3>Student ID</h3>
+                    <h3><?php echo "Class ID-" . $_SESSION['cid'] ?><h3>
+                            <h3><?php echo " Class Name-" . ucfirst($_SESSION['cname']) ?> </h3>
+                            <br><br><br>
+                            <h3>Student Name</h3>
                 </div>
 
                 <div class="class section">
                     <form action="<?php echo BASEURL; ?>TInsideClass/createAction" method="POST">
+                        <label for="student_name"></label>
+                        <input type="text" id="student_name" name="student_name" placeholder="New student Name..">
+                        <h3>Student ID</h3>
                         <label for="student_id"></label>
                         <input type="text" id="student_id" name="student_id" placeholder="New student ID..">
-                        <input type="submit" value="Request to join">
+                        <input type="submit" value="Request to join" id="Request to join">
                     </form>
                 </div>
 
@@ -133,37 +91,23 @@
     </section>
 </body>
 <script>
-    let toggle = true;
-
-    const getElement = (id) => document.getElementById(id);
-
-    let togglerBtn = getElement("nav-toggler");
-    let nav = getElement("nav-bar");
-    let logoLong = getElement("nav-logo-long");
-    let navMiddle = getElement("nav-middle");
-    let navLinkTexts = document.getElementsByClassName("nav-link-text");
-
-    togglerBtn.addEventListener('click', () => {
-        nav.classList.toggle("nav-bar-small");
-
-        if (toggle) {
-            logoLong.classList.add("hidden");
-            navMiddle.classList.add("hidden");
-            togglerBtn.classList.add("toggler-rotate");
-            for (i = 0; i < navLinkTexts.length; i++) {
-                navLinkTexts[i].classList.add("hidden");
+    function checkClassName() {
+        document.getElementById("Request to join").addEventListener("click", function(event) {
+            var name = document.getElementById("student_name").value;
+            if (name.trim() === '') {
+                alert("Please enter Student Name.");
+                event.preventDefault(); // stop form submission
             }
-            toggle = false;
-        } else {
-            logoLong.classList.remove("hidden");
-            navMiddle.classList.remove("hidden");
-            togglerBtn.classList.remove("toggler-rotate");
-            for (i = 0; i < navLinkTexts.length; i++) {
-                navLinkTexts[i].classList.remove("hidden");
+
+            var sid = document.getElementById("student_id").value;
+            if (sid.trim() === '') {
+                alert("Please enter Student ID.");
+                event.preventDefault(); // stop form submission
             }
-            toggle = true;
-        }
-    })
+        });
+    }
+
+    window.addEventListener("load", checkClassName);
 </script>
 
 </html>

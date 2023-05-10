@@ -40,7 +40,15 @@
                             </div>
                             <div class="count">
                                 <h1>
-                                    <?php echo $data['studentCount']; ?><br>
+                                    
+                                    <?php 
+                                    if (!$data['studentCount']) {
+                                        echo '0';
+                                    } else {
+                                        echo $data['studentCount']; 
+                                    }
+                                    ?><br>
+                                    
                                 </h1>
                             </div>
                         </div>
@@ -60,7 +68,13 @@
                             </div>
                             <div class="count">
                                 <h1>
-                                    <?php echo $data['teacherCount']; ?><br>
+                                    <?php 
+                                    if (!$data['teacherCount']) {
+                                        echo '0';
+                                    } else {
+                                        echo $data['teacherCount']; 
+                                    }
+                                    ?><br>
                                 </h1>
                             </div>
                         </div>
@@ -80,7 +94,13 @@
                             </div>
                             <div class="count">
                                 <h1>
-                                    <?php echo $data['classCount']; ?><br>
+                                    <?php 
+                                    if (!$data['classCount']) {
+                                        echo '0';
+                                    } else {
+                                        echo $data['classCount']; 
+                                    }
+                                    ?><br>
                                 </h1>
                             </div>
                         </div>
@@ -98,7 +118,13 @@
                             </div>
                             <div class="count">
                                 <h1>
-                                    <?php echo $data['sponsorCount']; ?><br>
+                                    <?php 
+                                    if (!$data['sponsorCount']) {
+                                        echo '0';
+                                    } else {
+                                        echo $data['sponsorCount']; 
+                                    }
+                                    ?><br>
                                 </h1>
                             </div>
                         </div>
@@ -166,8 +192,7 @@
                         </div>
                         <?php
                         if (!$data['rtask']) {
-                            echo 'No Complaints';
-                            echo ($_SESSION["id"]);
+                            
                         } else {
                             foreach ($data['rtask'] as $value) {
                                 echo '<div class="content">
@@ -187,6 +212,7 @@
                         }
 
                         if (!$data['ctask']) {
+                            
                         } else {
                             foreach ($data['ctask'] as $value) {
                                 echo '<div class="content">

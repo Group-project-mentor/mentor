@@ -34,7 +34,7 @@
                                     <img class="profile" src="' . BASEURL . 'assets/admin/pp.png">
                                 </div>
                                 <div class="name" id="user-name">
-                                    <p>' . $value['first_name'] . '</p>
+                                    <p>' . $value['firstName'] . '</p>
                                 </div>
                                 <div class="userid" id="user-id">
                                     <p>' . $value['id'] . '</p>

@@ -22,6 +22,7 @@
             justify-content: center;
             align-items: center;
             height: 100vh;
+            font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
         }
     </style>
 </head>

@@ -82,7 +82,17 @@ class admin extends Model{
     }
 
     public function addComplaintToTaskManager($cID, $uID) {
-        $query = "UPDATE `complaint` SET `approved_by`='$uID' where `work_id`='$cID';";
+        $query = "UPDATE `complaint` SET `approved_by`='$uID',`status`='in Progress' WHERE `work_id`='$cID';";
+        return $this->executeQuery($query);
+    }
+
+    public function deleteComplaintFromTaskManager($cID) {
+        $query = "UPDATE `complaint` SET `approved_by`= NULL ,`status`='pending' WHERE `work_id`='$cID';";
+        return $this->executeQuery($query);
+    }
+
+    public function deleteResourceFromTaskManager($rID) {
+        $query = "UPDATE `public_resource` SET `approved_by`= NULL WHERE `id`='$rID';";
         return $this->executeQuery($query);
     }
 
@@ -234,7 +244,11 @@ class admin extends Model{
         $addgrade = "INSERT into grade(`name`,`image`) values('$name','$photo');";
         $result = $this->executeQuery($addgrade);
 
-        return ($result);
+        if ($result) {
+            return true;
+        } else {
+            return false;
+        } 
     }
 
     // public function addTeamMemb($id){

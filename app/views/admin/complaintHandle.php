@@ -8,6 +8,7 @@
     <title>login</title>
     <link rel="stylesheet" href="<?php echo BASEURL ?>stylesheets/admin/ad_complaintHandle.css">
     <link rel="stylesheet" href="<?php echo BASEURL ?>stylesheets/admin/style.css">
+    <link rel="stylesheet" href="<?php echo BASEURL ?>stylesheets/admin/massage.css">
 </head>
 <nav>
     <div class="ad_nav">
@@ -16,6 +17,7 @@
 </nav>
 
 <body>
+<?php require_once("C:/xampp/htdocs/mentor/public/components/alerts/admin/addToTM.php"); ?>
     <?php require_once("C:/xampp/htdocs/mentor/app/views/admin/navbar.php"); ?>
     <!-- Middle part for whole content -->
     <section class="mid-content ad_mid-content">
@@ -51,10 +53,7 @@
                                     <a href="'. BASEURL .'admins/complaint/' . $value['work_id'] . '"><img src="'. BASEURL .'assets/admin/view.png"></a>
                                 </div>
                                 <div class="addtm">
-                                    <button class="comp-btns" onclick="addComplaintToTask()" type="button"><img src="'. BASEURL .'assets/admin/addtm.png"></button>
-                                </div>
-                                <div class="delete">
-                                    <a href="'. BASEURL .'#"><img src="'. BASEURL .'assets/admin/Delete.png"></a>
+                                    <button class="comp-btns" onclick="addComplaintToTaskManager(' . $data['complaints'][0]['work_id'] . ',' . $_SESSION['id'] . ')" type="button"><img src="'. BASEURL .'assets/admin/addtm.png"></button>
                                 </div>
                             </div>
                                 </div>
@@ -69,6 +68,8 @@
     </section>
     <?php require_once("C:/xampp/htdocs/mentor/app/views/admin/popup.php"); ?>
 </body>
+
+<script src="<?php echo BASEURL ?>javascripts/admin/cors.js"></script>
 
 <script>
     let toggle = true;

@@ -65,8 +65,8 @@
 
                 <div class="subject-card">
                     <img src="<?php echo BASEURL ?>assets/patterns/4.png" alt="" />
-                    <label><?php echo $_SESSION['class_name'] ?></label>
-                    <label>Class Feez : 3000.00 LKR</label>
+                    <label>Class Name : <?php echo $_SESSION['class_name'] ?></label>
+                    <label>Class Feez : <?php echo $_SESSION['fees'] ?>.00 LKR</label>
                 </div>
                 <div class="token" style="margin: auto; padding-top: 20px;">
                     <div style=" font-family: Arial, sans-serif; color: black;">

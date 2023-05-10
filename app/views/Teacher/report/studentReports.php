@@ -52,14 +52,14 @@
 
                 <!-- Title and sub title of middle part -->
                 <div class="mid-title">
-                    <h1><?php echo "Grade " . ucfirst($_SESSION['cid']) ?></h1>
-                    <h6>My Subjects / <?php echo ucfirst($_SESSION['cid']) ?> / Student Reports</h6>
+                    <h1>Uploaded Reports</h1>
+                <h6><?php echo $_SESSION['cid']."-".ucfirst($_SESSION['cname'])."/Generate Feedback/Ask Feedback/Student Report/Uploaded Reports"?><h6>
                 </div>
 
                 <!--  -->
                 <div class="container-box">
                     <div class="rc-resource-header">
-                        <h1>Students Reports</h1>
+                        <h1></h1>
                         <a href="<?php echo BASEURL . 'TReport/uploadFeedback' ?>">
                             <div class="rc-add-btn">
                                 Upload Feedback

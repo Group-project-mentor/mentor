@@ -12,8 +12,8 @@ class St_profile extends Controller
 
     public function index($msg = null)
     {
-        $result = $this->model("userModel")->getUserData($_SESSION['id']);
-        $this->view('student/profile/st_profile', array($result, $msg));
+        $result = $this->model("userModel")->StgetUserData($_SESSION['id']);
+        $this->view('student/profile/st_profile', array($result));
     }
 
     public function change($type, $msg = null)
@@ -137,6 +137,56 @@ class St_profile extends Controller
         }
     }
 
+    public function updateImage()
+    {
+        if (isset($_FILES["image"])) {
+            $typeArray = array("png" => "image/png", "jpg" => "image/jpg", "jpeg" => "image/jpeg");
+            $fileData = array("name" => $_FILES["image"]["name"],
+                    "type" => $_FILES["image"]["type"],
+                    "size" => $_FILES["image"]["size"]);
+            $extention = pathinfo($fileData["name"], PATHINFO_EXTENSION);
+            if (in_array($fileData['type'], $typeArray)) {
+                $newFileName = uniqid() . $_SESSION["id"] . "." . $extention;
+                $image = $this->model("userModel")->StgetUserData($_SESSION['id'])->image;
+                if(empty($image) or $image == ""){
+                    if (move_uploaded_file($_FILES["image"]["tmp_name"], "data/profiles/" . $newFileName)) {
+                        if($this->model("userModel")->changeImg($_SESSION['id'],$newFileName)){
+                            $_SESSION['profilePic'] = $newFileName; 
+                            echo "success";
+                        }else{
+                            echo "failed";
+                        }
+                    } else {
+                        echo "failed";
+                    }
+                }else{
+                    if (move_uploaded_file($_FILES["image"]["tmp_name"], "data/profiles/" . $newFileName) and file_exists("data/profiles/".$image) and unlink("data/profiles/".$image)) {
+                        if($this->model("userModel")->changeImg($_SESSION['id'],$newFileName)){
+                            $_SESSION['profilePic'] = $newFileName; 
+                            echo "success";
+                        }else{
+                            echo "failed";
+                        }
+                    }elseif(!file_exists("data/profiles/".$image)){
+                        if($this->model("userModel")->changeImg($_SESSION['id'],$newFileName)){
+                            $_SESSION['profilePic'] = $newFileName; 
+                            echo "success";
+                        }else{
+                            echo "failed";
+                        }
+                    }
+                     else {
+                        echo "failed";
+                    }
+                }
+            }else{
+                echo "type_error";
+            }     
+        }else{
+            echo "failed";
+        }
+    }
+
 
     public function Scholarship_page1(){
         $this->view('student/profile/st_scholarship');
@@ -218,6 +268,18 @@ class St_profile extends Controller
         
         $this->view('student/profile/st_generate_report', array($joined , $Pending , $Request ,$S_Enroll , $Q_Enroll, $PublicAll));
     }
+
+    public function generate_report_private(){
+        $res = $this->model('st_private_mode_model')->getClasses($_SESSION['id']);
+        $this->view('student/profile/st_generate_report_private', array($res));
+    }
+
+    public function generate_report_private_class($class_name){
+        
+        $res = $this->model('st_private_mode_model')->getClassesReport($_SESSION['id'],$class_name);
+        $this->view('student/profile/st_generate_report_private_class',array($res));
+    }
+
 }
 
 ?>

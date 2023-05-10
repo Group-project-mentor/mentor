@@ -16,9 +16,9 @@ class Teacher_data extends Model
         return $this->fetchObjs($result);
     }
 
-    public function addClass($id, $name)
+    public function addClass($id, $name,$currency,$fees)
     {
-        $q = "INSERT INTO private_class (class_id,class_name) VALUES (" . $id . ",'" . $name . "')";
+        $q = "INSERT INTO private_class (class_id,class_name,currency,fees) VALUES (" . $id . ",'" . $name . "','" . $currency. "','" . $fees . "')";
         $result = $this->executeQuery($q);
         return $result;
     }
@@ -32,6 +32,22 @@ class Teacher_data extends Model
         } else {
             return 1;
         }
+    }
+
+    public function getfee($id)
+    {
+        $q = "SELECT private_class.fees as fees from private_class WHERE private_class.class_id=?";
+        $result = $this->prepare($q);
+        $result->bind_param('i', $id);
+        return $this->fetchOneObj($result);
+    }
+
+    public function getCurrency($id)
+    {
+        $q = "SELECT private_class.currency as fees from private_class WHERE private_class.class_id=?";
+        $result = $this->prepare($q);
+        $result->bind_param('i', $id);
+        return $this->fetchOneObj($result);
     }
 
     public function teacherHasClass($id)
@@ -125,6 +141,30 @@ class Teacher_data extends Model
     public function getTPrivilege($id1, $id2)
     {
         $q = "select classes_has_extra_teachers.teacher_privilege as pid from classes_has_extra_teachers where classes_has_extra_teachers.teacher_id=? and classes_has_extra_teachers.class_id=?; ";
+        $result = $this->prepare($q);
+        $result->bind_param('ii', $id1, $id2);
+        return $this->fetchOneObj($result, true);
+    }
+
+    public function getduplicateSt($id1, $id2)
+    {
+        $q = "SELECT COUNT(classes_has_students.student_id) as scount FROM classes_has_students WHERE classes_has_students.student_id = ? AND classes_has_students.class_id=? ";
+        $result = $this->prepare($q);
+        $result->bind_param('ii', $id1, $id2);
+        return $this->fetchOneObj($result, true);
+    }
+
+    public function getduplicateStJoined($id1, $id2)
+    {
+        $q = "SELECT classes_has_students.accept as accept FROM classes_has_students WHERE classes_has_students.student_id = ? AND classes_has_students.class_id=?";
+        $result = $this->prepare($q);
+        $result->bind_param('ii', $id1, $id2);
+        return $this->fetchOneObj($result, true);
+    }
+
+    public function getduplicateTr($id1, $id2)
+    {
+        $q = "SELECT COUNT(classes_has_extra_teachers.teacher_id) as tcount FROM classes_has_extra_teachers WHERE classes_has_extra_teachers.teacher_id = ? AND classes_has_extra_teachers.class_id=? ";
         $result = $this->prepare($q);
         $result->bind_param('ii', $id1, $id2);
         return $this->fetchOneObj($result, true);

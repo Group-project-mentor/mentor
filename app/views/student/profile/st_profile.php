@@ -38,7 +38,7 @@
                     </a>
                     <?php include_once "components/notificationIcon.php" ?>
                     <a href="<?php echo BASEURL . 'st_profile' ?>">
-                        <img src="<?php echo BASEURL ?>assets/icons/icon_profile_black.png" alt="profile">
+                    <?php include_once "components/profilePic.php"?>
                     </a>
                 </div>
             </section>
@@ -64,7 +64,10 @@
 
                     <div class="rc-profile-main">
                         <a class="rc-profile-image" href="<?php echo BASEURL ?>st_profile/change/image">
-                            <img src="<?php echo (!empty($data[0]->image)) ? $data[0]->image : BASEURL . "assets/clips/profile_img.webp" ?>" alt="profile" id="profileImg" style="object-fit: cover;" />
+                        <img src="<?php echo (!empty($data[0]->image)) ? BASEURL . "data/profiles/".$data[0]->image : BASEURL . "assets/clips/profile_img.webp" ?>"
+                                 alt="profile"
+                                 id="profileImg"
+                                 style="object-fit: cover;"/>
                             <span class="rc-profile-change-btn hidden" id="changeBtn">Change</span>
                         </a>
                         <div class="rc-profile-table">
@@ -104,19 +107,7 @@
                                     </a>
                                 </div>
                             </div>
-                            <div class="rc-profile-row">
-                                <div class="rc-profile-left">
-                                    Mobile Number
-                                </div>
-                                <div class="rc-profile-right">
-                                    <div>
-                                        <?php echo (!empty($data[0])) ? $data[0]->mobile_no : "" ?>
-                                    </div>
-                                    <a href="<?php echo BASEURL ?>st_profile/change/mobile">
-                                        <img src="<?php echo BASEURL ?>assets/icons/icon_next.png" alt="notify" class="rc-profile-arrow-btn">
-                                    </a>
-                                </div>
-                            </div>
+                            
                             <a class="rc-profile-row" style="text-decoration:none;padding:10px" href="<?php echo BASEURL ?>st_profile/change/password">
                                 <div class="rc-profile-left" style="color:black;">
                                     Update Password

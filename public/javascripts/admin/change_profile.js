@@ -43,7 +43,7 @@ submit.addEventListener("click", () => {
     if (image != "") {
         const formData = new FormData();
         let http = new XMLHttpRequest();
-        formData.append("image", fileChooser.files[0]);
+        formData.append("image", image);
         http.open("POST", `${BASEURL}admins/updateImage`, true);
         http.send(formData);
 

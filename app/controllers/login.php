@@ -74,7 +74,7 @@ class Login extends Controller
     }
 
 
-    public function premiumExpireNotify($id)
+    private function premiumExpireNotify($id)
     {
          //echo "called";
         // Get the current timestamp
