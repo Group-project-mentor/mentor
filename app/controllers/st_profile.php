@@ -12,8 +12,8 @@ class St_profile extends Controller
 
     public function index($msg = null)
     {
-        $result = $this->model("userModel")->getUserData($_SESSION['id']);
-        $this->view('student/profile/st_profile', array($result, $msg));
+        $result = $this->model("userModel")->StgetUserData($_SESSION['id']);
+        $this->view('student/profile/st_profile', array($result));
     }
 
     public function change($type, $msg = null)
@@ -218,6 +218,18 @@ class St_profile extends Controller
         
         $this->view('student/profile/st_generate_report', array($joined , $Pending , $Request ,$S_Enroll , $Q_Enroll, $PublicAll));
     }
+
+    public function generate_report_private(){
+        $res = $this->model('st_private_mode_model')->getClasses($_SESSION['id']);
+        $this->view('student/profile/st_generate_report_private', array($res));
+    }
+
+    public function generate_report_private_class($class_name){
+        
+        $res = $this->model('st_private_mode_model')->getClassesReport($_SESSION['id'],$class_name);
+        $this->view('student/profile/st_generate_report_private_class',array($res));
+    }
+
 }
 
 ?>

@@ -101,6 +101,8 @@ class admins extends Controller {
             } else{
                 echo 'Error';
             }
+
+            
         }
 
         if ($_SERVER['REQUEST_METHOD'] == 'GET') {
@@ -116,6 +118,50 @@ class admins extends Controller {
 
     }
 
+    public function deleteComplaintTM($id) {
+
+        sessionValidator();
+        $this->hasLogged();
+
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+            if($this->adminModel->deleteComplaintFromTaskManager($id)){
+                echo 'Successful';
+            } else{
+                echo 'Error';
+            }
+        }
+
+        if ($_SERVER['REQUEST_METHOD'] == 'GET') {
+            
+            
+
+        }
+
+    }
+
+    public function deleteResouceTM($id) {
+
+        sessionValidator();
+        $this->hasLogged();
+
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+            if($this->adminModel->deleteResourceFromTaskManager($id)){
+                echo 'Successful';
+            } else{
+                echo 'Error';
+            }
+        }
+
+        if ($_SERVER['REQUEST_METHOD'] == 'GET') {
+            
+            
+
+        }
+
+    }
+
     public function taskmanager() {
 
         sessionValidator();
@@ -123,6 +169,13 @@ class admins extends Controller {
 
         if ($_SERVER['REQUEST_METHOD'] == 'GET') {
             $uID = $_SESSION["id"];
+            // $cID = $_POST['cID'];
+
+            // if($this->adminModel->deleteComplaintFromTaskManager($cID)){
+            //     echo 'Successful';
+            // } else{
+            //     echo 'Error';
+            // }
                 
             $data = [];
             $data['rtask'] = $this->adminModel->ResourceTask($uID);
@@ -346,7 +399,7 @@ class admins extends Controller {
             if ($_SERVER['REQUEST_METHOD'] == 'GET') {
                 
                 $data = [];
-                $data['pastpaperv'] = $this->adminModel->pastpaperview();
+                $data['pastpaperv'] = $this->adminModel->pastpaperview($id);
 
                 $this->view('admin/pastpaperview',$data);
 
@@ -362,7 +415,7 @@ class admins extends Controller {
             if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 
                 $data = [];
-                $data['pdfv'] = $this->adminModel->pdfview();
+                $data['pdfv'] = $this->adminModel->pdfview($id);
 
                 
                 $this->view('admin/pdfview',$data);
@@ -379,7 +432,7 @@ class admins extends Controller {
             if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 
                 $data = [];
-                $data['otherv'] = $this->adminModel->otherview();
+                $data['otherv'] = $this->adminModel->otherview($id);
                 
                 $this->view('admin/otherview',$data);
 
@@ -884,37 +937,43 @@ class admins extends Controller {
         $this->hasLogged();
 
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-            // $photo =$_POST['grade-photo'];
-            // $name = $_POST['grade-name'];
+            $photo =$_POST['image'];
+            $grade = $_POST['grade'];
+            
+            // print_r($_POST);
 
-            // $res =$this->model('admins')->addGrade($name,$photo);
+            $res = $this->adminModel->addGrade($grade,$photo);
+
+            if ($res) {
+                echo 'success';
+            } else {
+                print_r($res);
+            }
            
         }
 
         if ($_SERVER['REQUEST_METHOD'] == 'GET') {
             
-            $this->view('admin/addNewGrade');
+            $this->view('admin/add/addNewGrade');
 
         }
 
     }
 
-    public function addsubject() {
+    public function addsubject() {  
 
         sessionValidator();
         $this->hasLogged();
+        
 
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-            // $photo =$_POST['grade-photo'];
-            // $name = $_POST['grade-name'];
-
-            // $res =$this->model('admins')->addGrade($name,$photo);
+           
            
         }
 
         if ($_SERVER['REQUEST_METHOD'] == 'GET') {
-            
-            $this->view('admin/addNewSubject');
+            // $data =$this->model('admins')->addGrade($name,$photo);
+            // $this->view('admin/add/addNewSubject',$data);
 
         }
 

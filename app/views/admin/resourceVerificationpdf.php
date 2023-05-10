@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="<?php echo BASEURL ?>stylesheets/admin/ad_verification.css">
     <link rel="stylesheet" href="<?php echo BASEURL ?>stylesheets/admin/style.css">
     <link rel="stylesheet" href="<?php echo BASEURL ?>stylesheets/admin/ad_verify.css">
+    <link rel="stylesheet" href="<?php echo BASEURL ?>stylesheets/admin/massage.css">
 
 </head>
 <nav>
@@ -19,6 +20,7 @@
 </nav>
 
 <body>
+<?php require_once("C:/xampp/htdocs/mentor/public/components/alerts/admin/addRToTM.php"); ?>
     <?php require_once("C:/xampp/htdocs/mentor/app/views/admin/navbar.php"); ?>
             <!-- Middle part for whole content -->
             <section class="mid-content ad_mid-content">
@@ -36,6 +38,9 @@
                     </div>
                     <div class="videos">
                     <?php
+                    if (!$data['pdf']) {
+                        echo '0';
+                    } else {
                         foreach ($data['pdf'] as $value) {
                             echo '
                             <div class ="p-name">
@@ -47,6 +52,7 @@
                             </div>';
 
                         }
+                    }
                         ?>
 
                         

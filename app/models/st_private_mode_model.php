@@ -96,4 +96,16 @@ class St_private_mode_model extends Model
         $result = $this->fetchOneObj($stmt);
         return $result;
     }
+
+    public function getClassesReport($id,$class_name)
+    {
+        $q = "SELECT teacher_report.location , teacher_report.name , private_class.class_id FROM teacher_report INNER JOIN private_class
+        ON teacher_report.class_id = private_class.class_id WHERE private_class.class_name = ? AND teacher_report.student_id = ?;";
+        $stmt = $this->prepare($q);
+        $stmt->bind_param('si', $class_name,$id);
+
+        $result = $this->fetchOneObj($stmt);
+        return $result;
+    }
+
 }

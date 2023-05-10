@@ -45,7 +45,7 @@ if (!empty($data[1]) && $data[1] == "success") {
                 <div class="rc-profile">
                     <div class="rc-profile-main">
                         <a class="rc-profile-image" href="<?php echo BASEURL ?>admins/change/image">
-                            <img src="<?php echo (!empty($data[0]->image)) ? $data[0]->image : BASEURL . "assets/clips/profile_img.webp" ?>"
+                            <img src="<?php echo (!empty($data[0]->image)) ? BASEURL."data/profiles/".$data[0]->image : BASEURL . "assets/clips/profile_img.webp" ?>"
                                  alt="profile"
                                  id="profileImg"
                                  style="object-fit: cover;"/>
