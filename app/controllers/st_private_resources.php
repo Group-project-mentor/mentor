@@ -16,7 +16,11 @@ class St_private_resources extends Controller
         }
         // $this->getNames($grade, $subject);
         $_SESSION["class_name"] = $class_name;
-        $this->view('student/enrollment_private/st_private_resources', array($class_name));
+        
+        $result = $this->model("St_private_resources_model")->findClassId($class_name);
+
+        $_SESSION["class_id"] = $result->class_id;
+        $this->view('student/enrollment_private/st_private_resources', array($result));
         
     }
 

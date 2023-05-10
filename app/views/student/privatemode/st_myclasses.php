@@ -53,8 +53,8 @@
                                 <?php foreach ($data[0] as $row) { ?>
                                     <div class="subject-card">
                                         <img src="<?php echo BASEURL  ?>assets/patterns/2.png" alt="" />
-                                        <label><?php echo $row->class_name ?></label>
-
+                                        <label>Class Name  : <?php echo $row->class_name ?></label>
+                                        <label>Monthly Fees : <?php echo $row->fees ?>.00 LKR</label>
                                         <a href="<?php echo BASEURL . 'st_private_resources/index/' . $row->class_name  ?>"><label>View</label></a>
 
                                     </div>

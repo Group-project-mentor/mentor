@@ -9,7 +9,7 @@ class St_private_mode_model extends Model
 
     public function getClasses($sid)
     {
-        $q = "SELECT classes_has_students.student_id , classes_has_students.class_id , private_class.class_name FROM classes_has_students 
+        $q = "SELECT classes_has_students.student_id , classes_has_students.class_id , private_class.class_name , private_class.fees FROM classes_has_students 
         INNER JOIN private_class ON classes_has_students.class_id = private_class.class_id WHERE classes_has_students.student_id = ? AND classes_has_students.access = 1;";
         $stmt = $this->prepare($q);
         $stmt->bind_param('i', $sid);
@@ -88,7 +88,7 @@ class St_private_mode_model extends Model
 
     public function jointokenview($sid, $cid, $token)
     {
-        $q = "SELECT private_class.class_name FROM private_class 
+        $q = "SELECT private_class.class_name , private_class.fees FROM private_class 
         INNER JOIN join_requests ON private_class.class_id = join_requests.class_id WHERE private_class.token = ? LIMIT 1;";
         $stmt = $this->prepare($q);
         $stmt->bind_param('s', $token);
