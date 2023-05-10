@@ -11,19 +11,25 @@
 </head>
 
 <body>
-    <section class="page">
-    <?php if(!empty($_SESSION['message'])){
-        switch ($_SESSION['message']){
-            case "Your have successfully added the teacher":
-                include_once "components/alerts/Teacher/teacher_addded.php";
-                break;
-            case "Your add student limit for free account is over":
-                include_once "components/alerts/Teacher/addTeacherLimit.php";
-                break;
+
+    <?php
+    if (!empty($_SESSION['message'])) {
+        if ($_SESSION['message'] == "success") {
+            include_once "components/alerts/Teacher/student_add.php";
+        } elseif ($_SESSION['message'] == "failed") {
+            include_once "components/alerts/Teacher/student_add_failed.php";
+        } elseif ($_SESSION['message'] == "already") {
+            include_once "components/alerts/Teacher/already.php";
+        } elseif ($_SESSION['message'] == "duplicate") {
+            include_once "components/alerts/Teacher/duplicateST.php";
         }
-    } ?>
-           <!-- Navigation panel -->
-           <?php include_once "components/navbars/t_nav_2.php" ?>
+    }
+    ?>
+
+    <section class="page">
+
+        <!-- Navigation panel -->
+        <?php include_once "components/navbars/t_nav_2.php" ?>
 
         <div class="content-area">
 
@@ -45,17 +51,20 @@
                 <!-- Title and sub title of middle part -->
                 <div class="mid-title">
                     <h1>Add Student</h1>
-                    <h3><?php echo "Class ID-".$_SESSION['cid']?><h3>
-                    <h3><?php echo " Class Name-".ucfirst($_SESSION['cname']) ?> </h3>
-                    <br><br><br>
-                    <h3>Student ID</h3>
+                    <h3><?php echo "Class ID-" . $_SESSION['cid'] ?><h3>
+                            <h3><?php echo " Class Name-" . ucfirst($_SESSION['cname']) ?> </h3>
+                            <br><br><br>
+                            <h3>Student Name</h3>
                 </div>
 
                 <div class="class section">
                     <form action="<?php echo BASEURL; ?>TInsideClass/createAction" method="POST">
+                        <label for="student_name"></label>
+                        <input type="text" id="student_name" name="student_name" placeholder="New student Name..">
+                        <h3>Student ID</h3>
                         <label for="student_id"></label>
                         <input type="text" id="student_id" name="student_id" placeholder="New student ID..">
-                        <input type="submit" value="Request to join">
+                        <input type="submit" value="Request to join" id="Request to join">
                     </form>
                 </div>
 
@@ -82,7 +91,23 @@
     </section>
 </body>
 <script>
-    
+    function checkClassName() {
+        document.getElementById("Request to join").addEventListener("click", function(event) {
+            var name = document.getElementById("student_name").value;
+            if (name.trim() === '') {
+                alert("Please enter Student Name.");
+                event.preventDefault(); // stop form submission
+            }
+
+            var sid = document.getElementById("student_id").value;
+            if (sid.trim() === '') {
+                alert("Please enter Student ID.");
+                event.preventDefault(); // stop form submission
+            }
+        });
+    }
+
+    window.addEventListener("load", checkClassName);
 </script>
 
 </html>

@@ -14,6 +14,14 @@
 </head>
 
 <body>
+<?php
+        if(isset($_SESSION['message']) && $_SESSION['message']== "success"){
+            include_once "components/alerts/Teacher/teacher_removed.php";
+        }
+        elseif(isset($_SESSION['message']) && $_SESSION['message']== "failed"){
+            include_once "components/alerts/Teacher/teacher_added_failed.php";
+        }
+    ?>
     <section class="page">
         <!-- Navigation panel -->
         <?php include_once "components/navbars/t_nav_2.php" ?>
