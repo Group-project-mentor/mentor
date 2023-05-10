@@ -17,7 +17,7 @@ class UserModel extends Model
         return $this->fetchOneObj($stmt);
     }
 
-    public function registrationStudent($email, $name, $hash, $salt, $age = null, $grade = null)
+    public function registrationStudent($email, $name, $hash, $salt)
     {
         $query = "INSERT INTO user(email,name,password,type,salt) VALUES (?,?,?,'st',?)";
         $stmt = $this->prepare($query);

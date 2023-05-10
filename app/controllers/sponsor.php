@@ -58,7 +58,11 @@ class Sponsor extends Controller
         $data = $this->model("sponsorStModel")->getStudentDetails($id);
         $subjects = $this->model("sponsorStModel")->getSubjectDetails($id);
         $grades = $this->model("sponsorStModel")->getGradeDetails($id);
-        $this->view('sponsor/student_progress/see_student',array($data,$subjects,$grades));
+        // $payments = $this->model("sponsorStModel")->getPayments($id);
+        $paidPayments = $this->model("sponsorStModel")->getPaymentsPaid($id)->count;
+        $remaining_count = $data->fundMonths - $paidPayments;
+
+        $this->view('sponsor/student_progress/see_student',array($data,$subjects,$grades, $remaining_count));
     }
 
 //    ? Used transaction in this

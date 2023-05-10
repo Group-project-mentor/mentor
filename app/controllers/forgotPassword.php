@@ -8,6 +8,7 @@ class ForgotPassword extends Controller
         if (isset($_SESSION["user"])) {
             header("location:" . BASEURL . "home");
         }
+        flashMessage();
     }
 
     public function index($hasreg = 1)
@@ -17,15 +18,17 @@ class ForgotPassword extends Controller
 
     public function emailExist()
     {
-        if (isset($_POST['email'])) {
+        if (isset($_POST['email']) and validateEmail($_POST['email'])) {
             $result = $this->model("userModel")->getEmail($_POST['email']);
             if ($result->num_rows > 0) {
                 $_SESSION['email'] = $_POST['email'];
                 header("location:" . BASEURL . "forgotPassword/OTP");
             } else {
-                header("location:" . BASEURL . "forgotPassword/index/0");
+                flashMessage("not_registered");
+                header("location:" . BASEURL . "forgotPassword");
             }
         } else {
+            flashMessage("incorrect_email");
             header("location:" . BASEURL . "forgotPassword");
         }
 
@@ -60,12 +63,8 @@ class ForgotPassword extends Controller
         }
     }
 
-    // todo : Change password ui should be implemented
-    // todo : Its functionality should be implemented
     public function verifyOTP()
     {
-        // var_dump($_POST['otp']);
-        // var_dump($_SESSION['otp']);
         if (isset($_POST['otpForm']) && isset($_SESSION['otp'])) {
             if ($_POST['otp'] == $_SESSION['otp']) {
                 unset($_SESSION['otp']);
@@ -87,12 +86,15 @@ class ForgotPassword extends Controller
                     unset($_SESSION['email']);
                     header("location:" . BASEURL . "login");
                 } else {
-                    header("location:" . BASEURL . "forgotPassword/changePassword/0");
+                    flashMessage("failed");
+                    header("location:" . BASEURL . "forgotPassword/changePassword");
                 }
             } else {
-                header("location:" . BASEURL . "forgotPassword/changePassword/1");
+                flashMessage("not_match");
+                header("location:" . BASEURL . "forgotPassword/changePassword");
             }
         } else {
+            flashMessage("failed");
             header("location:" . BASEURL . "forgotPassword");
         }
     }
@@ -101,12 +103,6 @@ class ForgotPassword extends Controller
     {
         $result = rand(100000, 999999);
         return $result;
-        // $generator = "1357902468";
-        // $result = "";
-
-        // for ($i = 1; $i <= $n; $i++) {
-        //     $result .= substr($generator, (rand() % (strlen($generator))), 1);
-        // }
     }
 
     function unset() {

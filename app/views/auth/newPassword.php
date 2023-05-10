@@ -1,8 +1,3 @@
-<?php //session_start();
-//if (isset($_SESSION["user"])) {
-//    header("location:/profile.php");
-//}
-?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -18,67 +13,51 @@
 
 <body>
     <section class="login">
-        <!-- <div class="login-main"> -->
-            <!-- <div class="login-title"> -->
-                <!-- <h1>CHANGE<br>PASSWORD</h1> -->
-
-<!--                --><?php // if (isset($_GET["error"])) { ?>
-<!--                    <div class="error"><small>-->
-<!--                            --><?php // echo $_GET["error"]; ?>
-<!--                        </small>-->
-<!--                    </div>-->
-<!---->
-<!--                --><?php //} ?>
-<!---->
-<!--                --><?php // if (isset($_GET["success"])) { ?>
-<!--                    <div class="success">-->
-<!--                        <small>-->
-<!--                            --><?php //echo $_GET["success"]; ?>
-<!--                        </small>-->
-<!--                    </div>-->
-<!---->
-<!--                --><?php // } ?>
-
-                <!-- <hr /> -->
-            <!-- </div> -->
-            <!-- <form class="login-ctnt" method="POST" action="<?php echo BASEURL ?>forgotPassword/changePassword">
-                <div class="login-inp-grp">
-                    <label for="passwd" class="lbl-input">New Password</label>
-                    <input type="password" class="txt-input" placeholder="New password" id="passwd" name="passwd" />
-                </div>
-                <br>
-                <div class="login-inp-grp">
-                    <label for="passwdconf" class="lbl-input">Confirm Password</label>
-                    <input type="password" class="txt-input" placeholder="Confirm new password" id="passwdconf" name="passwdconf" />
-                </div>
-                <br>
-                <div class="login-inp-grp">
-                    <button type="submit" class="btn-login" name="login">Change Password</button>
-                </div>
-
-            </form> -->
-
             <form action="<?php echo BASEURL ?>forgotPassword/changePassword" class="sign-in-form" method="POST">
                 <h2 class="title">CHANGE PASSWORD</h2>
                 <div class="input-field">
                     <i class="fa-regular fa-lock"></i>
-                    <input type="password" placeholder="New Password" id="passwd" name="passwd"/>
+                    <input type="password" placeholder="New Password" id="passwd" name="passwd" value=""/>
                 </div>
                 <div class="input-field">
                     <i class="fa-regular fa-lock"></i>
-                    <input type="password" placeholder="Confirm new password" id="passwdconf" name="passwdconf"/>
+                    <input type="password" placeholder="Confirm new password" id="passwdconf" name="passwdconf" value=""/>
                 </div>
-                
-                <button class="btn solid" type="submit" name="login"  style="text-align:center ; text-decoration : none ;">Send Code</button>
-                <!-- <a class="text-decoration:none;" href="<?php echo BASEURL ?>login">
-                    <h5 style="color: blue;text-decoration:none;">Back to login</h5>
-                </a> -->
-            <br>
+                <small style="color: red;text-align:right;display:none;" id="messageBox"></small>
 
+                <button id="submitBtn" class="btn solid" type="submit" name="login"  style="text-align:center ; text-decoration : none ;">Change Password</button>
+            <br>
           </form>
-        <!-- </div> -->
     </section>
 </body>
-<script src="<?php echo BASEURL ?>public/javascripts/rc_auth_script.js"></script>
+<script>
+    let password = document.getElementById("passwd");
+    let confirm_password = document.getElementById("passwdconf");
+    let submitBtn = document.getElementById("submitBtn");
+    let messageBox = document.getElementById("messageBox");
+    
+    submitBtn.disabled = true;
+
+    function validatePassword() {
+        if(password.value.length < 8 || confirm_password.value.length < 8) {
+            messageBox.style.display = "block";
+            messageBox.textContent = "Password must be at least 8 characters long";
+            submitBtn.disabled = true;
+        } else {
+            if (password.value != confirm_password.value) {
+                messageBox.style.display = "block";
+                messageBox.textContent = "Passwords Don't Match";
+                submitBtn.disabled = true;
+            } else {
+                messageBox.style.display = "none";
+                submitBtn.disabled = false;
+            }
+        }
+    }
+
+    password.addEventListener('keyup', validatePassword);
+    confirm_password.addEventListener('keyup', validatePassword);
+
+</script>
 
 </html>
