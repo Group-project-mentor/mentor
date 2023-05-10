@@ -31,7 +31,7 @@
                 <div class="search-bar">
                 </div>
                 <div class="top-bar-btns">
-                    <a href="<?php echo BASEURL ?>st_profile/generate_report_private">
+                    <a href="<?php echo BASEURL .  'st_profile/generate_report_private_cl' . '/' . $_SESSION['cird'] ?> " >
                         <div class="back-btn">Back</div>
                     </a>
                     <?php include_once "components/notificationIcon.php" ?>
@@ -50,7 +50,10 @@
                     <h3>This is Your Report.</h3>
                 </div>
                 <div class="container-box">
-                    <embed src="<?php echo BASEURL ?>data/reports/<?php  $data[0]->class_id . "/" . $data[0]->location ?>" style="width:50%;height:70vh;margin:auto;">
+                <h3> 
+                    Report Name : <?php echo $data[0]->name ?>
+                </h3>
+                    <embed src="<?php echo BASEURL ?>public/data/reports/<?php  $data[0]->class_id . "/" . $data[0]->location ?>" style="width:50%;height:70vh;margin:auto;">
                 </div>
             </section>
         </div>
