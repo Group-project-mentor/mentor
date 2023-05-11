@@ -66,7 +66,13 @@
                         <input type="text" id="student_id" name="student_id" placeholder="New student ID..">
                         <input type="submit" value="Request to join" id="Request to join">
                     </form>
-                </div>
+<!--comt>
+                    <form>
+                        <label for="search">Search:</label>
+                        <input type="text" id="search" name="search" onkeyup="showMatchingNames(this.value)">
+                        <div id="matching_names"></div>
+                    </form>
+                </div><!-->
 
                 <div class="mid-title">
 
@@ -108,6 +114,36 @@
     }
 
     window.addEventListener("load", checkClassName);
+  
+    //function showMatchingNames(str) {
+        //if (str.length == 0) {
+           // document.getElementById("matching_names").innerHTML = "";
+            //return;
+        //} else {
+            // create XMLHttpRequest object
+            //var xmlhttp = new XMLHttpRequest();
+            //xmlhttp.onreadystatechange = function() {
+               // if (this.readyState == 4 && this.status == 200) {
+                    // display matching names as dropdown list
+                    //var names = this.responseText.split(",");
+                   // var list = "<ul>";
+                    //for (var i = 0; i < names.length; i++) {
+                      //  list += "<li onclick='selectName(\"" + names[i] + "\")'>" + names[i] + "</li>";
+                    //}
+                    //list += "</ul>";
+                    //document.getElementById("matching_names").innerHTML = list;
+                //}
+            //};
+            //xmlhttp.open("GET", "/TInsideClass/getStudentSearch?search=" + str, true);
+            //xmlhttp.send();
+        //}
+   // }
+
+    // function to select name from the list and populate input field
+    //function selectName(name) {
+      //  document.getElementById("search").value = name;
+        //document.getElementById("matching_names").innerHTML = "";
+    //}
 </script>
 
 </html>

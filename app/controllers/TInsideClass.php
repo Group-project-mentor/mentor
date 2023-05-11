@@ -131,4 +131,24 @@ class TInsideClass extends Controller
             $_SESSION["cid"] = $result1;
         }
     }
+
+    //public function getStudentSearch()
+    //{
+        // Get search query from input field
+        //$search_query = filter_input(INPUT_GET, 'search', FILTER_SANITIZE_STRING);
+        //if ($search_query !== null && $search_query !== '') {
+          //  $res = $this->model('classModel')->getMatchingNames($search_query);
+           // if ($res !== null && !empty($res)) {
+             //   if (method_exists($this, 'view') && is_callable(array($this, 'view'))) {
+               //     $this->view('Teacher/classRoom/createClass', array('names' => $res));
+                //} else {
+                  //  error_log("Error: View method is not callable.");
+                //}
+            //} else {
+              //  error_log("Error: No matching names found.");
+            //}
+        //} else {
+          //  error_log("Error: Invalid search query.");
+        //}
+    //}
 }

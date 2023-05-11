@@ -40,6 +40,7 @@
                 <div class="container-box" style="margin-top: 10px;">
                     <div class="rc-resource-header">
                         <h1>V I D E O</h1>
+                        <h6>Hello <?php echo $_SESSION['cid'] ?>,</h6>
                         <div style="display: flex;">
                             <a href="<?php echo BASEURL . 'TEdit/video/' . $data[1][0] ?>" style="margin:5px 10px;">
                                 <div class="rc-add-btn">
@@ -61,7 +62,7 @@
                             </iframe>
                         <?php } elseif ($data[1][6] === "U") { ?>
                             <video class="rc-uploaded-video" controls>
-                                <source src="<?php echo BASEURL . 'public/public_resources/videos/' . $_SESSION['cid'] . "/" . $data[1][4] ?>">
+                                <source src="<?php echo BASEURL . 'public/private_resources/videos/' . $_SESSION['cid'] . "/" . $data[1][4] ?>">
                                 Your browser does not support the video tag.
                             </video>
                         <?php } ?>

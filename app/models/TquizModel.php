@@ -38,17 +38,26 @@ class TquizModel extends Model
         $stmt->bind_param('sii', $name,$marks, $id);
         return $this->executePrepared($stmt);
     }
-
-    public function getQuestionData($quiz, $qno)
+    
+    public function getQuestionDataByID($qid)
     {
-        $stmt = $this->prepare("select * from teacher_question where quiz_id = ? and number = ?");
-        $stmt->bind_param('ii', $quiz, $qno);
-        $res = $this->fetchOne($stmt);
-        if (!empty($res)) {
-            return $res;
-        } else {
-            return array(0);
-        }
+        $stmt = $this->prepare("select * from teacher_question where id = ?");
+        $stmt->bind_param('i', $qid);
+        return $this->fetchOneObj($stmt);
+    }
+
+    public function getQuizState($user_id,$quiz_id)
+    {
+        $q = "SELECT * FROM `quizresults` WHERE quiz_id = ? AND user_id = ? ;";
+        $stmt = $this->prepare($q);
+        $stmt->bind_param('ii',$quiz_id,$user_id);
+        $res = $this->fetchOneObj($stmt);
+        return $res;
+        // if ( $res-> > 0) {
+        //     return $res;
+        // } else {
+        //     return array();
+        // }
     }
 
     public function getQuestions($id)
@@ -96,12 +105,15 @@ class TquizModel extends Model
         }
     }
 
-    public function insertQuestion($quizNo, $quesNo, $question, $img)
+    public function insertQuestion($quizNo, $quesNo, $question, $img = null)
     {
-        $stmt = $this->prepare("INSERT INTO teacher_question(number, description, quiz_id, image) VALUES (?, ?, ?, ?)");
-        $stmt->bind_param('isis', $quesNo, $question, $quizNo, $img);
-        // print_r($img);
-        // $sql = "insert into question(number, description, quiz_id, image) values ($quesNo, '$question', $quizNo, '$img')";
+        if (empty($img)) {
+            $stmt = $this->prepare("INSERT INTO teacher_question(number, description, quiz_id) VALUES (?, ?, ?)");
+            $stmt->bind_param('isi', $quesNo, $question, $quizNo);
+        }else{
+            $stmt = $this->prepare("INSERT INTO teacher_question(number, description, quiz_id, image) VALUES (?, ?, ?, ?)");
+            $stmt->bind_param('isis', $quesNo, $question, $quizNo, $img);
+        }
         return $stmt->execute();
     }
 
@@ -135,10 +147,15 @@ class TquizModel extends Model
         }
     }
 
-    public function saveAnswer($number, $qid, $desc, $correct, $img)
+    public function saveAnswer($number, $qid, $desc, $correct, $img = null)
     {
-        $stmt = $this->prepare("insert into teacher_answer(number, description, correctness, question_id, image) values (?,?,?,?,?)");
-        $stmt->bind_param('isiis', $number, $desc, $correct, $qid, $img);
+        if (empty($img)) {
+            $stmt = $this->prepare("insert into teacher_answer(number, description, correctness, question_id) values (?,?,?,?)");
+            $stmt->bind_param('isii', $number, $desc, $correct, $qid);
+        }else{
+            $stmt = $this->prepare("insert into teacher_answer(number, description, correctness, question_id, image) values (?,?,?,?,?)");
+            $stmt->bind_param('isiis', $number, $desc, $correct, $qid, $img);
+        }
         return $stmt->execute();
     }
 
@@ -157,12 +174,30 @@ class TquizModel extends Model
         $stmt2 ->bind_param('i',$question);
         return ($stmt1 ->execute() and $stmt2->execute());
     }
+    public function getQuestionData($quiz, $qno)
+    {
+        $stmt = $this->prepare("select * from teacher_question where quiz_id = ? and number = ?");
+        $stmt->bind_param('ii', $quiz, $qno);
+        $res = $this->fetchOne($stmt);
+        if (!empty($res)) {
+            return $res;
+        } else {
+            return array(0);
+        }
+    }
 
     public function getAnswerData($question, $answer)
     {
         $stmt = $this->prepare("select * from teacher_answer where teacher_answer.question_id = ? and teacher_answer.id = ?");
         $stmt->bind_param('ii', $question, $answer);
         return $this->fetchOne($stmt);
+    }
+
+    public function delAnswer($answer)
+    {
+        $stmt = $this->prepare("delete from teacher_answer where answer.id = ?");
+        $stmt->bind_param('i', $answer);
+        return $stmt->execute();
     }
     public function updateAnswer($des, $corr, $img, $ans)
     {
@@ -211,10 +246,52 @@ class TquizModel extends Model
         return $this->fetchOne($stmt);
     }
 
+    public function updateQuestionResult($quizId, $user_id, $user_score,$current_q, $status){
+        $stmt = $this->prepare("UPDATE quizresults SET quizresults.current_q = ? , quizresults.score = ?, quizresults.status = 1 WHERE quizresults.user_id = ? AND quizresults.quiz_id = ?;");
+        $stmt->bind_param('iiii',$current_q, $user_score, $user_id, $quizId);
+        return $this->executePrepared($stmt);
+    }
+
+    public function getQuestionByOrd($quizId,$ordNo){
+        if($this->countQuestions($quizId)[0] == 1){
+            $stmt = $this->prepare("SELECT * FROM teacher_question where quiz_id = ? LIMIT 1");
+            $stmt->bind_param('i',$quizId);
+        }else{
+            $stmt = $this->prepare("SELECT * FROM teacher_question where quiz_id = ? order by number limit 1 , ?");
+            $stmt->bind_param('ii',$quizId, $ordNo);
+        }
+        return $this->fetchOne($stmt);
+    }
+
+    public function get_question($quizId,$question){
+        $stmt = $this->prepare("SELECT * FROM teacher_question where quiz_id = ? and id = ?");
+        $stmt->bind_param('ii',$quizId, $question);
+        return $this->fetchOne($stmt);
+    }
+
     public function countQuestions($quizId){
         $stmt = $this->prepare("SELECT count(id) FROM teacher_question WHERE quiz_id = ?");
         $stmt->bind_param('i', $quizId);
         return $this->fetchOne($stmt);
     }
+
+    public function updateQuestion($id, $desc, $img){
+        $stmt = $this->prepare("UPDATE teacher_question SET description = ?, image = ? WHERE id = ?");
+        $stmt->bind_param('ssi', $desc, $img, $id);
+        return $this->executePrepared($stmt);
+    }
+
+    public function markAllWrong($question){
+        $stmt = $this->prepare('UPDATE teacher_answer SET teacher_answer.correctness = 0 WHERE teacher_answer.question_id = ?');
+        $stmt->bind_param('i',$question);
+        return $this->executePrepared($stmt);
+    }
+
+    public function markCorrectness($answer){
+        $stmt = $this->prepare('UPDATE teacher_answer SET teacher_answer.correctness = 1 WHERE teacher_answer.id = ?');
+        $stmt->bind_param('i', $answer);
+        return $this->executePrepared($stmt);
+    }
+
 
 }
