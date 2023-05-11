@@ -10,6 +10,7 @@ class Login extends Controller
         } else if (isset($_SESSION['user']) && isset($_SESSION['premium_expired']) && $_SESSION['premium_expired'] == true) {
             header("location:" . BASEURL . "PremiumExpired");
         }
+        flashMessage();
     }
     public function index($err = null)
     {
@@ -21,6 +22,8 @@ class Login extends Controller
     {
         if (isset($_POST["login"])) {
             $pattern = "/[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/";
+
+            
 
             $email = trim($_POST["email"]);
             if (preg_match($pattern, $email)) {
@@ -51,14 +54,21 @@ class Login extends Controller
                             header("location:" . BASEURL . "home");
                         }
                     } else {
-                        echo $result->password;
-                        // header("location:" . BASEURL . "login/index/2");
+                        // echo $result->password;
+                        flashMessage("incorrect_passwd");
+                        header("location:" . BASEURL . "login");
                     }
                 } else {
-                    header("location:" . BASEURL . "login/index/3");
+                    flashMessage("not_registered");
+                    header("location:" . BASEURL . "login");
                 }
             } else {
-                header("location:" . BASEURL . "login/index/4");
+                if($_POST["email"] == "" || $_POST["passwd"] == ""){
+                    flashMessage("empty_fields");
+                }else{
+                    flashMessage("incorrect_email");
+                }
+                header("location:" . BASEURL . "login");
             }
         }
     }

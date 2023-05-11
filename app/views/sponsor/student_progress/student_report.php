@@ -29,9 +29,6 @@
                 </a>
             </div>
             <div class="top-bar-btns">
-<!--                <a href="">-->
-<!--                    <div class="back-btn">Back</div>-->
-<!--                </a>-->
                 <?php include_once "components/notificationIcon.php" ?>
                 <a href="<?php echo BASEURL . 'sponsor/profile' ?>">
                         <?php include_once "components/profilePic.php"?>
@@ -58,9 +55,6 @@
                 </div>
                 <div class="sponsor-list-main row-decoration" id="info-table">
                     <div class="sponsor-list-row">
-<!--                        <div class="sponsor-list-item sponsor-list-item-title flex-1">-->
-<!--                            ID-->
-<!--                        </div>-->
                         <div class="sponsor-list-item sponsor-list-item-title flex-3">
                             Name
                         </div>
@@ -68,7 +62,7 @@
                             Email
                         </div>
                         <div class="sponsor-list-item sponsor-list-item-title flex-2">
-                            Months Remaining
+                            Months
                         </div>
                         <div class="sponsor-list-item sponsor-list-item-title flex-2">
                             Monthly Amount (Rs.)
@@ -87,9 +81,6 @@
                     foreach ($data[0] as $row){
                     ?>
                     <div class="sponsor-list-row">
-<!--                        <div class="sponsor-list-item flex-1">-->
-<!--                            --><?php //echo $row->id ?>
-<!--                        </div>-->
                         <div class="sponsor-list-item flex-3">
                             <?php echo $row->name ?>
                         </div>
@@ -105,11 +96,6 @@
                         <div class="sponsor-list-item flex-1">
                             <a href="<?php echo BASEURL."sponsor/see_student/".$row->id ?>" >
                                 <img src="<?php echo BASEURL ?>assets/icons/icon_eye.png" alt="" style="width: 20px;">
-                            </a>
-                        </div>
-                        <div class="sponsor-list-item flex-1">
-                            <a href="<?php echo BASEURL."sponsor/see_student/".$row->id ?>" >
-                                <img src="<?php echo BASEURL ?>assets/icons/icon_pay_all.png" alt="" style="width: 20px;"> 
                             </a>
                         </div>
                     </div>
@@ -151,9 +137,6 @@
         let searchTxt = searchInput.value.trim();
         if (searchTxt !== ""){
             cardHolder.innerHTML = `<div class="sponsor-list-row">
-            <!--                        <div class="sponsor-list-item sponsor-list-item-title flex-1">-->
-            <!--                            ID-->
-            <!--                        </div>-->
                                     <div class="sponsor-list-item sponsor-list-item-title flex-3">
                                         Name
                                     </div>
@@ -188,9 +171,6 @@
 
     function renderDocumentData (data){
         return `<div class="sponsor-list-row">
-<!--                        <div class="sponsor-list-item flex-1">-->
-<!--                            -->
-<!--                        </div>-->
                         <div class="sponsor-list-item flex-3">
                             ${data.name}
                         </div>

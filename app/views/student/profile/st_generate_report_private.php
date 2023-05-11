@@ -47,7 +47,7 @@
                 <!-- Title and sub title of middle part -->
                 <div class="mid-title">
                     <h2>Hello <?php echo $_SESSION['name'] ?> !</h2>
-                    <h3>These are the Reports Of your Private Classes. You Can See those by choosing Suitable Class</h3>
+                    <h3>These are the Reports Of your Private Classes. You Can</h3>
                 </div>
 
                 <!-- bottom part -->
@@ -62,7 +62,7 @@
                                 <?php if (!empty($data[0])) { ?>
                                     <div class="subject-card-set">
                                         <?php foreach (array_slice($data[0], 0, 3) as $row) { ?>
-                                            <a href="<?php echo BASEURL . "st_profile/generate_report_private_class/" . $row->class_name ?> " style="text-decoration: none; color:black;" >
+                                            <a href="<?php echo BASEURL . "st_profile/generate_report_private_cl/" . $row->class_name ?> " style="text-decoration: none; color:black;" >
                                                 <div class="rc-dash-info-card">
                                                     <h2><?php echo $row->class_name ?></h2>
                                                 </div>

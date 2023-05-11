@@ -35,7 +35,7 @@
 <body>
     <section class="page">
         <!-- Navigation panel -->
-        <?php include_once "components/navbars/st_navbar_3.php" ?> <!-- used to include_once to add file -->
+        <?php include_once "components/navbars/st_navbar_7.php" ?> <!-- used to include_once to add file -->
 
         <div class="content-area">
 
@@ -50,7 +50,7 @@
                     </a>
                     <?php include_once "components/notificationIcon.php" ?>
                     <a href="<?php echo BASEURL ?>st_profile">
-                        <img src="<?php echo BASEURL; ?>assets/icons/icon_profile_black.png" alt="profile">
+                    <?php include_once "components/profilePic.php"?>
                     </a>
                 </div>
             </section>
@@ -65,8 +65,8 @@
 
                 <div class="subject-card">
                     <img src="<?php echo BASEURL ?>assets/patterns/4.png" alt="" />
-                    <label><?php echo $_SESSION['class_name'] ?></label>
-                    <label>Class Feez : 3000.00 LKR</label>
+                    <label>Class Name : <?php echo $_SESSION['class_name'] ?></label>
+                    <label>Class Feez : <?php echo $_SESSION['fees'] ?>.00 LKR</label>
                 </div>
                 <div class="token" style="margin: auto; padding-top: 20px;">
                     <div style=" font-family: Arial, sans-serif; color: black;">

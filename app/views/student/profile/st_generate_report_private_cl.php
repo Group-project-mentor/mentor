@@ -14,7 +14,7 @@
 <body>
     <section class="page">
         <!-- Navigation panel -->
-        <?php include_once "components/navbars/st_navbar_5.php" ?> <!-- used to include_once to add file -->
+        <?php include_once "components/navbars/st_navbar_4.php" ?> <!-- used to include_once to add file -->
 
 
         <div class="content-area">
@@ -28,12 +28,12 @@
                     </a>
                 </div>
                 <div class="top-bar-btns">
-                    <a href="<?php echo BASEURL . 'st_private_resources/index/' . $_SESSION['class_name']  ?>">
+                    <a href="<?php echo BASEURL . 'st_profile/generate_report_private_class' . '/' . $_SESSION['cird']  ?>">
                         <div class="back-btn">Back</div>
                     </a>
                     <?php include_once "components/notificationIcon.php" ?>
                     <a href="<?php echo BASEURL ?>st_profile">
-                    <?php include_once "components/profilePic.php"?>
+                        <?php include_once "components/profilePic.php" ?>
                     </a>
                 </div>
             </section>
@@ -43,8 +43,8 @@
 
                 <!-- Title and sub title of middle part -->
                 <div class="mid-title">
-
-                    <h2><?php echo "Class Name : " . ucfirst($_SESSION['class_name'])  ?></h2>
+                    <h2>Hello <?php echo $_SESSION['name'] ?> !</h2>
+                    <h3>This is Your Report.</h3>
                 </div>
                 <!-- Grade choosing interface -->
                 <div class="container-box">
@@ -53,9 +53,7 @@
                     if (!empty($data[0])) { ?>
                         <div class="rc-resource-table">
                             <div class="rc-pp-row rc-pp-row-head">
-                                <div class="rc-resource-col">Past Papers </div>
-                                <div class="rc-resource-col">year</div>
-                                <div class="rc-resource-col">Part</div>
+                                <div class="rc-resource-col">Report Name </div>
                                 <div></div>
                             </div>
                             <?php foreach ($data[0] as $row) { ?>
@@ -64,22 +62,14 @@
                                     <div class='rc-resource-col' style="display: flex;align-items: center;justify-content: flex-start;">
 
                                         <div>
-                                            <?php echo $row->name ;
-                                            $_SESSION['rname'] = $row->name ; ?>
+                                            <?php echo $row->name ?>
                                         </div>
+                                        <div></div>
+                                        <div></div>
                                         
                                         <div>
-                                            <?php echo $row->year ?>
-                                        </div>
-                                        <div>
-                                            <?php echo $row->part ?>
-                                        </div>
-                                        <div>
-                                            <a href="<?php echo BASEURL . 'st_private_resources/preview/paper/' . $row->class_id  ?>">
+                                            <a href="<?php echo BASEURL . "st_profile/generate_report_private_class/" . $_SESSION['cird']  ?>">
                                                 <img src="<?php echo BASEURL ?>assets/icons/icon_eye.png" alt="">
-                                            </a>
-                                            <a href="<?php echo BASEURL . 'st_private_resources/st_pastpaper_link_Quiz/' . $row->class_id ?>">
-                                                <img src="<?php echo BASEURL ?>assets/icons/icon_quiz_black.png" alt="">
                                             </a>
                                         </div>
                                     </div>
@@ -89,26 +79,9 @@
                             <h2 class="rc-no-data-msg" style="text-align: center;">No Data to Display</h2>
                         <?php } ?>
                         </div>
-                        <?php if (count($data) > 25) { ?>
-                            <div class="pagination-set">
-                                <div class="pagination-set-left">
-                                    <b>25</b> Results
-                                </div>
-                                <div class="pagination-set-right">
-                                    <button>
-                                        < </button>
-                                            <div class="pagination-numbers">
-                                                1 of 10
-                                            </div>
-                                            <button> > </button>
-                                </div>
-                            </div>
-                        <?php } ?>
                 </div>
         </div>
     </section>
 </body>
-<script src="<?php echo BASEURL ?>public/javascripts/st_auth_script.js"></script>
-
 
 </html>
