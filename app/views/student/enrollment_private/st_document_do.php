@@ -28,7 +28,7 @@
                     </a>
                 </div>
                 <div class="top-bar-btns">
-                    <a href="<?php echo BASEURL.'st_private_resources/index_documents/'.$_SESSION['class_name']?>">
+                    <a href="<?php echo BASEURL.'st_private_resources/index_documents/'.$_SESSION['class_id']?>">
                         <div class="back-btn">Back</div>
                     </a>
                     <?php include_once "components/notificationIcon.php" ?>
@@ -43,7 +43,6 @@
             <?php
             if(empty($data)){
                 echo "<center style='color:red;font-size:x-large;'>No file ! </center>";
-                // header("location:".BASEURL."rcResources/documents/".$_SESSION['gid']."/".$_SESSION['sid']);
             }
             else{
             ?>
@@ -56,7 +55,7 @@
                     <hr style=" height:5px ; background-color:green ;">
                     <br>
                 <div class="container-box" >
-                    <embed src="<?php echo BASEURL?>private_resources/documents/<?php echo $_SESSION['class_name']."/".$data->location ?>" style="width:50%;height:70vh;margin:auto;">
+                    <embed src="<?php echo BASEURL?>private_resources/documents/<?php echo $_SESSION['class_id']."/".$data->location ?>" style="width:50%;height:70vh;margin:auto;">
                 </div>
             <?php } ?>
             </section>

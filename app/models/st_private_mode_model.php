@@ -7,7 +7,7 @@ class St_private_mode_model extends Model
         parent::__construct();
     }
 
-    public function getClasses($sid)
+    public function getClassesDetails($sid)
     {
         $q = "SELECT classes_has_students.student_id , classes_has_students.class_id , private_class.class_name , private_class.fees FROM classes_has_students 
         INNER JOIN private_class ON classes_has_students.class_id = private_class.class_id WHERE classes_has_students.student_id = ? AND classes_has_students.access = 1;";
