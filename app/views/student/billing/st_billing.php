@@ -10,14 +10,13 @@
     <link rel="stylesheet" href="<?php echo BASEURL?>public/stylesheets/resourceCreator/rc_main.css">
     <link rel="stylesheet" href="<?php echo BASEURL?>public/stylesheets/resourceCreator/rc_resources.css">
     <link rel="stylesheet" href="<?php echo BASEURL . '/public/stylesheets/sponsor/sp_styles.css' ?> ">
-<!--    <script defer src="--><?php //echo BASEURL ?><!--javascripts/spPaymentProgress.js"> </script>-->
 
 </head>
 
 <body>
 <section class="page">
     <!-- Navigation panel -->
-    <?php include_once "components/navbars/sp_nav_1.php"?>
+    <?php include_once "components/navbars/st_navbar_3.php"?>
 
     <div class="content-area">
 
@@ -27,8 +26,8 @@
 
             </div>
             <div class="top-bar-btns">
-                <a href="#">
-                    <a class="back-btn" href="<?php echo BASEURL ?>">Back</a>
+                <a href="<?php echo BASEURL. 'st_private_resources/index/' . $_SESSION['class_id'] . '/' . $_SESSION['class_name'] ?>">
+                    <a class="back-btn" >Back</a>
                 </a>
                 <?php include_once "components/notificationIcon.php" ?>
                 <a href="<?php echo  BASEURL ?>st_profile">
@@ -84,10 +83,10 @@
                                         <?php echo $data[0]->class_name ?>
                                     </div>
                                     <div class="sponsor-list-item flex-2">
-                                        <?php echo $data[0]->year ?>
+                                        20<?php echo date('y') ?>
                                     </div>
                                     <div class="sponsor-list-item flex-2">
-                                        <?php echo $data[0]->month ?>
+                                        <?php echo date('n') ?>
                                     </div>
                                     <div class="sponsor-list-item flex-2 chk-amount">
                                         <?php echo number_format($data[0]->fees, 2, '.', '') ?>
@@ -101,7 +100,7 @@
 
                 
                 <div style="margin-top: 20px;display: flex;justify-content: flex-end;">
-                    <a href="<?php echo BASEURL.'sponsor/paymentTest/'.$data[0]->id ?>" class="sponsor-button"  style="font-size:large;margin: 0 5px;text-decoration: none;">
+                    <a href="<?php echo BASEURL.'st_billing/paymentTest/' ?>" class="sponsor-button"  style="font-size:large;margin: 0 5px;text-decoration: none;">
                         <img src="<?php echo BASEURL?>public/assets/icons/icon_cash.png" alt="profile" style="width: 25px;">
                         Pay bill
                     </a>

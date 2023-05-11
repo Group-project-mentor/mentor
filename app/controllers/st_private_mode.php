@@ -23,8 +23,7 @@ class St_private_mode extends Controller
 
     public function st_myclasses()
     {
-        $sid = $_SESSION['id'];
-        $res = $this->model('st_private_mode_model')->getClassesDetails($sid);
+        $res = $this->model('st_private_mode_model')->getClassesDetails($_SESSION['id']);
         $this->view('student/privatemode/st_myclasses', array($res));
     }
 
