@@ -27,6 +27,14 @@ class Home extends Controller
                 break;
 
             case 'ad':
+                //$privilege=($this->model("admin")->getPrivilege($_SESSION['id'])->privilege);
+                //var_dump($privilege);
+                //if($privilege==1)
+                //{
+                   // header("location:" . BASEURL . "admins/dashboard");
+                //}else if($privilege==0){
+                   // header("location:" . BASEURL . "admins/coDashboard");
+               // }
                 header("location:" . BASEURL . "admins/dashboard");
                 break;
             case 'tch':

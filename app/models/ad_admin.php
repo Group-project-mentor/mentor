@@ -7,7 +7,7 @@ class Ad_admin extends Model{
 
     public function addAdmin($name,$email,$password){
         
-        $addAdmin = "insert into admin(name,email,password) values('$name','$email','$password');";
+        $addAdmin = "insert into admin(name,email,password,super_admin) values('$name','$email','$password','0');";
         $result = $this->executeQuery($addAdmin);
 
         return ($result);

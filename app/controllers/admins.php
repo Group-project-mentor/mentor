@@ -62,7 +62,7 @@ class admins extends Controller {
 
         }  
 
-    }
+    } 
 
     public function complaints() {
 
@@ -75,7 +75,6 @@ class admins extends Controller {
 
         if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 
-
             $data = [];
             $data['complaints'] = $this->adminModel->complaint();
 
@@ -85,6 +84,34 @@ class admins extends Controller {
 
         }
 
+    }
+
+    public function coDashboard() {
+
+        sessionValidator();
+        $this->hasLogged();
+
+        // if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+        // }
+
+        if ($_SERVER['REQUEST_METHOD'] == 'GET') {
+
+            $uID = $_SESSION["id"];
+            $data = [];
+            $data['studentCount'] = $this->adminModel->studentCount();
+            $data['teacherCount'] = $this->adminModel->teacherCount();
+            $data['classCount'] = $this->adminModel->classCount();
+            $data['sponsorCount'] = $this->adminModel->sponsorCount();
+            $data['complaints'] = $this->adminModel->complaint();
+            $data['rtask'] = $this->adminModel->ResourceTask($uID);
+            $data['ctask'] = $this->adminModel->ComplaintTask($uID);
+
+            // print_r($data);
+
+            $this->view('admin/coAdminView/coDashboard',$data);
+
+        }
     }
 
     public function complaint($id) {
@@ -210,6 +237,8 @@ class admins extends Controller {
 
     }
 
+    
+
     public function userhandling() {
 
         sessionValidator();
@@ -243,12 +272,15 @@ class admins extends Controller {
         sessionValidator();
         $this->hasLogged();
 
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            $rID = $_POST['rID'];
+            $uID = $_POST['uID'];
+        }
+
         if ($element == "") {
 
             if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-                $rID = $_POST['rID'];
-                $uID = $_POST['uID'];
-
+                
                  //print_r($this->adminModel->addtoTaskManger($rID,$uID));die;
                 if ($this->adminModel->addResourcetoTaskManger($rID,$uID)) {
                     echo 'Successful';
@@ -259,6 +291,7 @@ class admins extends Controller {
             }
 
             if ($_SERVER['REQUEST_METHOD'] == 'GET') {
+                
                 
                 $this->view('admin/verification');
 
@@ -275,8 +308,9 @@ class admins extends Controller {
                 
 
                 $data = [];
+
                 $data['video'] = $this->adminModel->videos();
-                
+                $data['element'] = $element;
                 $this->view('admin/resourceVerificationVideos',$data);
 
             }
@@ -293,7 +327,7 @@ class admins extends Controller {
 
                 $data = [];
                 $data['quiz'] = $this->adminModel->quiz();
-
+                $data['element'] = $element;
                 $this->view('admin/resourceVerificationQuizzes',$data);
 
             }
@@ -309,7 +343,7 @@ class admins extends Controller {
                 
                 $data = [];
                 $data['pastpaper'] = $this->adminModel->pastpapers();
-
+                $data['element'] = $element;
                 $this->view('admin/resourceVerificationPstppr',$data);
 
             }
@@ -325,7 +359,7 @@ class admins extends Controller {
 
                 $data = [];
                 $data['pdf'] = $this->adminModel->pdfs();
-
+                $data['element'] = $element;
                 
                 $this->view('admin/resourceVerificationPdf',$data);
 
@@ -342,7 +376,7 @@ class admins extends Controller {
 
                 $data = [];
                 $data['other'] = $this->adminModel->others();
-                
+                $data['element'] = $element;
                 $this->view('admin/resourceVerificationOther',$data);
 
             }
@@ -355,12 +389,30 @@ class admins extends Controller {
         sessionValidator();
         $this->hasLogged();
 
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+            if ($element == "approve") {
+                if ($this->adminModel->approveResource($id)) {
+                    echo 'Successful';
+                } else {
+                    echo 'Error';
+                }
+            } elseif ($element == "decline") {
+                if ($this->adminModel->declineResource($id)) {
+                    echo 'Successful';
+                } else {
+                    echo 'Error';
+                }
+            }else{
+                echo 'Error';
+            }
+
+            
+        
+        }
+
 
         if ($element == "video") {
-
-            if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-            
-            }
 
             if ($_SERVER['REQUEST_METHOD'] == 'GET') {
                 
@@ -670,8 +722,27 @@ class admins extends Controller {
             $email = $_POST['admin-mail'];
 
             $this->model('ad_admin')->addAdmin($name,$email,$password);
+            $this->model('admin')->addNewAdminToUser($name,$email,$password);
+            
+            $message = "<center><div>
+            <h1 style='color: green;'>M E N T O R</h1>
+            <h3>This is your Password for Login to your account</h3>
+            <h1 style='letter-spacing: 4px;background-color:#EEE;padding:10px 15px;border-radius: 10px;border: 1px solid #CCC;'>
+            $password
+            </h1>
+            <h5 style='color:red;'>Do not share this PASSWORD with anyone !</h5>
+            </div></center>";
+            sendMail($email, "User", "MENTOR ADMIN PASSWORD", $message);
+            // // the message
+            // $msg = "First line of text\nSecond line of text";
 
-            echo "Success";
+            // // use wordwrap() if lines are longer than 70 characters
+            // $msg = wordwrap($msg, 70);
+
+            // // send email
+            // mail("someone@example.com", "My subject", $msg);
+
+            // echo "Success";
             
         }
 
