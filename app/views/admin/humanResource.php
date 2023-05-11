@@ -61,10 +61,8 @@
                                 </div>
                                 
                                 <div class="btns">
-                                
-                                    <form action="' . BASEURL . 'admins/scholpro/' . $value['id'] . '" method="POST">
-                                        <button class="comp-btns">Add to task manager</button>
-                                    </form><br>
+                                    <button class="comp-btns" onclick="addComplaintToTaskManager(' . $data['rc'][0]['work_id'] . ',' . $_SESSION['id'] . ')" type="button">Add To Task Manager</button>
+                                    <br>
                                 </div>
                             </div>';
                         }

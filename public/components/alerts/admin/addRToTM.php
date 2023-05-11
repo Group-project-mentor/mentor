@@ -8,7 +8,7 @@
                 <img src="<?php echo BASEURL ?>assets/admin/com-notification.png" alt="error image">
             </div>
             <div class="message-btn">
-                <a href="<?php echo BASEURL ?>admins/verify/">OK</a>
+                <?php echo'<a href=" ' . BASEURL . 'admins/verify/'.$data['element'].'">OK</a>';?>
             </div>
         </div>
     </div>

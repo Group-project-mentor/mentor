@@ -148,14 +148,15 @@ function tookaction(cID){
     xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
             var response = this.responseText.trim();
+            
 
             if(response === "Successful") {
-                window.location.replace("http://localhost/mentor/admins/taskmanager");
+                 window.location.replace("http://localhost/mentor/admins/taskmanager");
+                
+                
             }             
 
-            console.log(response);
-            console.log(typeof('Successful'));
-            console.log(response === 'Successful');
+            
 
         }
     };
@@ -164,4 +165,56 @@ function tookaction(cID){
     xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xhttp.send();
 }
+
+function approve(rID){
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            var response = this.responseText.trim();
+
+            if(response === "Successful") {
+                // window.location.replace("http://localhost/mentor/admins/taskmanager");
+                         
+                let alert = document.getElementById("alert");
+                alert.classList.remove("hideme");
+                alert.classList.add("showme");
+                document.getElementById("msg").innerHTML = "Resource Approved";
+                document.getElementById("img").src = "http://localhost/mentor/public/assets/admin/resource_approved.png";
+
+            }
+
+        }
+    };
+
+    xhttp.open("POST", "http://localhost/mentor/admins/resource/approve/"+rID, true);
+    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xhttp.send();
+}
+
+function decline(rID){
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            var response = this.responseText.trim();
+
+            if(response === "Successful") {
+                // window.location.replace("http://localhost/mentor/admins/taskmanager");
+                         
+
+                let alert = document.getElementById("alert");
+                alert.classList.remove("hideme");
+                alert.classList.add("showme");
+                document.getElementById("msg").innerHTML = "Resource\ Declined";
+                document.getElementById("img").src = "http://localhost/mentor/public/assets/admin/resource_decline.png";
+
+            }
+
+        }
+    };
+
+    xhttp.open("POST", "http://localhost/mentor/admins/resource/decline/"+rID, true);
+    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xhttp.send();
+}
+
 

@@ -113,11 +113,23 @@ class admin extends Model{
         return $this->executeQuery($query);
     }
 
+    public function approveResource($rID){
+        $query = "UPDATE `public_resource` SET `approved` = 'Y' WHERE `id` = '$rID'; ";
+        
+        return $this->executeQuery($query);
+    }
+
+    public function declineResource($rID){
+        $query = "UPDATE `public_resource` SET `approved` = 'N' WHERE `id` = '$rID'; ";
+        
+        return $this->executeQuery($query);
+    }
+
 
 
 
     public function ResourceTask($uID){
-        $query = "SELECT* FROM `public_resource` WHERE `approved_by`='$uID'; ";
+        $query = "SELECT* FROM `public_resource` WHERE `approved_by`='$uID' AND `approved` IS NULL; ";
         $result = $this->executeQuery($query);
         
         if ($result->num_rows > 0) {
@@ -216,9 +228,32 @@ class admin extends Model{
         } 
     }
 
+    public function getPrivilege($ID){
+        $query = "SELECT `super_admin` as privilege FROM `admin` WHERE `admin_id`='$ID';";
+        $result = $this->executeQuery($query);
+        
+        if ($result->num_rows > 0) {
+            return $result->fetch_all(MYSQLI_ASSOC);
+        } else {
+            return false;
+        } 
+    }
+
 
     public function admin(){
         $query = "SELECT *FROM `admin`;";
+        $result = $this->executeQuery($query);
+    
+        if ($result->num_rows > 0) {
+            return $result->fetch_all(MYSQLI_ASSOC);
+        } else {
+            return false;
+        } 
+    }
+
+    public function addNewAdminToUser($name,$email,$password){
+        $hash = password_hash($password, PASSWORD_BCRYPT, ["cost" => 10]);
+        $query = "INSERT INTO user(`email`,`name`,`password`,`type`) VALUE('$email','$name','$hash','ad') ;";
         $result = $this->executeQuery($query);
     
         if ($result->num_rows > 0) {
@@ -259,6 +294,16 @@ class admin extends Model{
     //     return ($result);
     // }
 
+    public function elements($rID){
+        $query = "SELECT `type` FROM `public_resource` WHERE `id`='$rID';";
+        $result = $this->executeQuery($query);
+        
+        if ($result->num_rows > 0) {
+            return $result->fetch_all(MYSQLI_ASSOC);
+        } else {
+            return false;
+        } 
+    }
     public function videos(){
         $query = "SELECT `public_resource`.*, `video`.* FROM `public_resource` INNER JOIN `video` ON `public_resource`.id = `video`.id WHERE `public_resource`.`type`='video' AND `public_resource`.`approved_by` IS NULL";
         $result = $this->executeQuery($query);

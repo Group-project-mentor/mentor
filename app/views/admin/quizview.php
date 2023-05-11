@@ -8,15 +8,12 @@
     <title>complaints</title>
     <link rel="stylesheet" href="<?php echo BASEURL ?>stylesheets/admin/ad_complaints.css">
     <link rel="stylesheet" href="<?php echo BASEURL ?>stylesheets/admin/style.css">
+    <link rel="stylesheet" href="<?php echo BASEURL ?>stylesheets/admin/massage.css">
 
 </head>
-<nav>
-    <div class="ad_nav">
-
-    </div>
-</nav>
 
 <body>
+<?php require_once("C:/xampp/htdocs/mentor/public/components/alerts/admin/resources_add.php"); ?>
     <?php require_once("C:/xampp/htdocs/mentor/app/views/admin/navbar.php"); ?>
     <!-- Middle part for whole content -->
     <section class="mid-content ad_mid-content">
@@ -44,7 +41,8 @@
                 <p>' . $data['quizv'][0]['questions'] . '</p>
             </div>
             <div class="btns">
-                <button class="comp-btns" onclick="tookaction(' . $data['quizv'][0]['id'] . ')" type="button">Took Action</button>
+                <button class="comp-btns" onclick="approve(\''.$data['quizv'][0]['id'].'\')" type="button">Approve</button>
+                <button class="comp-btns" onclick="decline(\''. $data['quizv'][0]['id'].'\')" type="button">Decline</button>
             </div>
 
             

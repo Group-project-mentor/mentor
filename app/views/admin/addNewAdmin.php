@@ -15,52 +15,50 @@
 </head>
 
 <body>
-<?php require_once("C:/xampp/htdocs/mentor/public/components/alerts/admin/addAdmin.php"); ?>
+    <?php require_once("C:/xampp/htdocs/mentor/public/components/alerts/admin/addAdmin.php"); ?>
     <?php require_once("C:/xampp/htdocs/mentor/app/views/admin/navbar.php"); ?>
-            <!-- Middle part for whole content -->
-            <section class="mid-content ad_mid-content">
+    <!-- Middle part for whole content -->
+    <section class="mid-content ad_mid-content">
 
-                <!-- Title and sub title of middle part -->
-
-
-                <div class="content" id="comp-content">
-                    <div class="bckclose">
-                        <img class="back" src="<?php echo BASEURL ?>assets/admin/Arrow---Left.png">
-                        <img class="close" src="<?php echo BASEURL ?>assets/admin/Close-Square.png">
-                    </div>
-                    <form class="form">
-                        <div class="mid-title">
-                            <h1>Add New Admin </h1>
-                        </div>
-
-                        <div class="dataentry">
-                            <div class="l">
-                                <label for="Name" id="newadminname">New co-Admin name</label><br>
-                                <input type="Name" name="admin-name" id="admin-name" placeholder="   Enter co-Admin's Name" class="inputfield"><br>
-                            </div>
-                            
-
-                            <div class="l">
-                                <label for="co-useremail" id="co-useremail">New co-Admin email</label><br>
-                                <input type="email" name="admin-mail" id="admin-mail" placeholder="   Enter co-Admin's email address" class="inputfield"><br>
-                            </div>
-
-                            
+        <!-- Title and sub title of middle part -->
 
 
-                        </div>
-                        <div class="btns">
-                                <button class="comp-btns" onclick="addAdmin()" type="button">Add and Send link via mail</button>
-                         </div>
-
-                        
-
-                    </form>
-
+        <div class="content" id="comp-content">
+            <div class="bckclose">
+                <img class="back" src="<?php echo BASEURL ?>assets/admin/Arrow---Left.png">
+                <img class="close" src="<?php echo BASEURL ?>assets/admin/Close-Square.png">
+            </div>
+            <form class="form">
+            <form action="<?php echo BASEURL; ?>TInsideClass/addTchAction/<?php echo "$cid"; ?>" method="POST">
+                <div class="mid-title">
+                    <h1>Add New Admin </h1>
                 </div>
 
-            </section>
+                <div class="dataentry">
+                    <div class="l">
+                        <label for="Name" id="newadminname">New co-Admin name</label><br>
+                        <input type="Name" name="admin-name" id="admin-name" placeholder="   Enter co-Admin's Name" class="inputfield"><br>
+                    </div>
+
+
+                    <div class="l">
+                        <label for="co-useremail" id="co-useremail">New co-Admin email</label><br>
+                        <input type="email" name="admin-mail" id="admin-mail" placeholder="   Enter co-Admin's email address" class="inputfield"><br>
+                    </div>
+
+                </div>
+                <div class="btns">
+                    <button class="comp-btns" onclick="addAdmin()" type="button">Add and Send link via mail</button>
+                </div>
+
+
+
+            </form>
+
         </div>
+
+    </section>
+    </div>
     </section>
     <?php require_once("C:/xampp/htdocs/mentor/app/views/admin/popup.php"); ?>
 </body>
