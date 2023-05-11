@@ -11,6 +11,18 @@
 </head>
 
 <body>
+<?php
+        if(isset($_SESSION['message']) && $_SESSION['message']== "success"){
+            include_once "components/alerts/Teacher/classCreated.php";
+        }
+        elseif(isset($_SESSION['message']) && $_SESSION['message']== "failed"){
+            include_once "components/alerts/Teacher/classFailed.php";
+        }
+        elseif(isset($_SESSION['message']) && $_SESSION['message']== "premiumLimited"){
+            include_once "components/alerts/Teacher/premiumOver.php";
+        }
+    ?>
+
     <section class="page">
         <!-- Navigation panel -->
         <?php include_once "components/navbars/t_nav_1.php" ?>

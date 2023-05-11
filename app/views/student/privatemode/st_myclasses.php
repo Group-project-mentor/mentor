@@ -15,7 +15,7 @@
 <body>
     <section class="page">
         <!-- Navigation panel -->
-        <?php include_once "components/navbars/st_navbar_3.php" ?> <!-- used to include_once to add file -->
+        <?php include_once "components/navbars/st_navbar_7.php" ?> <!-- used to include_once to add file -->
 
         <div class="content-area">
 
@@ -33,7 +33,7 @@
                     </a>
                     <?php include_once "components/notificationIcon.php" ?>
                     <a href="<?php echo BASEURL ?>st_profile">
-                        <img src="<?php echo BASEURL; ?>assets/icons/icon_profile_black.png" alt="profile">
+                    <?php include_once "components/profilePic.php"?>
                     </a>
                 </div>
             </section>
@@ -53,9 +53,9 @@
                                 <?php foreach ($data[0] as $row) { ?>
                                     <div class="subject-card">
                                         <img src="<?php echo BASEURL  ?>assets/patterns/2.png" alt="" />
-                                        <label><?php echo $row->class_name ?></label>
-
-                                        <a href="<?php echo BASEURL . 'st_private_resources/index/' . $row->class_name  ?>"><label>View</label></a>
+                                        <label>Class Name  : <?php echo $row->class_name ?></label>
+                                        <label>Monthly Fees : <?php echo $row->fees ?>.00 LKR</label>
+                                        <a href="<?php echo BASEURL . 'st_private_resources/index/' . $row->class_id . '/' . $row->class_name  ?>"><label>View</label></a>
 
                                     </div>
                                 <?php } ?>

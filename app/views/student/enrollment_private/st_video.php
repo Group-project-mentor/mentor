@@ -28,12 +28,12 @@
                     </a>
                 </div>
                 <div class="top-bar-btns">
-                    <a href="<?php echo BASEURL . 'st_private_resources/index/' . $_SESSION['class_name']   ?>">
+                    <a href="<?php echo BASEURL . 'st_private_resources/index/' . $_SESSION['class_id'] . '/' . $_SESSION['class_name']   ?>">
                         <div class="back-btn">Back</div>
                     </a>
                     <?php include_once "components/notificationIcon.php" ?>
                     <a href="<?php echo BASEURL ?>st_profile">
-                        <img src="<?php echo BASEURL ?>assets/icons/icon_profile_black.png" alt="profile">
+                    <?php include_once "components/profilePic.php"?>
                     </a>
                 </div>
             </section>
@@ -59,8 +59,8 @@
                             foreach ($data[0] as $row) { ?>
                                 <div class='subject-card' style="align-items: center;">
                                     <img src='<?php echo BASEURL . "assets/patterns/" . $count++ . '.png' ?>' alt='' />
-                                    <label><?php echo $row->name; 
-                                    $_SESSION['rname'] = $row->name;
+                                    <label><?php echo $row->name;
+                                     $_SESSION['rname'] = $row->name; ?>
                                     ?></label>
                                     <label><?php echo $row->lecturer ?></label>
                                     <a href='<?php echo BASEURL . "st_private_resources/preview/video/" . $row->class_id ?>'>

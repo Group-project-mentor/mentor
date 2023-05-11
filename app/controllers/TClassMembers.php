@@ -27,7 +27,7 @@ class TClassMembers extends Controller
         $this->view('Teacher/classMembers/changeHost3');
     }
 
-    public function memDetails($class_id,$class_name)
+    public function memDetails($class_id, $class_name)
     {
         if (!isset($_SESSION['user'])) {
             header("location:" . BASEURL . "login");
@@ -73,15 +73,26 @@ class TClassMembers extends Controller
     public function rmvSt($student_id, $class_id)
     {
 
-        $this->model("teacher_data")->deleteSt($student_id, $class_id);
-        header("location:" . BASEURL . "TClassMembers/memDetails/" . $_SESSION["cid"]);
+        if($this->model("teacher_data")->deleteSt($student_id, $class_id)){
+            flashMessage("success");
+            header("location:" . BASEURL . "TClassMembers/memDetails/" . $_SESSION["cid"] . "/" . $_SESSION["cname"]);
+        }else {
+            flashMessage("failed");
+            header("location:" . BASEURL . "TClassMembers/memDetails/" . $_SESSION["cid"] . "/" . $_SESSION["cname"]);
+        }
+        
     }
 
     public function rmvTch($teacher_id, $class_id)
     {
 
-        $this->model("teacher_data")->deleteTch($teacher_id, $class_id);
-        header("location:" . BASEURL . "TClassMembers/memDetails/" . $_SESSION["cid"]);
+        if ($this->model("teacher_data")->deleteTch($teacher_id, $class_id)) {
+            flashMessage("success");
+            header("location:" . BASEURL . "TClassMembers/memDetails/" . $_SESSION["cid"] . "/" . $_SESSION["cname"]);
+        } else {
+            flashMessage("failed");
+            header("location:" . BASEURL . "TClassMembers/memDetails/" . $_SESSION["cid"] . "/" . $_SESSION["cname"]);
+        }
     }
 
 

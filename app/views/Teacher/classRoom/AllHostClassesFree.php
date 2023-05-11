@@ -14,16 +14,6 @@
 
 
     <section class="page">
-        <?php if (!empty($_SESSION['message'])) {
-            switch ($_SESSION['message']) {
-                case "Your have successfully added the teacher":
-                    include_once "components/alerts/Teacher/teacher_addded.php";
-                    break;
-                case "Your classes have reached the limit for free account":
-                    include_once "components/alerts/Teacher/addTeacherLimit.php";
-                    break;
-            }
-        } ?>
         <!-- Navigation panel -->
         <?php include_once "components/navbars/t_nav_1.php" ?>
 

@@ -31,7 +31,7 @@
                     </a>
                     <?php include_once "components/notificationIcon.php" ?>
                     <a href="<?php echo BASEURL  ?>st_profile">
-                        <img src="<?php echo BASEURL ?>public/assets/icons/icon_profile_black.png" alt="profile">
+                    <?php include_once "components/profilePic.php"?>
                     </a>
                 </div>
             </section>
@@ -79,7 +79,7 @@
 
                         <div class="rc-form-group-hz">
                             <div class="rc-form-group">
-                                <label> Gradient Name * : </label>
+                                <label> Guardian Name * : </label>
                                 <input type="text" name="gradientname" placeholder="Full Name" value="<?php echo empty($data[0]) ? "" : $data[0]->gradientname ?>"  maxlength="50" required />
                             </div>
                         </div>
@@ -90,7 +90,7 @@
                                 <input type="text" name="tel1" placeholder="Telephone No" value="<?php echo empty($data[0]) ? "" : $data[0]->payPhone  ?>" pattern="^(?:\+94|0)[1-9]\d{8}$" required />
                             </div>
                             <div class="rc-form-group">
-                                <label> Gradient Telephone No * : </label>
+                                <label> Guardian Telephone No * : </label>
                                 <input type="text" name="tel2" placeholder="Telephone No" value="<?php echo empty($data[0]) ? "" : $data[0]->payPhone ?>" pattern="^(?:\+94|0)[1-9]\d{8}$" />
                             </div>
                         </div>

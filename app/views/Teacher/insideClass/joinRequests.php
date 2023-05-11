@@ -14,16 +14,22 @@
 
 <body>
     <section class="page">
-    <?php if(!empty($_SESSION['message'])){
-        switch ($_SESSION['message']){
-            case "Your have successfully added the teacher":
-                include_once "components/alerts/Teacher/teacher_addded.php";
-                break;
-            case "Your add student limit for free account is over":
-                include_once "components/alerts/Teacher/addTeacherLimit.php";
-                break;
+    <?php
+        if(isset($_SESSION['message']) && $_SESSION['message']== "success"){
+            include_once "components/alerts/Teacher/student_joined.php";
         }
-    } ?>
+        elseif(isset($_SESSION['message']) && $_SESSION['message']== "failed"){
+            include_once "components/alerts/Teacher/student_joined_failed.php";
+        }
+        elseif(isset($_SESSION['message']) && $_SESSION['message']== "premiumLimited"){
+            include_once "components/alerts/Teacher/StpremiumOver.php";
+        }elseif(isset($_SESSION['message']) && $_SESSION['message']== "delete_success"){
+            include_once "components/alerts/Teacher/delete_request.php";
+        }
+        elseif(isset($_SESSION['message']) && $_SESSION['message']== "delete_failed"){
+            include_once "components/alerts/Teacher/delete_request_failed.php";
+        }
+    ?>
         <!-- Navigation panel -->
         <?php include_once "components/navbars/t_nav_2.php" ?>
 

@@ -28,12 +28,12 @@
                     </a>
                 </div>
                 <div class="top-bar-btns">
-                    <a href="<?php echo BASEURL . 'st_private_resources/index/' . $_SESSION['class_name']  ?>">
+                    <a href="<?php echo BASEURL . 'st_private_resources/index/' . $_SESSION['class_id'] . '/' . $_SESSION['class_name']  ?>">
                         <div class="back-btn">Back</div>
                     </a>
                     <?php include_once "components/notificationIcon.php" ?>
                     <a href="<?php echo BASEURL ?>st_profile">
-                        <img src="<?php echo BASEURL ?>assets/icons/icon_profile_black.png" alt="profile">
+                    <?php include_once "components/profilePic.php"?>
                     </a>
                 </div>
             </section>
@@ -77,9 +77,6 @@
                                         <div>
                                             <a href="<?php echo BASEURL . 'st_private_resources/preview/paper/' . $row->class_id  ?>">
                                                 <img src="<?php echo BASEURL ?>assets/icons/icon_eye.png" alt="">
-                                            </a>
-                                            <a href="<?php echo BASEURL . 'st_private_resources/st_pastpaper_link_Quiz/' . $row->class_id ?>">
-                                                <img src="<?php echo BASEURL ?>assets/icons/icon_quiz_black.png" alt="">
                                             </a>
                                         </div>
                                     </div>

@@ -54,7 +54,10 @@
                 <div class="mid-title">
                     <h1>Uploaded Reports</h1>
                 <h6><?php echo $_SESSION['cid']."-".ucfirst($_SESSION['cname'])."/Generate Feedback/Ask Feedback/Student Report/Uploaded Reports"?><h6>
+                    <br>
                 </div>
+                <?php
+                    include_once "components/filters/reportFilter.php"; ?>
 
                 <!--  -->
                 <div class="container-box">

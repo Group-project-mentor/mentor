@@ -31,7 +31,7 @@
 
                 <div class="top-bar-btns">
                     <a href="#">
-                        <a class="back-btn" href="<?php echo BASEURL ?>TInsideClass/InClass">Back</a>
+                        <a class="back-btn" href="<?php echo BASEURL ?>home">Back</a>
                     </a>
                     <?php include_once "components/notificationIcon.php" ?>
                     <?php include_once "components/premiumIcon.php" ?>

@@ -22,18 +22,14 @@
             <!-- Top bar -->
             <section class="top-bar">
                 <div class="search-bar">
-                    <input type="text" name="" id="" placeholder="Search...">
-                    <a href="">
-                        <img src="<?php echo BASEURL ?>assets/icons/icon_search.png" alt="">
-                    </a>
                 </div>
                 <div class="top-bar-btns">
-                    <a href="<?php echo BASEURL . 'st_private_resources/index_past_papers/' . $_SESSION['class_name']  ?>">
+                    <a href="<?php echo BASEURL . 'st_private_resources/index_past_papers/' . $_SESSION['class_id']  ?>">
                         <div class="back-btn">Back</div>
                     </a>
                     <?php include_once "components/notificationIcon.php" ?>
                     <a href="<?php echo BASEURL ?>st_profile">
-                        <img src="<?php echo BASEURL ?>assets/icons/icon_profile_black.png" alt="profile">
+                    <?php include_once "components/profilePic.php"?>
                     </a>
                 </div>
             </section>
@@ -42,13 +38,12 @@
                 <?php
                 if (empty($data)) {
                     echo "<center style='color:red;font-size:x-large;'>No file ! </center>";
-                    // header("location:".BASEURL."rcResources/documents/".$_SESSION['gid']."/".$_SESSION['sid']);
                 } else {
                 ?>
                     <!-- Title and sub title of middle part -->
 
                     <div class="mid-title">
-                        <h6>My Subjects / <?php echo $_SESSION['class_name'] ?> / past papers / <?php echo $_SESSION['rname'] ?></h6>
+                        <h2>My Subjects / <?php echo $_SESSION['class_name'] ?> / past papers / <?php echo $_SESSION['rname'] ?></h2>
                     </div>
                     <br>
                     <hr style=" height:5px ; background-color:green ;">
@@ -61,8 +56,6 @@
         </div>
     </section>
 </body>
-
-<script src="<?php echo BASEURL ?>public/javascripts/st_auth_script.js"></script>
 
 
 </html>

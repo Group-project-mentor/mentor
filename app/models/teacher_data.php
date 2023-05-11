@@ -145,4 +145,28 @@ class Teacher_data extends Model
         $result->bind_param('ii', $id1, $id2);
         return $this->fetchOneObj($result, true);
     }
+
+    public function getduplicateSt($id1, $id2)
+    {
+        $q = "SELECT COUNT(classes_has_students.student_id) as scount FROM classes_has_students WHERE classes_has_students.student_id = ? AND classes_has_students.class_id=? ";
+        $result = $this->prepare($q);
+        $result->bind_param('ii', $id1, $id2);
+        return $this->fetchOneObj($result, true);
+    }
+
+    public function getduplicateStJoined($id1, $id2)
+    {
+        $q = "SELECT classes_has_students.accept as accept FROM classes_has_students WHERE classes_has_students.student_id = ? AND classes_has_students.class_id=?";
+        $result = $this->prepare($q);
+        $result->bind_param('ii', $id1, $id2);
+        return $this->fetchOneObj($result, true);
+    }
+
+    public function getduplicateTr($id1, $id2)
+    {
+        $q = "SELECT COUNT(classes_has_extra_teachers.teacher_id) as tcount FROM classes_has_extra_teachers WHERE classes_has_extra_teachers.teacher_id = ? AND classes_has_extra_teachers.class_id=? ";
+        $result = $this->prepare($q);
+        $result->bind_param('ii', $id1, $id2);
+        return $this->fetchOneObj($result, true);
+    }
 }

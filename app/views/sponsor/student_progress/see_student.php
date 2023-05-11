@@ -69,7 +69,7 @@
                                     <div class="sponsor-list-item flex-1 sponsor-detail-cell" >
                                         ID :
                                     </div>
-                                    <div class="sponsor-list-item flex-3 sponsor-detail-cell">
+                                    <div class="sponsor-list-item flex-2 sponsor-detail-cell">
                                         <?php echo $data[0]->id ?>
                                     </div>
                                 </div>
@@ -77,30 +77,18 @@
                                     <div class="sponsor-list-item flex-1 sponsor-detail-cell" >
                                         Name :
                                     </div>
-                                    <div class="sponsor-list-item flex-3 sponsor-detail-cell">
+                                    <div class="sponsor-list-item flex-2 sponsor-detail-cell">
                                         <?php echo $data[0]->name ?>
                                     </div>
                                 </div>
                                 <div class="sponsor-list-row">
-                                    <div class="sponsor-list-item flex-1 sponsor-detail-cell" >
-                                        Grade :
+                                    <div class="sponsor-list-item flex-1 sponsor-detail-cell">
+                                        Months Remaining :
                                     </div>
-                                    <div class="sponsor-list-item flex-3 sponsor-detail-cell">
-                                    <?php if(!empty($data[1])){
-                                        foreach ($data[1] as $row){ 
-                                            echo "Grade ".$row->grd;
-                                        }
-                                        }else{ 
-                                            echo "No Grade";
-                                        } ?>
-                                    </div>
-                                </div>
-                                <div class="sponsor-list-row">
-                                    <div class="sponsor-list-item flex-1 sponsor-detail-cell" >
-                                        Age :
-                                    </div>
-                                    <div class="sponsor-list-item flex-3 sponsor-detail-cell">
-                                        <?php echo $data[0]->id ?>
+                                    <div class="sponsor-list-item flex-2 sponsor-detail-cell">
+                                    <?php 
+                                        echo $data[3] . " Months";
+                                    ?>
                                     </div>
                                 </div>
                             </div>

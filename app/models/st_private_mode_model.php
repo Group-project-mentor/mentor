@@ -7,9 +7,9 @@ class St_private_mode_model extends Model
         parent::__construct();
     }
 
-    public function getClasses($sid)
+    public function getClassesDetails($sid)
     {
-        $q = "SELECT classes_has_students.student_id , classes_has_students.class_id , private_class.class_name FROM classes_has_students 
+        $q = "SELECT classes_has_students.student_id , classes_has_students.class_id , private_class.class_name , private_class.fees FROM classes_has_students 
         INNER JOIN private_class ON classes_has_students.class_id = private_class.class_id WHERE classes_has_students.student_id = ? AND classes_has_students.access = 1;";
         $stmt = $this->prepare($q);
         $stmt->bind_param('i', $sid);
@@ -88,12 +88,24 @@ class St_private_mode_model extends Model
 
     public function jointokenview($sid, $cid, $token)
     {
-        $q = "SELECT private_class.class_name FROM private_class 
+        $q = "SELECT private_class.class_name , private_class.fees FROM private_class 
         INNER JOIN join_requests ON private_class.class_id = join_requests.class_id WHERE private_class.token = ? LIMIT 1;";
         $stmt = $this->prepare($q);
         $stmt->bind_param('s', $token);
 
         $result = $this->fetchOneObj($stmt);
+        return $result;
+    }
+
+    
+    public function getClassesReportAll($id,$class_name)
+    {
+        $q = "SELECT teacher_report.location , teacher_report.name , private_class.class_id FROM teacher_report INNER JOIN private_class
+        ON teacher_report.class_id = private_class.class_id WHERE private_class.class_name = ? AND teacher_report.student_id = ?;";
+        $stmt = $this->prepare($q);
+        $stmt->bind_param('si', $class_name,$id);
+
+        $result = $this->fetchObjs($stmt);
         return $result;
     }
 

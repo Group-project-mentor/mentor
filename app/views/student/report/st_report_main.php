@@ -11,6 +11,12 @@
     <style>
         @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800&display=swap");
 
+        body{
+            background-image: url('public/assets/grades/logo1_dark.png');
+            background-size:contain;
+            background-repeat: no-repeat;
+            background-position: center center;
+        }
         .container {
             display: flex;
             flex-direction: column;
@@ -113,7 +119,7 @@
                     </a>
                     <?php include_once "components/notificationIcon.php" ?>
                     <a href="<?php echo BASEURL . 'st_profile' ?>">
-                        <img src="<?php echo BASEURL ?>assets/icons/icon_profile_black.png" alt="profile">
+                    <?php include_once "components/profilePic.php"?>
                     </a>
                 </div>
             </section>
@@ -178,6 +184,7 @@
                 <div id="jjj"></div>
             </section>
     </section>
+    <hr style="color: green; height:7px; background-color:green;">
 </body>
 <script>
     const form1 = document.getElementById('form-1');

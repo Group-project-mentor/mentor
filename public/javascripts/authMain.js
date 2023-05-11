@@ -65,7 +65,6 @@ signUpTeacher.addEventListener('submit',(e)=>{
     });
 });
 
-// ! not completed
 signUpStudent.addEventListener('submit',(e)=>{
     e.preventDefault();
 

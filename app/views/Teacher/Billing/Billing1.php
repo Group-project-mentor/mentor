@@ -96,11 +96,20 @@
 </head>
 
 <body>
+<?php
+        if(isset($_SESSION['message']) && $_SESSION['message']== "success"){
+            include_once "components/alerts/Teacher/withdraw_money.php";
+        }
+        elseif(isset($_SESSION['message']) && $_SESSION['message']== "failed"){
+            include_once "components/alerts/Teacher/withdraw_money_failed.php";
+        }
+    ?>
     <section class="page">
+    
 
         <!-- Navigation panel -->
         <?php include_once "components/navbars/t_nav_1.php" ?>
-
+        <//?php include_once "components/alerts/rightAlert.php"?>
         <div class="content-area">
 
             <!-- Top bar -->
@@ -226,10 +235,10 @@
         var amountHidden = document.getElementById("withdraw-amount-hidden");
 
         if (amountInput.value === "") {
-            alert("Please enter an amount to withdraw.");
+            makeError("Please enter an amount to withdraw.");
             return false;
         } else if (amountInput.value <= 0) {
-            alert("Please enter a valid amount to withdraw.");
+            makeError("Please enter a valid amount to withdraw.");
             return false;
         } else {
             amountHidden.value = amountInput.value;
@@ -246,7 +255,7 @@
 
         if (withdrawAmount > totalIncome & withdrawAmount != 0) {
             event.preventDefault(); // prevent form submission
-            alert("Withdraw amount cannot be greater than total income.");
+            makeError("Withdraw amount cannot be greater than total income.");
 
         }
     });
