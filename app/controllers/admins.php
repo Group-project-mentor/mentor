@@ -55,6 +55,8 @@ class admins extends Controller {
             $data['complaints'] = $this->adminModel->complaint();
             $data['rtask'] = $this->adminModel->ResourceTask($uID);
             $data['ctask'] = $this->adminModel->ComplaintTask($uID);
+            $data['ResourceCrCount'] = $this->adminModel->ResourceCrCount();
+            
 
             // print_r($data);
 
@@ -106,6 +108,8 @@ class admins extends Controller {
             $data['complaints'] = $this->adminModel->complaint();
             $data['rtask'] = $this->adminModel->ResourceTask($uID);
             $data['ctask'] = $this->adminModel->ComplaintTask($uID);
+            $data['rctask'] = $this->adminModel->ResourceCreatorTask($uID);
+
 
             // print_r($data);
 
@@ -189,6 +193,28 @@ class admins extends Controller {
 
     }
 
+    public function deleteResouceCreatorTM($id) {
+
+        sessionValidator();
+        $this->hasLogged();
+
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+            if($this->adminModel->deleteRCFromTaskManager($id)){
+                echo 'Successful';
+            } else{
+                echo 'Error';
+            }
+        }
+
+        if ($_SERVER['REQUEST_METHOD'] == 'GET') {
+            
+            
+
+        }
+
+    }
+
     public function taskmanager() {
 
         sessionValidator();
@@ -207,6 +233,7 @@ class admins extends Controller {
             $data = [];
             $data['rtask'] = $this->adminModel->ResourceTask($uID);
             $data['ctask'] = $this->adminModel->ComplaintTask($uID);
+            $data['rctask'] = $this->adminModel->ResourceCreatorTask($uID);
             $this->view('admin/task',$data);
 
         }
@@ -236,9 +263,7 @@ class admins extends Controller {
         }
 
     }
-
-    
-
+  
     public function userhandling() {
 
         sessionValidator();
@@ -493,19 +518,16 @@ class admins extends Controller {
 
     }
 
-    public function scholorships() {
+    public function scholorships($schlID="%") {
 
         sessionValidator();
         $this->hasLogged();
-
-        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-           
-        }
+        
 
         if ($_SERVER['REQUEST_METHOD'] == 'GET') {
-
+            $ID = $_SESSION["id"];
             $data = [];
-            $data['scholarship'] = $this->adminModel->scholorship();
+            $data['scholarship'] = $this->adminModel->scholorship($ID);
             $data['sponsors'] = $this->adminModel->sponsors();
             $this->view('admin/scholpro',$data);
 
@@ -523,9 +545,9 @@ class admins extends Controller {
         }
 
         if ($_SERVER['REQUEST_METHOD'] == 'GET') {
-
+            $ID = $_SESSION["id"];
             $data = [];
-            $data['scholarship'] = $this->adminModel->scholorship();
+            $data['scholarship'] = $this->adminModel->scholorship($ID);
             
             $this->view('admin/scholoviewall',$data);
 
@@ -559,13 +581,21 @@ class admins extends Controller {
         $this->hasLogged();
 
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-           
+            $uID = $_SESSION["id"];
+
+            if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+                if($this->adminModel->addScholToTaskManager($id,$uID)){
+                    echo 'Successful';
+                } else{
+                    echo 'Error';
+                }
+            }
         }
 
         if ($_SERVER['REQUEST_METHOD'] == 'GET') {
-
+            $ID = $_SESSION["id"];
             $data = [];
-            $data['scholarship'] = $this->adminModel->scholorship();
+            $data['scholarship'] = $this->adminModel->scholorship($ID);
             
             $this->view('admin/scholoview',$data);
 
@@ -592,23 +622,6 @@ class admins extends Controller {
         }
 
     }
-
-    // public function wallet() {
-
-    //     sessionValidator();
-    //     $this->hasLogged();
-
-    //     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-           
-    //     }
-
-    //     if ($_SERVER['REQUEST_METHOD'] == 'GET') {
-            
-    //         $this->view('admin/wallet');
-
-    //     }
-
-    // }
 
     public function analatics() {
 
@@ -639,7 +652,7 @@ class admins extends Controller {
         if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 
             $data['admin'] = $this->adminModel->admin();
-            $data['rc'] = $this->adminModel->resourcecreator();
+            $data['appliedrc'] = $this->adminModel->AppliedResourcecreator();
             
             // $data['classes'] = $this->hrModel->getClasses();
             
@@ -669,21 +682,98 @@ class admins extends Controller {
 
     }
 
-    public function resourceCreatorViewall() {
+    public function resourceCreatorViewall($rcID='%') {
 
         sessionValidator();
         $this->hasLogged();
 
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            
            
         }
 
         if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 
             $data = [];
-            $data['rc'] = $this->adminModel->resourcecreator();
+            $data['appliedrc'] = $this->adminModel->AppliedResourcecreator();
             
             $this->view('admin/resourcecreatorviewall',$data);
+
+        }
+
+    }
+
+    public function resourceCreatorView($rcID) {
+
+        sessionValidator();
+        $this->hasLogged();
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+            $uID = $_SESSION["id"];
+
+            if($this->adminModel->addRCToTaskManager($rcID,$uID)){
+                echo 'Successful';
+            } else{
+                echo 'Error';
+            }
+
+        }
+
+        if ($_SERVER['REQUEST_METHOD'] == 'GET') {
+
+            $data = [];
+            $data['appliedrc'] = $this->adminModel->ResourceCreatorView($rcID);
+            
+            $this->view('admin/resourceCreatorView',$data);
+
+        }
+
+    }
+
+    public function resourceCreatorReview($element,$rcID) {
+
+        sessionValidator();
+        $this->hasLogged();
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+            $data['creator'] = $this->adminModel->ResourceCreatorDetails($rcID);
+
+            if ($element == "approve") {
+                $password = $this->randompassword();
+                if ($this->adminModel->approveResourceCreator($rcID,$data['creator']['0']['firstName'],$data['creator'][0]['email'],$password)) {
+                    $message = "<center><div>
+                    <h1 style='color: green;'>M E N T O R</h1>
+                    <h3>We are so glad to informe you that you have been selected as a Resource Creator at MENTOR<br> You Can Use This PASSWORD to login to your account<br>Thank You!</h3>
+                    <h1 style='letter-spacing: 4px;background-color:#EEE;padding:10px 15px;border-radius: 10px;border: 1px solid #CCC;'>
+                    $password
+                    </h1>
+                    <h5 style='color:red;'>Do not share this PASSWORD with anyone !</h5>
+                    </div></center>";
+                    // sendMail($data['creator'][0]['email'], "User", "MENTOR RESOURCE CREATOR PASSWORD", $message);
+           
+                    echo 'Successful';
+                } else {
+                    echo 'Error';
+                }
+            } elseif ($element == "decline") {
+                if ($this->adminModel->declineResourceCreator($rcID)) {
+                    echo 'Successful';
+                } else {
+                    echo 'Error';
+                }
+            }else{
+                echo 'Error';
+            }
+
+        
+        }
+
+        if ($_SERVER['REQUEST_METHOD'] == 'GET') {
+
+            $data = [];
+            $data['appliedrc'] = $this->adminModel->ResourceCreatorView($rcID);
+            
+            $this->view('admin/resourceCreatorReview',$data);
 
         }
 
@@ -754,7 +844,6 @@ class admins extends Controller {
 
     }
 
-    
     public function profile() {
 
         sessionValidator();
@@ -804,26 +893,22 @@ class admins extends Controller {
         $this->view("admin/ad_profile/profile_changeimg", $data);
     }
 
-    private function password($msg)
-    {
+    private function password($msg) {
         sessionValidator();
         $this->hasLogged();
         $this->view("admin/setting", $msg);
     }
 
-    private function email()
-    {
+    private function email() {
 
     }
 
-    private function mobile($msg = null)
-    {
+    private function mobile($msg = null) {
         $result = $this->model("userModel")->getMobile($_SESSION['id']);
         $this->view("admin/ad_profile/profile_changephone", array($result,$msg));
     }
 
-    private function name($msg = null)
-    {
+    private function name($msg = null) {
         sessionValidator();
         $this->hasLogged();
 
@@ -831,8 +916,7 @@ class admins extends Controller {
         $this->view("admin/ad_profile/profile_changename", $data);
     }
 
-    public function changeName()
-    {
+    public function changeName() {
         sessionValidator();
         $this->hasLogged();
 
@@ -849,8 +933,7 @@ class admins extends Controller {
         }
     }
 
-    public function changeImage()
-    {
+    public function changeImage() {
         sessionValidator();
         $this->hasLogged();
 
@@ -865,8 +948,7 @@ class admins extends Controller {
         }
     }
 
-    public function updateImage()
-    {
+    public function updateImage() {
         session_start();
         if (isset($_FILES["image"])) {
             $typeArray = array("png" => "image/png", "jpg" => "image/jpg", "jpeg" => "image/jpeg");
@@ -916,8 +998,7 @@ class admins extends Controller {
         }
     }
 
-    public function changeMobile()
-    {
+    public function changeMobile() {
         sessionValidator();
         $this->hasLogged();
 
@@ -935,8 +1016,7 @@ class admins extends Controller {
         }
     }
 
-    public function changePassword()
-    {
+    public function changePassword() {
         sessionValidator();
         $this->hasLogged();
 
@@ -966,7 +1046,6 @@ class admins extends Controller {
             header("location:" . BASEURL . 'adProfile/change/password/failed');
         }
     }
-
 
     public function settings() {
 
@@ -1049,7 +1128,6 @@ class admins extends Controller {
         }
 
     }
-
 
     public function add()
     {

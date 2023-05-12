@@ -109,8 +109,15 @@ class St_public_resources extends Controller
 
     public function st_pastpaper_link_Quiz($id)
     {
-        $file = $this->model("st_public_resources_model")->getResource($id,$_SESSION['gid'],$_SESSION['sid'],'paper');
-        $this->view('student/enrollment/st_pastpaper_link_Quiz',$file);
+        $file = $this->model("st_public_resources_model")->getLinkedQuiz($id);
+        var_dump($file);
+        if (!empty($file->qid)) {
+            header("location:" . BASEURL . 'st_public_resources/st_quizzes_do/' . $file->qid );  // controller to controller - redirect
+        }
+        else {
+            header("location:" . BASEURL . 'st_public_resources/index_past_papers/' . $_SESSION['gid'] . '/' .$_SESSION["sid"] );
+        }
+
 
     }
 
@@ -156,16 +163,20 @@ class St_public_resources extends Controller
                 break;
             case 'paper':
                 $file = $this->model("st_public_resources_model")->getResource($id, $_SESSION['gid'], $_SESSION['sid'], 'paper');
-                $this->view("student/enrollment/st_pastpaper_do", $file);
+                
+                $answer = $this->model("st_public_resources_model")->getPastPaperAnswer($id);
+                
+                $this->view("student/enrollment/st_pastpaper_do", array($file,$answer));
                 break;
             case 'video':
+                $related = $this->model("st_public_resources_model")->getRandomVideos($_SESSION['gid'], $_SESSION['sid']);
                 $file = $this->model("st_public_resources_model")->getResource($id, $_SESSION['gid'], $_SESSION['sid'], 'video');
 
                 $resourceData = $this->model("st_public_resources_model")->getVideo($id, $_SESSION['sid'], $_SESSION['gid']);
                 //var_dump($resourceData);
                 if ($resourceData->type === "L")
                     $resourceData->link = $this->filterVideoId($resourceData->link);
-                $this->view("student/enrollment/st_video_play", array($file, $resourceData));
+                $this->view("student/enrollment/st_video_play", array($file, $resourceData , $related));
                 break;
         }
     }

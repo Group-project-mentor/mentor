@@ -1,5 +1,10 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800&display=swap");
+
+
+
+
 *{
-    font-family: Roboto;
+    font-family: Poppins;
 }
 .ad_mid-content{
 
@@ -83,10 +88,30 @@ img{
 }
 
 #btn{
-    background: #00AE46;
+    background: #186537;
     width: 100px;
     border-radius: 45px;
     border: 0px;
     padding: 5px 10px;
     color: #ffffff;
+}
+
+.content a{
+    display: inline-block;
+    padding: 0.5em 1em;
+    background-color: #186537;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    box-shadow: 2px 2px 2px #000000;
+}
+
+.icons button{
+    display: inline-block;
+    padding: 0.5em 1em;
+    background-color: #186537;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    box-shadow: 2px 2px 2px rgba(0,0,0,0.2);
 }

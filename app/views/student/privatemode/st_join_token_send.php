@@ -77,7 +77,11 @@
                                 <p>To join the class, you first need to obtain the class token and send a join request. Once you have the class token, follow the instructions provided by your teacher to send the request.</p>
                             </li>
                             <li style="background-color: #186537; color: white; padding: 10px; margin-bottom: 10px;">
-                                <h4>Step 2: Pay the Monthly Class Fee</h4>
+                                <h4>Step 2: Wait for Teacher Approval</h4>
+                                <p>Your join request will be held until your payment is validated. Once your payment is validated, the teacher will accept your token request and you'll be able to attend the class.</p>
+                            </li>
+                            <li style="background-color: #186537; color: white; padding: 10px; margin-bottom: 10px;">
+                                <h4>Step 3: Pay the Monthly Class Fee</h4>
                             </li>
                             <p>To attend the class, you need to pay the monthly class fee. You can use the billing method in your profile to pay the fee. Follow the steps below:</p>
                             <ol style="margin-top: 0; padding-left: 20px;">
@@ -92,10 +96,7 @@
                                 </li>
                             </ol>
 
-                            <li style="background-color: #186537; color: white; padding: 10px; margin-bottom: 10px;">
-                                <h4>Step 3: Wait for Teacher Approval</h4>
-                                <p>Your join request will be held until your payment is validated. Once your payment is validated, the teacher will accept your token request and you'll be able to attend the class.</p>
-                            </li>
+                            
                         </ol>
                     </div>
                 </div>

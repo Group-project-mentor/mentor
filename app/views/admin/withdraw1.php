@@ -11,11 +11,6 @@
     <link rel="stylesheet" href="<?php echo BASEURL ?>stylesheets/admin/style.css">
 
 </head>
-<nav>
-    <div class="ad_nav">
-
-    </div>
-</nav>
 
 <body>
     <section class="page">

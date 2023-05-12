@@ -1,5 +1,5 @@
-<section class="notification">
-    <div id="alert" class="hideme message-area">
+<section id="alert" class="hideme notification">
+    <div class="message-area">
         <div class="message">
             <div class="message-text">
                 Add To Task Manager Succsessfully!
@@ -8,7 +8,7 @@
                 <img src="<?php echo BASEURL ?>assets/admin/com-notification.png" alt="error image">
             </div>
             <div class="message-btn">
-                <a href="<?php echo BASEURL ?>admins/complaints">OK</a>
+                <a href="<?php echo BASEURL ?>admins/scholorshipviews">OK</a>
             </div>
         </div>
     </div>

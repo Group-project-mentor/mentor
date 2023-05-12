@@ -22,7 +22,7 @@ class St_private_mode_model extends Model
     {
         $q = "SELECT classes_has_students.student_id , classes_has_students.class_id , private_class.class_name FROM classes_has_students 
         INNER JOIN private_class ON classes_has_students.class_id = private_class.class_id 
-        WHERE classes_has_students.student_id = ? AND classes_has_students.access = 0;";
+        WHERE classes_has_students.student_id = ? AND classes_has_students.accept = 0;";
         $stmt = $this->prepare($q);
         $stmt->bind_param('i', $sid);
 

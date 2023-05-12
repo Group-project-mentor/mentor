@@ -5,60 +5,61 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>login</title>
-    <link rel="stylesheet" href="<?php echo BASEURL ?>stylesheets/admin/ad_complaintHandle.css">
+    <title>complaints</title>
+    <link rel="stylesheet" href="<?php echo BASEURL ?>stylesheets/admin/ad_complaints.css">
     <link rel="stylesheet" href="<?php echo BASEURL ?>stylesheets/admin/style.css">
-</head>
+    <link rel="stylesheet" href="<?php echo BASEURL ?>stylesheets/admin/massage.css">
 
+</head>
 <body>
+<?php require_once("C:/xampp/htdocs/mentor/public/components/alerts/admin/resource_creator_approved.php"); ?>
     <?php require_once("C:/xampp/htdocs/mentor/app/views/admin/navbar.php"); ?>
     <!-- Middle part for whole content -->
     <section class="mid-content ad_mid-content">
 
         <!-- Title and sub title of middle part -->
         <div class="mid-title">
-            <h1>Sponsors Application</h1>
+            <h1>Applied Resource Creator</h1>
         </div>
-
         <div class="content">
             <?php
-            foreach ($data['sponsors'] as $value) {
-                echo '<div class="content">
-                            <div class="complaints">
-                                <div class="pp">
-                                    <img class="profile" src="' . BASEURL . 'assets/admin/pp.png">
-                                </div>
-                                <div class="name" id="user-name">
-                                    <p>' . $value['dispName'] . '</p>
-                                </div>
-                                <div class="userid" id="user-id">
-                                    <p>' . $value['id'] . '</p>
-                                </div>
-                                <div class="description" id="user-description">
-                                    <p>' . $value['description'] . '</p>
-                        </div>
-                        <div class="icons">
-                            <div class="view">
-                                <a href="'. BASEURL .'admins/sponsorview/' . $value['id'] . '?id=' . $value['id'] .'"><img src="'. BASEURL .'assets/admin/view.png"></a>
-                            </div>
-                            <div class="addtm">
-                                <button class="comp-btns" type="button"><img src="'. BASEURL .'assets/admin/addtm.png"></button>
-                            </div>
-                            <div class="delete">
-                                <a href="'. BASEURL .'#"><img src="'. BASEURL .'assets/admin/Delete.png"></a>
-                            </div>
-                        </div>
-                            </div>
-                        </div>';
-            }
-            ?>
+
+            echo '<div class="content" id="comp-content">
+            <div class="bckclose">
+                <img class="back" src="'. BASEURL .'assets/admin/Arrow---Left.png">
+                <img class="close" src="'. BASEURL .'assets/admin/Close-Square.png">
+            </div>
+            <div class="complaints" id="com-complaints">
+                <div class="pp">
+                    <img class="profile" src="'. BASEURL .'assets/admin/pp.png">
+                </div>
+                <div class="name">
+                    <p>'. $data['appliedrc'][0]['firstName'] .'</p>
+                </div>
+            </div>
+            <div id="com-title">
+                <h1>'. $data['appliedrc'][0]['subjects'] .'</h1>
+                <p>' . $data['appliedrc'][0]['description'] . '</p>
+            </div>
+            <div class="btns">
+                <button class="comp-btns" onclick="approveRC(\''.$data['appliedrc'][0]['id'].'\')" type="button">Approve</button>
+                <button class="comp-btns" onclick="declineRC(\''. $data['appliedrc'][0]['id'].'\')" type="button">Decline</button>
+            </div>
+
             
+            
+            </div>';
+
+            ?>
+
         </div>
+
     </section>
     </div>
     </section>
     <?php require_once("C:/xampp/htdocs/mentor/app/views/admin/popup.php"); ?>
 </body>
+<script src="<?php echo BASEURL ?>javascripts/admin/cors.js"></script>
 
 <script>
     let toggle = true;

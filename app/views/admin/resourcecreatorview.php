@@ -5,61 +5,78 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>login</title>
-    <link rel="stylesheet" href="<?php echo BASEURL ?>stylesheets/admin/ad_complaintHandle.css">
+    <title>complaints</title>
+    <link rel="stylesheet" href="<?php echo BASEURL ?>stylesheets/admin/ad_complaints.css">
     <link rel="stylesheet" href="<?php echo BASEURL ?>stylesheets/admin/style.css">
+    <link rel="stylesheet" href="<?php echo BASEURL ?>stylesheets/admin/massage.css">
+
 </head>
 
 <body>
+<?php require_once("C:/xampp/htdocs/mentor/public/components/alerts/admin/addToTM.php"); ?>
+
+    
     <?php require_once("C:/xampp/htdocs/mentor/app/views/admin/navbar.php"); ?>
     <!-- Middle part for whole content -->
     <section class="mid-content ad_mid-content">
 
         <!-- Title and sub title of middle part -->
         <div class="mid-title">
-            <h1>Sponsors Application</h1>
+            <h1>Applied Resource Creators</h1>
         </div>
+
 
         <div class="content">
             <?php
-            foreach ($data['sponsors'] as $value) {
-                echo '<div class="content">
-                            <div class="complaints">
-                                <div class="pp">
-                                    <img class="profile" src="' . BASEURL . 'assets/admin/pp.png">
-                                </div>
-                                <div class="name" id="user-name">
-                                    <p>' . $value['dispName'] . '</p>
-                                </div>
-                                <div class="userid" id="user-id">
-                                    <p>' . $value['id'] . '</p>
-                                </div>
-                                <div class="description" id="user-description">
-                                    <p>' . $value['description'] . '</p>
+            if (!$data['appliedrc']) {
+                echo 'No Applied Resource Creators';
+            } else {
+            
+                        echo '<div class="content" id="comp-content">
+                    <div class="bckclose">
+                        <img class="back" src="'. BASEURL .'assets/admin/Arrow---Left.png">
+                        <img class="close" src="'. BASEURL .'assets/admin/Close-Square.png">
+                    </div>
+                    <div class="complaints" id="com-complaints">
+                        <div class="pp">
+                            <img class="profile" src="'. BASEURL .'assets/admin/pp.png">
                         </div>
-                        <div class="icons">
-                            <div class="view">
-                                <a href="'. BASEURL .'admins/sponsorview/' . $value['id'] . '?id=' . $value['id'] .'"><img src="'. BASEURL .'assets/admin/view.png"></a>
-                            </div>
-                            <div class="addtm">
-                                <button class="comp-btns" type="button"><img src="'. BASEURL .'assets/admin/addtm.png"></button>
-                            </div>
-                            <div class="delete">
-                                <a href="'. BASEURL .'#"><img src="'. BASEURL .'assets/admin/Delete.png"></a>
-                            </div>
+                        <div class="name">
+                            <p>'. $data['appliedrc'][0]['firstName'] .'</p>
                         </div>
-                            </div>
-                        </div>';
+                    </div>
+                    <div id="com-title">
+                        <h1>Title goes here</h1>
+                        <p>'. $data['appliedrc'][0]['email'] . '</p>
+                    </div>
+                    <div class="btns">
+                    
+                        <button class="comp-btns" onclick="addRCToTaskManager(' . $data['appliedrc'][0]['id'] . ')" type="button">Add To Task Manager</button>
+                        
+                        <button class="comp-btns">Delete</button>
+                    </div>
+
+                    
+                    
+                    </div>';
             }
+            
+        
+            
             ?>
             
         </div>
+
+        
+        
+
+        
     </section>
     </div>
     </section>
     <?php require_once("C:/xampp/htdocs/mentor/app/views/admin/popup.php"); ?>
 </body>
-
+<script src="<?php echo BASEURL ?>javascripts/admin/cors.js"></script>
 <script>
     let toggle = true;
 

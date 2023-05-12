@@ -22,18 +22,15 @@
             <!-- Top bar -->
             <section class="top-bar">
                 <div class="search-bar">
-                    <input type="text" name="" id="" placeholder="Search...">
-                    <a href="">
-                        <img src="<?php echo BASEURL ?>assets/icons/icon_search.png" alt="">
-                    </a>
+
                 </div>
                 <div class="top-bar-btns">
-                    <a href="<?php echo BASEURL.'st_public_resources/index_videos/'.$_SESSION['gid'].'/'.$_SESSION['sid'] ?>">
+                    <a href="<?php echo BASEURL . 'st_public_resources/index_videos/' . $_SESSION['gid'] . '/' . $_SESSION['sid'] ?>">
                         <div class="back-btn">Back</div>
                     </a>
                     <?php include_once "components/notificationIcon.php" ?>
                     <a href="<?php echo BASEURL ?>st_profile">
-                    <?php include_once "components/profilePic.php"?>
+                        <?php include_once "components/profilePic.php" ?>
                     </a>
                 </div>
             </section>
@@ -43,7 +40,7 @@
 
                 <!-- Title and sub title of middle part -->
                 <div class="mid-title">
-                <h1>V I D E O</h1>
+                    <h1>V I D E O</h1>
                 </div>
 
 
@@ -58,60 +55,47 @@
                     <!-- kavi -->
 
                 </div>
-                    <h2 style="margin: 0 20px;"><?php echo $data[1]->name ?></h2>
-                    <!-- <?php print_r($data) ?> -->
+                <h2 style="margin: 0 20px;"><?php echo $data[1]->name ?></h2>
+                <!-- <?php print_r($data) ?> -->
 
-                    <div class="subject-card-watching">
-                        <?php if($data[1]->type === "L"){ ?>
-                            <iframe style="width: 720px;height:480px;" src="<?php echo $data[1]->link ?>"
-                                    title="YouTube video player" frameborder="0"
-                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                                    allowfullscreen>
-                            </iframe>
-                        <?php }elseif($data[1]->type === "U"){ ?>
-                            <video class="rc-uploaded-video" controls>
-                                <source src="<?php echo BASEURL.'public/public_resources/videos/'.$data[1]->link ?>" >
-                                Your browser does not support the video tag.
-                            </video>
-                        <?php } ?>
-                    </div>
+                <div class="subject-card-watching">
+                    <?php if ($data[1]->type === "L") { ?>
+                        <iframe style="width: 720px;height:480px;" src="<?php echo $data[1]->link ?>" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen>
+                        </iframe>
+                    <?php } elseif ($data[1]->type === "U") { ?>
+                        <video class="rc-uploaded-video" controls>
+                            <source src="<?php echo BASEURL . 'public/public_resources/videos/' . $data[1]->link ?>">
+                            Your browser does not support the video tag.
+                        </video>
+                    <?php } ?>
+                </div>
 
-                    <!-- kavi -->
-                    <h2>Description</h2>
-                    <p class="Description">
-                    <?php echo $data[1]->description?>
-                    </p>
+                <!-- kavi -->
+                <h2>Description</h2>
+                <p class="Description">
+                    <?php echo $data[1]->description ?>
+                </p>
+                <div>
                     <div>
-                    <h3>Related Videos</h3>
+                        <h3>Related Videos</h3>
+                    </div>
+                    <div class="subject-card-set">
+                        <?php
+                        if (!empty($data[2])) {
+                            $count = 1;
+                            foreach ($data[2] as $row) { ?>
+                                <div class="subject-card">
+                                    <img src="<?php echo BASEURL . "assets/patterns/$count.png" ?>" alt="" />
+                                    <label>Grade <?php echo $_SESSION["gid"] + 5 ?></label>
+                                    <a href="<?php echo BASEURL . "st_public_resources/preview/video/" . $row->id ?>">
+                                        <button class="Enter-btn">View</button>
+                                    </a>
+                                </div>
+                        <?php $count++;
+                            }
+                        } ?>
+                    </div>
                 </div>
-                <div class="subject-card-set">
-                    <div class="subject-card">
-                        <img src="<?php echo BASEURL ?>assets/patterns/2.png" alt="" />
-                        <a href="#"><label>C79 - lesson 2</label></a>
-                        <label>Grade 8</label>
-                        <button class="Enter-btn">Enter</button>
-                    </div>
-                    <div class="subject-card">
-                        <img src="<?php echo BASEURL ?>assets/patterns/3.png" alt="" />
-                        <a href="#"><label>C79 - lesson 3</label></a>
-                        <label>Grade 8</label>
-                        <button class="Enter-btn">Enter</button>
-                    </div>
-                    <div class="subject-card">
-                        <img src="<?php echo BASEURL ?>assets/patterns/3.png" alt="" />
-                        <a href="#"><label>C79 - lesson 4</label></a>
-                        <label>Grade 8</label>
-                        <button class="Enter-btn">Enter</button>
-                    </div>
-                    <div class="subject-card">
-                        <img src="<?php echo BASEURL ?>assets/patterns/3.png" alt="" />
-                        <a href="#"><label>C79 - lesson 5</label></a>
-                        <label>Grade 8</label>
-                        <button class="Enter-btn">Enter</button>
-                    </div>
-
-                </div>
-        </div>
         </div>
     </section>
     </div>

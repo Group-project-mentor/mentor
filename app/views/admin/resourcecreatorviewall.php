@@ -8,60 +8,62 @@
     <title>login</title>
     <link rel="stylesheet" href="<?php echo BASEURL ?>stylesheets/admin/ad_complaintHandle.css">
     <link rel="stylesheet" href="<?php echo BASEURL ?>stylesheets/admin/style.css">
+    <link rel="stylesheet" href="<?php echo BASEURL ?>stylesheets/admin/massage.css">
 </head>
-<nav>
-    <div class="ad_nav">
-
-    </div>
-</nav>
 
 <body>
-    <?php require_once("C:/xampp/htdocs/mentor/app/views/admin/navbar.php"); ?>
+<?php require_once("C:/xampp/htdocs/mentor/public/components/alerts/admin/addRCToTM.php"); ?>
+<?php require_once("C:/xampp/htdocs/mentor/app/views/admin/navbar.php"); ?>
     <!-- Middle part for whole content -->
-    <section class="mid-content ad_mid-content">
+        <section class="mid-content ad_mid-content">
 
-        <!-- Title and sub title of middle part -->
-        <div class="mid-title">
-            <h1>Resource Creators</h1> 
-        </div>
+            <!-- Title and sub title of middle part -->
+            <div class="mid-title">
+                <h1>Resource Creators</h1> 
+            </div>
 
-        <div class="content">
-            <?php
-            foreach ($data['rc'] as $value) {
-                echo '<div class="content">
-                            <div class="complaints">
-                                <div class="pp">
-                                    <img class="profile" src="' . BASEURL . 'assets/admin/pp.png">
+            <div class="content">
+                <?php
+                if (!$data['appliedrc']) {
+                    echo 'No Applied Resource Creators';
+                } else {
+                    foreach ($data['appliedrc'] as $value) {
+                        echo '<div class="content">
+                                    <div class="complaints">
+                                        <div class="pp">
+                                            <img class="profile" src="' . BASEURL . 'assets/admin/pp.png">
+                                        </div>
+                                        <div class="name" id="user-name">
+                                            <p>' . $value['firstName'] . '</p>
+                                        </div>
+                                        <div class="userid" id="user-id">
+                                            <p>' . $value['email'] . '</p>
+                                        </div>
+                                        <div class="description" id="user-description">
+                                            <p>' . $value['description'] . '</p>
                                 </div>
-                                <div class="name" id="user-name">
-                                    <p>' . $value['name'] . '</p>
+                                <div class="icons">
+                                    <div class="view">
+                                        <a href="'. BASEURL .'admins/resourceCreatorView/' . $value['id'].'"><img src="'. BASEURL .'assets/admin/view.png"></a>
+                                    </div>
+                                    <div class="addtm">
+                                        <button class="comp-btns" onclick="addRCToTaskManager(' . $data['appliedrc'][0]['id'] . ')" type="button"><img src="'. BASEURL .'assets/admin/addtm.png"></button>
+                                    </div>
                                 </div>
-                                <div class="userid" id="user-id">
-                                    <p>' . $value['id'] . '</p>
-                                </div>
-                                <div class="description" id="user-description">
-                                    <p>' . $value['email'] . '</p>
-                        </div>
-                        <div class="icons">
-                            <div class="view">
-                                <a href="'. BASEURL .'admins/scholorshipview/' . $value['id'] . '?id=' . $value['id'] .'"><img src="'. BASEURL .'assets/admin/view.png"></a>
-                            </div>
-                            <div class="addtm">
-                                <button class="comp-btns" type="button"><img src="'. BASEURL .'assets/admin/addtm.png"></button>
-                            </div>
-                        </div>
-                            </div>
-                        </div>';
-            }
-            ?>
-            
-        </div>
-    </section>
+                                    </div>
+                                </div>';
+                            
+                    }
+                }
+                ?>
+                
+            </div>
+        </section>
     </div>
-    </section>
+</section>
     <?php require_once("C:/xampp/htdocs/mentor/app/views/admin/popup.php"); ?>
 </body>
-
+<script src="<?php echo BASEURL ?>javascripts/admin/cors.js"></script>
 <script>
     let toggle = true;
 
