@@ -254,21 +254,36 @@ class RcResources extends Controller
         foreach ($topics as $topic) {
             $topicData[$topic->id] = $topic;
         }
-        print_r($topicData);
-        print_r($topicOrder);
         $this->view('resourceCtr/resources/organized',array($topicData,$topicOrder));
     }
 
     public function getResourcesTopics(){
+        $videos = $this->model("resourceModel")->getResourceByTypeForTopics($_SESSION['gid'], $_SESSION['sid'],'video');
+        $pdfs = $this->model("resourceModel")->getResourceByTypeForTopics($_SESSION['gid'], $_SESSION['sid'],'pdf');
+        $others = $this->model("resourceModel")->getResourceByTypeForTopics($_SESSION['gid'], $_SESSION['sid'], 'other');
+        $quizzes = $this->model("resourceModel")->getResourceByTypeForTopics($_SESSION['gid'], $_SESSION['sid'], 'quiz');
+        $papers = $this->model("resourceModel")->getResourceByTypeForTopics($_SESSION['gid'], $_SESSION['sid'], 'paper');
+
+        $allResources = array_merge($videos,$pdfs,$others,$quizzes,$papers);
+
         $resourcesTopicWise = $this->model("resourceModel")->getResourcesWithTopics($_SESSION['sid'], $_SESSION['gid']);
-        $organizedList = array();
+//        $organizedList = array();
+        $organizedNameList = array();
+
         if(!empty($resourcesTopicWise)){
             foreach ($resourcesTopicWise as $topic) {
-                $organizedList[$topic->t_id][] = $topic;
+//                $organizedList[$topic->t_id][] = $topic;
+                foreach ($allResources as $object) {
+                    if ($object->id === $topic->rsrc_id) {
+                        $topic->name = $object->name;
+                        $organizedNameList[$topic->t_id][] = $topic;
+                        break;
+                    }
+                }
             }
         }
         header("Content-Type:Application/json");
-        echo json_encode($organizedList);
+        echo json_encode($organizedNameList);
     }
 
     public function saveTopicOrder(){

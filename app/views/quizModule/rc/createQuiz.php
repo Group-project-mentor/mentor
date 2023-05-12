@@ -60,34 +60,34 @@
                                />
                     </div>
 
-                    <div class="rc-form-group">
-                        <label for="tot_mark" class="rc-form-label">
-                            Total Marks :
-                        </label>
-                        <input type="text"
-                               name="tot_mark"
-                               id="tot_mark"
-                               class="rc-form-input"
-                               placeholder="Ex : 100"
-                               pattern="^[0-9]{1,5}$"
-                               title="Please enter a valid mark"
-                        />
-                    </div>
-                    <div class="rc-form-group">
-                        <label for="tot_mark" class="rc-form-label">
-                            Instructions :
-                        </label>
-                        <small>Add instructions one by one</small>
-                        <div style="display: flex;">
-                            <input type="text"
-                                   class="rc-form-input"
-                                   placeholder=""
-                                   style="flex: 1;"
-                            />
-                            <button type="button" class="rc-quiz-button green" style="width: 30px;margin: 10px">+</button>
-                        </div>
-
-                    </div>
+<!--                    <div class="rc-form-group">-->
+<!--                        <label for="tot_mark" class="rc-form-label">-->
+<!--                            Total Marks :-->
+<!--                        </label>-->
+<!--                        <input type="text"-->
+<!--                               name="tot_mark"-->
+<!--                               id="tot_mark"-->
+<!--                               class="rc-form-input"-->
+<!--                               placeholder="Ex : 100"-->
+<!--                               pattern="^[0-9]{1,5}$"-->
+<!--                               title="Please enter a valid mark"-->
+<!--                        />-->
+<!--                    </div>-->
+<!--                    <div class="rc-form-group">-->
+<!--                        <label for="tot_mark" class="rc-form-label">-->
+<!--                            Instructions :-->
+<!--                        </label>-->
+<!--                        <small>Add instructions one by one</small>-->
+<!--                        <div style="display: flex;">-->
+<!--                            <input type="text"-->
+<!--                                   class="rc-form-input"-->
+<!--                                   placeholder=""-->
+<!--                                   style="flex: 1;"-->
+<!--                            />-->
+<!--                            <button type="button" class="rc-quiz-button green" style="width: 30px;margin: 10px">+</button>-->
+<!--                        </div>-->
+<!---->
+<!--                    </div>-->
 
                     <div class="rc-form-group">
                         <button type="submit" class="rc-quiz-button green">

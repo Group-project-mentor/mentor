@@ -591,6 +591,44 @@ class ResourceModel extends Model
         return $this->fetchObjs($stmt);
     }
 
+    public function getResourceByTypeForTopics($grade, $subject, $type){
+        switch($type){
+            case 'video':
+                $stmt = $this->prepare("SELECT p.id, rsrc.name, rsrc.thumbnail, rsrc.type AS vtype, p.type, p.approved, r.creator_id 
+                                        FROM public_resource p, rs_subject_grade r, video rsrc 
+                                        WHERE p.id = r.rsrc_id AND rsrc.id = p.id AND r.subject_id = ? AND r.grade_id = ? AND p.topicID IS NOT NULL");
+                break;
+            case 'pdf':
+                $stmt = $this->prepare("SELECT p.id, rsrc.name, p.type, p.approved, r.creator_id 
+                                        FROM public_resource p, rs_subject_grade r, document rsrc 
+                                        WHERE p.id = r.rsrc_id AND rsrc.id = p.id AND r.subject_id = ? AND r.grade_id = ? AND p.topicID IS NOT NULL");
+
+                break;
+            case 'other':
+                $stmt = $this->prepare("SELECT p.id, rsrc.name, rsrc.type AS otype, p.type, p.approved, r.creator_id 
+                                        FROM public_resource p, rs_subject_grade r, other rsrc 
+                                        WHERE p.id = r.rsrc_id AND rsrc.id = p.id AND r.subject_id = ? AND r.grade_id = ? AND p.topicID IS NOT NULL");
+                break;
+            case "paper":
+                $stmt = $this->prepare("SELECT p.id, rsrc.name, rsrc.part, rsrc.year , p.type, p.approved, r.creator_id 
+                                        FROM public_resource p, rs_subject_grade r, pastpaper rsrc 
+                                        WHERE p.id = r.rsrc_id AND rsrc.id = p.id AND r.subject_id = ? AND r.grade_id = ? AND p.topicID IS NOT NULL");
+                break;
+            case "quiz":
+                $stmt = $this->prepare("SELECT p.id, rsrc.name, rsrc.marks, p.type, p.approved, r.creator_id 
+                                        FROM public_resource p, rs_subject_grade r, quiz rsrc 
+                                        WHERE p.id = r.rsrc_id AND rsrc.id = p.id AND r.subject_id = ? AND r.grade_id = ? AND p.topicID IS NOT NULL");
+                break;
+            default:
+                $stmt = $this->prepare("SELECT p.id, p.type, p.approved, r.creator_id 
+                                        FROM public_resource p, rs_subject_grade r 
+                                        WHERE p.id = r.rsrc_id AND r.subject_id = ? AND r.grade_id = ? AND p.topicID IS NOT NULL");
+                break;
+        }
+        $stmt->bind_param('ii',$subject,$grade);
+        return $this->fetchObjs($stmt);
+    }
+
     public function getResourcesWithTopics($subject, $grade){
         $stmt = $this->prepare("SELECT p.id as rsrc_id, p.type, p.approved, r.creator_id, t.id as t_id, t.name, t.description FROM public_resource p, rs_subject_grade r, topic t 
                                 WHERE t.id = p.topicID AND p.id = r.rsrc_id AND t.subjectID = ? AND t.gradeID = ?");

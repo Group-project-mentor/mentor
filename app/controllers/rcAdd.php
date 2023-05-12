@@ -99,17 +99,16 @@ class RcAdd extends Controller
                     if (file_exists($temp_path)){
                         saveFile($temp_path,$_SESSION['temporary_file'],"videos",$_SESSION['gid'],$_SESSION['sid']);
                         unset($_SESSION['temporary_file']);
-                        flashMessage( "success");
+                        echo "success";
                     }else{
-                        flashMessage( "SavingError");
+                        echo "failed";
                     }
                 } else {
-                    flashMessage( "DatabaseError");
+                    echo "failed";
                 }
             }else{
-                flashMessage( "FileNotExist");
+                echo "failed";
             }
-            header("location:" . BASEURL . "rcAdd/video");
         }
     }
 

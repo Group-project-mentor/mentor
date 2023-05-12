@@ -13,19 +13,19 @@
 </head>
 
 <body>
+
+
 <?php
+
 if(isset($_SESSION['message']) && $_SESSION['message']== "success"){
     include_once "components/alerts/uploadSuccess.php";
 }
-//        if(isset($data[1]) && $data[0] == "success"){
-//            include_once "components/alerts/uploadSuccess.php";
-//        }
 elseif(isset($_SESSION['message']) && $_SESSION['message']== "error"){
     include_once "components/alerts/uploadFailed.php";
 }
 ?>
 <section class="page">
-
+    <?php include_once "components/alerts/rightAlert.php"?>
     <!-- Navigation panel -->
     <?php include_once "components/navbars/rc_nav_2.php" ?>
 
@@ -105,6 +105,7 @@ elseif(isset($_SESSION['message']) && $_SESSION['message']== "error"){
 </body>
 <script src="<?php echo BASEURL?>javascripts/middleFunctions.js"></script>
 <script>
+    const BASEURL = '<?php echo BASEURL ?>';
     const uploadForm = document.getElementById('upload-form');
     const uploadBtn = document.getElementById('inputBtn');
     const progressContainer = document.getElementById('progress-container');
@@ -130,7 +131,14 @@ elseif(isset($_SESSION['message']) && $_SESSION['message']== "error"){
             })
             .then(response => response.text())
             .then(data => {
-                document.getElementById('errerr').innerHTML = data;
+                if(data.trim() === "success"){
+                    setTimeout(()=>{
+                        makeSuccess("Video Saved !");
+                    }, 2000)
+                    history.back();
+                }else{
+                    makeError("Video Saving Error !");
+                }
             })
             .catch(e => {
                 console.log(e);
