@@ -185,4 +185,46 @@ class St_public_resources extends Controller
         // var_dump($splitted_link);
     }
 
+    public function organized($grade_id, $subject_id)
+    {
+        $topics = $this->model("resourceModel")->getTopics($grade_id, $subject_id);
+        $topicOrderRow = $this->model("resourceModel")->getTopicOrder($grade_id, $subject_id);
+        $topicOrder = (!empty($topicOrderRow))?$topicOrderRow->tpcOrder:null;
+        $this->getNames($grade_id, $subject_id);
+        $_SESSION["gid"] = $grade_id;
+        $_SESSION["sid"] = $subject_id;
+        if(empty($topicOrderRow)){
+            if(!empty($topics)){
+                foreach ($topics as $topic) {
+                    $topicIds = array();
+                    foreach ($topics as $topic) {
+                        $topicIds[] = $topic->id;
+                    }
+                    $topicOrder = implode(',', $topicIds);
+                }
+            }else{
+                $topicOrder = "";
+            }
+        }elseif(empty($topicOrder) || $topicOrder == ""){
+            $topicOrder = "";
+        }
+        $topicData = array();
+        foreach ($topics as $topic) {
+            $topicData[$topic->id] = $topic;
+        }
+        $this->view('student/enrollment/st_organized',array($topicData,$topicOrder));
+    }
+
+    public function getResourcesTopics(){
+        $resourcesTopicWise = $this->model("resourceModel")->getResourcesWithTopics($_SESSION['gid'], $_SESSION['sid']);
+        $organizedList = array();
+        if(!empty($resourcesTopicWise)){
+            foreach ($resourcesTopicWise as $topic) {
+                $organizedList[$topic->t_id][] = $topic;
+            }
+        }
+        header("Content-Type:Application/json");
+        echo json_encode($organizedList);
+    }
+
 }
