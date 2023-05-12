@@ -120,10 +120,6 @@
                                     </label>
                                 </div>
                             </div>
-                            <div class="answer-correctness-btn" style="justify-self:flex-end;">
-                                <input type="checkbox" id="save-info-check" value="correct" />
-                                <label for="quiz-answer-radio">&nbsp;Save these details for future payments.</label>
-                            </div>
                             <div class="rc-upload-button">
                                 <button type="submit" name="submit" col="200" id="payhere-payment" style="margin:10px auto;width: 100%;">Pay</button>
                             </div>
@@ -132,12 +128,6 @@
                     </div>
                 </div>
             </section>
-            <div class="top-bar-btns" style="margin: auto;">
-                    <a href="<?php echo BASEURL; ?>st_private_mode/st_myclasses">
-                        <div class="back-btn">Back To Class Page</div>
-                    </a>
-            </div>
-            <br><br>
         </div>
     </section>
 </body>
@@ -147,6 +137,7 @@
     const BASEURL = '<?php echo BASEURL ?>';
     const TEMP_URL = '<?php echo $_ENV['TEMP_URL'] ?>';
     const classId = <?php echo $_SESSION['class_id'] ?>;
+    const className = '<?php echo $_SESSION['class_name'] ?>';
     const userId = <?php echo $_SESSION['id'] ?>;
     const incomingData = <?php echo json_encode($data[0]) ?>;
     const totalAmount = <?php echo $data[1] ?>;
@@ -158,6 +149,7 @@
     // Payment completed. It can be a successful failure.
     payhere.onCompleted = function onCompleted(orderId) {
         console.log("Payment completed. OrderID:" + orderId);
+        window.location.href=`${BASEURL}st_private_resources/index/${classId}/${className}`;
         // Note: validate the payment and show success or failure page to the customer
     };
 

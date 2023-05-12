@@ -12,10 +12,8 @@ class St_billing extends Controller
         flashMessage();
     }
 
-    public function index($class_id,$class_name)
+    public function index()
     {
-        $_SESSION['class_id'] = $class_id;
-        $_SESSION['class_name'] = $class_name ;
         $result = $this->model("st_billing_model")->prepareDetailForBill($_SESSION['id'],$_SESSION['class_id']);
         $this->view('student/billing/st_billing', array($result));
 

@@ -214,4 +214,16 @@ class sponsorStModel extends Model
         return $this->fetchObjs($stmt);
     }
 
+    public function getTotalAmount($id){
+        $stmt = $this->prepare("SELECT SUM(monthlyAmount) as total FROM student WHERE sponsor_id = ?");
+        $stmt->bind_param("i", $id);
+        return $this->fetchOneObj($stmt);
+    }
+
+    public function getMaxAmount($id){
+        $stmt = $this->prepare("SELECT maxAmount from sponsor WHERE id = ?");
+        $stmt->bind_param("i", $id);
+        return $this->fetchOneObj($stmt);
+    }
+
 }

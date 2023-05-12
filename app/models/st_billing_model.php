@@ -8,8 +8,8 @@ class St_billing_model extends Model
     }
 
     public function checkbeforeEnter($student_id,$class_id){
-        $q = "SELECT IF(DATE(st_billing.buy_timestamp) <= DATE(NOW()), 1, 0) AS result FROM st_billing 
-        WHERE st_billing.class_id = ? AND st_billing.student_id = ?;" ;
+        $q = "SELECT st_billing.class_id  FROM st_billing WHERE st_billing.class_id = ? AND st_billing.student_id = ? AND st_billing.active_state = 1 
+        AND NOW() BETWEEN st_billing.buy_timestamp AND st_billing.expire_timestamp ;" ;
         $stmt = $this->prepare($q);
         $stmt->bind_param('ii', $class_id,$student_id);
 
@@ -59,13 +59,13 @@ class St_billing_model extends Model
     }
 
 
-    public function savePayment($payID, $userID, $currency, $amount ,$description , $method,$billID){
+    public function savePayment($payID, $userID, $currency, $amount ,$description , $method,$classId){
         $stmt1 = $this->prepare("INSERT INTO payment(paymentId,userId,currency,amount,type,method) VALUES (?,?,?,?,?,?)");
         $stmt1->bind_param("iisdss",$payID,$userID,$currency,$amount,$description,$method);
 
         $stmt2 = $this->prepare("INSERT INTO st_billing( class_id, buy_timestamp, expire_timestamp, active_state, student_id) 
         VALUES (?, NOW(), DATE_ADD(NOW(), INTERVAL 1 MONTH) , 1 , ?);");
-        $stmt2->bind_param('ii',$billID,$userID);
+        $stmt2->bind_param('ii',$classId,$userID);
         return $this->executePrepared($stmt1) and $this->executePrepared($stmt2);
     }
 

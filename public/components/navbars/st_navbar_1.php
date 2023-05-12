@@ -31,7 +31,7 @@
 
     <!-- Navigation buttons -->
     <div class="nav-links">
-
+        
         <a href="<?php echo BASEURL ?>home" class="nav-link">
             <img src="<?php echo BASEURL ?>assets/icons/icon_home.png" alt="report">
             <div class="nav-link-text"> Home</div>

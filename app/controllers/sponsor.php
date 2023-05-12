@@ -20,13 +20,16 @@ class Sponsor extends Controller
         if($page != 1){
             $offset = ($page - 1) * $limit;
         }
+        $total = $this->model("sponsorStModel")->getTotalAmount($_SESSION['id'])->total;
+        $maxAmount = $this->model("sponsorStModel")->getMaxAmount($_SESSION['id'])->maxAmount;
+
         $rowCount = $this->model($this->table1)->getSponsorStudentsCount($_SESSION['id'])->count;
         $res = $this->model($this->table1)->getSponsorStudents($_SESSION['id'], $offset, $limit);
         $pageData = array($page, ceil($rowCount / $limit));
         if($page < 1 || $page > $pageData[1]){
             header("location:".BASEURL."sponsor/allsStudents");
         }
-        $this->view('sponsor/student_progress/student_report',array($res,$pageData));
+        $this->view('sponsor/student_progress/student_report',array($res,$pageData,$maxAmount,$total));
     }
 
     public function getStudents($search){
@@ -40,8 +43,10 @@ class Sponsor extends Controller
     }
 
     public function new_student($search = null){
+        $total = $this->model("sponsorStModel")->getTotalAmount($_SESSION['id'])->total;
+        $maxAmount = $this->model("sponsorStModel")->getMaxAmount($_SESSION['id'])->maxAmount;
         $approvedStudents = $this->getNewStudents($search);
-        $this->view('sponsor/student_progress/new_student',array($approvedStudents));
+        $this->view('sponsor/student_progress/new_student',array($approvedStudents,$maxAmount,$total));
     }
 
     public function getNewStudents($search){
@@ -71,6 +76,13 @@ class Sponsor extends Controller
          try{
             if ($this->model($this->table1)->isStudentStatus($st_id,"AP")){
                 if($this->model($this->table1)->connectSponsor($st_id,$_SESSION['id'])){
+                    $total = $this->model("sponsorStModel")->getTotalAmount($_SESSION['id'])->total;
+                    $maxAmount = $this->model("sponsorStModel")->getMaxAmount($_SESSION['id'])->maxAmount;
+                    if($total > $maxAmount){
+                        $remain =number_format($total - $maxAmount,2);
+                        $notifyMsg = "You have exeeded your maximum amount of funding by Rs. $remain";   
+                        $this->notify($_SESSION['id'], $notifyMsg, "sp_warn");
+                    }
                     flashMessage("Student Added!");
                     $displayName = $this->model($this->table1)->getMyData($_SESSION['id'])->dispName;
                     $notifyMsg = "Congratulations! Sponsor $displayName added you for funding !";
@@ -638,5 +650,8 @@ class Sponsor extends Controller
                 flashMessage("no_pay");
                 header("location:" . BASEURL . "sponsor/allStudents");
             }
+    }
+
+    public function getMaxAmount(){
     }
 }

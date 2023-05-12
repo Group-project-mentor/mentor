@@ -12,10 +12,18 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <link rel="icon" type="image/x-icon" href="<?php echo BASEURL ?>assets/mentor.ico">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Home</title>
 
     <link rel="stylesheet" href="<?php echo BASEURL . '/public/stylesheets/resourceCreator/rc_main.css' ?> ">
     <link rel="stylesheet" href="<?php echo BASEURL . '/public/stylesheets/sponsor/sp_styles.css' ?> ">
+    <style>
+    
+    .progress-bar {
+      accent-color: <?php echo getColorByAmount($data['amountStatus'][1],$data['amountStatus'][0]) ?>;
+      width: 80%;
+      height: 40px;
+    }
+    </style>
 </head>
 
 <body>
@@ -56,7 +64,7 @@
                     <!--                    </div>-->
                     <div class="sponsor-student-prof">
                         <div class="bottom-details" style="margin: 10px 10px;height: 50vh;">
-                            <div>
+                            <div class="sp-dash-part">
                                 <div style="display: flex;flex-direction: column;">
                                     <div class="rc-dash-info-card-set">
                                         <div class="rc-dash-info-card">
@@ -77,9 +85,9 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div style="display: flex;flex-direction: column;width: 600px;">
+                                <div class="sp-dash-part" style="display: flex;flex-direction: column;width: 600px;">
                                     <div class="rc-dash-info-card-set">
-                                        <div class="rc-dash-info-card" style="min-width: 350px;">
+                                        <div class="rc-dash-info-card sp-dash-part" style="min-width: 350px;">
                                             <h2>Monthly Average</h2>
                                             <h1><?php echo "Rs ". (!empty($data["monthlyAverage"])?
                                                         number_format($data["monthlyAverage"], 2, '.', ','):
@@ -94,6 +102,13 @@
                                     </div>
                                     <div class="rc-dash-info-card-set">
                                         <div class="rc-dash-info-card" style="min-width: 350px;">
+                                            <h2>Current-Amount : <?php echo number_format($data['amountStatus'][0],2) ?> | Max-Amount : <?php echo number_format($data['amountStatus'][1],2) ?></h2>
+                                            <?php if($data['amountStatus'][0] < $data['amountStatus'][1]){ ?>
+                                                    <progress  class="progress-bar" value="<?php echo $data['amountStatus'][0] ?>" max="<?php echo $data['amountStatus'][1] ?>"></progress> 
+                                            <?php }else{ ?>
+                                                    <progress  class="progress-bar" value="100" max="100"></progress> 
+                                                    <h2>Amount Exeeded !</h2>
+                                            <?php } ?>
                                         </div>
                                     </div>
                                 </div>
@@ -138,23 +153,6 @@
                                     </div>
                                 </div>
 
-                            </div>
-                            <div class="sp-subject-details">
-                                <h4>Subjects involved in</h4>
-                                <div class="sponsor-list-main border-no">
-                                    <?php
-                                    if(!empty($data[0])){
-                                        foreach ($data[0] as $row){ ?>
-
-                                            <div class="sponsor-list-row">
-                                                <div class="sponsor-list-item flex-1 sponsor-grade-cell" >
-                                                    <?php echo $row->name ?>
-                                                </div>
-                                            </div>
-
-                                        <?php }
-                                    } ?>
-                                </div>
                             </div>
 
                         </div>
