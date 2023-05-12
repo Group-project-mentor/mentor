@@ -15,7 +15,7 @@
 <body>
     <section class="page">
         <!-- Navigation panel -->
-        <?php include_once "components/navbars/st_navbar_3.php" ?> <!-- used to include_once to add file -->
+        <?php include_once "components/navbars/st_navbar_7.php" ?> <!-- used to include_once to add file -->
 
         <div class="content-area">
 
@@ -55,7 +55,8 @@
                                         <img src="<?php echo BASEURL  ?>assets/patterns/2.png" alt="" />
                                         <label>Class Name  : <?php echo $row->class_name ?></label>
                                         <label>Monthly Fees : <?php echo $row->fees ?>.00 LKR</label>
-                                        <a href="<?php echo BASEURL . 'st_private_resources/index/' . $row->class_name  ?>"><label>View</label></a>
+                                        <a href="<?php echo BASEURL . 'st_private_resources/index/' . $row->class_id . '/' . $row->class_name  ?>"><label>View</label></a>
+                                        <!-- <a href="<?php //echo BASEURL . 'st_billing/index/' . $row->class_id . '/' . $row->class_name  ?>"><label>View</label></a> -->
 
                                     </div>
                                 <?php } ?>

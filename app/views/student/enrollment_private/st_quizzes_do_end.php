@@ -45,7 +45,7 @@
     <section class="page">
 
         <!-- Navigation panel -->
-        <?php include_once "components/navbars/st_navbar_2.php" ?>
+        <?php include_once "components/navbars/st_navbar_6.php" ?>
 
 
         <div class="content-area">
@@ -56,7 +56,7 @@
 
                 </div>
                 <div class="top-bar-btns">
-                    <a href="<?php echo BASEURL . 'st_public_resources/index_quizzes/' . $_SESSION['gid'] . '/' . $_SESSION['sid'] ?>">
+                    <a href="<?php echo BASEURL . 'st_private_resources/index_quizzes/' . $_SESSION['gid'] . '/' . $_SESSION['sid'] ?>">
                         <div class="back-btn">Back</div>
                     </a>
                     <?php include_once "components/notificationIcon.php" ?>
@@ -77,7 +77,7 @@
                         <img src="<?php echo BASEURL ?>public/assets/icons/icon_correct.png" alt="">
                         <?php 
                         $total = ($data[0]->score / $data[0]->current_q) * 100 ?>
-                        <h3>Marks : <?php echo number_format($total, 2, '.', '') ?> %</h3>
+                        <h3>Marks : <?php echo ($total) ?> %</h3>
                         <h3>Total No Of Questions in the Quiz: <?php echo $data[0]->current_q ?></h3><br>
                         <h3>Total No of Correct Questions :<?php echo $data[0]->score ?> Out Of <?php echo $data[0]->current_q ?></h3>
                         

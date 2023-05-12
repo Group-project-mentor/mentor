@@ -131,4 +131,18 @@ class TInsideClass extends Controller
             $_SESSION["cid"] = $result1;
         }
     }
+
+    public function getStudentSearch($search_query)
+    {
+         //Get search query from input field
+        // $search_query = filter_input(INPUT_GET, 'search', FILTER_SANITIZE_STRING);
+        if ($search_query !== null && $search_query !== '') {
+            $res = $this->model('classModel')->getMatchingNames($search_query);
+            if ($res !== null && !empty($res)) {
+                    echo json_encode($res);
+                }
+            } else {
+                    echo json_encode(array("status" => "error"));
+            }
+        }
 }

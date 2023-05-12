@@ -274,6 +274,13 @@ class St_profile extends Controller
         $this->view('student/profile/st_generate_report_private', array($res));
     }
 
+    public function generate_report_private_cl($class_name){
+        
+        $_SESSION['cird'] = $class_name;
+        $res = $this->model('st_private_mode_model')->getClassesReportAll($_SESSION['id'],$class_name);
+        $this->view('student/profile/st_generate_report_private_cl',array($res));
+    }
+
     public function generate_report_private_class($class_name){
         
         $res = $this->model('st_private_mode_model')->getClassesReport($_SESSION['id'],$class_name);

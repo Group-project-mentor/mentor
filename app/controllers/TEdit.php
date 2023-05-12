@@ -7,7 +7,7 @@ class TEdit extends Controller
     public function __construct()
     {
         sessionValidator();
-        $this->userValidate($this->user);
+        // $this->userValidate($this->user);
         flashMessage();
     }
 
@@ -21,7 +21,7 @@ class TEdit extends Controller
 
     public function video($id, $msg = null)
     {
-        $result = $this->model("TchResourceModel")->getVideo($id);
+        $result = $this->model("TchResourceModel")->getVideo($id,$_SESSION['cid']);
         if ($result[6] === "L")
             $this->view("Teacher/editViews/edit_video", array($result, $msg));
         elseif ($result[6] === "U")

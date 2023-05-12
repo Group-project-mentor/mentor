@@ -40,7 +40,7 @@
                                     <p>' . $value['id'] . '</p>
                                 </div>
                                 <div class="description" id="user-description">
-                                    <p>' . $value['discription'] . '</p>
+                                    <p>' . $value['email'] . '</p>
                         </div>
                         <div class="icons">
                             <div class="view">
@@ -48,9 +48,6 @@
                             </div>
                             <div class="addtm">
                                 <button class="comp-btns" type="button"><img src="'. BASEURL .'assets/admin/addtm.png"></button>
-                            </div>
-                            <div class="delete">
-                                <a href="'. BASEURL .'#"><img src="'. BASEURL .'assets/admin/Delete.png"></a>
                             </div>
                         </div>
                             </div>

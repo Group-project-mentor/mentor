@@ -42,7 +42,7 @@
                     <div class="nav-link-text">Participants</div>
                     
                    
-                    <a href="<?php echo BASEURL ?>TPrivileges/p1AddS" class="nav-link" class="nav-link">
+                    <a href="<?php echo BASEURL ?>TPrivileges/p1AddSt" class="nav-link" class="nav-link">
                         <img class="active" src="<?php echo BASEURL ?>public/assets/Teacher/icons/add_student.png" alt="home">
                         <div class="nav-link-text">Add Student</div>
                     </a>

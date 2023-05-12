@@ -52,6 +52,13 @@ class TchResourceModel extends Model
         return $this->fetchObjs($stmt);
     }
 
+    public function findQuestionCounts($cid){
+        $stmt = $this->prepare("SELECT teacher_class_resources.rs_id, COUNT(teacher_question.id) as count FROM teacher_class_resources,teacher_question WHERE
+         teacher_class_resources.rs_id = teacher_question.quiz_id AND teacher_class_resources.class_id = ? GROUP BY teacher_class_resources.rs_id;");
+        $stmt->bind_param('i',$cid);
+        return $this->fetchObjs($stmt);
+    }
+
     //? Functions for add a resource
 
     public function addVideo($id, $cid, $name, $lec, $link, $descr, $tid, $type = 'L')
@@ -152,11 +159,11 @@ class TchResourceModel extends Model
         return $this->fetchOneObj($stmt);
     }
 
-    public function getVideo($id)
+    public function getVideo($id,$cid)
     { //!done
         $sql = "select teacher_videos.id, teacher_videos.name, teacher_videos.lecturer, teacher_videos.description, teacher_videos.link, teacher_videos.thumbnail, teacher_videos.type, private_resource.location ,private_resource.type,teacher_class_resources.upload_teacher_id from teacher_videos 
         inner join teacher_class_resources on teacher_videos.id = teacher_class_resources.rs_id 
-        inner join private_resource on private_resource.id = teacher_class_resources.rs_id where teacher_videos.id = $id and teacher_class_resources.class_id =" . $_SESSION['cid'];
+        inner join private_resource on private_resource.id = teacher_class_resources.rs_id where teacher_videos.id = $id and teacher_class_resources.class_id = $cid" ;
 
         $result = $this->executeQuery($sql);
 

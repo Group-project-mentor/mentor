@@ -3,128 +3,82 @@
 class St_billing extends Controller
 {
 
-    // private string $user = "sp";
+    private string $user = "st";
     // private string $table1 = "sponsorStModel";
 
     public function __construct(){
         sessionValidator();
-        // $this->userValidate($this->user);
-        // flashMessage();
+        $this->userValidate($this->user);
+        flashMessage();
     }
 
     public function index()
     {
-        $this->view('student/billing/st_billing');
+        $result = $this->model("st_billing_model")->prepareDetailForBill($_SESSION['id'],$_SESSION['class_id']);
+        $this->view('student/billing/st_billing', array($result));
+
     }
 
-    // public function paymentTest($bill_id){
-    //     $billData = $this->model($this->table1)->getBillData($bill_id);
-    //     $totalPayment = 0;
-    //     foreach ($billData as $row){
-    //         $totalPayment += $row->monthlyAmount;
-    //     }
-    //     $res = $this->model("payments")->hasPaymentDetails($_SESSION['id']);
-    //     $this->view('sponsor/payments/paymentForm2',array($res,$bill_id,$totalPayment));
-    // }
+    public function prepareDetail()
+    {
+        $result = $this->model("st_billing_model")->getstudentBillingDEtails($_SESSION['id'],$_SESSION['class_id']);
+        var_dump($result);
+        $this->view('student/billing/st_billing', array($result));
+    }
 
-    // public function paymentDone(){
-    //     $this->view('sponsor/payments/paymentDone');
-    // }
+    public function paymentTest(){
+        $amount = $this->model("st_billing_model")->getclassAmount($_SESSION['id'],$_SESSION['class_id']);
+        $billData = $this->model("st_billing_model")->haspayment_Details($_SESSION['id']);
+        $this->view('student/billing/st_payment_Form',array($billData,$amount->fees));
+    }
 
-    // public function paymentError(){
-    //     $this->view('sponsor/payments/paymentError');
-    // }
+    public function details($method){
+        if($method == "update"){
+            $res = $this->model("payments")
+                ->updatePaymentDetails($_SESSION['id'],$_POST['fName'],$_POST['lName'],$_POST['email'],$_POST['telNo'],$_POST['address'],$_POST['city'],$_POST['country']);
+            flashMessage("Successfully Updated!");
+        }
+        elseif ($method == "add"){
+            $res = $this->model("payments")
+                ->savePaymentDetails($_SESSION['id'],$_POST['fName'],$_POST['lName'],$_POST['email'],$_POST['telNo'],$_POST['address'],$_POST['city'],$_POST['country']);
+            flashMessage("Successfully Added!");
+        }
+        else{
+            flashMessage("invalid operation");
+        }
+        header("location:".BASEURL."sponsor/profile");
+    }
 
-    // public function paymentDetails(){
-    //     $res = $this->model("payments")->hasPaymentDetails($_SESSION['id']);
-    //     $this->view('sponsor/profile/getPaymentDetails',array($res));
-    // }
+    public function getDetails()
+    {
+        $merchant_id         = $_POST['merchant_id'];
+        $classID            = $_POST['order_id'];
+        $payhere_amount      = $_POST['payhere_amount'];
+        $payhere_currency    = $_POST['payhere_currency'];
+        $status_code         = $_POST['status_code'];
+        $md5sig              = $_POST['md5sig'];
+        $userId = $_POST['custom_1'] ?? 100;
+        $des = $_POST['custom_2'] ?? "Funding";
+        $local_md5sig = strtoupper(
+            md5(
+                $merchant_id .
+                $classID .
+                $payhere_amount .
+                $payhere_currency .
+                $status_code .
+                strtoupper(md5($_ENV['MERCHANT_SECRET']))
+            )
+        );
 
-    // public function details($method){
-    //     if($method == "update"){
-    //         $res = $this->model("payments")
-    //             ->updatePaymentDetails($_SESSION['id'],$_POST['fName'],$_POST['lName'],$_POST['email'],$_POST['telNo'],$_POST['address'],$_POST['city'],$_POST['country']);
-    //         flashMessage("Successfully Updated!");
-    //     }
-    //     elseif ($method == "add"){
-    //         $res = $this->model("payments")
-    //             ->savePaymentDetails($_SESSION['id'],$_POST['fName'],$_POST['lName'],$_POST['email'],$_POST['telNo'],$_POST['address'],$_POST['city'],$_POST['country']);
-    //         flashMessage("Successfully Added!");
-    //     }
-    //     else{
-    //         flashMessage("invalid operation");
-    //     }
-    //     header("location:".BASEURL."sponsor/profile");
-    // }
+        if (($local_md5sig === $md5sig) AND ($status_code == 2) ){
+            $res = $this->model("st_billing_model")
+                ->savePayment($_POST['payment_id'],$userId,$_POST['payhere_currency'],$_POST['payhere_amount'],$des,$_POST['method'],$classID);
+            $notifyMsg = "Successfully paid the payment :".$_POST['payhere_amount']." ".$_POST['payhere_currency'];
+            $this->notify($userId,$notifyMsg,"payment");
+        }
+    }
 
-    // public function createBill(){
-    //     //        echo "hllo";
-    //     $id = getUnique($_SESSION['id']);
-    //     $currency = $_POST['currency'];
-    //     $amount = $_POST['amount'];
-    //     $response = array();
-        
-    //     if(empty($this->model($this->table1)->checkNotPaidBill($_SESSION['id']))){
-    //         if($this->model($this->table1)->addBill($id, $currency, $amount, $_SESSION['id'])){
-    //             $response['status'] = 1;
-    //             $response['message'] = "Bill created successfully !";
-    //             $response['billNo'] = $id;
-    //         }else{
-    //             $response['status'] = 0;
-    //             $response['message'] = "Error in creating the bill !";
-    //         }
-    //     }else{
-    //         $response['status'] = 0;
-    //         $response['message'] = "Another unpaid bill already exist !";
-    //     }
-    //     echo json_encode($response);
-    // }
-
-    // public function insertBillData(){
-    //     $month = $_POST['month'];
-    //     $year = $_POST['year'];
-    //     $billNo = $_POST['billNo'];
-    //     $student_id = $_POST['student_id'];
-
-    //     $response = array();
-    //     $res = $this->model($this->table1)->insertBillRow($student_id,  $year, $month, $billNo);
-    //     if($res){
-    //         $response['status'] = 1;
-    //     }else{
-    //         $response['status'] = 0;
-    //     }
-    //     echo json_encode($response);
-    // }
-
-    // public function deleteBillData($bill_id){
-    //     if($this->model('sponsorStModel')->deleteBill($bill_id,$_SESSION['id'])){
-    //         flashMessage("Deleted");
-    //     }else{
-    //         flashMessage("Not Deleted");
-    //     }
-    //     header("location:".BASEURL."sponsor/paymentsInProgress");
-    // }
-
-    // public function slips($viewType, $id){
-    //     switch ($viewType){
-    //         case "payments":
-    //             $bill = $this->model($this->table1)->getPayBill($id);
-    //             $result =$this->model($this->table1)->getPaymentDetails($id);
-    //             $this->view("sponsor/detailedViews/paymentView",array($result,$bill));
-    //             break;
-    //         case "bills":
-    //             $billDetails =$this->model($this->table1)->getBillDetails($id,$_SESSION['id']);
-    //             $billContent = $this->model($this->table1)->getBillData($id);
-    //             $total = 0;
-    //             foreach ($billContent as $one){
-    //                 $total += $one->monthlyAmount;
-    //             }
-    //             $this->view("sponsor/detailedViews/billView",array($billDetails,$billContent,$total));
-    //             break;
-    //         default:
-    //             break;
-    //     }
-    // }
+    
 }
 
 ?>

@@ -57,7 +57,7 @@
 <body>
     <section class="page">
         <!-- Navigation panel -->
-        <?php include_once "components/navbars/st_navbar_3.php" ?> <!-- used to include_once to add file -->
+        <?php include_once "components/navbars/st_navbar_7.php" ?> <!-- used to include_once to add file -->
 
         <div class="content-area">
 
@@ -67,7 +67,7 @@
 
                 </div>
                 <div class="top-bar-btns">
-                    <a href="<?php echo BASEURL; ?>st_private_mode">
+                    <a href="<?php echo BASEURL ?>st_private_mode">
                         <div class="back-btn">Back</div>
                     </a>
                     <?php include_once "components/notificationIcon.php" ?>

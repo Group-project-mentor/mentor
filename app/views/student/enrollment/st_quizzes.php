@@ -124,7 +124,5 @@ if(!empty($_SESSION['message'])) {
         </div>
     </section>
 </body>
-<script src="<?php echo BASEURL ?>public/javascripts/st_auth_script.js"></script>
-
 
 </html>
