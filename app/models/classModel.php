@@ -22,19 +22,12 @@ class classModel extends Model
         }
     }
     // Function to get matching names from database
-    //public function getMatchingNames($search_query)
-    //{
-       // $sql = "SELECT 1";
-        //$stmt = $this->prepare($sql);
-        //$search_query = '%' . $search_query . '%';
-       // $stmt->bind_param("s", $search_query);
-       // $stmt->execute();
-        //$result = $stmt->get_result();
-        //$matching_names = array();
-        //while ($row = $result->fetch_assoc()) {
-          //  array_push($matching_names, $row['name']);
-        //}
-        //$stmt->close();
-        //return $matching_names;
-    //}
+    public function getMatchingNames($search_query)
+    {
+        $q="Select id,name from user where user.type='st' and user.name LIKE ?";
+        $s = "$search_query%";
+        $stmt = $this->prepare($q);
+        $stmt->bind_param('s',$s);
+        return $this->fetchObjs($stmt);
+    }
 }
