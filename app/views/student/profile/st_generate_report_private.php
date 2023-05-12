@@ -61,7 +61,7 @@
                                 <!-- new data from DB -->
                                 <?php if (!empty($data[0])) { ?>
                                     <div class="subject-card-set">
-                                        <?php foreach (array_slice($data[0], 0, 3) as $row) { ?>
+                                        <?php foreach (($data[0]) as $row) { ?>
                                             <a href="<?php echo BASEURL . "st_profile/generate_report_private_cl/" . $row->class_name ?> " style="text-decoration: none; color:black;" >
                                                 <div class="rc-dash-info-card">
                                                     <h2><?php echo $row->class_name ?></h2>
