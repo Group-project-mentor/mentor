@@ -15,61 +15,61 @@ class St_private_resources_model extends Model{
     }
     
 
-    public function findVideos(){
+    public function findVideos($class_id){
         
         $q="SELECT teacher_videos.name , teacher_videos.lecturer ,teacher_videos.description  ,teacher_class_resources.class_id , private_resource.location
         FROM  teacher_class_resources , teacher_videos , private_resource
         WHERE teacher_class_resources.rs_id = private_resource.id AND teacher_videos.id = private_resource.id AND teacher_class_resources.class_id = ? ;";
         $stmt = $this->prepare($q);
-        $stmt->bind_param('i', $_SESSION['class_id'] );
+        $stmt->bind_param('i',$class_id );
 
         $result = $this->fetchObjs($stmt);
         return $result;
     }
 
-    public function findQuizzes()
+    public function findQuizzes($class_id)
     {
         $q="SELECT teacher_quiz.name ,teacher_quiz.marks ,teacher_quiz.questions  ,teacher_class_resources.class_id , private_resource.location
         FROM  teacher_class_resources , teacher_quiz , private_resource
         WHERE teacher_class_resources.rs_id = private_resource.id AND teacher_quiz.id = private_resource.id AND teacher_class_resources.class_id = ? ;";
         $stmt = $this->prepare($q);
-        $stmt->bind_param('i', $_SESSION['class_id'] );
+        $stmt->bind_param('i', $class_id );
 
         $result = $this->fetchObjs($stmt);
         return $result;
     }
 
-    public function findPastpapers()
+    public function findPastpapers($class_id)
     {
         $q ="SELECT teacher_pastpaper.name ,teacher_pastpaper.year, teacher_pastpaper.part ,teacher_class_resources.class_id , private_resource.location
         FROM  teacher_class_resources , teacher_pastpaper , private_resource
         WHERE teacher_class_resources.rs_id = private_resource.id AND teacher_pastpaper.id = private_resource.id AND teacher_class_resources.class_id = ? ;";
         $stmt = $this->prepare($q);
-        $stmt->bind_param('i', $_SESSION['class_id'] );
+        $stmt->bind_param('i', $class_id );
         
         $result = $this->fetchObjs($stmt);
         return $result;
     }
 
-    public function findDocuments() 
+    public function findDocuments($class_id) 
     {
         $q="SELECT teacher_document.name ,teacher_class_resources.class_id , private_resource.location
         FROM  teacher_class_resources , teacher_document , private_resource
         WHERE teacher_class_resources.rs_id = private_resource.id AND teacher_document.id = private_resource.id AND teacher_class_resources.class_id = ? ;";
         $stmt = $this->prepare($q);
-        $stmt->bind_param('i', $_SESSION['class_id'] );
+        $stmt->bind_param('i',$class_id );
 
         $result = $this->fetchObjs($stmt);
         return $result;
     }
 
-    public function findOthers()
+    public function findOthers($class_id)
     {
         $q="SELECT teacher_other.name ,teacher_other.type  ,teacher_class_resources.class_id , private_resource.location
         FROM  teacher_class_resources , teacher_other , private_resource
         WHERE teacher_class_resources.rs_id = private_resource.id AND teacher_other.id = private_resource.id AND teacher_class_resources.class_id = ? ;";
         $stmt = $this->prepare($q);
-        $stmt->bind_param('i', $_SESSION['class_id'] );
+        $stmt->bind_param('i', $class_id );
         
         $result = $this->fetchObjs($stmt);
         return $result;
@@ -82,7 +82,7 @@ class St_private_resources_model extends Model{
         $stmt = $this->prepare($q);
         $stmt->bind_param('is',$id,$type);
 
-        $result = $this->fetchObjs($stmt);
+        $result = $this->fetchOneObj($stmt);
         return $result;
     }
 

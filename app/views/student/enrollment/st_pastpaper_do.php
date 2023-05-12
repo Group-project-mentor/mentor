@@ -22,7 +22,7 @@
             <!-- Top bar -->
             <section class="top-bar">
                 <div class="search-bar">
-                    
+
                 </div>
                 <div class="top-bar-btns">
                     <a href="<?php echo BASEURL . 'st_public_resources/index_past_papers/' . $_SESSION['gid'] . '/' . $_SESSION['sid'] ?>">
@@ -30,7 +30,7 @@
                     </a>
                     <?php include_once "components/notificationIcon.php" ?>
                     <a href="<?php echo BASEURL ?>st_profile">
-                    <?php include_once "components/profilePic.php"?>
+                        <?php include_once "components/profilePic.php" ?>
                     </a>
                 </div>
             </section>
@@ -53,13 +53,16 @@
                     <br>
                     <!-- <embed type="text/html" src="st_courses.html"  width="1000" height="500" style="padding-left: 100px;"> -->
                     <!-- Grade choosing interface -->
+
                     <div class="container-box">
-                        <embed src="<?php echo BASEURL ?>public_resources/pastpapers/<?php echo $_SESSION['gid'] . "/" . $_SESSION['sid'] . "/" . $data[0]->location ?>" style="width:50%;height:70vh;margin:auto;">
+                        <h3>Past Paper :</h3>
+                        <embed src="<?php echo BASEURL ?>public_resources/pastpapers/<?php echo $_SESSION['gid'] . "/" . $_SESSION['sid'] . "/" . $data[0][0]->location ?>" style="width:50%;height:70vh;margin:auto;">
                     </div>
                     <div class="container-box">
-                        <embed src="<?php echo BASEURL ?>public_resources/pastpapers/<?php echo $_SESSION['gid'] . "/" . $_SESSION['sid'] . "/" . $data[1]->answer ?>" style="width:50%;height:70vh;margin:auto;">
+                        <h3> Answers  :</h3>
+                        <embed src="<?php echo BASEURL ?>public_resources/answers/<?php echo $_SESSION['gid'] . "/" . $_SESSION['sid'] . "/" . $data[1]->answer ?>" style="width:50%;height:70vh;margin:auto;">
                     </div>
-                    
+
                 <?php } ?>
             </section>
         </div>

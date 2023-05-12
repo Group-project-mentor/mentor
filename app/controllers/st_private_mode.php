@@ -53,7 +53,7 @@ class St_private_mode extends Controller
             $this->notify($res5, "You have Token request from the Student", "request");  // 2 must change into teachers ID
             $this->view('student/privatemode/st_join_token_send', array($res2));
         } else {
-            $this->notify(2, "You have already Send Token Request Or Already Add to This Class. Check it Again", "Not_request");
+            $this->notify($_SESSION['id'], "You have already Send Token Request Or Already Add to This Class. Check it Again", "Not_request");
             flashMessage("NOrequest");
             header("location:" . BASEURL . 'st_private_mode/st_join_token' );
             // $this->view('student/privatemode/st_join_token');
