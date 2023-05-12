@@ -7,7 +7,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>login</title>
     <link rel="stylesheet" href="<?php echo BASEURL ?>stylesheets/admin/ad_dashboard.css">
+
+
+
 </head>
+<nav>
+    <div class="ad_nav">
+
+    </div>
+</nav>
 
 <body>
     <?php require_once("C:/xampp/htdocs/mentor/app/views/admin/navbar.php"); ?>
@@ -32,15 +40,15 @@
                             </div>
                             <div class="count">
                                 <h1>
-                                    
-                                    <?php 
+
+                                    <?php
                                     if (!$data['studentCount']) {
                                         echo '0';
                                     } else {
-                                        echo $data['studentCount']; 
+                                        echo $data['studentCount'];
                                     }
                                     ?><br>
-                                    
+
                                 </h1>
                             </div>
                         </div>
@@ -60,11 +68,11 @@
                             </div>
                             <div class="count">
                                 <h1>
-                                    <?php 
+                                    <?php
                                     if (!$data['teacherCount']) {
                                         echo '0';
                                     } else {
-                                        echo $data['teacherCount']; 
+                                        echo $data['teacherCount'];
                                     }
                                     ?><br>
                                 </h1>
@@ -86,11 +94,11 @@
                             </div>
                             <div class="count">
                                 <h1>
-                                    <?php 
+                                    <?php
                                     if (!$data['classCount']) {
                                         echo '0';
                                     } else {
-                                        echo $data['classCount']; 
+                                        echo $data['classCount'];
                                     }
                                     ?><br>
                                 </h1>
@@ -110,11 +118,11 @@
                             </div>
                             <div class="count">
                                 <h1>
-                                    <?php 
+                                    <?php
                                     if (!$data['sponsorCount']) {
                                         echo '0';
                                     } else {
-                                        echo $data['sponsorCount']; 
+                                        echo $data['sponsorCount'];
                                     }
                                     ?><br>
                                 </h1>
@@ -129,11 +137,18 @@
 
 
 
-            <div class="ad_section2">
-                <div class="earnings">
-                    <img class="ern" src="<?php echo BASEURL ?>assets/admin/earnings.png">
+            <div class="ad_section2" style="display: flex;">
+                <div class="bottom-details">
+                    <div class="bgbox" style="margin: 20px 20px; height: 70vh; width: 60vh; flex:1">
+                        <div class="sp-subject-report resource-chart">
+                            <h4 style="text-align:center;">Human types</h4>
+                            <br><br>
+                            <canvas id="myChart" class="resource-chart" height="200" width="200"></canvas>
+
+                        </div>
+                    </div>
                 </div>
-                <div class="bgbox">
+                <div class="bgbox" style="flex: 1; margin: 20px 20px; height: 70vh; width: 70vh; flex:1">
                     <div class="complaints">
                         <div class="title">
                             <h1>Complaints</h1>
@@ -143,7 +158,6 @@
                                 <p><a href="<?php echo BASEURL ?>admins/complaints" style="color:white;">View All</a></p>
                             </button>
                         </div>
-
                     </div>
                     <?php
                     if (!$data['complaints']) {
@@ -184,7 +198,6 @@
                         </div>
                         <?php
                         if (!$data['rtask']) {
-                            
                         } else {
                             foreach ($data['rtask'] as $value) {
                                 echo '<div class="content">
@@ -204,7 +217,6 @@
                         }
 
                         if (!$data['ctask']) {
-                            
                         } else {
                             foreach ($data['ctask'] as $value) {
                                 echo '<div class="content">
@@ -225,7 +237,7 @@
                             }
                         }
                         ?>
-                        
+
                     </div>
                 </div>
                 <div class="bgbox">
@@ -319,7 +331,57 @@
 
 
 </body>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    // Get data from PHP using inline script
+    var chartData = <?php echo json_encode($data) ?>;
 
+    // Extract values from data object and create labels
+    var data = [
+        chartData.studentCount,
+        chartData.teacherCount,
+        chartData.ResourceCrCount,
+        chartData.sponsorCount
+    ];
+    var labels = [
+        'Students',
+        'Teachers',
+        'Resource Creators',
+        'Sponsors'
+    ];
+
+    // Set chart options
+    var options = {
+        // ...
+    };
+
+    // Create new chart instance
+    var ctx = document.getElementById('myChart').getContext('2d');
+    var myChart = new Chart(ctx, {
+        type: 'doughnut',
+        data: {
+            labels: labels,
+            datasets: [{
+                label: 'Count',
+                data: data,
+                backgroundColor: [
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)'
+                ],
+                borderColor: [
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)'
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: options
+    });
+</script>
 <script>
     let toggle = true;
 

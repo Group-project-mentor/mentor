@@ -55,6 +55,7 @@ class admins extends Controller {
             $data['complaints'] = $this->adminModel->complaint();
             $data['rtask'] = $this->adminModel->ResourceTask($uID);
             $data['ctask'] = $this->adminModel->ComplaintTask($uID);
+            $data['ResourceCrCount'] = $this->adminModel->ResourceCrCount();
             
 
             // print_r($data);

@@ -46,7 +46,15 @@ class admin extends Model{
         }
     }
 
+    public function ResourceCrCount(){
+        $result = $this->getData("resource_creator"); //Retrieve Data
 
+        if ($result->num_rows > 0) {
+            return $result->num_rows;
+        } else {
+            return false;
+        }
+    }
     public function complaint($id='%'){
         $query = "SELECT user.name, user.id, complaint.description, report_type.name as category, complaint.work_id 
         FROM user 

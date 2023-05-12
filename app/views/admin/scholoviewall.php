@@ -39,7 +39,7 @@
                         </div>
                         <div class="icons">
                             <div class="view">
-                                <a href="'. BASEURL .'admins/scholorshipview/' . $value['id'] . '?id=' . $value['id'] .'"><img src="'. BASEURL .'assets/admin/view.png"></a>
+                                <a href="'. BASEURL .'admins/scholorshipview/' . $value['id'] . '"><img src="'. BASEURL .'assets/admin/view.png"></a>
                             </div>
                             <div class="addtm">
                                 <button class="comp-btns" onclick="addScholToTaskManager(' . $data['scholarship'][0]['id'] . ')" type="button"><img src="'. BASEURL .'assets/admin/addtm.png"></button>
