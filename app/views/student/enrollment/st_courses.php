@@ -13,19 +13,18 @@
 
 <body>
 
-<!-- message pop up when click delete button -->
-<?php
-if(!empty($_SESSION['message'])) {
-    if ($_SESSION['message'] == "Enroll") {
-        $message = "You Enroll to Subject Successfully !";
-        include_once "components/alerts/operationSuccess.php";
+    <!-- message pop up when click delete button -->
+    <?php
+    if (!empty($_SESSION['message'])) {
+        if ($_SESSION['message'] == "Enroll") {
+            $message = "You Enroll to Subject Successfully !";
+            include_once "components/alerts/operationSuccess.php";
+        } else if ($_SESSION['message'] == "NOEnroll") {
+            $message = "You Already Enroll To this Subject !";
+            include_once "components/alerts/operationFailed.php";
+        }
     }
-    else if ($_SESSION['message'] == "NOEnroll") {
-        $message = "You Already Enroll To this Subject !";
-        include_once "components/alerts/operationFailed.php";
-    }
-}
-?>
+    ?>
 
     <section class="page">
         <!-- Navigation panel -->
@@ -45,7 +44,7 @@ if(!empty($_SESSION['message'])) {
                     </a>
                     <?php include_once "components/notificationIcon.php" ?>
                     <a href="<?php echo BASEURL ?>st_profile">
-                    <?php include_once "components/profilePic.php"?>
+                        <?php include_once "components/profilePic.php" ?>
                     </a>
                 </div>
             </section>
@@ -102,8 +101,10 @@ if(!empty($_SESSION['message'])) {
                             </div>
                         <?php } ?>
                     </div>
-                <?php } else {
-                    echo "no data!";
+                <?php } else { ?>
+                    <br><br>
+                    <h2 style="color:green ; text-align:center ;padding: 5px 10px;">
+                    <?php echo "No Courses Enrolled yet !";
                 } ?>
 
         </div>

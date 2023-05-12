@@ -55,9 +55,11 @@
                                     </div>
                                 <?php } ?>
                             </div>
-                        <?php } else {
-                            echo "no data!";
-                        } ?>
+                            <?php } else { ?>
+                    <br><br>
+                    <h2 style="color:green ; text-align:center ;padding: 5px 10px;">
+                    <?php echo "No Courses Enrolled yet !";
+                } ?>
                     </div>
                 </div>
             </section>

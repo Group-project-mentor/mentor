@@ -35,7 +35,7 @@ class St_private_resources extends Controller
         if (!isset($_SESSION['user'])) {
             header("location:" . BASEURL . "login");
         }
-        $result = $this->model("St_private_resources_model")->findDocuments();
+        $result = $this->model("St_private_resources_model")->findDocuments($class_id);
         $this->view('student/enrollment_private/st_documents', array($result));
     }
 
@@ -44,7 +44,7 @@ class St_private_resources extends Controller
         if (!isset($_SESSION['user'])) {
             header("location:" . BASEURL . "login");
         }
-        $result = $this->model("St_private_resources_model")->findOthers();
+        $result = $this->model("St_private_resources_model")->findOthers($class_id);
         $this->view('student/enrollment_private/st_other', array($result));
     }
 
@@ -53,48 +53,48 @@ class St_private_resources extends Controller
         if (!isset($_SESSION['user'])) {
             header("location:" . BASEURL . "login");
         }
-        $result = $this->model("St_private_resources_model")->findQuizzes();
+        $result = $this->model("St_private_resources_model")->findQuizzes($class_id);
         $this->view('student/enrollment_private/st_quizzes', array($result));
     }
 
-    public function st_quizzes_do($id, $question = 1)
-    {
-        $res2 = $this->model("st_private_resources_model")->UpdateQuizInDB($_SESSION['id'], $_SESSION['cid']);
-        $rowCount = $this->model("st_private_resources_model")->getResourceCount("quiz", $gid, $sid)->count;
-        $result = $this->model("st_private_resources_model")->findQuizzes($gid, $sid, $offset, $limit);
-        $quiz = $this->model("st_quiz_model")->getQuiz($gid, $offset, $limit);
+    // public function st_quizzes_do($id, $question = 1)
+    // {
+    //     $res2 = $this->model("st_private_resources_model")->UpdateQuizInDB($_SESSION['id'], $_SESSION['cid']);
+    //     $rowCount = $this->model("st_private_resources_model")->getResourceCount("quiz", $gid, $sid)->count;
+    //     $result = $this->model("st_private_resources_model")->findQuizzes($gid, $sid, $offset, $limit);
+    //     $quiz = $this->model("st_quiz_model")->getQuiz($gid, $offset, $limit);
 
-        $pageData = array($question, ceil($rowCount / $limit));
-        if ($question < 1 || ($question > $pageData[1] and $pageData[1] != 0)) {
+    //     $pageData = array($question, ceil($rowCount / $limit));
+    //     if ($question < 1 || ($question > $pageData[1] and $pageData[1] != 0)) {
 
-            header("location:" . BASEURL . "st_private_resources/st_quizzes_do/" . $id . "/" . $question);
-        }
-        $this->view("student/enrollment_private/st_quizzes_do", array($result, $quiz, $id));
-    }
+    //         header("location:" . BASEURL . "st_private_resources/st_quizzes_do/" . $id . "/" . $question);
+    //     }
+    //     $this->view("student/enrollment_private/st_quizzes_do", array($result, $quiz, $id));
+    // }
 
-    public function st_quizzes_intro($id)
-    {
-        $this->view("student/enrollment_private/st_quizzes_intro", array($id));
-    }
+    // public function st_quizzes_intro($id)
+    // {
+    //     $this->view("student/enrollment_private/st_quizzes_intro", array($id));
+    // }
 
-    public function st_quizzes_do_end()
-    {
-        $res = $this->model("st_quiz_model")->getQuizendData($_SESSION['id'], $_SESSION['cid']);
-        $this->view("student/enrollment_private/st_quizzes_do_end", array($res));
-    }
+    // public function st_quizzes_do_end()
+    // {
+    //     $res = $this->model("st_quiz_model")->getQuizendData($_SESSION['id'], $_SESSION['cid']);
+    //     $this->view("student/enrollment_private/st_quizzes_do_end", array($res));
+    // }
 
-    public function st_quizzes_do_end_preview()
-    {
-        flashMessage("QuizEnd");
-        header("location:" . BASEURL . 'st_private_resources/index_quizzes/' . $_SESSION['gid'] . '/' . $_SESSION["sid"]);
-    }
+    // public function st_quizzes_do_end_preview()
+    // {
+    //     flashMessage("QuizEnd");
+    //     header("location:" . BASEURL . 'st_private_resources/index_quizzes/' . $_SESSION['gid'] . '/' . $_SESSION["sid"]);
+    // }
 
     public function index_past_papers($class_id)
     {
         if (!isset($_SESSION['user'])) {
             header("location:" . BASEURL . "login");
         }
-        $result = $this->model("St_private_resources_model")->findPastpapers();
+        $result = $this->model("St_private_resources_model")->findPastpapers($class_id);
         $this->view('student/enrollment_private/st_pastpapers', array($result));
     }
 
@@ -110,7 +110,7 @@ class St_private_resources extends Controller
             header("location:" . BASEURL . "login");
         }
 
-        $result = $this->model("St_private_resources_model")->findVideos();
+        $result = $this->model("St_private_resources_model")->findVideos($class_id);
         $this->view('student/enrollment_private/st_video', array($result));
     }
 

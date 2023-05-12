@@ -74,7 +74,7 @@
             <!-- Title and sub title of middle part -->
             <div class="mid-title">
                 <h1>Payments Details</h1>
-                <h6> Billing / Payments Details</h6>
+                <h6> Billing / Payments form</h6>
             </div>
 
             <!-- Grade choosing interface -->
