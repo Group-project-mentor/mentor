@@ -9,24 +9,66 @@
     <link rel="stylesheet" href="<?php echo BASEURL ?>public/stylesheets/Teacher/style.css">
     <link rel="stylesheet" href="<?php echo BASEURL ?>public/stylesheets/Teacher/card_set.css">
 </head>
+<style>
+    #list-view {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    #list-view li {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 10px;
+        border-bottom: 1px solid #ccc;
+        background-color: white;
+        cursor: pointer;
+    }
+
+    #list-view li:last-child {
+        border-bottom: none;
+    }
+
+    #list-view li span {
+        margin-right: 10px;
+    }
+
+    #list-view li:hover {
+        background-color: #c5c5c5;
+    }
+
+
+
+    @media only screen and (max-width: 600px) {
+        #list-view li {
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        #list-view li span {
+            margin-right: 0;
+            margin-bottom: 5px;
+        }
+    }
+</style>
 
 <body>
     <section class="page">
-        
-    <?php
-        if(isset($_SESSION['message']) && $_SESSION['message']== "success"){
+
+        <?php
+        if (isset($_SESSION['message']) && $_SESSION['message'] == "success") {
             include_once "components/alerts/Teacher/teacher_added.php";
-        }
-        elseif(isset($_SESSION['message']) && $_SESSION['message']== "failed"){
+        } elseif (isset($_SESSION['message']) && $_SESSION['message'] == "failed") {
             include_once "components/alerts/Teacher/teacher_added_failed.php";
-        }
-        elseif(isset($_SESSION['message']) && $_SESSION['message']== "premiumLimited"){
+        } elseif (isset($_SESSION['message']) && $_SESSION['message'] == "premiumLimited") {
             include_once "components/alerts/Teacher/TpremiumOver.php";
-        }
-        elseif(isset($_SESSION['message']) && $_SESSION['message']== "already"){
+        } elseif (isset($_SESSION['message']) && $_SESSION['message'] == "already") {
             include_once "components/alerts/Teacher/Talready.php";
+        } elseif (isset($_SESSION['message']) && $_SESSION['message'] == "invalid") {
+            include_once "components/alerts/Teacher/invalid.php";
         }
-    ?>
+        ?>
 
         <!-- Navigation panel -->
         <?php include_once "components/navbars/t_nav_2.php" ?>
@@ -59,23 +101,24 @@
                 </div>
 
                 <div class="class section">
-                    <form action="<?php echo BASEURL; ?>TInsideClass/addTchAction/<?php echo "$cid"; ?>" method="POST">
+                    <form action="<?php echo BASEURL; ?>TInsideClass/addTchAction/<?php echo "$cid"; ?>" method="POST" onsubmit="return validateForm()">
                         <label for="teacher_name"></label>
                         <input type="text" id="teacher_name" name="teacher_name" placeholder="New teacher name..">
                         <h3>Teacher Id</h3>
                         <label for="teacher_id"></label>
                         <input type="text" id="teacher_id" name="teacher_id" placeholder="New teacher id..">
                         <br>
+                        <ul id="list-view">
+
+                        </ul>
                         <h3>Teacher Privilege</h3>
                         <label for="teacher_privilege"></label>
                         <select id="teacher_privilege" name="teacher_privilege">
                             <option value="" disabled selected>Select a Privilege</option>
                             <option value="1">Only add students</option>
                             <option value="2">Only add, restrict and delete students</option>
-                            <option value="3">Only add resources</option>
-                            <option value="4">Only add,edit and delete resources</option>
                         </select>
-                        <input type="submit" value="Add">
+                        <input type="submit" value="Add" id="Add">
 
                     </form>
                 </div>
@@ -96,7 +139,77 @@
     </section>
 </body>
 <script>
+    function validateForm() {
+        var teacherNameInput = document.querySelector('#teacher_name');
+        var teacherIdInput = document.querySelector('#teacher_id');
+        var teacherPrivilegeSelect = document.querySelector('#teacher_privilege');
 
+        if (teacherNameInput.value === '') {
+            alert('Please enter a valid teacher name');
+            return false;
+        }
+
+        if (teacherIdInput.value === '') {
+            alert('Please enter a valid teacher ID');
+            return false;
+        }
+
+        if (teacherPrivilegeSelect.value === '') {
+            alert('Please select a teacher privilege level');
+            return false;
+        }
+
+        return true;
+    }
+
+    const BASEURL = '<?php echo BASEURL ?>';
+
+
+
+    let nameInput = document.getElementById('teacher_name');
+    let student_id = document.getElementById('teacher_id');
+    let listView = document.getElementById('list-view');
+
+
+    function renderList(id, name) {
+        return `
+                <li onclick='selectItem(${id},"${name}")'>
+                    ${id} - ${name}
+                </li>
+        `;
+    }
+
+
+
+    nameInput.addEventListener('keyup', (element) => {
+        let tName = element.target.value;
+        let htmlTxt = "";
+        if (tName !== "") {
+            fetch(`${BASEURL}TInsideClass/getTeacherSearch/${tName}`)
+                .then(response => response.json())
+                .then(data => {
+                    console.log(data.length);
+                    for (let i = 0; i < data.length; i++) {
+                        htmlTxt += renderList(data[i].id, data[i].name);
+                        // console.log(htmlTxt);
+                    }
+                    listView.innerHTML = htmlTxt;
+                })
+                .catch(err => {
+                    console.log(err);
+                })
+        } else {
+            listView.innerHTML = htmlTxt;
+        }
+    });
+
+    function selectItem(id, name) {
+        teacher_id.value = id;
+        nameInput.value = name;
+        listView.innerHTML = ''; // clear the list
+        listView.style.display = 'none'; // hide the list
+
+    }
 </script>
 
 </html>

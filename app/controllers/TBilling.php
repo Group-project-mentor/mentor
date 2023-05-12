@@ -64,4 +64,34 @@ class TBilling extends Controller
             header("location:" . BASEURL . "TBilling/Billing1");
         }
     }
+
+    public function analytics($cid)
+    {
+        $res1 = $this->model('BillingModel')->getClassMonthlyPay($cid);
+        $res2 = $this->model('classModel')->getTotalSt($cid);
+        $res3 = $this->model('classModel')->getTotalTr($cid);
+        $res4 = $this->model('BillingModel')->geMonthtIncomeAnalyse($cid, date('Y'));
+        $monthlyBillArray = $this->createEmptyMonthArray();
+
+        foreach ($res4 as $row) {
+            $date = new DateTime($row->timestamp);
+            $monthName = getMonthName($date->format('n'));
+            if (!array_key_exists($monthName, $monthlyBillArray)) {
+                $monthlyBillArray[$monthName] = 0;
+            }
+            $monthlyBillArray[$monthName] += $row->amount;
+        }
+
+        $this->view('Teacher/insideClass/income', array($res1, $res2, $res3, $res4,"monthlyBillArray"=>$monthlyBillArray));
+    }
+
+    private function createEmptyMonthArray()
+    {
+        $monthArray = array();
+        for ($i = 1; $i <= 12; $i++) {
+            $date = DateTime::createFromFormat('!m', $i);
+            $monthArray[$date->format('F')] = 0;
+        }
+        return $monthArray;
+    }
 }
