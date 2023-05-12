@@ -146,12 +146,13 @@ class RcResources extends Controller
                 $this->view("resourceCtr/previews/other_preview", $file);
                 break;
             case 'video':
+                $related = $this->model("resourceModel")->getRandomVideos($_SESSION['gid'], $_SESSION['sid']);
                 $file = $this->model("resourceModel")->getResource($id, $_SESSION['gid'], $_SESSION['sid'], 'video');
                 $resourceData = $this->model("resourceModel")->getVideo($id);
                 if ($resourceData[6] === "L") {
                     $resourceData[4] = $this->filterVideoId($resourceData[4]);
                 }
-                $this->view("resourceCtr/previews/video_preview", array($file, $resourceData));
+                $this->view("resourceCtr/previews/video_preview", array($file, $resourceData, $related));
                 break;
             case 'pastpaper':
                 $file = $this->model("resourceModel")->getResource($id, $_SESSION['gid'], $_SESSION['sid'], 'paper');
