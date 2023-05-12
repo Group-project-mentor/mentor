@@ -525,9 +525,9 @@ class admins extends Controller {
         
 
         if ($_SERVER['REQUEST_METHOD'] == 'GET') {
-
+            $ID = $_SESSION["id"];
             $data = [];
-            $data['scholarship'] = $this->adminModel->scholorship();
+            $data['scholarship'] = $this->adminModel->scholorship($ID);
             $data['sponsors'] = $this->adminModel->sponsors();
             $this->view('admin/scholpro',$data);
 
@@ -545,9 +545,9 @@ class admins extends Controller {
         }
 
         if ($_SERVER['REQUEST_METHOD'] == 'GET') {
-
+            $ID = $_SESSION["id"];
             $data = [];
-            $data['scholarship'] = $this->adminModel->scholorship();
+            $data['scholarship'] = $this->adminModel->scholorship($ID);
             
             $this->view('admin/scholoviewall',$data);
 
@@ -593,9 +593,9 @@ class admins extends Controller {
         }
 
         if ($_SERVER['REQUEST_METHOD'] == 'GET') {
-
+            $ID = $_SESSION["id"];
             $data = [];
-            $data['scholarship'] = $this->adminModel->scholorship();
+            $data['scholarship'] = $this->adminModel->scholorship($ID);
             
             $this->view('admin/scholoview',$data);
 

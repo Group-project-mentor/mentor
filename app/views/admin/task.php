@@ -9,6 +9,8 @@
     <link rel="stylesheet" href="<?php echo BASEURL ?>stylesheets/admin/ad_task.css">
     <link rel="stylesheet" href="<?php echo BASEURL ?>stylesheets/admin/style.css">
     <link rel="stylesheet" href="<?php echo BASEURL ?>stylesheets/admin/massage.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
 <?php require_once("C:/xampp/htdocs/mentor/public/components/alerts/admin/deleteComptm.php"); ?>
@@ -28,10 +30,10 @@
             } else {
                 foreach ($data['rtask'] as $value) {
                         echo
-                    '<div class="content">
+                    '<div class="content" >
                         <div class="complaints">
                             <div class="pp">
-                                <img  class="profile" src="' . BASEURL . 'assets/admin/reviewresource.png">
+                                <i class="fa-sharp fa-solid fa-book-open" style="color: #000000;"></i>
                             </div>
                             <div class="name">
                                 <p>Review Resource</p>
@@ -42,10 +44,10 @@
                                         
                             <div class="icons">
                                 <div class="view">
-                                    <a href="' . BASEURL . 'admins/resource/' . $value['type'] . '/' . $value['id'] . '"><img src="' . BASEURL . 'assets/admin/view.png"></a>
+                                    <a href="' . BASEURL . 'admins/resource/' . $value['type'] . '/' . $value['id'] . '">View</a>
                                 </div>
                                 <div class="delete">
-                                    <button class="comp-btns" onclick="deleteResourceFromTaskManager(' . $value['id'] . ')" type="button"><img src="' . BASEURL . 'assets/admin/Delete.png"></button>
+                                    <button class="comp-btns" onclick="deleteResourceFromTaskManager(' . $value['id'] . ')" type="button">Delete</button>
                                 </div>
                             </div>
                         </div>
@@ -73,7 +75,7 @@
                                         
                                 <div class="icons">
                                     <div class="view">
-                                        <a href="'. BASEURL .'admins/task/' . $value['work_id'] . '"><img src="'. BASEURL .'assets/admin/view.png"></a>
+                                        <a href="'. BASEURL .'admins/task/' . $value['work_id'] . '">View</a>
                                     </div>
                                     <div class="delete">
                                         <button class="comp-btns" onclick="deleteComplaintFromTaskManager(' . $value['work_id'] . ')" type="button"><img src="' . BASEURL . 'assets/admin/Delete.png"></button>
@@ -104,7 +106,7 @@
                                         
                                 <div class="icons">
                                     <div class="view">
-                                        <a href="'. BASEURL .'admins/resourceCreatorReview/details/' . $value['id'] . '"><img src="'. BASEURL .'assets/admin/view.png"></a>
+                                        <a href="'. BASEURL .'admins/resourceCreatorReview/details/' . $value['id'] . '"></a>
                                     </div>
                                     <div class="delete">
                                         <button class="comp-btns" onclick="deleteRCFromTaskManager(' . $value['id'] . ')" type="button"><img src="' . BASEURL . 'assets/admin/Delete.png"></button>
@@ -160,4 +162,6 @@
             toggle = true;
         }
     })
+
+    
 </script>

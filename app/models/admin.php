@@ -284,8 +284,8 @@ class admin extends Model{
         } 
     }
 
-    public function scholorship(){
-        $query = "SELECT *FROM scholarship;";
+    public function scholorship($ID){
+        $query = "SELECT *FROM scholarship WHERE `approved_by` IS NULL ;";
         $result = $this->executeQuery($query);
     
         if ($result->num_rows > 0) {
@@ -438,7 +438,7 @@ class admin extends Model{
     // }
     
     public function addResourcetoTaskManger($rID,$uID){
-        $query = "UPDATE `public_resource` SET `approved_by` = $uID WHERE `id` = $rID ";
+        $query = "UPDATE `public_resource` SET `approved_by` = '$uID' WHERE `id` = '$rID' ;";
         
         $result = $this->executeQuery($query);
 
@@ -453,7 +453,7 @@ class admin extends Model{
 
 
     public function addRCToTaskManager($rcID,$uID){
-        $query = "UPDATE `applied_creator` SET `approved_by` = '$uID' WHERE `id` = '$rcID' ";
+        $query = "UPDATE `applied_creator` SET `approved_by` = '$uID' WHERE `id` = '$rcID'; ";
         
         $result = $this->executeQuery($query);
 

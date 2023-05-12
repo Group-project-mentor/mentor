@@ -8,11 +8,12 @@
     <title>complaints</title>
     <link rel="stylesheet" href="<?php echo BASEURL ?>stylesheets/admin/ad_complaints.css">
     <link rel="stylesheet" href="<?php echo BASEURL ?>stylesheets/admin/style.css">
+    <link rel="stylesheet" href="<?php echo BASEURL ?>stylesheets/admin/massage.css">
 
 </head>
 
 <body>
-    
+<?php require_once("C:/xampp/htdocs/mentor/public/components/alerts/admin/addSchlToTM.php"); ?>
     <?php require_once("C:/xampp/htdocs/mentor/app/views/admin/navbar.php"); ?>
     <!-- Middle part for whole content -->
     <section class="mid-content ad_mid-content">
@@ -25,37 +26,40 @@
 
         <div class="content">
             <?php
-            foreach ($data['scholarship'] as $value) {
-                if($value['id']== $_GET['id']){
-                    echo '<div class="content" id="comp-content">
-                <div class="bckclose">
-                    <img class="back" src="'. BASEURL .'assets/admin/Arrow---Left.png">
-                    <img class="close" src="'. BASEURL .'assets/admin/Close-Square.png">
-                </div>
-                <div class="complaints" id="com-complaints">
-                    <div class="pp">
-                        <img class="profile" src="'. BASEURL .'assets/admin/pp.png">
+            if (!$data['scholarship']) {
+                echo 'No Applied Resource Creators';
+            } else {
+            
+                        echo '<div class="content" id="comp-content">
+                    <div class="bckclose">
+                        <img class="back" src="'. BASEURL .'assets/admin/Arrow---Left.png">
+                        <img class="close" src="'. BASEURL .'assets/admin/Close-Square.png">
                     </div>
-                    <div class="name">
-                        <p>'. $value['firstName'] .'</p>
+                    <div class="complaints" id="com-complaints">
+                        <div class="pp">
+                            <img class="profile" src="'. BASEURL .'assets/admin/pp.png">
+                        </div>
+                        <div class="name">
+                            <p>'. $data['scholarship'][0]['firstName'] .'</p>
+                        </div>
                     </div>
-                </div>
-                <div id="com-title">
-                    <h1>Title goes here</h1>
-                    <p>' . $value['description'] . '</p>
-                </div>
-                <div class="btns">
-                    <form action="'. BASEURL .'admins/scholorship/'. $value['id'] .'" method="POST">
-                        <button class="comp-btns">Add to task manager</button>
-                    </form>
-                    <button class="comp-btns">Delete</button>
-                </div>
+                    <div id="com-title">
+                        <h1>Title goes here</h1>
+                        <p>'. $data['scholarship'][0]['email'] . '</p>
+                    </div>
+                    <div class="btns">
+                    
+                        <button class="comp-btns" onclick="addScholToTaskManager(' . $data['scholarship'][0]['id'] . ')" type="button">Add To Task Manager</button>
+                        
+                        <button class="comp-btns">Delete</button>
+                    </div>
 
-                
-                
-                </div>';
+                    
+                    
+                    </div>';
             }
-        }
+            
+        
             
             ?>
             
@@ -70,6 +74,7 @@
     </section>
     <?php require_once("C:/xampp/htdocs/mentor/app/views/admin/popup.php"); ?>
 </body>
+<script src="<?php echo BASEURL ?>javascripts/admin/cors.js"></script>
 
 <script>
     let toggle = true;

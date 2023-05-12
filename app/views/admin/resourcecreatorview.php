@@ -13,7 +13,7 @@
 </head>
 
 <body>
-<?php require_once("C:/xampp/htdocs/mentor/public/components/alerts/admin/addRCToTM.php"); ?>
+<?php require_once("C:/xampp/htdocs/mentor/public/components/alerts/admin/addToTM.php"); ?>
 
     
     <?php require_once("C:/xampp/htdocs/mentor/app/views/admin/navbar.php"); ?>
@@ -31,7 +31,7 @@
             if (!$data['appliedrc']) {
                 echo 'No Applied Resource Creators';
             } else {
-                foreach ($data['appliedrc'] as $value) {
+            
                         echo '<div class="content" id="comp-content">
                     <div class="bckclose">
                         <img class="back" src="'. BASEURL .'assets/admin/Arrow---Left.png">
@@ -59,8 +59,8 @@
                     
                     
                     </div>';
-                }
             }
+            
         
             
             ?>
