@@ -55,6 +55,14 @@
                     <img class="active" src="<?php echo BASEURL?>public/assets/Teacher/icons/forum.png" alt="home">
                     <div class="nav-link-text">Join Requests</div>
                 </a>
+                <a href="<?php echo BASEURL ?>TBilling/analytics/<?php echo "$cid"; ?>" class="nav-link">
+                    <img class="active" src="<?php echo BASEURL?>public/assets/Teacher/icons/analytics.png" alt="home">
+                    <div class="nav-link-text">Class Analytics</div>
+                </a>
+                <a href="<?php echo BASEURL ?>TInsideClass/settings/<?php echo "$cid"; ?>" class="nav-link">
+                    <img class="active" src="<?php echo BASEURL?>public/assets/Teacher/icons/icon_settings.png" alt="home">
+                    <div class="nav-link-text">Settings</div>
+                </a>
             </div>
 
 <!-- Navigation bar toggler -->

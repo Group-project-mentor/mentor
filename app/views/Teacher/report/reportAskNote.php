@@ -117,36 +117,6 @@
                     </div>
                 </form>
 
-
-                <div style="margin-top: 30px;">
-                    <div class="sponsor-list-main row-decoration">
-                        <div class="sponsor-list-row">
-                            <div class="sponsor-list-item sponsor-list-item-title flex-1">
-                                Quiz ID
-                            </div>
-                            <div class="sponsor-list-item sponsor-list-item-title flex-1">
-                                Marks
-                            </div>
-                        </div>
-                        <?php if (!empty($data[0])) { ?>
-                            <div class="sponsor-list-row">
-                            </div>
-                            <?php foreach ($data[0] as $row) {
-
-                            ?>
-                                <div class="sponsor-list-row">
-                                    <div class="sponsor-list-item flex-1">
-                                        <?php echo $row->quiz_id ?>
-                                    </div>
-                                    <div class="sponsor-list-item flex-1">
-                                        <?php echo $row->marks ?>
-                                    </div>
-                                </div>
-                            <?php } ?>
-
-
-                        <?php }  ?>
-                    </div>
                     <br><br>
                     <div class="sponsor-student-prof">
                         <div class="bottom-details" style="margin: 10px 10px;height: 50vh;">

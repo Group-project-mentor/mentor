@@ -122,13 +122,12 @@
 
                 </div>
 
-
-
             </section>
-
-
-
-
+            <section class="Student-class-bottom">
+                <div class="Student-decorator">
+                    <img src="<?php echo BASEURL ?>public/assets/Teacher/clips/add_student.png" alt="issue man">
+                </div>
+            </section>
 
         </div>
     </section>
@@ -194,6 +193,8 @@
     function selectItem(id, name) {
         student_id.value = id;
         nameInput.value = name;
+        listView.innerHTML = ''; // clear the list
+        listView.style.display = 'none'; // hide the list
     }
 
 
