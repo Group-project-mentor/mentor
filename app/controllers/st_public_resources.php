@@ -169,13 +169,14 @@ class St_public_resources extends Controller
                 $this->view("student/enrollment/st_pastpaper_do", array($file,$answer));
                 break;
             case 'video':
+                $related = $this->model("st_public_resources_model")->getRandomVideos($_SESSION['gid'], $_SESSION['sid']);
                 $file = $this->model("st_public_resources_model")->getResource($id, $_SESSION['gid'], $_SESSION['sid'], 'video');
 
                 $resourceData = $this->model("st_public_resources_model")->getVideo($id, $_SESSION['sid'], $_SESSION['gid']);
                 //var_dump($resourceData);
                 if ($resourceData->type === "L")
                     $resourceData->link = $this->filterVideoId($resourceData->link);
-                $this->view("student/enrollment/st_video_play", array($file, $resourceData));
+                $this->view("student/enrollment/st_video_play", array($file, $resourceData , $related));
                 break;
         }
     }
