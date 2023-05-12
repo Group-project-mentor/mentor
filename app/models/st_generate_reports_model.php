@@ -10,7 +10,7 @@ class St_generate_reports_model extends Model
     public function JoinedClasses($id)
     {
         $q = "SELECT COUNT(classes_has_students.class_id) AS c FROM
-        classes_has_students WHERE classes_has_students.student_id = ? AND classes_has_students.access = 1;";
+        classes_has_students WHERE classes_has_students.student_id = ? AND classes_has_students.accept = 1;";
         $stmt = $this->prepare($q);
         $stmt->bind_param('i', $id);
 
@@ -21,7 +21,7 @@ class St_generate_reports_model extends Model
     public function RequestClasses($id)
     {
         $q = "SELECT COUNT(classes_has_students.class_id) AS c FROM
-        classes_has_students WHERE classes_has_students.student_id = ? AND classes_has_students.access = 0;";
+        classes_has_students WHERE classes_has_students.student_id = ? AND classes_has_students.accept = 0;";
         $stmt = $this->prepare($q);
         $stmt->bind_param('i', $id);
 

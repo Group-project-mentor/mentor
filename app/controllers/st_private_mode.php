@@ -41,14 +41,16 @@ class St_private_mode extends Controller
     {
         $sid = $_SESSION['id'];
         $res = $this->model('st_private_mode_model')->jointoken($token)->class_id;
+        //var_dump($res);
         $res2 = $this->model('st_private_mode_model')->jointokenaddtoDB($sid, $res, $token);
 
         if ($res2 != 0) {
             $res3 = $this->model('st_private_mode_model')->jointokenview($sid, $res, $token)->class_name;
             $res4 = $this->model('st_private_mode_model')->jointokenview($sid, $res, $token)->fees;
+            $res5 = $this->model('st_private_mode_model')->GetTeacherID($res)->teacher_id;
             $_SESSION['class_name'] = $res3;
             $_SESSION['fees'] = $res4;
-            $this->notify(2, "You have Token request from the Student", "request");  // 2 must change into teachers ID
+            $this->notify($res5, "You have Token request from the Student", "request");  // 2 must change into teachers ID
             $this->view('student/privatemode/st_join_token_send', array($res2));
         } else {
             $this->notify(2, "You have already Send Token Request Or Already Add to This Class. Check it Again", "Not_request");

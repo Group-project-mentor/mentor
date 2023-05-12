@@ -28,7 +28,7 @@
                     </a>
                 </div>
                 <div class="top-bar-btns">
-                    <a href="<?php echo BASEURL . 'st_profile/generate_report_private_class' . '/' . $_SESSION['cird']  ?>">
+                    <a href="<?php echo BASEURL . 'st_profile/generate_report_private' . '/' . $_SESSION['cird']  ?>">
                         <div class="back-btn">Back</div>
                     </a>
                     <?php include_once "components/notificationIcon.php" ?>

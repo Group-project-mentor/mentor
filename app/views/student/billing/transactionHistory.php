@@ -44,13 +44,13 @@
             <!-- Title and sub title of middle part -->
             <div class="mid-title">
                 <h1>Transaction History</h1>
-                <h6>Teacher Home/ Billing/ Transaction History</h6>
+                <!-- <h6>Teacher Home/ Billing/ Transaction History</h6> -->
             </div>
 
             <!-- Grade choosing interface -->
             <div class="container-box">
                 <details class="filter-details">
-                    <summary>Filters (Click to apply filters)</summary>
+                    <!-- <summary>Filters (Click to apply filters)</summary> -->
                     <form id="filterForm">
                         <div class="rc-resource-header">
                             <div class="filter-container-hr">

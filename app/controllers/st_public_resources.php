@@ -216,7 +216,7 @@ class St_public_resources extends Controller
     }
 
     public function getResourcesTopics(){
-        $resourcesTopicWise = $this->model("resourceModel")->getResourcesWithTopics($_SESSION['gid'], $_SESSION['sid']);
+        $resourcesTopicWise = $this->model("resourceModel")->getResourcesWithTopics($_SESSION['sid'],$_SESSION['gid']);
         $organizedList = array();
         if(!empty($resourcesTopicWise)){
             foreach ($resourcesTopicWise as $topic) {
