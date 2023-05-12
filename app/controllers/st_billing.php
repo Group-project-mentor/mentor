@@ -21,7 +21,7 @@ class St_billing extends Controller
     public function prepareDetail()
     {
         $result = $this->model("st_billing_model")->getstudentBillingDEtails($_SESSION['id'],$_SESSION['class_id']);
-        
+        //var_dump($result);
         $this->view('student/billing/st_billing', array($result));
     }
 

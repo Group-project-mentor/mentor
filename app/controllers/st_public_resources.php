@@ -109,8 +109,9 @@ class St_public_resources extends Controller
 
     public function st_pastpaper_link_Quiz($id)
     {
-        $file = $this->model("st_public_resources_model")->getResource($id,$_SESSION['gid'],$_SESSION['sid'],'paper');
-        $this->view('student/enrollment/st_pastpaper_link_Quiz',$file);
+        $file = $this->model("st_public_resources_model")->getLinkedQuiz($id);
+        var_dump($file);
+        $this->view("student/enrollment/st_quizzes_intro", array($file));
 
     }
 
@@ -156,7 +157,10 @@ class St_public_resources extends Controller
                 break;
             case 'paper':
                 $file = $this->model("st_public_resources_model")->getResource($id, $_SESSION['gid'], $_SESSION['sid'], 'paper');
-                $this->view("student/enrollment/st_pastpaper_do", $file);
+                var_dump($file);
+                $answer = $this->model("st_public_resources_model")->getPastPaperAnswer($id);
+                var_dump($answer);
+                $this->view("student/enrollment/st_pastpaper_do", array($file,$answer));
                 break;
             case 'video':
                 $file = $this->model("st_public_resources_model")->getResource($id, $_SESSION['gid'], $_SESSION['sid'], 'video');

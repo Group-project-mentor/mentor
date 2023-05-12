@@ -44,10 +44,7 @@
 
                 <!-- Grade choosing interface -->
                 <div class="container-box">
-                    <a href="<?php echo BASEURL ?>sponsor/transactionHistory" type="button" class="sponsor-button" style="font-size: large;margin: 0 5px;text-decoration: none;display: flex;align-items: center;">
-                        <img src="<?php echo BASEURL ?>public/assets/icons/icon_cash.png" alt="profile" style="width: 25px;">
-                        Transaction History
-                    </a>
+                    
 
                     <div style="margin-top: 30px;">
                         <div class="sponsor-list-main row-decoration">

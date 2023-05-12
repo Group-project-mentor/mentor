@@ -79,6 +79,26 @@ class St_public_resources_model extends Model
         $result = $this->fetchObjs($stmt);
         return $result;
     }
+    
+    public function getLinkedQuiz($id)
+    {
+        $q = "SELECT pastpaper.qid FROM pastpaper WHERE pastpaper.id = ? ;" ;
+        $stmt = $this->prepare($q);
+        $stmt->bind_param('i', $id);
+
+        $result = $this->fetchOneObj($stmt);
+        return $result;
+    }
+    
+    public function getPastPaperAnswer($id)
+    {
+        $q = "SELECT pastpaper.answer FROM pastpaper WHERE pastpaper.id = ? ;" ;
+        $stmt = $this->prepare($q);
+        $stmt->bind_param('i', $id);
+
+        $result = $this->fetchOneObj($stmt);
+        return $result;
+    }
 
     public function getVideo($id, $sid = null, $gid = null)
     {
