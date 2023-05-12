@@ -1,9 +1,9 @@
 .hideme {
-    visibility: hidden;
+    display: none !important;
 }
 
 .showme {
-    visibility: visible;
+    display: block;
 }
 
 .message-area{
