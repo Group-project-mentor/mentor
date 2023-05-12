@@ -10,6 +10,17 @@
     <title>Sponsor Form</title>
     <link rel="stylesheet" href="<?php echo BASEURL?>public/stylesheets/resourceCreator/rc_main.css">
     <link rel="stylesheet" href="<?php echo BASEURL?>public/stylesheets/resourceCreator/rc_resources.css">
+    <style>
+        .bar {
+            height: 10px;
+            accent-color: green;
+            background-color: green; /* Set the background color to green */
+            border-radius: 5px;
+            margin-top: 10px;
+            width: 50%;
+            transition: width 0.3s ease-in-out;
+        }
+    </style>
     <!--    <link rel="stylesheet" href="--><?php //echo BASEURL . '/public/stylesheets/sponsor/sp_styles.css' ?><!-- ">-->
 </head>
 
@@ -44,7 +55,7 @@
                                 <label> First Name* : </label>
                                 <input type="text" name="firstName"
                                        placeholder="First Name"
-                                       value="<?php echo empty($data[0])?"":$data[0]->firstName ?>"
+                                       value=""
                                        maxlength="25"
                                        required />
                             </div>
@@ -52,7 +63,7 @@
                                 <label> Last Name* : </label>
                                 <input type="text" name="lastName"
                                        placeholder="Last Name"
-                                       value="<?php echo empty($data[0])?"":$data[0]->lastName ?>"
+                                       value=""
                                        maxlength="25"
                                        required />
                             </div>
@@ -62,9 +73,8 @@
                             <div class="rc-form-group">
                                 <label> Name with Initials* : </label>
                                 <input type="text" name="fullName"
-                                       placeholder="First Name"
-                                       value="<?php echo empty($data[0])?"":$data[0]->firstName ?>"
-                                       pattern="^[A-Za-z]+((\s)?((\.)|(?:\b[A-Za-z])[A-Za-z]*\.?)){0,2}$"
+                                       placeholder="Name with Initials"
+                                       value=""
                                        maxlength="50"
                                        required/>
                             </div>
@@ -74,7 +84,7 @@
                             <label> Email* : </label>
                             <input type="text" name="email"
                                    placeholder="Email"
-                                   value="<?php echo empty($data[0])?"":$data[0]->payEmail ?>"
+                                   value=""
                                    pattern="^[^\s@]+@[^\s@]+\.[^\s@]+$"
                                    required/>
                             <small>This should be your login email</small>
@@ -85,7 +95,7 @@
                                 <label> Telephone No 1 * : </label>
                                 <input type="text" name="tel1"
                                        placeholder="Telephone 1"
-                                       value="<?php echo empty($data[0])?"":$data[0]->payPhone  ?>"
+                                       value=""
                                        pattern="^(?:\+94|0)[1-9]\d{8}$"
                                        required/>
                             </div>
@@ -93,7 +103,7 @@
                                 <label> Telephone No 2  : </label>
                                 <input type="text" name="tel2"
                                        placeholder="Telephone 2"
-                                       value="<?php echo empty($data[0])?"":$data[0]->payPhone?>"
+                                       value=""
                                        pattern="^(?:\+94|0)[1-9]\d{8}$"
                                 />
                             </div>
@@ -101,74 +111,23 @@
 
                         <div class="rc-form-group">
                             <label> Address* : </label>
-                            <input type="text" name="address" placeholder="Address" value="<?php echo empty($data[0])?"":$data[0]->address ?>" required maxlength="100"/>
-                        </div>
-
-                        <div class="rc-form-group" style="flex: 1;">
-                            <label> Gender* : </label>
-                            <label>
-                                <select class="pp-quiz-chooser"  name="gender">
-                                    <option value="M">Male</option>
-                                    <option value="F">Female</option>
-                                    <option value="O">Other</option>
-                                </select>
-                            </label>
+                            <input type="text" name="address" placeholder="Address" value="" required maxlength="100"/>
                         </div>
 
                         <hr class="rc-form-hr"/>
+                        
+                        <div class="rc-form-group">
+                            <label> <b>Max amount</b> that you can give <b>Monthly</b>: 
+                                <label id="max-amount" style="padding:5px 10px;background-color:gray;border-radius:5px;color:white;">5000 LKR</label>
+                            </label>
+                            <input type="range" id="range-input" min="5000" max="50000" name="maxAmount" value="5000" onchange="updateBar()">
+                        </div>
 
                         <div class="rc-form-group">
-                            <label> Brief Description of you* : </label>
-                            <textarea class="form-group-textarea" name="description" id="" placeholder="Ex: Educational qualifications, Why are you applying to this?" required></textarea>
+                            <label> How did you know about us* : </label>
+                            <textarea class="form-group-textarea" name="howKnew" id="" placeholder="Ex: From a friend of mine" required></textarea>
                         </div>
-
-                        <div class="rc-form-group">
-                            <label> Subjects that you are expert in* : </label>
-                            <textarea class="form-group-textarea" name="subjects" id="" placeholder="Ex: Mathematics, Sinhala, Science" required></textarea>
-                            <small>Enter your subject areas in comma seperated manner...</small>
-                        </div>
-
-                            <div class="rc-form-group">
-                                <label> Example resource that you created early* : </label>
-                                <input type="file" name="workSample" class="normal-file-input" required>
-                                <small style="padding-left: 10px;text-align: left;">Maximum 100MB file</small>
-                            </div>
-
-                            <div class="rc-form-group">
-                                <label> Your CV* : </label>
-                                <input type="file" name="cv" class="normal-file-input" required>
-                                <small style="padding-left: 10px;text-align: left;">Should be in pdf format</small>
-                            </div>
-
-                        <label > What resource types you can create ?</label>
-                        <div class="rc-form-group-hz" style="margin-top: 10px;">
-                            <div class="checkbox-set">
-                                <label>
-                                    <input type="checkbox" name="resources[]" value="video" />
-                                    Videos
-                                </label>
-                                <label>
-                                    <input type="checkbox" name="resources[]" value="pdf"/>
-                                    Documents
-                                </label>
-                                <label>
-                                    <input type="checkbox" name="resources[]" value="quiz"/>
-                                    Quizzes
-                                </label>
-                            </div>
-                            <div class="checkbox-set">
-                                <label>
-                                    <input type="checkbox" name="resources[]" value="pastpaper"/>
-                                    Pastpapers
-                                </label>
-                                <label>
-                                    <input id="other-input-check" type="checkbox" name="resources[]" style="accent-color: #00AE46;" value="other"/>
-                                    Other types
-                                    <input id="other-input" type="text" name="otherTypes" style="width: 100%;padding:5px 10px;display: none;" maxlength="15" placeholder="your resource type">
-                                </label>
-                            </div>
-                        </div>
-
+                    
                         <hr class="rc-form-hr"/>
 
                         <div class="rc-upload-home-title">
@@ -189,5 +148,5 @@
     <script>
         const BASEURL = '<?php echo BASEURL?>';
     </script>
-    <script src="<?php echo BASEURL."javascripts/rc_form.js" ?>"></script>
+    <script src="<?php echo BASEURL."javascripts/sp_form.js" ?>"></script>
 </html>

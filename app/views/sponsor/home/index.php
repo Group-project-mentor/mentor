@@ -16,6 +16,14 @@
 
     <link rel="stylesheet" href="<?php echo BASEURL . '/public/stylesheets/resourceCreator/rc_main.css' ?> ">
     <link rel="stylesheet" href="<?php echo BASEURL . '/public/stylesheets/sponsor/sp_styles.css' ?> ">
+    <style>
+    
+    .progress-bar {
+      accent-color: <?php echo getColorByAmount($data['amountStatus'][1],$data['amountStatus'][0]) ?>;
+      width: 80%;
+      height: 40px;
+    }
+    </style>
 </head>
 
 <body>
@@ -94,6 +102,13 @@
                                     </div>
                                     <div class="rc-dash-info-card-set">
                                         <div class="rc-dash-info-card" style="min-width: 350px;">
+                                            <h2>Current-Amount : <?php echo number_format($data['amountStatus'][0],2) ?> | Max-Amount : <?php echo number_format($data['amountStatus'][1],2) ?></h2>
+                                            <?php if($data['amountStatus'][0] < $data['amountStatus'][1]){ ?>
+                                                    <progress  class="progress-bar" value="<?php echo $data['amountStatus'][0] ?>" max="<?php echo $data['amountStatus'][1] ?>"></progress> 
+                                            <?php }else{ ?>
+                                                    <progress  class="progress-bar" value="100" max="100"></progress> 
+                                                    <h2>Amount Exeeded !</h2>
+                                            <?php } ?>
                                         </div>
                                     </div>
                                 </div>

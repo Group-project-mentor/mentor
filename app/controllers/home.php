@@ -49,6 +49,9 @@ class Home extends Controller
                 foreach ($totalFundingChart as $row) {
                     $totalFunding += $row->total;
                 }
+                $total =$this->model("sponsorStModel")->getTotalAmount($_SESSION['id'])->total;
+                $maxAmount = $this->model("sponsorStModel")->getMaxAmount($_SESSION['id'])->maxAmount;
+
 
                 $monthlyChartData = $this->model("sponsorStModel")->getMonthlyData($_SESSION['id']);
 
@@ -73,6 +76,7 @@ class Home extends Controller
                         "monthlyAverage" => $totalFunding / (count($totalFundingChart) ? count($totalFundingChart) : 1),
                         "monthlyChartData" => $monthlyChartData,
                         "monthlyBillArray" => $monthlyBillArray,
+                        "amountStatus" => array($total, $maxAmount) ,
                     )
                 );
                 break;
