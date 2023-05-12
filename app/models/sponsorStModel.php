@@ -144,7 +144,7 @@ class sponsorStModel extends Model
 
     public function connectSponsor($st_id, $sp_id)
     {
-        $stmt = $this->prepare("UPDATE student SET sponsor_id = ? WHERE student.id = ?");
+        $stmt = $this->prepare("UPDATE student SET sponsor_id = ?, status = 'FU' WHERE student.id = ?");
         $stmt->bind_param("ii", $sp_id, $st_id);
         return $this->executePrepared($stmt);
     }
@@ -212,6 +212,18 @@ class sponsorStModel extends Model
         $stmt = $this->prepare("SELECT DISTINCT(grade.name) AS grd FROM grade, st_enroll_subject WHERE grade.id = st_enroll_subject.grade_id AND st_enroll_subject.student_id = ?");
         $stmt->bind_param("i", $id);
         return $this->fetchObjs($stmt);
+    }
+
+    public function getTotalAmount($id){
+        $stmt = $this->prepare("SELECT SUM(monthlyAmount) as total FROM student WHERE sponsor_id = ?");
+        $stmt->bind_param("i", $id);
+        return $this->fetchOneObj($stmt);
+    }
+
+    public function getMaxAmount($id){
+        $stmt = $this->prepare("SELECT maxAmount from sponsor WHERE id = ?");
+        $stmt->bind_param("i", $id);
+        return $this->fetchOneObj($stmt);
     }
 
 }

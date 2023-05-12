@@ -33,7 +33,10 @@ try {
     $mail->isHTML(true); 
     $mail->Subject = "$sub";
     $mail->Body = "$msg";
+    $mail->SMTPDebug = 0;
+
     $mail->send();
+
     echo 'Message has been sent';
 } catch (Exception $e) {
     // echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";

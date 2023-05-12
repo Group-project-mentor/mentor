@@ -146,6 +146,15 @@ class ResourceModel extends Model
         }
     }
 
+    public function getRandomVideos($gid, $sid, $limit = 3){
+        $stmt = $this->prepare("SELECT video.id, video.name, video.lecturer ,public_resource.approved,rs_subject_grade.creator_id 
+                                        FROM video, public_resource,rs_subject_grade WHERE video.id = public_resource.id AND
+                                         public_resource.id=rs_subject_grade.rsrc_id AND rs_subject_grade.subject_id=? AND 
+                                         rs_subject_grade.grade_id=? ORDER BY RAND() LIMIT ?;");
+        $stmt->bind_param('iii',$sid,$gid,$limit);
+        return $this->fetchObjs($stmt);
+    }
+
 
 //? Functions for add a resource
 

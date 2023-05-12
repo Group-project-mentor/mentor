@@ -292,6 +292,16 @@ function removeMainURL($array){
     return $array;
 }
 
+function getColorByAmount($max,$total){
+    if($max < $total){
+        return "red";
+    }elseif($max*3/4 < $total){
+        return "orange";
+    }else{
+        return "green";
+    }
+}
+
 
 tempFileRemover();
 TtempFileRemover();

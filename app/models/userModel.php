@@ -155,4 +155,11 @@ class UserModel extends Model
         return $stmt->execute();
     }
 
+    public function saveAppliedSponsor($firstname,$lastname,$initialsName,$email,$tel1,$tel2,$address,$howKnew,$maxAmount){
+        $stmt = $this->prepare("INSERT INTO applied_sponsor(firstName,lastName,initialsName,email,telephone1,telephone2,address,howKnew,maxAmount)
+                                 VALUES (?,?,?,?,?,?,?,?,?)");
+        $stmt->bind_param("ssssssssi",$firstname,$lastname,$initialsName,$email,$tel1,$tel2,$address,$howKnew,$maxAmount);       
+        return $stmt->execute();
+    }
+
 }

@@ -48,7 +48,7 @@
 <body>
 <section class="page">
     <!-- Navigation panel -->
-    <?php include_once "components/navbars/sp_nav_1.php"?>
+    <?php include_once "components/navbars/t_nav_1.php"?>
 
     <div class="content-area">
 
@@ -63,7 +63,7 @@
             <div class="top-bar-btns">
                 <?php include_once "components/notificationIcon.php" ?>
                 <a href="<?php echo BASEURL ?>sponsor/profile">
-                    <img src="<?php echo BASEURL ?>public/assets/icons/icon_profile_black.png" alt="profile">
+                    <?php include_once "components/profilePic.php"?>
                 </a>
             </div>
         </section>
@@ -95,29 +95,29 @@
                         <div class="rc-form-group-hz">
                             <div class="rc-form-group">
                                 <label> First Name* : </label>
-                                <input type="text" name="fName" placeholder="First Name" value="<?php echo empty($data[0]) ? "" : $data[0]->firstName ?>"/>
+                                <input type="text" name="fName" placeholder="First Name" />
                             </div>
                             <div class="rc-form-group">
                                 <label> Last Name* : </label>
-                                <input type="text" name="lName" placeholder="Last Name" value="<?php echo empty($data[0]) ? "" : $data[0]->lastName ?>"/>
+                                <input type="text" name="lName" placeholder="Last Name" />
                             </div>
                         </div>
 
                         <div class="rc-form-group">
                             <label> Payment Email* : </label>
-                            <input type="text" name="email" placeholder="Email" value="<?php echo empty($data[0]) ? "" : $data[0]->payEmail ?>"/>
+                            <input type="text" name="email" placeholder="Email" />
                         </div>
                         <div class="rc-form-group">
                             <label> Telephone* : </label>
-                            <input type="text" name="telNo" placeholder="Telephone" value="<?php echo empty($data[0]) ? "" : $data[0]->payPhone ?>"/>
+                            <input type="text" name="telNo" placeholder="Telephone" />
                         </div>
                         <div class="rc-form-group">
                             <label> Address* : </label>
-                            <input type="text" name="address" placeholder="Address" value="<?php echo empty($data[0]) ? "" : $data[0]->address ?>"/>
+                            <input type="text" name="address" placeholder="Address" 
                         </div>
                         <div class="rc-form-group">
                             <label> City* : </label>
-                            <input type="text" name="city" placeholder="City" value="<?php echo empty($data[0]) ? "" : $data[0]->city ?>"/>
+                            <input type="text" name="city" placeholder="City" />
                         </div>
                         <div class="rc-form-group-hz">
                             <div class="rc-form-group" style="flex: 1;">

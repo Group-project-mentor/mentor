@@ -109,8 +109,9 @@ class St_public_resources extends Controller
 
     public function st_pastpaper_link_Quiz($id)
     {
-        $file = $this->model("st_public_resources_model")->getResource($id,$_SESSION['gid'],$_SESSION['sid'],'paper');
-        $this->view('student/enrollment/st_pastpaper_link_Quiz',$file);
+        $file = $this->model("st_public_resources_model")->getLinkedQuiz($id);
+        var_dump($file);
+        $this->view("student/enrollment/st_quizzes_intro", array($file));
 
     }
 
@@ -156,7 +157,10 @@ class St_public_resources extends Controller
                 break;
             case 'paper':
                 $file = $this->model("st_public_resources_model")->getResource($id, $_SESSION['gid'], $_SESSION['sid'], 'paper');
-                $this->view("student/enrollment/st_pastpaper_do", $file);
+                var_dump($file);
+                $answer = $this->model("st_public_resources_model")->getPastPaperAnswer($id);
+                var_dump($answer);
+                $this->view("student/enrollment/st_pastpaper_do", array($file,$answer));
                 break;
             case 'video':
                 $file = $this->model("st_public_resources_model")->getResource($id, $_SESSION['gid'], $_SESSION['sid'], 'video');
@@ -183,6 +187,48 @@ class St_public_resources extends Controller
             return $link;
         }
         // var_dump($splitted_link);
+    }
+
+    public function organized($grade_id, $subject_id)
+    {
+        $topics = $this->model("resourceModel")->getTopics($grade_id, $subject_id);
+        $topicOrderRow = $this->model("resourceModel")->getTopicOrder($grade_id, $subject_id);
+        $topicOrder = (!empty($topicOrderRow))?$topicOrderRow->tpcOrder:null;
+        $this->getNames($grade_id, $subject_id);
+        $_SESSION["gid"] = $grade_id;
+        $_SESSION["sid"] = $subject_id;
+        if(empty($topicOrderRow)){
+            if(!empty($topics)){
+                foreach ($topics as $topic) {
+                    $topicIds = array();
+                    foreach ($topics as $topic) {
+                        $topicIds[] = $topic->id;
+                    }
+                    $topicOrder = implode(',', $topicIds);
+                }
+            }else{
+                $topicOrder = "";
+            }
+        }elseif(empty($topicOrder) || $topicOrder == ""){
+            $topicOrder = "";
+        }
+        $topicData = array();
+        foreach ($topics as $topic) {
+            $topicData[$topic->id] = $topic;
+        }
+        $this->view('student/enrollment/st_organized',array($topicData,$topicOrder));
+    }
+
+    public function getResourcesTopics(){
+        $resourcesTopicWise = $this->model("resourceModel")->getResourcesWithTopics($_SESSION['sid'],$_SESSION['gid']);
+        $organizedList = array();
+        if(!empty($resourcesTopicWise)){
+            foreach ($resourcesTopicWise as $topic) {
+                $organizedList[$topic->t_id][] = $topic;
+            }
+        }
+        header("Content-Type:Application/json");
+        echo json_encode($organizedList);
     }
 
 }

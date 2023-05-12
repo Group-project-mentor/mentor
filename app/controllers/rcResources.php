@@ -146,12 +146,13 @@ class RcResources extends Controller
                 $this->view("resourceCtr/previews/other_preview", $file);
                 break;
             case 'video':
+                $related = $this->model("resourceModel")->getRandomVideos($_SESSION['gid'], $_SESSION['sid']);
                 $file = $this->model("resourceModel")->getResource($id, $_SESSION['gid'], $_SESSION['sid'], 'video');
                 $resourceData = $this->model("resourceModel")->getVideo($id);
                 if ($resourceData[6] === "L") {
                     $resourceData[4] = $this->filterVideoId($resourceData[4]);
                 }
-                $this->view("resourceCtr/previews/video_preview", array($file, $resourceData));
+                $this->view("resourceCtr/previews/video_preview", array($file, $resourceData, $related));
                 break;
             case 'pastpaper':
                 $file = $this->model("resourceModel")->getResource($id, $_SESSION['gid'], $_SESSION['sid'], 'paper');
@@ -227,12 +228,12 @@ class RcResources extends Controller
 
     public function organized($grade_id, $subject_id)
     {
-        $topics = $this->model("resourceModel")->getTopics($grade_id, $subject_id);
-        $topicOrderRow = $this->model("resourceModel")->getTopicOrder($grade_id, $subject_id);
-        $topicOrder = (!empty($topicOrderRow))?$topicOrderRow->tpcOrder:null;
         $this->getNames($grade_id, $subject_id);
         $_SESSION["gid"] = $grade_id;
         $_SESSION["sid"] = $subject_id;
+        $topics = $this->model("resourceModel")->getTopics($grade_id, $subject_id);
+        $topicOrderRow = $this->model("resourceModel")->getTopicOrder($grade_id, $subject_id);
+        $topicOrder = (!empty($topicOrderRow))?$topicOrderRow->tpcOrder:null;
         if(empty($topicOrderRow)){
             if(!empty($topics)){
                 foreach ($topics as $topic) {
@@ -253,11 +254,13 @@ class RcResources extends Controller
         foreach ($topics as $topic) {
             $topicData[$topic->id] = $topic;
         }
+        print_r($topicData);
+        print_r($topicOrder);
         $this->view('resourceCtr/resources/organized',array($topicData,$topicOrder));
     }
 
     public function getResourcesTopics(){
-        $resourcesTopicWise = $this->model("resourceModel")->getResourcesWithTopics($_SESSION['gid'], $_SESSION['sid']);
+        $resourcesTopicWise = $this->model("resourceModel")->getResourcesWithTopics($_SESSION['sid'], $_SESSION['gid']);
         $organizedList = array();
         if(!empty($resourcesTopicWise)){
             foreach ($resourcesTopicWise as $topic) {

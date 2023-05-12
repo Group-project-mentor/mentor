@@ -41,10 +41,14 @@ public function __construct()
 
     public function quizzes($cid)
     {
+        $filters = removeMainURL($_GET);
         $this->getClass($cid);
         $_SESSION["cid"] = $cid;
-        $result = $this->model("TchResourceModel")->findQuizzes($cid);
-        $this->view('Teacher/resources/quizzes', array($result));
+        $res2 = $this->model("TchResourceModel")->findQuestionCounts($cid);
+        $questionCount = array();
+        foreach ($res2 as $item) $questionCount[$item->rs_id] = $item->count;
+
+        $this->view('Teacher/resources/quizzes', array($questionCount));
     }
 
     public function documents($cid, $page = 1)
@@ -98,7 +102,7 @@ public function __construct()
     private function getClass($class_id)
     {
         if (!isset($_SESSION["cid"])) {
-            $result1 = $this->model("classModel")->getClassId($class_id)[1];
+            $result1 = $this->model("classModel")->getClassId($class_id)[0];
             $_SESSION["cid"] = $result1;
         }
     }
@@ -114,8 +118,9 @@ public function __construct()
                 $this->view("Teacher/preview/other_preview",$file);
                 break;
             case 'video':
+                print_r($_SESSION);
                 $file = $this->model("TchResourceModel")->getResource($id,$_SESSION['cid'],'video');
-                $resourceData = $this->model("TChResourceModel")->getVideo($id);
+                $resourceData = $this->model("TChResourceModel")->getVideo($id,$_SESSION['cid']);
                 if($resourceData[6] === "L")
                     $resourceData[4] = $this->filterVideoId($resourceData[4]);
                 $this->view("Teacher/preview/video_preview",array($file,$resourceData));
@@ -169,5 +174,3 @@ public function __construct()
     
 
 }
-
-?>

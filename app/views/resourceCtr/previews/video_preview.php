@@ -80,12 +80,17 @@
                     <h3>Related Videos</h3>
                 </div>
                 <div class="subject-card-set">
-                    <div class="subject-card">
-                        <img src="<?php echo BASEURL ?>assets/patterns/2.png" alt="" />
-                        <a href="#"><label>C79 - lesson 2</label></a>
-                        <label>Grade 8</label>
-                        <button class="Enter-btn">Enter</button>
-                    </div>
+                <?php
+                    if(!empty($data[2])){
+                        $count = 1;
+                        foreach ($data[2] as $row) { ?>
+                            <div class="subject-card">
+                                <img src="<?php echo BASEURL."assets/patterns/$count.png" ?>" alt="" />
+                                <a href="<?php echo BASEURL."rcResources/preview/video/".$row->id ?>"><label></label></a>
+                                <label>Grade 8</label>
+                                <button class="Enter-btn">View</button>
+                            </div>
+                    <?php $count++; }} ?>
                 </div>
             </div>
         </section>

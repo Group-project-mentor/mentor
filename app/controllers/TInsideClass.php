@@ -85,34 +85,39 @@ class TInsideClass extends Controller
         $premium = ($this->model("premiumModel")->getPremium($_SESSION['id'])->active);
         $teacher_count = ($this->model("premiumModel")->teacherCount($_SESSION['cid'])->teacher_count);
         $teacherExist = ($this->model("teacher_data")->getduplicateTr($id1, $_SESSION['id'])->tcount);
-        var_dump($id1, $id2, $id3);
-        var_dump($premium, $teacher_count);
-        if ($teacherExist >= 1) {
-            flashMessage("already");
-            header("location:" . BASEURL . "TInsideClass/inClass");
-        } else if ($teacherExist == 0) {
-            if ($premium == 1) {
-                if ($this->model('teacher_data')->addExtraTeachersClass($id1, $id2, $id3) and $this->model('notificationModel')->notify($id1, $message, $id3, 'tch')) {
-                    flashMessage("success");
-                    header("location:" . BASEURL . "TInsideClass/addTr");
-                } else {
-                    flashMessage("failed");
-                    header("location:" . BASEURL . "TInsideClass/addTr");
+        $Tname = ($this->model("teacher_data")->getCName($id1)->name);
+        if ($Tname == $id2 and $id1 != 0) {
+            if ($teacherExist >= 1) {
+                flashMessage("already");
+                header("location:" . BASEURL . "TInsideClass/inClass");
+            } else if ($teacherExist == 0) {
+                if ($premium == 1) {
+                    if ($this->model('teacher_data')->addExtraTeachersClass($id1, $id2, $id3) and $this->model('notificationModel')->notify($id1, $message, $id3, 'tch')) {
+                        flashMessage("success");
+                        header("location:" . BASEURL . "TInsideClass/addTr");
+                    } else {
+                        flashMessage("failed");
+                        header("location:" . BASEURL . "TInsideClass/addTr");
+                    }
+                } else if ($premium != 1 and $teacher_count < 2) {
+
+                    if ($this->model('teacher_data')->addExtraTeachersClass($id1, $id2, $id3) and $this->model('notificationModel')->notify($id1, $message, $id3, 'tch')) {
+                        flashMessage("success");
+                        header("location:" . BASEURL . "TInsideClass/addTr");
+                    } else {
+                        flashMessage("failed");
+                        header("location:" . BASEURL . "TInsideClass/addTr");
+                    }
+                } else if ($premium != 1 and $teacher_count >= 2) {
+                    flashMessage("premiumLimited");
                 }
-            } else if ($premium != 1 and $teacher_count < 2) {
-                if ($this->model('teacher_data')->addExtraTeachersClass($id1, $id2, $id3) and $this->model('notificationModel')->notify($id1, $message, $id3, 'tch')) {
-                    flashMessage("success");
-                    header("location:" . BASEURL . "TInsideClass/addTr");
-                } else {
-                    flashMessage("failed");
-                    header("location:" . BASEURL . "TInsideClass/addTr");
-                }
-            } else if ($premium != 1 and $teacher_count >= 2) {
-                flashMessage("premiumLimited");
+                header("location:" . BASEURL . "TInsideClass/addTr");
             }
             header("location:" . BASEURL . "TInsideClass/addTr");
+        } else {
+            flashMessage("invalid");
+            header("location:" . BASEURL . "TInsideClass/addTr");
         }
-        header("location:" . BASEURL . "TInsideClass/addTr");
     }
 
 
@@ -130,5 +135,54 @@ class TInsideClass extends Controller
             $result1 = $this->model("classModel")->getClassId($class_id)[1];
             $_SESSION["cid"] = $result1;
         }
+    }
+
+    public function getStudentSearch($search_query)
+    {
+        //Get search query from input field
+        // $search_query = filter_input(INPUT_GET, 'search', FILTER_SANITIZE_STRING);
+        if ($search_query !== null && $search_query !== '') {
+            $res = $this->model('classModel')->getMatchingNames($search_query);
+            if ($res !== null && !empty($res)) {
+                echo json_encode($res);
+            }
+        } else {
+            echo json_encode(array("status" => "error"));
+        }
+    }
+
+    public function getTeacherSearch($search_query)
+    {
+        //Get search query from input field
+        // $search_query = filter_input(INPUT_GET, 'search', FILTER_SANITIZE_STRING);
+        if ($search_query !== null && $search_query !== '') {
+            $res = $this->model('classModel')->getMatchingTchNames($search_query);
+            if ($res !== null && !empty($res)) {
+                echo json_encode($res);
+            }
+        } else {
+            echo json_encode(array("status" => "error"));
+        }
+    }
+
+    public function getStudentReportSearch($search_query)
+    {
+        //Get search query from input field
+        // $search_query = filter_input(INPUT_GET, 'search', FILTER_SANITIZE_STRING);
+        if ($search_query !== null && $search_query !== '') {
+            $res = $this->model('classModel')->getReportMatchingNames($search_query);
+            if ($res !== null && !empty($res)) {
+                echo json_encode($res);
+            }
+        } else {
+            echo json_encode(array("status" => "error"));
+        }
+    }
+
+    public function settings($cid)
+    {
+      
+        $res = $this->model('classModel')->getToken($cid);
+        $this->view('Teacher/classRoom/settings', array($res));
     }
 }

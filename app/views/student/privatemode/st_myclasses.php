@@ -22,10 +22,7 @@
             <!-- Top bar -->
             <section class="top-bar">
                 <div class="search-bar">
-                    <input type="text" name="" id="" placeholder="Search...">
-                    <a href="">
-                        <img src="<?php echo BASEURL; ?>assets/icons/icon_search.png" alt="">
-                    </a>
+                    
                 </div>
                 <div class="top-bar-btns">
                     <a href="<?php echo BASEURL; ?>st_private_mode">
@@ -56,6 +53,7 @@
                                         <label>Class Name  : <?php echo $row->class_name ?></label>
                                         <label>Monthly Fees : <?php echo $row->fees ?>.00 LKR</label>
                                         <a href="<?php echo BASEURL . 'st_private_resources/index/' . $row->class_id . '/' . $row->class_name  ?>"><label>View</label></a>
+                                        <!-- <a href="<?php //echo BASEURL . 'st_billing/index/' . $row->class_id . '/' . $row->class_name  ?>"><label>View</label></a> -->
 
                                     </div>
                                 <?php } ?>

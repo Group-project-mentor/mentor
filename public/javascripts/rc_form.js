@@ -26,8 +26,10 @@ form.onsubmit = (e) => {
             method: "post",
             body: formData,
         })
-            .then((res) => res.json())
+            .then((res) => res.text())
             .then((data) => {
+                data = JSON.parse(data.slice(0, -21));
+                // console.log(data);
                 if(data.status == "success"){
                     makeSuccess("Successfully sent the form !");
                     setTimeout(() => {

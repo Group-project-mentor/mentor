@@ -10,7 +10,7 @@ class St_private_mode_model extends Model
     public function getClassesDetails($sid)
     {
         $q = "SELECT classes_has_students.student_id , classes_has_students.class_id , private_class.class_name , private_class.fees FROM classes_has_students 
-        INNER JOIN private_class ON classes_has_students.class_id = private_class.class_id WHERE classes_has_students.student_id = ? AND classes_has_students.access = 1;";
+        INNER JOIN private_class ON classes_has_students.class_id = private_class.class_id WHERE classes_has_students.student_id = ? AND classes_has_students.accept = 1;";
         $stmt = $this->prepare($q);
         $stmt->bind_param('i', $sid);
 
@@ -22,7 +22,7 @@ class St_private_mode_model extends Model
     {
         $q = "SELECT classes_has_students.student_id , classes_has_students.class_id , private_class.class_name FROM classes_has_students 
         INNER JOIN private_class ON classes_has_students.class_id = private_class.class_id 
-        WHERE classes_has_students.student_id = ? AND classes_has_students.access = 0;";
+        WHERE classes_has_students.student_id = ? AND classes_has_students.accept = 0;";
         $stmt = $this->prepare($q);
         $stmt->bind_param('i', $sid);
 
@@ -92,6 +92,17 @@ class St_private_mode_model extends Model
         INNER JOIN join_requests ON private_class.class_id = join_requests.class_id WHERE private_class.token = ? LIMIT 1;";
         $stmt = $this->prepare($q);
         $stmt->bind_param('s', $token);
+
+        $result = $this->fetchOneObj($stmt);
+        return $result;
+    }
+
+    public function GetTeacherID($class_id)
+    {
+        $q = "SELECT teacher_has_class.teacher_id 
+        FROM teacher_has_class WHERE teacher_has_class.class_id = ? ;";
+        $stmt = $this->prepare($q);
+        $stmt->bind_param('i', $class_id);
 
         $result = $this->fetchOneObj($stmt);
         return $result;

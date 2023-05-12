@@ -16,6 +16,7 @@
 <section class="page">
     <!-- Navigation panel -->
     <?php include_once "components/navbars/sp_nav_1.php" ?>
+    <?php include_once "components/alerts/sponsor/amountExeededConf.php"?>
 
     <!-- Right side container -->
     <div class="content-area">
@@ -47,11 +48,23 @@
 
             <!-- bottom part -->
             <section class="bottom-section-grades" style="flex-direction: column;align-items: flex-end;">
+                <?php if($data[2] >= $data[3]){ ?>
+                    <h2 style="align-self: flex-start;">Remaining Amount : <?php echo number_format($data[2] - $data[3],2)." LKR" ?></h2>
+                <?php }else{ ?>
+                    <h2 style="align-self: flex-start;color:red;">Exeeded Amount : <?php echo number_format($data[3] - $data[2],2)." LKR" ?></h2>
+                <?php } ?>
                 <div class="bottom-section-title">
-                    <a class="sponsor-button" href="<?php echo BASEURL?>sponsor/new_student" style="text-decoration: none;">
+                    <?php if ($data[2] >= $data[3]) {?>
+                        <a class="sponsor-button" href="<?php echo BASEURL?>sponsor/new_student" style="text-decoration: none;">
                         New
                         <img src="<?php echo BASEURL ?>assets/icons/add_teacher.png" alt="" style="width: 20px;">
-                    </a>
+                        </a>
+                    <?php } else {?>
+                        <a class="sponsor-button" onclick="displayConfBox();" style="text-decoration: none;">
+                        New
+                        <img src="<?php echo BASEURL ?>assets/icons/add_teacher.png" alt="" style="width: 20px;">
+                        </a>
+                    <?php }?>
                 </div>
                 <div class="sponsor-list-main row-decoration" id="info-table">
                     <div class="sponsor-list-row">
@@ -132,6 +145,19 @@
     let searchInput = document.getElementById('search-inp');
     let searchButton = document.getElementById('search-btn');
     let cardHolder = document.getElementById('info-table');
+    let confBox = document.getElementById("delConfMsg2");
+    let accBtn = document.getElementById("acceptBtn2");
+
+    function displayConfBox() {
+        accBtn.href = `${BASEURL}sponsor/new_student`;
+        confBox.classList.remove("hidden");
+        confBox.classList.add("message-area");
+    }
+
+    function declineConfBox2() {
+        confBox.classList.remove("message-area");
+        confBox.classList.add("hidden");
+    }
 
     searchButton.onclick = () => {
         let searchTxt = searchInput.value.trim();

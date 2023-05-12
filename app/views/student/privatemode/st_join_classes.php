@@ -67,7 +67,7 @@
 
                 </div>
                 <div class="top-bar-btns">
-                    <a href="<?php echo BASEURL; ?>st_private_mode">
+                    <a href="<?php echo BASEURL ?>st_private_mode">
                         <div class="back-btn">Back</div>
                     </a>
                     <?php include_once "components/notificationIcon.php" ?>
