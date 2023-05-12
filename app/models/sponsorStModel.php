@@ -144,7 +144,7 @@ class sponsorStModel extends Model
 
     public function connectSponsor($st_id, $sp_id)
     {
-        $stmt = $this->prepare("UPDATE student SET sponsor_id = ? WHERE student.id = ?");
+        $stmt = $this->prepare("UPDATE student SET sponsor_id = ?, status = 'FU' WHERE student.id = ?");
         $stmt->bind_param("ii", $sp_id, $st_id);
         return $this->executePrepared($stmt);
     }
