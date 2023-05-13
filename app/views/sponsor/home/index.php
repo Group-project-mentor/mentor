@@ -136,14 +136,6 @@
                             </div>
                             <br>
                             <div>
-                                <div style="display: flex;flex-direction: column;flex: 1;">
-                                    <div class="sp-subject-report resource-chart">
-                                        <h4>Total Funding Student Wise</h4>
-                                        <canvas id="myChart3" class="resource-chart">
-
-                                        </canvas>
-                                    </div>
-                                </div>
                                 <div style="display: flex;flex-direction: column;flex:2;">
                                     <div class="sp-subject-report resource-chart">
                                         <h4>Monthly Paid Amounts (This Year - <?php echo date('Y')?> )</h4>
@@ -192,7 +184,7 @@
     // console.log(Data,Labels);
     const chart1 = document.getElementById('myChart1');
     const chart2 = document.getElementById('myChart2');
-    const chart3 = document.getElementById('myChart3');
+    // const chart3 = document.getElementById('myChart3');
     const chart4 = document.getElementById('myChart4');
 
     const labels = ["A","B","C","D","E","F","G"];
@@ -216,29 +208,6 @@
         labels: monthlyAmounts.labels,
         datasets: [{
             data: monthlyAmounts.data,
-            backgroundColor: [
-                'rgba(99,148,255,0.2)',
-                'rgba(161,255,99,0.2)',
-                'rgba(255,99,135,0.2)',
-                'rgba(174,99,255,0.2)',
-                'rgba(255,200,99,0.2)',
-            ],
-            borderColor: [
-                'rgb(99,143,255)',
-                'rgb(58,211,5)',
-                'rgb(255,99,99)',
-                'rgb(150,29,252)',
-                'rgb(245,106,30)',
-            ],
-            borderWidth: 1
-        }]
-    };
-
-    const data3 = {
-        labels: labels,
-        datasets: [{
-            label : "Total agreed fund amount",
-            data: sampleData,
             backgroundColor: [
                 'rgba(99,148,255,0.2)',
                 'rgba(161,255,99,0.2)',
@@ -291,14 +260,6 @@
         },
     });
 
-    new Chart(chart3, {
-        type: 'doughnut',
-        data: data3,
-        options: {
-            scales: {
-            },
-        },
-    });
 
     new Chart(chart4, {
         type: 'line',
