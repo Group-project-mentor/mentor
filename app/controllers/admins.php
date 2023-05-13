@@ -1158,6 +1158,26 @@ class admins extends Controller {
 
 
     }
+
+    public function adminAnalytics()
+    {
+        sessionValidator();
+        $this->hasLogged();
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            // handle POST request
+        }
+
+        if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+            $currentMonth = date('m');
+            $monthlyStArray = $this->model('admin')->getUserCountsByTypeAndMonth('st', $currentMonth);
+            $monthlytArray = $this->model('admin')->getUserCountsByTypeAndMonth('tch', $currentMonth);
+            $monthlyRcArray = $this->model('admin')->getUserCountsByTypeAndMonth('rc', $currentMonth);
+            $monthlySpArray = $this->model('admin')->getUserCountsByTypeAndMonth('sp', $currentMonth);
+
+            $this->view('admin/analytics', compact('monthlyStArray', 'monthlytArray', 'monthlyRcArray', 'monthlySpArray'));
+        }
+    }
     
     
 }

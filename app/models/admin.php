@@ -558,6 +558,32 @@ class admin extends Model{
         return $this->executeQuery($query);
     }
 
+    public function getUserCountsByTypeAndMonth($type, $month)
+    {
+        $stmt = $this->prepare("SELECT COUNT(id) as count, MONTH(time_stamp) as month FROM user WHERE type = ? AND MONTH(time_stamp) = ?");
+        $stmt->bind_param('si', $type, $month);
+        $result = $this->fetchObjs($stmt);
+
+        $monthArray = $this->createEmptyMonthArray();
+
+        foreach ($result as $row) {
+            $monthName = date('F', mktime(0, 0, 0, $row->month, 1));
+            $monthArray[$monthName] = $row->count;
+        }
+
+        return $monthArray;
+    }
+
+    private function createEmptyMonthArray()
+    {
+        $monthArray = array();
+        for ($i = 1; $i <= 12; $i++) {
+            $date = DateTime::createFromFormat('!m', $i);
+            $monthArray[$date->format('F')] = 0;
+        }
+        return $monthArray;
+    }
+
     
 
 }
