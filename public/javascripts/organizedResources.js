@@ -131,7 +131,7 @@ function renderResource(item){
             <div class="rc-org-row">
                         <img src="${BASEURL}public/assets/icons/${resourceTypeImage(item.type)}.png" alt="delete">
                         <div class="rc-org-col">
-                            ${item.rsrc_id}
+                            ${item.name}
                         </div>
                         <div class="rc-org-col"></div>
                         <div class="rc-org-col"></div>

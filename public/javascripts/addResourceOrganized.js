@@ -24,7 +24,7 @@ typeChooser.addEventListener("change", (e) => {
             choosenType = "pdfs";
             break;
         case "3":
-            choosenType = "pastpapers";
+            choosenType = "papers";
             break;
         case "4":
             choosenType = "quizzes";

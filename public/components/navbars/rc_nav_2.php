@@ -17,19 +17,6 @@ if (!isset($_SESSION['navtog'])) {
                 </div>
             </div>
 
-
-            <!-- Navigation bar private - public switch -->
-            <!-- <div class="nav-middle" id="nav-middle">
-                <p>Public</p>
-                <div class="nav-switch">
-                    <label class="switch">
-                        <input type="checkbox" disabled>
-                        <span class="slider round"></span>
-                    </label>
-                </div>
-                <p class="nav-switch-txt">Private</p>
-            </div> -->
-
             <?php 
                 $gid = $_SESSION["gid"];
                 $sid = $_SESSION["sid"]; 
@@ -61,13 +48,9 @@ if (!isset($_SESSION['navtog'])) {
                     <img src="<?php echo BASEURL?>assets/icons/icon_other.png" alt="other">
                     <div class="nav-link-text">Other resource</div>
                 </a>
-                <a href="<?php echo BASEURL ?>rcResources/settings/<?php echo "$gid/$sid"; ?>" class="nav-link">
-                    <img src="<?php echo BASEURL?>assets/icons/icon_settings.png" alt="settings">
-                    <div class="nav-link-text">Settings</div>
-                </a>
-<!--                <a href="--><?php //echo BASEURL ?><!--report" class="nav-link">-->
-<!--                    <img src="--><?php //echo BASEURL?><!--assets/icons/icon_report.png" alt="bmc">-->
-<!--                    <div class="nav-link-text">Report issue</div>-->
+<!--                <a href="--><?php //echo BASEURL ?><!--rcResources/settings/--><?php //echo "$gid/$sid"; ?><!--" class="nav-link">-->
+<!--                    <img src="--><?php //echo BASEURL?><!--assets/icons/icon_settings.png" alt="settings">-->
+<!--                    <div class="nav-link-text">Settings</div>-->
 <!--                </a>-->
             </div>
 
@@ -85,7 +68,6 @@ if (!isset($_SESSION['navtog'])) {
     let togglerBtn = getElement("nav-toggler");
     let nav = getElement("nav-bar");
     let logoLong = getElement("nav-logo-long");
-    // let navMiddle = getElement("nav-middle");
     let navLinkTexts = document.getElementsByClassName("nav-link-text");
 
     toggleFunction();
@@ -103,7 +85,6 @@ if (!isset($_SESSION['navtog'])) {
         if (toggle) {
             nav.classList.add("nav-bar-small");
             logoLong.classList.add("hidden");
-            // navMiddle.classList.add("hidden");
             togglerBtn.classList.add("toggler-rotate");
             for (let i = 0; i < navLinkTexts.length; i++) {
                 navLinkTexts[i].classList.add("hidden");
@@ -112,7 +93,6 @@ if (!isset($_SESSION['navtog'])) {
         } else {
             nav.classList.remove("nav-bar-small");
             logoLong.classList.remove("hidden");
-            // navMiddle.classList.remove("hidden");
             togglerBtn.classList.remove("toggler-rotate");
             for (let i = 0; i < navLinkTexts.length; i++) {
                 navLinkTexts[i].classList.remove("hidden");
@@ -122,4 +102,3 @@ if (!isset($_SESSION['navtog'])) {
     }
 </script>
 
-<!--        <script src="--><?php //echo BASEURL . '/public/javascripts/rc_navbar.js' ?><!--"></script>-->
