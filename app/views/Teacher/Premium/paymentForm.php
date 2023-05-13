@@ -153,7 +153,7 @@
     </div>
 </section>
 </body>
-<script type="text/javascript" src="<?php echo BASEURL ?>javascripts/middleFunctions.js"></script>
+
 <script type="text/javascript" src="https://www.payhere.lk/lib/payhere.js"></script>
 <script>
     const BASEURL = '<?php echo BASEURL ?>';

@@ -234,6 +234,9 @@ class admins extends Controller {
             $data['rtask'] = $this->adminModel->ResourceTask($uID);
             $data['ctask'] = $this->adminModel->ComplaintTask($uID);
             $data['rctask'] = $this->adminModel->ResourceCreatorTask($uID);
+            $data['schltask'] = $this->adminModel->ScholorTask($uID);
+            $data['sptask'] = $this->adminModel->SponsorTask($uID);
+
             $this->view('admin/task',$data);
 
         }
