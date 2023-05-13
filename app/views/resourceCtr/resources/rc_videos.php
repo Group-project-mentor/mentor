@@ -22,6 +22,9 @@
         }elseif ($_SESSION['message'] == "failed"){
             $message = "Video updating failed !";
             include_once "components/alerts/operationFailed.php";
+        }elseif ($_SESSION['message'] == "fillAllData"){
+            $message = "Please fill required data !";
+            include_once "components/alerts/operationFailed.php";
         }
     }
     ?>

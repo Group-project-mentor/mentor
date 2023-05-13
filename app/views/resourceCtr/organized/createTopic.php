@@ -12,7 +12,17 @@
 
 <body>
 <section class="page">
-    
+    <?php
+        if(isset($_SESSION['message']) && $_SESSION['message']== "success"){
+            include_once "components/alerts/uploadSuccess.php";
+        }elseif(isset($_SESSION['message']) && $_SESSION['message']== "failed"){
+            $message = "Topic/Lesson name is not valid !";
+            include_once "components/alerts/operationFailed.php";
+        }elseif(isset($_SESSION['message']) && $_SESSION['message']== "invalidData"){
+            $message = "Topic/Lesson name is not valid !";
+            include_once "components/alerts/operationFailed.php";
+        }
+    ?>
     <!-- Navigation panel -->
     <?php include_once "components/navbars/rc_nav_2.php"?>
 
