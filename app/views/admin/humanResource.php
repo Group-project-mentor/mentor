@@ -10,11 +10,6 @@
     <link rel="stylesheet" href="<?php echo BASEURL ?>stylesheets/admin/ad_humanresource.css">
 
 </head>
-<nav>
-    <div class="ad_nav">
-
-    </div>
-</nav>
 
 <body>
     <?php require_once("C:/xampp/htdocs/mentor/app/views/admin/navbar.php"); ?>
@@ -44,10 +39,10 @@
                 <div class="users">
 
                     <?php
-                    if (!$data['rc']) {
+                    if (!$data['appliedrc']) {
                         echo 'No Details';
                     } else {
-                        foreach ($data['rc'] as $value) {
+                        foreach ($data['appliedrc'] as $value) {
                             echo
                             '<div class="content" id="comp-content">
                                 
@@ -56,12 +51,12 @@
                                         <img class="profile" src="' . BASEURL . 'assets/admin/user.png">
                                     </div>
                                     <div class="name">
-                                        <p>' . $value['name'] . '</p>
+                                        <p>' . $value['firstName'] . '</p>
                                     </div>
                                 </div>
                                 
                                 <div class="btns">
-                                    <button class="comp-btns" onclick="addComplaintToTaskManager(' . $data['rc'][0]['work_id'] . ',' . $_SESSION['id'] . ')" type="button">Add To Task Manager</button>
+                                    <button class="comp-btns" onclick="addRCToTaskManager(' . $data['appliedrc'][0]['id'] . ',' . $_SESSION['id'] . ')" type="button">Add To Task Manager</button>
                                     <br>
                                 </div>
                             </div>';

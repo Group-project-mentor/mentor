@@ -108,4 +108,10 @@ class payments extends Model
         $stmt->bind_param("ssd",$name,$email,$amount);
         return $this->executePrepared($stmt);
     }
+
+    public function getStudentsofBill($bill){
+        $stmt = $this->prepare("SELECT * FROM sp_pay WHERE billNo = ?");
+        $stmt->bind_param("s",$bill);
+        return $this->fetchObjs($stmt);
+    }
 }

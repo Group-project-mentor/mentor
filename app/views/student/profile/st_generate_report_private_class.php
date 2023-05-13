@@ -53,7 +53,7 @@
                 <h3> 
                     Report Name : <?php echo $data[0]->name ?>
                 </h3>
-                    <embed src="<?php echo BASEURL ?>public/data/reports/<?php  $data[0]->class_id . "/" . $data[0]->location ?>" style="width:50%;height:70vh;margin:auto;">
+                    <embed src="<?php echo BASEURL ?>data/reports/<?php echo $data[0]->class_id . "/" . $data[0]->location ?>" style="width:50%;height:70vh;margin:auto;">
                 </div>
             </section>
         </div>

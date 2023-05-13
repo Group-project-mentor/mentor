@@ -11,11 +11,6 @@
 
 
 </head>
-<nav>
-    <div class="ad_nav">
-
-    </div>
-</nav>
 
 <body>
     <?php require_once("C:/xampp/htdocs/mentor/app/views/admin/navbar.php"); ?>

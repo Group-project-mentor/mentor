@@ -11,14 +11,9 @@
     <link rel="stylesheet" href="<?php echo BASEURL ?>stylesheets/admin/massage.css">
 
 </head>
-<nav>
-    <div class="ad_nav">
-
-    </div>
-</nav>
 
 <body>
-<?php require_once("C:/xampp/htdocs/mentor/public/components/alerts/admin/addToTM.php"); ?>
+<?php require_once("C:/xampp/htdocs/mentor/public/components/alerts/admin/addCToTM.php"); ?>
     
     <?php require_once("C:/xampp/htdocs/mentor/app/views/admin/navbar.php"); ?>
     <!-- Middle part for whole content -->

@@ -7,15 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>login</title>
     <link rel="stylesheet" href="<?php echo BASEURL ?>stylesheets/admin/ad_dashboard.css">
-
-
-
 </head>
-<nav>
-    <div class="ad_nav">
-
-    </div>
-</nav>
 
 <body>
     <?php require_once("C:/xampp/htdocs/mentor/app/views/admin/navbar.php"); ?>

@@ -119,6 +119,28 @@ class admin extends Model{
         return $this->executeQuery($query);
     }
 
+    public function approveResourceCreator($rcID,$email,$name,$password){
+        $hash = password_hash($password, PASSWORD_BCRYPT, ["cost" => 10]);
+        $query1 = "UPDATE `applied_creator` SET `approved` = 'Y' WHERE `id` = '$rcID'; ";
+        
+        if ($this->executeQuery($query1)) {
+            $query2 = "INSERT INTO user(`email`,`name`,`password`,`type`) VALUE('$email','$name','$hash','rc');";
+            return $this->executeQuery($query2);
+        } else {
+            return false;
+        }
+
+        
+    }
+
+    public function declineResourceCreator($rcID){
+        $query = "UPDATE `applied_creator` SET `approved` = 'N' WHERE `id` = '$rcID'; ";
+        
+        return $this->executeQuery($query);
+    }
+
+
+
     public function declineResource($rID){
         $query = "UPDATE `public_resource` SET `approved` = 'N' WHERE `id` = '$rID'; ";
         
@@ -137,6 +159,43 @@ class admin extends Model{
         } else {
             return false;
         } 
+    }
+
+    public function ResourceCreatorView($rcID){
+        $query = "SELECT * FROM `applied_creator` WHERE `id`='$rcID'; ";
+        $result = $this->executeQuery($query);
+        
+        if ($result->num_rows > 0) {
+            return $result->fetch_all(MYSQLI_ASSOC);
+        } else {
+            return false;
+        } 
+    }
+    public function ResourceCreatorTask($uID){
+        $query = "SELECT * FROM `applied_creator` WHERE `approved_by`='$uID' AND `approved` IS NULL; ";
+        $result = $this->executeQuery($query);
+        
+        if ($result->num_rows > 0) {
+            return $result->fetch_all(MYSQLI_ASSOC);
+        } else {
+            return false;
+        } 
+    }
+
+    public function ResourceCreatorDetails($rcID){
+        $query = "SELECT * FROM `applied_creator` WHERE `id` = '$rcID'; ";
+        $result = $this->executeQuery($query);
+        
+        if ($result->num_rows > 0) {
+            return $result->fetch_all(MYSQLI_ASSOC);
+        } else {
+            return false;
+        } 
+    }
+
+    public function deleteRCFromTaskManager($rcID) {
+        $query = "UPDATE `applied_creator` SET `approved_by`= NULL WHERE `id`='$rcID';";
+        return $this->executeQuery($query);
     }
 
     // public function ResourceView($rID,$element){
@@ -263,8 +322,8 @@ class admin extends Model{
         } 
     }
 
-    public function resourcecreator(){
-        $query = "SELECT `resource_creator`.*, `user`.* FROM `resource_creator` INNER JOIN `user` ON `resource_creator`.id = `user`.id;";
+    public function AppliedResourcecreator(){
+        $query = "SELECT * FROM `applied_creator` WHERE `approved_by` IS NULL ;";
         $result = $this->executeQuery($query);
     
         if ($result->num_rows > 0) {
@@ -384,6 +443,34 @@ class admin extends Model{
         } 
     }
 
+
+    public function addRCToTaskManager($rcID,$uID){
+        $query = "UPDATE `applied_creator` SET `approved_by` = '$uID' WHERE `id` = '$rcID' ";
+        
+        $result = $this->executeQuery($query);
+
+        // return $result;
+        // print_r($result);die;
+        if ($result) {
+            return true;
+        } else {
+            return false;
+        } 
+    }
+
+    public function addScholToTaskManager($schlID,$uID){
+        $query = "UPDATE `scholarship` SET `approved_by` = '$uID' WHERE `id` = '$schlID' ";
+        
+        $result = $this->executeQuery($query);
+
+        // return $result;
+        // print_r($result);die;
+        if ($result) {
+            return true;
+        } else {
+            return false;
+        } 
+    }
     // public function addComplaintToTask(){
    
     //     $result[] = $this->getData("complaint")

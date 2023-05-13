@@ -1,5 +1,5 @@
-<section class="notification">
-    <div id="alert" class="hideme message-area">
+<section id="alert" class="hideme notification">
+    <div class="message-area">
         <div class="message">
             <div class="message-text">
                 Admin added Successfully !

@@ -11,11 +11,6 @@
     <link rel="stylesheet" href="<?php echo BASEURL ?>stylesheets/admin/massage.css">
 
 </head>
-<nav>
-    <div class="ad_nav">
-
-    </div>
-</nav>
 
 <body>
 <?php require_once("C:/xampp/htdocs/mentor/public/components/alerts/admin/action_taken.php"); ?>

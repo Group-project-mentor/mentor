@@ -20,7 +20,7 @@ class St_private_resources extends Controller
 
         $check = $this->model("st_billing_model")->checkbeforeEnter($_SESSION['id'], $_SESSION['class_id']);
 
-        var_dump($check);
+        //var_dump($check);
         if ( !empty($check) ){
             $result = $this->model("St_private_resources_model")->findClassId($class_name);
             $this->view('student/enrollment_private/st_private_resources', array($result));

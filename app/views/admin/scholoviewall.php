@@ -9,11 +9,6 @@
     <link rel="stylesheet" href="<?php echo BASEURL ?>stylesheets/admin/ad_complaintHandle.css">
     <link rel="stylesheet" href="<?php echo BASEURL ?>stylesheets/admin/style.css">
 </head>
-<nav>
-    <div class="ad_nav">
-
-    </div>
-</nav>
 
 <body>
     <?php require_once("C:/xampp/htdocs/mentor/app/views/admin/navbar.php"); ?>
@@ -47,7 +42,7 @@
                                 <a href="'. BASEURL .'admins/scholorshipview/' . $value['id'] . '?id=' . $value['id'] .'"><img src="'. BASEURL .'assets/admin/view.png"></a>
                             </div>
                             <div class="addtm">
-                                <button class="comp-btns" type="button"><img src="'. BASEURL .'assets/admin/addtm.png"></button>
+                                <button class="comp-btns" onclick="addScholToTaskManager(' . $data['scholarship'][0]['id'] . ')" type="button"><img src="'. BASEURL .'assets/admin/addtm.png"></button>
                             </div>
                             <div class="delete">
                                 <a href="'. BASEURL .'#"><img src="'. BASEURL .'assets/admin/Delete.png"></a>

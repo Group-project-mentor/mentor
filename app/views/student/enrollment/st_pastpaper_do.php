@@ -22,10 +22,7 @@
             <!-- Top bar -->
             <section class="top-bar">
                 <div class="search-bar">
-                    <input type="text" name="" id="" placeholder="Search...">
-                    <a href="">
-                        <img src="<?php echo BASEURL ?>assets/icons/icon_search.png" alt="">
-                    </a>
+                    
                 </div>
                 <div class="top-bar-btns">
                     <a href="<?php echo BASEURL . 'st_public_resources/index_past_papers/' . $_SESSION['gid'] . '/' . $_SESSION['sid'] ?>">
@@ -40,7 +37,7 @@
 
             <section class="mid-content">
                 <?php
-                if (empty($data)) {
+                if (empty($data[0])) {
                     echo "<center style='color:red;font-size:x-large;'>No file ! </center>";
                     // header("location:".BASEURL."rcResources/documents/".$_SESSION['gid']."/".$_SESSION['sid']);
                 } else {
@@ -59,6 +56,10 @@
                     <div class="container-box">
                         <embed src="<?php echo BASEURL ?>public_resources/pastpapers/<?php echo $_SESSION['gid'] . "/" . $_SESSION['sid'] . "/" . $data[0]->location ?>" style="width:50%;height:70vh;margin:auto;">
                     </div>
+                    <div class="container-box">
+                        <embed src="<?php echo BASEURL ?>public_resources/pastpapers/<?php echo $_SESSION['gid'] . "/" . $_SESSION['sid'] . "/" . $data[1]->answer ?>" style="width:50%;height:70vh;margin:auto;">
+                    </div>
+                    
                 <?php } ?>
             </section>
         </div>

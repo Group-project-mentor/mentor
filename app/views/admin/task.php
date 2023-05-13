@@ -10,12 +10,6 @@
     <link rel="stylesheet" href="<?php echo BASEURL ?>stylesheets/admin/style.css">
     <link rel="stylesheet" href="<?php echo BASEURL ?>stylesheets/admin/massage.css">
 </head>
-<nav>
-    <div class="ad_nav">
-
-    </div>
-</nav>
-
 <body>
 <?php require_once("C:/xampp/htdocs/mentor/public/components/alerts/admin/deleteComptm.php"); ?>
 
@@ -30,8 +24,7 @@
         <div class="content">
             <?php
             if (!$data['rtask']) {
-                echo 'No Complaints';
-                echo ($_SESSION["id"]);
+                
             } else {
                 foreach ($data['rtask'] as $value) {
                         echo
@@ -63,8 +56,7 @@
             }
 
             if (!$data['ctask']) {
-                echo 'No Complaints';
-                echo ($_SESSION["id"]);
+                
             } else {
                 foreach ($data['ctask'] as $value) {
                         echo '<div class="content">
@@ -93,6 +85,39 @@
                 }
                 
             }
+
+            if (!$data['rctask']) {
+                
+            } else {
+                foreach ($data['rctask'] as $value) {
+                        echo '<div class="content">
+                                    <div class="complaints">
+                                        <div class="pp">
+                                            <img  class="profile" src="' . BASEURL . 'assets/admin/approverc.png">
+                                        </div>
+                                        <div class="name">
+                                            <p>Approve Resource Creators</p>
+                                        </div>
+                                        <div class="userid" id="user-id">
+                                            <p>' . $value['description'] . '</p>
+                                        </div>
+                                        
+                                <div class="icons">
+                                    <div class="view">
+                                        <a href="'. BASEURL .'admins/resourceCreatorReview/details/' . $value['id'] . '"><img src="'. BASEURL .'assets/admin/view.png"></a>
+                                    </div>
+                                    <div class="delete">
+                                        <button class="comp-btns" onclick="deleteRCFromTaskManager(' . $value['id'] . ')" type="button"><img src="' . BASEURL . 'assets/admin/Delete.png"></button>
+                                    </div>
+                                </div>
+                                    </div>
+                                </div>';
+                    
+                }
+                
+            }
+
+            
             ?>
 
         </div>

@@ -21,10 +21,7 @@
             <!-- Top bar -->
             <section class="top-bar">
                 <div class="search-bar">
-                    <input type="text" name="" id="" placeholder="Search...">
-                    <a href="">
-                        <img src="<?php echo BASEURL  ?>assets/icons/icon_search.png" alt="">
-                    </a>
+                    
                 </div>
                 <div class="top-bar-btns">
                     <a href="#">
