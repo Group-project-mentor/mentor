@@ -33,7 +33,7 @@
                     '<div class="content" >
                         <div class="complaints">
                             <div class="pp">
-                                <i class="fa-sharp fa-solid fa-book-open" style="color: #000000; font-size:30px""></i>
+                                <img src="' . BASEURL . 'assets/admin/RV/resource.svg">
                             </div>
                             <div class="name">
                                 <p>Review Resource</p>
@@ -64,7 +64,7 @@
                         echo '<div class="content">
                                     <div class="complaints">
                                         <div class="pp">
-                                            <img  class="profile" src="' . BASEURL . 'assets/admin/comphand.png">
+                                            <img src="' . BASEURL . 'assets/admin/RV/comlaint.svg">
                                         </div>
                                         <div class="name">
                                             <p>Complaint Handling</p>
@@ -95,7 +95,7 @@
                         echo '<div class="content">
                                     <div class="complaints">
                                         <div class="pp">
-                                            <img  class="profile" src="' . BASEURL . 'assets/admin/approverc.png">
+                                            <img src="' . BASEURL . 'assets/admin/RV/RC.svg">
                                         </div>
                                         <div class="name">
                                             <p>Approve Resource Creators</p>
@@ -110,6 +110,68 @@
                                     </div>
                                     <div class="delete">
                                         <button class="comp-btns" onclick="deleteRCFromTaskManager(' . $value['id'] . ')" type="button"><img src="' . BASEURL . 'assets/admin/Delete.png"></button>
+                                    </div>
+                                </div>
+                                    </div>
+                                </div>';
+                    
+                }
+                
+            }
+
+            if (!$data['schltask']) {
+                
+            } else {
+                foreach ($data['schltask'] as $value) {
+                        echo '<div class="content">
+                                    <div class="complaints">
+                                        <div class="pp">
+                                            <img src="' . BASEURL . 'assets/admin/RV/scholor.svg">
+                                        </div>
+                                        <div class="name">
+                                            <p>Scholorship Approval</p>
+                                        </div>
+                                        <div class="userid" id="user-id">
+                                            <p>' . $value['firstName'] . '</p>
+                                        </div>
+                                        
+                                <div class="icons">
+                                    <div class="view">
+                                        <a href="'. BASEURL .'admins/task/' . $value['id'] . '">View</a>
+                                    </div>
+                                    <div class="delete">
+                                        <button class="comp-btns" onclick="deleteComplaintFromTaskManager(' . $value['id'] . ')" type="button">Delete</button>
+                                    </div>
+                                </div>
+                                    </div>
+                                </div>';
+                    
+                }
+                
+            }
+
+            if (!$data['sptask']) {
+                
+            } else {
+                foreach ($data['sptask'] as $value) {
+                        echo '<div class="content">
+                                    <div class="complaints">
+                                        <div class="pp">
+                                            <img src="' . BASEURL . 'assets/admin/RV/sponsor.svg">
+                                        </div>
+                                        <div class="name">
+                                            <p>Sponsor Approval</p>
+                                        </div>
+                                        <div class="userid" id="user-id">
+                                            <p>' . $value['firstName'] . '</p>
+                                        </div>
+                                        
+                                <div class="icons">
+                                    <div class="view">
+                                        <a href="'. BASEURL .'admins/task/' . $value['id'] . '">View</a>
+                                    </div>
+                                    <div class="delete">
+                                        <button class="comp-btns" onclick="deleteComplaintFromTaskManager(' . $value['id'] . ')" type="button">Delete</button>
                                     </div>
                                 </div>
                                     </div>

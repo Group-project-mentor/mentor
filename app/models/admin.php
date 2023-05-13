@@ -178,6 +178,28 @@ class admin extends Model{
         } 
     }
 
+    public function ScholorTask($uID){
+        $query = "SELECT* FROM `scholarship` WHERE `approved_by`='$uID' AND `approved` IS NULL; ";
+        $result = $this->executeQuery($query);
+        
+        if ($result->num_rows > 0) {
+            return $result->fetch_all(MYSQLI_ASSOC);
+        } else {
+            return false;
+        } 
+    }
+
+    public function SponsorTask($uID){
+        $query = "SELECT* FROM `applied_sponsor` WHERE `approved_by`='$uID' AND `approved` IS NULL; ";
+        $result = $this->executeQuery($query);
+        
+        if ($result->num_rows > 0) {
+            return $result->fetch_all(MYSQLI_ASSOC);
+        } else {
+            return false;
+        } 
+    }
+
     public function ResourceCreatorView($rcID){
         $query = "SELECT * FROM `applied_creator` WHERE `id`='$rcID'; ";
         $result = $this->executeQuery($query);
@@ -474,6 +496,7 @@ class admin extends Model{
             return false;
         } 
     }
+
 
     public function addScholToTaskManager($schlID,$uID){
         $query = "UPDATE `scholarship` SET `approved_by` = '$uID' WHERE `id` = '$schlID' ";
