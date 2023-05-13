@@ -18,7 +18,7 @@
 <?php require_once("C:/xampp/htdocs/mentor/public/components/alerts/admin/addRToTM.php"); ?>
     <?php require_once("C:/xampp/htdocs/mentor/app/views/admin/navbar.php"); ?>
             <!-- Middle part for whole content -->
-            <section class="mid-content ad_mid-content">
+            <section class="ad_mid-content">
 
                 <!-- Title and sub title of middle part -->
                 <div class="mid-title">
@@ -34,7 +34,7 @@
                     <div class="videos">
                     <?php
                     if (!$data['other']) {
-                        echo '0';
+                        echo '<img src="'. BASEURL .'assets/admin/RV/down.gif">';
                     } else {
                         foreach ($data['other'] as $value) {
                             echo '

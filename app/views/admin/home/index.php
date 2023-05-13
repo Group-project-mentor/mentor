@@ -10,6 +10,7 @@
 
 
 
+
 </head>
 <nav>
     <div class="ad_nav">
@@ -20,7 +21,7 @@
 <body>
     <?php require_once("C:/xampp/htdocs/mentor/app/views/admin/navbar.php"); ?>
     <!-- Middle part for whole content -->
-    <section class="mid-content ad_mid-content">
+    <section class="ad_mid-content">
 
         <!-- Title and sub title of middle part -->
         <div class="mid-title">
@@ -31,12 +32,12 @@
             <div class="ad_cards">
                 <div class="box" id="st">
                     <div class="imgrow">
-                        <div background-img src="<?php echo BASEURL ?>assets/admin/Ellipse.png">
+                        <div class="img">
                             <img class="mini" src="<?php echo BASEURL ?>assets/admin/students.png">
                         </div>
                         <div class="typeNcount">
                             <div class="boxtitle">
-                                <h1>Total<br>Students </h1><br>
+                                <h1>Total Students </h1>
                             </div>
                             <div class="count">
                                 <h1>
@@ -47,7 +48,7 @@
                                     } else {
                                         echo $data['studentCount'];
                                     }
-                                    ?><br>
+                                    ?>
 
                                 </h1>
                             </div>
@@ -59,12 +60,12 @@
                 </div>
                 <div class="box" id="tc">
                     <div class="imgrow">
-                        <div background="<?php echo BASEURL ?>assets/admin/Ellipse 1.png">
+                        <div class="img">
                             <img class="mini" src="<?php echo BASEURL ?>assets/admin/teacher.png">
                         </div>
                         <div class="typeNcount">
                             <div class="boxtitle">
-                                <h1>Total<br>Teachers</h1><br>
+                                <h1>Total Teachers</h1>
                             </div>
                             <div class="count">
                                 <h1>
@@ -74,7 +75,7 @@
                                     } else {
                                         echo $data['teacherCount'];
                                     }
-                                    ?><br>
+                                    ?>
                                 </h1>
                             </div>
                         </div>
@@ -85,12 +86,12 @@
                 </div>
                 <div class="box" id="pc">
                     <div class="imgrow">
-                        <div background="<?php echo BASEURL ?>assets/admin/Ellipse 1.png">
+                        <div class="img">
                             <img class="mini" src="<?php echo BASEURL ?>assets/admin/teaching.png">
                         </div>
                         <div class="typeNcount">
                             <div class="boxtitle">
-                                <h1>Total Private Classes</h1><br>
+                                <h1>Total Classes</h1>
                             </div>
                             <div class="count">
                                 <h1>
@@ -100,7 +101,7 @@
                                     } else {
                                         echo $data['classCount'];
                                     }
-                                    ?><br>
+                                    ?>
                                 </h1>
                             </div>
                         </div>
@@ -109,12 +110,12 @@
                 </div>
                 <div class="box" id="sp">
                     <div class="imgrow">
-                        <div background="<?php echo BASEURL ?>assets/admin/Ellipse 1.png">
+                        <div class="img">
                             <img class="mini" src="<?php echo BASEURL ?>assets/admin/sponsor.png">
                         </div>
                         <div class="typeNcount">
                             <div class="boxtitle">
-                                <h1>Total<br>Sponsors</h1><br>
+                                <h1>Total Sponsors</h1>
                             </div>
                             <div class="count">
                                 <h1>
@@ -124,7 +125,7 @@
                                     } else {
                                         echo $data['sponsorCount'];
                                     }
-                                    ?><br>
+                                    ?>
                                 </h1>
                             </div>
                         </div>
@@ -137,7 +138,7 @@
 
 
 
-            <div class="ad_section2" style="display: flex;">
+            <div class="ad_section2">
                 <div class="bottom-details">
                     <div class="bgbox" style="margin: 20px 20px; height: 70vh; width: 60vh; flex:1">
                         <div class="sp-subject-report resource-chart">
@@ -201,18 +202,18 @@
                         } else {
                             foreach ($data['rtask'] as $value) {
                                 echo '<div class="content">
-                                    <div class="complaints">
-                                        <div class="pp">
-                                            <img  class="profile" src="' . BASEURL . 'assets/admin/reviewresource.png">
-                                        </div>
-                                        <div class="name">
-                                            <p>Review Resource</p>
-                                        </div>
-                                        <div class="userid" id="user-id">
-                                            <p>' . $value['type'] . '</p>
-                                        </div>
-                                    </div>
-                                </div>';
+                        <div class="complaints">
+                            <div class="pp">
+                                <img class="profile" src="' . BASEURL . 'assets/admin/reviewresource.png">
+                            </div>
+                            <div class="name">
+                                <p>Review Resource</p>
+                            </div>
+                            <div class="userid" id="user-id">
+                                <p>' . $value['type'] . '</p>
+                            </div>
+                        </div>
+                    </div>';
                             }
                         }
 
@@ -220,24 +221,21 @@
                         } else {
                             foreach ($data['ctask'] as $value) {
                                 echo '<div class="content">
-                                 <div class="complaints">
-                                    <div class="pp">
-                                        <img  class="profile" src="' . BASEURL . 'assets/admin/comphand.png">
-                                    </div>
-                                    <div class="name">
-                                        <p>Complaint Handling</p>
-                                    </div>
-                                    <div class="userid" id="user-id">
-                                        <p>' . $value['description'] . '</p>
-                                    </div>
-                                     
-                                
-                                </div>
-                            </div>';
+                        <div class="complaints">
+                            <div class="pp">
+                                <img class="profile" src="' . BASEURL . 'assets/admin/comphand.png">
+                            </div>
+                            <div class="name">
+                                <p>Complaint Handling</p>
+                            </div>
+                            <div class="userid" id="user-id">
+                                <p>' . $value['description'] . '</p>
+                            </div>
+                        </div>
+                    </div>';
                             }
                         }
                         ?>
-
                     </div>
                 </div>
                 <div class="bgbox">
@@ -248,36 +246,33 @@
                             </div>
                             <div class="btn">
                                 <a href="<?php echo BASEURL ?>admins/userhandling">
-                                    <p style="color:white">View All</p>
+                                    <button type="button">View All</button>
                                 </a>
                             </div>
                         </div>
                         <?php
-                        //print_r( $data['complaints']);
                         if (!$data['complaints']) {
                             echo 'No Complaints';
                         } else {
                             foreach ($data['complaints'] as $value) {
                                 echo '<div class="content">
-                                <div class="complaints">
-                                    <div class="pp">
-                                        <img class="profile" src="' . BASEURL . 'assets/admin/pp.png">
-                                    </div>
-                                    <div class="name" id="user-name">
-                                        <p>' . $value['name'] . '</p>
-                                    </div>
-                                    <div class="userid" id="user-id">
-                                        <p>' . $value['id'] . '</p>
-                                    </div>
-                                </div>
-                            </div>';
+                        <div class="complaints">
+                            <div class="pp">
+                                <img class="profile" src="' . BASEURL . 'assets/admin/pp.png">
+                            </div>
+                            <div class="name" id="user-name">
+                                <p>' . $value['name'] . '</p>
+                            </div>
+                            <div class="userid" id="user-id">
+                                <p>' . $value['id'] . '</p>
+                            </div>
+                        </div>
+                    </div>';
                             }
                         }
                         ?>
-
                     </div>
                 </div>
-
             </div>
             <div class="ad_section4">
                 <div class="bgbox">
@@ -302,30 +297,22 @@
                             <h1>Add New Grade or Subject</h1>
                         </div>
                         <div class="btn-sec5">
-                            <div class="btn-5">
-                                <a href="<?php echo BASEURL ?>admins/addgrades">
-                                    <p style="font-size: larger;">Add Grade</p>
-                                </a>
-                            </div>
-                            <div class="btn-5">
-                                <a href="<?php echo BASEURL ?>admins/addsubject">
-                                    <p style="font-size: larger;">Add Subject</p>
-                                </a>
-                            </div>
-
+                            <a href="<?php echo BASEURL ?>admins/addgrades" class="btn-5">
+                                <span>Add Grade</span>
+                            </a>
+                            <a href="<?php echo BASEURL ?>admins/addsubject" class="btn-5">
+                                <span>Add Subject</span>
+                            </a>
                         </div>
                     </div>
                 </div>
             </div>
+
         </div>
     </section>
     </div>
     </section>
-    <style>
-        .tab {
-            padding: 5px 10px;
-        }
-    </style>
+
     <?php require_once("C:/xampp/htdocs/mentor/app/views/admin/popup.php"); ?>
 
 
