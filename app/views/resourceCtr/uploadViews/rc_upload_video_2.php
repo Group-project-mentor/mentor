@@ -16,14 +16,17 @@
 
 
 <?php
-
-if(isset($_SESSION['message']) && $_SESSION['message']== "success"){
-    include_once "components/alerts/uploadSuccess.php";
-}
-elseif(isset($_SESSION['message']) && $_SESSION['message']== "error"){
-    include_once "components/alerts/uploadFailed.php";
-}
-?>
+        if (isset($_SESSION['message']) && $_SESSION['message'] == "success") {
+            $message = "Video updated successfully !";
+            include_once "components/alerts/operationSuccess.php";
+        }elseif (isset($_SESSION['message']) && $_SESSION['message'] == "error"){
+            $message = "Video updating failed !";
+            include_once "components/alerts/operationFailed.php";
+        }elseif (isset($_SESSION['message']) && $_SESSION['message'] == "dataNotFilled"){
+            $message = "Please enter completed data !";
+            include_once "components/alerts/operationFailed.php";
+        }
+    ?>
 <section class="page">
     <?php include_once "components/alerts/rightAlert.php"?>
     <!-- Navigation panel -->
