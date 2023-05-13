@@ -193,6 +193,29 @@ class admins extends Controller {
 
     }
 
+
+    public function deleteSchlTM($id) {
+
+        sessionValidator();
+        $this->hasLogged();
+
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+            if($this->adminModel->deleteSchlFromTaskManager($id)){
+                echo 'Successful';
+            } else{
+                echo 'Error';
+            }
+        }
+
+        if ($_SERVER['REQUEST_METHOD'] == 'GET') {
+            
+            
+
+        }
+
+    }
+
     public function deleteResouceTM($id) {
 
         sessionValidator();

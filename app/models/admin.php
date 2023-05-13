@@ -254,6 +254,11 @@ class admin extends Model{
         $query = "UPDATE `applied_sponsor` SET `approved_by`= NULL WHERE `id`='$spID';";
         return $this->executeQuery($query);
     }
+
+    public function deleteSchlFromTaskManager($sID) {
+        $query = "UPDATE `scholarship` SET `approved_by`= NULL WHERE `id`='$sID';";
+        return $this->executeQuery($query);
+    }
     public function videoview($id) {
         $query = "SELECT `public_resource`.*, `video`.* FROM `public_resource` INNER JOIN `video` ON `public_resource`.id = `video`.id WHERE `public_resource`.`type`='video' AND `video`.`id`='$id';";
         $result = $this->executeQuery($query);

@@ -354,7 +354,7 @@ function deleteScholToTaskManager(stID){
 
         }
     };
-    xhttp.open("POST", "http://localhost/mentor/admins/deleteResouceCreatorTM/"+stID, true);
+    xhttp.open("POST", "http://localhost/mentor/admins/deleteSchlTM/"+stID, true);
     xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xhttp.send();
 }

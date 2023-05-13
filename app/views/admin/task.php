@@ -140,7 +140,7 @@
                                         <a href="'. BASEURL .'admins/task/' . $value['id'] . '">View</a>
                                     </div>
                                     <div class="delete">
-                                        <button class="comp-btns" onclick="deleteComplaintFromTaskManager(' . $value['id'] . ')" type="button">Delete</button>
+                                        <button class="comp-btns" onclick="deleteScholToTaskManager(' . $value['id'] . ')" type="button">Delete</button>
                                     </div>
                                 </div>
                                     </div>

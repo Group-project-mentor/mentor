@@ -20,7 +20,7 @@
 
         <!-- Title and sub title of middle part -->
         <div class="mid-title">
-            <h1>Sponsor</h1>
+            <h1>Sponsors Application</h1>
         </div>
         <div class="content">
             <?php
