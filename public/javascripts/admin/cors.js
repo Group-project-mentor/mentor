@@ -381,7 +381,7 @@ function addSPToTaskManager(sID){
     xhttp.send();
 }
 
-function deleteSPToTaskManager(stID){
+function deleteSPFromTaskManager(spID){
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
 
@@ -396,7 +396,7 @@ function deleteSPToTaskManager(stID){
 
         }
     };
-    xhttp.open("POST", "http://localhost/mentor/admins/deleteResouceCreatorTM/"+stID, true);
+    xhttp.open("POST", "http://localhost/mentor/admins/deleteSPTM/"+spID, true);
     xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xhttp.send();
 }
