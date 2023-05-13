@@ -609,7 +609,15 @@ class admins extends Controller {
         $this->hasLogged();
 
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-           
+            $uID = $_SESSION["id"];
+
+            if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+                if($this->adminModel->addSPToTaskManager($id,$uID)){
+                    echo 'Successful';
+                } else{
+                    echo 'Error';
+                }
+            }
         }
 
         if ($_SERVER['REQUEST_METHOD'] == 'GET') {

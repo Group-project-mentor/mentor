@@ -118,7 +118,6 @@ public function __construct()
                 $this->view("Teacher/preview/other_preview",$file);
                 break;
             case 'video':
-                print_r($_SESSION);
                 $file = $this->model("TchResourceModel")->getResource($id,$_SESSION['cid'],'video');
                 $resourceData = $this->model("TChResourceModel")->getVideo($id,$_SESSION['cid']);
                 if($resourceData[6] === "L")
