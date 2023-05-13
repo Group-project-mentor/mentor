@@ -88,7 +88,7 @@ class Quiz extends Controller
                             "size" => $_FILES["questionImg"]["size"]);
                     $extention = pathinfo($fileData["name"], PATHINFO_EXTENSION);
 
-                    if (in_array($fileData['type'], $typeArray)) {
+//                    if (in_array($fileData['type'], $typeArray)) {
 
                         $newFileName = uniqid() . $result . "." . $extention;
                         if (saveFile($_FILES["questionImg"]["tmp_name"],$newFileName,"quizzes/questions",$_SESSION['gid'],$_SESSION['sid'])) {
@@ -122,11 +122,11 @@ class Quiz extends Controller
                 flashMessage("failed");
                 header("location:" . BASEURL . "quiz/addQuestion/$quizId");
             }
-        } else {
-            $this->model('quizModel')->rollBack();
-            flashMessage("failed");
-            header("location:" . BASEURL . "quiz/addQuestion/$quizId");
-        }
+//        } else {
+//            $this->model('quizModel')->rollBack();
+//            flashMessage("failed");
+//            header("location:" . BASEURL . "quiz/addQuestion/$quizId");
+//        }
 
     }
 
