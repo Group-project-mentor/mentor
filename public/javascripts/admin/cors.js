@@ -359,3 +359,45 @@ function deleteScholToTaskManager(stID){
     xhttp.send();
 }
 
+
+function addSPToTaskManager(sID){
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+
+        if (this.readyState == 4 && this.status == 200) {
+            var response = this.responseText;
+
+            let alert = document.getElementById("alert");
+            alert.classList.remove("hideme");
+            alert.classList.add("showme");  
+
+            
+
+        }
+    };
+
+    xhttp.open("POST", "http://localhost/mentor/admins/sponsorview/"+sID, true);
+    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xhttp.send();
+}
+
+function deleteSPToTaskManager(stID){
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+
+        if (this.readyState == 4 && this.status == 200) {
+            var response = this.responseText;
+
+            let alert = document.getElementById("alert");
+            alert.classList.remove("hideme");
+            alert.classList.add("showme");  
+
+            
+
+        }
+    };
+    xhttp.open("POST", "http://localhost/mentor/admins/deleteResouceCreatorTM/"+stID, true);
+    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xhttp.send();
+}
+

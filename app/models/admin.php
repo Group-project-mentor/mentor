@@ -99,6 +99,15 @@ class admin extends Model{
         return $this->executeQuery($query);
     }
 
+    public function addSPToTaskManager($sID, $uID) {
+        $query = "UPDATE `applied_sponsor` SET `approved_by`='$uID',`review_status`='in Progress' WHERE `id`='$sID';";
+        return $this->executeQuery($query);
+    }
+
+    public function deleteSPtFromTaskManager($cID) {
+        $query = "UPDATE `applied_sponsor` SET `approved_by`= NULL ,`status`='pending' WHERE `id`='$cID';";
+        return $this->executeQuery($query);
+    }
     public function deleteResourceFromTaskManager($rID) {
         $query = "UPDATE `public_resource` SET `approved_by`= NULL WHERE `id`='$rID';";
         return $this->executeQuery($query);
@@ -274,7 +283,7 @@ class admin extends Model{
 
 
     public function sponsors(){
-        $query = "SELECT *FROM sponsor;";
+        $query = "SELECT *FROM `applied_sponsor` WHERE `approved_by` IS NULL;";
         $result = $this->executeQuery($query);
     
         if ($result->num_rows > 0) {

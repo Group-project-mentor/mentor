@@ -8,9 +8,13 @@
     <title>login</title>
     <link rel="stylesheet" href="<?php echo BASEURL ?>stylesheets/admin/ad_complaintHandle.css">
     <link rel="stylesheet" href="<?php echo BASEURL ?>stylesheets/admin/style.css">
+    <link rel="stylesheet" href="<?php echo BASEURL ?>stylesheets/admin/massage.css">
+
 </head>
 
 <body>
+<?php require_once("C:/xampp/htdocs/mentor/public/components/alerts/admin/addSToTM.php"); ?>
+
     <?php require_once("C:/xampp/htdocs/mentor/app/views/admin/navbar.php"); ?>
     <!-- Middle part for whole content -->
     <section class="mid-content ad_mid-content">
@@ -22,34 +26,35 @@
 
         <div class="content">
             <?php
-            foreach ($data['sponsors'] as $value) {
-                echo '<div class="content">
-                            <div class="complaints">
-                                <div class="pp">
-                                    <img class="profile" src="' . BASEURL . 'assets/admin/pp.png">
+            if (!$data['sponsors']) {
+               
+            } else {
+                foreach ($data['sponsors'] as $value) {
+                    echo '<div class="content">
+                                <div class="complaints">
+                                    <div class="pp">
+                                        <img class="profile" src="' . BASEURL . 'assets/admin/pp.png">
+                                    </div>
+                                    <div class="name" id="user-name">
+                                        <p>' . $value['firstName'] . '</p>
+                                    </div>
+                                    <div class="userid" id="user-id">
+                                        <p>' . $value['email'] . '</p>
+                                    </div>
+                                    <div class="description" id="user-description">
+                                        <p>' . $value['maxAmount'] . '</p>
+                            </div>
+                            <div class="icons">
+                                <div class="view">
+                                    <a href="'. BASEURL .'admins/sponsorview/' . $value['id'] . '?id=' . $value['id'] .'"><img src="'. BASEURL .'assets/admin/view.png"></a>
                                 </div>
-                                <div class="name" id="user-name">
-                                    <p>' . $value['dispName'] . '</p>
+                                <div class="addtm">
+                                    <button class="comp-btns" onclick="addSPToTaskManager(' . $data['sponsors'][0]['id'] . ')" type="button"><img src="'. BASEURL .'assets/admin/addtm.png"></button>                            
                                 </div>
-                                <div class="userid" id="user-id">
-                                    <p>' . $value['id'] . '</p>
+                            </div>
                                 </div>
-                                <div class="description" id="user-description">
-                                    <p>' . $value['description'] . '</p>
-                        </div>
-                        <div class="icons">
-                            <div class="view">
-                                <a href="'. BASEURL .'admins/sponsorview/' . $value['id'] . '?id=' . $value['id'] .'"><img src="'. BASEURL .'assets/admin/view.png"></a>
-                            </div>
-                            <div class="addtm">
-                                <button class="comp-btns" type="button"><img src="'. BASEURL .'assets/admin/addtm.png"></button>
-                            </div>
-                            <div class="delete">
-                                <a href="'. BASEURL .'#"><img src="'. BASEURL .'assets/admin/Delete.png"></a>
-                            </div>
-                        </div>
-                            </div>
-                        </div>';
+                            </div>';
+                }
             }
             ?>
             
@@ -59,6 +64,7 @@
     </section>
     <?php require_once("C:/xampp/htdocs/mentor/app/views/admin/popup.php"); ?>
 </body>
+<script src="<?php echo BASEURL ?>javascripts/admin/cors.js"></script>
 
 <script>
     let toggle = true;

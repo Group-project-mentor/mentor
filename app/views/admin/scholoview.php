@@ -27,7 +27,7 @@
         <div class="content">
             <?php
             if (!$data['scholarship']) {
-                echo 'No Applied Resource Creators';
+                
             } else {
             
                         echo '<div class="content" id="comp-content">

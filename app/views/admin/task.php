@@ -33,7 +33,7 @@
                     '<div class="content" >
                         <div class="complaints">
                             <div class="pp">
-                                <i class="fa-sharp fa-solid fa-book-open" style="color: #000000;"></i>
+                                <i class="fa-sharp fa-solid fa-book-open" style="color: #000000; font-size:30px""></i>
                             </div>
                             <div class="name">
                                 <p>Review Resource</p>
@@ -44,7 +44,7 @@
                                         
                             <div class="icons">
                                 <div class="view">
-                                    <a href="' . BASEURL . 'admins/resource/' . $value['type'] . '/' . $value['id'] . '">View</a>
+                                    <a href="' . BASEURL . 'admins/resource/' . $value['type'] . '/' . $value['id'] . '" class ="comp-btns">View</a>
                                 </div>
                                 <div class="delete">
                                     <button class="comp-btns" onclick="deleteResourceFromTaskManager(' . $value['id'] . ')" type="button">Delete</button>
