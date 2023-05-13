@@ -55,6 +55,7 @@ class admins extends Controller {
             $data['complaints'] = $this->adminModel->complaint();
             $data['rtask'] = $this->adminModel->ResourceTask($uID);
             $data['ctask'] = $this->adminModel->ComplaintTask($uID);
+            $data['ResourceCrCount'] = $this->adminModel->ResourceCrCount();
             
 
             // print_r($data);
@@ -524,9 +525,9 @@ class admins extends Controller {
         
 
         if ($_SERVER['REQUEST_METHOD'] == 'GET') {
-
+            $ID = $_SESSION["id"];
             $data = [];
-            $data['scholarship'] = $this->adminModel->scholorship();
+            $data['scholarship'] = $this->adminModel->scholorship($ID);
             $data['sponsors'] = $this->adminModel->sponsors();
             $this->view('admin/scholpro',$data);
 
@@ -544,9 +545,9 @@ class admins extends Controller {
         }
 
         if ($_SERVER['REQUEST_METHOD'] == 'GET') {
-
+            $ID = $_SESSION["id"];
             $data = [];
-            $data['scholarship'] = $this->adminModel->scholorship();
+            $data['scholarship'] = $this->adminModel->scholorship($ID);
             
             $this->view('admin/scholoviewall',$data);
 
@@ -592,9 +593,9 @@ class admins extends Controller {
         }
 
         if ($_SERVER['REQUEST_METHOD'] == 'GET') {
-
+            $ID = $_SESSION["id"];
             $data = [];
-            $data['scholarship'] = $this->adminModel->scholorship();
+            $data['scholarship'] = $this->adminModel->scholorship($ID);
             
             $this->view('admin/scholoview',$data);
 

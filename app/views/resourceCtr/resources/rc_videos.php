@@ -100,7 +100,7 @@
                                     $approval = $this->approvedGenerator($row->approved);
                                     ?>
                                     <div class='rc-video-card' style="align-items: center;">
-                                        <img alt='' src="<?php echo BASEURL."assets/patterns/".$count++.'.png'?>"  />
+                                        <img alt='' src="<?php echo BASEURL."assets/patterns/".(($count++)%10).'.png'?>"  />
                                         <a href='<?php echo BASEURL."rcResources/preview/video/".$row->id ?>' >
                                             <label><?php echo $row->name ?></label>
                                         </a>
@@ -136,7 +136,7 @@
                 
                 <div class="pagination-set" id="pagination-set">
                     <div class="pagination-set-left">
-                        <b><?php echo ($data[1][0] == $data[1][1] || $data[1][1] == 0) ? count($data[0]) : paginationRowLimit ?></b> Rows
+                        <b><?php echo ($data[1][0] == $data[1][1] || $data[1][1] == 0) ? count($data[0]) : paginationRowLimit ?></b> Videos
                     </div>
                     <div class="pagination-set-right">
                         <?php if ($data[1][0] != 1) {?>

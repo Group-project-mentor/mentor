@@ -86,9 +86,10 @@
                         foreach ($data[2] as $row) { ?>
                             <div class="subject-card">
                                 <img src="<?php echo BASEURL."assets/patterns/$count.png" ?>" alt="" />
-                                <a href="<?php echo BASEURL."rcResources/preview/video/".$row->id ?>"><label></label></a>
-                                <label>Grade 8</label>
-                                <button class="Enter-btn">View</button>
+                                <label><?php echo $row->name ?></label>
+                                <a href="<?php echo BASEURL."rcResources/preview/video/".$row->id ?>">
+                                    <button class="Enter-btn">View</button>
+                                </a>
                             </div>
                     <?php $count++; }} ?>
                 </div>
