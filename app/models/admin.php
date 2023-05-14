@@ -99,6 +99,15 @@ class admin extends Model{
         return $this->executeQuery($query);
     }
 
+    public function addSPToTaskManager($sID, $uID) {
+        $query = "UPDATE `applied_sponsor` SET `approved_by`='$uID',`review_status`='in Progress' WHERE `id`='$sID';";
+        return $this->executeQuery($query);
+    }
+
+    public function deleteSPtFromTaskManager($cID) {
+        $query = "UPDATE `applied_sponsor` SET `approved_by`= NULL ,`status`='pending' WHERE `id`='$cID';";
+        return $this->executeQuery($query);
+    }
     public function deleteResourceFromTaskManager($rID) {
         $query = "UPDATE `public_resource` SET `approved_by`= NULL WHERE `id`='$rID';";
         return $this->executeQuery($query);
@@ -160,6 +169,28 @@ class admin extends Model{
 
     public function ResourceTask($uID){
         $query = "SELECT* FROM `public_resource` WHERE `approved_by`='$uID' AND `approved` IS NULL; ";
+        $result = $this->executeQuery($query);
+        
+        if ($result->num_rows > 0) {
+            return $result->fetch_all(MYSQLI_ASSOC);
+        } else {
+            return false;
+        } 
+    }
+
+    public function ScholorTask($uID){
+        $query = "SELECT* FROM `scholarship` WHERE `approved_by`='$uID' AND `approved` IS NULL; ";
+        $result = $this->executeQuery($query);
+        
+        if ($result->num_rows > 0) {
+            return $result->fetch_all(MYSQLI_ASSOC);
+        } else {
+            return false;
+        } 
+    }
+
+    public function SponsorTask($uID){
+        $query = "SELECT* FROM `applied_sponsor` WHERE `approved_by`='$uID' AND `approved` IS NULL; ";
         $result = $this->executeQuery($query);
         
         if ($result->num_rows > 0) {
@@ -274,7 +305,7 @@ class admin extends Model{
 
 
     public function sponsors(){
-        $query = "SELECT *FROM sponsor;";
+        $query = "SELECT *FROM `applied_sponsor` WHERE `approved_by` IS NULL;";
         $result = $this->executeQuery($query);
     
         if ($result->num_rows > 0) {
@@ -466,6 +497,7 @@ class admin extends Model{
         } 
     }
 
+
     public function addScholToTaskManager($schlID,$uID){
         $query = "UPDATE `scholarship` SET `approved_by` = '$uID' WHERE `id` = '$schlID' ";
         
@@ -547,6 +579,32 @@ class admin extends Model{
     {
         $query = "UPDATE `user` SET password='$passwd' where email='$email'";
         return $this->executeQuery($query);
+    }
+
+    public function getUserCountsByTypeAndMonth($type, $month)
+    {
+        $stmt = $this->prepare("SELECT COUNT(id) as count, MONTH(time_stamp) as month FROM user WHERE type = ? AND MONTH(time_stamp) = ?");
+        $stmt->bind_param('si', $type, $month);
+        $result = $this->fetchObjs($stmt);
+
+        $monthArray = $this->createEmptyMonthArray();
+
+        foreach ($result as $row) {
+            $monthName = date('F', mktime(0, 0, 0, $row->month, 1));
+            $monthArray[$monthName] = $row->count;
+        }
+
+        return $monthArray;
+    }
+
+    private function createEmptyMonthArray()
+    {
+        $monthArray = array();
+        for ($i = 1; $i <= 12; $i++) {
+            $date = DateTime::createFromFormat('!m', $i);
+            $monthArray[$date->format('F')] = 0;
+        }
+        return $monthArray;
     }
 
     

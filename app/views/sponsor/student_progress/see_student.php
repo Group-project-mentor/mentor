@@ -94,39 +94,6 @@
                             </div>
                         </div>
                     </div>
-                    <div class="bottom-details">
-                        <h3>More Details</h3>
-                        <div>
-                            <div class="sp-subject-details">
-                                <h4>Subjects</h4>
-                                <div class="sponsor-list-main border-no">
-                                
-                                    <?php
-                                    if(!empty($data[1])){
-                                        foreach ($data[1] as $row){ ?>
-
-                                            <div class="sponsor-list-row">
-                                                <div class="sponsor-list-item flex-1 sponsor-grade-cell" >
-                                                    <?php echo $row->sub ?>
-                                                </div>
-                                            </div>
-
-                                        <?php }
-                                    }else{ ?>
-                                        <div class="sponsor-list-row">
-                                                <div class="sponsor-list-item flex-1 sponsor-grade-cell" >
-                                                    No Subjects
-                                                </div>
-                                            </div>
-                                   <?php  } ?>
-                                </div>
-                            </div>
-                            <div class="sp-subject-report">
-                                <h4>Detail Chart</h4>
-                                <img src="<?php echo BASEURL?>assets/clips/chart.webp" style="width: 400px;">
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </section>
 

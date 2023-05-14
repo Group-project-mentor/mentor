@@ -84,7 +84,7 @@
                 </div>
             </section>
             <!-- Middle part for whole content -->
-            <section class="mid-content ad_mid-content">
+            <section class="ad_mid-content">
 
                 <!-- Title and sub title of middle part -->
 
@@ -106,7 +106,7 @@
 
                 <br><br>
                 <!-- Middle part for whole content -->
-            <section class="mid-content ad_mid-content">
+            <section class="ad_mid-content">
 
 <!-- Title and sub title of middle part -->
 

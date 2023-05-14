@@ -18,7 +18,7 @@
 <?php require_once("C:/xampp/htdocs/mentor/public/components/alerts/admin/addRToTM.php"); ?>
     <?php require_once("C:/xampp/htdocs/mentor/app/views/admin/navbar.php"); ?>
             <!-- Middle part for whole content -->
-            <section class="mid-content ad_mid-content">
+            <section class="ad_mid-content">
 
                 <!-- Title and sub title of middle part -->
                 <div class="mid-title">
@@ -26,19 +26,19 @@
                 </div>
 
                 <div class="content" id="comp-content" >
-                    <div class="bckclose">
-                        <a href="<?php echo BASEURL ?>adVerification" class="back"
+                    <!-- <div class="bckclose">
+                        <a href="<?php echo BASEURL ?>adVerification" class="back">
                             <img class="back" src="<?php echo BASEURL ?>assets/admin/Arrow---Left.png">
                         </a>
                         
                         <a href="<?php echo BASEURL ?>adVerification" class="back">
                             <img class="back" src="<?php echo BASEURL ?>assets/admin/Arrow---Left.png">
                         </a>
-                    </div>
+                    </div> -->
                     <div class="videos">
                     <?php
                     if (!$data['pastpaper']) {
-                        echo '0';
+                        echo '<img src="'. BASEURL .'assets/admin/RV/down.gif">';
                     } else {
                         foreach ($data['pastpaper'] as $value) {
                             echo '

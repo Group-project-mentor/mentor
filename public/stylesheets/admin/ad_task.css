@@ -115,3 +115,14 @@ img{
     border-radius: 5px;
     box-shadow: 2px 2px 2px rgba(0,0,0,0.2);
 }
+
+.comp-btns{
+    display: inline-block;
+    padding: 0.5em 1em;
+    background-color: #186537;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    box-shadow: 2px 2px 2px rgba(0,0,0,0.2);
+}
+

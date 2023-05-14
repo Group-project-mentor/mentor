@@ -234,6 +234,9 @@ class admins extends Controller {
             $data['rtask'] = $this->adminModel->ResourceTask($uID);
             $data['ctask'] = $this->adminModel->ComplaintTask($uID);
             $data['rctask'] = $this->adminModel->ResourceCreatorTask($uID);
+            $data['schltask'] = $this->adminModel->ScholorTask($uID);
+            $data['sptask'] = $this->adminModel->SponsorTask($uID);
+
             $this->view('admin/task',$data);
 
         }
@@ -609,7 +612,15 @@ class admins extends Controller {
         $this->hasLogged();
 
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-           
+            $uID = $_SESSION["id"];
+
+            if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+                if($this->adminModel->addSPToTaskManager($id,$uID)){
+                    echo 'Successful';
+                } else{
+                    echo 'Error';
+                }
+            }
         }
 
         if ($_SERVER['REQUEST_METHOD'] == 'GET') {
@@ -1149,6 +1160,26 @@ class admins extends Controller {
 
 
 
+    }
+
+    public function adminAnalytics()
+    {
+        sessionValidator();
+        $this->hasLogged();
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            // handle POST request
+        }
+
+        if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+            $currentMonth = date('m');
+            $monthlyStArray = $this->model('admin')->getUserCountsByTypeAndMonth('st', $currentMonth);
+            $monthlytArray = $this->model('admin')->getUserCountsByTypeAndMonth('tch', $currentMonth);
+            $monthlyRcArray = $this->model('admin')->getUserCountsByTypeAndMonth('rc', $currentMonth);
+            $monthlySpArray = $this->model('admin')->getUserCountsByTypeAndMonth('sp', $currentMonth);
+
+            $this->view('admin/analytics', compact('monthlyStArray', 'monthlytArray', 'monthlyRcArray', 'monthlySpArray'));
+        }
     }
     
     

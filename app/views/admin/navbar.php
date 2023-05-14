@@ -32,7 +32,7 @@
                     <img src="<?php echo BASEURL ?>assets/admin/bi_mortarboard-fill.png" alt="sp">
                     <div class="nav-link-text">Scholorship Programe</div>
                 </a>
-                <a href="#" class="nav-link">
+                <a href="<?php echo BASEURL ?>admins/adminAnalytics" class="nav-link">
                     <img src="<?php echo BASEURL ?>assets/admin/Vector (1).png" alt="an">
                     <div class="nav-link-text">Analitics</div>
                 </a>

@@ -13,7 +13,7 @@
 <body>
     <?php require_once("C:/xampp/htdocs/mentor/app/views/admin/navbar.php"); ?>
     <!-- Middle part for whole content -->
-    <section class="mid-content ad_mid-content">
+    <section class="ad_mid-content">
 
         <!-- Title and sub title of middle part -->
         <div class="mid-title">
@@ -38,30 +38,34 @@
                 <div class="users">
 
                     <?php
-                    foreach ($data['scholarship'] as $value) {
-                        echo
-                        '<div class="content" id="comp-content">
-                            
-                            <div class="subject-card">
-                                <div class="pp">
-                                    <img class="profile" src="' . BASEURL . 'assets/admin/user.png">
+                    if (!$data['scholarship']) {
+                        
+                    } else {
+                        foreach ($data['scholarship'] as $value) {
+                            echo
+                            '<div class="content" id="comp-content">
+                                
+                                <div class="subject-card">
+                                    <div class="pp">
+                                        <img class="profile" src="' . BASEURL . 'assets/admin/user.png">
+                                    </div>
+                                    <div class="name">
+                                        <p>' . $value['firstName'] . '</p>
+                                    </div>
                                 </div>
-                                <div class="name">
-                                    <p>' . $value['firstName'] . '</p>
+                                
+                                <div class="btns">
+                                    <form action="' . BASEURL . 'admins/scholpro/'. $value['id'].'" method="POST">
+                                        <button class="comp-btns">Add to task manager</button>
+                                    </form><br>
                                 </div>
-                            </div>
-                            
-                            <div class="btns">
-                                <form action="' . BASEURL . 'admins/scholpro/'. $value['id'].'" method="POST">
-                                    <button class="comp-btns">Add to task manager</button>
-                                </form><br>
-                            </div>
-                            
-                            
+                                
+                                
 
-                            
-                            
-                        </div>';
+                                
+                                
+                            </div>';
+                        }
                     }
 
                     ?>
@@ -87,30 +91,34 @@
                 <div class="users">
 
                     <?php
-                    foreach ($data['sponsors'] as $value) {
-                        echo
-                        '<div class="content" id="comp-content">
-                            
-                            <div class="subject-card">
-                                <div class="pp">
-                                    <img class="profile" src="' . BASEURL . 'assets/admin/user.png">
+                    if (!$data['sponsors']) {
+               
+                    } else {
+                        foreach ($data['sponsors'] as $value) {
+                            echo
+                            '<div class="content" id="comp-content">
+                                
+                                <div class="subject-card">
+                                    <div class="pp">
+                                        <img class="profile" src="' . BASEURL . 'assets/admin/user.png">
+                                    </div>
+                                    <div class="name">
+                                        <p>' . $value['firstName'] . '</p>
+                                    </div>
                                 </div>
-                                <div class="name">
-                                    <p>' . $value['dispName'] . '</p>
+                                
+                                <div class="btns">
+                                    <form action="' . BASEURL . 'admins/scholpro/'. $value['id'].'" method="POST">
+                                        <button class="comp-btns">Add to task manager</button>
+                                    </form><br>
                                 </div>
-                            </div>
-                            
-                            <div class="btns">
-                                <form action="' . BASEURL . 'admins/scholpro/'. $value['id'].'" method="POST">
-                                    <button class="comp-btns">Add to task manager</button>
-                                </form><br>
-                            </div>
-                            
-                            
+                                
+                                
 
-                            
-                            
-                        </div>';
+                                
+                                
+                            </div>';
+                        }
                     }
 
                     ?>
