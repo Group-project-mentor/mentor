@@ -208,7 +208,7 @@ class admin extends Model{
 
 
     public function ResourceTask($uID){
-        $query = "SELECT* FROM `public_resource` WHERE `approved_by`='$uID' AND (`approved` IS NULL OR `approved` = 0); ";
+        $query = "SELECT* FROM `public_resource` WHERE `approved_by`='$uID' AND `approved` IS NULL; ";
         $result = $this->executeQuery($query);
         
         if ($result->num_rows > 0) {
@@ -529,17 +529,18 @@ class admin extends Model{
     // }
     
     public function addResourcetoTaskManger($rID,$uID){
-        $query = "UPDATE `public_resource` SET `approved_by` = '$uID' WHERE `id` = '$rID' ;";
+        $query = "UPDATE public_resource SET approved_by = ? WHERE id = ?;";
         
-        $result = $this->executeQuery($query);
-
+        $stmt = $this->prepare($query);
+        $stmt->bind_param('ii',$uID, $rID);
+        return $this->executePrepared($stmt);
         // return $result;
         // print_r($result);die;
-        if ($result) {
-            return true;
-        } else {
-            return false;
-        } 
+        // if ($result) {
+        //     return true;
+        // } else {
+        //     return false;
+        // } 
     }
 
 

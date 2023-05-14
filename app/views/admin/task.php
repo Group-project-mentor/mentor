@@ -12,8 +12,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
+
 <body>
-<?php require_once("C:/xampp/htdocs/mentor/public/components/alerts/admin/deleteComptm.php"); ?>
+    <?php require_once("C:/xampp/htdocs/mentor/public/components/alerts/admin/deleteComptm.php"); ?>
 
     <?php require_once("C:/xampp/htdocs/mentor/app/views/admin/navbar.php"); ?>
     <!-- Middle part for whole content -->
@@ -26,10 +27,9 @@
         <div class="content">
             <?php
             if (!$data['rtask']) {
-                
             } else {
                 foreach ($data['rtask'] as $value) {
-                        echo
+                    echo
                     '<div class="content" >
                         <div class="complaints">
                             <div class="pp">
@@ -53,59 +53,57 @@
                             </div>
                         </div>
                     </div>';
-                    
                 }
-                
             }
 
             if (!$data['ctask']) {
-                
             } else {
                 foreach ($data['ctask'] as $value) { ?>
-                <?php print_r($value) ?>
-                        <div class="content">
-                                    <div class="complaints">
-                                        <div class="pp">
-                                            <img src="<?php echo BASEURL . 'assets/admin/RV/comlaint.svg'?>">
-                                        </div>
-                                        <div class="name">
-                                            <p>Complaint Handling</p>
-                                        </div>
-                                        <div class="userid" id="user-id">
-                                            <p><?php echo $value['description'] ?></p>
-                                        </div>
-                                        
-                                <div class="btns">
-                                <?php if($value['status'] == "in Progress"){ ?>
+                    <?php //print_r($value) 
+                    ?>
+                    <div class="content">
+                        <div class="complaints">
+                            <?php if ($value['status'] == "in Progress") { ?>
+                                <div class="pp">
+                                    <img src="<?php echo BASEURL . 'assets/admin/RV/comlaint.svg' ?>">
+                                </div>
+                            <?php } else { ?>
+                                <div class="pp">
+                                    <img src="<?php echo BASEURL . 'assets/admin/warn.png' ?>">
+                                </div>
+                            <?php } ?>
+                            <div class="name">
+                                <p>Complaint Handling</p>
+                            </div>
+                            <div class="userid" id="user-id">
+                                <p><?php echo $value['description'] ?></p>
+                            </div>
+
+                            <div class="btns">
+                                <?php if ($value['status'] == "in Progress") { ?>
                                     <div class="view">
-                                        <a href="<?php echo BASEURL .'admins/ComplaintReview/detail/' . $value['work_id'] ?>">Continue</a>
+                                        <a href="<?php echo BASEURL . 'admins/ComplaintReview/detail/' . $value['work_id'] ?>">Continue</a>
                                     </div>
-                                <?php }else{ ?>
+                                <?php } else { ?>
                                     <div class="view">
-                                        <a href="<?php echo BASEURL .'admins/ComplaintReview/detail/' . $value['work_id'] ?>">Start</a>
+                                        <a href="<?php echo BASEURL . 'admins/ComplaintReview/detail/' . $value['work_id'] ?>">Start</a>
                                     </div>
                                     <div class="delete">
                                         <button class="comp-btns" onclick="deleteComplaintFromTaskManager('<?php echo $value['work_id'] ?>')" type="button">Delete</button>
                                     </div>
-                                    <?php } ?>
-                                    <?php if($value['status'] == "in Progress"){ ?>
-                                    <div class="">
-                                        <img src="<?php echo BASEURL.'assets/admin/warn.png'?>"  alt="hi"/>
-                                    </div>
-                                    <?php } ?>
-                                </div>
-                                    </div>
-                                </div>
-                    
+                                <?php } ?>
+                                
+                            </div>
+                        </div>
+                    </div>
+
             <?php    }
-                
             }
 
             if (!$data['rctask']) {
-                
             } else {
                 foreach ($data['rctask'] as $value) {
-                        echo '<div class="content">
+                    echo '<div class="content">
                                     <div class="complaints">
                                         <div class="pp">
                                             <img src="' . BASEURL . 'assets/admin/RV/RC.svg">
@@ -119,7 +117,7 @@
                                         
                                 <div class="btns">
                                     <div class="view">
-                                        <a href="'. BASEURL .'admins/resourceCreatorReview/details/' . $value['id'] . '">Start</a>
+                                        <a href="' . BASEURL . 'admins/resourceCreatorReview/details/' . $value['id'] . '">Start</a>
                                     </div>
                                     <div class="delete">
                                         <button class="comp-btns" onclick="deleteRCFromTaskManager(' . $value['id'] . ')" type="button">Delete</button>
@@ -127,16 +125,13 @@
                                 </div>
                                     </div>
                                 </div>';
-                    
                 }
-                
             }
 
             if (!$data['schltask']) {
-                
             } else {
                 foreach ($data['schltask'] as $value) {
-                        echo '<div class="content">
+                    echo '<div class="content">
                                     <div class="complaints">
                                         <div class="pp">
                                             <img src="' . BASEURL . 'assets/admin/RV/scholor.svg">
@@ -150,7 +145,7 @@
                                         
                                 <div class="btns">
                                     <div class="view">
-                                        <a href="'. BASEURL .'admins/SchlReview/details/' . $value['id'] . '">Start</a>
+                                        <a href="' . BASEURL . 'admins/SchlReview/details/' . $value['id'] . '">Start</a>
                                     </div>
                                     <div class="delete">
                                         <button class="comp-btns" onclick="deleteScholToTaskManager(' . $value['id'] . ')" type="button">Delete</button>
@@ -158,16 +153,13 @@
                                 </div>
                                     </div>
                                 </div>';
-                    
                 }
-                
             }
 
             if (!$data['sptask']) {
-                
             } else {
                 foreach ($data['sptask'] as $value) {
-                        echo '<div class="content">
+                    echo '<div class="content">
                                     <div class="complaints">
                                         <div class="pp">
                                             <img src="' . BASEURL . 'assets/admin/RV/sponsor.svg">
@@ -181,7 +173,7 @@
                                         
                                 <div class="btns">
                                     <div class="view">
-                                        <a href="'. BASEURL .'admins/SponsorReview/details/' . $value['id'] . '">Start</a>
+                                        <a href="' . BASEURL . 'admins/SponsorReview/details/' . $value['id'] . '">Start</a>
                                     </div>
                                     <div class="delete">
                                         <button class="comp-btns" onclick="deleteSPFromTaskManager(' . $value['id'] . ')" type="button">Delete</button>
@@ -189,12 +181,10 @@
                                 </div>
                                     </div>
                                 </div>';
-                    
                 }
-                
             }
 
-            
+
             ?>
 
         </div>
@@ -237,6 +227,4 @@
             toggle = true;
         }
     })
-
-    
 </script>
