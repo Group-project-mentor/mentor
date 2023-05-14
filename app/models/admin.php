@@ -208,7 +208,7 @@ class admin extends Model{
 
 
     public function ResourceTask($uID){
-        $query = "SELECT* FROM `public_resource` WHERE `approved_by`='$uID' AND `approved` IS NULL; ";
+        $query = "SELECT* FROM `public_resource` WHERE `approved_by`='$uID' AND (`approved` IS NULL OR `approved` = 0); ";
         $result = $this->executeQuery($query);
         
         if ($result->num_rows > 0) {

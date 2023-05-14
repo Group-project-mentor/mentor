@@ -41,6 +41,7 @@
                             <div class="userid" id="user-id">
                                 <p>' . $value['type'] . '</p>
                             </div>
+                        
                                         
                             <div class="btns">
                                 <div class="view">
