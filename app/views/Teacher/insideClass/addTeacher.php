@@ -38,6 +38,12 @@
         background-color: #c5c5c5;
     }
 
+    .teacher-form-content{
+            display: flex;
+            flex-direction: column;
+            margin: auto;
+            min-width: 300px !important;
+        }
 
 
     @media only screen and (max-width: 600px) {
@@ -53,7 +59,9 @@
     }
 </style>
 
-<body>
+<body style="overflow-x: hidden;">
+    <?php include_once "components/alerts/rightAlert.php" ?>
+
     <section class="page">
 
         <?php
@@ -61,12 +69,9 @@
             include_once "components/alerts/Teacher/teacher_added.php";
         } elseif (isset($_SESSION['message']) && $_SESSION['message'] == "failed") {
             include_once "components/alerts/Teacher/teacher_added_failed.php";
-        } elseif (isset($_SESSION['message']) && $_SESSION['message'] == "premiumLimited") {
+        } 
+        if ($data[0] == "1") {
             include_once "components/alerts/Teacher/TpremiumOver.php";
-        } elseif (isset($_SESSION['message']) && $_SESSION['message'] == "already") {
-            include_once "components/alerts/Teacher/Talready.php";
-        } elseif (isset($_SESSION['message']) && $_SESSION['message'] == "invalid") {
-            include_once "components/alerts/Teacher/invalid.php";
         }
         ?>
 
@@ -97,9 +102,9 @@
                             <h3><?php echo " Class Name-" . ucfirst($_SESSION['cname']) ?> </h3>
                             <br><br>
                             <br>
-                            <h3>Teacher name</h3>
-                </div>
-
+                        </div>
+                <div class="teacher-form-content">
+                <h3>Teacher name</h3>
                 <div class="class section">
                     <form action="<?php echo BASEURL; ?>TInsideClass/addTchAction/<?php echo "$cid"; ?>" method="POST" onsubmit="return validateForm()">
                         <label for="teacher_name"></label>
@@ -118,20 +123,21 @@
                             <option value="1">Only add students</option>
                             <option value="2">Only add, restrict and delete students</option>
                         </select>
-                        <input type="submit" value="Add" id="Add">
+                        <input type="submit" value="Add" id="Add" style="background-color: #186537;">
 
                     </form>
+                </div>
+                <section class="Teacher-class-bottom">
+                    <div class="Teacher-decorator">
+                        <img style="margin:auto;" src="<?php echo BASEURL ?>public/assets/Teacher/clips/add teacher.png" alt="issue man">
+                    </div>
+                </section>
                 </div>
 
 
             </section>
 
             <!-- bottom part -->
-            <section class="Teacher-class-bottom">
-                <div class="Teacher-decorator">
-                    <img src="<?php echo BASEURL ?>public/assets/Teacher/clips/add teacher.png" alt="issue man">
-                </div>
-            </section>
 
 
 
@@ -145,17 +151,20 @@
         var teacherPrivilegeSelect = document.querySelector('#teacher_privilege');
 
         if (teacherNameInput.value === '') {
-            alert('Please enter a valid teacher name');
+            // alert('Please enter a valid teacher name');
+            makeError("Please enter a valid teacher name");
             return false;
         }
 
         if (teacherIdInput.value === '') {
-            alert('Please enter a valid teacher ID');
+            // alert('Please enter a valid teacher ID');
+            makeError("Please enter a valid teacher ID");
             return false;
         }
 
         if (teacherPrivilegeSelect.value === '') {
-            alert('Please select a teacher privilege level');
+            // alert('Please select a teacher privilege level');
+            makeError('Please select a teacher privilege level');
             return false;
         }
 

@@ -29,9 +29,7 @@ class TClassMembers extends Controller
 
     public function memDetails($class_id, $class_name)
     {
-        if (!isset($_SESSION['user'])) {
-            header("location:" . BASEURL . "login");
-        }
+       
         $this->getClassID($class_id);
         $_SESSION["cid"] = $class_id;
         $this->getClassName($class_id);
@@ -64,9 +62,9 @@ class TClassMembers extends Controller
 
     private function getClassName($class_id)
     {
-        if (!isset($_SESSION["cid"])) {
+        if (!isset($_SESSION["cname"])) {
             $result1 = $this->model("classModel")->getClassId($class_id)[1];
-            $_SESSION["cid"] = $result1;
+            $_SESSION["cname"] = $result1;
         }
     }
 

@@ -8,7 +8,7 @@
             <img src="<?php echo BASEURL ?>assets/clips/issue.png" alt="error image">
         </div>
         <div class="message-btn">
-            <a class="message-warn" href="<?php echo BASEURL . "TClassRoom/allHostClasses" ?>">OK</a>
+            <a class="message-warn" href="<?php echo BASEURL . "TInsideClass/addTr" ?>">OK</a>
         </div>
     </div>
 </div>

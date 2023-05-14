@@ -62,11 +62,16 @@ class St_billing_model extends Model
     public function savePayment($payID, $userID, $currency, $amount ,$description , $method,$classId){
         $stmt1 = $this->prepare("INSERT INTO payment(paymentId,userId,currency,amount,type,method) VALUES (?,?,?,?,?,?)");
         $stmt1->bind_param("iisdss",$payID,$userID,$currency,$amount,$description,$method);
-
+        
         $stmt2 = $this->prepare("INSERT INTO st_billing( class_id, buy_timestamp, expire_timestamp, active_state, student_id) 
         VALUES (?, NOW(), DATE_ADD(NOW(), INTERVAL 1 MONTH) , 1 , ?);");
         $stmt2->bind_param('ii',$classId,$userID);
-        return $this->executePrepared($stmt1) and $this->executePrepared($stmt2);
+
+        $stmt3 = $this->prepare("UPDATE classes_has_students SET classes_has_students.accept=1 
+        WHERE classes_has_students.class_id=? AND classes_has_students.student_id=? ;") ;
+        $stmt3->bind_param('ii', $classId , $userID);
+
+        return $this->executePrepared($stmt1) and $this->executePrepared($stmt2) and $this->executePrepared($stmt3);
     }
 
 

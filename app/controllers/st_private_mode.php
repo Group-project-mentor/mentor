@@ -44,13 +44,13 @@ class St_private_mode extends Controller
         //var_dump($res);
         $res2 = $this->model('st_private_mode_model')->jointokenaddtoDB($sid, $res, $token);
 
-        if ($res2 != 0) {
+        if ($res2 == 1) {
             $res3 = $this->model('st_private_mode_model')->jointokenview($sid, $res, $token)->class_name;
             $res4 = $this->model('st_private_mode_model')->jointokenview($sid, $res, $token)->fees;
             $res5 = $this->model('st_private_mode_model')->GetTeacherID($res)->teacher_id;
             $_SESSION['class_name'] = $res3;
             $_SESSION['fees'] = $res4;
-            $this->notify($res5, "You have Token request from the Student", "request");  // 2 must change into teachers ID
+            $this->notify($res5, "You have Token request from the Student", "request");  
             $this->view('student/privatemode/st_join_token_send', array($res2));
         } else {
             $this->notify($_SESSION['id'], "You have already Send Token Request Or Already Add to This Class. Check it Again", "Not_request");
@@ -63,12 +63,12 @@ class St_private_mode extends Controller
     public function st_join_request_update($access, $class_id)
     {
         $sid = $_SESSION['id'];
-        if ($access == 1) {
-            $res = $this->model('st_private_mode_model')->getClasses3($sid, $access, $class_id);
+        if ($access == 0) {
+            $res = $this->model('st_private_mode_model')->AddStudentToClassUsingRequest($sid, $access, $class_id);
             $this->notify($_SESSION["id"], "You Add To New Class By Accepting The Teacher Request", "request");
             $this->view('student/privatemode/st_join_classes', array($res));
-        } else if ($access == 0) {
-            $res = $this->model('st_private_mode_model')->getClasses34($sid, $access, $class_id);
+        } else if ($access == 1) {
+            $res = $this->model('st_private_mode_model')->RemoveTeacherRequest($sid, $access, $class_id);
             $this->notify($_SESSION["id"], "You Delete One Teacher's Request", "delete");
             $this->view('student/privatemode/st_join_classes', array($res));
         }
@@ -77,7 +77,7 @@ class St_private_mode extends Controller
     public function st_join_request()
     {
         $sid = $_SESSION['id'];
-        $res = $this->model('st_private_mode_model')->getClasses1($sid);
+        $res = $this->model('st_private_mode_model')->getTeacherRequests($sid);
         $this->view('student/privatemode/st_join_request', array($res));
     }
 
