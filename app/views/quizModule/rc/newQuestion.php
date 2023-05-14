@@ -14,6 +14,21 @@
 <body>
 <section class="page">
 
+<?php
+    if(!empty($_SESSION['message'])) {
+        if ($_SESSION['message'] == "success") {
+            $message = "Created successfully !";
+            include_once "components/alerts/operationSuccess.php";
+        } elseif ($_SESSION['message'] == "failed") {
+            $message = "Upload Unsuccessful !";
+            include_once "components/alerts/operationFailed.php";
+        } elseif ($_SESSION['message'] == "invalidType"){
+            $message = "Upload only image files !";
+            include_once "components/alerts/operationFailed.php";
+        }
+    }
+?>
+
     <!-- Navigation panel -->
     <?php include_once "components/navbars/rc_nav_2.php"?>
 
