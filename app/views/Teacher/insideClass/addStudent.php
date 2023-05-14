@@ -37,6 +37,15 @@
             background-color: #c5c5c5;
         }
 
+        .teacher-form-content{
+            display: flex;
+            flex-direction: column;
+            margin: auto;
+            min-width: 300px !important;
+        }
+
+
+
 
 
         @media only screen and (max-width: 600px) {
@@ -55,6 +64,7 @@
 </head>
 
 <body>
+
 
     <?php
     if (!empty($_SESSION['message'])) {
@@ -79,7 +89,7 @@
 
             <!-- Top bar -->
             <section class="top-bar">
-
+                
                 <div class="top-bar-btns">
                     <a href="#">
                         <a class="back-btn" href="<?php echo BASEURL ?>home">Back</a>
@@ -88,50 +98,50 @@
                     <?php include_once "components/premiumIcon.php" ?>
                 </div>
             </section>
-
+            
             <!-- Middle part for whole content -->
             <section class="mid-content">
-
-                <!-- Title and sub title of middle part -->
-                <div class="mid-title">
-                    <h1>Add Student</h1>
-                    <h3><?php echo "Class ID-" . $_SESSION['cid'] ?><h3>
+                
+                    <!-- Title and sub title of middle part -->
+                    <div class="mid-title">
+                        <h1>Add Student</h1>
+                        <h3><?php echo "Class ID-" . $_SESSION['cid'] ?><h3>
                             <h3><?php echo " Class Name-" . ucfirst($_SESSION['cname']) ?> </h3>
                             <br><br><br>
-                            <h3>Student Name</h3>
+                    </div>
+
+                    <div class="teacher-form-content">
+                        <h3>Student Name</h3>
+                        
+                        <div class="class section">
+                            <form action="<?php echo BASEURL; ?>TInsideClass/createAction" method="POST">
+                                <label for="student_name"></label>
+                                <input type="text" id="student_name" name="student_name" placeholder="New student Name..">
+                                <h3>Student ID</h3>
+                                <label for="student_id"></label>
+                                <input type="text" id="student_id" name="student_id" placeholder="New student ID..">
+                                <input type="submit" value="Request to join" id="Request to join" style="background-color: #186537;">
+                            </form>
+                            
+                            <ul id="list-view">
+                                
+                                </ul>
+                            </div>
+                            
+                            <div class="mid-title">
+                                <br> 
+                            </div>
+                            <section class="Student-class-bottom">
+                                <div class="Student-decorator" >
+                                    <img style="margin:auto;" src="<?php echo BASEURL ?>public/assets/Teacher/clips/add_student.png" alt="issue man">
+                                </div>
+                            </section>
+                        </div>
+                    </section>
+                    
                 </div>
-
-                <div class="class section">
-                    <form action="<?php echo BASEURL; ?>TInsideClass/createAction" method="POST">
-                        <label for="student_name"></label>
-                        <input type="text" id="student_name" name="student_name" placeholder="New student Name..">
-                        <h3>Student ID</h3>
-                        <label for="student_id"></label>
-                        <input type="text" id="student_id" name="student_id" placeholder="New student ID..">
-                        <input type="submit" value="Request to join" id="Request to join">
-                    </form>
-
-                    <ul id="list-view">
-
-                    </ul>
-                </div>
-
-                <div class="mid-title">
-
-                    <br>
-
-                </div>
-
             </section>
-            <section class="Student-class-bottom">
-                <div class="Student-decorator">
-                    <img src="<?php echo BASEURL ?>public/assets/Teacher/clips/add_student.png" alt="issue man">
-                </div>
-            </section>
-
-        </div>
-    </section>
-</body>
+        </body>
 <script>
     const BASEURL = '<?php echo BASEURL ?>';
 
