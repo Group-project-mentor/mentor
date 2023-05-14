@@ -20,6 +20,10 @@
                     <img class="active" src="<?php echo BASEURL ?>assets/admin/bi_grid-fill.png" alt="dsh">
                     <div class="nav-link-text">Dashboard</div>
                 </a>
+                <a href="<?php echo BASEURL ?>admins/taskmanager" class="nav-link">
+                    <img src="<?php echo BASEURL ?>assets/admin/task.png" alt="tm">
+                    <div class="nav-link-text">Task Manager</div>
+                </a>
                 <a href="<?php echo BASEURL ?>admins/humanResource" class="nav-link">
                     <img src="<?php echo BASEURL ?>assets/admin/bi_people-fill.png" alt="hr">
                     <div class="nav-link-text">Human Resource</div>

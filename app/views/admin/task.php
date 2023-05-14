@@ -41,6 +41,7 @@
                             <div class="userid" id="user-id">
                                 <p>' . $value['type'] . '</p>
                             </div>
+                        
                                         
                             <div class="btns">
                                 <div class="view">
@@ -60,31 +61,43 @@
             if (!$data['ctask']) {
                 
             } else {
-                foreach ($data['ctask'] as $value) {
-                        echo '<div class="content">
+                foreach ($data['ctask'] as $value) { ?>
+                <?php print_r($value) ?>
+                        <div class="content">
                                     <div class="complaints">
                                         <div class="pp">
-                                            <img src="' . BASEURL . 'assets/admin/RV/comlaint.svg">
+                                            <img src="<?php echo BASEURL . 'assets/admin/RV/comlaint.svg'?>">
                                         </div>
                                         <div class="name">
                                             <p>Complaint Handling</p>
                                         </div>
                                         <div class="userid" id="user-id">
-                                            <p>' . $value['description'] . '</p>
+                                            <p><?php echo $value['description'] ?></p>
                                         </div>
                                         
                                 <div class="btns">
+                                <?php if($value['status'] == "in Progress"){ ?>
                                     <div class="view">
-                                        <a href="'. BASEURL .'admins/task/' . $value['work_id'] . '">Start</a>
+                                        <a href="<?php echo BASEURL .'admins/ComplaintReview/detail/' . $value['work_id'] ?>">Continue</a>
+                                    </div>
+                                <?php }else{ ?>
+                                    <div class="view">
+                                        <a href="<?php echo BASEURL .'admins/ComplaintReview/detail/' . $value['work_id'] ?>">Start</a>
                                     </div>
                                     <div class="delete">
-                                        <button class="comp-btns" onclick="deleteComplaintFromTaskManager(' . $value['work_id'] . ')" type="button">Delete</button>
+                                        <button class="comp-btns" onclick="deleteComplaintFromTaskManager('<?php echo $value['work_id'] ?>')" type="button">Delete</button>
                                     </div>
+                                    <?php } ?>
+                                    <?php if($value['status'] == "in Progress"){ ?>
+                                    <div class="">
+                                        <img src="<?php echo BASEURL.'assets/admin/warn.png'?>"  alt="hi"/>
+                                    </div>
+                                    <?php } ?>
                                 </div>
                                     </div>
-                                </div>';
+                                </div>
                     
-                }
+            <?php    }
                 
             }
 
@@ -137,7 +150,7 @@
                                         
                                 <div class="btns">
                                     <div class="view">
-                                        <a href="'. BASEURL .'admins/task/' . $value['id'] . '">Start</a>
+                                        <a href="'. BASEURL .'admins/SchlReview/details/' . $value['id'] . '">Start</a>
                                     </div>
                                     <div class="delete">
                                         <button class="comp-btns" onclick="deleteScholToTaskManager(' . $value['id'] . ')" type="button">Delete</button>

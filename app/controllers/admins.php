@@ -288,29 +288,79 @@ class admins extends Controller {
 
     }
 
-    public function task($id) {
+    public function ComplaintReview($element,$cID) {
 
         sessionValidator();
         $this->hasLogged();
-
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
-            if ($this->adminModel->ComplaintTookAction($id)) {
-                echo 'Successful';
-            } else {
+            $data['complaints'] = $this->adminModel->usercomplaint($cID);
+
+            if ($element == "complete") {
+                
+                if ($this->adminModel->ComplaintTookAction($cID)) {
+                    $message = "<center><div>
+                    <h1 style='color: green;'>M E N T O R</h1>
+                    <h3>We are so glad to informe you that you have been selected as a Resource Creator at MENTOR<br> You Can Use This PASSWORD to login to your account<br>Thank You!</h3>
+                    <h1 style='letter-spacing: 4px;background-color:#EEE;padding:10px 15px;border-radius: 10px;border: 1px solid #CCC;'>
+                   
+                    </h1>
+                    <h5 style='color:red;'>Do not share this PASSWORD with anyone !</h5>
+                    </div></center>";
+                    // sendMail($data['creator'][0]['email'], "User", "MENTOR RESOURCE CREATOR PASSWORD", $message);
+           
+                    echo 'Successful';
+                } else {
+                    echo 'Error';
+                }
+            } elseif ($element == "SendAcknoledged") {
+                if ($this->adminModel->sendAcknowledgment($cID)) {
+                    echo 'Successful';
+                } else {
+                    echo 'Error';
+                }
+            }else{
                 echo 'Error';
             }
+
+        
         }
 
         if ($_SERVER['REQUEST_METHOD'] == 'GET') {
+
+            $data = [];
+            $data['complaints'] = $this->adminModel->usercomplaint($cID);
             
-            
-            $data['complaints'] = $this->adminModel->usercomplaint($id);
             $this->view('admin/complaintaction',$data);
 
         }
 
     }
+
+    // public function task($id) {
+
+    //     sessionValidator();
+    //     $this->hasLogged();
+
+    //     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+    //         if ($this->adminModel->ComplaintTookAction($id)) {
+    //             echo 'Successful';
+    //         } else {
+    //             echo 'Error';
+    //         }
+    //     }
+
+    //     if ($_SERVER['REQUEST_METHOD'] == 'GET') {
+            
+            
+    //         $data['complaints'] = $this->adminModel->usercomplaint($id);
+            
+    //         $this->view('admin/complaintaction',$data);
+
+    //     }
+
+    // }
   
     public function userhandling() {
 
@@ -786,54 +836,54 @@ class admins extends Controller {
 
     }
 
-    public function resourceCreatorReview($element,$rcID) {
+                    public function resourceCreatorReview($element,$rcID) {
 
-        sessionValidator();
-        $this->hasLogged();
-        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+                        sessionValidator();
+                        $this->hasLogged();
+                        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
-            $data['creator'] = $this->adminModel->ResourceCreatorDetails($rcID);
+                            $data['creator'] = $this->adminModel->ResourceCreatorDetails($rcID);
 
-            if ($element == "approve") {
-                $password = $this->randompassword();
-                if ($this->adminModel->approveResourceCreator($rcID,$data['creator']['0']['firstName'],$data['creator'][0]['email'],$password)) {
-                    $message = "<center><div>
-                    <h1 style='color: green;'>M E N T O R</h1>
-                    <h3>We are so glad to informe you that you have been selected as a Resource Creator at MENTOR<br> You Can Use This PASSWORD to login to your account<br>Thank You!</h3>
-                    <h1 style='letter-spacing: 4px;background-color:#EEE;padding:10px 15px;border-radius: 10px;border: 1px solid #CCC;'>
-                    $password
-                    </h1>
-                    <h5 style='color:red;'>Do not share this PASSWORD with anyone !</h5>
-                    </div></center>";
-                    // sendMail($data['creator'][0]['email'], "User", "MENTOR RESOURCE CREATOR PASSWORD", $message);
-           
-                    echo 'Successful';
-                } else {
-                    echo 'Error';
-                }
-            } elseif ($element == "decline") {
-                if ($this->adminModel->declineResourceCreator($rcID)) {
-                    echo 'Successful';
-                } else {
-                    echo 'Error';
-                }
-            }else{
-                echo 'Error';
-            }
+                            if ($element == "approve") {
+                                $password = $this->randompassword();
+                                if ($this->adminModel->approveResourceCreator($rcID,$data['creator']['0']['firstName'],$data['creator'][0]['email'],$password)) {
+                                    $message = "<center><div>
+                                    <h1 style='color: green;'>M E N T O R</h1>
+                                    <h3>We are so glad to informe you that you have been selected as a Resource Creator at MENTOR<br> You Can Use This PASSWORD to login to your account<br>Thank You!</h3>
+                                    <h1 style='letter-spacing: 4px;background-color:#EEE;padding:10px 15px;border-radius: 10px;border: 1px solid #CCC;'>
+                                    $password
+                                    </h1>
+                                    <h5 style='color:red;'>Do not share this PASSWORD with anyone !</h5>
+                                    </div></center>";
+                                    // sendMail($data['creator'][0]['email'], "User", "MENTOR RESOURCE CREATOR PASSWORD", $message);
+                        
+                                    echo 'Successful';
+                                } else {
+                                    echo 'Error';
+                                }
+                            } elseif ($element == "decline") {
+                                if ($this->adminModel->declineResourceCreator($rcID)) {
+                                    echo 'Successful';
+                                } else {
+                                    echo 'Error';
+                                }
+                            }else{
+                                echo 'Error';
+                            }
 
-        
-        }
+                        
+                        }
 
-        if ($_SERVER['REQUEST_METHOD'] == 'GET') {
+                        if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 
-            $data = [];
-            $data['appliedrc'] = $this->adminModel->ResourceCreatorView($rcID);
-            
-            $this->view('admin/resourceCreatorReview',$data);
+                            $data = [];
+                            $data['appliedrc'] = $this->adminModel->ResourceCreatorView($rcID);
+                            
+                            $this->view('admin/resourceCreatorReview',$data);
 
-        }
+                        }
 
-    }
+                    }
 
     public function SponsorReview($element,$spID) {
 
@@ -845,7 +895,7 @@ class admins extends Controller {
 
             if ($element == "approve") {
                 $password = $this->randompassword();
-                if ($this->adminModel->approveResourceCreator($spID,$data['creator']['0']['firstName'],$data['creator'][0]['email'],$password)) {
+                if ($this->adminModel->approveSponsors($spID,$data['sponsor']['0']['firstName'],$data['sponsor'][0]['email'],$password)) {
                     $message = "<center><div>
                     <h1 style='color: green;'>M E N T O R</h1>
                     <h3>We are so glad to informe you that you have been selected as a Resource Creator at MENTOR<br> You Can Use This PASSWORD to login to your account<br>Thank You!</h3>
@@ -882,6 +932,41 @@ class admins extends Controller {
 
         }
 
+    }
+
+    public function SchlReview($element,$sID) {
+
+        sessionValidator();
+        $this->hasLogged();
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+            $data['schl'] = $this->adminModel->SchlDetails($sID);
+
+            if ($element == "approve") {
+                if ($this->adminModel->approveSchl($sID)){
+                    echo 'Successful';
+                }else {
+                    echo 'Error';
+                }
+            }elseif ($element == "decline") {
+                if ($this->adminModel->declineSchl($sID)) {
+                    echo 'Successful';
+                } else {
+                    echo 'Error';
+                }
+            }else{
+                echo 'Error';
+            }
+        }
+
+        if ($_SERVER['REQUEST_METHOD'] == 'GET') {
+
+            $data = [];
+            $data['schl'] = $this->adminModel->SchlDetails($sID);
+            
+            $this->view('admin/scholorReview',$data);
+
+        }
     }
 
     public function addMember() {

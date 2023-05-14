@@ -197,18 +197,28 @@ function tookaction(cID){
             alert.classList.remove("hideme");
             alert.classList.add("showme");
 
-            // if(response === "Successful") {
-            //      window.location.replace("http://localhost/mentor/admins/taskmanager");
-                
-                
-            // }             
+        }
+    };
 
-            
+    xhttp.open("POST", "http://localhost/mentor/admins/ComplaintReview/complete/"+cID, true);
+    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xhttp.send();
+}
+
+function sendAck(cID){
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            var response = this.responseText.trim();
+
+            let alert = document.getElementById("alert");
+            alert.classList.remove("hideme");
+            alert.classList.add("showme");
 
         }
     };
 
-    xhttp.open("POST", "http://localhost/mentor/admins/task/"+cID, true);
+    xhttp.open("POST", "http://localhost/mentor/admins/ComplaintReview/SendAcknoledged/"+cID, true);
     xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xhttp.send();
 }
@@ -470,7 +480,7 @@ function approveSchl(rID){
                 let alert = document.getElementById("alert");
                 alert.classList.remove("hideme");
                 alert.classList.add("showme");
-                document.getElementById("msg").innerHTML = "Resource Creator Approved";
+                document.getElementById("msg").innerHTML = "Scholorship Application Approved";
                 document.getElementById("img").src = "http://localhost/mentor/public/assets/admin/resource_creator_approved.png";
 
             }
@@ -478,12 +488,12 @@ function approveSchl(rID){
         }
     };
 
-    xhttp.open("POST", "http://localhost/mentor/admins/resourceCreatorReview/approve/"+rID, true);
+    xhttp.open("POST", "http://localhost/mentor/admins/SchlReview/approve/"+rID, true);
     xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xhttp.send();
 }
 
-function declineSchl(rID){
+function declineSchl(sID){
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
@@ -496,7 +506,7 @@ function declineSchl(rID){
                 let alert = document.getElementById("alert");
                 alert.classList.remove("hideme");
                 alert.classList.add("showme");
-                document.getElementById("msg").innerHTML = "Resource Creator Declined";
+                document.getElementById("msg").innerHTML = "Scholorship Application Declined";
                 document.getElementById("img").src = "http://localhost/mentor/public/assets/admin/resource_decline.png";
 
             }
@@ -504,7 +514,7 @@ function declineSchl(rID){
         }
     };
 
-    xhttp.open("POST", "http://localhost/mentor/admins/resourceCreatorReview/decline/"+rID, true);
+    xhttp.open("POST", "http://localhost/mentor/admins/SchlReview/decline/"+sID, true);
     xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xhttp.send();
 }

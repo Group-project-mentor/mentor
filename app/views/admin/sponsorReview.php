@@ -13,7 +13,7 @@
 </head>
 
 <body>
-<?php require_once("C:/xampp/htdocs/mentor/public/components/alerts/admin/action_taken.php"); ?>
+<?php require_once("C:/xampp/htdocs/mentor/public/components/alerts/admin/approve_decline.php"); ?>
     <?php require_once("C:/xampp/htdocs/mentor/app/views/admin/navbar.php"); ?>
     <!-- Middle part for whole content -->
     <section class="ad_mid-content">
