@@ -54,10 +54,14 @@ class RcAdd extends Controller
     {
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $Id = $this->getId();
-            if ($this->model("resourceModel")->addVideo($Id, $_SESSION['gid'], $_SESSION['sid'], sanitizeText($_POST['title']), sanitizeText($_POST['lec']), $_POST['link'], sanitizeText($_POST['descr']), $_SESSION['id'])) {
-                flashMessage("success");
-            } else {
-                flashMessage("error");
+            if(!empty($_POST['title']) && filter_var($_POST['link'],FILTER_VALIDATE_URL)){
+                if ($this->model("resourceModel")->addVideo($Id, $_SESSION['gid'], $_SESSION['sid'], sanitizeText($_POST['title']), sanitizeText($_POST['lec']), $_POST['link'], sanitizeText($_POST['descr']), $_SESSION['id'])) {
+                    flashMessage("success");
+                } else {
+                    flashMessage("error");
+                }
+            }else{
+                flashMessage("dataNotFilled");
             }
             header("location:" . BASEURL . "rcAdd/video");
         }
@@ -116,17 +120,13 @@ class RcAdd extends Controller
     {
         // $maxFileSize = 50*1024*1024;
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
-            if (isset($_FILES["resource"]) && $_FILES["resource"]["error"] == 0) {
+            if (isset($_FILES["resource"]) && $_FILES["resource"]["error"] == 0 && !empty($_POST['title'])) {
                 $typeArray = array("pdf" => "application/pdf");
                 $fileData = array("name" => $_FILES["resource"]["name"],
                     "type" => $_FILES["resource"]["type"],
                     "size" => $_FILES["resource"]["size"]);
                 $extention = pathinfo($fileData["name"], PATHINFO_EXTENSION);
-                if (!array_key_exists($extention, $typeArray)) {
-                    die("Error: Please select a valid file format.");
-                }
-
-                // if($fileData["size"] > $maxFileSize) die("Error: File size is larger than the allowed limit.");
+                
                 $nameId = $this->getId();
                 if (in_array($fileData['type'], $typeArray)) {
                     $newFileName = uniqid() . sanitizeFileName($_POST["title"]) . "." . $extention;
@@ -142,9 +142,12 @@ class RcAdd extends Controller
                         flashMessage("error");
                         header("location:" . BASEURL . "rcAdd/document");
                     }
+                }else{
+                    flashMessage("invalidType");
+                    header("location:" . BASEURL . "rcAdd/document");
                 }
             } else {
-                flashMessage("error");
+                flashMessage("fillAllData");
                 header("location:" . BASEURL . "rcAdd/document");
             }
         } else {
@@ -157,21 +160,19 @@ class RcAdd extends Controller
     {
         $maxFileSize = 50 * 1024 * 1024;
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
-            if (isset($_FILES["resource"]) && $_FILES["resource"]["error"] == 0) {
+            if (isset($_FILES["resource"]) && $_FILES["resource"]["error"] == 0 && !empty($_POST["title"])) {
                 // $typeArray = array("pdf"=>"application/pdf");
                 $fileData = array("name" => $_FILES["resource"]["name"],
                     "type" => $_FILES["resource"]["type"],
                     "size" => $_FILES["resource"]["size"]);
                 $extention = pathinfo($fileData["name"], PATHINFO_EXTENSION);
-                // echo $extention=="pdf";
-                // if(!array_key_exists($extention, $typeArray)) header("location:" . BASEURL . "add/document/error");
+            
                 if ($fileData["size"] > $maxFileSize) {
                     flashMessage("error");
                     header("location:" . BASEURL . "rcAdd/other");
                 }
 
                 $nameId = $this->getId();
-                // if(in_array($fileData['type'],$typeArray)){
                 $newFileName = uniqid() . sanitizeFileName($_POST["title"]) . "." . $extention;
                 if (saveFile($_FILES["resource"]["tmp_name"],$newFileName,"others",$_SESSION['gid'],$_SESSION['sid'])) {
                     if ($this->model("resourceModel")->addOther($nameId, $grade, $subject, sanitizeText($_POST["title"]), $newFileName, $extention,$_SESSION['id'])) {
@@ -186,7 +187,6 @@ class RcAdd extends Controller
                     flashMessage("error");
                     header("location:" . BASEURL . "rcAdd/other");
                 }
-                // }
             } else {
                 flashMessage("error");
                 header("location:" . BASEURL . "rcAdd/other");
@@ -201,15 +201,14 @@ class RcAdd extends Controller
         $maxFileSize = 50 * 1024 * 1024;
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             if (isset($_FILES["resource"]) && $_FILES["resource"]["error"] == 0) {
-                // $typeArray = array("pdf"=>"application/pdf");
+                $typeArray = array("pdf"=>"application/pdf");
                 $fileData = array(
                     "name" => $_FILES["resource"]["name"],
                     "type" => $_FILES["resource"]["type"],
                     "size" => $_FILES["resource"]["size"]
                 );
                 $extention = pathinfo($fileData["name"], PATHINFO_EXTENSION);
-                // echo $extention=="pdf";
-                // if(!array_key_exists($extention, $typeArray)) header("location:" . BASEURL . "add/document/error");
+              
                 if ($fileData["size"] > $maxFileSize) {
                     flashMessage("error");
                     header("location:" . BASEURL . "rcAdd/pastpaper");
@@ -236,7 +235,7 @@ class RcAdd extends Controller
                 }
 
                 $nameId = $this->getId();
-                // if(in_array($fileData['type'],$typeArray)){
+                if(in_array($fileData['type'],$typeArray)){
                 $newFileName = uniqid() . $_POST["name"] . "." . $extention;
                 if (saveFile($_FILES["resource"]["tmp_name"],$newFileName,"pastpapers",$_SESSION['gid'],$_SESSION['sid'])) {
                     if($ansStatus){
@@ -262,7 +261,10 @@ class RcAdd extends Controller
                     flashMessage("error");
                     header("location:" . BASEURL . "rcAdd/pastpaper");
                 }
-                // }
+                }else{
+                    flashMessage("invalidType");
+                    header("location:" . BASEURL . "rcAdd/pastpaper");
+                }
             } else {
                 flashMessage("error");
                 header("location:" . BASEURL . "rcAdd/pastpaper");
@@ -326,7 +328,7 @@ class RcAdd extends Controller
                 }
             }else{
                 $this->model("resourceModel")->rollBack();
-                flashMessage("failed");
+                flashMessage("invalidData");
                 header("location:".BASEURL."rcAdd/newTopic/".$_SESSION['gid']."/".$_SESSION['sid']);
             }
         }else{

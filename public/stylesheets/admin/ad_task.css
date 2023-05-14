@@ -66,11 +66,16 @@ img{
     
 }
 
-.icons{
+.btns{
     display: flex;
     justify-content: space-between;
     width: 100px;
     margin-top: 10px;
+    width: 100px;
+    
+    border: 0px;
+    padding: 5px 10px;
+    color: #ffffff;
 
 }
 
@@ -87,14 +92,14 @@ img{
     padding: 10px;
 }
 
-#btn{
+/* #btn{
     background: #186537;
     width: 100px;
     border-radius: 45px;
     border: 0px;
     padding: 5px 10px;
     color: #ffffff;
-}
+} */
 
 .content a{
     display: inline-block;

@@ -82,13 +82,13 @@ class Quiz extends Controller
 
                 if (isset($_FILES["questionImg"]) && $_FILES["questionImg"]["error"] == 0) {
 
-                    $typeArray = array("png" => "image/png", "jpg" => "image/jpg", "jpeg" => "image/jpeg");
+                    $typeArray = array("png" => "image/png", "jpg" => "image/jpg", "jpeg" => "image/jpeg", "webp" => "image/webp" );
                     $fileData = array("name" => $_FILES["questionImg"]["name"],
                             "type" => $_FILES["questionImg"]["type"],
                             "size" => $_FILES["questionImg"]["size"]);
                     $extention = pathinfo($fileData["name"], PATHINFO_EXTENSION);
 
-//                    if (in_array($fileData['type'], $typeArray)) {
+                   if (in_array($fileData['type'], $typeArray)) {
 
                         $newFileName = uniqid() . $result . "." . $extention;
                         if (saveFile($_FILES["questionImg"]["tmp_name"],$newFileName,"quizzes/questions",$_SESSION['gid'],$_SESSION['sid'])) {
@@ -107,7 +107,7 @@ class Quiz extends Controller
                             header("location:" . BASEURL . "quiz/addQuestion/$quizId");
                         }
                     }else{
-                        flashMessage("failed");
+                        flashMessage("invalidType");
                         $this->model('quizModel')->rollBack();
                         header("location:" . BASEURL . "quiz/addQuestion/$quizId");
                     }
@@ -122,11 +122,11 @@ class Quiz extends Controller
                 flashMessage("failed");
                 header("location:" . BASEURL . "quiz/addQuestion/$quizId");
             }
-//        } else {
-//            $this->model('quizModel')->rollBack();
-//            flashMessage("failed");
-//            header("location:" . BASEURL . "quiz/addQuestion/$quizId");
-//        }
+       } else {
+           $this->model('quizModel')->rollBack();
+           flashMessage("failed");
+           header("location:" . BASEURL . "quiz/addQuestion/$quizId");
+       }
 
     }
 

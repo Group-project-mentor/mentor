@@ -164,6 +164,13 @@ class admin extends Model{
         return $this->executeQuery($query);
     }
 
+    public function declineSponsor($spID){
+        $query = "UPDATE `Sponsor` SET `approved` = 'N' WHERE `id` = '$spID'; ";
+        
+        return $this->executeQuery($query);
+    }
+
+
 
 
 
@@ -232,23 +239,33 @@ class admin extends Model{
         } 
     }
 
+    
     public function deleteRCFromTaskManager($rcID) {
         $query = "UPDATE `applied_creator` SET `approved_by`= NULL WHERE `id`='$rcID';";
         return $this->executeQuery($query);
     }
 
-    // public function ResourceView($rID,$element){
-    //     $query = "SELECT `public_resource`.*, '$ FROM `public_resource` WHERE `approved_by`='$uID'; ";
-    //     "SELECT `resource_creator`.*, `user`.* FROM `resource_creator` INNER JOIN `user` ON `resource_creator`.id = `user`.id;";
-    //     $result = $this->executeQuery($query);
+    public function SponsorDetails($spID){
+        $query = "SELECT * FROM `applied_sponsor` WHERE `id` = '$spID'; ";
+        $result = $this->executeQuery($query);
         
-    //     if ($result->num_rows > 0) {
-    //         return $result->fetch_all(MYSQLI_ASSOC);
-    //     } else {
-    //         return false;
-    //     } 
-    // }
+        if ($result->num_rows > 0) {
+            return $result->fetch_all(MYSQLI_ASSOC);
+        } else {
+            return false;
+        } 
+    }
 
+    
+    public function deleteSPFromTaskManager($spID) {
+        $query = "UPDATE `applied_sponsor` SET `approved_by`= NULL WHERE `id`='$spID';";
+        return $this->executeQuery($query);
+    }
+
+    public function deleteSchlFromTaskManager($sID) {
+        $query = "UPDATE `scholarship` SET `approved_by`= NULL WHERE `id`='$sID';";
+        return $this->executeQuery($query);
+    }
     public function videoview($id) {
         $query = "SELECT `public_resource`.*, `video`.* FROM `public_resource` INNER JOIN `video` ON `public_resource`.id = `video`.id WHERE `public_resource`.`type`='video' AND `video`.`id`='$id';";
         $result = $this->executeQuery($query);

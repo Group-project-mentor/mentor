@@ -171,6 +171,51 @@ class admins extends Controller {
 
     }
 
+    public function deleteSPTM($id) {
+
+        sessionValidator();
+        $this->hasLogged();
+
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+            if($this->adminModel->deleteSPFromTaskManager($id)){
+                echo 'Successful';
+            } else{
+                echo 'Error';
+            }
+        }
+
+        if ($_SERVER['REQUEST_METHOD'] == 'GET') {
+            
+            
+
+        }
+
+    }
+
+
+    public function deleteSchlTM($id) {
+
+        sessionValidator();
+        $this->hasLogged();
+
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+            if($this->adminModel->deleteSchlFromTaskManager($id)){
+                echo 'Successful';
+            } else{
+                echo 'Error';
+            }
+        }
+
+        if ($_SERVER['REQUEST_METHOD'] == 'GET') {
+            
+            
+
+        }
+
+    }
+
     public function deleteResouceTM($id) {
 
         sessionValidator();
@@ -785,6 +830,55 @@ class admins extends Controller {
             $data['appliedrc'] = $this->adminModel->ResourceCreatorView($rcID);
             
             $this->view('admin/resourceCreatorReview',$data);
+
+        }
+
+    }
+
+    public function SponsorReview($element,$spID) {
+
+        sessionValidator();
+        $this->hasLogged();
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+            $data['sponsor'] = $this->adminModel->SponsorDetails($spID);
+
+            if ($element == "approve") {
+                $password = $this->randompassword();
+                if ($this->adminModel->approveResourceCreator($spID,$data['creator']['0']['firstName'],$data['creator'][0]['email'],$password)) {
+                    $message = "<center><div>
+                    <h1 style='color: green;'>M E N T O R</h1>
+                    <h3>We are so glad to informe you that you have been selected as a Resource Creator at MENTOR<br> You Can Use This PASSWORD to login to your account<br>Thank You!</h3>
+                    <h1 style='letter-spacing: 4px;background-color:#EEE;padding:10px 15px;border-radius: 10px;border: 1px solid #CCC;'>
+                    $password
+                    </h1>
+                    <h5 style='color:red;'>Do not share this PASSWORD with anyone !</h5>
+                    </div></center>";
+                    // sendMail($data['creator'][0]['email'], "User", "MENTOR RESOURCE CREATOR PASSWORD", $message);
+           
+                    echo 'Successful';
+                } else {
+                    echo 'Error';
+                }
+            } elseif ($element == "decline") {
+                if ($this->adminModel->declineSponsor($spID)) {
+                    echo 'Successful';
+                } else {
+                    echo 'Error';
+                }
+            }else{
+                echo 'Error';
+            }
+
+        
+        }
+
+        if ($_SERVER['REQUEST_METHOD'] == 'GET') {
+
+            $data = [];
+            $data['sponsor'] = $this->adminModel->SponsorDetails($spID);
+            
+            $this->view('admin/sponsorReview',$data);
 
         }
 

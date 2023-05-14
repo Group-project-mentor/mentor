@@ -20,7 +20,7 @@
 
         <!-- Title and sub title of middle part -->
         <div class="mid-title">
-            <h1>Complaints</h1>
+            <h1>Scholorship Applied Student</h1>
         </div>
         <div class="content">
             <?php
@@ -42,8 +42,8 @@
                 <p>' . $data['complaints'][0]['description'] . '</p>
             </div>
             <div class="btns">
-                <button class="comp-btns" onclick="tookaction(' . $data['complaints'][0]['work_id'] . ')" type="button">Send Acknowledgment</button>
-                <button class="comp-btns" onclick="tookaction(' . $data['complaints'][0]['work_id'] . ')" type="button">Completed</button>
+                <button class="comp-btns" onclick="approveSchl(\''.$data['appliedrc'][0]['id'].'\')" type="button">Approve</button>
+                <button class="comp-btns" onclick="declineSchl(\''. $data['appliedrc'][0]['id'].'\')" type="button">Decline</button>
             </div>
 
             

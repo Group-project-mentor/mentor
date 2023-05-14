@@ -354,7 +354,7 @@ function deleteScholToTaskManager(stID){
 
         }
     };
-    xhttp.open("POST", "http://localhost/mentor/admins/deleteResouceCreatorTM/"+stID, true);
+    xhttp.open("POST", "http://localhost/mentor/admins/deleteSchlTM/"+stID, true);
     xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xhttp.send();
 }
@@ -381,7 +381,7 @@ function addSPToTaskManager(sID){
     xhttp.send();
 }
 
-function deleteSPToTaskManager(stID){
+function deleteSPFromTaskManager(spID){
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
 
@@ -396,8 +396,115 @@ function deleteSPToTaskManager(stID){
 
         }
     };
-    xhttp.open("POST", "http://localhost/mentor/admins/deleteResouceCreatorTM/"+stID, true);
+    xhttp.open("POST", "http://localhost/mentor/admins/deleteSPTM/"+spID, true);
     xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xhttp.send();
 }
 
+function approveSP(spID){
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            var response = this.responseText.trim();
+
+            // console.log(JSON.parse(response));
+            console.log(response);
+
+            if(response === "Successful") {
+                // window.location.replace("http://localhost/mentor/admins/taskmanager");
+                         
+                let alert = document.getElementById("alert");
+                alert.classList.remove("hideme");
+                alert.classList.add("showme");
+                document.getElementById("msg").innerHTML = "Sponsor Approved";
+                document.getElementById("img").src = "http://localhost/mentor/public/assets/admin/resource_creator_approved.png";
+
+            }
+
+        }
+    };
+
+    xhttp.open("POST", "http://localhost/mentor/admins/SponsorReview/approve/"+spID, true);
+    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xhttp.send();
+}
+
+function declineSP(spID){
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            var response = this.responseText.trim();
+
+            if(response === "Successful") {
+                // window.location.replace("http://localhost/mentor/admins/taskmanager");
+                         
+
+                let alert = document.getElementById("alert");
+                alert.classList.remove("hideme");
+                alert.classList.add("showme");
+                document.getElementById("msg").innerHTML = "Sponsor Declined";
+                document.getElementById("img").src = "http://localhost/mentor/public/assets/admin/resource_decline.png";
+
+            }
+
+        }
+    };
+
+    xhttp.open("POST", "http://localhost/mentor/admins/SponsorReview/decline/"+spID, true);
+    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xhttp.send();
+}
+
+function approveSchl(rID){
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            var response = this.responseText.trim();
+
+            // console.log(JSON.parse(response));
+            console.log(response);
+
+            if(response === "Successful") {
+                // window.location.replace("http://localhost/mentor/admins/taskmanager");
+                         
+                let alert = document.getElementById("alert");
+                alert.classList.remove("hideme");
+                alert.classList.add("showme");
+                document.getElementById("msg").innerHTML = "Resource Creator Approved";
+                document.getElementById("img").src = "http://localhost/mentor/public/assets/admin/resource_creator_approved.png";
+
+            }
+
+        }
+    };
+
+    xhttp.open("POST", "http://localhost/mentor/admins/resourceCreatorReview/approve/"+rID, true);
+    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xhttp.send();
+}
+
+function declineSchl(rID){
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            var response = this.responseText.trim();
+
+            if(response === "Successful") {
+                // window.location.replace("http://localhost/mentor/admins/taskmanager");
+                         
+
+                let alert = document.getElementById("alert");
+                alert.classList.remove("hideme");
+                alert.classList.add("showme");
+                document.getElementById("msg").innerHTML = "Resource Creator Declined";
+                document.getElementById("img").src = "http://localhost/mentor/public/assets/admin/resource_decline.png";
+
+            }
+
+        }
+    };
+
+    xhttp.open("POST", "http://localhost/mentor/admins/resourceCreatorReview/decline/"+rID, true);
+    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xhttp.send();
+}

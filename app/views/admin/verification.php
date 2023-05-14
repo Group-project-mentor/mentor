@@ -25,11 +25,11 @@
                 </div>
 
                 <div class="content" id="comp-content" >
-                    <div class="bckclose">
+                    <!-- <div class="bckclose">
                         <img class="back" src="<?php echo BASEURL ?>assets/admin/Arrow---Left.png">
                         
                         
-                    </div>
+                    </div> -->
                     <div class="resource">
                         <a href="<?php echo BASEURL ?>admins/verify/videos" class="resource-link">
                             <div class="r">
