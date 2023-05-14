@@ -13,7 +13,18 @@
 
 <body>
 <section class="page">
-    
+<?php
+        if (isset($_SESSION['message']) && $_SESSION['message'] == "success") {
+            $message = "Operation Successful !";
+            include_once "components/alerts/operationSuccess.php";
+        } elseif (isset($_SESSION['message']) && $_SESSION['message'] == "failed") {
+            $message = "Create failed !";
+            include_once "components/alerts/operationFailed.php";
+        }elseif (isset($_SESSION['message']) && $_SESSION['message'] == "fillName"){
+            $message = "Please fill required data !";
+            include_once "components/alerts/operationFailed.php";
+        }
+?>
     <!-- Navigation panel -->
     <?php include_once "components/navbars/rc_nav_2.php"?>
 

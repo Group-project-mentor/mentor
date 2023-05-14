@@ -52,6 +52,11 @@ class St_private_mode extends Controller
             $_SESSION['fees'] = $res4;
             $this->notify($res5, "You have Token request from the Student", "request");  
             $this->view('student/privatemode/st_join_token_send', array($res2));
+        } else if($res2 == 2){
+            $this->notify($_SESSION['id'], "Your Token seems invalid.Please Check it Again", "Fail_request");
+            flashMessage("Failrequest");
+            header("location:" . BASEURL . 'st_private_mode/st_join_token' );
+            // $this->view('student/privatemode/st_join_token');
         } else {
             $this->notify($_SESSION['id'], "You have already Send Token Request Or Already Add to This Class. Check it Again", "Not_request");
             flashMessage("NOrequest");
