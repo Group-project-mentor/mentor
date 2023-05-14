@@ -48,7 +48,7 @@
                                     <a href="'. BASEURL .'admins/complaint/' . $value['work_id'] . '"><img src="'. BASEURL .'assets/admin/view.png"></a>
                                 </div>
                                 <div class="addtm">
-                                    <button class="comp-btns" onclick="addComplaintToTaskManager(' . $data['complaints'][0]['work_id'] . ',' . $_SESSION['id'] . ')" type="button"><img src="'. BASEURL .'assets/admin/addtm.png"></button>
+                                    <button class="comp-btns" onclick="addComplaintToTaskManager(' .$value['work_id'] . ',' . $_SESSION['id'] . ')" type="button"><img src="'. BASEURL .'assets/admin/addtm.png"></button>
                                 </div>
                             </div>
                                 </div>

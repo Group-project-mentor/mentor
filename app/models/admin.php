@@ -90,12 +90,17 @@ class admin extends Model{
     }
 
     public function addComplaintToTaskManager($cID, $uID) {
-        $query = "UPDATE `complaint` SET `approved_by`='$uID',`status`='in Progress' WHERE `work_id`='$cID';";
+        $query = "UPDATE `complaint` SET `approved_by`='$uID',`status`='pending' WHERE `work_id`='$cID';";
         return $this->executeQuery($query);
     }
 
     public function deleteComplaintFromTaskManager($cID) {
         $query = "UPDATE `complaint` SET `approved_by`= NULL ,`status`='pending' WHERE `work_id`='$cID';";
+        return $this->executeQuery($query);
+    }
+
+    public function sendAcknowledgment($cID) {
+        $query = "UPDATE `complaint` SET `status`='in Progress' WHERE `work_id`='$cID';";
         return $this->executeQuery($query);
     }
 
@@ -114,7 +119,7 @@ class admin extends Model{
     }
 
     public function ComplaintTask($uID){
-        $query = "SELECT * FROM `complaint` WHERE `approved_by`='$uID' AND `status`='in Progress'; ";
+        $query = "SELECT * FROM `complaint` WHERE `approved_by`='$uID'; ";
         $result = $this->executeQuery($query);
         
         if ($result->num_rows > 0) {
@@ -152,6 +157,34 @@ class admin extends Model{
 
     public function declineResourceCreator($rcID){
         $query = "UPDATE `applied_creator` SET `approved` = 'N' WHERE `id` = '$rcID'; ";
+        
+        return $this->executeQuery($query);
+    }
+
+    
+
+    public function approveSponsors($spID,$email,$name,$password){
+        $hash = password_hash($password, PASSWORD_BCRYPT, ["cost" => 10]);
+        $query1 = "UPDATE `applied_sponsor` SET `approved` = 'Y' AND `review_status`='Complete' WHERE `id` = '$spID'; ";
+        
+        if ($this->executeQuery($query1)) {
+            $query2 = "INSERT INTO user(`email`,`name`,`password`,`type`) VALUE('$email','$name','$hash','sp');";
+            return $this->executeQuery($query2);
+        } else {
+            return false;
+        }
+
+        
+    }
+
+    public function approveSchl($sID){
+        $query = "UPDATE `scholarship` SET `approved` = 'Y' AND `review_status`='Complete' WHERE `id` = '$sID'; ";
+        
+        return $this->executeQuery($query);
+    }
+
+    public function declineSchl($sID){
+        $query = "UPDATE `scholarship` SET `approved` = 'N' AND `review_status`='Complete' WHERE `id` = '$sID'; ";
         
         return $this->executeQuery($query);
     }
@@ -256,6 +289,16 @@ class admin extends Model{
         } 
     }
 
+    public function SchlDetails($sID){
+        $query = "SELECT * FROM `scholarship` WHERE `id` = '$sID'; ";
+        $result = $this->executeQuery($query);
+        
+        if ($result->num_rows > 0) {
+            return $result->fetch_all(MYSQLI_ASSOC);
+        } else {
+            return false;
+        } 
+    }
     
     public function deleteSPFromTaskManager($spID) {
         $query = "UPDATE `applied_sponsor` SET `approved_by`= NULL WHERE `id`='$spID';";

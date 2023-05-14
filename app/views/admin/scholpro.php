@@ -53,17 +53,6 @@
                                         <p>' . $value['firstName'] . '</p>
                                     </div>
                                 </div>
-                                
-                                <div class="btns">
-                                    <form action="' . BASEURL . 'admins/scholpro/'. $value['id'].'" method="POST">
-                                        <button class="comp-btns">Add to task manager</button>
-                                    </form><br>
-                                </div>
-                                
-                                
-
-                                
-                                
                             </div>';
                         }
                     }
@@ -106,17 +95,6 @@
                                         <p>' . $value['firstName'] . '</p>
                                     </div>
                                 </div>
-                                
-                                <div class="btns">
-                                    <form action="' . BASEURL . 'admins/scholpro/'. $value['id'].'" method="POST">
-                                        <button class="comp-btns">Add to task manager</button>
-                                    </form><br>
-                                </div>
-                                
-                                
-
-                                
-                                
                             </div>';
                         }
                     }

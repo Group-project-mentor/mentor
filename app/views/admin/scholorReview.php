@@ -34,16 +34,16 @@
                     <img class="profile" src="' . BASEURL . 'assets/admin/pp.png">
                 </div>
                 <div class="name">
-                    <p>' . $data['complaints'][0]['name'] . '</p>
+                    <p>' . $data['schl'][0]['firstName'] . ' ' . $data['schl'][0]['lastName'] . '</p>
                 </div>
             </div>
             <div id="com-title">
-                <h1>' . $data['complaints'][0]['category'] . '</h1>
-                <p>' . $data['complaints'][0]['description'] . '</p>
+                <h1>' . $data['schl'][0]['email'] . '</h1>
+                <p>' . $data['schl'][0]['description'] . '</p>
             </div>
             <div class="btns">
-                <button class="comp-btns" onclick="approveSchl(\''.$data['appliedrc'][0]['id'].'\')" type="button">Approve</button>
-                <button class="comp-btns" onclick="declineSchl(\''. $data['appliedrc'][0]['id'].'\')" type="button">Decline</button>
+                <button class="comp-btns" onclick="approveSchl(\''.$data['schl'][0]['id'].'\')" type="button">Approve</button>
+                <button class="comp-btns" onclick="declineSchl(\''. $data['schl'][0]['id'].'\')" type="button">Decline</button>
             </div>
 
             

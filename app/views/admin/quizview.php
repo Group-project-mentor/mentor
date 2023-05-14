@@ -6,47 +6,52 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>complaints</title>
-    <link rel="stylesheet" href="<?php echo BASEURL ?>stylesheets/admin/ad_complaints.css">
+    <!-- <link rel="stylesheet" href="<?php echo BASEURL ?>stylesheets/admin/ad_complaints.css"> -->
     <link rel="stylesheet" href="<?php echo BASEURL ?>stylesheets/admin/style.css">
+    <link rel="stylesheet" href="<?php echo BASEURL ?>stylesheets/admin/ad_quizview.css">
     <link rel="stylesheet" href="<?php echo BASEURL ?>stylesheets/admin/massage.css">
 
 </head>
 
 <body>
-<?php require_once("C:/xampp/htdocs/mentor/public/components/alerts/admin/resources_add.php"); ?>
+    <?php require_once("C:/xampp/htdocs/mentor/public/components/alerts/admin/resources_add.php"); ?>
     <?php require_once("C:/xampp/htdocs/mentor/app/views/admin/navbar.php"); ?>
     <!-- Middle part for whole content -->
     <section class="ad_mid-content">
 
         <!-- Title and sub title of middle part -->
         <div class="mid-title">
-            <h1>Resource</h1>
+            <h1>Quizz ID - <?php echo $data['quizv'][0]['id'] ?></h1>
+
         </div>
+        <div class="content">
+            <div class="quiz-preview-container">
+
+                <hr />
+                <div class="quiz-preview-question">
+                    <!--questions-->
+
+                    <?php if (isset($data['questions']) && is_array($data['questions'])) : ?>
+                        <?php foreach ($data['questions'] as $question) : ?>
+                            <div class="quiz-preview-question">
+                                <p>Q -<?php echo $question['number'] . ") " . $question['description'] ?></p>
+                            </div>
+                        <?php endforeach; ?>
+                    <?php else : ?><p>No questions found.</p>
+                    <?php endif; ?>
+
+
+                </div>
+            </div>
+        </div>
+
         <div class="content">
             <?php
             echo '<div class="content" id="comp-content">
-            <div class="bckclose">
-                <img class="back" src="' . BASEURL . 'assets/admin/Arrow---Left.png">
-                <img class="close" src="' . BASEURL . 'assets/admin/Close-Square.png">
-            </div>
-            
-            <div class="thumbnail">
-                <img class="r-thumbnail" src="' . BASEURL . 'assets/admin/thumbnail.jpeg ">
-            </div>
-            <div class="name">
-                <p>' . $data['quizv'][0]['name'] . '</p>
-            </div>
-            
-            <div id="com-title">
-                <p>' . $data['quizv'][0]['questions'] . '</p>
-            </div>
             <div class="btns">
-                <button class="comp-btns" onclick="approve(\''.$data['quizv'][0]['id'].'\')" type="button">Approve</button>
-                <button class="comp-btns" onclick="decline(\''. $data['quizv'][0]['id'].'\')" type="button">Decline</button>
+                <button class="comp-btns" onclick="approve(\'' . $data['quizv'][0]['id'] . '\')" type="button">Approve</button>
+                <button class="comp-btns" onclick="decline(\'' . $data['quizv'][0]['id'] . '\')" type="button">Decline</button>
             </div>
-
-            
-            
             </div>';
 
             ?>
@@ -54,10 +59,9 @@
         </div>
 
     </section>
-    </div>
-    </section>
     <?php require_once("C:/xampp/htdocs/mentor/app/views/admin/popup.php"); ?>
 </body>
+
 <script src="<?php echo BASEURL ?>javascripts/admin/cors.js"></script>
 
 <script>
@@ -106,5 +110,7 @@
             popupMenu.style.display = "flex";
             toggler = true
         }
-    });
+    })
 </script>
+
+</html>
