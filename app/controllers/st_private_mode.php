@@ -63,12 +63,12 @@ class St_private_mode extends Controller
     public function st_join_request_update($access, $class_id)
     {
         $sid = $_SESSION['id'];
-        if ($access == 1) {
-            $res = $this->model('st_private_mode_model')->getClasses3($sid, $access, $class_id);
+        if ($access == 0) {
+            $res = $this->model('st_private_mode_model')->AddStudentToClassUsingRequest($sid, $access, $class_id);
             $this->notify($_SESSION["id"], "You Add To New Class By Accepting The Teacher Request", "request");
             $this->view('student/privatemode/st_join_classes', array($res));
-        } else if ($access == 0) {
-            $res = $this->model('st_private_mode_model')->getClasses34($sid, $access, $class_id);
+        } else if ($access == 1) {
+            $res = $this->model('st_private_mode_model')->RemoveTeacherRequest($sid, $access, $class_id);
             $this->notify($_SESSION["id"], "You Delete One Teacher's Request", "delete");
             $this->view('student/privatemode/st_join_classes', array($res));
         }
@@ -77,7 +77,7 @@ class St_private_mode extends Controller
     public function st_join_request()
     {
         $sid = $_SESSION['id'];
-        $res = $this->model('st_private_mode_model')->getClasses1($sid);
+        $res = $this->model('st_private_mode_model')->getTeacherRequests($sid);
         $this->view('student/privatemode/st_join_request', array($res));
     }
 

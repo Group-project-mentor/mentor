@@ -10,7 +10,7 @@ class St_private_mode_model extends Model
     public function getClassesDetails($sid)
     {
         $q = "SELECT classes_has_students.student_id , classes_has_students.class_id , private_class.class_name , private_class.fees FROM classes_has_students 
-        INNER JOIN private_class ON classes_has_students.class_id = private_class.class_id WHERE classes_has_students.student_id = ? AND classes_has_students.accept = 1;";
+        INNER JOIN private_class ON classes_has_students.class_id = private_class.class_id WHERE classes_has_students.student_id = ? AND classes_has_students.accept in (0,1) ;";
         $stmt = $this->prepare($q);
         $stmt->bind_param('i', $sid);
 
@@ -18,11 +18,11 @@ class St_private_mode_model extends Model
         return $result;
     }
 
-    public function getClasses1($sid)
+    public function getTeacherRequests($sid)
     {
         $q = "SELECT classes_has_students.student_id , classes_has_students.class_id , private_class.class_name FROM classes_has_students 
         INNER JOIN private_class ON classes_has_students.class_id = private_class.class_id 
-        WHERE classes_has_students.student_id = ? AND classes_has_students.accept = 0;";
+        WHERE classes_has_students.student_id = ? AND classes_has_students.accept = 2;";
         $stmt = $this->prepare($q);
         $stmt->bind_param('i', $sid);
 
@@ -30,16 +30,16 @@ class St_private_mode_model extends Model
         return $result;
     }
 
-    public function getClasses3($sid, $access, $cid)
+    public function AddStudentToClassUsingRequest($sid, $access, $cid)
     {
-        $q = "UPDATE `classes_has_students` SET `access`=$access WHERE class_id=$cid AND student_id=$sid;";
+        $q = "UPDATE classes_has_students SET accept=$access WHERE class_id=$cid AND student_id=$sid;";
         $result = $this->executeQuery($q);
         return $result;
     }
 
-    public function getClasses34($sid, $access, $cid)
+    public function RemoveTeacherRequest($sid, $access, $cid)
     {
-        $q = "DELETE FROM `classes_has_students` WHERE class_id=$cid AND student_id=$sid AND access = $access;";
+        $q = "DELETE FROM classes_has_students WHERE class_id=$cid AND student_id=$sid AND accept = 2;";
         $result = $this->executeQuery($q);
         return $result;
     }
@@ -68,16 +68,17 @@ class St_private_mode_model extends Model
 
     public function jointokenaddtoDB($sid, $cid, $token)
     {
-        $qo = "SELECT COUNT(join_requests.accept) as numberOfRequests FROM join_requests 
-        WHERE join_requests.student_id = ? AND join_requests.class_id = ? AND join_requests.token= ? AND join_requests.accept = 0;";
+        $qo = "SELECT COUNT(join_requests.accept) as numberOfRequests FROM join_requests , private_class 
+        WHERE join_requests.class_id=private_class.class_id  AND join_requests.student_id = ? AND join_requests.class_id = ? 
+        AND private_class.token=? AND join_requests.accept = 0;";
         $stmt = $this->prepare($qo);
         $stmt->bind_param('iis', $sid, $cid, $token);
         $check = $this->fetchOneObj($stmt);
 
         // var_dump($check->numberOfRequests);
         if ($check->numberOfRequests == 0) {
-            $q = "INSERT INTO `join_requests` (`student_id`, `class_id`, `accept`, `validity`, `token`) 
-        VALUES ($sid, $cid, 0 , NULL, '$token');";
+            $q = "INSERT INTO `join_requests` (`student_id`, `class_id`, `accept`, `validity`) 
+        VALUES ($sid, $cid, 0 , NULL, '');";
             $result = $this->executeQuery($q);
             return $result;
         }
