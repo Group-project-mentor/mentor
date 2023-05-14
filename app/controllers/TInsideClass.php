@@ -44,7 +44,7 @@ class TInsideClass extends Controller
         if ($STaccept == 1 and $STcount >= 1) {
             flashMessage("already");
             header("location:" . BASEURL . "TInsideClass/addSt");
-        } else if ($STcount >= 1  and $STaccept == 0) {
+        } else if (!empty($STcount)  and $STaccept == 0) {
             echo 'called';
             flashMessage("duplicate");
             header("location:" . BASEURL . "TInsideClass/addSt");
