@@ -42,7 +42,8 @@
                 <p>' . $data['complaints'][0]['description'] . '</p>
             </div>
             <div class="btns">
-                <button class="comp-btns" onclick="tookaction(' . $data['complaints'][0]['work_id'] . ')" type="button">Took Action</button>
+                <button class="comp-btns" onclick="approveSchl(\''.$data['appliedrc'][0]['id'].'\')" type="button">Approve</button>
+                <button class="comp-btns" onclick="declineSchl(\''. $data['appliedrc'][0]['id'].'\')" type="button">Decline</button>
             </div>
 
             

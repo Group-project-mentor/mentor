@@ -42,7 +42,8 @@
                 <p>' . $data['sponsor'][0]['maxAmount'] . '</p>
             </div>
             <div class="btns">
-                <button class="comp-btns" onclick="tookaction(' . $data['sponsor'][0]['id'] . ')" type="button">Took Action</button>
+                <button class="comp-btns" onclick="approveSP(\''.$data['sponsor'][0]['id'].'\')" type="button">Approve</button>
+                <button class="comp-btns" onclick="declineSP(\''. $data['sponsor'][0]['id'].'\')" type="button">Decline</button>
             </div>
 
             

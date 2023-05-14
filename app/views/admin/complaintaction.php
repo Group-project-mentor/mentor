@@ -42,7 +42,8 @@
                 <p>' . $data['complaints'][0]['description'] . '</p>
             </div>
             <div class="btns">
-                <button class="comp-btns" onclick="tookaction(' . $data['complaints'][0]['work_id'] . ')" type="button">Took Action</button>
+                <button class="comp-btns" onclick="tookaction(' . $data['complaints'][0]['work_id'] . ')" type="button">Send Acknowledgment</button>
+                <button class="comp-btns" onclick="tookaction(' . $data['complaints'][0]['work_id'] . ')" type="button">Completed</button>
             </div>
 
             

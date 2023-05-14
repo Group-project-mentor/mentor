@@ -861,7 +861,7 @@ class admins extends Controller {
                     echo 'Error';
                 }
             } elseif ($element == "decline") {
-                if ($this->adminModel->declineResourceCreator($spID)) {
+                if ($this->adminModel->declineSponsor($spID)) {
                     echo 'Successful';
                 } else {
                     echo 'Error';

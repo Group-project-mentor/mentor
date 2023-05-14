@@ -42,9 +42,9 @@
                                 <p>' . $value['type'] . '</p>
                             </div>
                                         
-                            <div class="icons">
+                            <div class="btns">
                                 <div class="view">
-                                    <a href="' . BASEURL . 'admins/resource/' . $value['type'] . '/' . $value['id'] . '" class ="comp-btns">View</a>
+                                    <a href="' . BASEURL . 'admins/resource/' . $value['type'] . '/' . $value['id'] . '" class ="comp-btns">Start</a>
                                 </div>
                                 <div class="delete">
                                     <button class="comp-btns" onclick="deleteResourceFromTaskManager(' . $value['id'] . ')" type="button">Delete</button>
@@ -73,12 +73,12 @@
                                             <p>' . $value['description'] . '</p>
                                         </div>
                                         
-                                <div class="icons">
+                                <div class="btns">
                                     <div class="view">
-                                        <a href="'. BASEURL .'admins/task/' . $value['work_id'] . '">View</a>
+                                        <a href="'. BASEURL .'admins/task/' . $value['work_id'] . '">Start</a>
                                     </div>
                                     <div class="delete">
-                                        <button class="comp-btns" onclick="deleteComplaintFromTaskManager(' . $value['work_id'] . ')" type="button"><img src="' . BASEURL . 'assets/admin/Delete.png"></button>
+                                        <button class="comp-btns" onclick="deleteComplaintFromTaskManager(' . $value['work_id'] . ')" type="button">Delete</button>
                                     </div>
                                 </div>
                                     </div>
@@ -104,12 +104,12 @@
                                             <p>' . $value['description'] . '</p>
                                         </div>
                                         
-                                <div class="icons">
+                                <div class="btns">
                                     <div class="view">
-                                        <a href="'. BASEURL .'admins/resourceCreatorReview/details/' . $value['id'] . '"></a>
+                                        <a href="'. BASEURL .'admins/resourceCreatorReview/details/' . $value['id'] . '">Start</a>
                                     </div>
                                     <div class="delete">
-                                        <button class="comp-btns" onclick="deleteRCFromTaskManager(' . $value['id'] . ')" type="button"><img src="' . BASEURL . 'assets/admin/Delete.png"></button>
+                                        <button class="comp-btns" onclick="deleteRCFromTaskManager(' . $value['id'] . ')" type="button">Delete</button>
                                     </div>
                                 </div>
                                     </div>
@@ -135,9 +135,9 @@
                                             <p>' . $value['firstName'] . '</p>
                                         </div>
                                         
-                                <div class="icons">
+                                <div class="btns">
                                     <div class="view">
-                                        <a href="'. BASEURL .'admins/task/' . $value['id'] . '">View</a>
+                                        <a href="'. BASEURL .'admins/task/' . $value['id'] . '">Start</a>
                                     </div>
                                     <div class="delete">
                                         <button class="comp-btns" onclick="deleteScholToTaskManager(' . $value['id'] . ')" type="button">Delete</button>
@@ -166,9 +166,9 @@
                                             <p>' . $value['firstName'] . '</p>
                                         </div>
                                         
-                                <div class="icons">
+                                <div class="btns">
                                     <div class="view">
-                                        <a href="'. BASEURL .'admins/SponsorReview/details/' . $value['id'] . '">View</a>
+                                        <a href="'. BASEURL .'admins/SponsorReview/details/' . $value['id'] . '">Start</a>
                                     </div>
                                     <div class="delete">
                                         <button class="comp-btns" onclick="deleteSPFromTaskManager(' . $value['id'] . ')" type="button">Delete</button>

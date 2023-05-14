@@ -8,7 +8,7 @@
                 <img src="<?php echo BASEURL ?>assets/admin/com-notification.png" alt="error image">
             </div>
             <div class="message-btn">
-                <a href="<?php echo BASEURL ?>admins/scholorshipviews">OK</a>
+                <a href="<?php echo BASEURL ?>admins/sponsorviews">OK</a>
             </div>
         </div>
     </div>

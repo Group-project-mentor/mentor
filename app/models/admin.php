@@ -164,6 +164,13 @@ class admin extends Model{
         return $this->executeQuery($query);
     }
 
+    public function declineSponsor($spID){
+        $query = "UPDATE `Sponsor` SET `approved` = 'N' WHERE `id` = '$spID'; ";
+        
+        return $this->executeQuery($query);
+    }
+
+
 
 
 
