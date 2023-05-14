@@ -58,6 +58,9 @@
         </div>
     </section>
 </body>
+<script>
+    const BASEURL = "<?php echo BASEURL ?>";
+</script>
 
 <script src="<?php echo BASEURL . '/public/javascripts/t_change_profile.js' ?>"></script>
 

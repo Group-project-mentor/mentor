@@ -92,9 +92,12 @@
               <h1><br>You only have to pay RS.10 000 for a Year.</h1>
             </div><br><br>
             <div class="button-container">
-              <button type="button" id="payhere-payment" class="buy-button">
+
+              <a href='<?php echo BASEURL ?>TPremium/premiumForm' style='background-color: #186537; color: #fff; padding: 10px 20px; border-radius: 5px; text-decoration: none;'>
                 Buy
-              </button>
+              </a>
+
+
             </div>
 
           </section>

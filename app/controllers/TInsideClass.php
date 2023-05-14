@@ -20,7 +20,7 @@ class TInsideClass extends Controller
 
     public function addTr($msg = null)
     {
-        $this->view('Teacher/insideClass/addTeacher',array($msg));
+        $this->view('Teacher/insideClass/addTeacher', array($msg));
     }
 
 
@@ -33,48 +33,37 @@ class TInsideClass extends Controller
         } else {
             $premium = 0;
         }
-        $STcount = ($this->model("teacher_data")->getduplicateSt($l_id, $_SESSION['id']));
-
-        $STaccept = ($this->model("teacher_data")->getduplicateStJoined($l_id, $_SESSION['id'])->accept);
-        var_dump($STaccept);
+ 
         $student_count = ($this->model("premiumModel")->studentCount($_SESSION['cid'])->student_count);
         $fee = ($this->model("teacher_data")->getFee($_SESSION['cid'])->fees);
         $currency = ($this->model("teacher_data")->getCurrency($_SESSION['cid'])->fees);
         $message = "Teacher " . $_SESSION['name'] . " has request to join to class " . $_SESSION['cname'] . ". Class fee is " . $currency . " " . $fee;
-        if ($STaccept == 1 and $STcount >= 1) {
-            //flashMessage("already");
-            header("location:" . BASEURL . "TInsideClass/addSt");
-        } else if (!empty($STcount)  and $STaccept == 0) {
-            echo 'called';
-           // flashMessage("duplicate");
-            header("location:" . BASEURL . "TInsideClass/addSt");
-        } else {
-            if ($premium == 1) {
-                if ($this->model('teacher_data')->requestStudentsClass($l_id) and $this->model('notificationModel')->notify($l_id, $message, 'tch')) {
 
-                    //flashMessage("success");
-                    header("location:" . BASEURL . "TInsideClass/addSt");
-                } else {
-                    //flashMessage("failed");
-                    header("location:" . BASEURL . "TInsideClass/addSt");
-                }
-            } else if ($premium == 0 and $student_count < 10) {
-                if ($this->model('teacher_data')->requestStudentsClass($l_id) and $this->model('notificationModel')->notify($l_id, $message, 'tch')) {
+        if ($premium == 1) {
+            if ($this->model('teacher_data')->requestStudentsClass($l_id) and $this->model('notificationModel')->notify($l_id, $message, 'tch')) {
 
-                    //flashMessage("success");
-                    header("location:" . BASEURL . "TInsideClass/addSt");
-                } else {
-                    //flashMessage("failed");
-                    header("location:" . BASEURL . "TInsideClass/addSt");
-                }
-            } else if ($premium == 0 and $student_count >= 10) {
-               // flashMessage("premiumLimited");
-                header("location:" . BASEURL . "TInsideClass/addSt/1");
+                //flashMessage("success");
+                header("location:" . BASEURL . "TInsideClass/addSt");
+            } else {
+                //flashMessage("failed");
+                header("location:" . BASEURL . "TInsideClass/addSt");
             }
+        } else if ($premium == 0 and $student_count < 10) {
+            if ($this->model('teacher_data')->requestStudentsClass($l_id) and $this->model('notificationModel')->notify($l_id, $message, 'tch')) {
+
+                //flashMessage("success");
+                header("location:" . BASEURL . "TInsideClass/addSt");
+            } else {
+                //flashMessage("failed");
+                header("location:" . BASEURL . "TInsideClass/addSt");
+            }
+        } else if ($premium == 0 and $student_count >= 10) {
+            // flashMessage("premiumLimited");
+            header("location:" . BASEURL . "TInsideClass/addSt/1");
         }
     }
 
-    public function addTchAction($cid,$msg=null)
+    public function addTchAction($cid, $msg = null)
     {
         $this->getClass($cid);
         $_SESSION["cid"] = $cid;
@@ -105,7 +94,7 @@ class TInsideClass extends Controller
                         //flashMessage("success");
                         header("location:" . BASEURL . "TInsideClass/addTr/4");
                     } else {
-                       // flashMessage("failed");
+                        // flashMessage("failed");
                         header("location:" . BASEURL . "TInsideClass/addTr/5");
                     }
                 } else if ($premium != 1 and $teacher_count >= 2) {
@@ -116,7 +105,7 @@ class TInsideClass extends Controller
             }
             header("location:" . BASEURL . "TInsideClass/addTr/6");
         } else {
-           // flashMessage("invalid");
+            // flashMessage("invalid");
             header("location:" . BASEURL . "TInsideClass/addTr/7");
         }
     }
@@ -182,7 +171,7 @@ class TInsideClass extends Controller
 
     public function settings($cid)
     {
-      
+
         $res = $this->model('classModel')->getToken($cid);
         $this->view('Teacher/classRoom/settings', array($res));
     }

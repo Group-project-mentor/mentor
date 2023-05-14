@@ -48,6 +48,14 @@ class UserModel extends Model
         return $this->fetchOneObj($stmt);
     }
 
+    public function TgetUserData($id)
+    {
+        $query = "SELECT user.id, user.name, user.email, user.image FROM user WHERE user.type = 'tch' and user.id=?;";
+        $stmt = $this->prepare($query);
+        $stmt->bind_param("i",$id);
+        return $this->fetchOneObj($stmt);
+    }
+
 
     public function getSponsorData($id)
     {

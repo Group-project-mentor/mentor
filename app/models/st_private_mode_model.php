@@ -77,6 +77,9 @@ class St_private_mode_model extends Model
 
         //var_dump($check->numberOfRequests);
         if (empty($check->numberOfRequests)) {
+            return 2;
+
+        }else if($check->numberOfRequests == 0){
             $q = "INSERT INTO join_requests (student_id, class_id, accept, validity) VALUES ($sid, $cid, 0 , NULL);";
             $result = $this->executeQuery($q);
             return 1;

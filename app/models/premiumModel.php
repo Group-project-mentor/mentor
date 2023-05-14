@@ -60,4 +60,16 @@ class premiumModel extends Model
         $res = $this->executePrepared($stmt);
         return $res;
     }
+
+    public function savePayment($payID, $userID, $currency, $amount ,$description , $method,$classId){
+        $stmt1 = $this->prepare("INSERT INTO payment(paymentId,userId,currency,amount,type,method) VALUES (?,?,?,?,?,?)");
+        $stmt1->bind_param("iisdss",$payID,$userID,$currency,$amount,$description,$method);
+        
+        $stmt2 = $this->prepare("INSERT INTO premium(teacher_id,buy_timestamp,expire_timestamp,active_state) 
+        VALUES (?, NOW(), DATE_ADD(NOW(), INTERVAL 1 YEAR) , 1);");
+        $stmt2->bind_param('ii',$userID);
+
+        return $this->executePrepared($stmt1) and $this->executePrepared($stmt2);
+    }
+
 }

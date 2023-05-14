@@ -19,14 +19,14 @@ if (!isset($_SESSION['navtog'])) {
 
     <!-- Navigation bar private - public switch -->
     <div class="nav-middle" id="nav-middle">
-        <p>Public</p>
+        <!-- <p>Public</p> -->
         <div class="nav-switch">
-            <label class="switch">
+            <!-- <label class="switch">
                 <input type="checkbox" disabled>
                 <span class="slider round"></span>
-            </label>
+            </label> -->
         </div>
-        <p class="nav-switch-txt">Private</p>
+        <!-- <p class="nav-switch-txt">Private</p> -->
     </div> 
 
    <!-- Navigation buttons -->

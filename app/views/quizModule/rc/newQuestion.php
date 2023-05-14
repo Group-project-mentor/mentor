@@ -55,14 +55,14 @@
 
             <!-- Title and sub title of middle part -->
             <div class="mid-title">
-                <h1>C79 - Science</h1>
-                <h6>My Subjects / Science-6 / Quiz / Create</h6>
+                <h1><?php echo "Grade ".$_SESSION['gname']." - ".ucfirst($_SESSION['sname']) ?></h1>
+                <h6>My Subjects / <?php echo ucfirst($_SESSION['sname']) ?> / Add Answers / <?php echo $data[0] ?> </h6>
             </div>
 
             <!-- Grade choosing interface -->
             <form class="container-box" method="POST" action="<?php echo BASEURL."quiz/saveQuestion/".$data[0]?>" enctype="multipart/form-data">
                 <div class="rc-resource-header">
-                    <h1>TEST 1</h1>
+                    <h1></h1>
                     <div class="rc-quiz-top-btns">
                         <button type="submit" name="submit" class="rc-add-btn" id="quiz-save-btn">
                             Save

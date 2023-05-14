@@ -26,12 +26,19 @@ class Quiz extends Controller
         $this->model('resourceModel')->transaction();
         $id = $this->model('resourceModel')->getLastId() + 1;
 //        echo $id." ".$_POST['quiz_name']." ".$_POST['tot_mark'] ;
-        if ($this->model('quizModel')->createQuiz(sanitizeText($_POST['quiz_name']), isNumber($_POST['tot_mark'],100), $id, $_SESSION['gid'], $_SESSION['sid'],$_SESSION['id'])) {
-            header("location:" . BASEURL . "quiz/questions/$id");
-            $this->model('resourceModel')->commit();
-        } else {
-            header("location:" . BASEURL . "quiz/create/error");
-            $this->model('resourceModel')->commit();
+        if(!empty($_POST['quiz_name'])){
+            if ($this->model('quizModel')->createQuiz(sanitizeText($_POST['quiz_name']), 100, $id, $_SESSION['gid'], $_SESSION['sid'],$_SESSION['id'])) {
+                header("location:" . BASEURL . "quiz/questions/$id");
+                $this->model('resourceModel')->commit();
+            } else {
+                flashMessage("failed");
+                header("location:" . BASEURL . "quiz/create");
+                $this->model('resourceModel')->rollBack();
+            }
+        }else{
+            flashMessage("fillName");
+            header("location:" . BASEURL . "quiz/create");
+            $this->model('resourceModel')->rollBack();
         }
     }
 
