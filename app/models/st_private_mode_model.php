@@ -68,19 +68,18 @@ class St_private_mode_model extends Model
 
     public function jointokenaddtoDB($sid, $cid, $token)
     {
-        $qo = "SELECT COUNT(join_requests.accept) as numberOfRequests FROM join_requests , private_class 
+        $q = "SELECT join_requests.accept as numberOfRequests FROM join_requests , private_class 
         WHERE join_requests.class_id=private_class.class_id  AND join_requests.student_id = ? AND join_requests.class_id = ? 
         AND private_class.token=? AND join_requests.accept = 0;";
-        $stmt = $this->prepare($qo);
+        $stmt = $this->prepare($q);
         $stmt->bind_param('iis', $sid, $cid, $token);
         $check = $this->fetchOneObj($stmt);
 
-        // var_dump($check->numberOfRequests);
-        if ($check->numberOfRequests == 0) {
-            $q = "INSERT INTO `join_requests` (`student_id`, `class_id`, `accept`, `validity`) 
-        VALUES ($sid, $cid, 0 , NULL, '');";
+        //var_dump($check->numberOfRequests);
+        if (empty($check->numberOfRequests)) {
+            $q = "INSERT INTO join_requests (student_id, class_id, accept, validity) VALUES ($sid, $cid, 0 , NULL);";
             $result = $this->executeQuery($q);
-            return $result;
+            return 1;
         }
         else {
             return 0;
@@ -89,8 +88,7 @@ class St_private_mode_model extends Model
 
     public function jointokenview($sid, $cid, $token)
     {
-        $q = "SELECT private_class.class_name , private_class.fees FROM private_class 
-        INNER JOIN join_requests ON private_class.class_id = join_requests.class_id WHERE private_class.token = ? LIMIT 1;";
+        $q = "SELECT private_class.class_name , private_class.fees FROM private_class WHERE private_class.token = ? ;";
         $stmt = $this->prepare($q);
         $stmt->bind_param('s', $token);
 
