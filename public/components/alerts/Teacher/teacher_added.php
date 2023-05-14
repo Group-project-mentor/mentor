@@ -5,7 +5,7 @@
             Teacher has been added successfully !
         </div>
         <div class="message-image">
-            <img src="<?php echo BASEURL?>assets/clips/msg_success.png" alt="error image">
+            <img src="<?php echo BASEURL?>assets/Teacher/host_changed.png" alt="error image">
         </div>
         <div class="message-btn">
             <a href="<?php echo BASEURL."TInsideclass/addTr"?>">OK</a>

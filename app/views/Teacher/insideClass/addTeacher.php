@@ -69,12 +69,9 @@
             include_once "components/alerts/Teacher/teacher_added.php";
         } elseif (isset($_SESSION['message']) && $_SESSION['message'] == "failed") {
             include_once "components/alerts/Teacher/teacher_added_failed.php";
-        } elseif (isset($_SESSION['message']) && $_SESSION['message'] == "premiumLimited") {
+        } 
+        if ($data[0] == "1") {
             include_once "components/alerts/Teacher/TpremiumOver.php";
-        } elseif (isset($_SESSION['message']) && $_SESSION['message'] == "already") {
-            include_once "components/alerts/Teacher/Talready.php";
-        } elseif (isset($_SESSION['message']) && $_SESSION['message'] == "invalid") {
-            include_once "components/alerts/Teacher/invalid.php";
         }
         ?>
 
