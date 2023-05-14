@@ -44,13 +44,33 @@
             block-size: 30px;
             inline-size: 15px;
         }
+
+
+        /* Add styles for the header */
+        header {
+            background-color: #186537;
+            padding: 20px;
+        }
+
+        /* Add styles for the horizontal line */
+        hr {
+            border: 0;
+            height: 1px;
+            background-color: #186537;
+            margin: 0;
+        }
+
+        hr {
+            border: none;
+            height: 5px;
+            background-color: #186537;
+        }
     </style>
 </head>
 
 <body>
     <section class="page">
-        <!-- Navigation panel -->
-        <?php include_once "components/navbars/t_nav_1.php" ?>
+
 
         <div class="content-area">
 
@@ -68,13 +88,13 @@
 
             <!-- Middle part for whole content -->
             <section class="mid-content">
-
+                <hr>
                 <!-- Title and sub title of middle part -->
                 <div class="mid-title">
                     <h1>Payments Details</h1>
                     <h6> Billing / Payments Details</h6>
                 </div>
-
+                
                 <!-- Grade choosing interface -->
                 <div class="container-box" style="margin-top:10px; ">
                     <div class="rc-upload-box">

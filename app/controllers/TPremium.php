@@ -51,7 +51,7 @@ class TPremium extends Controller{
 
         if (($local_md5sig === $md5sig) AND ($status_code == 2) ){
             $res = $this->model("premiumModel")
-                ->savePayment($_POST['payment_id'],$userId,$_POST['payhere_currency'],$_POST['payhere_amount'],$des,$_POST['method'],$classID);
+                ->savePayment($_POST['payment_id'],$userId,$_POST['payhere_currency'],$_POST['payhere_amount'],$des,$_POST['method']);
             $notifyMsg = "You have successfully upgraded to premium. You can enjoy unlimited features for 1 year";
             $this->notify($userId,$notifyMsg,"tch");
         }

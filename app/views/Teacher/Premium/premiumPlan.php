@@ -93,9 +93,10 @@
             </div><br><br>
             <div class="button-container">
 
-              <a href='<?php echo BASEURL ?>TPremium/premiumForm'>
-                Buy     
+              <a href='<?php echo BASEURL ?>TPremium/premiumForm' style='background-color: #186537; color: #fff; padding: 10px 20px; border-radius: 5px; text-decoration: none;'>
+                Buy
               </a>
+
 
             </div>
 
