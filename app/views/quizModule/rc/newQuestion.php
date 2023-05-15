@@ -20,7 +20,7 @@
             $message = "Created successfully !";
             include_once "components/alerts/operationSuccess.php";
         } elseif ($_SESSION['message'] == "failed") {
-            $message = "Upload Unsuccessful !";
+            $message = "Please Fill All Data !";
             include_once "components/alerts/operationFailed.php";
         } elseif ($_SESSION['message'] == "invalidType"){
             $message = "Upload only image files !";

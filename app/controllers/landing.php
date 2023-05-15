@@ -41,6 +41,13 @@ class Landing extends Controller
             foreach ($resourceTypes as $resourceType){
                 $resources = $resources.",".$resourceType;
             }
+
+            if($this->model('userModel')->isUserExists($email)){
+                $message['status'] = "error";
+                $message['message'] = "Email already exists";
+                echo json_encode($message);
+                return;
+            }
             
             if($firstname != null && $lastname != null 
                 && $initialsName != null && 

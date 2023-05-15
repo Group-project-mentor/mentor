@@ -170,4 +170,15 @@ class UserModel extends Model
         return $stmt->execute();
     }
 
+    public function isUserExists($email){
+        $stmt = $this->prepare("SELECT id FROM user WHERE email = ?");
+        $stmt->bind_param("s",$email);
+        $result = $this->fetchOneObj($stmt);
+        if($result){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
 }
