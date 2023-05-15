@@ -119,14 +119,14 @@ class admin extends Model{
     }
 
     public function ComplaintTask($uID){
-        $query = "SELECT * FROM `complaint` WHERE `approved_by`='$uID'; ";
+        $query = "SELECT * FROM `complaint` WHERE `approved_by`='$uID' WHERE `status`='in Progress' OR `status`='pending'; ";
         $result = $this->executeQuery($query);
-        
-        if ($result->num_rows > 0) {
-            return $result->fetch_all(MYSQLI_ASSOC);
-        } else {
-            return false;
-        } 
+        return $result;
+        // if ($result->num_rows > 0) {
+        //     return $result->fetch_all(MYSQLI_ASSOC);
+        // } else {
+        //     return false;
+        // } 
     }
 
     public function ComplaintTookAction($cID){
@@ -208,7 +208,7 @@ class admin extends Model{
 
 
     public function ResourceTask($uID){
-        $query = "SELECT* FROM `public_resource` WHERE `approved_by`='$uID' AND `approved` IS NULL; ";
+        $query = "SELECT* FROM `public_resource` WHERE `approved_by`='$uID' AND `approved`='P'; ";
         $result = $this->executeQuery($query);
         
         if ($result->num_rows > 0) {
@@ -484,6 +484,34 @@ class admin extends Model{
         } 
     }
 
+    public function getQuestionsForQuiz($quiz_id)
+    {
+        $query = "SELECT question.number, question.description 
+              FROM `question` 
+              INNER JOIN `quiz` ON `question`.quiz_id = `quiz`.id 
+              WHERE `quiz`.`id` = '$quiz_id' 
+              ORDER BY question.number, question.description;";
+        $result = $this->executeQuery($query);
+
+        if ($result->num_rows > 0) {
+            return $result->fetch_all(MYSQLI_ASSOC);
+        } else {
+            return false;
+        }
+    }
+
+    public function getAnswersForQuiz($quiz_id)
+    {
+        $query = "SELECT answer.number, answer.description FROM `answer` INNER JOIN `quiz` ON `answer`.question_id= `quiz`.id WHERE `quiz`.`id` = '$quiz_id' ORDER BY answer.number, answer.description;";
+        $result = $this->executeQuery($query);
+
+        if ($result->num_rows > 0) {
+            return $result->fetch_all(MYSQLI_ASSOC);
+        } else {
+            return false;
+        }
+    }
+
     public function pastpapers(){
         $query = "SELECT `public_resource`.*, `pastpaper`.* FROM `public_resource` INNER JOIN `pastpaper` ON `public_resource`.id = `pastpaper`.id WHERE `public_resource`.`type`='paper' AND `public_resource`.`approved_by` IS NULL";
         $result = $this->executeQuery($query);
@@ -642,10 +670,10 @@ class admin extends Model{
         return $this->executeQuery($query);
     }
 
-    public function getUserCountsByTypeAndMonth($type, $month)
+    public function getUserCountsByTypeAndMonth($type, $year)
     {
-        $stmt = $this->prepare("SELECT COUNT(id) as count, MONTH(time_stamp) as month FROM user WHERE type = ? AND MONTH(time_stamp) = ?");
-        $stmt->bind_param('si', $type, $month);
+        $stmt = $this->prepare("SELECT COUNT(id) as count, MONTH(time_stamp) as month FROM user WHERE type = ? AND YEAR(time_stamp) = ? GROUP BY MONTH(time_stamp)");
+        $stmt->bind_param('si', $type, $year);
         $result = $this->fetchObjs($stmt);
 
         $monthArray = $this->createEmptyMonthArray();

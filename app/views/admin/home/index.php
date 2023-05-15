@@ -161,25 +161,31 @@
                         </div>
                     </div>
                     <?php
-                    if (!$data['complaints']) {
-                        echo 'No Complaints';
-                    } else {
-                        foreach ($data['complaints'] as $value) {
-                            echo '<div class="content">
-                                <div class="complaints">
-                                    <div class="pp">
-                                        <img class="profile" src="' . BASEURL . 'assets/admin/pp.png">
-                                    </div>
-                                    <div class="name" id="user-name">
-                                        <p>' . $value['name'] . '</p>
-                                    </div>
-                                    <div class="userid" id="user-id">
-                                        <p>' . $value['id'] . '</p>
-                                    </div>
-                                </div>
-                            </div>';
+                  if (!$data['complaints']) {
+                    echo 'No Complaints';
+                } else {
+                    $counter = 0;
+                    foreach ($data['complaints'] as $value) {
+                        if ($counter >= 5) {
+                            break; // terminate the loop once 5 items have been displayed
                         }
+                        echo '<div class="content">
+                            <div class="complaints">
+                                <div class="pp">
+                                    <img class="profile" src="' . BASEURL . 'assets/admin/pp.png">
+                                </div>
+                                <div class="name" id="user-name">
+                                    <p>' . $value['name'] . '</p>
+                                </div>
+                                <div class="userid" id="user-id">
+                                    <p>' . $value['id'] . '</p>
+                                </div>
+                            </div>
+                        </div>';
+                        $counter++;
                     }
+                }
+                
                     ?>
                     <!--  -->
                 </div>
@@ -198,99 +204,132 @@
                             </div>
                         </div>
                         <?php
-                        if (!$data['rtask']) {
-                        } else {
-                            foreach ($data['rtask'] as $value) {
-                                echo '<div class="content">
-                        <div class="complaints">
-                            <div class="pp">
-                                <img class="profile" src="' . BASEURL . 'assets/admin/reviewresource.png">
-                            </div>
-                            <div class="name">
-                                <p>Review Resource</p>
-                            </div>
-                            <div class="userid" id="user-id">
-                                <p>' . $value['type'] . '</p>
-                            </div>
-                        </div>
-                    </div>';
-                            }
-                        }
+    $itemCount = 0;
+    $maxItemCount = 10;
 
-                        if (!$data['ctask']) {
-                        } else {
-                            foreach ($data['ctask'] as $value) {
-                                echo '<div class="content">
-                        <div class="complaints">
-                            <div class="pp">
-                                <img class="profile" src="' . BASEURL . 'assets/admin/comphand.png">
-                            </div>
-                            <div class="name">
-                                <p>Complaint Handling</p>
-                            </div>
-                            <div class="userid" id="user-id">
-                                <p>' . $value['description'] . '</p>
-                            </div>
-                        </div>
-                    </div>';
+                    if (!$data['rtask'] && !$data['ctask'] && !$data['rctask'] && !$data['schltask'] && !$data['sptask']) {
+                        echo "No tasks found.";
+                    } else {
+                        foreach ($data as $category => $items) {
+                            if ($category === 'rtask') {
+                                if (!$data['rtask']) {
+
+                                } else {
+                                    foreach ($items as $item) {
+                                        if ($itemCount < $maxItemCount) {
+                                            echo '<div class="content">
+                                                    <div class="complaints">
+                                                        <div class="pp">
+                                                            <img class="profile" src="' . BASEURL . 'assets/admin/RV/resource.svg">
+                                                        </div>
+                                                        <div class="name">
+                                                            <p>Review Resource</p>
+                                                        </div>
+                                                        <div class="userid" id="user-id">
+                                                            <p>' . $item['type'] . '</p>
+                                                        </div>
+                                                    </div>
+                                                </div>';
+                                            $itemCount++;
+                                        }
+                                    }
+                                }
+                            } elseif ($category === 'ctask') {
+                                if (!$data['ctask']) {
+                                } else {
+                                    foreach ($items as $item) {
+                                        if ($itemCount < $maxItemCount) {
+                                            echo '<div class="content">
+                                                    <div class="complaints">
+                                                        <div class="pp">
+                                                            <img class="profile" src="' . BASEURL . 'assets/admin/RV/complaint.svg">
+                                                        </div>
+                                                        <div class="name">
+                                                            <p>Complaint Handling</p>
+                                                        </div>
+                                                        <div class="userid" id="user-id">
+                                                            <p>' . $item['description'] . '</p>
+                                                        </div>
+                                                    </div>
+                                                </div>';
+                                            $itemCount++;
+                                        }
+                                    }
+                                }
+                            } elseif ($category === 'rctask') {
+                                if (!$data['rctask']) {
+                                } else {
+                                    foreach ($items as $item) {
+                                        if ($itemCount < $maxItemCount) {
+                                            echo '<div class="content">
+                                                    <div class="complaints">
+                                                        <div class="pp">
+                                                            <img src="' . BASEURL . 'assets/admin/RV/RC.svg">
+                                                        </div>
+                                                        <div class="name">
+                                                            <p>Approve Resource Creators</p>
+                                                        </div>
+                                                        <div class="userid" id="user-id">
+                                                            <p>' . $item['description'] . '</p>
+                                                        </div>
+                                                    </div>
+                                                </div>';
+                                            $itemCount++;
+                                        }
+                                    }
+                                }
+                            } elseif ($category === 'schltask') {
+                                if (!$data['schltask']) {
+                                } else {
+                                    foreach ($items as $item) {
+                                        if ($itemCount < $maxItemCount) {
+                                            echo '<div class="content">
+                                                    <div class="complaints">
+                                                        <div class="pp">
+                                                            <img src="' . BASEURL . 'assets/admin/RV/scholor.svg">
+                                                        </div>
+                                                        <div class="name">
+                                                            <p>Scholorship Approval</p>
+                                                        </div>
+                                                        <div class="userid" id="user-id">
+                                                            <p>' . $item['firstName'] . '</p>
+                                                        </div>
+                                                    </div>
+                                                </div>';
+                                            $itemCount++;
+                                        }
+                                    }
+                                }
+                            } elseif ($category === 'sptask') {
+                                if (!$data['sptask']) {
+                                } else {
+                                    foreach ($items as $item) {
+                                        if ($itemCount < $maxItemCount) {
+                                            echo '<div class="content">
+                                                    <div class="complaints">
+                                                        <div class="pp">
+                                                            <img src="' . BASEURL . 'assets/admin/RV/sponsor.svg">
+                                                                    </div>
+                                                                    <div class="name">
+                                                                        <p>Sponsor Approval</p>
+                                                                    </div>
+                                                                    <div class="userid" id="user-id">
+                                                                        <p>' . $value['firstName'] . '</p>
+                                                                    </div>
+                                                                </div>
+                                                        </div>';
+                                                    $itemCount++;
+                                        }
+                                    }
+                                }
                             }
                         }
-                        ?>
-                    </div>
-                </div>
-                <div class="bgbox">
-                    <div class="user">
-                        <div class="user-top">
-                            <div class="title">
-                                <h1>User Handling</h1>
-                            </div>
-                            <div class="btn">
-                                <a href="<?php echo BASEURL ?>admins/userhandling">
-                                    <button type="button">View All</button>
-                                </a>
-                            </div>
-                        </div>
-                        <?php
-                        if (!$data['complaints']) {
-                            echo 'No Complaints';
-                        } else {
-                            foreach ($data['complaints'] as $value) {
-                                echo '<div class="content">
-                        <div class="complaints">
-                            <div class="pp">
-                                <img class="profile" src="' . BASEURL . 'assets/admin/pp.png">
-                            </div>
-                            <div class="name" id="user-name">
-                                <p>' . $value['name'] . '</p>
-                            </div>
-                            <div class="userid" id="user-id">
-                                <p>' . $value['id'] . '</p>
-                            </div>
-                        </div>
-                    </div>';
-                            }
-                        }
-                        ?>
-                    </div>
+                    }
+                    ?>
                 </div>
             </div>
+             
             <div class="ad_section4">
-                <div class="bgbox">
-                    <div class="team">
-                        <div class="title">
-                            <h1>View My Team</h1>
-                        </div>
-                        <div class="btn">
-                            <button type="button">
-                                <p>View All</p>
-                            </button>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-
-            <div class="ad_section5">
                 <div class="bgbox">
                     <div class="addgradesub">
                         <div class="title">

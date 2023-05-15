@@ -125,8 +125,8 @@ class St_public_resources_model extends Model
         $stmt = $this->prepare("SELECT video.id, video.name, video.lecturer ,public_resource.approved,rs_subject_grade.creator_id 
                                         FROM video, public_resource,rs_subject_grade WHERE video.id = public_resource.id AND
                                          public_resource.id=rs_subject_grade.rsrc_id AND rs_subject_grade.subject_id=? AND 
-                                         rs_subject_grade.grade_id=? ORDER BY RAND() LIMIT ? and public_resource.approved = 'Y' ;");
-        $stmt->bind_param('iii',$sid,$gid,$limit);
+                                         rs_subject_grade.grade_id=? and public_resource.approved = 'Y' ;");
+        $stmt->bind_param('ii',$sid,$gid);
         return $this->fetchObjs($stmt);
     }
 

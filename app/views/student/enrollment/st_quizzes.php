@@ -81,9 +81,6 @@ if(!empty($_SESSION['message'])) {
                                             <div class="quiz-card-item">
                                                 <?php echo $row->marks ?> Marks
                                             </div>
-                                            <div class="quiz-card-item">
-                                                <?php echo $row->questions ?> Questions
-                                            </div>
                                         </div>
                                         <div class="quiz-card-button-set">
                                             <a class="quiz-card-btn" href="<?php echo BASEURL . 'st_public_resources/st_quizzes_intro/' . $row->id  ?>" style="text-decoration: none;">
