@@ -11,7 +11,7 @@ class ReportIssue extends Model
     }
 
     public function saveIssue($userId, $type, $descr, $solved = "in Progress"){
-        $stmt = $this->prepare("INSERT INTO complaint(userId, category, description, status) VALUES (?,?,?,?);");
+        $stmt = $this->prepare("INSERT INTO complaint(user_id, category, description, status) VALUES (?,?,?,?);");
         $stmt->bind_param('iiss', $userId, $type, $descr, $solved);
         return $this->executePrepared($stmt);
     }
