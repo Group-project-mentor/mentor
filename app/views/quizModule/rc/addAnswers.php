@@ -58,14 +58,15 @@ if(!empty($_SESSION['message'])) {
 
             <!-- Title and subtitle of middle part -->
             <div class="mid-title">
-                <h1>C79 - Science</h1>
-                <h6>My Subjects / Science-6 / Quizzes / <?php echo $data[0]?> / QID <?php echo $data[2][0]?></h6>
+                <h1><?php echo "Grade ".$_SESSION['gname']." - ".ucfirst($_SESSION['sname']) ?></h1>
+                <h6>My Subjects / <?php echo ucfirst($_SESSION['sname']) ?> / Add Answers </h6>
             </div>
+
 
             <!-- Grade choosing interface -->
             <div class="container-box">
                 <div class="rc-resource-header">
-                    <h1>TEST 1 </h1>
+                    <h1></h1>
                     <div class="rc-quiz-top-btns">
                         <a href="<?php echo BASEURL."quiz/editQuestion/".$data[0]."/".$data[1] ?>" class="rc-add-btn" id="quiz-save-btn">
                             Edit Question

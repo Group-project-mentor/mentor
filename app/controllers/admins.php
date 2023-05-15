@@ -403,9 +403,12 @@ class admins extends Controller {
         if ($element == "") {
 
             if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+                echo $rID;
+                echo $uID;
                 
                  //print_r($this->adminModel->addtoTaskManger($rID,$uID));die;
-                if ($this->adminModel->addResourcetoTaskManger($rID,$uID)) {
+                if ($this->model('admin')->addResourcetoTaskManger($rID,$uID)) {
                     echo 'Successful';
                 } else {
                     echo 'Error';

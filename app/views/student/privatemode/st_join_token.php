@@ -30,6 +30,9 @@ if(!empty($_SESSION['message'])) {
      if ($_SESSION['message'] == "NOrequest") {
         $message = "You Already Enroll To this Class OR Already Send Token Request To this Class !";
         include_once "components/alerts/operationFailed.php";
+    }else if ($_SESSION['message'] == "Failrequest") {
+        $message = "Your Token seems invalid.Please Check it Again";
+        include_once "components/alerts/operationFailed.php";
     }
 }
 ?>

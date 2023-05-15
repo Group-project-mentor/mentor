@@ -39,7 +39,7 @@
 
             <!-- Title and sub title of middle part -->
             <div class="mid-title">
-                <h1>C79 - Science</h1>
+                <h1><?php echo "Grade ".$_SESSION['gname']." - ".ucfirst($_SESSION['sname']) ?></h1>
                 <h6>My Subjects / Science-6 / Quizzes / <?php echo $data[0]?> / question <?php echo $data[1]?> / add answer</h6>
             </div>
 

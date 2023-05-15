@@ -52,7 +52,8 @@ function addResourceToTaskManager(rID,uID){
             alert.classList.remove("hideme");
             alert.classList.add("showme");
             // location.reload();
-
+            // console.log(rID, uID);
+            console.log(response);
         }
     };
 
