@@ -66,7 +66,7 @@
                         </table>
                     </div>
                     <br><br><br><br><br><br><br><br><br><br><br><br>
-                    <hr style="color: green; height:7px; background-color:green;">
+                    <!-- <hr style="color: green; height:7px; background-color:green;"> -->
             </section>
         </div>
     </section>

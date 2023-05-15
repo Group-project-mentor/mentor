@@ -128,7 +128,6 @@
                     </table>
                 </div>
                 <br><br><br>
-                <hr style="color: green; height:7px; background-color:green;">
             </section>
 
         </div>

@@ -41,7 +41,9 @@ form.onsubmit = (e) => {
             })
             .catch((err) => {
                 console.log(err);
-                makeError("Can't send the form !");
+                // makeError("Can't send the form !");
+                window.location.href = `${BASEURL}`;
+
             });
     }
 }

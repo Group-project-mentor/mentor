@@ -45,41 +45,6 @@
                     <h6>Teacher Home/ Billing/ Transaction History</h6>
                 </div>
 
-                <!-- Grade choosing interface -->
-                <div class="container-box">
-                    <details class="filter-details">
-                        <summary>Filters (Click to apply filters)</summary>
-                        <form id="filterForm">
-                            <div class="rc-resource-header">
-                                <div class="filter-container-hr">
-                                    <h3>Date Start From </h3>
-                                    <input type="date" name="startDate" class="filter-date" max="<?php echo date('Y-m-d'); ?>" value="<?php echo !empty($_GET['startDate']) ? $_GET['startDate'] : "" ?>" />
-                                    <h3> to </h3>
-                                    <input type="date" name="endDate" class="filter-date" max="<?php echo date('Y-m-d'); ?>" value="<?php echo !empty($_GET['endDate']) ? $_GET['endDate'] : "" ?>" />
-                                </div>
-                                <div class="filter-container-hr">
-                                    <button class="filter-btn" type="button" id="clearButton" style="background-color: #AA0000;padding:5px;border-radius:5px;font-size:small;color:white;border-color:transparent;">
-                                        <img src="<?php echo BASEURL ?>assets/icons/icon-filter-white.png" alt="" style="width: 20px;margin-right: 5px;">
-                                        Clear Filter
-                                    </button>
-                                </div>
-                            </div>
-                            <div class="rc-resource-header">
-                                <div class="filter-container-hr">
-                                    <h3>Amount from</h3>
-                                    <input type="number" name="amountStart" class="filter-number" min="0" value="<?php echo !empty($_GET['amountStart']) ? $_GET['amountStart'] : "" ?>" />
-                                    <h3>to</h3>
-                                    <input type="number" name="amountEnd" class="filter-number" min="0" value="<?php echo !empty($_GET['amountEnd']) ? $_GET['amountEnd'] : "" ?>" />
-                                </div>
-                                <div class="filter-container-hr">
-                                    <button class="filter-btn" type="submit" id="filterButton">
-                                        <img src="<?php echo BASEURL ?>assets/icons/icon-filter-white.png" alt="" style="width: 20px;margin-right: 5px;">
-                                        Filter
-                                    </button>
-                                </div>
-                            </div>
-                        </form>
-                    </details>
 
 
                     <div style="margin-top: 30px;">

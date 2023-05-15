@@ -22,7 +22,7 @@
             <!-- Top bar -->
             <section class="top-bar">
                 <div class="search-bar">
-                    <input type="text" name="" id="" placeholder="Search...">
+                    
                     <a href="">
                         <img src="<?php echo BASEURL ?>public/assets/Teacher/icons/icon_search.png" alt="">
                     </a>
