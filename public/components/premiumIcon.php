@@ -14,8 +14,8 @@ if ($premium !== null and $premium!==0) {
 
     .premium .badge {
         position: absolute;
-        bottom: 0.8cm; /* move the badge 0.5cm up */
-        left: 0.27cm; /* move the badge 0.5cm left */
+        bottom: 0.9cm; /* move the badge 0.5cm up */
+        left: 0.24cm; /* move the badge 0.5cm left */
         color: white;
         padding: 4px 9px;
         border-radius: 50%;
@@ -23,12 +23,12 @@ if ($premium !== null and $premium!==0) {
 
 
     .premium i {
-        size: 2px;
+        size: 5px;
     }
 
     .premium .badge img {
-        width: 16px;
-        height: 16px;
+        width: 22px;
+        height: 22px;
     }
 
 </style>
@@ -38,6 +38,10 @@ if ($premium !== null and $premium!==0) {
             <img src="<?php echo BASEURL?>public/assets/Teacher/icons/crown.png" alt="star">
         </span>
     <?php } ?>
-    <img src="<?php echo BASEURL?>public/assets/Teacher/icons/icon_profile_black.png" alt="profile">
+    <img 
+    src="<?php echo (!empty($_SESSION['profilePic'])) ? BASEURL . "data/profiles/".$_SESSION['profilePic'] : BASEURL . "assets/icons/icon_profile_black.png" ?>" 
+    alt="profile"
+    style="width: 30px; height: 30px; border-radius: 50%;object-fit: cover;margin: 0;"
+    >
 </a>
 
