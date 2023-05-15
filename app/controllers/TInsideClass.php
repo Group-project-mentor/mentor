@@ -34,6 +34,7 @@ class TInsideClass extends Controller
             $premium = 0;
         }
  
+        
         $student_count = ($this->model("premiumModel")->studentCount($_SESSION['cid'])->student_count);
         $fee = ($this->model("teacher_data")->getFee($_SESSION['cid'])->fees);
         $currency = ($this->model("teacher_data")->getCurrency($_SESSION['cid'])->fees);
