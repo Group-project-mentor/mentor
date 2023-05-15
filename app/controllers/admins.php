@@ -561,17 +561,17 @@ class admins extends Controller {
         if ($element == "quiz") {
 
             if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-            
             }
 
             if ($_SERVER['REQUEST_METHOD'] == 'GET') {
-                
+
 
                 $data = [];
                 $data['quizv'] = $this->adminModel->quizview($id);
+                $data['questions'] = $this->adminModel->getQuestionsForQuiz($id);
+                $data['answer'] = $this->adminModel->getAnswersForQuiz($id);
 
-                $this->view('admin/quizview',$data);
-
+                $this->view('admin/quizview', $data);
             }
         }
 

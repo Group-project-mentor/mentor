@@ -484,6 +484,34 @@ class admin extends Model{
         } 
     }
 
+    public function getQuestionsForQuiz($quiz_id)
+    {
+        $query = "SELECT question.number, question.description 
+              FROM `question` 
+              INNER JOIN `quiz` ON `question`.quiz_id = `quiz`.id 
+              WHERE `quiz`.`id` = '$quiz_id' 
+              ORDER BY question.number, question.description;";
+        $result = $this->executeQuery($query);
+
+        if ($result->num_rows > 0) {
+            return $result->fetch_all(MYSQLI_ASSOC);
+        } else {
+            return false;
+        }
+    }
+
+    public function getAnswersForQuiz($quiz_id)
+    {
+        $query = "SELECT answer.number, answer.description FROM `answer` INNER JOIN `quiz` ON `answer`.question_id= `quiz`.id WHERE `quiz`.`id` = '$quiz_id' ORDER BY answer.number, answer.description;";
+        $result = $this->executeQuery($query);
+
+        if ($result->num_rows > 0) {
+            return $result->fetch_all(MYSQLI_ASSOC);
+        } else {
+            return false;
+        }
+    }
+
     public function pastpapers(){
         $query = "SELECT `public_resource`.*, `pastpaper`.* FROM `public_resource` INNER JOIN `pastpaper` ON `public_resource`.id = `pastpaper`.id WHERE `public_resource`.`type`='paper' AND `public_resource`.`approved_by` IS NULL";
         $result = $this->executeQuery($query);
