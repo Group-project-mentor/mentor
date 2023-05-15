@@ -7,11 +7,13 @@ class admins extends Controller {
     private $adminModel;
     private $hrModel;
     private $userModel;
+    private $notificationModel;
 
     public function __construct() {
         $this->adminModel =  $this->model('admin');
         $this->hrModel = $this->model('adHumanResource_model');
         $this->userModel = $this->model('userModel');
+        
         
     }
     
@@ -55,6 +57,9 @@ class admins extends Controller {
             $data['complaints'] = $this->adminModel->complaint();
             $data['rtask'] = $this->adminModel->ResourceTask($uID);
             $data['ctask'] = $this->adminModel->ComplaintTask($uID);
+            $data['rctask'] = $this->adminModel->ResourceCreatorTask($uID);
+            $data['schltask'] = $this->adminModel->ScholorTask($uID);
+            $data['sptask'] = $this->adminModel->SponsorTask($uID);
             $data['ResourceCrCount'] = $this->adminModel->ResourceCrCount();
             
 
@@ -299,6 +304,7 @@ class admins extends Controller {
             if ($element == "complete") {
                 
                 if ($this->adminModel->ComplaintTookAction($cID)) {
+                    $userId= $data['complaints']['id'];
                     $message = "<center><div>
                     <h1 style='color: green;'>M E N T O R</h1>
                     <h3>We are so glad to informe you that you have been selected as a Resource Creator at MENTOR<br> You Can Use This PASSWORD to login to your account<br>Thank You!</h3>
@@ -308,6 +314,7 @@ class admins extends Controller {
                     <h5 style='color:red;'>Do not share this PASSWORD with anyone !</h5>
                     </div></center>";
                     // sendMail($data['creator'][0]['email'], "User", "MENTOR RESOURCE CREATOR PASSWORD", $message);
+                    $this->notificationModel->notify($userId,$message,"ad");
            
                     echo 'Successful';
                 } else {

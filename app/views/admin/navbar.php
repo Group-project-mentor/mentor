@@ -53,17 +53,17 @@
         <div class="content-area">
 
             <!-- Top bar -->
-            <section class="top-bar">
-                <div class="search-bar">
+            <section class="top-bar" style="justify-content:end">
+                <!-- <div class="search-bar">
                     <input type="text" name="" id="" placeholder="Search...">
                     <a href="">
                         <img src="<?php echo BASEURL ?>assets/admin/Vector (2).png" alt="">
                     </a>
-                </div>
+                </div> -->
                 <div class="top-bar-btns">
                     <?php include_once "components/notificationIcon.php" ?>
                     <a id="profile-btn">
-                        <img src="<?php echo BASEURL ?>assets/admin/Ellipse 2.png" alt="profile">
+                        <img src="<?php echo BASEURL ?>assets/admin/RV/user.svg" alt="profile">
                     </a>
                 </div>
             </section>

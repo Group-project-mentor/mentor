@@ -119,14 +119,14 @@ class admin extends Model{
     }
 
     public function ComplaintTask($uID){
-        $query = "SELECT * FROM `complaint` WHERE `approved_by`='$uID'; ";
+        $query = "SELECT * FROM `complaint` WHERE `approved_by`='$uID' WHERE `status`='in Progress' OR `status`='pending'; ";
         $result = $this->executeQuery($query);
-        
-        if ($result->num_rows > 0) {
-            return $result->fetch_all(MYSQLI_ASSOC);
-        } else {
-            return false;
-        } 
+        return $result;
+        // if ($result->num_rows > 0) {
+        //     return $result->fetch_all(MYSQLI_ASSOC);
+        // } else {
+        //     return false;
+        // } 
     }
 
     public function ComplaintTookAction($cID){
@@ -208,7 +208,7 @@ class admin extends Model{
 
 
     public function ResourceTask($uID){
-        $query = "SELECT* FROM `public_resource` WHERE `approved_by`='$uID' AND `approved` IS NULL; ";
+        $query = "SELECT* FROM `public_resource` WHERE `approved_by`='$uID' AND `approved`='P'; ";
         $result = $this->executeQuery($query);
         
         if ($result->num_rows > 0) {

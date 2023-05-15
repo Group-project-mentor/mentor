@@ -57,6 +57,7 @@
             }
 
             if (!$data['ctask']) {
+                
             } else {
                 foreach ($data['ctask'] as $value) { ?>
                     <?php //print_r($value) 
