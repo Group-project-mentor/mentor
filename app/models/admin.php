@@ -670,10 +670,10 @@ class admin extends Model{
         return $this->executeQuery($query);
     }
 
-    public function getUserCountsByTypeAndMonth($type, $month)
+    public function getUserCountsByTypeAndMonth($type, $year)
     {
-        $stmt = $this->prepare("SELECT COUNT(id) as count, MONTH(time_stamp) as month FROM user WHERE type = ? AND MONTH(time_stamp) = ?");
-        $stmt->bind_param('si', $type, $month);
+        $stmt = $this->prepare("SELECT COUNT(id) as count, MONTH(time_stamp) as month FROM user WHERE type = ? AND YEAR(time_stamp) = ? GROUP BY MONTH(time_stamp)");
+        $stmt->bind_param('si', $type, $year);
         $result = $this->fetchObjs($stmt);
 
         $monthArray = $this->createEmptyMonthArray();

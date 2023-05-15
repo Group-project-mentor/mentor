@@ -1361,16 +1361,15 @@ class admins extends Controller {
         }
 
         if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-            $currentMonth = date('m');
-            $monthlyStArray = $this->model('admin')->getUserCountsByTypeAndMonth('st', $currentMonth);
-            $monthlytArray = $this->model('admin')->getUserCountsByTypeAndMonth('tch', $currentMonth);
-            $monthlyRcArray = $this->model('admin')->getUserCountsByTypeAndMonth('rc', $currentMonth);
-            $monthlySpArray = $this->model('admin')->getUserCountsByTypeAndMonth('sp', $currentMonth);
+            $year = date('Y');
+            $monthlyStArray = $this->model('admin')->getUserCountsByTypeAndMonth('st', $year);
+            $monthlytArray = $this->model('admin')->getUserCountsByTypeAndMonth('tch', $year);
+            $monthlyRcArray = $this->model('admin')->getUserCountsByTypeAndMonth('rc', $year);
+            $monthlySpArray = $this->model('admin')->getUserCountsByTypeAndMonth('sp', $year);
 
             $this->view('admin/analytics', compact('monthlyStArray', 'monthlytArray', 'monthlyRcArray', 'monthlySpArray'));
         }
     }
-    
     
 }
 
