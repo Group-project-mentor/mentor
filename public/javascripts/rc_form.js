@@ -26,20 +26,24 @@ form.onsubmit = (e) => {
             method: "post",
             body: formData,
         })
-            .then((res) => res.json())
+            .then((res) => res.text())
             .then((data) => {
+                console.log(data);
+                data = JSON.parse(data.slice(0, -21));
                 if(data.status == "success"){
                     makeSuccess("Successfully sent the form !");
                     setTimeout(() => {
                         window.location.href = `${BASEURL}`;
                     }, 1000);
                 }else{
-                    makeError("Can't send the form !");
+                    makeError(data.message);
                 }
             })
             .catch((err) => {
                 console.log(err);
-                makeError("Can't send the form !");
+                // makeError("Can't send the form !");
+                window.location.href = `${BASEURL}`;
+
             });
     }
 }

@@ -12,10 +12,18 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <link rel="icon" type="image/x-icon" href="<?php echo BASEURL ?>assets/mentor.ico">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Home</title>
 
     <link rel="stylesheet" href="<?php echo BASEURL . '/public/stylesheets/resourceCreator/rc_main.css' ?> ">
     <link rel="stylesheet" href="<?php echo BASEURL . '/public/stylesheets/sponsor/sp_styles.css' ?> ">
+    <style>
+    
+    .progress-bar {
+      accent-color: <?php echo getColorByAmount($data['amountStatus'][1],$data['amountStatus'][0]) ?>;
+      width: 80%;
+      height: 40px;
+    }
+    </style>
 </head>
 
 <body>
@@ -34,7 +42,7 @@
                 <div class="top-bar-btns">
                     <?php include_once "components/notificationIcon.php" ?>
                     <a href="<?php echo BASEURL . 'sponsor/profile' ?>">
-                        <img src="<?php echo BASEURL ?>assets/icons/icon_profile_black.png" alt="profile">
+                        <?php include_once "components/profilePic.php"?>
                     </a>
                 </div>
             </section>
@@ -56,7 +64,7 @@
                     <!--                    </div>-->
                     <div class="sponsor-student-prof">
                         <div class="bottom-details" style="margin: 10px 10px;height: 50vh;">
-                            <div>
+                            <div class="sp-dash-part">
                                 <div style="display: flex;flex-direction: column;">
                                     <div class="rc-dash-info-card-set">
                                         <div class="rc-dash-info-card">
@@ -77,9 +85,9 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div style="display: flex;flex-direction: column;width: 600px;">
+                                <div class="sp-dash-part" style="display: flex;flex-direction: column;width: 600px;">
                                     <div class="rc-dash-info-card-set">
-                                        <div class="rc-dash-info-card" style="min-width: 350px;">
+                                        <div class="rc-dash-info-card sp-dash-part" style="min-width: 350px;">
                                             <h2>Monthly Average</h2>
                                             <h1><?php echo "Rs ". (!empty($data["monthlyAverage"])?
                                                         number_format($data["monthlyAverage"], 2, '.', ','):
@@ -94,6 +102,13 @@
                                     </div>
                                     <div class="rc-dash-info-card-set">
                                         <div class="rc-dash-info-card" style="min-width: 350px;">
+                                            <h2>Current-Amount : <?php echo number_format($data['amountStatus'][0],2) ?> | Max-Amount : <?php echo number_format($data['amountStatus'][1],2) ?></h2>
+                                            <?php if($data['amountStatus'][0] < $data['amountStatus'][1]){ ?>
+                                                    <progress  class="progress-bar" value="<?php echo $data['amountStatus'][0] ?>" max="<?php echo $data['amountStatus'][1] ?>"></progress> 
+                                            <?php }else{ ?>
+                                                    <progress  class="progress-bar" value="100" max="100"></progress> 
+                                                    <h2>Amount Exeeded !</h2>
+                                            <?php } ?>
                                         </div>
                                     </div>
                                 </div>
@@ -121,14 +136,6 @@
                             </div>
                             <br>
                             <div>
-                                <div style="display: flex;flex-direction: column;flex: 1;">
-                                    <div class="sp-subject-report resource-chart">
-                                        <h4>Total Funding Student Wise</h4>
-                                        <canvas id="myChart3" class="resource-chart">
-
-                                        </canvas>
-                                    </div>
-                                </div>
                                 <div style="display: flex;flex-direction: column;flex:2;">
                                     <div class="sp-subject-report resource-chart">
                                         <h4>Monthly Paid Amounts (This Year - <?php echo date('Y')?> )</h4>
@@ -138,23 +145,6 @@
                                     </div>
                                 </div>
 
-                            </div>
-                            <div class="sp-subject-details">
-                                <h4>Subjects involved in</h4>
-                                <div class="sponsor-list-main border-no">
-                                    <?php
-                                    if(!empty($data[0])){
-                                        foreach ($data[0] as $row){ ?>
-
-                                            <div class="sponsor-list-row">
-                                                <div class="sponsor-list-item flex-1 sponsor-grade-cell" >
-                                                    <?php echo $row->name ?>
-                                                </div>
-                                            </div>
-
-                                        <?php }
-                                    } ?>
-                                </div>
                             </div>
 
                         </div>
@@ -194,7 +184,7 @@
     // console.log(Data,Labels);
     const chart1 = document.getElementById('myChart1');
     const chart2 = document.getElementById('myChart2');
-    const chart3 = document.getElementById('myChart3');
+    // const chart3 = document.getElementById('myChart3');
     const chart4 = document.getElementById('myChart4');
 
     const labels = ["A","B","C","D","E","F","G"];
@@ -218,29 +208,6 @@
         labels: monthlyAmounts.labels,
         datasets: [{
             data: monthlyAmounts.data,
-            backgroundColor: [
-                'rgba(99,148,255,0.2)',
-                'rgba(161,255,99,0.2)',
-                'rgba(255,99,135,0.2)',
-                'rgba(174,99,255,0.2)',
-                'rgba(255,200,99,0.2)',
-            ],
-            borderColor: [
-                'rgb(99,143,255)',
-                'rgb(58,211,5)',
-                'rgb(255,99,99)',
-                'rgb(150,29,252)',
-                'rgb(245,106,30)',
-            ],
-            borderWidth: 1
-        }]
-    };
-
-    const data3 = {
-        labels: labels,
-        datasets: [{
-            label : "Total agreed fund amount",
-            data: sampleData,
             backgroundColor: [
                 'rgba(99,148,255,0.2)',
                 'rgba(161,255,99,0.2)',
@@ -293,14 +260,6 @@
         },
     });
 
-    new Chart(chart3, {
-        type: 'doughnut',
-        data: data3,
-        options: {
-            scales: {
-            },
-        },
-    });
 
     new Chart(chart4, {
         type: 'line',

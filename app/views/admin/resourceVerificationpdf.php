@@ -10,18 +10,15 @@
     <link rel="stylesheet" href="<?php echo BASEURL ?>stylesheets/admin/ad_verification.css">
     <link rel="stylesheet" href="<?php echo BASEURL ?>stylesheets/admin/style.css">
     <link rel="stylesheet" href="<?php echo BASEURL ?>stylesheets/admin/ad_verify.css">
+    <link rel="stylesheet" href="<?php echo BASEURL ?>stylesheets/admin/massage.css">
 
 </head>
-<nav>
-    <div class="ad_nav">
-
-    </div>
-</nav>
 
 <body>
+<?php require_once("C:/xampp/htdocs/mentor/public/components/alerts/admin/addRToTM.php"); ?>
     <?php require_once("C:/xampp/htdocs/mentor/app/views/admin/navbar.php"); ?>
             <!-- Middle part for whole content -->
-            <section class="mid-content ad_mid-content">
+            <section class="ad_mid-content">
 
                 <!-- Title and sub title of middle part -->
                 <div class="mid-title">
@@ -30,23 +27,27 @@
 
                 <div class="content" id="comp-content" >
                     <div class="bckclose">
-                        <a href="<?php echo BASEURL ?>adVerification" class="back">
+                        <a href="<?php echo BASEURL ?>admins/verify" class="back">
                             <img class="back" src="<?php echo BASEURL ?>assets/admin/Arrow---Left.png">
                         </a>
                     </div>
                     <div class="videos">
                     <?php
+                    if (!$data['pdf']) {
+                        echo '<img src="'. BASEURL .'assets/admin/RV/down.gif">';
+                    } else {
                         foreach ($data['pdf'] as $value) {
                             echo '
                             <div class ="p-name">
                                 <img class="videoslist" src="'. BASEURL .'assets/admin/pdfs.png">
                                 <p>'. $value['name'] .'</p>
                                 <div class="btns">
-                                    <button class="comp-btns" onclick="addToTaskManager('.$value['id'].','.$_SESSION['id'] .')" type="button">Add To Task Manager</button>
+                                    <button class="comp-btns" onclick="addResourceToTaskManager('.$value['id'].','.$_SESSION['id'] .')" type="button">Add To Task Manager</button>
                                 </div>
                             </div>';
 
                         }
+                    }
                         ?>
 
                         

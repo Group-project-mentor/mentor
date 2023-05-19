@@ -51,7 +51,7 @@ if (isset($_SESSION['user'])) {
                     <h2 class="landing-hero-title">
                         This is the BEST platform to do your self studies as a student
                     </h2>
-                    <a href="<?php echo BASEURL ?>register" class="landing-btn">
+                    <a href="<?php echo BASEURL ?>login" class="landing-btn">
                         Register as a student
                     </a>
                 </div>
@@ -68,7 +68,7 @@ if (isset($_SESSION['user'])) {
                     <h1 class="landing-hero-title">
                         Create your own LMS <br> for your class ...
                     </h1>
-                    <a href="<?php echo BASEURL ?>teacher" class="landing-btn green">
+                    <a href="<?php echo BASEURL ?>login" class="landing-btn green">
                         Register as a Teacher
                     </a>
                 </div>
@@ -150,7 +150,7 @@ if (isset($_SESSION['user'])) {
                 </div>
 
                 <div class="landing-sp-btn">
-                    <a class="landing-BMC-btn">
+                    <a class="landing-BMC-btn" href="<?php echo BASEURL ?>landing/registerSponsor/instructions">
                         <i class="fa-solid fa-handshake-angle fa-beat-fade"></i>
                         BECOME A SPONSOR
                     </a>

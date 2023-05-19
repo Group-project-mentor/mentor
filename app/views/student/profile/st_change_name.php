@@ -3,14 +3,13 @@
 
 <head>
     <meta charset="UTF-8">
-    
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/x-icon" href="<?php echo BASEURL ?>assets/mentor.ico">
-    <title>Student change image</title>
-    <link rel="stylesheet" href="<?php echo BASEURL; ?>public/stylesheets/Student/st_main.css">
-    <link rel="stylesheet" href="<?php echo BASEURL; ?>public/stylesheets/Student/st_profile.css">
-    <link rel="stylesheet" href="<?php echo BASEURL; ?>public/stylesheets/Student/st_resources.css">
+    <title>change image</title>
+    <link rel="stylesheet" href="<?php echo BASEURL; ?>public/stylesheets/resourceCreator/rc_main.css">
+    <link rel="stylesheet" href="<?php echo BASEURL; ?>public/stylesheets/resourceCreator/rc_profile.css">
+    <link rel="stylesheet" href="<?php echo BASEURL; ?>public/stylesheets/resourceCreator/rc_resources.css">
     <style>
         .rc-profile-change-name{
             max-width: 800px;
@@ -41,7 +40,7 @@
 
 
         <!-- Navigation panel -->
-        <?php include_once "components/navbars/rc_nav_1.php"?>
+        <?php include_once "components/navbars/st_navbar_4.php"?>
 
         <!-- Right side container -->
         <div class="content-area">
@@ -51,14 +50,12 @@
                 <div class="search-bar">
                 </div>
                 <div class="top-bar-btns">
-                    <a href="<?php echo BASEURL ?>rcprofile">
+                    <a href="<?php echo BASEURL ?>st_profile">
                         <div class="back-btn">Back</div>
                     </a>
-                    <a href="#">
-                        <img src="<?php echo BASEURL ?>assets/icons/icon_notify.png" alt="notify">
-                    </a>
-                    <a href="<?php echo BASEURL . 'rcProfile' ?>">
-                        <img src="<?php echo BASEURL ?>assets/icons/icon_profile_black.png" alt="profile">
+                    <?php include_once "components/notificationIcon.php" ?>
+                    <a href="<?php echo BASEURL . 'st_Profile' ?>">
+                    <?php include_once "components/profilePic.php"?>
                     </a>
                 </div>
             </section>
@@ -71,10 +68,17 @@
                     <h6><?php echo $_SESSION['name'] ?></h6>
                 </div>
 
-                <form class="rc-profile rc-profile-change-name" method="POST" action="<?php echo BASEURL ?>rcProfile/changeName">
+                <form class="rc-profile rc-profile-change-name" method="POST" action="<?php echo BASEURL ?>st_profile/changeName">
                     <div class="rc-text-inp-grp">
-                        <label for="password" class="lbl-input">Name : </label><br>
-                        <input type="text" class="txt-input" placeholder="New Name" value="<?php echo $_SESSION['name'] ?>" name="name" />
+                        <label for="name" class="lbl-input">Name : </label><br>
+                        <input 
+                            type="text" 
+                            class="txt-input" 
+                            placeholder="New Name" 
+                            value="<?php echo $_SESSION['name'] ?>" 
+                            name="name" 
+                            pattern="[A-Za-z0-9][A-Za-z0-9 ]+"
+                            title="Invalid name !"    />
                     </div>
                     <button type="submit" class="rc-add-btn">Change</button>
                 </form>

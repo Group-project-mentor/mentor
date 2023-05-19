@@ -27,14 +27,27 @@ class Home extends Controller
                 break;
 
             case 'ad':
+                //$privilege=($this->model("admin")->getPrivilege($_SESSION['id'])->privilege);
+                //var_dump($privilege);
+                //if($privilege==1)
+                //{
+                   // header("location:" . BASEURL . "admins/dashboard");
+                //}else if($privilege==0){
+                   // header("location:" . BASEURL . "admins/coDashboard");
+               // }
                 header("location:" . BASEURL . "admins/dashboard");
                 break;
             case 'tch':
                 unset($_SESSION["cid"]);
+                unset($_SESSION["cname"]);
+                if (isset($_SESSION['premium_expired']) && $_SESSION['premium_expired'] == true) {
+                    $this->model('premiumModel')->backToFree($_SESSION['id']);
+                    unset($_SESSION["premium_expired"]);
+                }
                 $classes1 = $this->model("teacher_data")->getClasses($_SESSION['id']);
                 $classes = $this->model("teacher_data")->getCoordinateClasses($_SESSION['id']);
                 $this->view('Teacher/home/index', array($classes1, $classes));
-                
+
 
                 break;
             case 'sp':
@@ -44,6 +57,9 @@ class Home extends Controller
                 foreach ($totalFundingChart as $row) {
                     $totalFunding += $row->total;
                 }
+                $total =$this->model("sponsorStModel")->getTotalAmount($_SESSION['id'])->total;
+                $maxAmount = $this->model("sponsorStModel")->getMaxAmount($_SESSION['id'])->maxAmount;
+
 
                 $monthlyChartData = $this->model("sponsorStModel")->getMonthlyData($_SESSION['id']);
 
@@ -65,9 +81,10 @@ class Home extends Controller
                         "stCount" => count($totalFundingChart),
                         "totalFunded" => $totalFunded,
                         "remainingAmount" => ($totalFunding - $totalFunded),
-                        "monthlyAverage" => $totalFunding / (count($totalFundingChart)?count($totalFundingChart):1),
+                        "monthlyAverage" => $totalFunding / (count($totalFundingChart) ? count($totalFundingChart) : 1),
                         "monthlyChartData" => $monthlyChartData,
                         "monthlyBillArray" => $monthlyBillArray,
+                        "amountStatus" => array($total, $maxAmount) ,
                     )
                 );
                 break;

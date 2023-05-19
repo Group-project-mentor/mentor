@@ -42,15 +42,16 @@
            
 
 
-        <?php 
-                $cid = $_SESSION["cid"];
+        <?php
+            $cid = $_SESSION["cid"];
+            $cname = $_SESSION["cname"];
             ?>
 
 
 
            <!-- Navigation buttons -->
            <div class="nav-links">
-                <a href="<?php echo BASEURL ?>TPrivileges/p2MemberDetails/<?php echo "$cid"; ?>" class="nav-link">
+                <a href="<?php echo BASEURL ?>TPrivileges/pMemberDetails/<?php echo "$cid"; ?>/<?php echo "$cname"; ?>/" class="nav-link">
                     <img class="active" src="<?php echo BASEURL ?>public/assets/Teacher/icons/participants.png" alt="home">
                     <div class="nav-link-text">Participants</div>
                 
@@ -78,12 +79,9 @@
                 <a href="#">
                         <a class="back-btn" href="<?php echo BASEURL ?>">Back</a>
                     </a>
-                    <a href="#">
-                    <img src="<?php echo BASEURL?>public/assets/Teacher/icons/icon_notify.png" alt="notify">
-                    </a>
-                    <a href="<?php echo  BASEURL ?>TProfile/profile">
-                    <img src="<?php echo BASEURL?>public/assets/Teacher/icons/icon_profile_black.png" alt="profile">
-                    </a>
+                   
+                    <?php include_once "components/notificationIcon.php" ?>
+                    <?php include_once "components/premiumIcon.php" ?>
                 </div>
             </section>
 

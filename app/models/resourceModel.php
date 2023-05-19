@@ -9,12 +9,14 @@ class ResourceModel extends Model
     }
 
 //? get all resource data from combination of (subject & grade)
-    public function findVideos($grade, $subject, $offset, $limit)
+    public function findVideos($grade, $subject, $offset, $limit, $filter, $creatorID)
     {
-        $stmt = $this->prepare("SELECT video.id, video.name, video.lecturer ,public_resource.approved,rs_subject_grade.creator_id 
+        $q = "SELECT video.id, video.name, video.lecturer ,public_resource.approved,rs_subject_grade.creator_id 
                                         FROM video, public_resource,rs_subject_grade WHERE video.id = public_resource.id AND
-                                         public_resource.id=rs_subject_grade.rsrc_id AND rs_subject_grade.subject_id=? AND rs_subject_grade.grade_id=? LIMIT ?,?");
-        $stmt->bind_param('iiii',$subject,$grade,$offset,$limit);
+                                         public_resource.id=rs_subject_grade.rsrc_id AND rs_subject_grade.subject_id=$subject AND rs_subject_grade.grade_id=$grade";
+        $q = $this->getFilteringQuery($filter, $q, $creatorID);
+        $q .= " LIMIT $offset, $limit;";
+        $stmt = $this->prepare($q);
         return $this->fetchObjs($stmt);
     }
 
@@ -27,58 +29,106 @@ class ResourceModel extends Model
         return $this->fetchObjs($stmt);
     }
 
-    public function findPastpapers($grade, $subject, $offset, $limit)
+    public function filterFindQuizes($grade, $subject, $filter, $creatorID){
+        $q = "SELECT quiz.id, quiz.name, quiz.marks ,public_resource.approved,rs_subject_grade.creator_id 
+                                        FROM quiz, public_resource,rs_subject_grade WHERE quiz.id = public_resource.id AND
+                                         public_resource.id=rs_subject_grade.rsrc_id AND rs_subject_grade.subject_id= $subject AND rs_subject_grade.grade_id= $grade";
+        if(!empty($filter['approvals'])){
+            switch ($filter['approvals']){
+                case "P" :
+                    $q .= " AND public_resource.approved = 'P'";
+                    break;
+                case "Y":
+                    $q .= " AND public_resource.approved = 'Y'";
+                    break;
+                case "N":
+                    $q .= " AND public_resource.approved = 'N'";
+                    break;
+            }
+        }
+        if(!empty($filter['ownedBy'])){
+            switch ($filter['ownedBy']){
+                case "ME" :
+                    $q .= " AND rs_subject_grade.creator_id = $creatorID;";
+                    break;
+                case "THEM":
+                    $q .= " AND rs_subject_grade.creator_id <> $creatorID;";
+                    break;
+            }
+        }
+        $stmt = $this->prepare($q);
+        return $this->fetchObjs($stmt);
+    }
+
+    public function findPastpapers($grade, $subject, $offset, $limit, $filter, $creatorID)
     {
-        $stmt = $this->prepare("SELECT pastpaper.id,pastpaper.name, pastpaper.year, pastpaper.part ,public_resource.approved,rs_subject_grade.creator_id 
+        $q = "SELECT pastpaper.id,pastpaper.name, pastpaper.year, pastpaper.part ,public_resource.approved,rs_subject_grade.creator_id 
                                         FROM pastpaper, public_resource,rs_subject_grade WHERE pastpaper.id = public_resource.id AND
-                                         public_resource.id=rs_subject_grade.rsrc_id AND rs_subject_grade.subject_id=? AND rs_subject_grade.grade_id=? LIMIT ?,?");
-        $stmt->bind_param('iiii',$subject,$grade,$offset,$limit);
+                                         public_resource.id=rs_subject_grade.rsrc_id AND rs_subject_grade.subject_id=$subject AND rs_subject_grade.grade_id=$grade";
+        $q = $this->getFilteringQuery($filter, $q, $creatorID);
+        $q .= " LIMIT $offset, $limit;";
+        $stmt = $this->prepare($q);
         return $this->fetchObjs($stmt);
     }
 
-    public function findDocuments($grade, $subject, $offset, $limit)
+    public function findDocuments($grade, $subject, $offset, $limit, $filter, $creatorID)
     {
-        $stmt = $this->prepare("SELECT document.id,document.name,public_resource.approved,rs_subject_grade.creator_id 
+        $q = "SELECT document.id,document.name,public_resource.approved,rs_subject_grade.creator_id 
                                         FROM document, public_resource,rs_subject_grade WHERE document.id = public_resource.id AND
-                                         public_resource.id=rs_subject_grade.rsrc_id AND rs_subject_grade.subject_id=? AND rs_subject_grade.grade_id=? LIMIT ?,?");
-        $stmt->bind_param('iiii',$subject,$grade,$offset,$limit);
+                                         public_resource.id=rs_subject_grade.rsrc_id AND rs_subject_grade.subject_id=$subject AND rs_subject_grade.grade_id=$grade";
+
+        $q = $this->getFilteringQuery($filter, $q, $creatorID);
+        $q .= " LIMIT $offset, $limit;";
+        $stmt = $this->prepare($q);
         return $this->fetchObjs($stmt);
     }
 
-    public function findOthers($grade, $subject, $offset, $limit)
-    {
-        $stmt = $this->prepare("SELECT other.id, other.name, other.type,public_resource.approved,rs_subject_grade.creator_id 
-                                        FROM other, public_resource,rs_subject_grade WHERE other.id = public_resource.id AND
-                                         public_resource.id=rs_subject_grade.rsrc_id AND rs_subject_grade.subject_id=? AND rs_subject_grade.grade_id=? LIMIT ?,?");
-        $stmt->bind_param('iiii',$subject,$grade,$offset,$limit);
+
+    public function findOthers($grade, $subject, $offset, $limit, $filter, $creatorID){
+        $q = "SELECT other.id, other.name, other.type,public_resource.approved,rs_subject_grade.creator_id 
+               FROM other, public_resource,rs_subject_grade WHERE other.id = public_resource.id AND
+                 public_resource.id=rs_subject_grade.rsrc_id AND rs_subject_grade.subject_id=$subject AND rs_subject_grade.grade_id=$grade";
+
+        $q = $this->getFilteringQuery($filter, $q, $creatorID);
+        $q .= " LIMIT $offset, $limit;";
+        $stmt = $this->prepare($q);
         return $this->fetchObjs($stmt);
     }
 
-    public function getResourceCount($type, $grade, $subject)
+    public function findQuestionCounts($grade, $subject){
+        $stmt = $this->prepare("SELECT rs_subject_grade.rsrc_id, COUNT(question.id) as count 
+                                        FROM rs_subject_grade,question WHERE rs_subject_grade.rsrc_id = question.quiz_id AND rs_subject_grade.grade_id = ? 
+                                        AND rs_subject_grade.subject_id = ? GROUP BY rs_subject_grade.rsrc_id;");
+        $stmt->bind_param('ii',$grade,$subject);
+        return $this->fetchObjs($stmt);
+    }
+
+    public function getResourceCount($type, $grade, $subject, $filter, $creatorID)
     {
+        $q = "";
         switch($type){
             case "pdf":
-                $stmt = $this->prepare("SELECT COUNT(document.id) AS count FROM document, public_resource,rs_subject_grade WHERE document.id = public_resource.id AND
-                                         public_resource.id=rs_subject_grade.rsrc_id AND rs_subject_grade.subject_id=? AND rs_subject_grade.grade_id=?");
+                $q = "SELECT COUNT(document.id) AS count FROM document, public_resource,rs_subject_grade WHERE document.id = public_resource.id";
                 break;
             case "video":
-                $stmt = $this->prepare("SELECT COUNT(video.id) AS count FROM video, public_resource,rs_subject_grade WHERE video.id = public_resource.id AND
-                                         public_resource.id=rs_subject_grade.rsrc_id AND rs_subject_grade.subject_id=? AND rs_subject_grade.grade_id=?");
+                $q = "SELECT COUNT(video.id) AS count FROM video, public_resource,rs_subject_grade WHERE video.id = public_resource.id";
                 break;
             case "quiz":
-                $stmt = $this->prepare("SELECT COUNT(quiz.id) AS count FROM quiz, public_resource,rs_subject_grade WHERE quiz.id = public_resource.id AND
-                                         public_resource.id=rs_subject_grade.rsrc_id AND rs_subject_grade.subject_id=? AND rs_subject_grade.grade_id=?");
-                break;  
+                $q = "SELECT COUNT(quiz.id) AS count FROM quiz, public_resource,rs_subject_grade WHERE quiz.id = public_resource.id";
+                break;
             case "pastpaper":
-                $stmt = $this->prepare("SELECT COUNT(pastpaper.id) AS count FROM pastpaper, public_resource,rs_subject_grade WHERE pastpaper.id = public_resource.id AND
-                                         public_resource.id=rs_subject_grade.rsrc_id AND rs_subject_grade.subject_id=? AND rs_subject_grade.grade_id=?");
+                $q = "SELECT COUNT(pastpaper.id) AS count FROM pastpaper, public_resource,rs_subject_grade WHERE pastpaper.id = public_resource.id";
                 break;
             case "other":
-                $stmt = $this->prepare("SELECT COUNT(other.id) AS count FROM other, public_resource,rs_subject_grade WHERE other.id = public_resource.id AND
-                                         public_resource.id=rs_subject_grade.rsrc_id AND rs_subject_grade.subject_id=? AND rs_subject_grade.grade_id=?");
+                $q = "SELECT COUNT(other.id) AS count FROM other, public_resource,rs_subject_grade WHERE other.id = public_resource.id";
                 break;
-    }
-        $stmt->bind_param('ii',$subject,$grade);
+        }
+        $q .=  " AND public_resource.id=rs_subject_grade.rsrc_id AND rs_subject_grade.subject_id=$subject AND rs_subject_grade.grade_id=$grade";
+
+        $q = $this->getFilteringQuery($filter, $q, $creatorID);
+        $q .= ";";
+
+        $stmt = $this->prepare($q);
         return $this->fetchOneObj($stmt);
     }
 
@@ -94,6 +144,15 @@ class ResourceModel extends Model
         } else {
             return 0;
         }
+    }
+
+    public function getRandomVideos($gid, $sid, $limit = 3){
+        $stmt = $this->prepare("SELECT video.id, video.name, video.lecturer ,public_resource.approved,rs_subject_grade.creator_id 
+                                        FROM video, public_resource,rs_subject_grade WHERE video.id = public_resource.id AND
+                                         public_resource.id=rs_subject_grade.rsrc_id AND rs_subject_grade.subject_id=? AND 
+                                         rs_subject_grade.grade_id=? ORDER BY RAND() LIMIT ?;");
+        $stmt->bind_param('iii',$sid,$gid,$limit);
+        return $this->fetchObjs($stmt);
     }
 
 
@@ -156,9 +215,7 @@ class ResourceModel extends Model
         $stmt = $this->prepare('select public_resource.id, public_resource.type, public_resource.location from public_resource,rs_subject_grade 
         where public_resource.id = rs_subject_grade.rsrc_id AND public_resource.id = ? AND rs_subject_grade.subject_id =? 
           AND rs_subject_grade.grade_id =? AND type = ?');
-//        $stmt = $this->prepare('select public_resource.id, public_resource.type, public_resource.location from public_resource
-//        inner join rs_subject_grade on public_resource.id = rs_subject_grade.rsrc_id
-//        where public_resource.id = ? and rs_subject_grade.subject_id =? and rs_subject_grade.grade_id =? and type = ?');
+
         $stmt->bind_param('iiis',$id,$sid,$gid,$type);
         return $this->fetchOneObj($stmt);
     }
@@ -267,6 +324,12 @@ class ResourceModel extends Model
         return ($this->executeQuery($sql1) && $this->executeQuery($sql2));
     }
 
+    public function updatePastpaperAnswer($id, $file){
+        $stmt = $this->prepare("update pastpaper p set p.answer = ? where p.id = ?");
+        $stmt->bind_param('si',$file,$id);
+        return $this->executePrepared($stmt);
+    }
+
     public function updateOther($id, $title, $file, $type){
         $sql1 = "update public_resource set public_resource.location = '$file' where public_resource.id = $id";
         $sql2 = "update other set other.name = '$title', other.type = '$type' where other.id = $id";
@@ -276,6 +339,14 @@ class ResourceModel extends Model
     public function updateVideo($id, $title, $lec, $link, $description){
         $sql = "update video set video.name = '$title', video.lecturer = '$lec', video.description = '$description', video.link='$link' where video.id = $id";
         return ($this->executeQuery($sql));
+    }
+
+    public function updatePaper($id, $title, $year, $part, $location){
+        $stmt1 = $this->prepare("UPDATE pastpaper p SET p.name = ?, p.year = ?, p.part = ? WHERE p.id = ?");
+        $stmt1->bind_param('siii',$title,$year,$part,$id);
+        $stmt2 = $this->prepare("UPDATE public_resource p SET p.location = ? WHERE p.id = ?");
+        $stmt2->bind_param('si',$location,$id);
+        return ($this->executePrepared($stmt1) && $this->executePrepared($stmt2));
     }
 
 
@@ -414,37 +485,202 @@ class ResourceModel extends Model
         return $this->fetchObjs($stmt);
     }
 
-    // The ordered resources
+    // * Topic related functions
 
-    public function getNotOrganizedResources($gid, $sid){
-        $stmt = $this->prepare("SELECT public_resource.id, public_resource.type FROM public_resource,rs_subject_grade 
-                                        WHERE public_resource.id=rs_subject_grade.rsrc_id AND rs_subject_grade.grade_id=? 
-                                        AND rs_subject_grade.subject_id=? AND public_resource.topic_id IS NULL 
-                                        AND public_resource.approved='Y'");
-        $stmt->bind_param('ii',$gid,$sid);
+    public function addTopic($name, $description, $grade, $subject){
+        $stmt = $this->prepare("INSERT INTO topic(name, description, gradeID, subjectID) VALUES(?,?,?,?)");
+        $stmt->bind_param('ssii',$name,$description,$grade,$subject);
+        if($this->executePrepared($stmt)){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    public function getLastTopicID(){
+        $stmt = $this->prepare("SELECT id FROM topic ORDER BY id DESC LIMIT 1");
+        return $this->fetchOneObj($stmt);
+    }
+
+    public function getTopics($grade, $subject){
+        $stmt = $this->prepare("SELECT t.id, t.name, t.description FROM topic t WHERE gradeID=? AND subjectID=?");
+        $stmt->bind_param('ii',$grade,$subject);
         return $this->fetchObjs($stmt);
     }
 
-    public function getOrganizedResources($gid, $sid){
-        $stmt = $this->prepare("SELECT public_resource.id, public_resource.type, public_resource.topic_id, topic.name, topic.decription, topic.ord 
-                                        FROM public_resource,rs_subject_grade,topic 
-                                        WHERE public_resource.id=rs_subject_grade.rsrc_id AND public_resource.topic_id = topic.id
-                                        AND rs_subject_grade.grade_id=? 
-                                        AND rs_subject_grade.subject_id=? 
-                                        AND public_resource.topic_id IS NOT NULL");
-        $stmt->bind_param('ii',$gid,$sid);
+    public function editTopic($id, $name, $description){
+        $stmt = $this->prepare("UPDATE topic SET name=?, description=? WHERE id=?");
+        $stmt->bind_param('ssi',$name,$description,$id);
+        return $this->executePrepared($stmt);
+    }
+
+    public function getTopicDetails($id){
+        $stmt = $this->prepare("SELECT * FROM topic WHERE id=?");
+        $stmt->bind_param('i',$id);
+        return $this->fetchOneObj($stmt);
+    }
+
+    public function deleteTopic($id){
+        $stmt1 = $this->prepare("DELETE FROM topic WHERE id=?");
+        $stmt1->bind_param('i',$id);
+        $stmt2 = $this->prepare("UPDATE public_resource SET topicID=NULL WHERE topicID=?");
+        $stmt2->bind_param('i',$id);
+        return ($this->executePrepared($stmt1) && $this->executePrepared($stmt2));
+    }
+
+    public function getTopicOrder($grade, $subject){
+        $stmt = $this->prepare("SELECT * FROM topic_order WHERE subjectID=? AND gradeID=?");
+        $stmt->bind_param('ii',$subject,$grade);
+        return $this->fetchOneObj($stmt);
+    }
+
+    public function addTopicOrder( $grade,$subject, $order){
+        $stmt = $this->prepare("INSERT INTO topic_order(subjectID, gradeID, tpcOrder) VALUES (?,?,?)");
+        $stmt->bind_param('iis',$subject,$grade,$order);
+        return $this->executePrepared($stmt);
+    }
+
+    public function editTopicOrder($grade, $subject, $order){
+        $stmt = $this->prepare("UPDATE topic_order SET tpcOrder=? WHERE subjectID=? AND gradeID=?");
+        $stmt->bind_param('sii',$order,$subject,$grade);
+        return $this->executePrepared($stmt);
+    }
+
+    public function getResourcesTopicWise($topic){
+        $stmt = $this->prepare("SELECT p.id, p.type, p.approved, r.creator_id FROM public_resource p, rs_subject_grade r, topic t 
+                                WHERE t.id = p.topicID AND p.id = r.rsrc_id AND t.id = ?");
+        $stmt->bind_param('i',$topic);
         return $this->fetchObjs($stmt);
     }
 
-    public function getTopicIDs($gid, $sid){
-        $stmt = $this->prepare("SELECT public_resource.topic_id, topic.name 
-                                        FROM public_resource,rs_subject_grade,topic 
-                                        WHERE public_resource.id=rs_subject_grade.rsrc_id AND public_resource.topic_id = topic.id
-                                        AND rs_subject_grade.grade_id=? 
-                                        AND rs_subject_grade.subject_id=? 
-                                        AND public_resource.topic_id IS NOT NULL GROUP BY public_resource.topic_id");
-        $stmt->bind_param('ii',$gid,$sid);
+    public function getResourceByType($grade, $subject, $type){
+        switch($type){
+            case 'video':
+                $stmt = $this->prepare("SELECT p.id, rsrc.name, rsrc.thumbnail, rsrc.type AS vtype, p.type, p.approved, r.creator_id 
+                                        FROM public_resource p, rs_subject_grade r, video rsrc 
+                                        WHERE p.id = r.rsrc_id AND rsrc.id = p.id AND r.subject_id = ? AND r.grade_id = ? AND p.topicID IS NULL");
+                break;
+            case 'pdf':
+                $stmt = $this->prepare("SELECT p.id, rsrc.name, p.type, p.approved, r.creator_id 
+                                        FROM public_resource p, rs_subject_grade r, document rsrc 
+                                        WHERE p.id = r.rsrc_id AND rsrc.id = p.id AND r.subject_id = ? AND r.grade_id = ? AND p.topicID IS NULL");
+
+                break;
+            case 'other':
+                $stmt = $this->prepare("SELECT p.id, rsrc.name, rsrc.type AS otype, p.type, p.approved, r.creator_id 
+                                        FROM public_resource p, rs_subject_grade r, other rsrc 
+                                        WHERE p.id = r.rsrc_id AND rsrc.id = p.id AND r.subject_id = ? AND r.grade_id = ? AND p.topicID IS NULL");
+                break;
+            case "paper":
+                $stmt = $this->prepare("SELECT p.id, rsrc.name, rsrc.part, rsrc.year , p.type, p.approved, r.creator_id 
+                                        FROM public_resource p, rs_subject_grade r, pastpaper rsrc 
+                                        WHERE p.id = r.rsrc_id AND rsrc.id = p.id AND r.subject_id = ? AND r.grade_id = ? AND p.topicID IS NULL");
+                break;
+            case "quiz":
+                $stmt = $this->prepare("SELECT p.id, rsrc.name, rsrc.marks, p.type, p.approved, r.creator_id 
+                                        FROM public_resource p, rs_subject_grade r, quiz rsrc 
+                                        WHERE p.id = r.rsrc_id AND rsrc.id = p.id AND r.subject_id = ? AND r.grade_id = ? AND p.topicID IS NULL");
+                break;
+            default:
+                $stmt = $this->prepare("SELECT p.id, p.type, p.approved, r.creator_id 
+                                        FROM public_resource p, rs_subject_grade r 
+                                        WHERE p.id = r.rsrc_id AND r.subject_id = ? AND r.grade_id = ? AND p.topicID IS NULL");
+                break;
+        }
+        $stmt->bind_param('ii',$subject,$grade);
         return $this->fetchObjs($stmt);
+    }
+
+    public function getResourceByTypeForTopics($grade, $subject, $type){
+        switch($type){
+            case 'video':
+                $stmt = $this->prepare("SELECT p.id, rsrc.name, rsrc.thumbnail, rsrc.type AS vtype, p.type, p.approved, r.creator_id 
+                                        FROM public_resource p, rs_subject_grade r, video rsrc 
+                                        WHERE p.id = r.rsrc_id AND rsrc.id = p.id AND r.subject_id = ? AND r.grade_id = ? AND p.topicID IS NOT NULL");
+                break;
+            case 'pdf':
+                $stmt = $this->prepare("SELECT p.id, rsrc.name, p.type, p.approved, r.creator_id 
+                                        FROM public_resource p, rs_subject_grade r, document rsrc 
+                                        WHERE p.id = r.rsrc_id AND rsrc.id = p.id AND r.subject_id = ? AND r.grade_id = ? AND p.topicID IS NOT NULL");
+
+                break;
+            case 'other':
+                $stmt = $this->prepare("SELECT p.id, rsrc.name, rsrc.type AS otype, p.type, p.approved, r.creator_id 
+                                        FROM public_resource p, rs_subject_grade r, other rsrc 
+                                        WHERE p.id = r.rsrc_id AND rsrc.id = p.id AND r.subject_id = ? AND r.grade_id = ? AND p.topicID IS NOT NULL");
+                break;
+            case "paper":
+                $stmt = $this->prepare("SELECT p.id, rsrc.name, rsrc.part, rsrc.year , p.type, p.approved, r.creator_id 
+                                        FROM public_resource p, rs_subject_grade r, pastpaper rsrc 
+                                        WHERE p.id = r.rsrc_id AND rsrc.id = p.id AND r.subject_id = ? AND r.grade_id = ? AND p.topicID IS NOT NULL");
+                break;
+            case "quiz":
+                $stmt = $this->prepare("SELECT p.id, rsrc.name, rsrc.marks, p.type, p.approved, r.creator_id 
+                                        FROM public_resource p, rs_subject_grade r, quiz rsrc 
+                                        WHERE p.id = r.rsrc_id AND rsrc.id = p.id AND r.subject_id = ? AND r.grade_id = ? AND p.topicID IS NOT NULL");
+                break;
+            default:
+                $stmt = $this->prepare("SELECT p.id, p.type, p.approved, r.creator_id 
+                                        FROM public_resource p, rs_subject_grade r 
+                                        WHERE p.id = r.rsrc_id AND r.subject_id = ? AND r.grade_id = ? AND p.topicID IS NOT NULL");
+                break;
+        }
+        $stmt->bind_param('ii',$subject,$grade);
+        return $this->fetchObjs($stmt);
+    }
+
+    public function getResourcesWithTopics($subject, $grade){
+        $stmt = $this->prepare("SELECT p.id as rsrc_id, p.type, p.approved, r.creator_id, t.id as t_id, t.name, t.description FROM public_resource p, rs_subject_grade r, topic t 
+                                WHERE t.id = p.topicID AND p.id = r.rsrc_id AND t.subjectID = ? AND t.gradeID = ?");
+        $stmt->bind_param('ii',$subject,$grade);
+        return $this->fetchObjs($stmt);
+    }
+
+    public function connectToTopic($topic, $resource){
+        $stmt = $this->prepare("UPDATE public_resource SET topicID=? WHERE id=?");
+        $stmt->bind_param('ii',$topic,$resource);
+        return $this->executePrepared($stmt);
+    }
+
+
+    public function removeFromTopic($id){
+        $stmt = $this->prepare("UPDATE public_resource SET topicID=NULL WHERE id=?");
+        $stmt->bind_param('i',$id);
+        return $this->executePrepared($stmt);
+    }
+
+    public function isVerifiedTopic($id, $grade, $subject){
+        $stmt = $this->prepare("SELECT topic.id FROM topic  WHERE topic.id = ? AND topic.gradeID=? AND topic.subjectID=?");
+        $stmt->bind_param('iii',$id,$grade,$subject);
+        return $this->fetchOneObj($stmt);
+    }
+
+    private function getFilteringQuery($filter, $q, $creatorID)
+    {
+        if (!empty($filter['approvals'])) {
+            switch ($filter['approvals']) {
+                case "P" :
+                    $q .= " AND public_resource.approved = 'P'";
+                    break;
+                case "Y":
+                    $q .= " AND public_resource.approved = 'Y'";
+                    break;
+                case "N":
+                    $q .= " AND public_resource.approved = 'N'";
+                    break;
+            }
+        }
+        if (!empty($filter['ownedBy'])) {
+            switch ($filter['ownedBy']) {
+                case "ME" :
+                    $q .= " AND rs_subject_grade.creator_id = $creatorID";
+                    break;
+                case "THEM":
+                    $q .= " AND rs_subject_grade.creator_id <> $creatorID";
+                    break;
+            }
+        }
+        return $q;
     }
 
 }

@@ -9,7 +9,40 @@
     <link rel="stylesheet" href="<?php echo BASEURL ?>public/stylesheets/Teacher/style.css">
     <link rel="stylesheet" href="<?php echo BASEURL ?>public/stylesheets/Teacher/card_set.css">
     <link rel="stylesheet" href="<?php echo BASEURL . '/public/stylesheets/sponsor/sp_styles.css' ?> ">
+    <style>
+        .teacher-feedback {
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            padding: 10px;
+            margin-bottom: 20px;
+        }
 
+        .teacher-feedback h1 {
+            font-size: 25px;
+            margin-bottom: 10px;
+            color: #186537;
+        }
+
+        .teacher-feedback p {
+            font-size: 20px;
+            line-height: 1;
+            margin: 0;
+        }
+
+        #container_content {
+            width: 21cm;
+            height: 29.7cm;
+            margin: 0 auto;
+            max-width: 800px;
+        }
+
+        .letterhead {
+            background-color: #186537;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+    </style>
 </head>
 
 <body>
@@ -24,14 +57,10 @@
 
                 <div class="top-bar-btns">
                     <a href="#">
-                        <a class="back-btn" href="<?php echo BASEURL ?>TInsideClass/InClass">Back</a>
+                        <a class="back-btn" href="<?php echo BASEURL; ?>TReport/AskFeedback/<?php echo "$cid"; ?>">Back</a>
                     </a>
-                    <a href="#">
-                        <img src="<?php echo BASEURL ?>public/assets/Teacher/icons/icon_notify.png" alt="notify">
-                    </a>
-                    <a href="<?php echo  BASEURL ?>TProfile/profile">
-                        <img src="<?php echo BASEURL ?>public/assets/Teacher/icons/icon_profile_black.png" alt="profile">
-                    </a>
+                    <?php include_once "components/notificationIcon.php" ?>
+                    <?php include_once "components/premiumIcon.php" ?>
                 </div>
             </section>
 
@@ -40,45 +69,44 @@
 
                 <!-- Title and sub title of middle part -->
                 <div class="mid-title">
-                    <h1>Generate Reports</h1>
-                    <h6>Teacher Home/ C136-member details/Generate reports</h6>
-                    <br><br>
+                    <h1>Student Report</h1>
+                    <h6><?php echo $_SESSION['cid']."-".ucfirst($_SESSION['cname'])."/Generate Feedback/Ask Feedback/Student Report"?><h6>
+                    <br>
                 </div>
+
+                <div class="text-center" style="padding:20px; display: flex; justify-content: right;">
+                <button onclick="location.href='<?php echo BASEURL . 'TReport/studentReports/'.$_SESSION['cid'] ?>'" style="background-color: #186537; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer;">Send Report to Student</button>
+                </div>
+
+                <?php
+                $teacherFeedback = $_GET['feedback'] ?? ''; // get feedback if available
+                ?>
 
                 <div class="text-center" style="padding:20px; display: flex; justify-content: center;">
                     <button onclick="generatePDF()" style="background-color: #186537; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer;">Generate</button>
                 </div>
 
                 <div class="container_content" id="container_content">
-                    <div style="margin-top: 30px;">
-                        <div class="sponsor-list-main row-decoration">
-                            <div class="sponsor-list-row">
-                                <div class="sponsor-list-item sponsor-list-item-title flex-1">
-                                    Quiz ID
-                                </div>
-                                <div class="sponsor-list-item sponsor-list-item-title flex-1">
-                                    Marks
-                                </div>
-                            </div>
-                            <?php if (!empty($data[0])) { ?>
-                                <div class="sponsor-list-row">
-                                </div>
-                                <?php foreach ($data[0] as $row) {
 
-                                ?>
-                                    <div class="sponsor-list-row">
-                                        <div class="sponsor-list-item flex-1">
-                                            <?php echo $row->quiz_id ?>
-                                        </div>
-                                        <div class="sponsor-list-item flex-1">
-                                            <?php echo $row->marks ?>
-                                        </div>
-                                    </div>
-                                <?php } ?>
-
-
-                            <?php }  ?>
-                        </div>
+                    <header class="letterhead">
+                        <h1>PROGRESS  REPORT</h1>
+                        <h1>Class Id -<?php echo "$cid"; ?> <br>
+                        <?php foreach ($data[3] as $row) : ?>
+                            Class Name - <?php echo $row->cname ?></h1>
+                        <?php endforeach; ?>
+                        <h3><?php echo "Teacher Name - Ms. " . $_SESSION['name']  ?></h3>
+                    </header>
+                    <br>
+                    <h3><?php echo "Student ID -  " . $data[1]; ?></h3>
+                        <?php foreach ($data[2] as $row) : ?>
+                            <h3><?php echo "Student Name - Ms. " . $row->sname ?></h3>
+                        <?php endforeach; ?><br>
+                    <!-- add the teacher feedback here -->
+                    <div class="teacher-feedback">
+                        <h1>Teacher Feedback:</h1>
+                        <p><?php echo $teacherFeedback ?></p>
+                        <br><br>
+                    </div>
                         <br><br>
                         <div class="sponsor-student-prof">
                             <div class="bottom-details" style="margin: 10px 10px;height: 50vh;">
@@ -150,14 +178,14 @@
     function generatePDF() {
         const element = document.getElementById('container_content');
         var opt = {
-            margin: 0.5,
-            filename: 'Report.pdf',
+            margin: 0.25,
+            filename: 'Report' + <?php echo $data[1]; ?> + '.pdf',
             image: {
                 type: 'jpeg',
                 quality: 0.98
             },
             html2canvas: {
-                scale: 2
+                scale: 15
             },
             jsPDF: {
                 unit: 'in',

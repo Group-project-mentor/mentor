@@ -14,6 +14,22 @@
 
 <body>
     <section class="page">
+    <?php
+        if(isset($_SESSION['message']) && $_SESSION['message']== "success"){
+            include_once "components/alerts/Teacher/student_joined.php";
+        }
+        elseif(isset($_SESSION['message']) && $_SESSION['message']== "failed"){
+            include_once "components/alerts/Teacher/student_joined_failed.php";
+        }
+        elseif(isset($_SESSION['message']) && $_SESSION['message']== "premiumLimited"){
+            include_once "components/alerts/Teacher/StpremiumOver.php";
+        }elseif(isset($_SESSION['message']) && $_SESSION['message']== "delete_success"){
+            include_once "components/alerts/Teacher/delete_request.php";
+        }
+        elseif(isset($_SESSION['message']) && $_SESSION['message']== "delete_failed"){
+            include_once "components/alerts/Teacher/delete_request_failed.php";
+        }
+    ?>
         <!-- Navigation panel -->
         <?php include_once "components/navbars/t_nav_2.php" ?>
 
@@ -25,10 +41,11 @@
                 <div class="search-bar">
                 </div>
                 <div class="top-bar-btns">
-                    <?php include_once "components/notificationIcon.php" ?>
-                    <a href="<?php echo  BASEURL ?>TProfile/profile">
-                        <img src="<?php echo BASEURL ?>public/assets/Teacher/icons/icon_profile_black.png" alt="profile">
+                <a href="#">
+                        <a class="back-btn" href="<?php echo BASEURL ?>home">Back</a>
                     </a>
+                <?php include_once "components/notificationIcon.php" ?>
+                    <?php include_once "components/premiumIcon.php" ?>
                 </div>
             </section>
 
@@ -38,6 +55,8 @@
                 <!-- Title and sub title of middle part -->
                 <div class="mid-title">
                     <h1>Student Requests</h1>
+                    <h3><?php echo "Class ID-".$_SESSION['cid']?><h3>
+                    <h3><?php echo " Class Name-".ucfirst($_SESSION['cname']) ?> </h3>
                 </div>
                 <br><br>
 

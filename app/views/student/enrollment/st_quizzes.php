@@ -14,11 +14,19 @@
 </head>
 
 <body>
+
+<!-- message pop up when click delete button -->
+<?php
+if(!empty($_SESSION['message'])) {
+    if ($_SESSION['message'] == "QuizEnd") {
+        $message = "You Done Quiz Successfully !. To See Marks Click OK Button.";
+        include_once "components/alerts/operationSuccess.php";
+    }
+}
+?>
     <section class="page">
         <!-- Navigation panel -->
         <?php include_once "components/navbars/st_navbar_2.php" ?> <!-- used to include_once to add file -->
-
-
         <div class="content-area">
 
             <!-- Top bar -->
@@ -35,7 +43,7 @@
                     </a>
                     <?php include_once "components/notificationIcon.php" ?>
                     <a href="<?php echo BASEURL ?>st_profile">
-                        <img src="<?php echo BASEURL ?>assets/icons/icon_profile_black.png" alt="profile">
+                    <?php include_once "components/profilePic.php"?>
                     </a>
                 </div>
             </section>
@@ -47,7 +55,7 @@
                 <div class="mid-title">
                     <?php
                     $ggid = $_SESSION['gid'] + 5;
- ?>
+                    ?>
                     <h1><?php echo "Grade " . $ggid . " - " . ucfirst($_SESSION['sname']) ?></h1>
                     <h6>My Subjects / <?php echo ucfirst($_SESSION['sname']) ?> / quizzes</h6>
                 </div>
@@ -73,14 +81,11 @@
                                             <div class="quiz-card-item">
                                                 <?php echo $row->marks ?> Marks
                                             </div>
-                                            <div class="quiz-card-item">
-                                                10 Questions
-                                            </div>
                                         </div>
                                         <div class="quiz-card-button-set">
-                                            <a class="quiz-card-btn" href="<?php echo BASEURL . 'st_public_resources/st_quizzes_intro/' . $row->id . '/' .$row->name ?>" style="text-decoration: none;">
-                                            <div class="back-btn">
-                                                    View
+                                            <a class="quiz-card-btn" href="<?php echo BASEURL . 'st_public_resources/st_quizzes_intro/' . $row->id  ?>" style="text-decoration: none;">
+                                                <div class="back-btn">
+                                                    Quiz
                                                 </div>
                                             </a>
                                         </div>
@@ -116,7 +121,5 @@
         </div>
     </section>
 </body>
-<script src="<?php echo BASEURL ?>public/javascripts/st_auth_script.js"></script>
-
 
 </html>

@@ -36,7 +36,7 @@ if (!isset($_SESSION['user'])) {
                 <div class="top-bar-btns">
                     <?php include_once "components/notificationIcon.php" ?>
                     <a href="<?php echo BASEURL . 'rcProfile' ?>">
-                        <img src="<?php echo BASEURL ?>assets/icons/icon_profile_black.png" alt="profile">
+                        <?php include_once "components/profilePic.php"?>
                     </a>
                 </div>
             </section>
@@ -98,7 +98,7 @@ if (!isset($_SESSION['user'])) {
                                         <label class="subject-card-texts">Grade <?php echo $row->gname ?> </label>
                                     </div>
 
-                                    <a href='<?php echo BASEURL . "rcResources/videos/" . $row->gid . "/" . $row->sid ?>'>
+                                    <a href='<?php echo BASEURL . "rcResources/organized/" . $row->gid . "/" . $row->sid ?>'>
                                         <label>Enter</label>
                                         <img src='<?php echo BASEURL ?>assets/icons/icon-enter.png' alt='' />
                                     </a>

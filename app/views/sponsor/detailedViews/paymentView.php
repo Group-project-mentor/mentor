@@ -30,7 +30,7 @@
                 </a>
                 <?php include_once "components/notificationIcon.php" ?>
                 <a href="<?php echo  BASEURL ?>sponsor/profile">
-                    <img src="<?php echo BASEURL?>public/assets/Teacher/icons/icon_profile_black.png" alt="profile">
+                        <?php include_once "components/profilePic.php"?>
                 </a>
             </div>
         </section>
@@ -94,16 +94,16 @@
                                     <?php echo $date[1] ?>
                                 </div>
                             </div>
-                            <a  class="sponsor-button" style="margin-top: 10px;width: 90%;justify-content: center;font-size: smaller;"
+                            <a  class="sponsor-button" style="margin-top: 10px;width: 90%;justify-content: center;font-size: smaller;text-decoration: none;"
                                 href="<?php echo BASEURL.'sponsor/slips/bills/'.$data[1]->id ?>" >
                                 See Bill Details >>
                             </a>
                     </div>
                 </div>
                 <div class="sp-button-set">
-                    <button class="sponsor-button">
-                        Download the slip
-                    </button>
+                    <a class="sponsor-button" href="<?php echo BASEURL."sponsor/printBill/".$data[2]?>" style="text-decoration: none;">
+                        Go to Bill Report
+                    </a>
                 </div>
             </div>
 

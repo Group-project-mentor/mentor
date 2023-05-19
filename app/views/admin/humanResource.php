@@ -10,16 +10,11 @@
     <link rel="stylesheet" href="<?php echo BASEURL ?>stylesheets/admin/ad_humanresource.css">
 
 </head>
-<nav>
-    <div class="ad_nav">
-
-    </div>
-</nav>
 
 <body>
     <?php require_once("C:/xampp/htdocs/mentor/app/views/admin/navbar.php"); ?>
     <!-- Middle part for whole content -->
-    <section class="mid-content ad_mid-content">
+    <section class="ad_mid-content">
 
         <!-- Title and sub title of middle part -->
         <div class="mid-title">
@@ -34,17 +29,43 @@
                         <h1>Resource Creators</h1>
                     </div>
                     <div class="btn">
-                        <button class="btns" type="button">
-                            <p>View All</p>
-                        </button>
-                        <button class="btns" type="button">
-                            <p>Add New</p>
-                        </button>
+                        <a class="btns" href="<?php echo BASEURL ?>admins/resourceCreatorViewall" style="text-decoration:none">
+                            View All
+                        </a>
+
                     </div>
 
                 </div>
-            </div>
+                <div class="users">
 
+                    <?php
+                    if (!$data['appliedrc']) {
+                        echo 'No Details';
+                    } else {
+                        foreach ($data['appliedrc'] as $value) {
+                            echo
+                            '<div class="content" id="comp-content">
+                                
+                                <div class="subject-card">
+                                    <div class="pp">
+                                        <img class="profile" src="' . BASEURL . 'assets/admin/user.png">
+                                    </div>
+                                    <div class="name">
+                                        <p>' . $value['firstName'] . '</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="btns">
+                                    <button class="comp-btns" onclick="addRCToTaskManager(' . $data['appliedrc'][0]['id'] . ',' . $_SESSION['id'] . ')" type="button">Add To Task Manager</button>
+                                    <br>
+                                </div>
+                            </div>';
+                        }
+                    }
+
+                    ?>
+                </div>
+            </div>
         </div>
 
         <div class="hr" id="team">
@@ -54,7 +75,7 @@
                         <h1>co-Admins</h1>
                     </div>
                     <div class="btn">
-                        <a class="btns" href="<?php echo BASEURL ?>admins/addMember" style="text-decoration:none">
+                        <a class="btns" href="<?php echo BASEURL ?>admins/adminviewall" style="text-decoration:none">
                             View All
                         </a>
                         <a class="btns" href="<?php echo BASEURL  ?>admins/addAdmin" style="text-decoration:none">
@@ -65,23 +86,35 @@
 
                 </div>
                 <div class="users">
-                    <?php if (!empty($data['classes'])) { ?>
-                        <?php foreach ($data['classes'] as $row) { ?>
-                            <div class="subject-card">
-                                <img src="<?php echo BASEURL ?>assets/admin/user.png" width="5%" height="5%" />
-                                <a class="btns" href="<?php echo BASEURL ?>adResource" style="text-decoration:none"><label> <?php echo $row['name'] ?></label></a>
 
-                            </div>
-                        <?php } ?>
+                    <?php
+                    if (!$data['admin']) {
+                        echo 'No Details';
+                    } else {
+                        foreach ($data['admin'] as $value) {
+                            echo
+                            '<div class="content" id="comp-content">
+                                
+                                <div class="subject-card">
+                                    <div class="pp">
+                                        <img class="profile" src="' . BASEURL . 'assets/admin/user.png">
+                                    </div>
+                                    <div class="name">
+                                        <p>' . $value['name'] . '</p>
+                                    </div>
+                                </div>
+                            </div>';
+                        }
+                    }
+
+                    ?>
                 </div>
-            <?php } else {
-                        echo "no data";
-                    } ?>
-
-
             </div>
-        </div>
-
+            <!-- <div class="btns">
+                <form action="' . BASEURL . 'admins/addMember/'. $value['admin_id'].'" method="POST">
+                    <button class="comp-btns">Add to task manager</button>
+                </form><br>
+            </div> -->
 
         </div>
 

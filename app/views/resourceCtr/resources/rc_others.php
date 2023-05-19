@@ -44,7 +44,7 @@
                     </a>
                     <?php include_once "components/notificationIcon.php" ?>
                     <a href="<?php echo BASEURL . 'rcProfile' ?>">
-                        <img src="<?php echo BASEURL ?>assets/icons/icon_profile_black.png" alt="profile">
+                        <?php include_once "components/profilePic.php"?>
                     </a>
                 </div>
             </section>
@@ -61,21 +61,25 @@
                 <!-- Grade choosing interface -->
                 <div class="container-box">
                     <div class="rc-resource-header">
-                        <h1>RESOURCES</h1>
+                        <h1>OTHERS</h1>
                         <a href="<?php echo BASEURL . 'rcAdd/other' ?>">
                             <div class="rc-add-btn">
                                 Add Resource
                             </div>
                         </a>
                     </div>
+
                     <?php
+                    include_once "components/filters/resourceFilter.php";
+
                     $types = ['pdf', 'png', 'jpg', 'bmp', 'js', 'txt'];
                     if(!empty($data[0])){?>
                     <div class="rc-resource-table" id="rc-resource-table">
                         <div class="rc-resource-row rc-table-title">
                             <div class="rc-resource-col">Resource name</div>
                             <div class="rc-resource-col">Type</div>
-                            <div></div>
+                            <div class="rc-resource-col">Actions</div>
+                            <div class="rc-resource-col"></div>
                         </div>
                         <?php
                                 foreach ($data[0] as $row) {
@@ -83,7 +87,6 @@
                                     ?>
                                     <div class='rc-resource-row'>
                                         <div class='rc-resource-col' style="display: flex;align-items: center;justify-content: flex-start;">
-                                            <img src='<?php echo BASEURL."assets/icons/".$approval ?>' alt='' class="resource-approved-sign">
                                             <div>
                                                 <?php echo $row->name ?>
                                             </div>
@@ -100,30 +103,50 @@
                                 <?php } echo (in_array($row->type,$types)) ?"
                                                 <a href='".BASEURL."rcResources/preview/other/".$row->id."'>
                                                 <img src='".BASEURL."assets/icons/icon_eye.png' alt=''>
-                                                </a>" : "<a></a>";
-                                echo "
+                                                </a>" : "<a></a>"; ?>
+                                            </div>
+                                            <div style="display:flex;flex-direction:column;justify-content:center;align-items:center;">
+                                                    <img src='<?php echo BASEURL."assets/icons/".$approval ?>' alt='' class="resource-approved-sign">
+                                                    <div style="font-size:x-small;">
+                                                        <?php 
+                                                        switch($row->approved){
+                                                            case "P":
+                                                                echo "Pending";
+                                                                break;
+                                                            case "Y":
+                                                                echo "Approved";
+                                                                break;
+                                                            case "N":
+                                                                echo "Rejected";
+                                                                break;
+                                                            case null :
+                                                                echo "Pending";
+                                                                break;
+                                                        }
+                                                        ?>
+                                                </div>
                                             </div>
                                     </div>
-                                    ";
-                                    }
+
+                                    <?php }
                                     }else{ ?>
                             <h2 class="rc-no-data-msg" style="text-align: center;">No Data to Display</h2>
                             <?php } ?>
 
 
-                <div class="pagination-set">
+                <div class="pagination-set" id="pagination-set">
                     <div class="pagination-set-left">
                         <b><?php echo (($data[1][0] == $data[1][1]) || $data[1][1] == 0) ? count($data[0]) : paginationRowLimit ?></b> Rows
                     </div>
                     <div class="pagination-set-right">
                         <?php if ($data[1][0] != 1) {?>
-                            <a href="<?php echo BASEURL . "rcResources/others/".$_SESSION['gid']."/".$_SESSION['sid']."/". ($data[1][0]) - 1 ?>"> < </a>
+                            <a href="<?php echo BASEURL . "rcResources/others/".$_SESSION['gid']."/".$_SESSION['sid']."/". ($data[1][0] - 1)."/".($data[1][2]) ?>"> < </a>
                         <?php }?>
                         <div class="pagination-numbers">
                             Page <?php echo $data[1][0] ?> of <?php echo ($data[1][1])?$data[1][1]:1 ?>
                         </div>
                         <?php if ($data[1][0] < $data[1][1]) {?>
-                            <a href="<?php echo BASEURL . "rcResources/others/".$_SESSION['gid']."/".$_SESSION['sid']."/". ($data[1][0]) + 1 ?>"> < </a>
+                            <a href="<?php echo BASEURL . "rcResources/others/".$_SESSION['gid']."/".$_SESSION['sid']."/". ($data[1][0] + 1)."/".($data[1][2]) ?>"> > </a>
                         <?php }?>
                     </div>
                 </div>
@@ -134,10 +157,14 @@
 <script>
     const BASEURL = '<?php echo BASEURL ?>';
     const USER = <?php echo $_SESSION['id']?>;
+    const PAGE = <?php echo $data[1][0] ?>;
+    const grade = <?php echo $_SESSION['gid']?>;
+    const subject = <?php echo $_SESSION['sid']?>;
 
     let searchInput = document.getElementById('search-inp');
     let searchButton = document.getElementById('search-btn');
     let cardHolder = document.getElementById('rc-resource-table');
+    let paginationSet = document.getElementById('pagination-set');
 
     searchButton.onclick = () => {
         let searchTxt = searchInput.value.trim();
@@ -154,6 +181,7 @@
                     if (data.length > 0){
                         data.forEach(row => {
                             cardHolder.innerHTML += renderOthersData(row,USER);
+                            paginationSet.style.display = "none";
                         })
                     }else {
                         cardHolder.innerHTML = `<h2 class="rc-no-data-msg" style="text-align:center;">No Data to Display</h2>`;
@@ -206,6 +234,28 @@
                    </div>`
 
         return rendered;
+    }
+
+    // Filter data part
+
+    let filterButton = document.getElementById("filterButton");
+    let filterForm = document.getElementById("filterForm");
+    let clearBtn = document.getElementById("clearButton");
+
+    filterButton.onclick = (e) =>  {
+        e.preventDefault();
+        let formData = new FormData(filterForm);
+        let url = `${BASEURL}rcResources/others/${grade}/${subject}/${PAGE}/?`;
+        for (let [key, value] of formData.entries()) {
+            url += `${key}=${value}&`;
+        }
+        window . location . replace(url);
+    }
+
+    clearBtn.onclick = (e) =>  {
+        e.preventDefault();
+        let url = `${BASEURL}rcResources/others/${grade}/${subject}/${PAGE}`;
+        window . location . replace(url);
     }
 </script>
 <script src="<?php echo BASEURL . '/public/javascripts/rc_alert_control.js' ?>"></script>

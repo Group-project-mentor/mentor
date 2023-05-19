@@ -7,7 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>login</title>
     <link rel="stylesheet" href="<?php echo BASEURL ?>stylesheets/admin/ad_dashboard.css">
-    
+
+
 
 
 </head>
@@ -20,7 +21,7 @@
 <body>
     <?php require_once("C:/xampp/htdocs/mentor/app/views/admin/navbar.php"); ?>
     <!-- Middle part for whole content -->
-    <section class="mid-content ad_mid-content">
+    <section class="ad_mid-content">
 
         <!-- Title and sub title of middle part -->
         <div class="mid-title">
@@ -31,116 +32,124 @@
             <div class="ad_cards">
                 <div class="box" id="st">
                     <div class="imgrow">
-                        <div background-img src="<?php echo BASEURL ?>assets/admin/Ellipse.png">
-                            <img class="mini" src="<?php echo BASEURL ?>assets/admin/3-Friends.png">
+                        <div class="img">
+                            <img class="mini" src="<?php echo BASEURL ?>assets/admin/students.png">
                         </div>
-                        <div>
-                            <h1>Total Student <br>
-                                <?php echo $data['studentCount']; ?><br>
-                            </h1>
+                        <div class="typeNcount">
+                            <div class="boxtitle">
+                                <h1>Total Students </h1>
+                            </div>
+                            <div class="count">
+                                <h1>
+
+                                    <?php
+                                    if (!$data['studentCount']) {
+                                        echo '0';
+                                    } else {
+                                        echo $data['studentCount'];
+                                    }
+                                    ?>
+
+                                </h1>
+                            </div>
                         </div>
-                    </div>
-                    <div>
-                        <!-- <p>
-                            Public :1467 Students<br>
-                            Private :438 Students
-                        </p> -->
-                    </div>
-                    <div>
 
                     </div>
-                    <!--<img src="assets/students.png" alt="students">-->
+
+
                 </div>
                 <div class="box" id="tc">
                     <div class="imgrow">
-                        <div background="<?php echo BASEURL ?>assets/admin/Ellipse 1.png">
-                            <img class="mini" src="<?php echo BASEURL ?>assets/admin/3-Friends.png">
+                        <div class="img">
+                            <img class="mini" src="<?php echo BASEURL ?>assets/admin/teacher.png">
                         </div>
-                        <div>
-                            <h1>Total Teacher<br>
-                                <?php echo $data['teacherCount']; ?><br>
-                            </h1>
+                        <div class="typeNcount">
+                            <div class="boxtitle">
+                                <h1>Total Teachers</h1>
+                            </div>
+                            <div class="count">
+                                <h1>
+                                    <?php
+                                    if (!$data['teacherCount']) {
+                                        echo '0';
+                                    } else {
+                                        echo $data['teacherCount'];
+                                    }
+                                    ?>
+                                </h1>
+                            </div>
                         </div>
-                    </div>
-                    <div>
-                        <!-- <p>
-                            Public :1467 Teacher<br>
-                            Private :438 Teacher
-                        </p> -->
-                    </div>
-                    <div>
-                        <hr>
+
                     </div>
 
-                    <!--<img src="assets/teachers.png" alt="teacher">-->
+
                 </div>
                 <div class="box" id="pc">
                     <div class="imgrow">
-                        <div background="<?php echo BASEURL ?>assets/admin/Ellipse 1.png">
-                            <img class="mini" src="<?php echo BASEURL ?>assets/admin/3-Friends.png">
+                        <div class="img">
+                            <img class="mini" src="<?php echo BASEURL ?>assets/admin/teaching.png">
                         </div>
-                        <div>
-                            <h1>Total Private Classes<br>
-                                5430<br>
-                            </h1>
-                        </div>
-                    </div>
-                    <div>
-                        <!-- <p>
-                            Paid :1467 Classes<br>
-                            Free :438 Classes
-                        </p> -->
-                    </div>
-                    <div>
-                        <hr>
-                    </div>
-                    <!--<img src="assets/privateclz.png" alt="students">-->
-                </div>
-                <div class="box" id="sp">
-                    <div class="imgrow">
-                        <div background="<?php echo BASEURL ?>assets/admin/Ellipse 1.png">
-                            <img class="mini" src="<?php echo BASEURL ?>assets/admin/3-Friends.png">
-                        </div>
-                        <div>
-                            <h1>Total Sponsors<br>
-                                5430<br>
-                            </h1>
-                        </div>
-                    </div>
-                    <div>
-                        <!-- <p>
-                            Monthly :1467 <br>
-                            Anual :438
-                        </p> -->
-                    </div>
-                    <div>
-                        <hr>
-                    </div>
-                    <!--<img src="assets/sponsors.png" alt="sponsor">-->
-                </div>
-                <!-- <div class="box" id="ad">
-                    <div class="imgrow">
-                        <div background="<?php echo BASEURL ?>assets/admin/Ellipse 1.png">
-                            <img class="mini" src="<?php echo BASEURL ?>assets/admin/3-Friends.png">
-                        </div>
-                        <div>
-                            <h1>Total Advertisement<br>
-                                5430
-                            </h1>
+                        <div class="typeNcount">
+                            <div class="boxtitle">
+                                <h1>Total Classes</h1>
+                            </div>
+                            <div class="count">
+                                <h1>
+                                    <?php
+                                    if (!$data['classCount']) {
+                                        echo '0';
+                                    } else {
+                                        echo $data['classCount'];
+                                    }
+                                    ?>
+                                </h1>
+                            </div>
                         </div>
                     </div>
 
-                    <div>
-                        <hr>
-                    </div>
-                    <img src="assets/ad.png" alt="ad">
-                </div> -->
-            </div>
-            <div class="ad_section2">
-                <div class="earnings">
-                    <img class="ern" src="<?php echo BASEURL ?>assets/admin/earnings.png">
                 </div>
-                <div class="bgbox">
+                <div class="box" id="sp">
+                    <div class="imgrow">
+                        <div class="img">
+                            <img class="mini" src="<?php echo BASEURL ?>assets/admin/sponsor.png">
+                        </div>
+                        <div class="typeNcount">
+                            <div class="boxtitle">
+                                <h1>Total Sponsors</h1>
+                            </div>
+                            <div class="count">
+                                <h1>
+                                    <?php
+                                    if (!$data['sponsorCount']) {
+                                        echo '0';
+                                    } else {
+                                        echo $data['sponsorCount'];
+                                    }
+                                    ?>
+                                </h1>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                </div>
+            </div>
+
+
+
+            <div class="ad_section2">
+                <div class="bottom-details">
+                    <div class="bgbox" style="margin: 20px 20px; height: 70vh; width: 60vh; flex:1">
+                        <div class="sp-subject-report resource-chart">
+                            <h4 style="text-align:center;">Human types</h4>
+                            <br><br>
+                            <canvas id="myChart" class="resource-chart" height="200" width="200"></canvas>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="bgbox" style="flex: 1; margin: 20px 20px; height: 70vh; width: 70vh; flex:1">
                     <div class="complaints">
                         <div class="title">
                             <h1>Complaints</h1>
@@ -150,24 +159,33 @@
                                 <p><a href="<?php echo BASEURL ?>admins/complaints" style="color:white;">View All</a></p>
                             </button>
                         </div>
-
                     </div>
                     <?php
-                        foreach ($data['complaints'] as $value) {
-                            echo '<div class="content">
+                  if (!$data['complaints']) {
+                    echo 'No Complaints';
+                } else {
+                    $counter = 0;
+                    foreach ($data['complaints'] as $value) {
+                        if ($counter >= 5) {
+                            break; // terminate the loop once 5 items have been displayed
+                        }
+                        echo '<div class="content">
                             <div class="complaints">
                                 <div class="pp">
-                                    <img class="profile" src="'.BASEURL.'assets/admin/pp.png">
+                                    <img class="profile" src="' . BASEURL . 'assets/admin/pp.png">
                                 </div>
                                 <div class="name" id="user-name">
-                                    <p>'.$value['name'].'</p>
+                                    <p>' . $value['name'] . '</p>
                                 </div>
                                 <div class="userid" id="user-id">
-                                    <p>'.$value['id'].'</p>
+                                    <p>' . $value['id'] . '</p>
                                 </div>
                             </div>
                         </div>';
-                        }
+                        $counter++;
+                    }
+                }
+                
                     ?>
                     <!--  -->
                 </div>
@@ -185,148 +203,211 @@
                                 </a>
                             </div>
                         </div>
-                        <div class="task-bottom">
-                            <div class="content">
-                                <a href="<?php echo BASEURL ?>admins/task/t001" style="text-decoration: none; color:black;">
-                                    <div class="complaints">
-                                        <div class="pp">
-                                            <img class="profile" src="<?php echo BASEURL ?>assets/admin/comphand.png">
-                                        </div>
-                                        <div class="name">
-                                            <p>Complaint Handling</p>
-                                        </div>
-                                        <div class="icons">
-                                            <div class="view">
-                                                <button type="button" id="btn">In Pogress</button>
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                </a>
-                                <a href="<?php echo BASEURL ?>admins/complaintaction" style="text-decoration: none; color:black;">
-                                    <div class="complaints">
-                                        <div class="pp">
-                                            <img class="profile" src="<?php echo BASEURL ?>assets/admin/comphand.png">
-                                        </div>
-                                        <div class="name">
-                                            <p>Complaint Handling</p>
-                                        </div>
-                                        <div class="icons">
-                                            <div class="view">
-                                                <button type="button" id="btn">In Pogress</button>
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                </a>
-                                <a href="<?php echo BASEURL ?>adComplaintaction" style="text-decoration: none; color:black;">
-                                    <div class="complaints">
-                                        <div class="pp">
-                                            <img class="profile" src="<?php echo BASEURL ?>assets/admin/comphand.png">
-                                        </div>
-                                        <div class="name">
-                                            <p>Complaint Handling</p>
-                                        </div>
-                                        <div class="icons">
-                                            <div class="view">
-                                                <button type="button" id="btn">In Pogress</button>
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                </a>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-                <div class="bgbox">
-                    <div class="user">
-                        <div class="user-top">
-                            <div class="title">
-                                <h1>User Handling</h1>
-                            </div>
-                            <div class="btn">
-                                <a href="<?php echo BASEURL ?>admins/userhandling">
-                                    <p style="color:white">View All</p>
-                                </a>
-                            </div>
-                        </div>
                         <?php
-                        foreach ($data['complaints'] as $value) {
-                            echo '<div class="content">
-                            <div class="complaints">
-                                <div class="pp">
-                                    <img class="profile" src="'.BASEURL.'assets/admin/pp.png">
-                                </div>
-                                <div class="name" id="user-name">
-                                    <p>'.$value['name'].'</p>
-                                </div>
-                                <div class="userid" id="user-id">
-                                    <p>'.$value['id'].'</p>
-                                </div>
-                            </div>
-                        </div>';
+    $itemCount = 0;
+    $maxItemCount = 10;
+
+                    if (!$data['rtask'] && !$data['ctask'] && !$data['rctask'] && !$data['schltask'] && !$data['sptask']) {
+                        echo "No tasks found.";
+                    } else {
+                        foreach ($data as $category => $items) {
+                            if ($category === 'rtask') {
+                                if (!$data['rtask']) {
+
+                                } else {
+                                    foreach ($items as $item) {
+                                        if ($itemCount < $maxItemCount) {
+                                            echo '<div class="content">
+                                                    <div class="complaints">
+                                                        <div class="pp">
+                                                            <img class="profile" src="' . BASEURL . 'assets/admin/RV/resource.svg">
+                                                        </div>
+                                                        <div class="name">
+                                                            <p>Review Resource</p>
+                                                        </div>
+                                                        <div class="userid" id="user-id">
+                                                            <p>' . $item['type'] . '</p>
+                                                        </div>
+                                                    </div>
+                                                </div>';
+                                            $itemCount++;
+                                        }
+                                    }
+                                }
+                            } elseif ($category === 'ctask') {
+                                if (!$data['ctask']) {
+                                } else {
+                                    foreach ($items as $item) {
+                                        if ($itemCount < $maxItemCount) {
+                                            echo '<div class="content">
+                                                    <div class="complaints">
+                                                        <div class="pp">
+                                                            <img class="profile" src="' . BASEURL . 'assets/admin/RV/complaint.svg">
+                                                        </div>
+                                                        <div class="name">
+                                                            <p>Complaint Handling</p>
+                                                        </div>
+                                                        <div class="userid" id="user-id">
+                                                            <p>' . $item['description'] . '</p>
+                                                        </div>
+                                                    </div>
+                                                </div>';
+                                            $itemCount++;
+                                        }
+                                    }
+                                }
+                            } elseif ($category === 'rctask') {
+                                if (!$data['rctask']) {
+                                } else {
+                                    foreach ($items as $item) {
+                                        if ($itemCount < $maxItemCount) {
+                                            echo '<div class="content">
+                                                    <div class="complaints">
+                                                        <div class="pp">
+                                                            <img src="' . BASEURL . 'assets/admin/RV/RC.svg">
+                                                        </div>
+                                                        <div class="name">
+                                                            <p>Approve Resource Creators</p>
+                                                        </div>
+                                                        <div class="userid" id="user-id">
+                                                            <p>' . $item['description'] . '</p>
+                                                        </div>
+                                                    </div>
+                                                </div>';
+                                            $itemCount++;
+                                        }
+                                    }
+                                }
+                            } elseif ($category === 'schltask') {
+                                if (!$data['schltask']) {
+                                } else {
+                                    foreach ($items as $item) {
+                                        if ($itemCount < $maxItemCount) {
+                                            echo '<div class="content">
+                                                    <div class="complaints">
+                                                        <div class="pp">
+                                                            <img src="' . BASEURL . 'assets/admin/RV/scholor.svg">
+                                                        </div>
+                                                        <div class="name">
+                                                            <p>Scholorship Approval</p>
+                                                        </div>
+                                                        <div class="userid" id="user-id">
+                                                            <p>' . $item['firstName'] . '</p>
+                                                        </div>
+                                                    </div>
+                                                </div>';
+                                            $itemCount++;
+                                        }
+                                    }
+                                }
+                            } elseif ($category === 'sptask') {
+                                if (!$data['sptask']) {
+                                } else {
+                                    foreach ($items as $item) {
+                                        if ($itemCount < $maxItemCount) {
+                                            echo '<div class="content">
+                                                    <div class="complaints">
+                                                        <div class="pp">
+                                                            <img src="' . BASEURL . 'assets/admin/RV/sponsor.svg">
+                                                                    </div>
+                                                                    <div class="name">
+                                                                        <p>Sponsor Approval</p>
+                                                                    </div>
+                                                                    <div class="userid" id="user-id">
+                                                                        <p>' . $value['firstName'] . '</p>
+                                                                    </div>
+                                                                </div>
+                                                        </div>';
+                                                    $itemCount++;
+                                        }
+                                    }
+                                }
+                            }
                         }
+                    }
                     ?>
-
-                    </div>
                 </div>
-
             </div>
+             
             <div class="ad_section4">
-                <div class="bgbox">
-                    <div class="team">
-                        <div class="title">
-                            <h1>View My Team</h1>
-                        </div>
-                        <div class="btn">
-                            <button type="button">
-                                <p>View All</p>
-                            </button>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-
-            <div class="ad_section5">
                 <div class="bgbox">
                     <div class="addgradesub">
                         <div class="title">
                             <h1>Add New Grade or Subject</h1>
                         </div>
                         <div class="btn-sec5">
-                            <div class="btn-5">
-                                <a href="<?php echo BASEURL ?>admins/addgrades">
-                                        <p style="font-size: larger;">Add Grade</p>
-                                </a>
-                            </div>
-                            <div class="btn-5">
-                                <a href="<?php echo BASEURL ?>admins/addsubject">
-                                        <p style="font-size: larger;">Add Subject</p>
-                                </a>
-                            </div>
-                            
+                            <a href="<?php echo BASEURL ?>admins/addgrades" class="btn-5">
+                                <span>Add Grade</span>
+                            </a>
+                            <a href="<?php echo BASEURL ?>admins/addsubject" class="btn-5">
+                                <span>Add Subject</span>
+                            </a>
                         </div>
                     </div>
                 </div>
             </div>
+
         </div>
     </section>
     </div>
     </section>
-    <style>
-        .tab {
-            padding: 5px 10px;
-        }
-    </style>
+
     <?php require_once("C:/xampp/htdocs/mentor/app/views/admin/popup.php"); ?>
 
 
 
 </body>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    // Get data from PHP using inline script
+    var chartData = <?php echo json_encode($data) ?>;
 
+    // Extract values from data object and create labels
+    var data = [
+        chartData.studentCount,
+        chartData.teacherCount,
+        chartData.ResourceCrCount,
+        chartData.sponsorCount
+    ];
+    var labels = [
+        'Students',
+        'Teachers',
+        'Resource Creators',
+        'Sponsors'
+    ];
+
+    // Set chart options
+    var options = {
+        // ...
+    };
+
+    // Create new chart instance
+    var ctx = document.getElementById('myChart').getContext('2d');
+    var myChart = new Chart(ctx, {
+        type: 'doughnut',
+        data: {
+            labels: labels,
+            datasets: [{
+                label: 'Count',
+                data: data,
+                backgroundColor: [
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)'
+                ],
+                borderColor: [
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)'
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: options
+    });
+</script>
 <script>
     let toggle = true;
 

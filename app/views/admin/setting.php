@@ -14,89 +14,107 @@
 
 
 </head>
-<nav>
-    <div class="ad_nav">
-
-    </div>
-</nav>
 
 <body>
     <?php require_once("C:/xampp/htdocs/mentor/app/views/admin/navbar.php"); ?>
-            <!-- Middle part for whole content -->
-            <section class="mid-content ad_mid-content">
+    <!-- Middle part for whole content -->
+    <section class="ad_mid-content">
 
-                <!-- Title and sub title of middle part -->
+        <!-- Title and sub title of middle part -->
 
-                <div class="mid-title">
-                    <h1>Setting</h1>
-                </div>
-
-                <div class="content" id="comp-content">
-
-                    <form class="form" action="<?php echo BASEURL ?>adAddnewadmin/add" method="POST">
-                        <div class="mid-title">
-                            <h1>Change Password</h1>
-                        </div>
-
-                        <div class="reset">
-                            <div class="o">
-                                <label for="userid">
-                                    <div class="tagtitle">
-                                        <label for="co-useremail" id="co-useremail">Current Password</label><br>
-                                        <input type="email" name="admin-mail" placeholder="   Enter current password" class="inputfield"><br>
-
-
-                                    </div>
-                                </label><br>
-
-                            </div>
-
-
-                            <div class="o">
-                                <label for="userid">
-                                    <div class="tagtitle">
-                                        <label for="co-useremail" id="co-useremail">New Password</label><br>
-                                        <input type="email" name="admin-mail" placeholder="   Enter new password" class="inputfield"><br>
-
-
-                                    </div>
-                                </label><br>
-
-                            </div>
-
-                            <div class="o">
-                                <label for="userid">
-                                    <div class="tagtitle">
-                                        <label for="co-useremail" id="co-useremail">Confirm New Password</label><br>
-                                        <input type="email" name="admin-mail" placeholder="   Enter new password again" class="inputfield"><br>
-
-
-                                    </div>
-                                </label><br>
-
-                            </div>
-
-                            <div class="btns">
-                                <button class="comp-btns">Update Password</button>
-                                
-                            </div>
-
-
-
-
-
-
-                        </div>
-
-
-
-
-                    </form>
-
-                </div>
-
-            </section>
+        <div class="mid-title">
+            <h1>Setting</h1>
+            <h6><?php echo $_SESSION['name'] ?></h6>
         </div>
+        <?php
+        // if ($_SESSION['message'] == 'success') {
+        //     include_once "components/alerts/password_changed.php";
+        // } else if ($_SESSION['message'] == 'failed') {
+        //     include_once "components/alerts/pwd_change_failed.php";
+        // } else if ($_SESSION['message'] == 'wrongPass') {
+        //     include_once "components/alerts/pwd_wrong.php";
+        // }
+
+        // unset($_SESSION['message']);
+        if (!empty($data) && $data == 'success') {
+            include_once "components/alerts/password_changed.php";
+        } else if (!empty($data) && $data == "failed") {
+            include_once "components/alerts/pwd_change_failed.php";
+        } else if (!empty($data) && $data == "wrongPass") {
+            include_once "components/alerts/pwd_wrong.php";
+        }
+        ?>
+
+        <div class="content" id="comp-content">
+
+            <form class="form" action="<?php echo BASEURL ?>admins/changePassword" method="POST">
+                <div class="mid-title">
+                    <h1>Change Password</h1>
+
+                </div>
+
+                <div class="reset">
+                    <div class="box">
+                        <label for="userid">
+                            <div class="tagtitle">
+                                <label for="co-useremail" id="co-useremail">Current Password</label><br>
+                                <input type="password" class="txt-input" placeholder="Current password" name="cpasswd" /><br>
+                                <!-- <input type="email" name="admin-mail" placeholder="   Enter current password" class="inputfield"><br> -->
+
+
+                            </div>
+                        </label><br>
+
+                    </div>
+
+
+                    <div class="box">
+                        <label for="userid">
+                            <div class="tagtitle">
+                                <label for="co-useremail" id="co-useremail">New Password</label><br>
+                                <input type="password" class="txt-input" placeholder="New Password" name="npasswd"  title="password should be exact or more than 8 characters, numbers or symbols." /><br>
+                                <!-- <input type="email" name="admin-mail" placeholder="   Enter new password" class="inputfield"><br>pattern="[0-9a-zA-Z!@#$%^&*.?~]{8}" -->
+
+
+                            </div>
+                        </label><br>
+
+                    </div>
+
+                    <div class="box">
+                        <label for="userid">
+                            <div class="tagtitle">
+                                <label for="co-useremail" id="co-useremail">Confirm New Password</label><br>
+                                <input type="password" class="txt-input" placeholder="New Password" name="cnfpasswd" title="password should be exact or more than 8 characters, numbers or symbols." /><br>
+
+
+                            </div>
+                        </label><br>
+
+                    </div>
+
+                    <div class="btns">
+                        <button class="comp-btns">Update Password</button><br>
+                        <br>
+
+                    </div>
+
+
+
+
+
+
+                </div>
+
+
+
+
+            </form>
+
+        </div>
+
+    </section>
+    </div>
     </section>
     <?php require_once("C:/xampp/htdocs/mentor/app/views/admin/popup.php"); ?>
 </body>

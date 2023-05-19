@@ -22,10 +22,7 @@
         <!-- Top bar -->
         <section class="top-bar">
             <div class="search-bar">
-                <input type="text" name="" id="" placeholder="Search...">
-                <a href="">
-                    <img src="<?php echo BASEURL ?>public/assets/Teacher/icons/icon_search.png" alt="">
-                </a>
+
             </div>
             <div class="top-bar-btns">
                 <a href="#">
@@ -33,7 +30,7 @@
                 </a>
                 <?php include_once "components/notificationIcon.php" ?>
                 <a href="<?php echo BASEURL ?>sponsor/profile">
-                    <img src="<?php echo BASEURL ?>public/assets/Teacher/icons/icon_profile_black.png" alt="profile">
+                        <?php include_once "components/profilePic.php"?>
                 </a>
             </div>
         </section>
@@ -110,9 +107,9 @@
                                 </div>
                             </div>
                         <?php } else {
-    foreach ($data[0] as $row) {
-        $dateTime = explode(" ", $row->timestamp);
-        ?>
+                            foreach ($data[0] as $row) {
+                                $dateTime = explode(" ", $row->timestamp);
+                                ?>
                         <div class="sponsor-list-row">
                             <div class="sponsor-list-item flex-1">
                                 <?php echo $row->paymentId ?>
@@ -159,24 +156,25 @@
 </body>
 <script>
     const BASEURL = "<?php echo BASEURL ?>";
-    let filterButton = document.getElementById("filterButton");
-    let filterForm = document.getElementById("filterForm");
-    let clearBtn = document.getElementById("clearButton");
+   let filterButton = document.getElementById("filterButton");
+   let filterForm = document.getElementById("filterForm");
+   let clearBtn = document.getElementById("clearButton");
 
-    filterButton.onclick = (e) =>  {
-        e.preventDefault();
-        let formData = new FormData(filterForm);
-        let url = `${BASEURL}sponsor/transactionHistory/1/?`;
-        for (let [key, value] of formData.entries()) {
-            url += `${key}=${value}&`;
-        }
-        window . location . replace(url);
-    }
+   filterButton.onclick = (e) =>  {
+       e.preventDefault();
+       let formData = new FormData(filterForm);
+       let url = `${BASEURL}sponsor/transactionHistory/1/?`;
+       for (let [key, value] of formData.entries()) {
+           url += `${key}=${value}&`;
+       }
+       window . location . replace(url);
+   }
 
-    clearBtn.onclick = (e) =>  {
-        e.preventDefault();
-        let url = `${BASEURL}sponsor/transactionHistory`;
-        window . location . replace(url);
-    }
+   clearBtn.onclick = (e) =>  {
+       e.preventDefault();
+       let url = `${BASEURL}sponsor/transactionHistory`;
+       window . location . replace(url);
+   }
 </script>
+
 </html>

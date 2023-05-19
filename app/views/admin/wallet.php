@@ -11,11 +11,6 @@
     <link rel="stylesheet" href="<?php echo BASEURL ?>stylesheets/admin/style.css">
 
 </head>
-<nav>
-    <div class="ad_nav">
-
-    </div>
-</nav>
 
 <body>
     <section class="page">
@@ -89,7 +84,7 @@
                 </div>
             </section>
             <!-- Middle part for whole content -->
-            <section class="mid-content ad_mid-content">
+            <section class="ad_mid-content">
 
                 <!-- Title and sub title of middle part -->
 

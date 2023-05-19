@@ -16,6 +16,12 @@
     <?php 
         if(isset($_SESSION['message']) && $_SESSION['message']== "error"){
             include_once "components/alerts/uploadFailed.php";
+        }elseif (isset($_SESSION['message']) && $_SESSION['message'] == "fillAllData"){
+            $message = "Please fill required data !";
+            include_once "components/alerts/operationFailed.php";
+        }elseif (isset($_SESSION['message']) && $_SESSION['message'] == "invalidType"){
+            $message = "Invalid type of file entered !";
+            include_once "components/alerts/operationFailed.php";
         }
     ?>
     <section class="page">
@@ -39,7 +45,7 @@
                     </a>
                     <?php include_once "components/notificationIcon.php" ?>
                     <a href="<?php echo BASEURL . 'rcProfile' ?>">
-                        <img src="<?php echo BASEURL ?>assets/icons/icon_profile_black.png" alt="profile">
+                        <?php include_once "components/profilePic.php"?>
                     </a>
                 </div>
             </section>

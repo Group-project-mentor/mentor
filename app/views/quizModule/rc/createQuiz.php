@@ -6,13 +6,25 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Create Quiz</title>
-    <link rel="stylesheet" href="<?php echo BASEURL?>public/stylesheets/Student/style.css">
+    <link rel="icon" type="image/x-icon" href="<?php echo BASEURL?>assets/mentor.ico">
+    <link rel="stylesheet" href="<?php echo BASEURL ?>public/stylesheets/Student/style.css">
     <link rel="stylesheet" href="<?php echo BASEURL?>public/stylesheets/quiz/quiz_styles.css">
 </head>
 
 <body>
 <section class="page">
-    
+<?php
+        if (isset($_SESSION['message']) && $_SESSION['message'] == "success") {
+            $message = "Operation Successful !";
+            include_once "components/alerts/operationSuccess.php";
+        } elseif (isset($_SESSION['message']) && $_SESSION['message'] == "failed") {
+            $message = "Create failed !";
+            include_once "components/alerts/operationFailed.php";
+        }elseif (isset($_SESSION['message']) && $_SESSION['message'] == "fillName"){
+            $message = "Please fill required data !";
+            include_once "components/alerts/operationFailed.php";
+        }
+?>
     <!-- Navigation panel -->
     <?php include_once "components/navbars/rc_nav_2.php"?>
 
@@ -27,9 +39,9 @@
                 <a href="<?php echo BASEURL .'rcResources/quizzes/'.$_SESSION['gid']."/".$_SESSION["sid"] ?>">
                     <div class="back-btn">Back</div>
                 </a>
-                <?php include_once "components/notificationIcon.php" ?>
-                <a href="#">
-                    <img src="<?php echo BASEURL?>public/assets/icons/icon_profile_black.png" alt="profile">
+                <?php include_once "components/notificationIcon.php"?>
+                <a href="<?php echo BASEURL . 'rcProfile' ?>">
+                        <?php include_once "components/profilePic.php"?>
                 </a>
             </div>
         </section>
@@ -55,37 +67,38 @@
                                name="quiz_name"
                                id="quizName"
                                class="rc-form-input"
-                               placeholder="Ex : Test 1"/>
+                               placeholder="Ex : Test 1"
+                               />
                     </div>
 
-                    <div class="rc-form-group">
-                        <label for="tot_mark" class="rc-form-label">
-                            Total Marks :
-                        </label>
-                        <input type="text"
-                               name="tot_mark"
-                               id="tot_mark"
-                               class="rc-form-input"
-                               placeholder="Ex : 100"
-                        />
-                    </div>
-                    <div class="rc-form-group">
-                        <label for="tot_mark" class="rc-form-label">
-                            Instructions :
-                        </label>
-                        <small>Add instructions one by one</small>
-                        <div style="display: flex;">
-                            <input type="text"
-                                   name="tot_mark"
-                                   id="tot_mark"
-                                   class="rc-form-input"
-                                   placeholder=""
-                                   style="flex: 1;"
-                            />
-                            <button type="button" class="rc-quiz-button green" style="width: 30px;margin: 10px">+</button>
-                        </div>
-
-                    </div>
+<!--                    <div class="rc-form-group">-->
+<!--                        <label for="tot_mark" class="rc-form-label">-->
+<!--                            Total Marks :-->
+<!--                        </label>-->
+<!--                        <input type="text"-->
+<!--                               name="tot_mark"-->
+<!--                               id="tot_mark"-->
+<!--                               class="rc-form-input"-->
+<!--                               placeholder="Ex : 100"-->
+<!--                               pattern="^[0-9]{1,5}$"-->
+<!--                               title="Please enter a valid mark"-->
+<!--                        />-->
+<!--                    </div>-->
+<!--                    <div class="rc-form-group">-->
+<!--                        <label for="tot_mark" class="rc-form-label">-->
+<!--                            Instructions :-->
+<!--                        </label>-->
+<!--                        <small>Add instructions one by one</small>-->
+<!--                        <div style="display: flex;">-->
+<!--                            <input type="text"-->
+<!--                                   class="rc-form-input"-->
+<!--                                   placeholder=""-->
+<!--                                   style="flex: 1;"-->
+<!--                            />-->
+<!--                            <button type="button" class="rc-quiz-button green" style="width: 30px;margin: 10px">+</button>-->
+<!--                        </div>-->
+<!---->
+<!--                    </div>-->
 
                     <div class="rc-form-group">
                         <button type="submit" class="rc-quiz-button green">

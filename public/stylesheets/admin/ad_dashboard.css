@@ -6,7 +6,7 @@ body{
     background:#D9D9D9;
 
 }
-.ad_mid-content{
+.ad_mid-content {
     background:#D9D9D9;
     padding: 0px;
     margin: 0px;
@@ -28,35 +28,65 @@ body{
 }
 .ad_cards{
     display: flex;
-    justify-content:space-evenly;
-    flex-wrap: wrap;
-    padding: 20px;
-    margin: 20px;
+    justify-content:space-around;
+    padding: 10px;
+    margin: 10px;
     background: #ffffff;
     border-radius: 25px;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
 .box{
-    width: 275px;
-    height: 175px;
-    padding:15px;
+    width: 275px;;
+    height: 185px;
+    padding:5px;
     border-radius: 30px;
-    justify-content:left;
+    justify-content:center;
     flex-wrap: wrap;
-    margin: 20px;
+    margin: 10px;
     font-size: larger;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    
 }
 
+.typeNcount{
+    display: flex;
+    flex-direction: column;
+    align-items:center;
+    gap: 1rem;
+    column-gap: 1rem;
+    
+}
+
+.boxtitle{
+    font: size 35px;
+    justify-content: center;
+}
 
 
 .imgrow{
     display: flex;
+    row-gap: 5px;
+    
+
+    
+}
+
+.img{
+    padding: 5px;
 }
 .mini{
-    width: 40px;
+    width: 100px;
     padding: 5px;
+}
+
+.count{
+    font-size: 2rem;
+    font-weight: bold;
+    text-align: right;
+    align-items: end;
+    font-size: xx-large;
+    text-shadow: #070707;
 }
 
 #st{
@@ -92,6 +122,11 @@ body{
     display: flex;
     justify-content: space-evenly;
     width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    /* max-width: 1000px; set a maximum width */
+    margin: 20px auto; /* use percentage values for margin */
 }
 
 .complaints{
@@ -108,6 +143,7 @@ body{
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 
 }
+
 .title{
     font-size: larger;
     font-weight: bolder;
@@ -133,17 +169,31 @@ button{
     
 }
 
-.ad_section3{
+/* .ad_section3{
     padding: 20px;;
     display: flex;
     justify-content:space-between;
     width: 100%; 
+} */
+
+.ad_section3 {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    margin: 20px auto;
+    
+}
+
+.bgbox {
+    background-color: #ffffff;
+    
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.15);
 }
 
 .task{
     display: flex;
     flex-direction: column;
-    width: 710px;
+    width: 610px;
     padding: 20px; 
 }
 .task-top{
@@ -190,31 +240,78 @@ button{
     padding: 20px ;
 }
 
-.btn-5{
-    width:300px;
-    height: 70px;
-    padding: 15px 10px;
-    margin: 50px;
+.btn-5 {
+    display: inline-block;
+    background-color: #0A2917;
+    color: #ffffff;
     text-align: center;
-    border-radius: 40px;
-    border-color: #000000;
-    background-color: #186537;
     text-decoration: none;
-    justify-content: center;
-    
-
-
-}
-
-.btn-sec5{
-    display: flex;
-    justify-content: space-between;
-}
-
-.btn-5:hover {
-    background-color: #265529;
+    font-size: 20px;
+    font-weight: bold;
+    border-radius: 30px;
+    padding: 10px 30px;
+    margin-right: 20px;
+    margin-bottom: 20px;
+    transition: background-color 0.3s ease;
   }
   
-.btn-5:active {
-    background-color: #004101;
+  .btn-5:hover {
+    background-color: #3c6042;
   }
+  .container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin: 20px 0;
+  }
+  
+  .row {
+    width: calc(50% - 10px);
+    margin-bottom: 20px;
+  }
+  
+  @media screen and (max-width: 768px) {
+    .row {
+      width: 100%;
+    }
+  }
+  
+  .content {
+    background-color: #f2f2f2;
+    padding: 20px;
+    border-radius: 10px;
+  }
+  
+  .complaints {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  
+  .pp {
+    width: 50px;
+    height: 50px;
+    overflow: hidden;
+    margin-right: 10px;
+  }
+  
+  .profile {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .name {
+    font-weight: bold;
+    margin-right: 10px;
+  }
+  
+  .userid {
+    flex: 1;
+  }
+  
+  .userid p {
+    margin: 0;
+  }
+  
+  

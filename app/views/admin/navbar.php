@@ -20,6 +20,10 @@
                     <img class="active" src="<?php echo BASEURL ?>assets/admin/bi_grid-fill.png" alt="dsh">
                     <div class="nav-link-text">Dashboard</div>
                 </a>
+                <a href="<?php echo BASEURL ?>admins/taskmanager" class="nav-link">
+                    <img src="<?php echo BASEURL ?>assets/admin/task.png" alt="tm">
+                    <div class="nav-link-text">Task Manager</div>
+                </a>
                 <a href="<?php echo BASEURL ?>admins/humanResource" class="nav-link">
                     <img src="<?php echo BASEURL ?>assets/admin/bi_people-fill.png" alt="hr">
                     <div class="nav-link-text">Human Resource</div>
@@ -32,7 +36,7 @@
                     <img src="<?php echo BASEURL ?>assets/admin/bi_mortarboard-fill.png" alt="sp">
                     <div class="nav-link-text">Scholorship Programe</div>
                 </a>
-                <a href="#" class="nav-link">
+                <a href="<?php echo BASEURL ?>admins/adminAnalytics" class="nav-link">
                     <img src="<?php echo BASEURL ?>assets/admin/Vector (1).png" alt="an">
                     <div class="nav-link-text">Analitics</div>
                 </a>
@@ -49,17 +53,17 @@
         <div class="content-area">
 
             <!-- Top bar -->
-            <section class="top-bar">
-                <div class="search-bar">
+            <section class="top-bar" style="justify-content:end">
+                <!-- <div class="search-bar">
                     <input type="text" name="" id="" placeholder="Search...">
                     <a href="">
                         <img src="<?php echo BASEURL ?>assets/admin/Vector (2).png" alt="">
                     </a>
-                </div>
+                </div> -->
                 <div class="top-bar-btns">
                     <?php include_once "components/notificationIcon.php" ?>
                     <a id="profile-btn">
-                        <img src="<?php echo BASEURL ?>assets/admin/Ellipse 2.png" alt="profile">
+                        <img src="<?php echo BASEURL ?>assets/admin/RV/user.svg" alt="profile">
                     </a>
                 </div>
             </section>

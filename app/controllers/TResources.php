@@ -41,10 +41,14 @@ public function __construct()
 
     public function quizzes($cid)
     {
+        $filters = removeMainURL($_GET);
         $this->getClass($cid);
         $_SESSION["cid"] = $cid;
-        $result = $this->model("TchResourceModel")->findQuizzes($cid);
-        $this->view('Teacher/resources/quizzes', array($result));
+        $res2 = $this->model("TchResourceModel")->findQuestionCounts($cid);
+        $questionCount = array();
+        foreach ($res2 as $item) $questionCount[$item->rs_id] = $item->count;
+
+        $this->view('Teacher/resources/quizzes', array($questionCount));
     }
 
     public function documents($cid, $page = 1)
@@ -98,7 +102,7 @@ public function __construct()
     private function getClass($class_id)
     {
         if (!isset($_SESSION["cid"])) {
-            $result1 = $this->model("classModel")->getClassId($class_id)[1];
+            $result1 = $this->model("classModel")->getClassId($class_id)[0];
             $_SESSION["cid"] = $result1;
         }
     }
@@ -115,7 +119,7 @@ public function __construct()
                 break;
             case 'video':
                 $file = $this->model("TchResourceModel")->getResource($id,$_SESSION['cid'],'video');
-                $resourceData = $this->model("TChResourceModel")->getVideo($id);
+                $resourceData = $this->model("TChResourceModel")->getVideo($id,$_SESSION['cid']);
                 if($resourceData[6] === "L")
                     $resourceData[4] = $this->filterVideoId($resourceData[4]);
                 $this->view("Teacher/preview/video_preview",array($file,$resourceData));
@@ -141,8 +145,31 @@ public function __construct()
         // var_dump($splitted_link);
     }
 
+    //    * Search Functions
+    public function searchResource($type, $searchText)
+    {
+        $result = array();
+        switch ($type) {
+            case "videos":
+                $result = $this->model("TchResourceModel")->searchVideos($_SESSION['cid'], $searchText);
+                break;
+            case "quizzes":
+                $result = $this->model("TchResourceModel")->searchQuizzes($_SESSION['cid'], $searchText);
+                break;
+            case "documents":
+                $result = $this->model("TchResourceModel")->searchDocuments($_SESSION['cid'],$searchText);
+                break;
+            case "others":
+                $result = $this->model("TchResourceModel")->searchOthers($_SESSION['cid'],  $searchText);
+                break;
+            case "pastpapers":
+                $result = $this->model("TchResourceModel")->searchPastpapers($_SESSION['cid'], $searchText);
+                break;
+        }
+        header("Content-Type:Application/json");
+        echo json_encode($result);
+    }
+
     
 
 }
-
-?>

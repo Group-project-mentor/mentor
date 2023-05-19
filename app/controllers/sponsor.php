@@ -20,13 +20,16 @@ class Sponsor extends Controller
         if($page != 1){
             $offset = ($page - 1) * $limit;
         }
+        $total = $this->model("sponsorStModel")->getTotalAmount($_SESSION['id'])->total;
+        $maxAmount = $this->model("sponsorStModel")->getMaxAmount($_SESSION['id'])->maxAmount;
+
         $rowCount = $this->model($this->table1)->getSponsorStudentsCount($_SESSION['id'])->count;
         $res = $this->model($this->table1)->getSponsorStudents($_SESSION['id'], $offset, $limit);
         $pageData = array($page, ceil($rowCount / $limit));
         if($page < 1 || $page > $pageData[1]){
             header("location:".BASEURL."sponsor/allsStudents");
         }
-        $this->view('sponsor/student_progress/student_report',array($res,$pageData));
+        $this->view('sponsor/student_progress/student_report',array($res,$pageData,$maxAmount,$total));
     }
 
     public function getStudents($search){
@@ -40,8 +43,10 @@ class Sponsor extends Controller
     }
 
     public function new_student($search = null){
+        $total = $this->model("sponsorStModel")->getTotalAmount($_SESSION['id'])->total;
+        $maxAmount = $this->model("sponsorStModel")->getMaxAmount($_SESSION['id'])->maxAmount;
         $approvedStudents = $this->getNewStudents($search);
-        $this->view('sponsor/student_progress/new_student',array($approvedStudents));
+        $this->view('sponsor/student_progress/new_student',array($approvedStudents,$maxAmount,$total));
     }
 
     public function getNewStudents($search){
@@ -54,8 +59,15 @@ class Sponsor extends Controller
         }
     }
 
-    public function see_student(){
-        $this->view('sponsor/student_progress/see_student');
+    public function see_student($id){
+        $data = $this->model("sponsorStModel")->getStudentDetails($id);
+        $subjects = $this->model("sponsorStModel")->getSubjectDetails($id);
+        $grades = $this->model("sponsorStModel")->getGradeDetails($id);
+        // $payments = $this->model("sponsorStModel")->getPayments($id);
+        $paidPayments = $this->model("sponsorStModel")->getPaymentsPaid($id)->count;
+        $remaining_count = $data->fundMonths - $paidPayments;
+
+        $this->view('sponsor/student_progress/see_student',array($data,$subjects,$grades, $remaining_count));
     }
 
 //    ? Used transaction in this
@@ -64,6 +76,13 @@ class Sponsor extends Controller
          try{
             if ($this->model($this->table1)->isStudentStatus($st_id,"AP")){
                 if($this->model($this->table1)->connectSponsor($st_id,$_SESSION['id'])){
+                    $total = $this->model("sponsorStModel")->getTotalAmount($_SESSION['id'])->total;
+                    $maxAmount = $this->model("sponsorStModel")->getMaxAmount($_SESSION['id'])->maxAmount;
+                    if($total > $maxAmount){
+                        $remain =number_format($total - $maxAmount,2);
+                        $notifyMsg = "You have exeeded your maximum amount of funding by Rs. $remain";   
+                        $this->notify($_SESSION['id'], $notifyMsg, "sp_warn");
+                    }
                     flashMessage("Student Added!");
                     $displayName = $this->model($this->table1)->getMyData($_SESSION['id'])->dispName;
                     $notifyMsg = "Congratulations! Sponsor $displayName added you for funding !";
@@ -138,7 +157,8 @@ class Sponsor extends Controller
     private function password(){
         $this->view("sponsor/profile/sp_change_passwd");
     }
-
+    
+    // ! Not using now
     public function changeImage(){
         if (isset($_POST['image'])) {
             if($this->model("userModel")->changeImg($_SESSION['id'],$_POST['image'])){
@@ -146,6 +166,56 @@ class Sponsor extends Controller
             }else{
                 echo "unsuccess";
             }
+        }
+    }
+
+    public function updateImage()
+    {
+        if (isset($_FILES["image"])) {
+            $typeArray = array("png" => "image/png", "jpg" => "image/jpg", "jpeg" => "image/jpeg");
+            $fileData = array("name" => $_FILES["image"]["name"],
+                    "type" => $_FILES["image"]["type"],
+                    "size" => $_FILES["image"]["size"]);
+            $extention = pathinfo($fileData["name"], PATHINFO_EXTENSION);
+            if (in_array($fileData['type'], $typeArray)) {
+                $newFileName = uniqid() . $_SESSION["id"] . "." . $extention;
+                $image = $this->model("userModel")->getImage($_SESSION['id'])[0];
+                if(empty($image) or $image == ""){
+                    if (move_uploaded_file($_FILES["image"]["tmp_name"], "data/profiles/" . $newFileName)) {
+                        if($this->model("userModel")->changeImg($_SESSION['id'],$newFileName)){
+                            $_SESSION['profilePic'] = $newFileName; 
+                            echo "success";
+                        }else{
+                            echo "failed";
+                        }
+                    } else {
+                        echo "failed";
+                    }
+                }else{
+                    if (move_uploaded_file($_FILES["image"]["tmp_name"], "data/profiles/" . $newFileName) and file_exists("data/profiles/".$image) and unlink("data/profiles/".$image)) {
+                        if($this->model("userModel")->changeImg($_SESSION['id'],$newFileName)){
+                            $_SESSION['profilePic'] = $newFileName; 
+                            echo "success";
+                        }else{
+                            echo "failed";
+                        }
+                    }elseif(!file_exists("data/profiles/".$image)){
+                        if($this->model("userModel")->changeImg($_SESSION['id'],$newFileName)){
+                            $_SESSION['profilePic'] = $newFileName; 
+                            echo "success";
+                        }else{
+                            echo "failed";
+                        }
+                    }
+                     else {
+                        echo "failed";
+                    }
+                }
+            }else{
+                echo "type_error";
+            }     
+        }else{
+            echo "failed";
         }
     }
 
@@ -229,7 +299,7 @@ class Sponsor extends Controller
     }
 
     public function transactionHistory($page = 1){
-            $filters = $_GET;
+            $filters = removeMainURL($_GET);
             $limit = paginationRowLimit;
             $offset = 0;
             if($page != 1){
@@ -482,7 +552,7 @@ class Sponsor extends Controller
             case "payments":
                 $bill = $this->model($this->table1)->getPayBill($id);
                 $result =$this->model($this->table1)->getPaymentDetails($id);
-                $this->view("sponsor/detailedViews/paymentView",array($result,$bill));
+                $this->view("sponsor/detailedViews/paymentView",array($result,$bill,$id));
                 break;
             case "bills":
                 $billDetails =$this->model($this->table1)->getBillDetails($id,$_SESSION['id']);
@@ -496,5 +566,92 @@ class Sponsor extends Controller
             default:
                 break;
         }
+    }
+
+    public function printBill($id){
+        $userData = $this->model("userModel")->getSponsorData($_SESSION['id']);
+        $bill = $this->model($this->table1)->getPayBill($id)->id;
+        $result =$this->model($this->table1)->getPaymentDetails($id);
+        $billDetails =$this->model($this->table1)->getBillDetails($bill ,$_SESSION['id']);
+        $billContent = $this->model($this->table1)->getBillData($bill);
+        $total = 0;
+        foreach ($billContent as $one){
+            $total += $one->monthlyAmount;
+        }
+
+        $this->view("sponsor/detailedViews/generateBill",array($result, $total, $billDetails, $billContent, $userData));
+    }
+
+    public function payAllMoths($student_id){
+        $studentDetails = $this->model('sponsorStModel')->getStudentDetails($student_id);
+        $payments = $this->model('sponsorStModel')->getPayments($student_id);
+
+        $fundMonths = $studentDetails->fundMonths;
+        $fund = $studentDetails->monthlyAmount;
+
+        $acceptedDate = explode("-",$studentDetails->approved_date);
+        $accMonth = intval($acceptedDate[1]);
+        $accYear = intval($acceptedDate[0]);
+        $newArry = array();
+        $total = 0;
+
+            if ($fundMonths > 0){
+                $timeArray = array();
+
+                foreach ($payments as $payment){
+                    $payDate = $payment->year."-".$payment->month;
+                    $timeArray[] = $payDate;
+                    // var_dump(in_array($payDate,$timeArray));
+                }
+
+                $month = $accMonth;
+                $year = $accYear;
+
+                for($i = 1; $i <= $fundMonths; $i++){
+                    $payDate = $year."-".$month;
+                    if (!in_array($payDate,$timeArray)){
+                        $newArry[] = $payDate;
+                        $total += $fund;
+                    }
+                    $month = $accMonth + $i;
+                    $year = $accYear;
+                    if ($month > 12){
+                        $month = $month - 12;
+                        $year = $year + 1;
+                    }
+                }
+
+                $billID = getUnique($_SESSION['id']);
+                $currency = "LKR";
+                
+                if($this->model('sponsorStModel')->addBill($billID, $currency, $total, $_SESSION['id'])){
+                    $flag = 1;
+                    foreach ($newArry as $item){
+                        $yearMonth = explode("-",$item);
+                        if($this->model('sponsorStModel')->insertBillRow($student_id, $yearMonth[0], $yearMonth[1], $billID)){
+                            $flag *= 1;
+                        }else{
+                            $flag *= 0;
+                        }
+                    }
+                    if($flag == 1){
+                        flashMessage("success");
+                        header("location:".BASEURL."sponsor/slips/bills/".$billID);
+                    }else{
+                        flashMessage("failed");
+                        header("location:".BASEURL."sponsor/allStudents");
+                    }
+                }else{
+                    flashMessage("failed");
+                    header("location:" . BASEURL . "sponsor/allStudents");
+                }              
+                            
+            }else{
+                flashMessage("no_pay");
+                header("location:" . BASEURL . "sponsor/allStudents");
+            }
+    }
+
+    public function getMaxAmount(){
     }
 }

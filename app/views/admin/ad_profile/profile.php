@@ -34,18 +34,18 @@ if (!empty($data[1]) && $data[1] == "success") {
                             <h1>Admin Profile</h1>
                             <h6><?php echo $_SESSION['name'] ?></h6>
                         </div>
-                        <a href="<?php echo BASEURL . 'logout' ?>">
+                        <!-- <a href="<?php echo BASEURL . 'logout' ?>">
                             <div class="rc-add-btn">
                                 <img src="<?php echo BASEURL ?>assets/icons/icon_logout.png"  class="rc-profile-arrow-btn" style="width: 15px;height:15px;margin:auto;">
                                 Logout
                             </div>
-                        </a>
+                        </a> -->
                     </div>
 
                 <div class="rc-profile">
                     <div class="rc-profile-main">
                         <a class="rc-profile-image" href="<?php echo BASEURL ?>admins/change/image">
-                            <img src="<?php echo (!empty($data[0]->image)) ? $data[0]->image : BASEURL . "assets/clips/profile_img.webp" ?>"
+                            <img src="<?php echo (!empty($data[0]->image)) ? BASEURL."data/profiles/".$data[0]->image : BASEURL . "assets/clips/profile_img.webp" ?>"
                                  alt="profile"
                                  id="profileImg"
                                  style="object-fit: cover;"/>
@@ -70,7 +70,7 @@ if (!empty($data[1]) && $data[1] == "success") {
                                     <div>
                                         <?php echo (!empty($data[0]->name)) ? $data[0]->name : "" ?>
                                     </div>
-                                    <a href="<?php echo BASEURL ?>admins/change/changeName">
+                                    <a href="<?php echo BASEURL ?>admins/change/name">
                                         <img src="<?php echo BASEURL ?>assets/icons/icon_next.png" alt="notify" class="rc-profile-arrow-btn">
                                     </a>
                                 </div>
@@ -101,14 +101,14 @@ if (!empty($data[1]) && $data[1] == "success") {
                                     </a>
                                 </div>
                             </div> -->
-                            <a class="rc-profile-row" style="text-decoration:none;padding:10px" href="<?php echo BASEURL ?>adProfile/change/password">
+                            <!-- <a class="rc-profile-row" style="text-decoration:none;padding:10px" href="<?php echo BASEURL ?>adProfile/change/password">
                                 <div class="rc-profile-left" style="color:black;">
                                     Update Password
                                 </div>
                                 <div class="rc-profile-right">
                                         <img src="<?php echo BASEURL ?>assets/icons/icon_next.png" alt="notify" class="rc-profile-arrow-btn">
                                 </div>
-                            </a>
+                            </a> -->
                             <a class="rc-profile-row txt-red">
                                 <div class="rc-profile-left">
                                     Delete Account
@@ -123,6 +123,7 @@ if (!empty($data[1]) && $data[1] == "success") {
             </section>
         </div>
     </section>
+    <?php require_once("C:/xampp/htdocs/mentor/app/views/admin/popup.php"); ?>
 
 </body>
 
@@ -139,6 +140,21 @@ if (!empty($data[1]) && $data[1] == "success") {
         profileImg.classList.remove('rc-profile-img-hidden');
         changeBtn.classList.add('hidden');
     })
+
+    const profileBtn = document.getElementById("profile-btn");
+    const popupMenu = document.getElementById("popup-menu")
+    let toggler = false;
+
+    profileBtn.addEventListener('click', () => {
+        if (toggler) {
+            popupMenu.style.display = "none";
+            toggler = false
+
+        } else {
+            popupMenu.style.display = "flex";
+            toggler = true
+        }
+    });
 
 </script>
 

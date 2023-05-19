@@ -5,6 +5,7 @@ class St_public_resources extends Controller
     public function __construct()
     {
         sessionValidator();
+        flashMessage();
     }
 
     // this is use to set view of all public resources through this controller.
@@ -57,19 +58,41 @@ class St_public_resources extends Controller
         $this->view('student/enrollment/st_quizzes', array($result));
     }
 
-    public function st_quizzes_do($id)
+    public function st_quizzes_do($id, $question = 1)
     {
+        $limit = paginationRowLimit;
+        $offset = ($question != 1) ? ($question - 1) * $limit : 0;
+        $_SESSION['cid'] = $id;
         $sid = $_SESSION["sid"];
-        //echo $id;
-        $result = $this->model("st_public_resources_model")->findQuizzes($id,$sid);
-        $quiz = $this->model("st_quiz_model")->getQuiz($id);
+        $gid = $_SESSION["gid"];
+        
+        $res2= $this->model("st_public_resources_model")->UpdateQuizInDB($_SESSION['id'],$_SESSION['cid']);
+        
+        $rowCount = $this->model("st_public_resources_model")->getResourceCount("quiz", $gid, $sid)->count;
+        $result = $this->model("st_public_resources_model")->findQuizzes($gid,$sid,$offset, $limit);
+        $quiz = $this->model("st_quiz_model")->getQuiz($gid,$offset, $limit);
+
+        $pageData = array($question, ceil($rowCount / $limit));
+        if ($question < 1 || ($question > $pageData[1] and $pageData[1] != 0)) {
+
+            header("location:" . BASEURL . "st_public_resources/st_quizzes_do/" . $id . "/" . $question);
+        }
         $this->view("student/enrollment/st_quizzes_do", array($result,$quiz,$id));
     }
 
-    public function st_quizzes_intro($id,$qname)
-    {
-        $_SESSION['qname'] = $qname;
+    public function st_quizzes_intro($id){
+
         $this->view("student/enrollment/st_quizzes_intro", array($id));
+    }
+
+    public function st_quizzes_do_end(){
+        $res = $this->model("st_quiz_model")->getQuizendData($_SESSION['id'],$_SESSION['cid']);
+        $this->view("student/enrollment/st_quizzes_do_end", array($res));
+    }
+
+    public function st_quizzes_do_end_preview(){
+        flashMessage("QuizEnd");
+        header("location:" . BASEURL . 'st_public_resources/index_quizzes/' . $_SESSION['gid'] . '/' .$_SESSION["sid"] );
     }
 
     public function index_past_papers($grade, $subject)
@@ -86,8 +109,15 @@ class St_public_resources extends Controller
 
     public function st_pastpaper_link_Quiz($id)
     {
-        $file = $this->model("st_public_resources_model")->getResource($id,$_SESSION['gid'],$_SESSION['sid'],'paper');
-        $this->view('student/enrollment/st_pastpaper_link_Quiz',$file);
+        $file = $this->model("st_public_resources_model")->getLinkedQuiz($id);
+        var_dump($file);
+        if (!empty($file->qid)) {
+            header("location:" . BASEURL . 'st_public_resources/st_quizzes_do/' . $file->qid );  // controller to controller - redirect
+        }
+        else {
+            header("location:" . BASEURL . 'st_public_resources/index_past_papers/' . $_SESSION['gid'] . '/' .$_SESSION["sid"] );
+        }
+
 
     }
 
@@ -133,16 +163,20 @@ class St_public_resources extends Controller
                 break;
             case 'paper':
                 $file = $this->model("st_public_resources_model")->getResource($id, $_SESSION['gid'], $_SESSION['sid'], 'paper');
-                $this->view("student/enrollment/st_pastpaper_do", $file);
+                
+                $answer = $this->model("st_public_resources_model")->getPastPaperAnswer($id);
+                
+                $this->view("student/enrollment/st_pastpaper_do", array($file,$answer));
                 break;
             case 'video':
+                $related = $this->model("st_public_resources_model")->getRandomVideos($_SESSION['gid'], $_SESSION['sid']);
                 $file = $this->model("st_public_resources_model")->getResource($id, $_SESSION['gid'], $_SESSION['sid'], 'video');
 
                 $resourceData = $this->model("st_public_resources_model")->getVideo($id, $_SESSION['sid'], $_SESSION['gid']);
                 //var_dump($resourceData);
                 if ($resourceData->type === "L")
                     $resourceData->link = $this->filterVideoId($resourceData->link);
-                $this->view("student/enrollment/st_video_play", array($file, $resourceData));
+                $this->view("student/enrollment/st_video_play", array($file, $resourceData , $related));
                 break;
         }
     }
@@ -161,4 +195,66 @@ class St_public_resources extends Controller
         }
         // var_dump($splitted_link);
     }
+
+    public function organized($grade_id, $subject_id)
+    {
+        $topics = $this->model("resourceModel")->getTopics($grade_id, $subject_id);
+        $topicOrderRow = $this->model("resourceModel")->getTopicOrder($grade_id, $subject_id);
+        $topicOrder = (!empty($topicOrderRow))?$topicOrderRow->tpcOrder:null;
+        $this->getNames($grade_id, $subject_id);
+        $_SESSION["gid"] = $grade_id;
+        $_SESSION["sid"] = $subject_id;
+        if(empty($topicOrderRow)){
+            if(!empty($topics)){
+                foreach ($topics as $topic) {
+                    $topicIds = array();
+                    foreach ($topics as $topic) {
+                        $topicIds[] = $topic->id;
+                    }
+                    $topicOrder = implode(',', $topicIds);
+                }
+            }else{
+                $topicOrder = "";
+            }
+        }elseif(empty($topicOrder) || $topicOrder == ""){
+            $topicOrder = "";
+        }
+        $topicData = array();
+        foreach ($topics as $topic) {
+            $topicData[$topic->id] = $topic;
+        }
+        $this->view('student/enrollment/st_organized',array($topicData,$topicOrder));
+    }
+
+    public function getResourcesTopics(){
+
+        $videos = $this->model("resourceModel")->getResourceByTypeForTopics($_SESSION['gid'], $_SESSION['sid'],'video');
+        $pdfs = $this->model("resourceModel")->getResourceByTypeForTopics($_SESSION['gid'], $_SESSION['sid'],'pdf');
+        $others = $this->model("resourceModel")->getResourceByTypeForTopics($_SESSION['gid'], $_SESSION['sid'], 'other');
+        $quizzes = $this->model("resourceModel")->getResourceByTypeForTopics($_SESSION['gid'], $_SESSION['sid'], 'quiz');
+        $papers = $this->model("resourceModel")->getResourceByTypeForTopics($_SESSION['gid'], $_SESSION['sid'], 'paper');
+
+        $allResources = array_merge($videos,$pdfs,$others,$quizzes,$papers);
+
+        $resourcesTopicWise = $this->model("resourceModel")->getResourcesWithTopics($_SESSION['sid'],$_SESSION['gid']);
+
+        $organizedNameList = array();
+
+        if(!empty($resourcesTopicWise)){
+            foreach ($resourcesTopicWise as $topic) {
+                 $organizedList[$topic->t_id][] = $topic;
+                foreach ($allResources as $object) {
+                    if ($object->id === $topic->rsrc_id) {
+                        $topic->name = $object->name;
+                        $organizedNameList[$topic->t_id][] = $topic;
+                        break;
+                    }
+                }
+            }
+        }
+        header("Content-Type:Application/json");
+        
+        echo json_encode($organizedNameList);
+    }
+
 }

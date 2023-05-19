@@ -14,11 +14,14 @@
 
 <body>
     <?php
-if (isset($data[1]) && $data[0] == "success") {
-    include_once "components/alerts/uploadSuccess.php";
-} elseif (isset($data[1]) && $data[0] == "error") {
-    include_once "components/alerts/uploadFailed.php";
-}
+        if (isset($_SESSION['message']) && $_SESSION['message'] == "success") {
+            include_once "components/alerts/uploadSuccess.php";
+        } elseif (isset($_SESSION['message']) && $_SESSION['message'] == "error") {
+            include_once "components/alerts/uploadFailed.php";
+        }elseif (isset($_SESSION['message']) && $_SESSION['message'] == "fillAllData"){
+            $message = "Please fill required data !";
+            include_once "components/alerts/operationFailed.php";
+        }
 ?>
     <section class="page">
 
@@ -41,7 +44,7 @@ if (isset($data[1]) && $data[0] == "success") {
                     </a>
                     <?php include_once "components/notificationIcon.php" ?>
                     <a href="<?php echo BASEURL . 'rcProfile' ?>">
-                        <img src="<?php echo BASEURL ?>assets/icons/icon_profile_black.png" alt="profile">
+                        <?php include_once "components/profilePic.php"?>
                     </a>
                 </div>
             </section>

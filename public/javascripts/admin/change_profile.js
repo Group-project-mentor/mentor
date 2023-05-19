@@ -11,31 +11,59 @@ fileChooser.addEventListener("change", () => {
         fileReader.addEventListener("load", () => {
             image = fileReader.result;
             document.getElementById("profImg").src = image;
-            console.log(image);
         });
     }
 });
 
+// submit.addEventListener("click", () => {
+//     if (image != "") {
+//         const formData = new FormData();
+//         formData.append("image", image);
+//         $.ajax({
+//             type: 'POST',
+//             url: 'http://localhost/mentor/admins/changeImage',
+//             data: formData,
+//             processData: false,
+//             contentType: false,
+//             success: (response) => {
+//                 window.location.replace("http://localhost/mentor/admins/profile");
+//                 // console.log(response);
+//                 // if (response == "success") {
+//                 //     // alertMsg.textContent = response;
+                    
+//                 // } else {
+//                 //     alertMsg.textContent = response;
+//                 // }
+//             }
+//         });
+//     }
+// });
+
 submit.addEventListener("click", () => {
     if (image != "") {
         const formData = new FormData();
+        let http = new XMLHttpRequest();
         formData.append("image", image);
+        http.open("POST", `${BASEURL}admins/updateImage`, true);
+        http.send(formData);
 
-        var xhttp = new XMLHttpRequest();
-        xhttp.onreadystatechange = function() {
-            if (this.readyState == 4 && this.status == 200) {
-                var response = this.responseText;
-
-                if (response == "Successful") {
-                    alertMsg.textContent = "Successfully updated !";
+        http.onload = () => {
+            if (http.status === 200) {
+                if (http.response.trim() == "success") {
+                    makeSuccess("Successfully updated !");
+                } else if (http.response.trim() == "type_error") {
+                    makeError("Incorrect file type !");
                 } else {
-                    alertMsg.textContent = "Not updated !";
+                    console.log(http.response);
+                    makeError("Error Occured !");
                 }
+                setTimeout(() => {
+                    // location.reload();
+                }, 2000);
+            } else {
+                console.log(http.response);
+                makeError("Error Occured !");
             }
-
         };
-        xhttp.open("POST", "http://localhost/mentor/admins/changeImage",true);
-        // xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-        xhttp.send(formData);
     }
 });

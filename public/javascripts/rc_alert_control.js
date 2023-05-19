@@ -11,10 +11,10 @@ function delConfirm (id, no){
             type = "video";  
             break;
         case 2:
-            type = "quiz"; // todo 
+            type = "quiz";
             break;
         case 3:
-            type = "pastpaper"; // todo
+            type = "pastpaper";
             break;
         case 4:
             type = "document";
@@ -26,8 +26,6 @@ function delConfirm (id, no){
     delBtn.href = `${BaseUrl}rcDelete/${type}/${id}`;
     delConfMsg.classList.remove("hidden");
     delConfMsg.classList.add("message-area");
-    console.log(delBtn.href);
-
 }
 
 cancelDel.addEventListener('click',()=>{

@@ -1,0 +1,108 @@
+.mid-content {
+    height: 100vh;
+    /* other styles */
+}
+
+
+.form {
+    padding: 30px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+    margin: auto;
+    max-width: 700px;
+    width: 100%;
+    height: 600px;
+}
+
+/* Styles for the mid-title */
+.mid-title {
+    margin: 0 auto;
+    text-align: center;
+}
+
+.mid-title h1 {
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+/* Styles for the dataentry div */
+.dataentry {
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+}
+
+/* Styles for the labels and input fields */
+.l {
+    flex: 1;
+    margin: 10px;
+}
+
+.inputfield {
+    border-radius: 10px;
+    border: none;
+    padding: 10px;
+    width: 100%;
+    margin-top: 5px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+}
+
+label {
+    display: block;
+    font-size: 16px;
+    font-weight: 500;
+    margin-bottom: 5px;
+}
+
+/* Styles for the select field */
+select {
+    border-radius: 10px;
+    border: none;
+    padding: 10px;
+    width: 100%;
+    margin-top: 5px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Styles for the Add and Send link via mail button */
+.comp-btns {
+    border: none;
+    border-radius: 10px;
+    padding: 10px 20px;
+    font-size: 16px;
+    color: #ffffff;
+    background-color: #186537;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+.comp-btns:hover {
+    background-color: #42684d;
+}
+
+/* Styles for the back and close buttons */
+.bckclose {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.back,
+.close {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+}
+
+.back {
+    transform: rotate(180deg);
+}
+
+.close {
+    filter: invert(1);
+}

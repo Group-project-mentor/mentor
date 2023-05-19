@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="<?php echo BASEURL ?>assets/mentor.ico">
     <title>Questions</title>
     <link rel="stylesheet" href="<?php echo BASEURL ?>public/stylesheets/Student/style.css">
     <link rel="stylesheet" href="<?php echo BASEURL ?>public/stylesheets/quiz/resources.css">
@@ -35,9 +36,9 @@
                         Back
                     </button>
 <!--                </a>-->
-                <?php include_once "components/notificationIcon.php" ?>
+                <?php include_once "components/notificationIcon.php"?>
                 <a href="<?php echo BASEURL . 'rcProfile' ?>">
-                    <img src="<?php echo BASEURL ?>public/assets/icons/icon_profile_black.png" alt="profile">
+                        <?php include_once "components/profilePic.php"?>
                 </a>
             </div>
         </section>

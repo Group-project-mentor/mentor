@@ -89,6 +89,11 @@ class payment extends Controller
         if (($local_md5sig === $md5sig) AND ($status_code == 2) ){
             $res = $this->model("payments")
                 ->savePayment($_POST['payment_id'],$userId,$_POST['payhere_currency'],$_POST['payhere_amount'],$des,$_POST['method'],$bill_id);
+            $students = $this->model("payments")->getStudentsofBill($bill_id);
+            foreach ($students as $student){
+                $notifyMsg = "Sponsor $userId Paid to you for ".$student->year."/".$student->month;
+                $this->notify($student->student_id, $notifyMsg,"payment");
+            }
             $notifyMsg = "Successfully paid the payment :".$_POST['payhere_amount']." ".$_POST['payhere_currency'];
             $this->notify($userId,$notifyMsg,"payment");
         }

@@ -38,11 +38,23 @@ class sponsorStModel extends Model
         return $this->fetchOneObj($stmt);
     }
 
-    public function getPayments($id)
+    public function getPayments($id, $spID = null)
     {
-        $stmt = $this->prepare("SELECT student_id, month, year FROM sp_pay WHERE sp_pay.student_id = ?");
-        $stmt->bind_param('i', $id);
+        if(empty($spID)){
+            $stmt = $this->prepare("SELECT student_id, month, year FROM sp_pay WHERE sp_pay.student_id = ?");
+            $stmt->bind_param('i', $id);
+        }else{
+            $stmt = $this->prepare("SELECT student_id, month, year FROM sp_pay WHERE sp_pay.student_id = ? AND sp_pay.sponsor_id = ?");
+            $stmt->bind_param('ii', $id, $spID);
+        }
         return $this->fetchObjs($stmt);
+    }
+
+    public function getPaymentsPaid($id, $spID = null)
+    {
+        $stmt = $this->prepare("SELECT COUNT(sp_pay.student_id) as count FROM sp_pay,bill WHERE sp_pay.billNo = bill.id AND sp_pay.student_id = ? AND bill.status = 1");
+        $stmt->bind_param('i', $id);
+        return $this->fetchOneObj($stmt);
     }
 
     public function getSponsorship($sponsor_id)
@@ -132,7 +144,7 @@ class sponsorStModel extends Model
 
     public function connectSponsor($st_id, $sp_id)
     {
-        $stmt = $this->prepare("UPDATE student SET sponsor_id = ? WHERE student.id = ?");
+        $stmt = $this->prepare("UPDATE student SET sponsor_id = ?, status = 'FU' WHERE student.id = ?");
         $stmt->bind_param("ii", $sp_id, $st_id);
         return $this->executePrepared($stmt);
     }
@@ -177,6 +189,39 @@ class sponsorStModel extends Model
     public function getMyData($id)
     {
         $stmt = $this->prepare("SELECT * FROM sponsor WHERE id = ?");
+        $stmt->bind_param("i", $id);
+        return $this->fetchOneObj($stmt);
+    }
+
+    public function getStudentDetails($id)
+    {
+        $stmt = $this->prepare("SELECT user.id, user.email, user.name, user.image, student.fundMonths, student.monthlyAmount, student.approved_date FROM user,student WHERE user.id = student.id AND user.id = ?");
+        $stmt->bind_param("i", $id);
+        return $this->fetchOneObj($stmt);
+    }
+
+    public function getSubjectDetails($id)
+    {
+        $stmt = $this->prepare("SELECT DISTINCT(subject.name) AS sub FROM subject, st_enroll_subject WHERE subject.id = st_enroll_subject.subject_id AND st_enroll_subject.student_id = ?");
+        $stmt->bind_param("i", $id);
+        return $this->fetchObjs($stmt);
+    }
+
+    public function getGradeDetails($id)
+    {
+        $stmt = $this->prepare("SELECT DISTINCT(grade.name) AS grd FROM grade, st_enroll_subject WHERE grade.id = st_enroll_subject.grade_id AND st_enroll_subject.student_id = ?");
+        $stmt->bind_param("i", $id);
+        return $this->fetchObjs($stmt);
+    }
+
+    public function getTotalAmount($id){
+        $stmt = $this->prepare("SELECT SUM(monthlyAmount) as total FROM student WHERE sponsor_id = ?");
+        $stmt->bind_param("i", $id);
+        return $this->fetchOneObj($stmt);
+    }
+
+    public function getMaxAmount($id){
+        $stmt = $this->prepare("SELECT maxAmount from sponsor WHERE id = ?");
         $stmt->bind_param("i", $id);
         return $this->fetchOneObj($stmt);
     }

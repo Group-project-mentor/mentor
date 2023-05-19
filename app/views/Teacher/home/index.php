@@ -66,19 +66,12 @@
             <!-- Top bar -->
             <section class="top-bar">
                 <div class="search-bar">
-                    <input type="text" name="" id="" placeholder="Search...">
-                    <a href="">
-                        <img src="<?php echo BASEURL ?>public/assets/Teacher/icons/icon_search.png" alt="">
-                    </a>
+                   
                 </div>
                 <div class="top-bar-btns">
-                    <a href="#">
-                        <div class="back-btn">Back</div>
-                    </a>
+                    
                     <?php include_once "components/notificationIcon.php" ?>
-                    <a href="<?php echo  BASEURL ?>TProfile/profile">
-                        <img src="<?php echo BASEURL ?>public/assets/Teacher/icons/icon_profile_black.png" alt="profile">
-                    </a>
+                    <?php include_once "components/premiumIcon.php" ?>
                 </div>
             </section>
 
@@ -113,7 +106,7 @@
                                 if ($count <= 3) {
                             ?>
                                     <div class="subject-card">
-                                        <a href='<?php echo BASEURL . "TClassMembers/memDetails/" . $row->cid ?>'>
+                                    <a href='<?php echo BASEURL . "TClassMembers/memDetails/" . $row->cid . "/" . $row->cname ?>'>
                                             <img alt='' src="<?php echo BASEURL . "public/assets/Teacher/patterns/" . $count . '.png' ?>" />
                                         </a>
                                         <a href="#"><label><?php echo $row->cid ?></label></a>
@@ -154,7 +147,7 @@
                                 <?php foreach ($data[1] as $row) {
                                     if ($count <= 3) { ?>
                                         <div class="subject-card">
-                                            <a href='<?php echo BASEURL   . "TPrivileges/pMemberDetails/" . $row->cid ?>'>
+                                            <a href='<?php echo BASEURL   . "TPrivileges/pMemberDetails/". $row->cid . "/" . $row->cname  ?>'>
                                                 <img alt='' src="<?php echo BASEURL . "public/assets/Teacher/patterns/" . $count . '.png' ?>" />
                                             </a>
                                             <a href="#"><label><?php echo $row->cid ?></label></a>

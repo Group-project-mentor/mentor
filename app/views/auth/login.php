@@ -18,29 +18,37 @@
         <div class="signin-signup">
           <form action="<?php echo BASEURL ?>login/verify_login" class="sign-in-form" method="POST">
             <h2 class="title">Login</h2>
-            <div class="input-field" style="<?php echo $data == 2 ? 'border:1px solid red;' : 'border:1px solid transparent;' ?>">
+
+            <div class="input-field" style="<?php echo (isset($_SESSION['message']) and ($_SESSION['message'] == 'not_registered' or $_SESSION['message'] == 'empty_fields')) ? 'border:1px solid red;' : 'border:1px solid transparent;' ?>">
               <i class="fas fa-user"></i>
               <input type="email" placeholder="Email" id="email" name="email" />
             </div>
-            <?php if ($data == 2) {?>
+
+              <?php if (isset($_SESSION['message']) and $_SESSION['message'] == 'not_registered') {?>
               <small style="color: red;text-align:right;">You are not registered !</small>
               <?php }?>
-              <?php if ($data == 3) {?>
+
+              <?php if (isset($_SESSION['message']) and $_SESSION['message'] == 'incorrect_email') {?>
                 <small style="color: red;text-align:right;">Wrong email entered !</small>
               <?php }?>
-            <div class="input-field" style="<?php echo $data == 1 ? 'border:1px solid red;' : 'border:1px solid transparent;' ?>">
+
+            <div class="input-field" style="<?php echo (isset($_SESSION['message']) and ($_SESSION['message'] == 'incorrect_passwd' or $_SESSION['message'] == 'empty_fields')) ? 'border:1px solid red;' : 'border:1px solid transparent;' ?>">
               <i class="fas fa-lock"></i>
               <input type="password" placeholder="Password" id="passwd" name="passwd" />
             </div>
-            <?php if ($data == 1) {?>
-              <small style="color: red;text-align:right;">Password is wrong !</small>
-            <?php }?>
 
-            <!-- <input type="submit" value="Login" class="btn solid" /> -->
+            <?php if (isset($_SESSION['message']) and $_SESSION['message'] == 'incorrect_passwd') {?>
+              <small style="color: red;text-align:right;">Password is wrong !</small>
+            <?php }elseif(isset($_SESSION['message']) and $_SESSION['message'] == 'empty_fields'){ ?>
+              <small style="color: red;text-align:right;">Please the enter email and the password !</small>
+            <?php } ?>
+
             <button class="btn solid" type="submit" name="login"  style="text-align:center ; text-decoration : none ;">Log in</button>
+            
             <a class="text-decoration:none;" href="<?php echo BASEURL ?>forgotPassword">
               <h5 style="color: blue;text-decoration:none;">Forgot your password</h5>
             </a>
+
             <br>
           </form>
 
@@ -59,11 +67,6 @@
             <div class="input-field">
               <i class="fas fa-envelope"></i>
               <input type="email" placeholder="Enter your email"  id="stEmail" name="stEmail"/>
-            </div>
-            <div class="input-field">
-              <i class="fas fa-user"></i>
-              <input type="text" placeholder="Enter your age" name="stAge" id="stAge"/>
-
             </div>
             <div class="input-field">
               <i class="fas fa-lock"></i>

@@ -5,15 +5,17 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Teacher-Transaction History</title>
-    <link rel="stylesheet" href="<?php echo BASEURL?>public/stylesheets/Teacher/style.css">
-    <link rel="stylesheet" href="<?php echo BASEURL?>public/stylesheets/Teacher/resources.css">
+    <title>Transaction History</title>
+    <link rel="icon" type="image/x-icon" href="<?php echo BASEURL ?>assets/mentor.ico">
+    <link rel="stylesheet" href="<?php echo BASEURL ?>public/stylesheets/resourceCreator/rc_main.css">
+    <link rel="stylesheet" href="<?php echo BASEURL ?>public/stylesheets/resourceCreator/rc_resources.css">
+    <link rel="stylesheet" href="<?php echo BASEURL . '/public/stylesheets/sponsor/sp_styles.css' ?> ">
 </head>
 
 <body>
-<section class="page">
-       <!-- Navigation panel -->
-       <?php include_once "components/navbars/t_nav_1.php"?>
+    <section class="page">
+        <!-- Navigation panel -->
+        <?php include_once "components/navbars/t_nav_1.php" ?>
 
         <div class="content-area">
 
@@ -22,19 +24,15 @@
                 <div class="search-bar">
                     <input type="text" name="" id="" placeholder="Search...">
                     <a href="">
-                        <img src="<?php echo BASEURL?>public/assets/Teacher/icons/icon_search.png" alt="">
+                        <img src="<?php echo BASEURL ?>public/assets/Teacher/icons/icon_search.png" alt="">
                     </a>
                 </div>
                 <div class="top-bar-btns">
-                <a href="#">
+                    <a href="#">
                         <a class="back-btn" href="<?php echo BASEURL ?>TBilling/Billing1">Back</a>
                     </a>
-                    <a href="#">
-                        <img src="<?php echo BASEURL?>public/assets/Teacher/icons/icon_notify.png" alt="notify">
-                    </a>
-                    <a href="<?php echo  BASEURL ?>Tprofile/profile">
-                        <img src="<?php echo BASEURL?>public/assets/Teacher/icons/icon_profile_black.png" alt="profile">
-                    </a>
+                    <?php include_once "components/notificationIcon.php" ?>
+                    <?php include_once "components/premiumIcon.php" ?>
                 </div>
             </section>
 
@@ -47,182 +45,110 @@
                     <h6>Teacher Home/ Billing/ Transaction History</h6>
                 </div>
 
-                <!-- Grade choosing interface -->
-                <div class="container-box">
-                    <div class="rc-resource-header">
-                        <h3>Choose the time period </h3>
+
+
+                    <div style="margin-top: 30px;">
+                        <div class="sponsor-list-main row-decoration">
+                            <div class="sponsor-list-row">
+                                <div class="sponsor-list-item sponsor-list-item-title flex-5">
+                                    Bank Name
+                                </div>
+                                <div class="sponsor-list-item sponsor-list-item-title flex-5">
+                                    Account Number
+                                </div>
+                                <div class="sponsor-list-item sponsor-list-item-title flex-5">
+                                    Account Name
+                                </div>
+                                <div class="sponsor-list-item sponsor-list-item-title flex-5">
+                                    Date
+                                </div>
+                                <div class="sponsor-list-item sponsor-list-item-title flex-3">
+                                    Time
+                                </div>
+                                <div class="sponsor-list-item sponsor-list-item-title flex-3">
+                                    Amount
+                                </div>
+
+                            </div>
+                            <?php if (empty($data[0])) { ?>
+                                <div class="sponsor-list-row">
+                                    <div class="sponsor-list-item flex-1">
+                                        NO DATA TO SHOW
+                                    </div>
+                                </div>
+                                <?php } else {
+                                foreach ($data[0] as $row) {
+                                    $dateTime = explode(" ", $row->timestamp);
+                                ?>
+                                    <div class="sponsor-list-row">
+                                        <div class="sponsor-list-item flex-5">
+                                            <?php echo $row->bank_name ?>
+                                        </div>
+                                        <div class="sponsor-list-item flex-5">
+                                            <?php echo $row->account_number ?>
+                                        </div>
+                                        <div class="sponsor-list-item flex-5">
+                                            <?php echo $row->account_name ?>
+                                        </div>
+                                        <div class="sponsor-list-item flex-5">
+                                            <?php echo $dateTime[0] ?>
+                                        </div>
+                                        <div class="sponsor-list-item flex-3">
+                                            <?php echo $dateTime[1] ?>
+                                        </div>
+                                        <div class="sponsor-list-item flex-3">
+                                            <?php echo 'Rs. ' . number_format($row->amount, 2, '.', '') ?>
+
+                                        </div>
+                                    </div>
+                            <?php }
+                            } ?>
                         </div>
-                        <div class="rc-resource-header">
-                            <h4>From</h4>
-                        <a href="">
-                            <div class="filter-container">
-                                <form>
-                              
-                                  <label for="issue"></label>
-                                  <select id="issue" name="issue">
-                                    <option value="Category1">Filter 1</option>
-                                    <option value="Category2">Filter 2</option>
-                                    <option value="Category3">Filter 3</option>
-                                    <option value="Category4">Filter 4</option>
-                                    <option value="Category5">Filter 5</option>
-                                    <option value="Category6">Filter 6</option>
-                                  </select>
-                                
-                                  
-                                </form>
-                              </div>
-                              </a>
-                        
+                    </div>
 
-                        <div class="filter-container">
-                            <form>
-                          
-                              <label for="issue"></label>
-                              <select id="issue" name="issue">
-                                <option value="Category1">Filter 1</option>
-                                <option value="Category2">Filter 2</option>
-                                <option value="Category3">Filter 3</option>
-                                <option value="Category4">Filter 4</option>
-                                <option value="Category5">Filter 5</option>
-                                <option value="Category6">Filter 6</option>
-                              </select>
-                            
-                              <input type="submit" value="Apply" class="green-button" >
-                            </form>
-                          </div>
-                    </a>
-                    
-                </div>
-
-                <div class="rc-resource-header">
-                    <h4>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;To</h4>
-                <a href="">
-                    <div class="filter-container">
-                        <form>
-                      
-                          <label for="issue"></label>
-                          <select id="issue" name="issue">
-                            <option value="Category1">Filter 1</option>
-                            <option value="Category2">Filter 2</option>
-                            <option value="Category3">Filter 3</option>
-                            <option value="Category4">Filter 4</option>
-                            <option value="Category5">Filter 5</option>
-                            <option value="Category6">Filter 6</option>
-                          </select>
-                        
-                          
-                        </form>
-                      </div>
-                      </a>
-                
-
-                <div class="filter-container">
-                    <form>
-                  
-                      <label for="issue"></label>
-                      <select id="issue" name="issue">
-                        <option value="Category1">Filter 1</option>
-                        <option value="Category2">Filter 2</option>
-                        <option value="Category3">Filter 3</option>
-                        <option value="Category4">Filter 4</option>
-                        <option value="Category5">Filter 5</option>
-                        <option value="Category6">Filter 6</option>
-                      </select>
-                    
-                      <input type="submit" value="Apply" class="green-button" >
-                    </form>
-                  </div>
-            </a>
-            
-        </div>
-                
-               
-                
-                    
-
-                    <div class="rc-resource-table">
-
-                       
-
-                        <div class="rc-resource-header">
-                           
+                    <div class="pagination-set">
+                        <div class="pagination-set-left">
+                            <b><?php echo ($data[1][0] == $data[1][1] || $data[1][1] == 0) ? count($data[0]) : 3 ?></b> Rows
                         </div>
-
-                        <div class="rc-pp-row">
-                            
-                            
-                            <div class="rc-resource-col"><h1>Number&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Reciever&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;AccountNo&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Date&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Time&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Amount</h1></div>
-                            
-                         
+                        <div class="pagination-set-right">
+                            <?php if ($data[1][0] != 1) { ?>
+                                <a href="<?php echo BASEURL . "TBilling/tHistory/" . ($data[1][0]) - 1 ?>">
+                                    < </a>
+                                    <?php } ?>
+                                    <div class="pagination-numbers">
+                                        Page <?php echo $data[1][0] ?> of <?php echo ($data[1][1]) ? $data[1][1] : 1 ?>
+                                    </div>
+                                    <?php if ($data[1][0] < $data[1][1]) { ?>
+                                        <a href="<?php echo BASEURL . "TBilling/tHistory/" . ($data[1][0] + 1) ?>"> > </a>
+                                    <?php } ?>
                         </div>
-
-                       <br><br>
-
-                       <div class="rc-pp-row">
-                            
-                            
-                        <div class="rc-resource-col">01&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Mr.XXXX&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;xxxx-xxxx-xxxx-xxxx&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 2020/xx/xx&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;xx:xx&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Rs.****</div>
-                        
-                     
-                    </div>
-
-                    <div class="rc-pp-row">
-                            
-                            
-                        <div class="rc-resource-col">02&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Mrs.XXX&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;xxxx-xxxx-xxxx-xxxx&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 2020/xx/xx&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;xx:xx&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Rs.****</div>
-                        
-                     
-                    </div>
-
-                        
-
-                    <div class="rc-pp-row">
-                            
-                            
-                        <div class="rc-resource-col">03&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Mrs.XXX&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;xxxx-xxxx-xxxx-xxxx&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 2020/xx/xx&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;xx:xx&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Rs.****</div>
-                        
-                     
-                    </div>
-
-                    <div class="rc-pp-row">
-                            
-                            
-                        <div class="rc-resource-col">04&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Mrs.XXX&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;xxxx-xxxx-xxxx-xxxx&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 2020/xx/xx&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;xx:xx&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Rs.****</div>
-                        
-                     
-                    </div>
-
-
-                    <div class="rc-pp-row">
-                            
-                            
-                        <div class="rc-resource-col">05&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Mrs.XXX&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;xxxx-xxxx-xxxx-xxxx&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 2020/xx/xx&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;xx:xx&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Rs.****</div>
-                        
-                     
-                    </div>
-
-
-                    <div class="rc-pp-row">
-                            
-                            
-                        <div class="rc-resource-col">06&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Mrs.XXX&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;xxxx-xxxx-xxxx-xxxx&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 2020/xx/xx&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;xx:xx&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Rs.****</div>
-                        
-                     
-                    </div>
-
-                    <div class="rc-pp-row">
-                            
-                            
-                        <div class="rc-resource-col">07&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Mrs.XXX&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;xxxx-xxxx-xxxx-xxxx&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 2020/xx/xx&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;xx:xx&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Rs.****</div>
-                        
-                     
-                    </div>
-
                     </div>
 
                 </div>
         </div>
     </section>
 </body>
+<script>
+    const BASEURL = "<?php echo BASEURL ?>";
+    let filterButton = document.getElementById("filterButton");
+    let filterForm = document.getElementById("filterForm");
+    let clearBtn = document.getElementById("clearButton");
+
+    filterButton.onclick = (e) => {
+        e.preventDefault();
+        let formData = new FormData(filterForm);
+        let url = `${BASEURL}sponsor/transactionHistory/1/?`;
+        for (let [key, value] of formData.entries()) {
+            url += `${key}=${value}&`;
+        }
+        window.location.replace(url);
+    }
+
+    clearBtn.onclick = (e) => {
+        e.preventDefault();
+        let url = `${BASEURL}sponsor/transactionHistory`;
+        window.location.replace(url);
+    }
+</script>
 
 </html>

@@ -5,7 +5,7 @@
             Data changed successfully !
         </div>
         <div class="message-image">
-            <img src="<?php echo BASEURL?>assets/clips/msg_1.png" alt="error image">
+            <img src="<?php echo BASEURL?>assets/clips/msg_2.png" alt="error image">
         </div>
         <div class="message-btn">
             <a href="<?php echo BASEURL."rcProfile"?>">OK</a>

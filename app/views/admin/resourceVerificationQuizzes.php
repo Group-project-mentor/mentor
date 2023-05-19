@@ -10,18 +10,16 @@
     <link rel="stylesheet" href="<?php echo BASEURL ?>stylesheets/admin/ad_verification.css">
     <link rel="stylesheet" href="<?php echo BASEURL ?>stylesheets/admin/style.css">
     <link rel="stylesheet" href="<?php echo BASEURL ?>stylesheets/admin/ad_verify.css">
+    <link rel="stylesheet" href="<?php echo BASEURL ?>stylesheets/admin/massage.css">
 
 </head>
-<nav>
-    <div class="ad_nav">
-
-    </div>
-</nav>
 
 <body>
+<?php require_once("C:/xampp/htdocs/mentor/public/components/alerts/admin/addRToTM.php"); ?>
     <?php require_once("C:/xampp/htdocs/mentor/app/views/admin/navbar.php"); ?>
+
             <!-- Middle part for whole content -->
-            <section class="mid-content ad_mid-content">
+            <section class="ad_mid-content">
 
                 <!-- Title and sub title of middle part -->
                 <div class="mid-title">
@@ -35,18 +33,22 @@
                         </a>
                     </div>
                     <div class="videos">
-                        <?php
+                    <?php
+                    if (!$data['quiz']) {
+                        echo'<img src="'. BASEURL .'assets/admin/RV/down.gif">';
+                    } else {
                         foreach ($data['quiz'] as $value) {
                             echo '
                             <div class ="q-name">
                                 <img class="videoslist" src="'. BASEURL .'assets/admin/quizz.png">
                                 <p>'. $value['name'] .'</p>
                                 <div class="btns">
-                                    <button class="comp-btns" onclick="addToTaskManager('.$value['id'].','.$_SESSION['id'] .')" type="button">Add To Task Manager</button>
+                                    <button class="comp-btns" onclick="addResourceToTaskManager('.$value['id'].','.$_SESSION['id'] .')" type="button">Add To Task Manager</button>
                                 </div>
                             </div>';
 
                         }
+                    }
                         ?>
                     </div>
                 </div>

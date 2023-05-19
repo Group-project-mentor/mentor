@@ -16,13 +16,18 @@
     if(!empty($_SESSION['message'])) {
         if ($_SESSION['message'] == "success") {
             include_once "components/alerts/res_update_success.php";
-        } elseif ($_SESSION['message'] == "failed") {
-            include_once "components/alerts/res_update_failed.php";
+        } elseif ($_SESSION['message'] == "error") {
+            $message = "Upload Unsuccessful !";
+            include_once "components/alerts/operationFailed.php";
         } elseif ($_SESSION['message'] == "unlinked"){
             include_once "components/alerts/pastpaperUnlinked.php";
+        } elseif ($_SESSION['message'] == "invalidType"){
+            $message = "Invalid Type of Resource  Uploaded !";
+            include_once "components/alerts/operationFailed.php";
         }
     }
 ?>
+
 <section class="page">
 
     <!-- Navigation panel -->
@@ -44,7 +49,7 @@
                 </a>
                 <?php include_once "components/notificationIcon.php" ?>
                 <a href="<?php echo BASEURL . 'rcProfile' ?>">
-                    <img src="<?php echo BASEURL ?>assets/icons/icon_profile_black.png" alt="profile">
+                        <?php include_once "components/profilePic.php"?>
                 </a>
             </div>
         </section>
@@ -58,14 +63,10 @@
                 <h6>My Subjects / <?php echo ucfirst($_SESSION['sname']) ?> / document / add </h6>
             </div>
 
-            <!-- Grade choosing interface -->
             <div class="container-box">
-                <!--                <div class="rc-resource-header">-->
-                <!--                    <h1>EDIT PAPER</h1>-->
-                <!--                </div>-->
+
             </div>
 
-            <!-- ? This is the upload file changing section of past paper-->
                     <div class="rc-upload-box">
                         <form action="<?php echo BASEURL.'rcAdd/addPastPaper/'?>" method="POST" enctype="multipart/form-data" class="rc-upload-form">
                             <div class="rc-upload-home-title">
@@ -125,9 +126,7 @@
 <script>
     const BASEURL = "<?php echo BASEURL ?>";
     const paperId = 0 ;
-    //const paperId = <?php //echo $data[0]->id ?>//;
     let quizId = 0 ;
-    //let quizId = <?php //echo (isset($data[0]->qid))?$data[0]->qid:0 ?>// ;
 
 
     let inputBtn = document.getElementById('inputBtn');

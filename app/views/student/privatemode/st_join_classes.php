@@ -17,7 +17,9 @@
             margin-left: 200px;
         }
 
-        .join1:hover,.join2:hover,.joina:hover {
+        .join1:hover,
+        .join2:hover,
+        .joina:hover {
             opacity: 0.9;
             background-color: #186537;
             text-decoration-color: white;
@@ -30,7 +32,8 @@
             background-position: center;
         }
 
-        .join1, .join2 {
+        .join1,
+        .join2 {
             background-color: white;
             border-style: solid;
             border-color: #17ac06;
@@ -54,34 +57,31 @@
 <body>
     <section class="page">
         <!-- Navigation panel -->
-        <?php include_once "components/navbars/st_navbar_3.php" ?> <!-- used to include_once to add file -->
+        <?php include_once "components/navbars/st_navbar_7.php" ?> <!-- used to include_once to add file -->
 
         <div class="content-area">
 
             <!-- Top bar -->
             <section class="top-bar">
                 <div class="search-bar">
-                    <input type="text" name="" id="" placeholder="Search...">
-                    <a href="">
-                        <img src="<?php echo BASEURL; ?>assets/icons/icon_search.png" alt="">
-                    </a>
+
                 </div>
                 <div class="top-bar-btns">
-                    <a href="<?php echo BASEURL; ?>st_private_mode">
+                    <a href="<?php echo BASEURL ?>st_private_mode">
                         <div class="back-btn">Back</div>
                     </a>
                     <?php include_once "components/notificationIcon.php" ?>
                     <a href="<?php echo BASEURL ?>st_profile">
-                        <img src="<?php echo BASEURL; ?>assets/icons/icon_profile_black.png" alt="profile">
+                    <?php include_once "components/profilePic.php"?>
                     </a>
                 </div>
             </section>
-
+            <hr style="color: green; height:7px; background-color:green;">
             <section class="mid-content">
                 <!-- join to new class -->
-                <div class="top-bar-btns ">
-                    <h2>Join to new class</h2>
-                </div>
+                <h2><?php echo  "Hello " . $_SESSION['name'] . "!" ?></h2>
+                <h2>Join to new class</h2>
+
 
                 <div class="join">
                     <br>

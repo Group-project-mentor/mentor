@@ -23,31 +23,28 @@
             <!-- Top bar -->
             <section class="top-bar">
                 <div class="search-bar">
-                    <input type="text" name="" id="" placeholder="Search...">
-                    <a href="">
-                        <img src="<?php echo BASEURL; ?>assets/icons/icon_search.png" alt="">
-                    </a>
+                    
                 </div>
                 <div class="top-bar-btns">
-                    <a href="<?php echo BASEURL; ?>st_private_mode/st_myclasses">
+                    <a href="<?php echo BASEURL . "st_private_mode/st_myclasses/" . $_SESSION['class_id'] . '/' . $_SESSION['class_name'] ?> ">
                         <div class="back-btn">Back</div>
                     </a>
                     <?php include_once "components/notificationIcon.php" ?>
                     <a href="<?php echo BASEURL ?>st_profile">
-                        <img src="<?php echo BASEURL; ?>assets/icons/icon_profile_black.png" alt="profile">
+                    <?php include_once "components/profilePic.php"?>
                     </a>
                 </div>
             </section>
-
+            <hr style="color: green; height:7px; background-color:green;">
             <!-- Middle part for whole content -->
             <section class="mid-content">
 
                 <!-- Title and sub title of middle part -->
                 <div class="mid-title">
-                    <?php
-                    $ggid = $_SESSION['grade'] + 5;
- ?>
-                    <h2><?php echo "Class Name : " . ucfirst($_SESSION['class_name']) . "<br>" . "Grade " . $ggid ?></h2>
+                    <h2><?php echo "Hello " . $_SESSION['name'] . "!" ?></h2>
+                    <h3><?php echo "This is Your " 
+                    . ucfirst($_SESSION['class_name']) . 
+                    " Class Resources Page. You Can Refer All Resources In Here"  ?></h3>
                 </div>
 
                 <!-- Grade choosing interface -->
@@ -57,19 +54,19 @@
                     </div>
 
                     <!-- Grade choosing interface -->
-                    <div class="container-box" style="padding-left: 160px; width:auto; height: 100px;">
+                    <div class="container-box" style="margin:auto; padding-top:150px; width:auto; height: 100px;">
                         <table>
                             <tr>
-                                <td><button><a href="<?php echo BASEURL  . 'st_private_resources/index_videos/' . $_SESSION['class_name'] . '/' . $_SESSION['grade'] ?> ">Videos</a></button></td>
-                                <td><button><a href="<?php echo BASEURL  . 'st_private_resources/index_documents/' . $_SESSION['class_name'] . '/' . $_SESSION['grade'] ?>">Documents</a></button></td>
-                                <td><button><a href="<?php echo BASEURL  . 'st_private_resources/index_past_papers/' . $_SESSION['class_name'] . '/' . $_SESSION['grade']  ?>">Past Papers</a></button></td>
-                                <td><button><a href="<?php echo BASEURL  . 'st_private_resources/index_quizzes/' . $_SESSION['class_name'] . '/' . $_SESSION['grade']  ?>">Quizzes</a></button></td>
-                                <td><button><a href="<?php echo BASEURL  . 'st_private_resources/index_others/' . $_SESSION['class_name'] . '/' . $_SESSION['grade']   ?>">Other Resources</a></button></td>
+                                <td><button><a href="<?php echo BASEURL  . 'st_private_resources/index_videos/' . $_SESSION['class_id']  ?> ">Videos</a></button></td>
+                                <td><button><a href="<?php echo BASEURL  . 'st_private_resources/index_documents/' . $_SESSION['class_id']  ?>">Documents</a></button></td>
+                                <td><button><a href="<?php echo BASEURL  . 'st_private_resources/index_past_papers/' . $_SESSION['class_id']   ?>">Past Papers</a></button></td>
+                                <td><button><a href="<?php echo BASEURL  . 'st_private_resources/index_quizzes/' . $_SESSION['class_id']  ?>">Quizzes</a></button></td>
+                                <td><button><a href="<?php echo BASEURL  . 'st_private_resources/index_others/' . $_SESSION['class_id']    ?>">Other Resources</a></button></td>
                             </tr>
                         </table>
                     </div>
                     <br><br><br><br><br><br><br><br><br><br><br><br>
-                    <a class="see-all-btn" href="<?php echo BASEURL  ?>" style="text-decoration: none; width:100%;"></a>
+                    <!-- <hr style="color: green; height:7px; background-color:green;"> -->
             </section>
         </div>
     </section>

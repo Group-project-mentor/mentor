@@ -18,32 +18,34 @@
             border-width: 3px;
             text-align: center;
             padding: 10px 35px 10px 35px;
-            width: 300px;
-            margin-left: 37.5%;
-        }
-
-        body {
-            background-image: url('../public/assets/clips/HumaaansWireframe');
-            background-position: center;
-            background-size: cover;
+            width: 600px;
+            margin-left: 20%;
         }
     </style>
 </head>
 
 <body>
+<?php
+if(!empty($_SESSION['message'])) {
+     if ($_SESSION['message'] == "NOrequest") {
+        $message = "You Already Enroll To this Class OR Already Send Token Request To this Class !";
+        include_once "components/alerts/operationFailed.php";
+    }else if ($_SESSION['message'] == "Failrequest") {
+        $message = "Your Token seems invalid.Please Check it Again";
+        include_once "components/alerts/operationFailed.php";
+    }
+}
+?>
     <section class="page">
         <!-- Navigation panel -->
-        <?php include_once "components/navbars/st_navbar_3.php" ?> <!-- used to include_once to add file -->
+        <?php include_once "components/navbars/st_navbar_7.php" ?> <!-- used to include_once to add file -->
 
         <div class="content-area">
 
             <!-- Top bar -->
             <section class="top-bar">
                 <div class="search-bar">
-                    <input type="text" name="" id="" placeholder="Search...">
-                    <a href="">
-                        <img src="<?php echo BASEURL; ?>assets/icons/icon_search.png" alt="">
-                    </a>
+
                 </div>
                 <div class="top-bar-btns">
                     <a href="<?php echo BASEURL; ?>st_private_mode/st_join_classes">
@@ -51,51 +53,48 @@
                     </a>
                     <?php include_once "components/notificationIcon.php" ?>
                     <a href="<?php echo BASEURL ?>st_profile">
-                        <img src="<?php echo BASEURL; ?>assets/icons/icon_profile_black.png" alt="profile">
+                    <?php include_once "components/profilePic.php"?>
                     </a>
                 </div>
             </section>
+            <hr style="color: green; height:7px; background-color:green;">
             <section>
                 <div>
-                    <br>
+                    <br><br>
                     <h2>Join with class token</h2>
-                    <h4>Get the class token of your teacher and join to the class. <br><br><br></h4>
-                    <h3 class="token">
-                        <b>Entering the token here : </b>
-                        <div class="search-bar">
-                            <input type="text" name="" id="" placeholder=" Search...">
-                            <a href="#">
-                                <img src="<?php echo BASEURL; ?>assets/icons/icon_search.png" alt="">
-                            </a>
-                        </div>
-                        <hr>
-                    </h3>
-                </div>
-                <div class="subject-card-set">
-                    <br><br>
-                    <hr>
-                    <br><br>
-                    <!-- tempary movement 1-->
-                    <div class="subject-card" style="text-align:center ; ">
-                        <a href="<?php echo BASEURL  ?>st_private_mode/st_classroom_inside">
-                            <img src="<?php echo BASEURL  ?>assets/patterns/1.png" alt="" style="width : 250px ; height:150px;" />
-                            <br>
-                            <div>
-                                <label>Mathematics</label>
-                                <br>
-                                <label>Grade 8</label>
-                                <br>
-                                <label>Mr.Thimira Galahitiyawa</label>
-                                <br><br>
-                                <label style="width:100px ; " class="back-btn">Join</label>
+                    <h4>Get the class token from your teacher and join to the class by entering here. <br><br><br></h4>
+                    <div style="padding-top: 80px; margin:auto;">
+                        <h3 class="token" style="padding: 20px 20px 40px 20px;">
+                            <b>Enter the token here : </b>
+                            <div class="search-bar">
+                                <input type="text" name="" id="token" placeholder=" Search..." style="width: 650px;">
+                                <a id="token_link">
+                                    <img src="<?php echo BASEURL; ?>assets/icons/icon_approved.png" alt="">
+                                </a>
                             </div>
-                        </a>
+                            <hr>
+                        </h3>
                     </div>
                 </div>
             </section>
         </div>
     </section>
 </body>
-<script src="<?php echo BASEURL ?>public/javascripts/st_auth_script.js"></script>
+<script>
+    let BASEURL = '<?php echo BASEURL ?>';
+
+    let token = document.getElementById("token");
+    let token_link = document.getElementById("token_link");
+    let token_name = "";
+
+    token.addEventListener("change", function(e) {
+        token_name = e.target.value;
+        if (token_name == "") {
+            location.reload();
+        } else {
+            token_link.href = `${BASEURL}st_private_mode/st_join_token_send/${token_name}`;
+        }
+    });
+</script>
 
 </html>

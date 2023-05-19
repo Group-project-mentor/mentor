@@ -21,58 +21,60 @@
             <!-- Top bar -->
             <section class="top-bar">
                 <div class="search-bar">
-                    <input type="text" name="" id="" placeholder="Search...">
-                    <a href="">
-                        <img src="<?php echo BASEURL  ?>assets/icons/icon_search.png" alt="">
-                    </a>
+
                 </div>
                 <div class="top-bar-btns">
                     <a href="#">
-                        <a class="back-btn" href="<?php echo BASEURL.'st_courses/index/'.$_SESSION['gid'] ?>">Back</a>
+                        <a class="back-btn" href="<?php echo BASEURL . 'st_courses/index/' . $_SESSION['gid'] ?>">Back</a>
                     </a>
                     <?php include_once "components/notificationIcon.php" ?>
-                    <a href="<?php echo BASEURL?>st_profile">
-                        <img src="<?php echo BASEURL  ?>assets/icons/icon_profile_black.png" alt="profile">
+                    <a href="<?php echo BASEURL ?>st_profile">
+                        <?php include_once "components/profilePic.php" ?>
                     </a>
                 </div>
             </section>
-
+            <hr style="color: green; height:7px; background-color:green;">
             <!-- Middle part for whole content -->
             <section class="mid-content">
 
                 <!-- Title and sub title of middle part -->
                 <div class="mid-title">
-                    <h2>Subjects to Enrolled</h2>
+                    <h2>Hello <?php echo $_SESSION['name'] ?> !</h2>
+                    <h3>Subjects to Enrolled</h3>
                 </div>
 
-                
+
                 <!-- subject cards -->
                 <div class="container-box">
-                    
-                    </div>
-                    <?php if(!empty($data[0])){?>
-                        
-                        <div class="subject-card-set">
 
-                            <?php foreach($data[0] as $row) {?>
+                </div>
+                <?php if (!empty($data[0])) { ?>
+
+                    <div class="subject-card-set">
+
+                        <?php foreach ($data[0] as $row) { ?>
                             <div class="subject-card">
                                 <img src="<?php echo BASEURL  ?>assets/patterns/2.png" alt="" />
                                 <label><?php echo $row->name ?></label>
-                                <label>Grade <?php echo $_SESSION['gid']+'5' ?></label>
+                                <label>Grade <?php echo $_SESSION['gid'] + '5' ?></label>
                                 <!-- <button class="Enter-btn">Enroll</button> -->
-                                <a href="<?php echo BASEURL."st_courses/Enroll_records/".$_SESSION['gid']."/".$row->id ?>">Enroll</a>
+                                <a href="<?php echo BASEURL . "st_courses/Enroll_records/" . $_SESSION['gid'] . "/" . $row->id ?>">Enroll</a>
                             </div>
-                            <?php } ?>
-                        </div>
-                        <?php } else {echo "no data!";} ?>
-                    
+                        <?php } ?>
                     </div>
+                <?php } else { ?>
+                    <br><br>
+                    <h2 style="color:green ; text-align:center ;padding: 5px 10px;">
+                    <?php echo "No Courses Enrolled yet !";
+                } ?>
 
-                </div>
-            </section>
+        </div>
+
         </div>
     </section>
+    </div>
+    </section>
 </body>
-    <script src="<?php echo BASEURL ?>javascripts/st_navbar_1.js"></script>
+<script src="<?php echo BASEURL ?>javascripts/st_navbar_1.js"></script>
 
 </html>

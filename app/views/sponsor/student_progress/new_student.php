@@ -45,7 +45,7 @@
                 </a>
                 <?php include_once "components/notificationIcon.php" ?>
                 <a href="<?php echo BASEURL . 'sponsor/profile' ?>">
-                    <img src="<?php echo BASEURL ?>assets/icons/icon_profile_black.png" alt="profile">
+                        <?php include_once "components/profilePic.php"?>
                 </a>
             </div>
         </section>
@@ -105,7 +105,7 @@
                                     <?php echo $row->name ?>
                                 </div>
                                 <div class="sponsor-list-item flex-3 new-amount">
-                                   Rs. <?php echo number_format($row->monthlyAmount, 2, '.', '') ?>
+                                   Rs <?php echo number_format($row->monthlyAmount, 2, '.', '') ?>
                                 </div>
                                 <div class="sponsor-list-item flex-1">
                                     <div class="sponsor-list-img-btns">
@@ -140,6 +140,9 @@
 <script src="<?php echo BASEURL?>public/javascripts/middleFunctions.js"></script>
 <script>
     const BASEURL = '<?php echo BASEURL?>';
+    let maxAmount = <?php echo $data[1] ?>;
+    let total = <?php echo $data[2] ?>;
+
     let stIDs = document.getElementsByClassName('new-stID');
     let stNames = document.getElementsByClassName('new-name');
     let stAmounts = document.getElementsByClassName('new-amount');
@@ -148,7 +151,11 @@
     let accBtn = document.getElementById("acceptBtn");
 
     function displayConfBox(id, name, amount) {
-        document.getElementById('msgTxt').textContent = `Confirm Funding the student ${name},  ${amount} per month ?`;
+        if(maxAmount >= (total+parseFloat(amount.replace(/[^0-9.]+/g, '')))){
+            document.getElementById('msgTxt').textContent = `Confirm Funding the student ${name},  ${amount} per month ?`;
+        }else{
+            document.getElementById('msgTxt').innerHTML = `Confirm Funding the student ${name},  ${amount} per month ? <br/><br/> <b style="color:red;"> You have reached the maximum amount of Rs.${maxAmount} per month. </b>`;
+        }
         accBtn.href = `${BASEURL}sponsor/connectSponsorStudent/${id.trim()}`;
         confBox.classList.remove("hidden");
         confBox.classList.add("message-area");
@@ -220,7 +227,7 @@
                                     ${data.name}
                                 </div>
                                 <div class="sponsor-list-item flex-3 new-amount">
-                                   Rs. ${data.monthlyAmount.toFixed(2)}
+                                   Rs ${data.monthlyAmount.toFixed(2)}
                                 </div>
                                 <div class="sponsor-list-item flex-1">
                                     <div class="sponsor-list-img-btns">

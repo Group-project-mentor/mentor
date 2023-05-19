@@ -63,7 +63,7 @@
             <div class="top-bar-btns">
                 <?php include_once "components/notificationIcon.php" ?>
                 <a href="<?php echo BASEURL ?>sponsor/profile">
-                    <img src="<?php echo BASEURL ?>public/assets/icons/icon_profile_black.png" alt="profile">
+                    <?php include_once "components/profilePic.php"?>
                 </a>
             </div>
         </section>
@@ -74,7 +74,7 @@
             <!-- Title and sub title of middle part -->
             <div class="mid-title">
                 <h1>Payments Details</h1>
-                <h6> Billing / Payments Details</h6>
+                <h6> Billing / Paym ents Details</h6>
             </div>
 
             <!-- Grade choosing interface -->
@@ -125,19 +125,9 @@
                                 <label>
                                     <select class="pp-quiz-chooser"  name="country">
                                         <option value="Sri Lanka" selected>Sri Lanka</option>
-                                        <option value="India">India</option>
                                     </select>
                                 </label>
                             </div>
-<!--                            <div class="rc-form-group" style="flex: 1;">-->
-<!--                                <label> Currency* : </label>-->
-<!--                                <label>-->
-<!--                                    <select class="pp-quiz-chooser" name="currency">-->
-<!--                                        <option value="LKR" selected>LKR</option>-->
-<!--                                        <option value="USD">USD</option>-->
-<!--                                    </select>-->
-<!--                                </label>-->
-<!--                            </div>-->
                         </div>
                         <div class="answer-correctness-btn" style="justify-self:flex-end;">
                             <input type="checkbox" id="save-info-check" value="correct" />
@@ -165,10 +155,9 @@
     const MERCHID = '<?php echo $_ENV['MERCHANT_ID'] ?>';
     //const MERCHSECR = '<?php //echo $data[1]?>//';
 
-    // Payment completed. It can be a successful failure.
     payhere.onCompleted = function onCompleted(orderId) {
         console.log("Payment completed. OrderID:" + orderId);
-        // Note: validate the payment and show success or failure page to the customer
+        window.location.href = `${BASEURL}sponsor/transactionHistory`;
     };
 
     // Payment window closed
@@ -188,8 +177,8 @@
         "sandbox": true,
         "custom_1": `${userId}`,
         "merchant_id": MERCHID,    
-        "return_url": undefined,     
-        "cancel_url": undefined,     
+        "return_url": `${TEMP_URL}/mentor/sponsor/transactionHistory`,     
+        "cancel_url": "",     
         "notify_url": `${TEMP_URL}/mentor/payment/getDetails`,
         "order_id": bill_id,
         "items": "",

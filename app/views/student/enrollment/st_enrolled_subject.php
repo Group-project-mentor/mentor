@@ -12,6 +12,16 @@
 </head>
 
 <body>
+        
+<!-- message pop up when click delete button -->
+<?php
+if(!empty($_SESSION['message'])) {
+    if ($_SESSION['message'] == "Delete") {
+        $message = "Leave from the Subject Successfully !";
+        include_once "components/alerts/operationSuccess.php";
+    }
+}
+?>
     <section class="page">
         <!-- Navigation panel -->
         <?php include_once "components/navbars/st_navbar_1.php" ?> <!-- used to include_once to add file -->
@@ -22,10 +32,7 @@
             <!-- Top bar -->
             <section class="top-bar">
                 <div class="search-bar">
-                    <input type="text" name="" id="" placeholder="Search...">
-                    <a href="">
-                        <img src="<?php echo BASEURL ?>assets/icons/icon_search.png" alt="">
-                    </a>
+                    
                 </div>
                 <div class="top-bar-btns">
                     <a href="#">
@@ -33,17 +40,18 @@
                     </a>
                     <?php include_once "components/notificationIcon.php" ?>
                     <a href="<?php echo BASEURL ?>st_profile">
-                        <img src="<?php echo BASEURL ?>assets/icons/icon_profile_black.png" alt="profile">
+                    <?php include_once "components/profilePic.php"?>
                     </a>
                 </div>
             </section>
-
+            <hr style="color: green; height:7px; background-color:green;">
             <!-- Middle part for whole content -->
             <section class="mid-content">
 
                 <!-- Title and sub title of middle part -->
                 <div class="mid-title">
-                    <h2>Enrolled Subjects</h2>
+                    <h2>Hello <?php echo $_SESSION['name'] ?> !</h2>
+                    <h3>Enrolled Subjects</h3>
                 </div>
 
 
@@ -54,9 +62,13 @@
                             <?php foreach ($data[0] as $row) { ?>
                                 <div class="subject-card">
                                     <img src="<?php echo BASEURL  ?>assets/patterns/1.png" alt="" />
-                                    <a href="#"><label><?php echo $row->name ?></label></a>
+                                    <label><?php echo $row->name ?></label>
                                     <label>Grade <?php echo $_SESSION['gid'] + 5 ?></label>
-                                    <a href="<?php echo BASEURL . 'St_public_resources/index/' . $_SESSION['gid'] . '/' . $row->id . '/' .$row->name  ?>"><label>View</label></a>
+                                    <div>
+                                    <a href="<?php echo BASEURL . 'St_public_resources/index/' . $_SESSION['gid'] . '/' . $row->id . '/' .$row->name  ?>"><label >View</label></a>
+                                    <a href="<?php echo BASEURL . 'st_courses/Enroll_subject_delete/' . $_SESSION['gid'] . '/' . $row->id   ?>"><label>Remove</label></a>
+                                    
+                                    </div>
                                 </div>
                             <?php } ?>
                         </div>

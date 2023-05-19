@@ -25,7 +25,7 @@
                 <h1>Register as a Resource Creator</h1>
             </div>
             <div class="top-bar-btns">
-                <a onclick="history.back()">
+                <a href="<?php echo BASEURL."landing" ?>" >
                     <div class="back-btn">Back</div>
                 </a>
             </div>
@@ -65,7 +65,6 @@
                                 <input type="text" name="fullName"
                                        placeholder="First Name"
                                        value="<?php echo empty($data[0])?"":$data[0]->firstName ?>"
-                                       pattern="^[A-Za-z]+((\s)?((\.)|(?:\b[A-Za-z])[A-Za-z]*\.?)){0,2}$"
                                        maxlength="50"
                                        required/>
                             </div>

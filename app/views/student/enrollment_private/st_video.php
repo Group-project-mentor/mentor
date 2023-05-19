@@ -22,18 +22,15 @@
             <!-- Top bar -->
             <section class="top-bar">
                 <div class="search-bar">
-                    <input type="text" name="" id="" placeholder="Search...">
-                    <a href="">
-                        <img src="<?php echo BASEURL ?>assets/icons/icon_search.png" alt="">
-                    </a>
+                    
                 </div>
                 <div class="top-bar-btns">
-                    <a href="<?php echo BASEURL . 'st_private_resources/index/' . $_SESSION['class_name'] . '/' . $_SESSION['grade']  ?>">
+                    <a href="<?php echo BASEURL . 'st_private_resources/index/' . $_SESSION['class_id'] . '/' . $_SESSION['class_name']   ?>">
                         <div class="back-btn">Back</div>
                     </a>
                     <?php include_once "components/notificationIcon.php" ?>
                     <a href="<?php echo BASEURL ?>st_profile">
-                        <img src="<?php echo BASEURL ?>assets/icons/icon_profile_black.png" alt="profile">
+                    <?php include_once "components/profilePic.php"?>
                     </a>
                 </div>
             </section>
@@ -43,10 +40,8 @@
 
                 <!-- Title and sub title of middle part -->
                 <div class="mid-title">
-                    <?php
-                    $ggid = $_SESSION['grade'] + 5;
-                    ?>
-                    <h2><?php echo "Class Name : " . ucfirst($_SESSION['class_name']) . "<br>" . "Grade " . $ggid ?></h2>
+                    
+                    <h2><?php echo "Class Name : " . ucfirst($_SESSION['class_name'])  ?></h2>
                 </div>
 
 
@@ -61,9 +56,11 @@
                             foreach ($data[0] as $row) { ?>
                                 <div class='subject-card' style="align-items: center;">
                                     <img src='<?php echo BASEURL . "assets/patterns/" . $count++ . '.png' ?>' alt='' />
-                                    <label><?php echo $row->name ?></label>
+                                    <label><?php echo $row->name;
+                                     $_SESSION['rname'] = $row->name; ?>
+                                    ?></label>
                                     <label><?php echo $row->lecturer ?></label>
-                                    <a href='<?php echo BASEURL . "st_public_resources/preview/video/" . $row->id ?>'>
+                                    <a href='<?php echo BASEURL . "st_private_resources/preview/video/" . $row->class_id ?>'>
                                         <label>Play</label>
                                         <!-- <img style="width: 25px" src='<?php echo BASEURL ?>assets/icons/icon_eye_white.png' alt='' /> -->
                                     </a>

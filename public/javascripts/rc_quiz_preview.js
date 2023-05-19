@@ -28,7 +28,7 @@ const render = (data) => {
     if (data.question[4] === '') questionImg.style.display = 'none';
     else {
         questionImg.style.display = 'inline';
-        questionImg.src = data.question[4];
+        questionImg.src = `${baseURL}public_resources/quizzes/questions/${gid}/${sid}/${data.question[4]}`;
     }
     questionName.textContent = data.question[2];
     data.Answers.forEach(answer => {
@@ -50,7 +50,7 @@ const generateAnswer = (answer,ansCount) => {
     ans += `${ansCount}. ${answer[2]}`;
 
     if (answer[4]==='') ans += `</div>`;
-    else ans += `<img src='${answer[4]}' alt=""></div>`;
+    else ans += `<img src='${baseURL}public_resources/quizzes/answers/${gid}/${sid}/${answer[4]}' alt=""></div>`;
 
     return ans;
 }

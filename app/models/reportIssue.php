@@ -3,16 +3,16 @@
 class ReportIssue extends Model
 {
 
-    private $table = 'issue';
+    private $table = 'complaint';
 
     public function __construct()
     {
         parent::__construct();
     }
 
-    public function saveIssue($userId, $type, $descr, $solved = 0){
-        $stmt = $this->prepare("INSERT INTO issue(userId, type, description, solved) VALUES (?,?,?,?)");
-        $stmt->bind_param('iisi', $userId, $type, $descr, $solved);
+    public function saveIssue($userId, $type, $descr, $solved = "in Progress"){
+        $stmt = $this->prepare("INSERT INTO complaint(user_id, category, description, status) VALUES (?,?,?,?);");
+        $stmt->bind_param('iiss', $userId, $type, $descr, $solved);
         return $this->executePrepared($stmt);
     }
 

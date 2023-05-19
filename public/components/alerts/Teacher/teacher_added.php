@@ -5,11 +5,10 @@
             Teacher has been added successfully !
         </div>
         <div class="message-image">
-            <img src="<?php echo BASEURL?>assets/Teacher/clips/restrict_student.png" alt="error image">
-            
+            <img src="<?php echo BASEURL?>assets/Teacher/host_changed.png" alt="error image">
         </div>
         <div class="message-btn">
-        <a href="<?php echo BASEURL ?>privateclass/bmc">OK</a> 
+            <a href="<?php echo BASEURL."TInsideclass/addTr"?>">OK</a>
         </div>
     </div>
 </div>

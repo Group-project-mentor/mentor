@@ -15,7 +15,6 @@ class Register extends Controller
             $email = trim($_POST["stEmail"]);
             $password = $_POST["stPasswd"];
             $name = $_POST["stName"];
-            $age = $_POST["stAge"];
 
             $response = array("message"=>"");
             $salt = base64_encode(random_bytes(5));
@@ -24,7 +23,7 @@ class Register extends Controller
                 // $password = $password.$salt;
                 $hash = password_hash($password, PASSWORD_BCRYPT, ["cost" => 10]);
 
-                if ($this->model("userModel")->registrationStudent($email, $name, $hash, $salt, $age)) {
+                if ($this->model("userModel")->registrationStudent($email, $name, $hash, $salt)) {
                     $response['message'] = "successful";
                 } else {
                     $response['message'] = "unsuccessful";

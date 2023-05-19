@@ -9,16 +9,11 @@
     <link rel="stylesheet" href="<?php echo BASEURL ?>stylesheets/admin/ad_humanresource.css">
     <link rel="stylesheet" href="<?php echo BASEURL ?>stylesheets/admin/style.css">
 </head>
-<nav>
-    <div class="ad_nav">
-
-    </div>
-</nav>
 
 <body>
     <?php require_once("C:/xampp/htdocs/mentor/app/views/admin/navbar.php"); ?>
     <!-- Middle part for whole content -->
-    <section class="mid-content ad_mid-content">
+    <section class="ad_mid-content">
 
         <!-- Title and sub title of middle part -->
         <div class="mid-title">
@@ -43,32 +38,65 @@
                 <div class="users">
 
                     <?php
-                    foreach ($data['scholarship'] as $value) {
-                        echo
-                        '<div class="content" id="comp-content">
-                            
-                            <div class="subject-card">
-                                <div class="pp">
-                                    <img class="profile" src="' . BASEURL . 'assets/admin/user.png">
+                    if (!$data['scholarship']) {
+                        
+                    } else {
+                        foreach ($data['scholarship'] as $value) {
+                            echo
+                            '<div class="content" id="comp-content">
+                                
+                                <div class="subject-card">
+                                    <div class="pp">
+                                        <img class="profile" src="' . BASEURL . 'assets/admin/user.png">
+                                    </div>
+                                    <div class="name">
+                                        <p>' . $value['firstName'] . '</p>
+                                    </div>
                                 </div>
-                                <div class="name">
-                                    <p>' . $value['first_name'] . '</p>
-                                </div>
-                            </div>
-                            
-                            <div class="btns">
-                                <form action="' . BASEURL . 'admins/scholpro/'. $value['id'].'" method="POST">
-                                    <button class="comp-btns">Review</button>
-                                </form><br>
-                            </div>
-                            <div class="btns">
-                                <button class="comp-btns">Delete</button>
-                            </div>
-                            
+                            </div>';
+                        }
+                    }
 
-                            
-                            
-                        </div>';
+                    ?>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="hr" id="team">
+            <div class="bgbox">
+                <div class="team">
+                    <div class="title">
+                        <h1>Sponsors Application</h1>
+                    </div>
+                    <div class="btn">
+                        <a class="btns" href="<?php echo BASEURL ?>admins/sponsorviews" style="text-decoration:none">
+                            View All
+                        </a>
+
+                    </div>
+
+                </div>
+                <div class="users">
+
+                    <?php
+                    if (!$data['sponsors']) {
+               
+                    } else {
+                        foreach ($data['sponsors'] as $value) {
+                            echo
+                            '<div class="content" id="comp-content">
+                                
+                                <div class="subject-card">
+                                    <div class="pp">
+                                        <img class="profile" src="' . BASEURL . 'assets/admin/user.png">
+                                    </div>
+                                    <div class="name">
+                                        <p>' . $value['firstName'] . '</p>
+                                    </div>
+                                </div>
+                            </div>';
+                        }
                     }
 
                     ?>

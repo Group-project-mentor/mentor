@@ -30,7 +30,7 @@
                 </a>
                 <?php include_once "components/notificationIcon.php" ?>
                 <a href="<?php echo BASEURL . 'rcProfile' ?>">
-                    <img src="<?php echo BASEURL ?>assets/icons/icon_profile_black.png" alt="profile">
+                        <?php include_once "components/profilePic.php"?>
                 </a>
             </div>
         </section>
@@ -80,12 +80,18 @@
                     <h3>Related Videos</h3>
                 </div>
                 <div class="subject-card-set">
-                    <div class="subject-card">
-                        <img src="<?php echo BASEURL ?>assets/patterns/2.png" alt="" />
-                        <a href="#"><label>C79 - lesson 2</label></a>
-                        <label>Grade 8</label>
-                        <button class="Enter-btn">Enter</button>
-                    </div>
+                <?php
+                    if(!empty($data[2])){
+                        $count = 1;
+                        foreach ($data[2] as $row) { ?>
+                            <div class="subject-card">
+                                <img src="<?php echo BASEURL."assets/patterns/$count.png" ?>" alt="" />
+                                <label><?php echo $row->name ?></label>
+                                <a href="<?php echo BASEURL."rcResources/preview/video/".$row->id ?>">
+                                    <button class="Enter-btn">View</button>
+                                </a>
+                            </div>
+                    <?php $count++; }} ?>
                 </div>
             </div>
         </section>

@@ -5,7 +5,7 @@
             Update Failed !
         </div>
         <div class="message-image">
-            <img src="<?php echo BASEURL?>assets/clips/msg_1.png" alt="error image">
+            <img src="<?php echo BASEURL?>assets/clips/issue.png" alt="error image">
         </div>
         <div class="message-btn">
             <a class="message-warn" href="">Retry</a>

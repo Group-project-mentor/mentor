@@ -17,7 +17,7 @@ class UserModel extends Model
         return $this->fetchOneObj($stmt);
     }
 
-    public function registrationStudent($email, $name, $hash, $salt, $age = null, $grade = null)
+    public function registrationStudent($email, $name, $hash, $salt)
     {
         $query = "INSERT INTO user(email,name,password,type,salt) VALUES (?,?,?,'st',?)";
         $stmt = $this->prepare($query);
@@ -39,6 +39,23 @@ class UserModel extends Model
         $stmt->bind_param("i",$id);
         return $this->fetchOneObj($stmt);
     }
+
+    public function StgetUserData($id)
+    {
+        $query = "SELECT user.id, user.name, user.email, user.image FROM user WHERE user.type = 'st' and user.id=?;";
+        $stmt = $this->prepare($query);
+        $stmt->bind_param("i",$id);
+        return $this->fetchOneObj($stmt);
+    }
+
+    public function TgetUserData($id)
+    {
+        $query = "SELECT user.id, user.name, user.email, user.image FROM user WHERE user.type = 'tch' and user.id=?;";
+        $stmt = $this->prepare($query);
+        $stmt->bind_param("i",$id);
+        return $this->fetchOneObj($stmt);
+    }
+
 
     public function getSponsorData($id)
     {
@@ -98,9 +115,10 @@ class UserModel extends Model
 
     public function updateMobile($mobile, $id, $type = null)
     {
-        $query = "update resource_creator set mobile_no = '$mobile' where id=$id";
         if ($type == "sponsor"){
             $query = "update sponsor set mobileNo = '$mobile' where id=$id";
+        }else{
+            $query = "update resource_creator set mobile_no = '$mobile' where id=$id";
         }
         return $this->executeQuery($query);
     }
@@ -127,7 +145,7 @@ class UserModel extends Model
 
     public function changeImg($id, $img)
     {
-        $query = "update user set image = '$img' where id = '$id'";
+        $query = "update user set image = '$img' where id = $id";
         return $this->executeQuery($query);
     }
 
@@ -136,6 +154,31 @@ class UserModel extends Model
                                  VALUES (?,?,?,?,?,?,?,?,?,?,?,?)");
         $stmt->bind_param("ssssssssssss",$firstname,$lastname,$initialsName,$email,$tel1,$tel2,$gender,$description,$subjects,$exampleTarget,$cvTarget,$resources);       
         return $stmt->execute();
+    }
+
+    public function ScholershipApply($firstname,$lastname,$initialsName,$gradientname,$email,$tel1,$tel2,$address,$school,$dob,$gender,$description,$class,$subjects, $cvTarget){
+        $stmt = $this->prepare("INSERT INTO scholarship(firstName,lastName,initialsName,email,gradientname,tel1,tel2,address,school,dob,gender,description,class,subjects,cv)
+                                 VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+        $stmt->bind_param("sssssssssssssss",$firstname,$lastname,$initialsName,$gradientname,$email,$tel1,$tel2,$address,$school,$dob,$gender,$description,$class,$subjects,$cvTarget);       
+        return $stmt->execute();
+    }
+
+    public function saveAppliedSponsor($firstname,$lastname,$initialsName,$email,$tel1,$tel2,$address,$howKnew,$maxAmount){
+        $stmt = $this->prepare("INSERT INTO applied_sponsor(firstName,lastName,initialsName,email,telephone1,telephone2,address,howKnew,maxAmount)
+                                 VALUES (?,?,?,?,?,?,?,?,?)");
+        $stmt->bind_param("ssssssssi",$firstname,$lastname,$initialsName,$email,$tel1,$tel2,$address,$howKnew,$maxAmount);       
+        return $stmt->execute();
+    }
+
+    public function isUserExists($email){
+        $stmt = $this->prepare("SELECT id FROM user WHERE email = ?");
+        $stmt->bind_param("s",$email);
+        $result = $this->fetchOneObj($stmt);
+        if($result){
+            return true;
+        }else{
+            return false;
+        }
     }
 
 }

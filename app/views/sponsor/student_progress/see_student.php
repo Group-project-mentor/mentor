@@ -31,7 +31,7 @@
                 </a>
                 <?php include_once "components/notificationIcon.php" ?>
                 <a href="<?php echo BASEURL . 'sponsor/profile' ?>">
-                    <img src="<?php echo BASEURL ?>assets/icons/icon_profile_black.png" alt="profile">
+                        <?php include_once "components/profilePic.php"?>
                 </a>
             </div>
         </section>
@@ -47,10 +47,20 @@
 
             <!-- bottom part -->
             <section class="bottom-section-grades" style="flex-direction: column;align-items:center;">
+                <div class="bottom-section-title" style="justify-self: flex-end;">
+                    <a class="sponsor-button" href="<?php echo BASEURL."sponsor/payAllMoths/".$data[0]->id ?>" style="text-decoration: none;">
+                        Pay All Amount
+                        <img src="<?php echo BASEURL ?>assets/icons/icon_pay_all_white.png" alt="" style="width: 20px;">
+                    </a>
+                </div>
                 <div class="sponsor-student-prof">
                     <div class="prof">
                         <div class="image">
-                            <img src="<?php echo BASEURL ?>assets/clips/lap_man.png">
+                            <?php if(empty($data[0]->image)){ ?>
+                                <img src="<?php echo BASEURL ?>assets/clips/no_profile.jpg">
+                            <?php }else{ ?>
+                                <img src="<?php echo $data[0]->image ?>">
+                            <?php } ?>
                         </div>
                         <div class="details">
                             <h3>Student Details</h3>
@@ -59,88 +69,28 @@
                                     <div class="sponsor-list-item flex-1 sponsor-detail-cell" >
                                         ID :
                                     </div>
-                                    <div class="sponsor-list-item flex-3 sponsor-detail-cell">
-                                        20067
+                                    <div class="sponsor-list-item flex-2 sponsor-detail-cell">
+                                        <?php echo $data[0]->id ?>
                                     </div>
                                 </div>
                                 <div class="sponsor-list-row">
                                     <div class="sponsor-list-item flex-1 sponsor-detail-cell" >
                                         Name :
                                     </div>
-                                    <div class="sponsor-list-item flex-3 sponsor-detail-cell">
-                                        Kavish Kavi
+                                    <div class="sponsor-list-item flex-2 sponsor-detail-cell">
+                                        <?php echo $data[0]->name ?>
                                     </div>
                                 </div>
                                 <div class="sponsor-list-row">
-                                    <div class="sponsor-list-item flex-1 sponsor-detail-cell" >
-                                        Grade :
+                                    <div class="sponsor-list-item flex-1 sponsor-detail-cell">
+                                        Months Remaining :
                                     </div>
-                                    <div class="sponsor-list-item flex-3 sponsor-detail-cell">
-                                        11
-                                    </div>
-                                </div>
-                                <div class="sponsor-list-row">
-                                    <div class="sponsor-list-item flex-1 sponsor-detail-cell" >
-                                        Age :
-                                    </div>
-                                    <div class="sponsor-list-item flex-3 sponsor-detail-cell">
-                                        15
+                                    <div class="sponsor-list-item flex-2 sponsor-detail-cell">
+                                    <?php 
+                                        echo $data[3] . " Months";
+                                    ?>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="bottom-details">
-                        <h3>More Details</h3>
-                        <div>
-                            <div class="sp-subject-details">
-                                <h4>Subjects</h4>
-                                <div class="sponsor-list-main border-no">
-                                    <div class="sponsor-list-row">
-                                        <div class="sponsor-list-item flex-1 sponsor-grade-cell" >
-                                            Mathematics
-                                        </div>
-                                    </div>
-                                    <div class="sponsor-list-row">
-                                        <div class="sponsor-list-item flex-1 sponsor-grade-cell" >
-                                            Sinhala
-                                        </div>
-                                    </div>
-                                    <div class="sponsor-list-row">
-                                        <div class="sponsor-list-item flex-1 sponsor-grade-cell" >
-                                            Sinhala
-                                        </div>
-                                    </div>
-                                    <div class="sponsor-list-row">
-                                        <div class="sponsor-list-item flex-1 sponsor-grade-cell" >
-                                            Sinhala
-                                        </div>
-                                    </div>
-                                    <div class="sponsor-list-row">
-                                        <div class="sponsor-list-item flex-1 sponsor-grade-cell" >
-                                            Sinhala
-                                        </div>
-                                    </div>
-                                    <div class="sponsor-list-row">
-                                        <div class="sponsor-list-item flex-1 sponsor-grade-cell" >
-                                            Sinhala
-                                        </div>
-                                    </div>
-                                    <div class="sponsor-list-row">
-                                        <div class="sponsor-list-item flex-1 sponsor-grade-cell" >
-                                            Sinhala
-                                        </div>
-                                    </div>
-                                    <div class="sponsor-list-row">
-                                        <div class="sponsor-list-item flex-1 sponsor-grade-cell" >
-                                            Sinhala
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="sp-subject-report">
-                                <h4>Detail Chart</h4>
-                                <img src="<?php echo BASEURL?>assets/clips/chart.webp" style="width: 400px;">
                             </div>
                         </div>
                     </div>

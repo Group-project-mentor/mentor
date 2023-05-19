@@ -34,17 +34,14 @@
 <body>
     <section class="page">
         <!-- Navigation panel -->
-        <?php include_once "components/navbars/st_navbar_3.php" ?> <!-- used to include_once to add file -->
+        <?php include_once "components/navbars/st_navbar_7.php" ?> <!-- used to include_once to add file -->
 
         <div class="content-area">
 
             <!-- Top bar -->
             <section class="top-bar">
                 <div class="search-bar">
-                    <input type="text" name="" id="" placeholder="Search...">
-                    <a href="">
-                        <img src="<?php echo BASEURL; ?>assets/icons/icon_search.png" alt="">
-                    </a>
+                    
                 </div>
                 <div class="top-bar-btns">
                     <a href="<?php echo BASEURL; ?>st_private_mode/st_join_classes">
@@ -52,10 +49,11 @@
                     </a>
                     <?php include_once "components/notificationIcon.php" ?>
                     <a href="<?php echo BASEURL ?>st_profile">
-                        <img src="<?php echo BASEURL; ?>assets/icons/icon_profile_black.png" alt="profile">
+                    <?php include_once "components/profilePic.php"?>
                     </a>
                 </div>
             </section>
+            <hr style="color: green; height:7px; background-color:green;">
             <section>
                 <div>
                     <br>
@@ -71,21 +69,26 @@
                             <div class="rc-pp-row">
 
                                 <img src="<?php echo BASEURL; ?>assets/icons/pdf_resources.png" alt="delete">
-                                <div class="rc-resource-col">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?php echo $row->class_name ?></div>
-                                <div class="rc-resource-col">Grade <?php echo $row->grade+5 ?></div>
+                                <div class="rc-resource-col"><?php echo $row->class_name ?></div>
                                 <div class="rc-resource-col"></div>
                                 <div class="rc-quiz-row-btns">
-                                    <button>
-                                        <img src="<?php echo BASEURL; ?>assets/icons/icon_edit.png" alt="edit">
-                                    </button>
+                                    <div class="sponsor-list-item flex-1" style="display:flex;align-items:center;justify-content:space-evenly;">
+                                        <a style="text-decoration: none;" href="<?php echo BASEURL . 'st_private_mode/st_join_request_update/0/' . $row->class_id   ?>">
+                                            <div class="back-btn">Accept</div>
+                                        </a>
+                                        <a style="text-decoration: none;" href="<?php echo BASEURL . 'st_private_mode/st_join_request_update/1/' . $row->class_id ?>">
+                                            <div class="back-btn">Delete</div>
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
                         <?php } ?>
                     </div>
 
-                <?php } else {
-                    echo "no data!";
-                } ?>
+                <?php } else { ?>
+                    <h2 style="color:green;">No Class Requests yet !</h2>
+                <?php } ?>
+
 
         </div>
     </section>

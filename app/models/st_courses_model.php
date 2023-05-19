@@ -33,12 +33,26 @@ class St_courses_model extends Model{
     }
 
     public function getClasses4($id) {
-        $q ="SELECT subject.id , subject.name FROM subject INNER JOIN subject_has_grade ON subject.id = subject_has_grade.subject_id INNER JOIN grade ON grade.id = subject_has_grade.grade_id WHERE grade.id=?";
+        $q ="SELECT subject.id,subject.name FROM subject INNER JOIN subject_has_grade ON subject.id = subject_has_grade.subject_id
+        INNER JOIN grade ON grade.id = subject_has_grade.grade_id WHERE grade.id = ?";
         $stmt = $this->prepare($q);
         $stmt->bind_param('i',$id);
-
+        
         $result = $this->fetchObjs($stmt);
         return $result;
+    }
+
+    public function getClasses5($grade,$subject) {
+        $q ="DELETE FROM st_enroll_subject WHERE subject_id =$subject AND grade_id = $grade AND student_id =$_SESSION[id];";
+        $result = $this->executeQuery($q);
+        return $result;
+    }
+
+    public function enroll_rec($id,$gid,$sid){
+        $q="INSERT INTO st_enroll_subject(student_id, grade_id, subject_id) VALUES ($id,$gid,$sid )" ;
+        $result = $this->executeQuery($q);
+        return $result;
+
     }
 
 }

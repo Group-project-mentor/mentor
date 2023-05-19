@@ -21,22 +21,45 @@ class joinRequests extends Controller
     private function getClass($class_id)
     {
         if (!isset($_SESSION["cid"])) {
-            $result1 = $this->model("classModel")->getClassId($class_id)[1];
+            $result1 = $this->model("classModel")->getClassId($class_id)[0];
             $_SESSION["cid"] = $result1;
         }
     }
 
     public function deleteRequest($id, $cid)
     {
-        $this->model("joinRequestsModel")->deleteRequest($id);
-        header("Location: " . BASEURL . "joinRequests/getRequests/" . $cid);
+        if ($this->model("joinRequestsModel")->deleteRequest($id)) {
+            flashMessage("delete_success");
+            header("Location: " . BASEURL . "joinRequests/getRequests/" . $cid);
+        } else {
+            flashMessage("delete_failed");
+            header("Location: " . BASEURL . "joinRequests/getRequests/" . $cid);
+        }
     }
 
     public function acceptRequest($id, $cid, $sid)
     {
-        if ($this->model('teacher_data')->addStudentsbyRequest($sid,$cid) and $this->model("joinRequestsModel")->markAccept($id))
-        {
-            header("Location: " . BASEURL . "joinRequests/getRequests/" . $cid);
+        $premium = ($this->model("premiumModel")->getPremium($_SESSION['id'])->active);
+        $student_count = ($this->model("premiumModel")->studentCount($_SESSION['cid'])->student_count);
+        if ($premium == 1) {
+            if ($this->model('teacher_data')->addStudentsbyRequest($sid, $cid) and $this->model("joinRequestsModel")->markAccept($id)) {
+                flashMessage("success");
+                header("Location: " . BASEURL . "joinRequests/getRequests/" . $cid);
+            } else {
+                flashMessage("failed");
+                header("Location: " . BASEURL . "joinRequests/getRequests/" . $cid);
+            }
+        } else if ($premium != 1 and $student_count < 10) {
+            if ($this->model('teacher_data')->addStudentsbyRequest($sid, $cid) and $this->model("joinRequestsModel")->markAccept($id)) {
+                flashMessage("success");
+                header("Location: " . BASEURL . "joinRequests/getRequests/" . $cid);
+            } else {
+                flashMessage("failed");
+                header("Location: " . BASEURL . "joinRequests/getRequests/" . $cid);
+            }
+        } else if ($premium != 1 and $student_count >= 10) {
+            flashMessage("premiumLimited");
         }
+        header("Location: " . BASEURL . "joinRequests/getRequests/" . $cid);
     }
 }
